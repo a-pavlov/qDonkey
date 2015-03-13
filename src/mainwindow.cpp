@@ -541,7 +541,7 @@ void MainWindow::closeEvent(QCloseEvent *e)
             if(!isVisible())
                 show();
 
-            QMessageBox confirmBox(QMessageBox::Question, tr("Exiting eMule0.60"), tr("Some files are currently transferring.\nAre you sure you want to quit eMule0.60?"), QMessageBox::NoButton, this);
+            QMessageBox confirmBox(QMessageBox::Question, tr("Exiting qDonkey"), tr("Some files are currently transferring.\nAre you sure you want to quit qDonkey?"), QMessageBox::NoButton, this);
 
             QPushButton *noBtn = confirmBox.addButton(tr("No"), QMessageBox::NoRole);
             QPushButton *yesBtn = confirmBox.addButton(tr("Yes"), QMessageBox::YesRole);
@@ -1105,7 +1105,7 @@ void MainWindow::updateGUI()
     {
 #if defined(Q_WS_X11) || defined(Q_WS_MAC)
         QString html = "<div style='background-color: #678db2; color: #fff;height: 18px; font-weight: bold; margin-bottom: 5px;'>";
-        html += tr("eMule0.60");
+        html += tr("qDonkey");
         html += "</div>";
         html += "<div style='vertical-align: baseline; height: 18px;'>";
         html += "<img src=':iIcons/transfers/download.png'/>&nbsp;" +
@@ -1128,7 +1128,7 @@ void MainWindow::updateGUI()
 
     if(displaySpeedInTitle)
     {
-        setWindowTitle(tr("[D: %1/s, U: %2/s] eMule0.60 %3", "D = Download; U = Upload; %3 is eMule0.60 version").arg(misc::friendlyUnit(status.payload_download_rate)).arg(misc::friendlyUnit(status.payload_upload_rate)).arg(QString::fromUtf8(VERSION)));
+        setWindowTitle(tr("[D: %1/s, U: %2/s] qDonkey %3", "D = Download; U = Upload; %3 is qDonkey version").arg(misc::friendlyUnit(status.payload_download_rate)).arg(misc::friendlyUnit(status.payload_upload_rate)).arg(QString::fromUtf8(VERSION)));
     }
 
     statusBar->setUpDown(status.payload_upload_rate, status.payload_download_rate);
@@ -1151,8 +1151,8 @@ void MainWindow::showNotificationBaloon(QString title, QString msg) const
     if (notifications.isValid())
     {
         QVariantMap hints;
-        hints["desktop-entry"] = "eMule0.60";
-        QDBusPendingReply<uint> reply = notifications.Notify("eMule0.60", 0, "eMule0.60", title,
+        hints["desktop-entry"] = "qDonkey";
+        QDBusPendingReply<uint> reply = notifications.Notify("qDonkey", 0, "qDonkey", title,
                                                              msg, QStringList(), hints, -1);
         reply.waitForFinished();
 
@@ -1310,7 +1310,7 @@ void MainWindow::on_actionSpeed_in_title_bar_triggered()
     if(displaySpeedInTitle)
         updateGUI();
     else
-        setWindowTitle(tr("eMule0.60 %1", "e.g: eMule0.60 v0.x").arg(QString::fromUtf8(VERSION)));
+        setWindowTitle(tr("qDonkey %1", "e.g: qDonkey v0.x").arg(QString::fromUtf8(VERSION)));
 }
 
 void MainWindow::showConnectionSettings()
@@ -1460,7 +1460,7 @@ void MainWindow::on_actionOpenDownloadPath_triggered()
                         !Preferences::isLinkAssocSet("ed2k")))
     {
         if (QMessageBox::question(0, tr("Torrent file association"),
-                                tr("eMule0.60 is not the default application to open torrent files, Magnet links or eMule collections.\nDo you want to associate eMule0.60 to torrent files, Magnet links and eMule collections?"),
+                                tr("qDonkey is not the default application to open torrent files, Magnet links or eMule collections.\nDo you want to associate qDonkey to torrent files, Magnet links and eMule collections?"),
                                 QMessageBox::Yes|QMessageBox::No, QMessageBox::Yes) == QMessageBox::Yes)
         {
             Preferences::setTorrentFileAssoc(true);

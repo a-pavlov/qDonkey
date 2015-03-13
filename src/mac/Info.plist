@@ -45,7 +45,7 @@
 		</dict>
 	</array>
 	<key>CFBundleName</key>
-	<string>eMule0.60</string>
+	<string>qDonkey</string>
 	<key>CFBundleIconFile</key>
 	<string>emule.icns</string>
 	<key>CFBundleInfoDictionaryVersion</key>
@@ -57,7 +57,7 @@
 	<key>CFBundleSignature</key>
 	<string>emt</string>
 	<key>CFBundleExecutable</key>
-	<string>eMule0.60</string>
+	<string>qDonkey</string>
 	<key>CFBundleIdentifier</key>
 	<string>org.emule.com</string>
 	<key>NSPrincipalClass</key>
