@@ -56,7 +56,6 @@
 #include "mainwindow.h"
 #include "misc.h"
 
-#include "options_imp.h"
 #include "preferences.h"
 #include "qinisettings.h"
 #include "status_bar.h"

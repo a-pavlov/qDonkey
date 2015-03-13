@@ -77,7 +77,7 @@ public:
   {
       // do not use build date after actual version
       //static QString strBuildDate = QString::fromLocal8Bit(BUILDDATE).remove(QChar('\n'));
-      return tr("%1 v%2.%3.%4.%5", "e.g: eMule0.60 v0.x")
+      return tr("%1 v%2.%3.%4.%5", "e.g: qDonkey v0.x")
               .arg(PRODUCT_NAME)
               .arg(VERSION_MAJOR)
               .arg(VERSION_MINOR)

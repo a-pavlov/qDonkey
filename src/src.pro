@@ -51,8 +51,7 @@ DEFINES += QT_USE_FAST_CONCATENATION QT_USE_FAST_OPERATOR_PLUS
 
 INCLUDEPATH += $$PWD
 
-RESOURCES +=  icons.qrc \
-              lang.qrc
+RESOURCES +=  icons.qrc 
 
 # Source code
 usesystemqtsingleapplication {
@@ -106,7 +105,3 @@ DESTDIR = ../
 
 # OS specific config
 OTHER_FILES += win/conf.pri win/conf-msvc.pri mac/conf.pri unix/conf.pri ../version.pri
-
-# Translations
-TRANSLATIONS = $$LANG_PATH/eMule0.60-en.ts \
-               $$LANG_PATH/eMule0.60-ru.ts 

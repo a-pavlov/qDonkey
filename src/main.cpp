@@ -96,7 +96,7 @@ void sigsegvHandler(int)
     signal(SIGSEGV, 0);
     std::cerr << "\n\n*************************************************************\n";
     std::cerr << "Catching SIGSEGV, please report a bug at http://emule.com/crashrpt.php provide the following backtrace:\n";
-    std::cerr << "eMule0.60 version: " << VERSION_MAJOR << "." << VERSION_MINOR << "." << VERSION_BUILD << std::endl;
+    std::cerr << "qDonkey version: " << VERSION_MAJOR << "." << VERSION_MINOR << "." << VERSION_BUILD << std::endl;
     print_stacktrace();
     raise(SIGSEGV);
 }
@@ -107,7 +107,7 @@ void sigabrtHandler(int)
     signal(SIGSEGV, 0);
     std::cerr << "\n\n*************************************************************\n";
     std::cerr << "Catching SIGABRT, please report a bug at http://emule.com/crashrpt.php provide the following backtrace:\n";
-    std::cerr << "eMule0.60 version: " << VERSION_MAJOR << "." << VERSION_MINOR << "." << VERSION_BUILD << std::endl;
+    std::cerr << "qDonkey version: " << VERSION_MAJOR << "." << VERSION_MINOR << "." << VERSION_BUILD << std::endl;
     print_stacktrace();
     raise(SIGABRT);
 }
