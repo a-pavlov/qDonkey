@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/">
+        <file>lang/eMule0.60-en.qm</file>
+        <file>lang/eMule0.60-es.qm</file>
+    </qresource>
+</RCC>
