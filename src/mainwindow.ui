@@ -18,16 +18,7 @@
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout_2">
-    <property name="leftMargin">
-     <number>0</number>
-    </property>
-    <property name="topMargin">
-     <number>0</number>
-    </property>
-    <property name="rightMargin">
-     <number>0</number>
-    </property>
-    <property name="bottomMargin">
+    <property name="margin">
      <number>0</number>
     </property>
     <property name="spacing">
@@ -45,10 +36,10 @@
        <string notr="true"/>
       </property>
       <property name="frameShape">
-       <enum>QFrame::StyledPanel</enum>
+       <enum>QFrame::Panel</enum>
       </property>
       <property name="frameShadow">
-       <enum>QFrame::Plain</enum>
+       <enum>QFrame::Raised</enum>
       </property>
       <layout class="QGridLayout" name="gridLayout">
        <property name="leftMargin">
@@ -73,13 +64,13 @@
          </property>
          <property name="minimumSize">
           <size>
-           <width>90</width>
+           <width>150</width>
            <height>0</height>
           </size>
          </property>
          <property name="maximumSize">
           <size>
-           <width>16777215</width>
+           <width>150</width>
            <height>16777215</height>
           </size>
          </property>
@@ -268,6 +259,12 @@
                </property>
                <item>
                 <widget class="QToolButton" name="startTransfersBtn_2">
+                 <property name="maximumSize">
+                  <size>
+                   <width>24</width>
+                   <height>24</height>
+                  </size>
+                 </property>
                  <property name="text">
                   <string>...</string>
                  </property>
@@ -282,6 +279,12 @@
                </item>
                <item>
                 <widget class="QToolButton" name="pauseTransfersBtn_2">
+                 <property name="maximumSize">
+                  <size>
+                   <width>24</width>
+                   <height>24</height>
+                  </size>
+                 </property>
                  <property name="text">
                   <string>...</string>
                  </property>
@@ -296,6 +299,12 @@
                </item>
                <item>
                 <widget class="QFrame" name="frame_6">
+                 <property name="maximumSize">
+                  <size>
+                   <width>16777215</width>
+                   <height>24</height>
+                  </size>
+                 </property>
                  <property name="frameShape">
                   <enum>QFrame::VLine</enum>
                  </property>
@@ -306,6 +315,12 @@
                </item>
                <item>
                 <widget class="QToolButton" name="allDownloadsBtn_2">
+                 <property name="maximumSize">
+                  <size>
+                   <width>100</width>
+                   <height>24</height>
+                  </size>
+                 </property>
                  <property name="text">
                   <string>All</string>
                  </property>
@@ -326,6 +341,18 @@
                </item>
                <item>
                 <widget class="QToolButton" name="downloadingBtn_2">
+                 <property name="minimumSize">
+                  <size>
+                   <width>24</width>
+                   <height>24</height>
+                  </size>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>1000</width>
+                   <height>24</height>
+                  </size>
+                 </property>
                  <property name="text">
                   <string>Downloading</string>
                  </property>
@@ -346,6 +373,15 @@
                </item>
                <item>
                 <widget class="QToolButton" name="completedBtn_2">
+                 <property name="enabled">
+                  <bool>true</bool>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>16777215</width>
+                   <height>24</height>
+                  </size>
+                 </property>
                  <property name="text">
                   <string>Completed</string>
                  </property>
@@ -366,6 +402,12 @@
                </item>
                <item>
                 <widget class="QToolButton" name="waitingBtn_2">
+                 <property name="maximumSize">
+                  <size>
+                   <width>16777215</width>
+                   <height>24</height>
+                  </size>
+                 </property>
                  <property name="text">
                   <string>Stalled</string>
                  </property>
@@ -409,16 +451,7 @@
                <enum>QFrame::Sunken</enum>
               </property>
               <layout class="QGridLayout" name="gridLayout_15">
-               <property name="leftMargin">
-                <number>0</number>
-               </property>
-               <property name="topMargin">
-                <number>0</number>
-               </property>
-               <property name="rightMargin">
-                <number>0</number>
-               </property>
-               <property name="bottomMargin">
+               <property name="margin">
                 <number>0</number>
                </property>
                <property name="spacing">
@@ -470,6 +503,12 @@
                </property>
                <item>
                 <widget class="QToolButton" name="uploadsBtn_2">
+                 <property name="maximumSize">
+                  <size>
+                   <width>16777215</width>
+                   <height>24</height>
+                  </size>
+                 </property>
                  <property name="text">
                   <string/>
                  </property>
@@ -490,6 +529,12 @@
                </item>
                <item>
                 <widget class="QToolButton" name="downloadsBtn_2">
+                 <property name="maximumSize">
+                  <size>
+                   <width>16777215</width>
+                   <height>24</height>
+                  </size>
+                 </property>
                  <property name="text">
                   <string/>
                  </property>
@@ -546,16 +591,7 @@
          <layout class="QHBoxLayout" name="horizontalLayout_8">
           <item>
            <layout class="QGridLayout" name="gridLayout_3">
-            <property name="leftMargin">
-             <number>9</number>
-            </property>
-            <property name="topMargin">
-             <number>9</number>
-            </property>
-            <property name="rightMargin">
-             <number>9</number>
-            </property>
-            <property name="bottomMargin">
+            <property name="margin">
              <number>9</number>
             </property>
             <item row="4" column="0" colspan="2">
@@ -949,16 +985,7 @@
         </item>
         <item>
          <layout class="QHBoxLayout" name="horizontalLayout_6">
-          <property name="leftMargin">
-           <number>4</number>
-          </property>
-          <property name="topMargin">
-           <number>4</number>
-          </property>
-          <property name="rightMargin">
-           <number>4</number>
-          </property>
-          <property name="bottomMargin">
+          <property name="margin">
            <number>4</number>
           </property>
           <item>
@@ -988,8 +1015,8 @@
              <string>Download</string>
             </property>
             <property name="icon">
-             <iconset>
-              <normaloff>:/Icons/transfers/download.png</normaloff>:/Icons/transfers/download.png</iconset>
+             <iconset resource="icons.qrc">
+              <normaloff>:/icons/transfer_list/DownloadFiles.ico</normaloff>:/icons/transfer_list/DownloadFiles.ico</iconset>
             </property>
             <property name="iconSize">
              <size>
@@ -1065,8 +1092,8 @@
              <string>Close all</string>
             </property>
             <property name="icon">
-             <iconset>
-              <normaloff>:/Icons/search/clear1.ico</normaloff>:/Icons/search/clear1.ico</iconset>
+             <iconset resource="icons.qrc">
+              <normaloff>:/icons/search/clear1.ico</normaloff>:/icons/search/clear1.ico</iconset>
             </property>
             <property name="toolButtonStyle">
              <enum>Qt::ToolButtonTextBesideIcon</enum>
@@ -1101,8 +1128,8 @@
   </action>
   <action name="actionOptions">
    <property name="icon">
-    <iconset>
-     <normaloff>:/Icons/toolbar/settings.png</normaloff>:/Icons/toolbar/settings.png</iconset>
+    <iconset resource="icons.qrc">
+     <normaloff>:/icons/Preferences.png</normaloff>:/icons/Preferences.png</iconset>
    </property>
    <property name="text">
     <string>&amp;Options...</string>
@@ -1173,8 +1200,8 @@
     <bool>true</bool>
    </property>
    <property name="icon">
-    <iconset>
-     <normaloff>:/Icons/toolbar/search.png</normaloff>:/Icons/toolbar/search.png</iconset>
+    <iconset resource="icons.qrc">
+     <normaloff>:/icons/Search.png</normaloff>:/icons/Search.png</iconset>
    </property>
    <property name="text">
     <string>Search</string>
@@ -1188,11 +1215,11 @@
     <bool>true</bool>
    </property>
    <property name="icon">
-    <iconset>
-     <normaloff>:/Icons/toolbar/emule_disconnected.png</normaloff>:/Icons/toolbar/emule_disconnected.png</iconset>
+    <iconset resource="icons.qrc">
+     <normaloff>:/icons/ConnectDoBig.png</normaloff>:/icons/ConnectDoBig.png</iconset>
    </property>
    <property name="text">
-    <string>Connect</string>
+    <string>Disconnected</string>
    </property>
    <property name="toolTip">
     <string>Connect</string>
@@ -1203,8 +1230,8 @@
     <bool>true</bool>
    </property>
    <property name="icon">
-    <iconset>
-     <normaloff>:/Icons/toolbar/transfers.png</normaloff>:/Icons/toolbar/transfers.png</iconset>
+    <iconset resource="icons.qrc">
+     <normaloff>:/icons/Transfer.png</normaloff>:/icons/Transfer.png</iconset>
    </property>
    <property name="text">
     <string>Transfers</string>
@@ -1221,6 +1248,24 @@
    </property>
    <property name="text">
     <string>OpenDownloadPath</string>
+   </property>
+  </action>
+  <action name="actionDownload">
+   <property name="icon">
+    <iconset resource="icons.qrc">
+     <normaloff>:/icons/transfer_list/DownloadFiles.ico</normaloff>:/icons/transfer_list/DownloadFiles.ico</iconset>
+   </property>
+   <property name="text">
+    <string>Download</string>
+   </property>
+  </action>
+  <action name="actionPreview">
+   <property name="icon">
+    <iconset resource="icons.qrc">
+     <normaloff>:/icons/magnet.png</normaloff>:/icons/magnet.png</iconset>
+   </property>
+   <property name="text">
+    <string>Preview</string>
    </property>
   </action>
  </widget>

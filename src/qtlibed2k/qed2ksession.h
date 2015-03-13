@@ -18,6 +18,7 @@
 
 #include <libed2k/session.hpp>
 #include <libed2k/session_status.hpp>
+#include <libed2k/server_connection.hpp>
 
 #include "qed2khandle.h"
 #include "preferences/preferences.h"
@@ -88,63 +89,6 @@ struct QED2KPeerOptions {
     QED2KPeerOptions(const libed2k::misc_options& mo, const libed2k::misc_options2& mo2);
 };
 
-struct QED2KServerFingerprint {
-    QString name;
-    QString host;
-    int port;
-    unsigned int original_ip;
-    QED2KServerFingerprint();
-    QED2KServerFingerprint(const std::string& nm, const std::string& hs, int p);
-    QED2KServerFingerprint(const QString& nm, const QString& hs, int p);
-
-    bool defined() const { return !name.isEmpty() && !host.isEmpty() && port > 0; }
-    void undef();
-
-    bool operator>(const QED2KServerFingerprint& f) const
-    {
-        return ((name > f.name) ||
-                ((name == f.name) && (host > f.host))  ||
-                ((name == f.name) && (host == f.host) && (port > f.port)));
-    }
-
-    bool operator<(const QED2KServerFingerprint& f) const
-    {
-        return ((name < f.name) ||
-                ((name == f.name) && (host < f.host))  ||
-                ((name == f.name) && (host == f.host) && (port < f.port)));
-        return false;
-    }
-
-    bool operator==(const QED2KServerFingerprint& f) const
-    {
-        return name == f.name && host == f.host && port == f.port;
-    }
-
-    bool operator!=(const QED2KServerFingerprint& f) const
-    {
-        return name != f.name || host != f.host || port != f.port;
-    }
-};
-
-
-// it is not good idea :( to store state over session delegate
-// implemented for web ui status supporting
-enum ServerStatus {
-    ss_disconnected = 0,
-    ss_connected,
-    ss_connecting
-};
-
-inline QString serverStatus2String(ServerStatus ss) {
-    static const char* value[] = {
-        "disconnected",
-        "connected",
-        "connecting"
-    };
-
-    Q_ASSERT((int)ss < sizeof(value)/sizeof(value[0]));
-    return QString(value[ss]);
-}
 
 class QED2KSession : public QObject {
     Q_OBJECT
@@ -172,10 +116,8 @@ public:
     void setDownloadRateLimit(long rate);
     void setUploadRateLimit(long rate);
     virtual void saveTempFastResumeData();
-    virtual void readAlerts();
     virtual void saveFastResumeData();
-    void switchServerConnection(); // web ui method based on current state and last server fingerprint
-    void startServerConnection(const QED2KServerFingerprint&);
+    void startServerConnection();
     void stopServerConnection();
     bool isServerConnected() const;
     void makeTransferParametersAsync(const QString& filepath);
@@ -195,14 +137,14 @@ private:
     QHash<QString, QED2KHandle> m_fast_resume_transfers;   // contains fast resume data were loading
     void remove_by_state(int sborder);  // begin remove when start border great or equal transfers count
     QTimer finishTimer;
+    QTimer alertsTimer;
     // Port forwarding
     libed2k::upnp* m_upnp;
     libed2k::natpmp* m_natpmp;
-    QED2KServerFingerprint lastServerFgp;
-
-
+    libed2k::server_connection_parameters m_sp;
 private slots:
     void finishLoad();
+    void readAlerts();
 public slots:
 	void startUpTransfers();
 	void configureSession();
@@ -241,16 +183,15 @@ public slots:
     libed2k::peer_connection_handle getPeer(const libed2k::net_identifier& np);
     libed2k::peer_connection_handle findPeer(const libed2k::net_identifier& np);
     QString makeLink(const QString& filename, long filesize, const QString& filehash);
-
 signals:
     void registerNode(QED2KHandle);    // temporary signal for node registration
 
-    void serverNameResolved(QED2KServerFingerprint sfp, QString strName);
-    void serverConnectionInitialized(QED2KServerFingerprint sfp, quint32 client_id, quint32 tcp_flags, quint32 aux_port);
-    void serverConnectionClosed(QED2KServerFingerprint sfp, QString strError);
-    void serverStatus(QED2KServerFingerprint sfp, int nFiles, int nUsers);
-    void serverMessage(QED2KServerFingerprint sfp, QString strMessage);
-    void serverIdentity(QED2KServerFingerprint sfp, QString strName, QString strDescription);
+    void serverNameResolved(QString strName);
+    void serverConnectionInitialized(quint32 client_id, quint32 tcp_flags, quint32 aux_port);
+    void serverConnectionClosed(QString strError);
+    void serverStatus(int nFiles, int nUsers);
+    void serverMessage(QString strMessage);
+    void serverIdentity(QString strName, QString strDescription);
 
     // TODO - add server identifier
     void searchResult(const libed2k::net_identifier& np, const QString& hash, 

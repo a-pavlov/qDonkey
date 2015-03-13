@@ -9,7 +9,6 @@
 #include <libed2k/alert_types.hpp>
 #include <libed2k/ip_filter.hpp>
 #include <libed2k/util.hpp>
-#include <libed2k/server_connection.hpp>
 #include <libed2k/upnp.hpp>
 #include <libed2k/natpmp.hpp>
 
@@ -194,24 +193,6 @@ QED2KPeerOptions::QED2KPeerOptions(const libed2k::misc_options& mo, const libed2
     m_bLargeFiles       = mo2.support_large_files();
 }
 
-QED2KServerFingerprint::QED2KServerFingerprint(){ port = 0; original_ip = 0; }
-
-QED2KServerFingerprint::QED2KServerFingerprint(const std::string& nm, const std::string& hs, int p) :
-    name(QString::fromUtf8(nm.c_str())), host(QString::fromUtf8(hs.c_str())), port(p), original_ip(0)
-{}
-
-QED2KServerFingerprint::QED2KServerFingerprint(const QString& nm, const QString& hs, int p) :
-    name(nm), host(hs), port(p), original_ip(0)
-{}
-
-void QED2KServerFingerprint::undef()
-{
-    name.clear();
-    host.clear();
-    port = 0;
-    original_ip = 0;
-}
-
 bool writeResumeData(const libed2k::save_resume_data_alert* p)
 {
     qDebug() << Q_FUNC_INFO;
@@ -271,9 +252,16 @@ bool writeResumeDataOne(std::ofstream& fs, const libed2k::save_resume_data_alert
     return false;
 }
 
-QED2KSession::QED2KSession() : m_upnp(0), m_natpmp(0)
-{
-    //connect(&finishTimer, SIGNAL(timeout()), this, SLOT(finishLoad()));
+QED2KSession::QED2KSession() : m_upnp(0), m_natpmp(0) {
+    m_sp.name = "is";
+    m_sp.host = "emule.is74.ru";
+    m_sp.port = 4661;
+    m_sp.set_operations_timeout(30);
+    m_sp.set_keep_alive_timeout(100);
+    m_sp.set_reconnect_timeout(100);
+    m_sp.set_announce_timeout(60);
+    m_sp.announce_items_per_call_limit = 60;
+    connect(&alertsTimer, SIGNAL(timeout()), this, SLOT(readAlerts()));
 }
 
 void QED2KSession::start()
@@ -301,8 +289,6 @@ void QED2KSession::start()
     settings.mod_major = VERSION_MAJOR;
     settings.mod_minor = VERSION_MINOR;
     settings.mod_build = VERSION_BUILD;
-
-    qDebug() << "known " << misc::toQStringU(settings.m_known_file);
 
     m_session.reset(new libed2k::session(finger, NULL, settings));
     m_session->set_alert_mask(libed2k::alert::all_categories);
@@ -347,10 +333,13 @@ void QED2KSession::start()
 #endif
     // start listening on special interface and port and start server connection
     configureSession();
+    alertsTimer.setInterval(1000);
+    alertsTimer.start();
 }
 
 void QED2KSession::stop()
 {
+    alertsTimer.stop();
     m_session->pause();
     saveFastResumeData();
 }
@@ -665,38 +654,31 @@ void QED2KSession::readAlerts()
         if (libed2k::server_name_resolved_alert* p =
             dynamic_cast<libed2k::server_name_resolved_alert*>(a.get()))
         {
-            emit serverNameResolved(QED2KServerFingerprint(p->name, p->host, p->port),
-                                    QString::fromUtf8(p->endpoint.c_str(), p->endpoint.size()));
+            emit serverNameResolved(QString::fromUtf8(p->endpoint.c_str(), p->endpoint.size()));
         }
         if (libed2k::server_connection_initialized_alert* p =
             dynamic_cast<libed2k::server_connection_initialized_alert*>(a.get()))
         {
-            emit serverConnectionInitialized(QED2KServerFingerprint(p->name, p->host, p->port),
-                                             p->client_id, p->tcp_flags, p->aux_port);
+            emit serverConnectionInitialized(p->client_id, p->tcp_flags, p->aux_port);
             qDebug() << "server initialized: " << QString::fromStdString(p->name) << " " << QString::fromStdString(p->host) << " " << p->port;
         }
         else if (libed2k::server_status_alert* p = dynamic_cast<libed2k::server_status_alert*>(a.get()))
         {
-            emit serverStatus(QED2KServerFingerprint(p->name, p->host, p->port),
-                              p->files_count,
-                              p->users_count);
+            emit serverStatus(p->files_count, p->users_count);
         }
         else if (libed2k::server_identity_alert* p = dynamic_cast<libed2k::server_identity_alert*>(a.get()))
         {
-            emit serverIdentity(QED2KServerFingerprint(p->name, p->host, p->port),
-                                QString::fromUtf8(p->server_name.c_str(), p->server_name.size()),
+            emit serverIdentity(QString::fromUtf8(p->server_name.c_str(), p->server_name.size()),
                                 QString::fromUtf8(p->server_descr.c_str(), p->server_descr.size()));
         }
         else if (libed2k::server_message_alert* p = dynamic_cast<libed2k::server_message_alert*>(a.get()))
         {
-            emit serverMessage(QED2KServerFingerprint(p->name, p->host, p->port),
-                                                 QString::fromUtf8(p->server_message.c_str(), p->server_message.size()));
+            emit serverMessage(QString::fromUtf8(p->server_message.c_str(), p->server_message.size()));
         }
         else if (libed2k::server_connection_closed* p =
                  dynamic_cast<libed2k::server_connection_closed*>(a.get()))
         {
-            emit serverConnectionClosed(QED2KServerFingerprint(p->name, p->host, p->port),
-                                        QString::fromLocal8Bit(p->m_error.message().c_str()));
+            emit serverConnectionClosed(QString::fromLocal8Bit(p->m_error.message().c_str()));
         }
         else if (libed2k::shared_files_alert* p = dynamic_cast<libed2k::shared_files_alert*>(a.get()))
         {
@@ -1106,51 +1088,9 @@ void QED2KSession::enableUPnP(bool b)
     }
 }
 
-void QED2KSession::switchServerConnection()
-{
-    /*
-    switch (localServerStatus)
-    {
-    case ss_connected:
-    case ss_connecting:
-        stopServerConnection();
-        break;
-    case ss_disconnected:
-        if (lastServerFgp.defined()) startServerConnection(lastServerFgp);
-        break;
-    default:
-        break;
-    }
-    */
-}
 
-void QED2KSession::startServerConnection(const QED2KServerFingerprint& sfp)
-{
-    Q_ASSERT(!sfp.name.isEmpty());
-    Q_ASSERT(!sfp.host.isEmpty());
-    Q_ASSERT(sfp.port > 0);
-
-    lastServerFgp = sfp;
-
-    libed2k::server_connection_parameters params;
-    libed2k::session_settings settings = delegate()->settings();    
-    params.name = sfp.name.toUtf8().data();
-    params.host = sfp.host.toStdString();
-    params.port = sfp.port;
-    params.set_operations_timeout(30);
-    params.set_keep_alive_timeout(100);
-    params.set_reconnect_timeout(100);
-    params.set_announce_timeout(60);
-    params.announce_items_per_call_limit = 60;
-
-    delegate()->set_settings(settings);
-    delegate()->server_connect(params);
-}
-
-void QED2KSession::stopServerConnection()
-{
-    delegate()->server_disconnect();
-}
+void QED2KSession::startServerConnection() { delegate()->server_connect(m_sp); }
+void QED2KSession::stopServerConnection() { delegate()->server_disconnect(); }
 
 bool QED2KSession::isServerConnected() const
 {

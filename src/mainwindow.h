@@ -123,6 +123,18 @@ protected slots:
     // GUI related slots
     //void dropEvent(QDropEvent *event);
     //void dragEnterEvent(QDragEnterEvent *event);
+    void on_actionTransfers_triggered();
+    void on_actionSearch_triggered();
+    void on_actionConnect_triggered();
+
+    // processing server events
+    void handleServerNameResolved(QString);
+    void handleServerConnectionInitialized(quint32,quint32,quint32);
+    void handleServerConnectionClosed(QString);
+    void handleServerStatus(int,int);
+    void handleServerMessage(QString);
+    void handleServerIdentity(QString,QString);
+
 
     void toggleVisibility(QSystemTrayIcon::ActivationReason e = QSystemTrayIcon::Trigger);
     void balloonClicked();
@@ -213,10 +225,7 @@ private:
     QIcon icon_TrayDisconn;
     QIcon& icon_CurTray;
 
-    ConnectionState connection_state;
     QDateTime m_last_file_error;
-
-    QED2KServerFingerprint m_connectingTo;
 
     void setButtons(bool);
 private slots:
@@ -227,12 +236,6 @@ private slots:
     void on_actionAutoExit_mule_toggled(bool);
     void on_actionAutoSuspend_system_toggled(bool);
     void on_actionAutoShutdown_system_toggled(bool);
-
-    void ed2kConnectionPending(const QED2KServerFingerprint &sfp);
-    void ed2kConnectionInitialized(QED2KServerFingerprint sfp, quint32 client_id, quint32 tcp_flags, quint32 aux_port);
-    void ed2kServerStatus(QED2KServerFingerprint sfp, int nFiles, int nUsers);
-    void ed2kConnectionClosed(QED2KServerFingerprint sfp, QString strError);
-    void ed2kServerCountChanged(int);
 
     void on_actionOpenDownloadPath_triggered();
 

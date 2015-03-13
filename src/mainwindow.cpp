@@ -121,6 +121,7 @@ MainWindow::MainWindow(QWidget *parent, QStringList torrentCmdLine)
     actionPause_All->setIcon(QIcon(res::pause()));
     actionStart->setIcon(QIcon(res::play()));
     actionStart_All->setIcon(QIcon(res::play()));
+    actionTransfers->setChecked(true);
 
     // subscribe actions to main window toolbuttons
     connectBtn->setDefaultAction(actionConnect);
@@ -258,11 +259,6 @@ MainWindow::MainWindow(QWidget *parent, QStringList torrentCmdLine)
         raise();
     }
 
-    ed2kConnectionClosed(QED2KServerFingerprint(), "");
-
-    connection_state = csDisconnected;    
-
-
     //connect(servers, SIGNAL(sigConnectPending(QED2KServerFingerprint)),
     //        this, SLOT(ed2kConnectionPending(QED2KServerFingerprint)));
     //connect(Session::instance(), SIGNAL(serverConnectionInitialized(QED2KServerFingerprint, quint32, quint32, quint32)),
@@ -271,15 +267,15 @@ MainWindow::MainWindow(QWidget *parent, QStringList torrentCmdLine)
     //      this, SLOT(ed2kServerStatus(QED2KServerFingerprint, int, int)));
    // connect(Session::instance(), SIGNAL(serverConnectionClosed(QED2KServerFingerprint, QString)),
     //      this, SLOT(ed2kConnectionClosed(QED2KServerFingerprint, QString)));
-/*
-    connect(Session::instance(), SIGNAL(newConsoleMessage(const QString&)), servers, SLOT(addHtmlLogMessage(const QString&)));
-    connect(Session::instance(), SIGNAL(serverNameResolved(QED2KServerFingerprint,QString)), servers, SLOT(handleServerNameResolved(QED2KServerFingerprint,QString)));
-    connect(Session::instance(), SIGNAL(serverConnectionInitialized(QED2KServerFingerprint,quint32,quint32,quint32)), servers, SLOT(handleServerConnectionInitialized(QED2KServerFingerprint,quint32,quint32,quint32)));
-    connect(Session::instance(), SIGNAL(serverConnectionClosed(QED2KServerFingerprint,QString)), servers, SLOT(handleServerConnectionClosed(QED2KServerFingerprint,QString)));
-    connect(Session::instance(), SIGNAL(serverStatus(QED2KServerFingerprint,int,int)), servers, SLOT(handleServerStatus(QED2KServerFingerprint,int,int)));
-    connect(Session::instance(), SIGNAL(serverMessage(QED2KServerFingerprint,QString)), servers, SLOT(handleServerMessage(QED2KServerFingerprint,QString)));
-    connect(Session::instance(), SIGNAL(serverIdentity(QED2KServerFingerprint,QString,QString)), servers, SLOT(handleServerIdentity(QED2KServerFingerprint,QString,QString)));
-*/
+
+    //connect(Session::instance(), SIGNAL(newConsoleMessage(const QString&)), servers, SLOT(addHtmlLogMessage(const QString&)));
+    connect(Session::instance(), SIGNAL(serverNameResolved(QString)), this, SLOT(handleServerNameResolved(QString)));
+    connect(Session::instance(), SIGNAL(serverConnectionInitialized(quint32,quint32,quint32)), this, SLOT(handleServerConnectionInitialized(quint32,quint32,quint32)));
+    connect(Session::instance(), SIGNAL(serverConnectionClosed(QString)), this, SLOT(handleServerConnectionClosed(QString)));
+    connect(Session::instance(), SIGNAL(serverStatus(int,int)), this, SLOT(handleServerStatus(int,int)));
+    connect(Session::instance(), SIGNAL(serverMessage(QString)), this, SLOT(handleServerMessage(QString)));
+    connect(Session::instance(), SIGNAL(serverIdentity(QString,QString)), this, SLOT(handleServerIdentity(QString,QString)));
+
     //Tray actions.
     //connect(actionToggleVisibility, SIGNAL(triggered()), this, SLOT(toggleVisibility()));
     //connect(actionStart_All, SIGNAL(triggered()), Session::instance(), SLOT(resumeAllTransfers()));
@@ -901,48 +897,6 @@ bool MainWindow::eventFilter(QObject *watched, QEvent *event)
     return QObject::eventFilter(watched, event);
 }
 
-/*
-void MainWindow::on_actionConnect_triggered() {
-    QMessageBox confirmBox(QMessageBox::Question, tr("Server connection"), tr("Do you want to break network connection?"), QMessageBox::NoButton, this);
-
-    confirmBox.addButton(tr("No"), QMessageBox::NoRole);
-    QPushButton *yesBtn = confirmBox.addButton(tr("Yes"), QMessageBox::YesRole);
-    confirmBox.setDefaultButton(yesBtn);   
-
-    switch (connection_state)
-    {
-        case csDisconnected:
-        {            
-
-            if (!servers->connectToServer())
-            {
-                actionConnect->setChecked(false);
-                QMessageBox::warning(this, tr("Server connection"), tr("If you have servers please select one in the list"), QMessageBox::Ok);
-            }
-
-            break;
-        }
-        case csConnecting:
-        {
-            Session::instance()->stopServerConnection();
-            break;
-        }
-        case csConnected:
-        {
-            confirmBox.exec();
-
-            if(confirmBox.clickedButton() && confirmBox.clickedButton() == yesBtn)
-            {
-                Session::instance()->stopServerConnection();
-            }
-
-            break;
-        }
-        default:
-            break;
-    }
-}
-*/
 // As program parameters, we can get paths or urls.
 // This function parse the parameters and call
 // the right addTorrent function, considering
@@ -1381,69 +1335,6 @@ QIcon MainWindow::getSystrayIcon() const
 
 void MainWindow::addConsoleMessage(const QString& msg, QColor color /*=QApplication::palette().color(QPalette::WindowText)*/) const { qDebug() << msg; }
 
-void MainWindow::ed2kConnectionInitialized(QED2KServerFingerprint sfp, quint32 client_id, quint32 tcp_flags, quint32 aux_port)
-{
-    statusBar->setConnected(true);
-    actionConnect->setIcon(QIcon(res::toolbarConnected()));
-    actionConnect->setText(tr("Connected"));
-    actionConnect->setChecked(true);
-    connection_state = csConnected;
-    icon_CurTray = icon_TrayConn;
-
-    if (systrayIcon)
-        systrayIcon->setIcon(getSystrayIcon());
-
-    QString log_msg("Client ID: ");
-    QString id;
-    id.setNum(client_id);
-    log_msg += id;
-    statusBar->setStatusMsg(log_msg);
-}
-
-void MainWindow::ed2kServerStatus(QED2KServerFingerprint sfp, int nFiles, int nUsers)
-{
-    statusBar->setServerInfo(nFiles, nUsers);
-}
-
-void MainWindow::ed2kConnectionPending(const QED2KServerFingerprint &sfp)
-{
-    m_connectingTo = sfp;
-    actionConnect->setIcon(QIcon(res::toolbarConnecting()));
-    actionConnect->setText(tr("Cancel"));
-    actionConnect->setChecked(true);
-}
-
-void MainWindow::ed2kConnectionClosed(QED2KServerFingerprint sfp, QString strError)
-{
-    if (m_connectingTo == sfp)
-    {
-        actionConnect->setIcon(QIcon(res::toolbarDisconnected()));
-        actionConnect->setText(tr("Disconnected"));
-        actionConnect->setChecked(false);
-    }
-
-    connection_state = csDisconnected;
-    statusBar->reset();
-    icon_CurTray = icon_TrayDisconn;
-
-    if (systrayIcon)
-        systrayIcon->setIcon(getSystrayIcon());
-
-    statusBar->setStatusMsg(strError);
-}
-
-void MainWindow::ed2kServerCountChanged(int count)
-{
-    if (connection_state == csDisconnected && count == 0)
-    {
-        actionConnect->setEnabled(false);
-    }
-    else
-    {
-        actionConnect->setEnabled(true);
-    }
-}
-
 void MainWindow::on_actionOpenDownloadPath_triggered()
 {
     Preferences pref;
@@ -1528,4 +1419,64 @@ void MainWindow::on_downloadsBtn_clicked()
 void MainWindow::on_addURLBtn_clicked()
 {
     //transferList->addLinkDialog();
+}
+
+void MainWindow::on_actionTransfers_triggered() {
+    actionSearch->setChecked(false);
+    actionTransfers->setChecked(true);
+    stackedWidget->setCurrentIndex(0);
+}
+
+void MainWindow::on_actionSearch_triggered() {
+    actionSearch->setChecked(true);
+    actionTransfers->setChecked(false);
+    stackedWidget->setCurrentIndex(1);
+}
+
+void MainWindow::on_actionConnect_triggered() {
+    //QMessageBox confirmBox(QMessageBox::Question, tr("Server connection"), tr("Do you want to break network connection?"), QMessageBox::NoButton, this);
+    //confirmBox.addButton(tr("No"), QMessageBox::NoRole);
+    //QPushButton *yesBtn = confirmBox.addButton(tr("Yes"), QMessageBox::YesRole);
+    //confirmBox.setDefaultButton(yesBtn);
+
+    if (!Session::instance()->isServerConnected()) {
+        actionConnect->setIcon(QIcon(res::toolbarConnecting()));
+        actionConnect->setText(tr("Connecting"));
+        Session::instance()->startServerConnection();
+    } else {
+        Session::instance()->stopServerConnection();
+    }
+}
+
+void MainWindow::handleServerNameResolved(QString name) {
+
+}
+
+void MainWindow::handleServerConnectionInitialized(quint32 client_id, quint32 tcp_flags, quint32 aux_port) {
+    Q_UNUSED(tcp_flags);
+    Q_UNUSED(aux_port);
+    actionConnect->setIcon(QIcon(res::toolbarConnected()));
+    actionConnect->setText(tr("Connected"));
+    QString log_msg("Client ID: ");
+    QString id;
+    id.setNum(client_id);
+    log_msg += id;
+    statusBar->setStatusMsg(log_msg);
+}
+
+void MainWindow::handleServerConnectionClosed(QString) {
+    actionConnect->setIcon(QIcon(res::toolbarDisconnected()));
+    actionConnect->setText(tr("Disconnected"));
+}
+
+void MainWindow::handleServerStatus(int files, int users) {
+    statusBar->setServerInfo(files, users);
+}
+
+void MainWindow::handleServerMessage(QString) {
+
+}
+
+void MainWindow::handleServerIdentity(QString,QString) {
+
 }

@@ -13,7 +13,7 @@ private:
     static QString searchPrefix()       {return prefix() + "search/";}
     static QString serverPrefix()       {return prefix() + "server/";}
     static QString statusbarPrefix()    {return prefix() + "statusbar/";}
-    static QString toolbarPrefix()      {return prefix() + "toolbar/";}
+    static QString toolbarPrefix()      {return prefix(); }
     static QString transfersPrefix()    {return prefix() + "transfers/";}
     static QString usersPrefix()        {return prefix() + "users/";}
 
@@ -61,9 +61,9 @@ public:
     static QString newMessage()             {return prefix() + "statusbar/MessagePending.ico";}
 
     // toolbar resources
-    static QString toolbarConnected()       {return toolbarPrefix() + "emule_connected.png";}
-    static QString toolbarConnecting()      {return toolbarPrefix() + "emule_connecting.png";}
-    static QString toolbarDisconnected()    {return toolbarPrefix() + "emule_disconnected.png";}
+    static QString toolbarConnected()       {return toolbarPrefix() + "ConnectDrop.png";}
+    static QString toolbarConnecting()      {return toolbarPrefix() + "ConnectStop.png";}
+    static QString toolbarDisconnected()    {return toolbarPrefix() + "ConnectDoBig.png";}
 
     // statusbar resources
     static QString statusbarConnected()     {return statusbarPrefix() + "connectedHighHigh.png";}
