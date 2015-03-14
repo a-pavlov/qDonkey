@@ -64,46 +64,35 @@ include(qtlibed2k/qtlibed2k.pri)
 include(geoip/geoip.pri)
 include(preferences/preferences.pri)
 include(powermanagement/powermanagement.pri)
+include(search/search.pri)
 
 HEADERS +=  misc.h \
             stacktrace.h \
             qinisettings.h \
             res.h \
             fs_utils.h \
-            search_widget_delegate.h \
-            search_widget_fp_model.h
+            ed2k_link_maker.h \
+            collection_save_dlg.h
 
-SOURCES += main.cpp \
-           misc.cpp \
-            #transferlistdelegate.cpp \
+SOURCES +=  main.cpp \
+            misc.cpp \
             fs_utils.cpp \
-            search_widget_fp_model.cpp
+            ed2k_link_maker.cpp \
+            collection_save_dlg.cpp
 
 HEADERS +=  mainwindow.h\
-          #transferlistwidget.h \
-          #transferlistdelegate.h \
-          #transferlistfilterswidget.h \
-          #torrentcontentmodel.h \
-          #torrentcontentmodelitem.h \
-          #torrentcontentfiltermodel.h \
-          #deletionconfirmationdlg.h \
-          ico.h \
-          sessionapplication.h \
-          iconprovider.h \
-          status_bar.h
+            ico.h \
+            sessionapplication.h \
+            iconprovider.h \
+            status_bar.h
 
 SOURCES += mainwindow.cpp \
          ico.cpp \
-         #transferlistwidget.cpp \
-         #torrentcontentmodel.cpp \
-         #torrentcontentmodelitem.cpp \
-         #torrentcontentfiltermodel.cpp \
-         #torrentadditiondlg.cpp \
          sessionapplication.cpp \
          iconprovider.cpp \
          status_bar.cpp
 
-FORMS += mainwindow.ui status_bar.ui
+FORMS += mainwindow.ui status_bar.ui ed2k_link_maker.ui collection_save_dlg.ui
 DESTDIR = ../
 
 # OS specific config

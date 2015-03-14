@@ -99,6 +99,10 @@ public:
       }
   }
 
+  QString getSavePath() const {
+      return QString();
+  }
+
   // General options
   QString getLocale() const {
     return value(QString::fromUtf8("Preferences/General/Locale"), "").toString();
