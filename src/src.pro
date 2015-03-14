@@ -65,6 +65,7 @@ include(geoip/geoip.pri)
 include(preferences/preferences.pri)
 include(powermanagement/powermanagement.pri)
 include(search/search.pri)
+include(transfers/transfers.pri)
 
 HEADERS +=  misc.h \
             stacktrace.h \
@@ -92,7 +93,8 @@ SOURCES += mainwindow.cpp \
          iconprovider.cpp \
          status_bar.cpp
 
-FORMS += mainwindow.ui status_bar.ui ed2k_link_maker.ui collection_save_dlg.ui
+FORMS += mainwindow.ui status_bar.ui ed2k_link_maker.ui collection_save_dlg.ui \
+    transfers/transfers_widget.ui
 DESTDIR = ../
 
 # OS specific config

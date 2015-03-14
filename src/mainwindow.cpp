@@ -63,6 +63,7 @@
 #include "iconprovider.h"
 
 #include "search/search_widget.h"
+#include "transfers/transfers_widget.h"
 
 #ifdef Q_WS_MAC
 #include "qmacapplication.h"
@@ -105,6 +106,7 @@ MainWindow::MainWindow(QWidget *parent, QStringList torrentCmdLine)
       icon_CurTray(icon_TrayDisconn)
 {
     setupUi(this);
+    stackedWidget->addWidget(new transfers_widget(this));
     stackedWidget->addWidget(new search_widget(this));
     stackedWidget->setCurrentIndex(0);
     QCoreApplication::instance()->installEventFilter(this);
