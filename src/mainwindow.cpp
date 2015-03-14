@@ -121,16 +121,6 @@ MainWindow::MainWindow(QWidget *parent, QStringList torrentCmdLine)
     actionPause_All->setIcon(QIcon(res::pause()));
     actionStart->setIcon(QIcon(res::play()));
     actionStart_All->setIcon(QIcon(res::play()));
-    actionTransfers->setChecked(true);
-
-    // subscribe actions to main window toolbuttons
-    connectBtn->setDefaultAction(actionConnect);
-    transfersBtn->setDefaultAction(actionTransfers);
-    searchBtn->setDefaultAction(actionSearch);
-    settingsBtn->setDefaultAction(actionOptions);
-
-    //startTransfersBtn->setDefaultAction(actionStart_All);
-    //pauseTransfersBtn->setDefaultAction(actionPause_All);
 
     QMenu *startAllMenu = new QMenu(this);
     startAllMenu->addAction(actionStart_All);
@@ -1249,13 +1239,6 @@ void MainWindow::setButtons(bool b)
     waitingBtn_2->setChecked(b);
 }
 
-void MainWindow::on_actionTop_tool_bar_triggered()
-{
-    bool is_visible = static_cast<QAction*>(sender())->isChecked();
-    toolBar->setVisible(is_visible);
-    Preferences().setToolbarDisplayed(is_visible);
-}
-
 void MainWindow::on_actionSpeed_in_title_bar_triggered()
 {
     displaySpeedInTitle = static_cast<QAction*>(sender())->isChecked();
@@ -1422,14 +1405,10 @@ void MainWindow::on_addURLBtn_clicked()
 }
 
 void MainWindow::on_actionTransfers_triggered() {
-    actionSearch->setChecked(false);
-    actionTransfers->setChecked(true);
     stackedWidget->setCurrentIndex(0);
 }
 
 void MainWindow::on_actionSearch_triggered() {
-    actionSearch->setChecked(true);
-    actionTransfers->setChecked(false);
     stackedWidget->setCurrentIndex(1);
 }
 
@@ -1441,7 +1420,7 @@ void MainWindow::on_actionConnect_triggered() {
 
     if (!Session::instance()->isServerConnected()) {
         actionConnect->setIcon(QIcon(res::toolbarConnecting()));
-        actionConnect->setText(tr("Connecting"));
+        actionConnect->setText(tr("Cancel"));
         Session::instance()->startServerConnection();
     } else {
         Session::instance()->stopServerConnection();
@@ -1456,7 +1435,7 @@ void MainWindow::handleServerConnectionInitialized(quint32 client_id, quint32 tc
     Q_UNUSED(tcp_flags);
     Q_UNUSED(aux_port);
     actionConnect->setIcon(QIcon(res::toolbarConnected()));
-    actionConnect->setText(tr("Connected"));
+    actionConnect->setText(tr("Disconnect"));
     QString log_msg("Client ID: ");
     QString id;
     id.setNum(client_id);
@@ -1466,7 +1445,7 @@ void MainWindow::handleServerConnectionInitialized(quint32 client_id, quint32 tc
 
 void MainWindow::handleServerConnectionClosed(QString) {
     actionConnect->setIcon(QIcon(res::toolbarDisconnected()));
-    actionConnect->setText(tr("Disconnected"));
+    actionConnect->setText(tr("Connect"));
 }
 
 void MainWindow::handleServerStatus(int files, int users) {

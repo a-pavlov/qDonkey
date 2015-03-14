@@ -376,5 +376,11 @@
         <file>icons/pause.ico</file>
         <file>icons/play.ico</file>
         <file>icons/stalled.ico</file>
+        <file>icons/search/clear2.ico</file>
+        <file>icons/search/closeall.png</file>
+        <file>icons/search/Download.png</file>
+        <file>icons/search/SearchFilter.png</file>
+        <file>icons/search/SearchRelated.png</file>
+        <file>icons/search/SearchResults.ico</file>
     </qresource>
 </RCC>

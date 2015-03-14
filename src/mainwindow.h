@@ -230,7 +230,6 @@ private:
     void setButtons(bool);
 private slots:
     void on_actionSpeed_in_title_bar_triggered();
-    void on_actionTop_tool_bar_triggered();
 
     void on_actionExecution_Logs_triggered(bool checked);
     void on_actionAutoExit_mule_toggled(bool);
