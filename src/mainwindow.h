@@ -224,8 +224,6 @@ private:
     QIcon& icon_CurTray;
 
     QDateTime m_last_file_error;
-
-    void setButtons(bool);
 private slots:
     void on_actionSpeed_in_title_bar_triggered();
 

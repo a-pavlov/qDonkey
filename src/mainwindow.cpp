@@ -175,8 +175,6 @@ MainWindow::MainWindow(QWidget *parent, QStringList torrentCmdLine)
     //connect(statusBar, SIGNAL(stopMessageNotification()), this, SLOT(stopMessageFlickering()));
 
 
-    allDownloadsBtn_2->setChecked(true);
-
     m_pwr = new PowerManagement(this);
 
 
@@ -1245,14 +1243,6 @@ void MainWindow::createTrayIcon()
     // End of Icon Menu
     connect(systrayIcon, SIGNAL(activated(QSystemTrayIcon::ActivationReason)), this, SLOT(toggleVisibility(QSystemTrayIcon::ActivationReason)));
     systrayIcon->show();
-}
-
-void MainWindow::setButtons(bool b)
-{
-    allDownloadsBtn_2->setChecked(b);
-    downloadingBtn_2->setChecked(b);
-    completedBtn_2->setChecked(b);
-    waitingBtn_2->setChecked(b);
 }
 
 void MainWindow::on_actionSpeed_in_title_bar_triggered()
