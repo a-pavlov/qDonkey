@@ -110,17 +110,12 @@ public:
     QMenu* getTrayIconMenu();
 
 public slots:
-    void setTabText(int index, QString text) const;
     void showNotificationBaloon(QString title, QString msg) const;
     void downloadFromURLList(const QStringList& urls);
     void deleteSession();
-    void on_actionOpen_triggered();
     void addConsoleMessage(const QString& msg, QColor color = QApplication::palette().color(QPalette::WindowText)) const;
 
 protected slots:
-    // GUI related slots
-    //void dropEvent(QDropEvent *event);
-    //void dragEnterEvent(QDragEnterEvent *event);
     void on_actionTransfers_triggered();
     void on_actionSearch_triggered();
     void on_actionConnect_triggered();
@@ -141,10 +136,7 @@ protected slots:
     void on_actionExit_triggered();
     void createTrayIcon();
     void fileError(const QED2KHandle& h, QString msg);
-    void handleDownloadFromUrlFailure(QString, QString) const;
     void createSystrayDelayed();
-    void tab_changed(int);
-    void showConnectionSettings();
     void minimizeWindow();
 
     // Keyboard shortcuts
@@ -173,12 +165,9 @@ protected:
 
 private:
     QIcon getSystrayIcon() const;
-    void selectWidget(Widgets wNum);
-    void selectTransfersPage(TransfersPage page);
 
 private:
     bool eventFilter(QObject *watched, QEvent *event);
-    void addTorrents(const QStringList &pathsList);
     QFileSystemWatcher *executable_watcher;
 
     // GUI related
@@ -192,16 +181,8 @@ private:
     QPointer<QTimer> systrayCreator;
     QPointer<QMenu> myTrayIconMenu;
 
-    QMenu*  fileMenu;
-    QAction* fileDownload;
-
-    // banner
-    QTimer* banner_timer;
-
     bool displaySpeedInTitle;
     bool force_exit;
-    bool ui_locked;
-    LineEdit *search_filter;
 
     // Keyboard shortcuts
     QShortcut *switchTransferShortcut;
@@ -224,32 +205,7 @@ private:
     QIcon& icon_CurTray;
 
     QDateTime m_last_file_error;
-private slots:
-    void on_actionSpeed_in_title_bar_triggered();
 
-    void on_actionExecution_Logs_triggered(bool checked);
-    void on_actionAutoExit_mule_toggled(bool);
-    void on_actionAutoSuspend_system_toggled(bool);
-    void on_actionAutoShutdown_system_toggled(bool);
-
-    void on_actionOpenDownloadPath_triggered();
-
-
-    // transfers list slots
-    void on_allDownloadsBtn_clicked();
-    void on_downloadingBtn_clicked();
-    void on_completedBtn_clicked();
-    void on_waitingBtn_clicked();
-
-    void on_allDownloadsBtn_2_clicked();
-    void on_downloadingBtn_2_clicked();
-    void on_completedBtn_2_clicked();
-    void on_waitingBtn_2_clicked();
-    void on_torrentsBtn_2_clicked();
-
-    void on_uploadsBtn_clicked();
-    void on_downloadsBtn_clicked();
-    void on_addURLBtn_clicked();
 };
 
 #endif

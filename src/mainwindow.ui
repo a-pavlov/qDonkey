@@ -88,78 +88,6 @@
     <string>&amp;Options...</string>
    </property>
   </action>
-  <action name="actionStart">
-   <property name="icon">
-    <iconset>
-     <normaloff>:/Icons/transfers/play.png</normaloff>:/Icons/transfers/play.png</iconset>
-   </property>
-   <property name="text">
-    <string>&amp;Resume</string>
-   </property>
-  </action>
-  <action name="actionPause">
-   <property name="icon">
-    <iconset>
-     <normaloff>:/Icons/transfers/pause.png</normaloff>:/Icons/transfers/pause.png</iconset>
-   </property>
-   <property name="text">
-    <string>&amp;Pause</string>
-   </property>
-  </action>
-  <action name="actionDelete">
-   <property name="icon">
-    <iconset>
-     <normaloff>:/Icons/transfers/delete.png</normaloff>:/Icons/transfers/delete.png</iconset>
-   </property>
-   <property name="text">
-    <string>&amp;Delete</string>
-   </property>
-  </action>
-  <action name="actionStart_All">
-   <property name="icon">
-    <iconset>
-     <normaloff>:/Icons/transfers/play.png</normaloff>:/Icons/transfers/play.png</iconset>
-   </property>
-   <property name="text">
-    <string>R&amp;esume All</string>
-   </property>
-  </action>
-  <action name="actionPause_All">
-   <property name="icon">
-    <iconset>
-     <normaloff>:/Icons/transfers/pause.png</normaloff>:/Icons/transfers/pause.png</iconset>
-   </property>
-   <property name="text">
-    <string>P&amp;ause All</string>
-   </property>
-  </action>
-  <action name="actionStatus">
-   <property name="checkable">
-    <bool>true</bool>
-   </property>
-   <property name="icon">
-    <iconset>
-     <normaloff>:/Icons/toolbar/statistics.png</normaloff>:/Icons/toolbar/statistics.png</iconset>
-   </property>
-   <property name="text">
-    <string>Status</string>
-   </property>
-   <property name="toolTip">
-    <string>Status</string>
-   </property>
-  </action>
-  <action name="actionSearch">
-   <property name="icon">
-    <iconset resource="icons.qrc">
-     <normaloff>:/icons/Search.png</normaloff>:/icons/Search.png</iconset>
-   </property>
-   <property name="text">
-    <string>Search</string>
-   </property>
-   <property name="toolTip">
-    <string>Search</string>
-   </property>
-  </action>
   <action name="actionConnect">
    <property name="enabled">
     <bool>true</bool>
@@ -187,50 +115,16 @@
     <string>Transfers</string>
    </property>
   </action>
-  <action name="actionOpenDownloadPath">
-   <property name="icon">
-    <iconset>
-     <normaloff>:/Icons/actions/folder_open.ico</normaloff>
-     <normalon>:/Icons/items/FolderOpen.ico</normalon>:/Icons/actions/folder_open.ico</iconset>
-   </property>
-   <property name="text">
-    <string>OpenDownloadPath</string>
-   </property>
-  </action>
-  <action name="actionDownload">
+  <action name="actionSearch">
    <property name="icon">
     <iconset resource="icons.qrc">
-     <normaloff>:/icons/transfer_list/Download.png</normaloff>:/icons/transfer_list/Download.png</iconset>
+     <normaloff>:/icons/Search.png</normaloff>:/icons/Search.png</iconset>
    </property>
    <property name="text">
-    <string>Download</string>
+    <string>Search</string>
    </property>
-  </action>
-  <action name="actionPreview">
-   <property name="icon">
-    <iconset resource="icons.qrc">
-     <normaloff>:/icons/search/preview32.png</normaloff>:/icons/search/preview32.png</iconset>
-   </property>
-   <property name="text">
-    <string>Preview</string>
-   </property>
-  </action>
-  <action name="actionClose_all">
-   <property name="icon">
-    <iconset resource="icons.qrc">
-     <normaloff>:/icons/search/closeall.png</normaloff>:/icons/search/closeall.png</iconset>
-   </property>
-   <property name="text">
-    <string>Close all</string>
-   </property>
-  </action>
-  <action name="actionSearch_related">
-   <property name="icon">
-    <iconset resource="icons.qrc">
-     <normaloff>:/icons/search/SearchRelated.png</normaloff>:/icons/search/SearchRelated.png</iconset>
-   </property>
-   <property name="text">
-    <string>Search related</string>
+   <property name="toolTip">
+    <string>Search</string>
    </property>
   </action>
  </widget>

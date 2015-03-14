@@ -50,6 +50,7 @@
 #include <QInputDialog>
 #include <QSortFilterProxyModel>
 #include <QMenu>
+#include <QUrl>
 
 #include <libed2k/log.hpp>
 
@@ -130,49 +131,11 @@ MainWindow::MainWindow(QWidget *parent, QStringList torrentCmdLine)
 
     this->setWindowIcon(QIcon(res::favicon()));
 
-    actionOpen->setIcon(QIcon(res::add()));
-    actionDelete->setIcon(IconProvider::instance()->getIcon("list-remove"));
-    actionExit->setIcon(IconProvider::instance()->getIcon("application-exit"));
-    actionPause->setIcon(QIcon(res::pause()));
-    actionPause_All->setIcon(QIcon(res::pause()));
-    actionStart->setIcon(QIcon(res::play()));
-    actionStart_All->setIcon(QIcon(res::play()));
-
-    QMenu *startAllMenu = new QMenu(this);
-    startAllMenu->addAction(actionStart_All);
-    actionStart->setMenu(startAllMenu);
-    QMenu *pauseAllMenu = new QMenu(this);
-    pauseAllMenu->addAction(actionPause_All);
-    actionPause->setMenu(pauseAllMenu);
-
 #ifdef Q_WS_MAC
     connect(static_cast<QMacApplication*>(qApp), SIGNAL(newFileOpenMacEvent(QString)), this, SLOT(processParams(QString)));
 #endif
 
-    //transferList = new TransferListWidget(transfersView, Session::instance());
-    //transferList->getSourceModel()->populate();
-
-    //connect(actionDelete, SIGNAL(triggered()), transferList, SLOT(deleteSelectedTorrents()));
-    //connect(transferList, SIGNAL(sigOpenTorrent()), SLOT(on_actionOpen_triggered()));
-    //peersList = new PeerListWidget(connectionsView);
-
     statusBar = new status_bar(this, QMainWindow::statusBar());
-
-    fileMenu = new QMenu(this);
-    fileMenu->setObjectName(QString::fromUtf8("fileMenu"));
-    fileMenu->setTitle(tr("Files"));
-    //connect(searchTable, SIGNAL(customContextMenuRequested(QPoint)), SLOT(handleQuickSearchMenu(QPoint)));
-
-    fileDownload = new QAction(this);
-    fileDownload->setObjectName(QString::fromUtf8("fileDownload"));
-    fileDownload->setText(tr("Download"));
-    fileDownload->setIcon(QIcon(res::download()));
-    fileMenu->addAction(fileDownload);
-    connect(fileDownload, SIGNAL(triggered()), this, SLOT(downloadFile()));
-
-    //connect(peersList, SIGNAL(sendMessage(const QString&, const libed2k::net_identifier&)), this, SLOT(startChat(const QString&, const libed2k::net_identifier&)));
-    //connect(peersList, SIGNAL(addFriend(const QString&, const libed2k::net_identifier&)), this, SLOT(addFriend(const QString&, const libed2k::net_identifier&)));
-    //connect(statusBar, SIGNAL(stopMessageNotification()), this, SLOT(stopMessageFlickering()));
 
 
     m_pwr = new PowerManagement(this);
@@ -222,16 +185,13 @@ MainWindow::MainWindow(QWidget *parent, QStringList torrentCmdLine)
     // Load Window state and sizes
     readSettings();
 
-    if (!ui_locked)
+    if (pref.startMinimized() && systrayIcon)
+        showMinimized();
+    else
     {
-        if (pref.startMinimized() && systrayIcon)
-            showMinimized();
-        else
-        {
-            show();
-            activateWindow();
-            raise();
-        }
+        show();
+        activateWindow();
+        raise();
     }
 
     // Start watching the executable for updates
@@ -344,10 +304,6 @@ MainWindow::~MainWindow()
     qDebug("Exiting GUI destructor...");
 }
 
-void MainWindow::tab_changed(int new_tab)
-{
-    Q_UNUSED(new_tab);
-}
 
 void MainWindow::writeSettings()
 {
@@ -424,20 +380,6 @@ void MainWindow::createKeyboardShortcuts()
     connect(switchTransferShortcut, SIGNAL(activated()), this, SLOT(displayTransferTab()));
     hideShortcut = new QShortcut(QKeySequence(QString::fromUtf8("Esc")), this);
     connect(hideShortcut, SIGNAL(activated()), this, SLOT(hide()));
-
-#ifdef Q_WS_MAC
-    actionDelete->setShortcut(QKeySequence("Ctrl+Backspace"));
-#else
-    actionDelete->setShortcut(QKeySequence(QString::fromUtf8("Del")));
-#endif
-    actionStart->setShortcut(QKeySequence(QString::fromUtf8("Ctrl+S")));
-    actionStart_All->setShortcut(QKeySequence(QString::fromUtf8("Ctrl+Shift+S")));
-    actionPause->setShortcut(QKeySequence(QString::fromUtf8("Ctrl+P")));
-    actionPause_All->setShortcut(QKeySequence(QString::fromUtf8("Ctrl+Shift+P")));
-#ifdef Q_WS_MAC
-    actionMinimize->setShortcut(QKeySequence(QString::fromUtf8("Ctrl+M")));
-    addAction(actionMinimize);
-#endif
 }
 
 // Keyboard shortcuts slots
@@ -447,12 +389,6 @@ void MainWindow::displayTransferTab() const
 }
 
 
-void MainWindow::handleDownloadFromUrlFailure(QString url, QString reason) const
-{
-    // Display a message box
-    showNotificationBaloon(tr("Url download error"), tr("Couldn't download file at url: %1, reason: %2.").arg(url).arg(reason));
-}
-
 // Necessary if we want to close the window
 // in one time if "close to systray" is enabled
 void MainWindow::on_actionExit_triggered()
@@ -460,12 +396,6 @@ void MainWindow::on_actionExit_triggered()
     force_exit = true;
     close();
 }
-
-void MainWindow::setTabText(int, QString) const
-{
-//  tabs->setTabText(index, text);
-}
-
 
 // Toggle Main window visibility
 void MainWindow::toggleVisibility(QSystemTrayIcon::ActivationReason e)
@@ -733,106 +663,6 @@ bool MainWindow::winEvent(MSG * message, long * result)
     }
 }*/
 
-/*****************************************************
- *                                                   *
- *                     Torrent                       *
- *                                                   *
- *****************************************************/
-
-void MainWindow::addTorrents(const QStringList &pathsList)
-{
-
-}
-
-// Display a dialog to allow user to add
-// torrents to download list
-void MainWindow::on_actionOpen_triggered()
-{
-    Preferences settings;
-    // Open File Open Dialog
-    // Note: it is possible to select more than one file
-    const QStringList pathsList = QFileDialog::getOpenFileNames(0, tr("Open Torrent Files"), settings.value(QString::fromUtf8("MainWindowLastDir"), QDir::homePath()).toString(), tr("Torrent Files") + QString::fromUtf8(" (*.torrent)"));
-
-    if(!pathsList.empty())
-    {
-        addTorrents(pathsList);
-
-        // Save last dir to remember it
-        QStringList top_dir = pathsList.at(0).split(QDir::separator());
-        top_dir.removeLast();
-        settings.setValue(QString::fromUtf8("MainWindowLastDir"), top_dir.join(QDir::separator()));
-    }
-}
-
-
-void MainWindow::selectWidget(Widgets wNum)
-{
-    actionTransfers->setChecked(false);
-    actionSearch->setChecked(false);
-
-    switch (wNum)
-    {
-        case wTransfer:  {
-            //stackedWidget->setCurrentWidget(transfersPage);
-            //actionTransfers->setChecked(true);
-            break;
-        }
-        case wSearch:  {
-            //stackedWidget->setCurrentWidget(search);
-            //actionSearch->setChecked(true);
-            break;
-        }
-        default: {
-            Q_ASSERT(false);
-            break;
-        }
-    }
-}
-
-void MainWindow::selectTransfersPage(TransfersPage page)
-{
-
-    /*setButtons(false);
-
-    if (page != TransfersPages::Torrents)
-    {
-        torrentsPanel->hide();
-        actionTorrents->setChecked(false);
-        actionTransfers->setChecked(true);
-    }
-
-    switch (page)
-    {
-        case TransfersPages::All:
-            allDownloadsBtn->setChecked(true);
-            allDownloadsBtn_2->setChecked(true);
-            transferList->showAll();
-            break;
-        case TransfersPages::Downloading:
-            downloadingBtn->setChecked(true);
-            downloadingBtn_2->setChecked(true);
-            transferList->showDownloading();
-            break;
-        case TransfersPages::Completed:
-            completedBtn->setChecked(true);
-            completedBtn_2->setChecked(true);
-            transferList->showCompleted();
-            break;
-        case TransfersPages::Waiting:
-            waitingBtn->setChecked(true);
-            waitingBtn_2->setChecked(true);
-            transferList->showWaiting();
-            break;
-        case TransfersPages::Torrents:
-            torrentsBtn->setChecked(true);
-            torrentsBtn_2->setChecked(true);
-            transferList->showTorrents();
-            torrentsPanel->show();
-            break;
-    }
-    */
-}
-
 bool MainWindow::eventFilter(QObject *watched, QEvent *event)
 {
     switch (event->type())
@@ -891,7 +721,7 @@ bool MainWindow::eventFilter(QObject *watched, QEvent *event)
                 pathList.append(urlList.at(i).toLocalFile());
             }
 
-            addTorrents(pathList);
+            //addTorrents(pathList);
             return true;
         }
         default:
@@ -1245,61 +1075,9 @@ void MainWindow::createTrayIcon()
     systrayIcon->show();
 }
 
-void MainWindow::on_actionSpeed_in_title_bar_triggered()
-{
-    displaySpeedInTitle = static_cast<QAction*>(sender())->isChecked();
-    Preferences().showSpeedInTitleBar(displaySpeedInTitle);
-
-    if(displaySpeedInTitle)
-        updateGUI();
-    else
-        setWindowTitle(tr("qDonkey %1", "e.g: qDonkey v0.x").arg(QString::fromUtf8(VERSION)));
-}
-
-void MainWindow::showConnectionSettings()
-{
-    //options->showConnectionTab();
-}
-
 void MainWindow::minimizeWindow()
 {
     setWindowState(windowState() ^ Qt::WindowMinimized);
-}
-
-void MainWindow::on_actionExecution_Logs_triggered(bool checked)
-{
-    if(checked)
-    {
-        //Q_ASSERT(!m_executionLog);
-        //    m_executionLog = new ExecutionLog(tabs);
-        //    int index_tab = tabs->addTab(m_executionLog, tr("Execution Log"));
-        //    tabs->setTabIcon(index_tab, IconProvider::instance()->getIcon("view-calendar-journal"));
-    }
-    else
-    {
-        //if(m_executionLog)
-        //    delete m_executionLog;
-    }
-
-    //Preferences().setExecutionLogEnabled(checked);
-}
-
-void MainWindow::on_actionAutoExit_mule_toggled(bool enabled)
-{
-    qDebug() << Q_FUNC_INFO << enabled;
-    //Preferences().setShutdownqBTWhenDownloadsComplete(enabled);
-}
-
-void MainWindow::on_actionAutoSuspend_system_toggled(bool enabled)
-{
-    qDebug() << Q_FUNC_INFO << enabled;
-    //Preferences().setSuspendWhenDownloadsComplete(enabled);
-}
-
-void MainWindow::on_actionAutoShutdown_system_toggled(bool enabled)
-{
-    qDebug() << Q_FUNC_INFO << enabled;
-    //Preferences().setShutdownWhenDownloadsComplete(enabled);
 }
 
 QIcon MainWindow::getSystrayIcon() const
@@ -1324,91 +1102,6 @@ QIcon MainWindow::getSystrayIcon() const
 
 void MainWindow::addConsoleMessage(const QString& msg, QColor color /*=QApplication::palette().color(QPalette::WindowText)*/) const { qDebug() << msg; }
 
-void MainWindow::on_actionOpenDownloadPath_triggered()
-{
-    Preferences pref;
-    QDesktopServices::openUrl(QUrl::fromLocalFile(pref.getSavePathMule()));
-}
-
-#ifdef Q_WS_WIN
-    Preferences pref;
-
-    if (!pref.neverCheckFileAssoc() &&
-        (!Preferences::isTorrentFileAssocSet() ||
-                        !Preferences::isLinkAssocSet("Magnet") ||
-                        !Preferences::isEmuleFileAssocSet() ||
-                        !Preferences::isLinkAssocSet("ed2k")))
-    {
-        if (QMessageBox::question(0, tr("Torrent file association"),
-                                tr("qDonkey is not the default application to open torrent files, Magnet links or eMule collections.\nDo you want to associate qDonkey to torrent files, Magnet links and eMule collections?"),
-                                QMessageBox::Yes|QMessageBox::No, QMessageBox::Yes) == QMessageBox::Yes)
-        {
-            Preferences::setTorrentFileAssoc(true);
-            Preferences::setLinkAssoc("Magnet", true);
-            Preferences::setLinkAssoc("ed2k", true);
-            Preferences::setEmuleFileAssoc(true);
-            Preferences::setCommonAssocSection(true); // enable common section
-        }
-        else
-        {
-            pref.setNeverCheckFileAssoc();
-        }
-    }
-#endif
-
-void MainWindow::on_allDownloadsBtn_clicked(){selectTransfersPage(TransfersPages::All);}
-void MainWindow::on_downloadingBtn_clicked(){selectTransfersPage(TransfersPages::Downloading);}
-void MainWindow::on_completedBtn_clicked(){selectTransfersPage(TransfersPages::Completed);}
-void MainWindow::on_waitingBtn_clicked(){ selectTransfersPage(TransfersPages::Waiting);}
-
-void MainWindow::on_allDownloadsBtn_2_clicked(){
-    //on_toTransfersBtn_clicked();
-    //selectWidget(wTransfer);
-    //selectTransfersPage(TransfersPages::All);
-}
-
-void MainWindow::on_downloadingBtn_2_clicked(){
-    //on_toTransfersBtn_clicked();
-    //selectTransfersPage(TransfersPages::Downloading);
-    //selectWidget(wTransfer);
-}
-
-void MainWindow::on_completedBtn_2_clicked(){
-    //on_toTransfersBtn_clicked();
-    //selectTransfersPage(TransfersPages::Completed);
-    //selectWidget(wTransfer);
-}
-
-void MainWindow::on_waitingBtn_2_clicked(){
-    //on_toTransfersBtn_clicked();
-    //selectTransfersPage(TransfersPages::Waiting);
-    //selectWidget(wTransfer);
-}
-
-void MainWindow::on_torrentsBtn_2_clicked(){
-    //on_toTransfersBtn_clicked();
-    //selectTransfersPage(TransfersPages::Torrents);
-    //selectWidget(wTorrents);
-}
-
-void MainWindow::on_uploadsBtn_clicked()
-{
-    //uploadsBtn->setChecked(true);
-    //downloadsBtn->setChecked(false);
-    //peersList->showDownload(false);
-}
-
-void MainWindow::on_downloadsBtn_clicked()
-{
-    //downloadsBtn->setChecked(true);
-    //uploadsBtn->setChecked(false);
-    //peersList->showDownload(true);
-}
-
-void MainWindow::on_addURLBtn_clicked()
-{
-    //transferList->addLinkDialog();
-}
 
 void MainWindow::on_actionTransfers_triggered() {
     stackedWidget->setCurrentIndex(0);

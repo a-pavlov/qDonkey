@@ -382,5 +382,12 @@
         <file>icons/search/SearchFilter.png</file>
         <file>icons/search/SearchRelated.png</file>
         <file>icons/search/SearchResults.ico</file>
+        <file>icons/statusbar/connected.ico</file>
+        <file>icons/statusbar/disconnected.ico</file>
+        <file>icons/statusbar/empty.ico</file>
+        <file>icons/statusbar/Up0down0.ico</file>
+        <file>icons/statusbar/Up0down1.ico</file>
+        <file>icons/statusbar/Up1down0.ico</file>
+        <file>icons/statusbar/Up1down1.ico</file>
     </qresource>
 </RCC>

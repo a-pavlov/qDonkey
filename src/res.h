@@ -31,10 +31,10 @@ public:
     static QString itemPicture()            {return itemsPrefix() + "FileTypePicture.ico";}
     static QString itemProgram()            {return itemsPrefix() + "FileTypeProgram.ico";}
     static QString itemVideo()              {return itemsPrefix() + "FileTypeVideo.ico";}
+    static QString user()                   {return itemsPrefix() + "User.ico"; }
 
     // common resources
-    static QString favicon()                {return prefix() + "favicon.png";}
-    static QString logo()                   {return prefix() + "splashScreen-emule060.jpg";}
+    static QString favicon()                {return prefix() + "newmule.png";}
 
     // preferences dialog resources
     static QString prefAdvanced()           {return prefPrefix() + "advanced.png";}
@@ -57,12 +57,12 @@ public:
     static QString toolbarDisconnected()    {return toolbarPrefix() + "ConnectDoBig.png";}
 
     // statusbar resources
-    static QString statusbarConnected()     {return statusbarPrefix() + "connectedHighHigh.png";}
-    static QString statusbarDisconnected()  {return statusbarPrefix() + "connectedNotNot.png";}
-    static QString statusbarGoogle()        {return statusbarPrefix() + "google_plus.png";}
-    static QString message()                {return statusbarPrefix() + "Message.ico";}
-    static QString messagePending()         {return statusbarPrefix() + "MessagePending.ico";}
-    static QString noMessage()              {return statusbarPrefix() + "empty.ico";}
+    static QString statusUD00()             {return statusbarPrefix() + "Up0down0.ico";}
+    static QString statusUD01()             {return statusbarPrefix() + "Up0down1.ico";}
+    static QString statusUD10()             {return statusbarPrefix() + "Up1down0.ico";}
+    static QString statusUD11()             {return statusbarPrefix() + "Up1down1.ico";}
+    static QString statusConnected()        {return statusbarPrefix() + "connected.ico";}
+    static QString statusDisconnected()     {return statusbarPrefix() + "disconnected.ico";}
 
     // servers resources
     static QString connect()                {return serverPrefix() + "ConnectDo.ico";}

@@ -66,6 +66,7 @@ include(preferences/preferences.pri)
 include(powermanagement/powermanagement.pri)
 include(search/search.pri)
 include(transfers/transfers.pri)
+include(statusbar/statusbar.pri)
 
 HEADERS +=  misc.h \
             stacktrace.h \
@@ -84,17 +85,15 @@ SOURCES +=  main.cpp \
 HEADERS +=  mainwindow.h\
             ico.h \
             sessionapplication.h \
-            iconprovider.h \
-            status_bar.h
+            iconprovider.h
 
 SOURCES += mainwindow.cpp \
          ico.cpp \
          sessionapplication.cpp \
-         iconprovider.cpp \
-         status_bar.cpp
+         iconprovider.cpp
 
-FORMS += mainwindow.ui status_bar.ui ed2k_link_maker.ui collection_save_dlg.ui \
-    transfers/transfers_widget.ui
+FORMS += mainwindow.ui ed2k_link_maker.ui collection_save_dlg.ui
+
 DESTDIR = ../
 
 # OS specific config
