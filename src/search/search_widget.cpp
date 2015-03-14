@@ -1006,35 +1006,35 @@ void search_widget::fillFileValues(int row, const QED2KSearchResultEntry& fileEn
     {
         case ED2KFT_AUDIO:
             model->setData(model->index(row, SWDelegate::SW_TYPE, parent), tr("Audio"));
-            model->itemFromIndex(model->index(row, 0, parent))->setIcon(iconAudio);
+            //model->itemFromIndex(model->index(row, 0, parent))->setIcon(iconAudio);
             break;
         case ED2KFT_VIDEO:
             model->setData(model->index(row, SWDelegate::SW_TYPE, parent), tr("Video"));
-            model->itemFromIndex(model->index(row, 0, parent))->setIcon(iconVideo);
+            ///model->itemFromIndex(model->index(row, 0, parent))->setIcon(iconVideo);
             break;
         case ED2KFT_IMAGE:
             model->setData(model->index(row, SWDelegate::SW_TYPE, parent), tr("Picture"));
-            model->itemFromIndex(model->index(row, 0, parent))->setIcon(iconPicture);
+            //model->itemFromIndex(model->index(row, 0, parent))->setIcon(iconPicture);
             break;
         case ED2KFT_PROGRAM:
             model->setData(model->index(row, SWDelegate::SW_TYPE, parent), tr("Program"));
-            model->itemFromIndex(model->index(row, 0, parent))->setIcon(iconProgram);
+            //model->itemFromIndex(model->index(row, 0, parent))->setIcon(iconProgram);
             break;
         case ED2KFT_DOCUMENT:
             model->setData(model->index(row, SWDelegate::SW_TYPE, parent), tr("Document"));
-            model->itemFromIndex(model->index(row, 0, parent))->setIcon(iconDocument);
+            //model->itemFromIndex(model->index(row, 0, parent))->setIcon(iconDocument);
             break;
         case ED2KFT_ARCHIVE:
             model->setData(model->index(row, SWDelegate::SW_TYPE, parent), tr("Archive"));
-            model->itemFromIndex(model->index(row, 0, parent))->setIcon(iconArchive);
+            //model->itemFromIndex(model->index(row, 0, parent))->setIcon(iconArchive);
             break;
         case ED2KFT_CDIMAGE:
             model->setData(model->index(row, SWDelegate::SW_TYPE, parent), tr("CD Image"));
-            model->itemFromIndex(model->index(row, 0, parent))->setIcon(iconCDImage);
+            //model->itemFromIndex(model->index(row, 0, parent))->setIcon(iconCDImage);
             break;
         case ED2KFT_EMULECOLLECTION:
             model->setData(model->index(row, SWDelegate::SW_TYPE, parent), tr("Emule Collection"));
-            model->itemFromIndex(model->index(row, 0, parent))->setIcon(iconCollection);
+            //model->itemFromIndex(model->index(row, 0, parent))->setIcon(iconCollection);
             break;
         default:
             break;

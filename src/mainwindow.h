@@ -53,8 +53,6 @@ class ExecutionLog;
 class PowerManagement;
 class search_widget;
 class messages_widget;
-class files_widget;
-class servers_widget;
 class AboutDlg;
 class TestWgt;
 class QuickSearchModel;
@@ -177,7 +175,6 @@ private:
     QIcon getSystrayIcon() const;
     void selectWidget(Widgets wNum);
     void selectTransfersPage(TransfersPage page);
-    void addCondRow();
 
 private:
     bool eventFilter(QObject *watched, QEvent *event);

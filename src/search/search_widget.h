@@ -83,28 +83,7 @@ private:
     QScopedPointer<SWSortFilterProxyModel> filterModel;
     SWDelegate* itemDelegate;
     QString     m_lastSearchFileType;
-
-    QMenu* userMenu;
-    QAction* userUpdate;
-    QAction* userDetails;
-    QAction* userAddToFriends;
-    QAction* userSendMessage;
-    QAction* userBrowseFiles;
-
     QMenu* fileMenu;
-
-    QIcon iconAny;
-    QIcon iconArchive;
-    QIcon iconAudio;
-    QIcon iconCDImage;
-    QIcon iconPicture;
-    QIcon iconProgram;
-    QIcon iconVideo;
-    QIcon iconDocument;
-    QIcon iconCollection;
-    QIcon iconFolder;
-    QIcon iconUser;
-
 public:
     search_widget(QWidget *parent = 0);
     void load();

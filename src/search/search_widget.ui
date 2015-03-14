@@ -375,8 +375,8 @@
         <string>Search results</string>
        </property>
        <property name="icon">
-        <iconset>
-         <normaloff>:/emule/search/SearchResults.ico</normaloff>:/emule/search/SearchResults.ico</iconset>
+        <iconset resource="../icons.qrc">
+         <normaloff>:/icons/search/SearchResults.ico</normaloff>:/icons/search/SearchResults.ico</iconset>
        </property>
        <property name="flat">
         <bool>true</bool>
