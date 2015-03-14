@@ -177,6 +177,7 @@ private:
     QIcon getSystrayIcon() const;
     void selectWidget(Widgets wNum);
     void selectTransfersPage(TransfersPage page);
+    void addCondRow();
 
 private:
     bool eventFilter(QObject *watched, QEvent *event);

@@ -69,12 +69,15 @@ HEADERS +=  misc.h \
             stacktrace.h \
             qinisettings.h \
             res.h \
-            fs_utils.h
+            fs_utils.h \
+            search_widget_delegate.h \
+            search_widget_fp_model.h
 
 SOURCES += main.cpp \
            misc.cpp \
             #transferlistdelegate.cpp \
             fs_utils.cpp \
+            search_widget_fp_model.cpp
 
 HEADERS +=  mainwindow.h\
           #transferlistwidget.h \

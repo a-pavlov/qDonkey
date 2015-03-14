@@ -8,7 +8,7 @@ class res
 private:
     static QString prefix()             {return ":/icons/";}
     static QString actionsPrefix()      {return prefix() + "actions/";}
-    static QString itemsPrefix()        {return prefix() + "items/";}
+    static QString itemsPrefix()        {return prefix() + "common/";}
     static QString prefPrefix()         {return prefix() + "preferences/";}
     static QString searchPrefix()       {return prefix() + "search/";}
     static QString serverPrefix()       {return prefix() + "server/";}
@@ -22,24 +22,15 @@ public:
     static QString flag(const QString &name)        {return prefix() + "flags/" + name + ".png";}
     static QString oxygenIcon(const QString &id)    {return prefix() + "oxygen/" + id + ".png";}
 
-    // items in lists and tables
-    static QString itemAllFiles()           {return itemsPrefix() + "all.ico";}
-    static QString itemAny()                {return itemsPrefix() + "any.png";}
-    static QString itemArchive()            {return itemsPrefix() + "archive-file.png";}
-    static QString itemCDImage()            {return itemsPrefix() + "cd-image-file.png";}
-    static QString itemDocument()           {return itemsPrefix() + "document-file.png";}
-    static QString itemEmuleCollection()    {return itemsPrefix() + "collection-file.png";}
-    static QString itemFolder()             {return itemsPrefix() + "folder.png";}
-    static QString itemMusic()              {return itemsPrefix() + "music-file.png";}
-    static QString itemPicture()            {return itemsPrefix() + "picture-file.png";}
-    static QString itemProgram()            {return itemsPrefix() + "program-file.png";}
-    static QString itemVideo()              {return itemsPrefix() + "video-file.png";}
-    static QString itemUser()               {return itemsPrefix() + "User.ico";}
-    static QString itemTorrent()            {return itemsPrefix() + "torrent-file.png";}
-    static QString itemED2KLink()           {return itemsPrefix() + "eD2kLink.png";}
-    static QString itemMagnetLink()         {return itemsPrefix() + "magnet.png";}
-    static QString itemHyperlink()          {return itemsPrefix() + "hyperlink.ico";}
-    static QString sharedFolder()           {return favicon();}
+    static QString itemAny()                {return itemsPrefix() + "FileTypeAny.ico";}
+    static QString itemArchive()            {return itemsPrefix() + "FileTypeArchive.ico";}
+    static QString itemCDImage()            {return itemsPrefix() + "FileTypeCDImage.ico";}
+    static QString itemDocument()           {return itemsPrefix() + "FileTypeDocument.ico";}
+    static QString itemEmuleCollection()    {return itemsPrefix() + "FileTypeEmuleCollection.ico";}
+    static QString itemMusic()              {return itemsPrefix() + "FileTypeAudio.ico";}
+    static QString itemPicture()            {return itemsPrefix() + "FileTypePicture.ico";}
+    static QString itemProgram()            {return itemsPrefix() + "FileTypeProgram.ico";}
+    static QString itemVideo()              {return itemsPrefix() + "FileTypeVideo.ico";}
 
     // common resources
     static QString favicon()                {return prefix() + "favicon.png";}

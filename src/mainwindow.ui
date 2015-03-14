@@ -1083,7 +1083,7 @@
   <action name="actionDownload">
    <property name="icon">
     <iconset resource="icons.qrc">
-     <normaloff>:/icons/transfer_list/DownloadFiles.ico</normaloff>:/icons/transfer_list/DownloadFiles.ico</iconset>
+     <normaloff>:/icons/transfer_list/Download.png</normaloff>:/icons/transfer_list/Download.png</iconset>
    </property>
    <property name="text">
     <string>Download</string>
@@ -1092,10 +1092,28 @@
   <action name="actionPreview">
    <property name="icon">
     <iconset resource="icons.qrc">
-     <normaloff>:/icons/magnet.png</normaloff>:/icons/magnet.png</iconset>
+     <normaloff>:/icons/search/preview32.png</normaloff>:/icons/search/preview32.png</iconset>
    </property>
    <property name="text">
     <string>Preview</string>
+   </property>
+  </action>
+  <action name="actionClose_all">
+   <property name="icon">
+    <iconset resource="icons.qrc">
+     <normaloff>:/icons/search/closeall.png</normaloff>:/icons/search/closeall.png</iconset>
+   </property>
+   <property name="text">
+    <string>Close all</string>
+   </property>
+  </action>
+  <action name="actionSearch_related">
+   <property name="icon">
+    <iconset resource="icons.qrc">
+     <normaloff>:/icons/search/SearchRelated.png</normaloff>:/icons/search/SearchRelated.png</iconset>
+   </property>
+   <property name="text">
+    <string>Search related</string>
    </property>
   </action>
  </widget>

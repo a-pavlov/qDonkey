@@ -61,6 +61,7 @@
 #include "status_bar.h"
 #include "geoipmanager.h"
 #include "iconprovider.h"
+#include "search_widget_delegate.h"
 
 #ifdef Q_WS_MAC
 #include "qmacapplication.h"
@@ -75,6 +76,16 @@ using namespace libtorrent;
 
 #define TIME_TRAY_BALLOON 5000
 #define PREVENT_SUSPEND_INTERVAL 60000
+
+bool inSession(const QString& hash)
+{
+    return misc::isMD4Hash(hash) && Session::instance()->getTransfer(hash).is_valid();
+}
+
+QColor itemColor(const QModelIndex& inx) {
+    QString hash = inx.model()->index(inx.row(), SWDelegate::SW_ID, inx.parent()).data().toString();
+    return inSession(hash) ? Qt::red : Qt::black;
+}
 
 /*****************************************************
  *                                                   *
@@ -108,6 +119,40 @@ MainWindow::MainWindow(QWidget *parent, QStringList torrentCmdLine)
     pref.migrate();
     setWindowTitle(QString::fromUtf8(PRODUCT_NAME));
     displaySpeedInTitle = pref.speedInTitleBar();
+
+    // configure search widget
+    comboType->addItem(QIcon(res::itemAny()), tr("Any"));
+    comboType->addItem(QIcon(res::itemArchive()), tr("Archive"));
+    comboType->addItem(QIcon(res::itemMusic()), tr("Audio"));
+    comboType->addItem(QIcon(res::itemCDImage()), tr("CD Image"));
+    comboType->addItem(QIcon(res::itemPicture()), tr("Picture"));
+    comboType->addItem(QIcon(res::itemProgram()), tr("Program"));
+    comboType->addItem(QIcon(res::itemVideo()), tr("Video"));
+    comboType->addItem(QIcon(res::itemDocument()), tr("Document"));
+    comboType->addItem(QIcon(res::itemEmuleCollection()), tr("Emule Collection"));
+
+    comboType->setMaxVisibleItems(10);
+    comboName->setMaxCount(50);
+    comboName->setToolTip(tr("Press Ctrl-Delete for history cleanup"));
+
+    tableCond->setEditTriggers(QAbstractItemView::AllEditTriggers);
+    tableCond->setColumnWidth(0, 200);
+    addCondRow();
+    tableCond->item(0, 0)->setText(tr("Min. size [MiB]"));
+    addCondRow();
+    tableCond->item(1, 0)->setText(tr("Max. size [MiB]"));
+    addCondRow();
+    tableCond->item(2, 0)->setText(tr("Availability"));
+    addCondRow();
+    tableCond->item(3, 0)->setText(tr("Full sources"));
+    addCondRow();
+    tableCond->item(4, 0)->setText(tr("Extension"));
+    addCondRow();
+    tableCond->item(5, 0)->setText(tr("Codec"));
+    addCondRow();
+    tableCond->item(6, 0)->setText(tr("Min bitrait [kBit/sec]"));
+    addCondRow();
+    tableCond->item(7, 0)->setText(tr("Min duration [h:m:s]"));
 
     // Clean exit on log out
     connect(static_cast<SessionApplication*>(qApp), SIGNAL(sessionIsShuttingDown()), this, SLOT(deleteSession()));
@@ -1458,4 +1503,19 @@ void MainWindow::handleServerMessage(QString) {
 
 void MainWindow::handleServerIdentity(QString,QString) {
 
+}
+
+void MainWindow::addCondRow() {
+    int row = tableCond->rowCount();
+    tableCond->insertRow(row);
+
+    QTableWidgetItem *item0 = new QTableWidgetItem;
+    item0->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
+    item0->setFlags(Qt::ItemIsEnabled);
+    tableCond->setItem(row, 0, item0);
+
+    QTableWidgetItem *item1 = new QTableWidgetItem;
+    item1->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
+    item1->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEditable | Qt::ItemIsEnabled);
+    tableCond->setItem(row, 1, item1);
 }
