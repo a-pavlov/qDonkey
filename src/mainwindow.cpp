@@ -75,22 +75,8 @@ void qt_mac_set_dock_menu(QMenu *menu);
 #include "powermanagement.h"
 #include "res.h"
 
-using namespace libtorrent;
-
 #define TIME_TRAY_BALLOON 5000
 #define PREVENT_SUSPEND_INTERVAL 60000
-
-bool inSession(const QString& hash)
-{
-    return misc::isMD4Hash(hash) && Session::instance()->getTransfer(hash).is_valid();
-}
-
-QColor itemColor(const QModelIndex& inx) {
-    return Qt::red;
-    //QString hash = inx.model()->index(inx.row(), SWDelegate::SW_ID, inx.parent()).data().toString();
-
-    //return inSession(hash) ? Qt::red : Qt::black;
-}
 
 /*****************************************************
  *                                                   *

@@ -11,18 +11,7 @@ class QSortFilterProxyModel;
 class QStandardItemModel;
 QT_END_NAMESPACE
 
-class search_filter;
-
-enum RESULT_TYPE
-{
-    RT_FILES,
-    RT_CLIENTS,
-    RT_FOLDERS,
-    RT_USER_DIRS
-};
-
-class SWTabBar : public QTabBar
-{
+class SWTabBar : public QTabBar {
 public:
     SWTabBar(QWidget* parent);
 protected:
@@ -34,7 +23,6 @@ class search_widget : public QWidget , private Ui::search_widget {
 
 private:
     QMenu* menuResults;
-    QAction* closeAll;
     QMenu* menuSubResults;
     QAction* defValue;
     QAction* defKilos;
@@ -49,7 +37,7 @@ private:
     QIcon iconSearchResult;
     QIcon iconUserFiles;
     SearchModel* model;
-    QScopedPointer<SWSortFilterProxyModel> filterModel;
+    SWSortFilterProxyModel* filterModel;
     QString     m_lastSearchFileType;
     QMenu* fileMenu;
 public:
@@ -91,10 +79,8 @@ private slots:
     void searchRelatedFiles();
     void closeTab(int index);
     void selectTab(int nTabNum);
-    void closeAllTabs();
     void setSizeType();
     void searchTextChanged(const QString text);
-    void applyFilter(QString filter);
     void displayListMenu(const QPoint&);
 
     void resultSelectionChanged(const QItemSelection& sel, const QItemSelection& unsel);
@@ -102,6 +88,7 @@ private slots:
     QList<QED2KHandle> on_actionDownload();
     void on_actionDownload_pause();
     void on_actionPreview();
+    void on_actionClose_all();
     void on_actionED2K_link();
 
     void displayHSMenu(const QPoint&);
