@@ -20,7 +20,7 @@ public:
         DC_END
     };
 
-    enum Roles{
+    enum Roles {
         SortRole = Qt::UserRole + 1
     };
 
@@ -29,7 +29,6 @@ public:
     int columnCount(const QModelIndex& parent = QModelIndex()) const;
     QVariant data(const QModelIndex& index, int role) const;
     QVariant headerData(int section, Qt::Orientation orientation, int role) const;
-    void clean();
     const QED2KSearchResultEntry& at(const QModelIndex& indx) const;
     QED2KSearchResultEntry& at(const QModelIndex& indx);
 
@@ -43,9 +42,14 @@ public:
     quint64 media_bitrate(const QModelIndex&) const;
     QString media_codec(const QModelIndex&) const;
 
-    void addData(const QList<QED2KSearchResultEntry>&);
+    void clean();
+    void removeIndex(int);
+    void resetToIndex(int);
+    int addDataTo(const QList<QED2KSearchResultEntry>&, int);
+    void appendData(const QList<QED2KSearchResultEntry>&);
 private:                
-    QList<QED2KSearchResultEntry> search_result;
+    int currentIndex;
+    QList<QList<QED2KSearchResultEntry> > search_results;
 };
 
 #endif // __SEARCHMODEL_H

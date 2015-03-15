@@ -3,10 +3,13 @@
 #include "res.h"
 
 SearchModel::SearchModel(QObject *parent) :
-    QAbstractTableModel(parent)
+    QAbstractTableModel(parent), currentIndex(-1)
 {}
 
-int SearchModel::rowCount(const QModelIndex& parent /*= QModelIndex()*/) const { return search_result.size(); }
+int SearchModel::rowCount(const QModelIndex& parent /*= QModelIndex()*/) const {
+    if (currentIndex != -1) return search_results.at(currentIndex).size();
+    return 0;
+}
 int SearchModel::columnCount(const QModelIndex& parent /*= QModelIndex()*/) const { return DC_END; }
 
 QVariant SearchModel::data(const QModelIndex& index, int role) const {
@@ -66,6 +69,7 @@ QVariant SearchModel::data(const QModelIndex& index, int role) const {
                 case FT_AUDIO: return QIcon(res::itemMusic());
                 case FT_VIDEO: return QIcon(res::itemVideo());
                 case FT_IMAGE: return QIcon(res::itemPicture());
+                case FT_CDIMAGE: return QIcon(res::itemCDImage());
                 case FT_ARCHIVE: return QIcon(res::itemArchive());
                 case FT_PROGRAM: return QIcon(res::itemProgram());
                 case FT_DOCUMENT: return QIcon(res::itemDocument());
@@ -135,33 +139,47 @@ QVariant SearchModel::headerData(int section, Qt::Orientation orientation, int r
 }
 
 void SearchModel::clean() {
-    if (rowCount() == 0)
-        return;
-
-    beginRemoveRows(QModelIndex(), 0, rowCount() - 1);
-    search_result.clear();
-    endRemoveRows();
+    search_results.clear();
+    currentIndex = -1;
 }
 
-void SearchModel::addData(const QList<QED2KSearchResultEntry>& entries)
+void SearchModel::removeIndex(int index) {
+    Q_ASSERT(index < search_results.size());
+    search_results.removeAt(index);
+}
+
+int SearchModel::addDataTo(const QList<QED2KSearchResultEntry>& entries, int index)
 {
+    Q_ASSERT(index < search_results.size());
+
     if (entries.empty())
-        return;
+        return 0;
 
     beginInsertRows(QModelIndex(), rowCount(), rowCount() + entries.size() - 1);
-    search_result.append(entries);
+    search_results[index].append(entries);
     endInsertRows();
+    return search_results.at(index).size();
+}
+
+void SearchModel::resetToIndex(int index) {
+    Q_ASSERT(index < search_results.size());
+    currentIndex = index;
+    reset();
+}
+
+void SearchModel::appendData(const QList<QED2KSearchResultEntry>& entries) {
+    search_results.append(entries);
 }
 
 const QED2KSearchResultEntry& SearchModel::at(const QModelIndex& indx) const {
     Q_ASSERT(indx.row() < rowCount());
-    return search_result.at(indx.row());
+    return search_results.at(currentIndex).at(indx.row());
 }
 
 QED2KSearchResultEntry& SearchModel::at(const QModelIndex& indx)
 {
     Q_ASSERT(indx.row() < rowCount());
-    return search_result[indx.row()];
+    return search_results[currentIndex][indx.row()];
 }
 
 QString SearchModel::filename(const QModelIndex& indx) const {

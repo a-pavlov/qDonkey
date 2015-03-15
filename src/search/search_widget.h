@@ -41,16 +41,14 @@ private:
     QAction* defMegas;
     SWTabBar* tabSearch;
 
-    QList<SearchModel*> searchItems;
-
     int nCurTabSearch;
+    QString curSearchTitle;
     int nSortedColumn;
-    int nSearchesInProgress;
 
     QIcon iconSerachActive;
     QIcon iconSearchResult;
     QIcon iconUserFiles;
-    QScopedPointer<QStandardItemModel> model;
+    SearchModel* model;
     QScopedPointer<SWSortFilterProxyModel> filterModel;
     QString     m_lastSearchFileType;
     QMenu* fileMenu;
@@ -62,7 +60,6 @@ public:
 
 private:
     void addCondRow();
-    void clearSearchTable();
     void showErrorParamMsg(int numParam);
     bool hasSelectedMedia();
     bool hasSelectedFiles();
@@ -73,8 +70,15 @@ private:
     QED2KHandle addTransfer(const QModelIndex& index);
 
     void warnDisconnected();
-    void prepareNewSearch(
-        const QString& reqType, const QString& reqText, RESULT_TYPE resultType, const QIcon& icon);
+    void prepareNewSearch(const QString& title);
+
+    QModelIndex proxy2source(const QModelIndex& index) {
+        if (index.isValid()) {
+            return filterModel->mapToSource(index);
+        }
+
+        return QModelIndex();
+    }
 
 private slots:
     void itemCondClicked(QTableWidgetItem* item);
@@ -91,7 +95,6 @@ private slots:
     void setSizeType();
     void searchTextChanged(const QString text);
     void applyFilter(QString filter);
-    void setFilterType(SearchModel::DisplayColumns column);
     void displayListMenu(const QPoint&);
 
     void resultSelectionChanged(const QItemSelection& sel, const QItemSelection& unsel);

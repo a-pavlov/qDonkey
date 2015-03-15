@@ -62,7 +62,7 @@ QED2KSearchResultEntry::QED2KSearchResultEntry() :
         m_nCompleteSources(0),
         m_nMediaBitrate(0),
         m_nMediaLength(0),
-        m_type(FT_ANY)
+        m_type(FT_UNKNOWN)
 {
 }
 
@@ -121,7 +121,6 @@ QED2KSearchResultEntry QED2KSearchResultEntry::fromSharedFileEntry(const libed2k
 
     try
     {
-        sre.getType();
         for (size_t n = 0; n < sf.m_list.count(); n++)
         {
             boost::shared_ptr<libed2k::base_tag> ptag = sf.m_list[n];
@@ -180,6 +179,8 @@ QED2KSearchResultEntry QED2KSearchResultEntry::fromSharedFileEntry(const libed2k
                 sre.m_nMediaLength = p->asInt();
             }
         }
+
+        sre.getType();
 
         // for users
         // m_nMediaLength  - low part of real size

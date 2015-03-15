@@ -126,13 +126,6 @@
            </property>
           </widget>
          </item>
-         <item>
-          <widget class="QCheckBox" name="checkTorrents">
-           <property name="text">
-            <string>Use torrent search</string>
-           </property>
-          </widget>
-         </item>
         </layout>
        </item>
        <item>
@@ -219,7 +212,7 @@
        <item>
         <widget class="QPushButton" name="btnStart">
          <property name="enabled">
-          <bool>false</bool>
+          <bool>true</bool>
          </property>
          <property name="sizePolicy">
           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
