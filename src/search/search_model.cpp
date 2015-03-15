@@ -150,12 +150,14 @@ QVariant SearchModel::headerData(int section, Qt::Orientation orientation, int r
 void SearchModel::clean() {
     search_results.clear();
     currentIndex = -1;
+    emit countChanged(search_results.size());
 }
 
 void SearchModel::removeIndex(int index) {
     Q_ASSERT(index < search_results.size());
     search_results.removeAt(index);
     currentIndex = search_results.size() - 1;
+    emit countChanged(search_results.size());
 }
 
 int SearchModel::addDataTo(const QList<QED2KSearchResultEntry>& entries, int index)
@@ -173,12 +175,14 @@ int SearchModel::addDataTo(const QList<QED2KSearchResultEntry>& entries, int ind
 
 void SearchModel::resetToIndex(int index) {
     Q_ASSERT(index < search_results.size());
+    beginResetModel();
     currentIndex = index;
-    reset();
+    endResetModel();
 }
 
 void SearchModel::appendData(const QList<QED2KSearchResultEntry>& entries) {
     search_results.append(entries);
+    emit countChanged(search_results.size());
 }
 
 const QED2KSearchResultEntry& SearchModel::at(const QModelIndex& indx) const {

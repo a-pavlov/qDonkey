@@ -94,6 +94,8 @@ private slots:
                             const QList<QED2KSearchResultEntry>& vRes, bool bMoreResult);
     void addedTransfer(QED2KHandle h);
     void deletedTransfer(const QString& hash);
+
+    void modelCountChanged(int);
 };
 
 #endif // SEARCH_WIDGET_H

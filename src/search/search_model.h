@@ -59,6 +59,8 @@ private:
     QIcon  iconProgram;
     QIcon  iconDoc;
     QIcon  iconEM;
+signals:
+    void countChanged(int);
 };
 
 #endif // __SEARCHMODEL_H

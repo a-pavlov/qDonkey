@@ -173,6 +173,8 @@ search_widget::search_widget(QWidget *parent)
     connect(Session::instance(), SIGNAL(deletedTransfer(QString)),
             this, SLOT(deletedTransfer(const QString&)));
 
+    connect(model, SIGNAL(countChanged(int)), this, SLOT(modelCountChanged(int)));
+
     connect(tabSearch, SIGNAL(tabCloseRequested(int)), this, SLOT(closeTab(int)));
     connect(tabSearch, SIGNAL(currentChanged (int)), this, SLOT(selectTab(int)));
 
@@ -620,9 +622,8 @@ void search_widget::prepareNewSearch(const QString& title)
     tabSearch->setCurrentIndex(nCurTabSearch);
 
     btnStart->setEnabled(false);
-    btnCancel->setEnabled(true);
+    btnCancel->setEnabled(!btnStart->isEnabled());
     btnMore->setEnabled(false);
-    btnCloseAll->setEnabled(true);
 }
 
 void search_widget::closeTab(int index)
@@ -630,45 +631,25 @@ void search_widget::closeTab(int index)
     qDebug() << "close tab " << index;
     if (index == nCurTabSearch) {
         cancelSearch();
-        return;
     }
 
     if (nCurTabSearch > index) {
         nCurTabSearch--;
     }
 
-    if (index == tabSearch->count() - 1) {
-        actionClose_all->setDisabled(true);
-    }
-
-
-    if (tabSearch->currentIndex() == nCurTabSearch)
-    {
-        nCurTabSearch = -1;
-
-        btnStart->setDisabled(comboName->currentText().isEmpty());
-        btnCancel->setEnabled(false);
-        btnMore->setEnabled(false);
-    }
+    if (index == tabSearch->count() - 1)  btnMore->setEnabled(false);
 
     tabSearch->removeTab(index);
     model->removeIndex(index);
-           
-    if (!tabSearch->count())
-    {
-        btnCloseAll->setDisabled(true);
-        actionClose_all->setDisabled(true);
-    }
-    else
-        selectTab(tabSearch->currentIndex());
+    if (tabSearch->count() != 0) selectTab(tabSearch->currentIndex());
 }
 
 void search_widget::selectTab(int nTabNum)
 {
     model->resetToIndex(nTabNum);
-    treeResult->setItemsExpandable(false);
-    treeResult->setRootIsDecorated(false);
-    treeResult->setSelectionMode(QAbstractItemView::ExtendedSelection);
+    //treeResult->setItemsExpandable(false);
+    //treeResult->setRootIsDecorated(false);
+    //treeResult->setSelectionMode(QAbstractItemView::ExtendedSelection);
 }
 
 void search_widget::setSizeType()
@@ -716,8 +697,8 @@ void search_widget::showErrorParamMsg(int numParam)
     msgBox.exec();
 }
 
-void search_widget::searchTextChanged(const QString text)
-{
+void search_widget::searchTextChanged(const QString text) {
+    btnStart->setEnabled(!text.isEmpty() && nCurTabSearch == -1);
 }
 
 void search_widget::displayListMenu(const QPoint&) 
@@ -944,5 +925,9 @@ void search_widget::deletedTransfer(const QString& hash)
 {
     updateFileActions();
     filterModel->showOwn(checkOwn->isChecked());
+}
+
+void search_widget::modelCountChanged(int count) {
+    actionClose_all->setEnabled(count != 0);
 }
 
