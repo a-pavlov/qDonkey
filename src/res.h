@@ -81,7 +81,7 @@ public:
     static QString searchSucceeded()        {return searchPrefix() + "completed-search.png";}
     static QString searchFailed()           {return searchPrefix() + "error-search.png";}
 
-    static QString searchActive()           {return searchPrefix() + "SearchActive.ico"; }
+    static QString searchActive()           {return searchPrefix() + "SearchActive.png"; }
 
     // user resources
     static QString userUpdate()             {return usersPrefix() + "userupdate.ico";}

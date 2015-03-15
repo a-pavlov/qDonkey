@@ -33,9 +33,6 @@ private:
     QString curSearchTitle;
     int nSortedColumn;
 
-    QIcon iconSerachActive;
-    QIcon iconSearchResult;
-    QIcon iconUserFiles;
     SearchModel* model;
     SWSortFilterProxyModel* filterModel;
     QString     m_lastSearchFileType;
@@ -85,11 +82,11 @@ private slots:
 
     void resultSelectionChanged(const QItemSelection& sel, const QItemSelection& unsel);
 
-    QList<QED2KHandle> on_actionDownload();
-    void on_actionDownload_pause();
-    void on_actionPreview();
-    void on_actionClose_all();
-    void on_actionED2K_link();
+    QList<QED2KHandle> on_actionDownload_triggered();
+    void on_actionDownload_pause_triggered();
+    void on_actionPreview_triggered();
+    void on_actionClose_all_triggered();
+    void on_actionED2K_link_triggered();
 
     void displayHSMenu(const QPoint&);
 

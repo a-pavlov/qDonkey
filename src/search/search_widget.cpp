@@ -479,10 +479,12 @@ void search_widget::startSearch() {
 }
 
 void search_widget::continueSearch() {
+    Q_ASSERT(tabSearch->count() > 0);
+    nCurTabSearch = tabSearch->count() - 1;
     btnStart->setEnabled(false);
     btnCancel->setEnabled(true);
     btnMore->setEnabled(false);
-    tabSearch->setTabIcon(nCurTabSearch, iconSerachActive);
+    tabSearch->setTabIcon(nCurTabSearch, QIcon(res::searchActive()));
     Session::instance()->searchMoreResults();
 }
 
@@ -635,6 +637,11 @@ void search_widget::closeTab(int index)
         nCurTabSearch--;
     }
 
+    if (index == tabSearch->count() - 1) {
+        actionClose_all->setDisabled(true);
+    }
+
+
     if (tabSearch->currentIndex() == nCurTabSearch)
     {
         nCurTabSearch = -1;
@@ -650,6 +657,7 @@ void search_widget::closeTab(int index)
     if (!tabSearch->count())
     {
         btnCloseAll->setDisabled(true);
+        actionClose_all->setDisabled(true);
     }
     else
         selectTab(tabSearch->currentIndex());
@@ -733,7 +741,7 @@ void search_widget::resultSelectionChanged(const QItemSelection& sel, const QIte
     updateFileActions();
 }
 
-QList<QED2KHandle> search_widget::on_actionDownload() {
+QList<QED2KHandle> search_widget::on_actionDownload_triggered() {
 
     QList<QED2KHandle> result;
 
@@ -755,12 +763,12 @@ QList<QED2KHandle> search_widget::on_actionDownload() {
     //return QList<QED2KHandle>();
 }
 
-void search_widget::on_actionDownload_pause() {
-    foreach(QED2KHandle h, on_actionDownload())
+void search_widget::on_actionDownload_pause_triggered() {
+    foreach(QED2KHandle h, on_actionDownload_triggered())
         h.pause();
 }
 
-void search_widget::on_actionPreview() {
+void search_widget::on_actionPreview_triggered() {
     if (selected_row(treeResult) < 0) {
         qDebug("preview button should be disabled when result isn't selected");
         return;
@@ -779,14 +787,14 @@ void search_widget::on_actionPreview() {
     }
 }
 
-void search_widget::on_actionClose_all() {
+void search_widget::on_actionClose_all_triggered() {
     qDebug() << "close all";
     for (int indx = tabSearch->count() - 1; indx != -1; --indx)  {
         closeTab(indx);
     }
 }
 
-void search_widget::on_actionED2K_link() {
+void search_widget::on_actionED2K_link_triggered() {
     if (selected_row(treeResult) < 0) {
         return;
     }

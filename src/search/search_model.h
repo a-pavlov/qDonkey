@@ -50,6 +50,15 @@ public:
 private:                
     int currentIndex;
     QList<QList<QED2KSearchResultEntry> > search_results;
+    QIcon  iconAny;
+    QIcon  iconAudio;
+    QIcon  iconVideo;
+    QIcon  iconImage;
+    QIcon  iconCD;
+    QIcon  iconArchive;
+    QIcon  iconProgram;
+    QIcon  iconDoc;
+    QIcon  iconEM;
 };
 
 #endif // __SEARCHMODEL_H

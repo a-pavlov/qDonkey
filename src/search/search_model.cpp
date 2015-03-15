@@ -3,8 +3,17 @@
 #include "res.h"
 
 SearchModel::SearchModel(QObject *parent) :
-    QAbstractTableModel(parent), currentIndex(-1)
-{}
+    QAbstractTableModel(parent), currentIndex(-1) {
+    iconAny = QIcon(res::itemAny());
+    iconAudio = QIcon(res::itemMusic());
+    iconVideo = QIcon(res::itemVideo());
+    iconImage = QIcon(res::itemPicture());
+    iconCD = QIcon(res::itemCDImage());
+    iconArchive = QIcon(res::itemArchive());
+    iconProgram = QIcon(res::itemProgram());
+    iconDoc = QIcon(res::itemDocument());
+    iconEM = QIcon(res::itemEmuleCollection());
+}
 
 int SearchModel::rowCount(const QModelIndex& parent /*= QModelIndex()*/) const {
     if (currentIndex != -1) return search_results.at(currentIndex).size();
@@ -65,15 +74,15 @@ QVariant SearchModel::data(const QModelIndex& index, int role) const {
         {
             if (index.column() == DC_NAME) {
                 switch(type(index)) {
-                case FT_ANY: return QIcon(res::itemAny());
-                case FT_AUDIO: return QIcon(res::itemMusic());
-                case FT_VIDEO: return QIcon(res::itemVideo());
-                case FT_IMAGE: return QIcon(res::itemPicture());
-                case FT_CDIMAGE: return QIcon(res::itemCDImage());
-                case FT_ARCHIVE: return QIcon(res::itemArchive());
-                case FT_PROGRAM: return QIcon(res::itemProgram());
-                case FT_DOCUMENT: return QIcon(res::itemDocument());
-                case FT_EMULECOLLECTION: return QIcon(res::itemEmuleCollection());
+                case FT_ANY: return iconAny;
+                case FT_AUDIO: return iconAudio;
+                case FT_VIDEO: return iconVideo;
+                case FT_IMAGE: return iconImage;
+                case FT_CDIMAGE: return iconCD;
+                case FT_ARCHIVE: return iconArchive;
+                case FT_PROGRAM: return iconProgram;
+                case FT_DOCUMENT: return iconDoc;
+                case FT_EMULECOLLECTION: iconEM;
                 }
             }
             break;
@@ -146,6 +155,7 @@ void SearchModel::clean() {
 void SearchModel::removeIndex(int index) {
     Q_ASSERT(index < search_results.size());
     search_results.removeAt(index);
+    currentIndex = search_results.size() - 1;
 }
 
 int SearchModel::addDataTo(const QList<QED2KSearchResultEntry>& entries, int index)
