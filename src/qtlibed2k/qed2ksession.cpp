@@ -18,6 +18,20 @@
 
 #include "qed2ksession.h"
 
+QString toString(FileType type) {
+    switch(type) {
+        case FT_AUDIO:              return QObject::tr("Audio");
+        case FT_VIDEO:              return QObject::tr("Video");
+        case FT_IMAGE:              return QObject::tr("Picture");
+        case FT_PROGRAM:            return QObject::tr("Program");
+        case FT_DOCUMENT:           return QObject::tr("Document");
+        case FT_ARCHIVE:            return QObject::tr("Archive");
+        case FT_CDIMAGE:            return QObject::tr("CD image");
+        case FT_EMULECOLLECTION:    return QObject::tr("EMule collection");
+        default:                            return "";
+    }
+}
+
 QED2KSession* QED2KSession::m_instance = NULL;
 
 QED2KSession* QED2KSession::instance() {
@@ -47,7 +61,8 @@ QED2KSearchResultEntry::QED2KSearchResultEntry() :
         m_nSources(0),
         m_nCompleteSources(0),
         m_nMediaBitrate(0),
-        m_nMediaLength(0)
+        m_nMediaLength(0),
+        m_type(FT_ANY)
 {
 }
 
@@ -87,6 +102,15 @@ void QED2KSearchResultEntry::save(Preferences& pref) const
     pref.setValue("Port",           m_network_point.m_nPort);
 }
 
+FileType QED2KSearchResultEntry::getType() {
+    if (m_type == FT_UNKNOWN) {
+        // EED2KFileType fileType
+        m_type = static_cast<FileType>(libed2k::GetED2KFileTypeID(m_strFilename.toStdString()));
+    }
+
+    return m_type;
+}
+
 // static
 QED2KSearchResultEntry QED2KSearchResultEntry::fromSharedFileEntry(const libed2k::shared_file_entry& sf)
 {
@@ -97,6 +121,7 @@ QED2KSearchResultEntry QED2KSearchResultEntry::fromSharedFileEntry(const libed2k
 
     try
     {
+        sre.getType();
         for (size_t n = 0; n < sf.m_list.count(); n++)
         {
             boost::shared_ptr<libed2k::base_tag> ptag = sf.m_list[n];

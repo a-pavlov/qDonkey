@@ -305,6 +305,7 @@ search_widget::search_widget(QWidget *parent)
 
     btnDownload->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
     btnPreview->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
+    btnCloseAll->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
 
     fileMenu->addAction(actionDownload);
     fileMenu->addAction(actionDownload_pause);

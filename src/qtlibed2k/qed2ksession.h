@@ -51,6 +51,20 @@ struct ErrorCode {
     std::string m_uiCode;
 };
 
+enum FileType {
+    FT_ANY              = 0,
+    FT_AUDIO            = 1,    // ED2K protocol value (eserver 17.6+)
+    FT_VIDEO            = 2,    // ED2K protocol value (eserver 17.6+)
+    FT_IMAGE            = 3,    // ED2K protocol value (eserver 17.6+)
+    FT_PROGRAM          = 4,    // ED2K protocol value (eserver 17.6+)
+    FT_DOCUMENT         = 5,    // ED2K protocol value (eserver 17.6+)
+    FT_ARCHIVE          = 6,    // ED2K protocol value (eserver 17.6+)
+    FT_CDIMAGE          = 7,    // ED2K protocol value (eserver 17.6+)
+    FT_EMULECOLLECTION  = 8,
+    FT_UNKNOWN          = 9
+};
+
+QString toString(FileType type);
 
 struct QED2KSearchResultEntry {
     quint64                 m_nFilesize;
@@ -61,12 +75,14 @@ struct QED2KSearchResultEntry {
 	QString	                m_hFile;
 	QString                 m_strFilename;
 	QString	                m_strMediaCodec;
+    FileType                m_type;
     libed2k::net_identifier m_network_point; 
 	bool isCorrect() const;
 	QED2KSearchResultEntry();
     QED2KSearchResultEntry(const Preferences& pref);
 	static QED2KSearchResultEntry fromSharedFileEntry(const libed2k::shared_file_entry& sf);
     void save(Preferences& pref) const;
+    FileType getType();
 };
 
 struct QED2KPeerOptions {
