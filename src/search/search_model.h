@@ -42,13 +42,10 @@ public:
     quint64 media_length(const QModelIndex&) const;
     quint64 media_bitrate(const QModelIndex&) const;
     QString media_codec(const QModelIndex&) const;
+
+    void addData(const QList<QED2KSearchResultEntry>&);
 private:                
     QList<QED2KSearchResultEntry> search_result;
-
-signals:
-    
-public slots:
-    void addData(libed2k::net_identifier, const QString&, const std::vector<QED2KSearchResultEntry>&, bool);
 };
 
 #endif // __SEARCHMODEL_H

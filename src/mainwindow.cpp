@@ -86,8 +86,10 @@ bool inSession(const QString& hash)
 }
 
 QColor itemColor(const QModelIndex& inx) {
-    QString hash = inx.model()->index(inx.row(), SWDelegate::SW_ID, inx.parent()).data().toString();
-    return inSession(hash) ? Qt::red : Qt::black;
+    return Qt::red;
+    //QString hash = inx.model()->index(inx.row(), SWDelegate::SW_ID, inx.parent()).data().toString();
+
+    //return inSession(hash) ? Qt::red : Qt::black;
 }
 
 /*****************************************************

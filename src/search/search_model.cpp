@@ -143,20 +143,13 @@ void SearchModel::clean() {
     endRemoveRows();
 }
 
-void SearchModel::addData(libed2k::net_identifier np, const QString& hash, const std::vector<QED2KSearchResultEntry>& entries, bool moreRes)
+void SearchModel::addData(const QList<QED2KSearchResultEntry>& entries)
 {
     if (entries.empty())
         return;
 
-    Q_UNUSED(np);
-    Q_UNUSED(hash);
-    Q_UNUSED(moreRes);
-
     beginInsertRows(QModelIndex(), rowCount(), rowCount() + entries.size() - 1);
-
-    for(std::vector<QED2KSearchResultEntry>::const_iterator itr = entries.begin(); itr != entries.end(); ++itr)
-        search_result.append(*itr);
-
+    search_result.append(entries);
     endInsertRows();
 }
 

@@ -2,7 +2,7 @@
 #define SEARCH_WIDGET_H
 
 #include "ui_search_widget.h"
-#include "search/search_widget_delegate.h"
+#include "search/search_model.h"
 #include "search_widget_fp_model.h"
 #include "qtlibed2k/qed2ksession.h"
 
@@ -11,7 +11,6 @@ class QSortFilterProxyModel;
 class QStandardItemModel;
 QT_END_NAMESPACE
 
-class SWDelegate;
 class search_filter;
 
 enum RESULT_TYPE
@@ -20,34 +19,6 @@ enum RESULT_TYPE
     RT_CLIENTS,
     RT_FOLDERS,
     RT_USER_DIRS
-};
-
-struct UserDir
-{
-    UserDir() : bExpanded(false), bFilled(false), dirPath("") {}
-    UserDir(Preferences& pref);
-
-    bool    bExpanded;
-    bool    bFilled;
-    QString dirPath;
-    std::vector<QED2KSearchResultEntry> vecFiles;
-    void save(Preferences& pref) const;
-};
-
-struct SearchResult
-{
-    SearchResult(QString request, RESULT_TYPE type, const std::vector<QED2KSearchResultEntry>& vRes) : 
-        strRequest(request), resultType(type), vecResults(vRes), vecUserDirs(), netPoint() {}
-    SearchResult(QString request, RESULT_TYPE type, const std::vector<QED2KSearchResultEntry>& vRes, const std::vector<UserDir> userDirs, const libed2k::net_identifier& np) : 
-        strRequest(request), resultType(type), vecResults(vRes), vecUserDirs(userDirs), netPoint(np) {}
-    SearchResult(Preferences& pref);
-
-    QString strRequest;
-    RESULT_TYPE resultType;
-    std::vector<QED2KSearchResultEntry> vecResults;
-    std::vector<UserDir> vecUserDirs;
-    libed2k::net_identifier netPoint;
-    void save(Preferences& pref) const;
 };
 
 class SWTabBar : public QTabBar
@@ -70,7 +41,7 @@ private:
     QAction* defMegas;
     SWTabBar* tabSearch;
 
-    std::vector<SearchResult> searchItems;
+    QList<SearchModel*> searchItems;
 
     int nCurTabSearch;
     int nSortedColumn;
@@ -81,7 +52,6 @@ private:
     QIcon iconUserFiles;
     QScopedPointer<QStandardItemModel> model;
     QScopedPointer<SWSortFilterProxyModel> filterModel;
-    SWDelegate* itemDelegate;
     QString     m_lastSearchFileType;
     QMenu* fileMenu;
 public:
@@ -94,13 +64,12 @@ private:
     void addCondRow();
     void clearSearchTable();
     void showErrorParamMsg(int numParam);
-    void fillFileValues(int row, const QED2KSearchResultEntry& fileEntry, const QModelIndex& parent = QModelIndex());
     bool hasSelectedMedia();
     bool hasSelectedFiles();
     void updateFileActions();
 
     void processSearchResult(
-        const std::vector<QED2KSearchResultEntry>& vRes, boost::optional<bool> obMoreResult);
+        const QList<QED2KSearchResultEntry>& vRes, boost::optional<bool> obMoreResult);
     QED2KHandle addTransfer(const QModelIndex& index);
 
     void warnDisconnected();
@@ -122,7 +91,7 @@ private slots:
     void setSizeType();
     void searchTextChanged(const QString text);
     void applyFilter(QString filter);
-    void setFilterType(SWDelegate::Column column);
+    void setFilterType(SearchModel::DisplayColumns column);
     void displayListMenu(const QPoint&);
 
     void resultSelectionChanged(const QItemSelection& sel, const QItemSelection& unsel);
@@ -135,17 +104,9 @@ private slots:
     void displayHSMenu(const QPoint&);
 
     void ed2kSearchFinished(const libed2k::net_identifier& np,const QString& hash,
-                            const std::vector<QED2KSearchResultEntry>& vRes, bool bMoreResult);
+                            const QList<QED2KSearchResultEntry>& vRes, bool bMoreResult);
     void addedTransfer(QED2KHandle h);
     void deletedTransfer(const QString& hash);
-};
-
-class SWItemModel : public QStandardItemModel
-{
-public:
-    SWItemModel(int rows, int columns, QObject * parent = 0):
-        QStandardItemModel(rows, columns, parent){}
-    virtual QVariant data(const QModelIndex & index, int role = Qt::DisplayRole) const;
 };
 
 #endif // SEARCH_WIDGET_H

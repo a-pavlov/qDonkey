@@ -211,7 +211,7 @@ signals:
 
     // TODO - add server identifier
     void searchResult(const libed2k::net_identifier& np, const QString& hash, 
-                      const std::vector<QED2KSearchResultEntry>& vRes, bool bMoreResult);
+                      const QList<QED2KSearchResultEntry>& vRes, bool bMoreResult);
 
     //peer signals
     void peerConnected(const libed2k::net_identifier& np,
@@ -239,7 +239,7 @@ signals:
                          const std::vector<QED2KSearchResultEntry>& vRes);
 
     void peerIsModSharedFiles(const libed2k::net_identifier& np, const QString& hash, const QString& dir_hash,
-                              const std::vector<QED2KSearchResultEntry>& vRes);
+                              const QList<QED2KSearchResultEntry>& vRes);
 
     /**
       * requested peers shared directories
@@ -250,7 +250,7 @@ signals:
       * requested peers files from sprecified directory
      */
     void peerSharedDirectoryFiles(const libed2k::net_identifier& np, const QString& hash,
-                                  const QString& strDirectory, const std::vector<QED2KSearchResultEntry>& vRes);
+                                  const QString& strDirectory, const QList<QED2KSearchResultEntry>& vRes);
 
     void transferParametersReady(const libed2k::add_transfer_params&, const libed2k::error_code&);
     void fastResumeDataLoadCompleted();

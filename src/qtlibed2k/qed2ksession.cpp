@@ -27,7 +27,7 @@ QString toString(FileType type) {
         case FT_DOCUMENT:           return QObject::tr("Document");
         case FT_ARCHIVE:            return QObject::tr("Archive");
         case FT_CDIMAGE:            return QObject::tr("CD image");
-        case FT_EMULECOLLECTION:    return QObject::tr("EMule collection");
+        case FT_EMULECOLLECTION:    return QObject::tr("Emule collection");
         default:                            return "";
     }
 }
@@ -707,7 +707,7 @@ void QED2KSession::readAlerts()
         }
         else if (libed2k::shared_files_alert* p = dynamic_cast<libed2k::shared_files_alert*>(a.get()))
         {
-            std::vector<QED2KSearchResultEntry> vRes;
+            QList<QED2KSearchResultEntry> vRes;
             vRes.reserve(p->m_files.m_collection.size());
             bool bMoreResult = p->m_more;
 
