@@ -29,8 +29,7 @@ QVariant SearchModel::data(const QModelIndex& index, int role) const {
 
     switch(role)
     {
-        case Qt::DisplayRole:
-        {
+        case Qt::DisplayRole:  {
             switch(index.column()) {
                 case DC_NAME:        return filename(index);
                 case DC_FILESIZE:    return misc::friendlyUnit(size(index), misc::ST_DEFAULT);
@@ -70,8 +69,7 @@ QVariant SearchModel::data(const QModelIndex& index, int role) const {
             }
             break;
         }
-        case Qt::DecorationRole:
-        {
+        case Qt::DecorationRole: {
             if (index.column() == DC_NAME) {
                 switch(type(index)) {
                 case FT_ANY: return iconAny;
@@ -82,7 +80,7 @@ QVariant SearchModel::data(const QModelIndex& index, int role) const {
                 case FT_ARCHIVE: return iconArchive;
                 case FT_PROGRAM: return iconProgram;
                 case FT_DOCUMENT: return iconDoc;
-                case FT_EMULECOLLECTION: iconEM;
+                case FT_EMULECOLLECTION: return iconEM;
                 }
             }
             break;
@@ -175,9 +173,11 @@ int SearchModel::addDataTo(const QList<QED2KSearchResultEntry>& entries, int ind
 
 void SearchModel::resetToIndex(int index) {
     Q_ASSERT(index < search_results.size());
+    qDebug() << "start reset";
     beginResetModel();
     currentIndex = index;
     endResetModel();
+    qDebug() << "end reset";
 }
 
 void SearchModel::appendData(const QList<QED2KSearchResultEntry>& entries) {

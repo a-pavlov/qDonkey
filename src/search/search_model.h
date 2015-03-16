@@ -8,6 +8,10 @@
 class SearchModel : public QAbstractTableModel {
     Q_OBJECT
 public:
+    enum Roles {
+        SortRole = Qt::UserRole + 1
+    };
+
     enum DisplayColumns {
         DC_NAME = 0,
         DC_FILESIZE,
@@ -18,10 +22,6 @@ public:
         DC_MEDIA_LENGTH,
         DC_MEDIA_CODEC,
         DC_END
-    };
-
-    enum Roles {
-        SortRole = Qt::UserRole + 1
     };
 
     explicit SearchModel(QObject *parent = 0);

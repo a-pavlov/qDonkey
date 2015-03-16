@@ -137,10 +137,7 @@ search_widget::search_widget(QWidget *parent)
 
     model = new SearchModel(this);
     filterModel = new SWSortFilterProxyModel(this);
-    filterModel->setDynamicSortFilter(true);
-    filterModel->setFilterKeyColumn(SearchModel::DC_NAME);
-    filterModel->setFilterRole(Qt::DisplayRole);
-    filterModel->setSortCaseSensitivity(Qt::CaseInsensitive);
+    filterModel->setDynamicSortFilter(false);
     filterModel->setSourceModel(model);
 
     treeResult->setModel(filterModel);
@@ -647,9 +644,6 @@ void search_widget::closeTab(int index)
 void search_widget::selectTab(int nTabNum)
 {
     model->resetToIndex(nTabNum);
-    //treeResult->setItemsExpandable(false);
-    //treeResult->setRootIsDecorated(false);
-    //treeResult->setSelectionMode(QAbstractItemView::ExtendedSelection);
 }
 
 void search_widget::setSizeType()

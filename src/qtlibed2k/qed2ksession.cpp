@@ -280,8 +280,13 @@ bool writeResumeDataOne(std::ofstream& fs, const libed2k::save_resume_data_alert
 
 QED2KSession::QED2KSession() : m_upnp(0), m_natpmp(0) {
     m_sp.name = "is";
+#ifdef INET_SERVER
+    m_sp.host = "91.200.42.46";
+    m_sp.port = 1176;
+#else
     m_sp.host = "emule.is74.ru";
     m_sp.port = 4661;
+#endif
     m_sp.set_operations_timeout(30);
     m_sp.set_keep_alive_timeout(100);
     m_sp.set_reconnect_timeout(100);

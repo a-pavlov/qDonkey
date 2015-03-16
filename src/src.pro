@@ -14,6 +14,10 @@ MOC_DIR = $$OBJECTS_DIR/moc
 RCC_DIR = $$OBJECTS_DIR/rcc
 UI_DIR = $$OBJECTS_DIR/uic
 
+CONFIG(inet) {
+    DEFINES += INET_SERVER
+}
+
 # Windows specific configuration
 win32 {
   include(win/conf.pri)  
