@@ -86,7 +86,7 @@ void collection_save_dlg::init()
     // disable button only nothing to say
     if (row == 0) btnDowload->setDisabled(true);
     Preferences pref;
-    dirPath = pref.getSavePath();
+    dirPath = pref.inputDir();
     separator = '/';
     QDir incoming(dirPath);
     labelPath->setText(incoming.filePath(lineDirName->text()));

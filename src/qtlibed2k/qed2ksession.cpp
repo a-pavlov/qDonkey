@@ -485,14 +485,14 @@ void QED2KSession::configureSession()
     Preferences pref;
     const unsigned short old_listenPort = m_session->settings().listen_port;
     const unsigned short new_listenPort = pref.listenPort();
-    const int down_limit = pref.getED2KDownloadLimit();
-    const int up_limit = pref.getED2KUploadLimit();
+    const int down_limit = -1; //pref.getED2KDownloadLimit();
+    const int up_limit = -1; //pref.getED2KUploadLimit();
 
     // set common settings before for announce correct nick on server
     libed2k::session_settings s = m_session->settings();
     s.client_name = pref.nick().toUtf8().constData();
-    s.m_show_shared_catalogs = pref.isShowSharedDirectories();
-    s.m_show_shared_files = pref.isShowSharedFiles();
+    s.m_show_shared_catalogs = false; //pref.isShowSharedDirectories();
+    s.m_show_shared_files = false; //pref.isShowSharedFiles();
     s.download_rate_limit = down_limit <= 0 ? -1 : down_limit*1024;
     s.upload_rate_limit = up_limit <= 0 ? -1 : up_limit*1024;
     m_session->set_settings(s);
@@ -500,7 +500,7 @@ void QED2KSession::configureSession()
     if (new_listenPort != old_listenPort) m_session->listen_on(new_listenPort);
 
     // UPnP / NAT-PMP
-    if (pref.isUPnPEnabled()) enableUPnP(true);
+    if (pref.forwardPort()) enableUPnP(true);
     else enableUPnP(false);
 }
 
@@ -518,7 +518,7 @@ QPair<QED2KHandle, ErrorCode> QED2KSession::addLink(QString strLink, bool resume
     if (ece.defined())
     {
         qDebug("Link is correct, add transfer");
-        QString filepath = QDir(pref.isTempPathEnabledMule()?pref.getTempPathMule():pref.getSavePathMule()).filePath(
+        QString filepath = QDir(pref.inputDir()).filePath(
             QString::fromUtf8(ece.m_filename.c_str(), ece.m_filename.size()));
         libed2k::add_transfer_params atp;
         atp.file_hash = ece.m_filehash;
@@ -551,7 +551,7 @@ void QED2KSession::addTransferFromFile(const QString& filename)
 
         foreach(const libed2k::emule_collection_entry& ece, ecoll.m_files)
         {
-            QString filepath = QDir(pref.isTempPathEnabledMule()?pref.getTempPathMule():pref.getSavePathMule()).filePath(
+            QString filepath = QDir(pref.inputDir()).filePath(
                 QString::fromUtf8(ece.m_filename.c_str(), ece.m_filename.size()));
             qDebug() << "add transfer " << filepath;
             libed2k::add_transfer_params atp;
@@ -825,9 +825,9 @@ void QED2KSession::readAlerts()
             if (t.is_seed())
             {
                 const QDir current_dir(t.save_path());
-                const QDir save_dir(pref.getSavePathMule());
+                const QDir save_dir(pref.inputDir());
                 // move transfer on finish only when temp folder enable + transfer in temp folder
-                if (current_dir != save_dir && current_dir == pref.getTempPathMule() && pref.isTempPathEnabledMule()) {
+                if (current_dir != save_dir) {
                   qDebug("Moving eDonkey transfer from the temp folder to dst");
                   t.move_storage(save_dir.absolutePath());
                 }
@@ -841,7 +841,7 @@ void QED2KSession::readAlerts()
             {
                 m_fast_resume_transfers.remove(t.hash());
 
-                remove_by_state(std::max(pref.getPartialTransfersCount(), 50));
+                remove_by_state(std::max(50, 20));
 
                 if (m_fast_resume_transfers.empty())
                 {
@@ -1012,8 +1012,6 @@ void QED2KSession::saveFastResumeData()
 
         delegate()->pop_alert();
     }
-
-    Preferences().setPartialTransfersCount(part_num);
 }
 
 void QED2KSession::loadFastResumeData()

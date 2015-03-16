@@ -15,9 +15,25 @@
   </property>
   <layout class="QVBoxLayout" name="verticalLayout_3">
    <item>
+    <widget class="QGroupBox" name="groupBox_5">
+     <property name="title">
+      <string>Behaviour</string>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout_4">
+      <item>
+       <widget class="QCheckBox" name="checkBox_2">
+        <property name="text">
+         <string>Confirm on exit</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
     <widget class="QGroupBox" name="groupBox">
      <property name="title">
-      <string>Network settings:</string>
+      <string>Network settings</string>
      </property>
      <layout class="QVBoxLayout" name="verticalLayout_2">
       <item>
@@ -146,7 +162,7 @@
    <item>
     <widget class="QGroupBox" name="groupBox_4">
      <property name="title">
-      <string>Save files to location:</string>
+      <string>Save files to location</string>
      </property>
      <layout class="QVBoxLayout" name="verticalLayout_26">
       <property name="bottomMargin">
@@ -224,6 +240,9 @@
      </item>
      <item>
       <widget class="QPushButton" name="btnOk">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
        <property name="text">
         <string>Ok</string>
        </property>
@@ -231,6 +250,9 @@
      </item>
      <item>
       <widget class="QPushButton" name="btnCancel">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
        <property name="text">
         <string>Cancel</string>
        </property>
@@ -239,10 +261,6 @@
     </layout>
    </item>
   </layout>
-  <zorder>horizontalLayoutWidget</zorder>
-  <zorder>groupBox</zorder>
-  <zorder>horizontalSpacer</zorder>
-  <zorder>groupBox_4</zorder>
  </widget>
  <resources/>
  <connections/>

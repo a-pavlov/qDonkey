@@ -112,9 +112,8 @@ MainWindow::MainWindow(QWidget *parent, QStringList torrentCmdLine)
 #endif
 
     Preferences pref;
-    pref.migrate();
     setWindowTitle(QString::fromUtf8(PRODUCT_NAME));
-    displaySpeedInTitle = pref.speedInTitleBar();
+    displaySpeedInTitle = true;
 
     // Clean exit on log out
     connect(static_cast<SessionApplication*>(qApp), SIGNAL(sessionIsShuttingDown()), this, SLOT(deleteSession()));
@@ -175,7 +174,7 @@ MainWindow::MainWindow(QWidget *parent, QStringList torrentCmdLine)
     // Load Window state and sizes
     readSettings();
 
-    if (pref.startMinimized() && systrayIcon)
+    if (/*pref.startMinimized() &&*/ systrayIcon)
         showMinimized();
     else
     {
@@ -297,26 +296,25 @@ MainWindow::~MainWindow()
 
 void MainWindow::writeSettings()
 {
-    Preferences settings;
-    settings.beginGroup(QString::fromUtf8("MainWindow"));
-    settings.setValue("geometry", saveGeometry());
-    settings.endGroup();
-    settings.setMigrationStage(false);
+    Preferences pref;
+    pref.beginGroup(QString::fromUtf8("MainWindow"));
+    pref.setValue("geometry", saveGeometry());
+    pref.endGroup();
 }
 
 void MainWindow::readSettings()
 {
-    Preferences settings;
-    settings.beginGroup(QString::fromUtf8("MainWindow"));
+    Preferences pref;
+    pref.beginGroup(QString::fromUtf8("MainWindow"));
 
-    if(settings.contains("geometry"))
+    if(pref.contains("geometry"))
     {
-        if(restoreGeometry(settings.value("geometry").toByteArray()))
+        if(restoreGeometry(pref.value("geometry").toByteArray()))
             m_posInitialized = true;
     }
 
-    const QByteArray splitterState = settings.value("vsplitterState").toByteArray();
-    settings.endGroup();
+    const QByteArray splitterState = pref.value("vsplitterState").toByteArray();
+    pref.endGroup();
 }
 
 void MainWindow::balloonClicked()
@@ -442,14 +440,14 @@ void MainWindow::showEvent(QShowEvent *e)
 void MainWindow::closeEvent(QCloseEvent *e)
 {
     Preferences pref;
-    const bool goToSystrayOnExit = pref.closeToTray();
-
-    if(!force_exit && systrayIcon && goToSystrayOnExit && !this->isHidden())
+/*
+    if(!force_exit && systrayIcon && !this->isHidden())
     {
         hide();
         e->accept();
         return;
     }
+    */
 
     SessionStatus status = Session::instance()->getSessionStatus();
 
@@ -514,13 +512,13 @@ bool MainWindow::event(QEvent * e)
             {
                 qDebug("minimisation");
 
-                if(systrayIcon && Preferences().minimizeToTray())
-                {
+                /*if(systrayIcon) {
                     qDebug("Minimize to Tray enabled, hiding!");
                     e->accept();
                     QTimer::singleShot(0, this, SLOT(hide()));
                     return true;
                 }
+                */
             }
 
             break;
@@ -913,11 +911,7 @@ void MainWindow::updateGUI()
     //Session::instance()->playPendingMedia();
 }
 
-void MainWindow::showNotificationBaloon(QString title, QString msg) const
-{
-    if(!Preferences().useProgramNotification())
-        return;
-
+void MainWindow::showNotificationBaloon(QString title, QString msg) const {
     // forward all notifications to the console
     addConsoleMessage(msg);
 
@@ -1013,7 +1007,7 @@ void MainWindow::createSystrayDelayed()
             delete systrayCreator;
             // Disable it in program preferences to
             // avoid trying at earch startup
-            Preferences().setSystrayIntegration(false);
+            Preferences().setSysTrayAvailable(false);
         }
     }
 }

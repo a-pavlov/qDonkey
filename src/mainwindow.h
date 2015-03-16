@@ -36,6 +36,7 @@
 #include <QPointer>
 #include <QSplashScreen>
 #include <QMovie>
+#include <QTime>
 
 #include "qtlibed2k/qed2ksession.h"
 #include "ui_mainwindow.h"
