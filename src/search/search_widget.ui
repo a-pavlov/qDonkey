@@ -435,6 +435,9 @@
     <layout class="QHBoxLayout" name="horizontalLayout_2">
      <item>
       <widget class="QToolButton" name="btnDownload">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
        <property name="sizePolicy">
         <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
          <horstretch>0</horstretch>
@@ -476,6 +479,9 @@
      </item>
      <item>
       <widget class="QToolButton" name="btnPreview">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
        <property name="sizePolicy">
         <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
          <horstretch>0</horstretch>
@@ -599,6 +605,30 @@
    </property>
    <property name="text">
     <string>Download pause</string>
+   </property>
+  </action>
+  <action name="defValue">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Default</string>
+   </property>
+  </action>
+  <action name="defKilos">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Kb</string>
+   </property>
+  </action>
+  <action name="defMegas">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Mb</string>
    </property>
   </action>
  </widget>

@@ -24,9 +24,6 @@ class search_widget : public QWidget , private Ui::search_widget {
 private:
     QMenu* menuResults;
     QMenu* menuSubResults;
-    QAction* defValue;
-    QAction* defKilos;
-    QAction* defMegas;
     SWTabBar* tabSearch;
 
     int nCurTabSearch;
@@ -46,9 +43,7 @@ public:
 private:
     void addCondRow();
     void showErrorParamMsg(int numParam);
-    bool hasSelectedMedia();
-    bool hasSelectedFiles();
-    void updateFileActions();
+    void updateDownloadControls();
 
     void processSearchResult(
         const QList<QED2KSearchResultEntry>& vRes, boost::optional<bool> obMoreResult);
@@ -57,7 +52,7 @@ private:
     void warnDisconnected();
     void prepareNewSearch(const QString& title);
 
-    QModelIndex proxy2source(const QModelIndex& index) {
+    QModelIndex mapTosource(const QModelIndex& index) {
         if (index.isValid()) {
             return filterModel->mapToSource(index);
         }

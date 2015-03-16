@@ -4,7 +4,7 @@
 #include "preferences.h"
 
 SearchModel::SearchModel(QObject *parent) :
-    QAbstractTableModel(parent), currentIndex(-1) {
+    QAbstractTableModel(parent), currentIndex(-1), m_st(misc::ST_DEFAULT) {
     iconAny = QIcon(res::itemAny());
     iconAudio = QIcon(res::itemMusic());
     iconVideo = QIcon(res::itemVideo());
@@ -33,7 +33,7 @@ QVariant SearchModel::data(const QModelIndex& index, int role) const {
         case Qt::DisplayRole:  {
             switch(index.column()) {
                 case DC_NAME:        return filename(index);
-                case DC_FILESIZE:    return misc::friendlyUnit(size(index), misc::ST_DEFAULT);
+                case DC_FILESIZE:    return misc::friendlyUnit(size(index), m_st);
                 case DC_SOURCES:
                 {
                     quint64 nSources = sources(index);
@@ -193,6 +193,11 @@ QED2KSearchResultEntry& SearchModel::at(const QModelIndex& indx)
 {
     Q_ASSERT(indx.row() < rowCount());
     return search_results[currentIndex][indx.row()];
+}
+
+void SearchModel::setSizeType(misc::SizeType st) {
+    m_st = st;
+    dataChanged(index(0, DC_FILESIZE), index(rowCount(), DC_FILESIZE));
 }
 
 QString SearchModel::filename(const QModelIndex& indx) const {

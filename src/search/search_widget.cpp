@@ -74,22 +74,7 @@ search_widget::search_widget(QWidget *parent)
     menuSubResults->setObjectName(QString::fromUtf8("menuSubResults"));
     menuSubResults->setTitle(tr("Size"));
     
-    defValue = new QAction(this);
-    defValue->setObjectName(QString::fromUtf8("defValue"));
-    defValue->setText(tr("Default"));
-    defValue->setCheckable(true);
     defValue->setChecked(true);
-
-    defKilos = new QAction(this);
-    defKilos->setObjectName(QString::fromUtf8("defKilos"));
-    defKilos->setText(tr("KiB"));
-    defKilos->setCheckable(true);
-
-    defMegas = new QAction(this);
-    defMegas->setObjectName(QString::fromUtf8("defMegas"));
-    defMegas->setText(tr("MiB"));
-    defMegas->setCheckable(true);
-
     menuSubResults->addAction(defValue);
     menuSubResults->addAction(defKilos);
     menuSubResults->addAction(defMegas);
@@ -222,6 +207,18 @@ void search_widget::load() {
     checkPlus->setChecked(pref.value("CheckPlus", true).toBool());
     checkOwn->setChecked(pref.value("CheckOwn", true).toBool());
 
+    if (pref.value("defMegas", false).toBool()) {
+        //defMegas->setChecked(true);
+    }
+
+    if (pref.value("defValue", true).toBool()) {
+        //defValue->setChecked(true);
+    }
+
+    if (pref.value("defKilos", false).toBool()) {
+        //defKilos->setChecked(true);
+    }
+
     if(pref.contains("TreeResultHeader")) {
         treeResult->header()->restoreState(pref.value("TreeResultHeader").toByteArray());
     }
@@ -265,6 +262,10 @@ void search_widget::save() const {
     pref.setValue("CheckOwn", checkOwn->isChecked());
     pref.setValue("CurrentTab", tabSearch->currentIndex());
     pref.setValue("TreeResultHeader", treeResult->header()->saveState());
+
+    pref.setValue("defValue", defValue->isChecked());
+    pref.setValue("defKilos", defKilos->isChecked());
+    pref.setValue("defMegas", defMegas->isChecked());
 
     pref.beginWriteArray("Tabs", tabSearch->count());
 
@@ -606,44 +607,30 @@ void search_widget::closeTab(int index)
     if (tabSearch->count() != 0) selectTab(tabSearch->currentIndex());
 }
 
-void search_widget::selectTab(int nTabNum)
-{
-    model->resetToIndex(nTabNum);
+void search_widget::selectTab(int nTabNum) {
     filterModel->setSourceModel(model);
+    model->resetToIndex(nTabNum);
     filterModel->sort(treeResult->header()->sortIndicatorSection(), treeResult->header()->sortIndicatorOrder());
+    updateDownloadControls();
 }
 
-void search_widget::setSizeType()
-{
+void search_widget::setSizeType() {
     QObject* sender = QObject::sender();
-    if (sender == defKilos)
-    {
+    if (sender == defKilos) {
         defMegas->setChecked(false);
         defValue->setChecked(false);
-
-        //itemDelegate->setSizeType(misc::ST_KB);
+        model->setSizeType(misc::ST_KB);
     }
-    else if (sender == defMegas)
-    {
+    else if (sender == defMegas) {
         defKilos->setChecked(false);
         defValue->setChecked(false);
-
-        //itemDelegate->setSizeType(misc::ST_MB);
+        model->setSizeType(misc::ST_MB);
     }
-    else
-    {
+    else if (sender == defValue) {
         defKilos->setChecked(false);
         defMegas->setChecked(false);
-
-        //itemDelegate->setSizeType(misc::ST_DEFAULT);
+        model->setSizeType(misc::ST_DEFAULT);
     }
-
-    //tableResult->update(tableResult->rect());
-    //qApp->processEvents();
-
-    int width = treeResult->columnWidth(0);
-    treeResult->setColumnWidth(0, width - 1);
-    treeResult->setColumnWidth(0, width);
 }
 
 void search_widget::showErrorParamMsg(int numParam)
@@ -678,20 +665,35 @@ void search_widget::displayListMenu(const QPoint&)
     fileMenu->exec(QCursor::pos());
 }
 
-void search_widget::resultSelectionChanged(const QItemSelection& sel, const QItemSelection& unsel)
+void search_widget::updateDownloadControls() {
+    bool hasFiles = false;
+    bool hasMedia = false;
+    foreach(const QModelIndex& i, treeResult->selectionModel()->selectedRows()) {
+        QModelIndex index = filterModel->mapToSource(i);
+        if (index.isValid()) {
+            // do not process my files
+            if (Session::instance()->getTransfer(model->hash(index)).is_valid()) {
+                continue;
+            }
+
+            hasFiles = true;
+            hasMedia = misc::isPreviewable(misc::file_extension(model->filename(index)));
+            if (hasMedia) break;
+        }
+    }
+
+    btnDownload->setEnabled(hasFiles);
+    btnPreview->setEnabled(hasMedia);
+}
+
+void search_widget::resultSelectionChanged(const QItemSelection&, const QItemSelection&)
 {
-    updateFileActions();
+    updateDownloadControls();
 }
 
 QList<QED2KHandle> search_widget::on_actionDownload_triggered() {
 
     QList<QED2KHandle> result;
-
-    if (!hasSelectedFiles())
-    {
-        qDebug("some files should be selected for downloading");
-        return result;
-    }
 
     QModelIndexList selected = treeResult->selectionModel()->selectedRows();
     QModelIndexList::const_iterator iter;
@@ -751,78 +753,6 @@ void search_widget::on_actionED2K_link_triggered() {
     dlg.exec();
 }
 
-bool search_widget::hasSelectedMedia()
-{
-    if (tabSearch->currentIndex() < 0)
-        return false;
-
-    QModelIndexList selected = treeResult->selectionModel()->selectedRows();
-    QModelIndexList::const_iterator iter;
-    for (iter = selected.begin(); iter != selected.end(); ++iter)
-    {
-        QString filename = selected_data(treeResult, SearchModel::DC_NAME, *iter).toString();
-        QString hash = selected_data(treeResult, SearchModel::DC_HASH, *iter).toString();
-        if (misc::isPreviewable(misc::file_extension(filename)))
-        {
-            return true;
-        }
-    }
-
-    return false;
-}
-
-bool search_widget::hasSelectedFiles()
-{
-    return true;
-    /*
-    if (tabSearch->currentIndex() < 0 ||
-        searchItems[tabSearch->currentIndex()].resultType == RT_CLIENTS)
-        return false;
-
-    QModelIndexList selected = treeResult->selectionModel()->selectedRows();
-    if (selected.size() && searchItems[tabSearch->currentIndex()].resultType == RT_FOLDERS) {
-        if (selected.first().parent() == treeResult->rootIndex())
-        {
-            QString hash = model->data(
-                model->index(selected.first().row(), SWDelegate::SW_ID)).toString();
-
-            std::vector<QED2KSearchResultEntry> const& vRes =
-                searchItems[tabSearch->currentIndex()].vecResults;
-            std::vector<QED2KSearchResultEntry>::const_iterator it;
-            std::vector<UserDir>& userDirs = searchItems[tabSearch->currentIndex()].vecUserDirs;
-            std::vector<UserDir>::iterator dir_iter = userDirs.begin();
-            for (it = vRes.begin(); it != vRes.end(); ++it, ++dir_iter)
-            {
-                if (it->m_hFile == hash)
-                    break;
-            }
-
-            if (dir_iter != userDirs.end())
-            {
-                if (!dir_iter->vecFiles.size())
-                    return false;
-            }
-        }
-    }
-
-    foreach (const QModelIndex& index, selected)
-    {
-        QString filename = selected_data(treeResult, SWDelegate::SW_NAME, index).toString();
-        QString hash = selected_data(treeResult, SWDelegate::SW_ID, index).toString();
-    }
-
-    return false;
-    */
-}
-
-void search_widget::updateFileActions()
-{
-    bool hasSelFiles = hasSelectedFiles();
-    actionDownload->setEnabled(hasSelFiles);
-    actionDownload_pause->setEnabled(hasSelFiles);
-    actionPreview->setEnabled(hasSelectedMedia());
-}
-
 void search_widget::displayHSMenu(const QPoint&)
 {
     QMenu hideshowColumn(this);
@@ -878,13 +808,12 @@ void search_widget::ed2kSearchFinished(
 }
 
 void search_widget::addedTransfer(QED2KHandle h) {
-    updateFileActions();
+    updateDownloadControls();
     filterModel->showOwn(checkOwn->isChecked());
 }
 
-void search_widget::deletedTransfer(const QString& hash)
-{
-    updateFileActions();
+void search_widget::deletedTransfer(const QString& hash) {
+    updateDownloadControls();
     filterModel->showOwn(checkOwn->isChecked());
 }
 

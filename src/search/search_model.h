@@ -32,6 +32,8 @@ public:
     const QED2KSearchResultEntry& at(const QModelIndex& indx) const;
     QED2KSearchResultEntry& at(const QModelIndex& indx);
 
+    void setSizeType(misc::SizeType);
+
     QString filename(const QModelIndex&) const;
     quint64 size(const QModelIndex&) const;
     QString hash(const QModelIndex&) const;
@@ -52,6 +54,7 @@ public:
     int levels() const { return search_results.size(); }
 private:                
     int currentIndex;
+    misc::SizeType m_st;
     QList<QList<QED2KSearchResultEntry> > search_results;
     QIcon  iconAny;
     QIcon  iconAudio;
