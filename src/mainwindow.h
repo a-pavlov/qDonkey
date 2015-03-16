@@ -77,31 +77,12 @@ class MainWindow : public QMainWindow, private Ui::MainWindow
     friend class callback_wrapper;
 
 public:
-    enum ConnectionState
-    {
-        csDisconnected = 1,
-        csConnecting   = 2,
-        csConnected    = 3
-    };
-
     enum Widgets {
 
-        wTransfer = 1,
-        wSearch
+        wTransfer = 0,
+        wSearch,
+        wPreferences
     };
-
-    struct TransfersPages
-    {
-        enum TransfersPage
-        {
-            All,
-            Downloading,
-            Completed,
-            Waiting
-        };
-    };
-
-    typedef TransfersPages::TransfersPage TransfersPage;
 
     // Construct / Destruct
     MainWindow(QWidget *parent = 0, QStringList torrentCmdLine = QStringList());
@@ -119,6 +100,7 @@ protected slots:
     void on_actionTransfers_triggered();
     void on_actionSearch_triggered();
     void on_actionConnect_triggered();
+    void on_actionOptions_triggered();
 
     // processing server events
     void handleServerNameResolved(QString);

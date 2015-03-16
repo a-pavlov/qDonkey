@@ -65,6 +65,7 @@
 
 #include "search/search_widget.h"
 #include "transfers/transfers_widget.h"
+#include "preferences/preferences_widget.h"
 
 #ifdef Q_WS_MAC
 #include "qmacapplication.h"
@@ -97,6 +98,7 @@ MainWindow::MainWindow(QWidget *parent, QStringList torrentCmdLine)
     setupUi(this);
     stackedWidget->addWidget(new transfers_widget(this));
     stackedWidget->addWidget(new search_widget(this));
+    stackedWidget->addWidget(new preferences_widget(this));
     stackedWidget->setCurrentIndex(0);
     QCoreApplication::instance()->installEventFilter(this);
 
@@ -1092,11 +1094,15 @@ void MainWindow::addConsoleMessage(const QString& msg, QColor color /*=QApplicat
 
 
 void MainWindow::on_actionTransfers_triggered() {
-    stackedWidget->setCurrentIndex(0);
+    stackedWidget->setCurrentIndex(wTransfer);
 }
 
 void MainWindow::on_actionSearch_triggered() {
-    stackedWidget->setCurrentIndex(1);
+    stackedWidget->setCurrentIndex(wSearch);
+}
+
+void MainWindow::on_actionOptions_triggered() {
+    stackedWidget->setCurrentIndex(wPreferences);
 }
 
 void MainWindow::on_actionConnect_triggered() {
