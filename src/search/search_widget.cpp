@@ -469,13 +469,13 @@ void search_widget::cancelSearch()
 void search_widget::clearSearch()
 {
     comboName->setEditText("");
+    comboName->clear();
     comboType->setCurrentIndex(0);
 
     checkOwn->setChecked(Qt::Checked);
-    checkPlus->setChecked(Qt::Unchecked);
+    checkPlus->setChecked(Qt::Checked);
 
-    for (int ii = 0; ii < 11; ii ++)
-        tableCond->item(ii, 1)->setText("");
+    for (int ii = 0; ii < tableCond->rowCount(); ii ++) tableCond->item(ii, 1)->setText("");
 }
 
 void search_widget::showOwn(int state)

@@ -205,7 +205,7 @@
             </sizepolicy>
            </property>
            <property name="text">
-            <string>Clear</string>
+            <string>Clear history</string>
            </property>
           </widget>
          </item>
