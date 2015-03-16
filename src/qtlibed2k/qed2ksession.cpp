@@ -66,26 +66,27 @@ QED2KSearchResultEntry::QED2KSearchResultEntry() :
 {
 }
 
-QED2KSearchResultEntry::QED2KSearchResultEntry(const Preferences& pref)
-{
+//static
+QED2KSearchResultEntry QED2KSearchResultEntry::load(const Preferences& pref) {
+    QED2KSearchResultEntry res;
 #ifdef Q_WS_MAC
-    m_nFilesize = pref.value("Filesize", 0).toString().toULongLong();
+    res.m_nFilesize = pref.value("Filesize", 0).toString().toULongLong();
 #else
-    m_nFilesize = pref.value("Filesize", 0).toULongLong();
+    res.m_nFilesize = pref.value("Filesize", 0).toULongLong();
 #endif
-    m_nSources  = pref.value("Sources", 0).toULongLong();
-    m_nCompleteSources  = pref.value("CompleteSources", 0).toULongLong();
-    m_nMediaBitrate     = pref.value("MediaBitrate", 0).toULongLong();
-    m_nMediaLength      = pref.value("MediaLength", 0).toULongLong();
-    m_hFile             = pref.value("File", QString()).toString();
-    m_strFilename       = pref.value("Filename", QString()).toString();
-    m_strMediaCodec     = pref.value("MediaCodec", QString()).toString();
-    m_network_point.m_nIP = pref.value("IP", 0).toUInt();
-    m_network_point.m_nPort = pref.value("Port", 0).toUInt();
+    res.m_nSources  = pref.value("Sources", 0).toULongLong();
+    res.m_nCompleteSources  = pref.value("CompleteSources", 0).toULongLong();
+    res.m_nMediaBitrate     = pref.value("MediaBitrate", 0).toULongLong();
+    res.m_nMediaLength      = pref.value("MediaLength", 0).toULongLong();
+    res.m_hFile             = pref.value("File", QString()).toString();
+    res.m_strFilename       = pref.value("Filename", QString()).toString();
+    res.m_strMediaCodec     = pref.value("MediaCodec", QString()).toString();
+    res.m_network_point.m_nIP = pref.value("IP", 0).toUInt();
+    res.m_network_point.m_nPort = pref.value("Port", 0).toUInt();
+    return res;
 }
 
-void QED2KSearchResultEntry::save(Preferences& pref) const
-{
+void QED2KSearchResultEntry::save(Preferences& pref) const {
 #ifdef Q_WS_MAC
     pref.setValue("Filesize",       QString::number(m_nFilesize));
 #else

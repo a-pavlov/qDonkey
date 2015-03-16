@@ -79,7 +79,7 @@ struct QED2KSearchResultEntry {
     libed2k::net_identifier m_network_point; 
 	bool isCorrect() const;
 	QED2KSearchResultEntry();
-    QED2KSearchResultEntry(const Preferences& pref);
+    static QED2KSearchResultEntry load(const Preferences& pref);
 	static QED2KSearchResultEntry fromSharedFileEntry(const libed2k::shared_file_entry& sf);
     void save(Preferences& pref) const;
     FileType getType();

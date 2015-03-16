@@ -146,11 +146,6 @@ search_widget::search_widget(QWidget *parent)
     QSizePolicy sizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
     sizePolicy.setHorizontalStretch(0);
     sizePolicy.setVerticalStretch(0);
-    //sizePolicy.setHeightForWidth(searchFilter->sizePolicy().hasHeightForWidth());
-    //searchFilter->setSizePolicy(sizePolicy);
-
-    //searchFilter->hide();
-    //horizontalLayoutTabs->addWidget(searchFilter);
 
     connect(tableCond, SIGNAL(itemClicked(QTableWidgetItem*)), this, SLOT(itemCondClicked(QTableWidgetItem*)));
     connect(btnStart, SIGNAL(clicked()), this, SLOT(startSearch()));
@@ -213,49 +208,39 @@ search_widget::search_widget(QWidget *parent)
             this, SLOT(displayHSMenu(const QPoint&)));
     connect(treeResult, SIGNAL(doubleClicked(const QModelIndex&)), this, SLOT(download()));
 
-    // sort by name ascending
-    treeResult->header()->setSortIndicator(SearchModel::DC_NAME, Qt::AscendingOrder);
     load();
+
+    // sort by name ascending
+    treeResult->header()->setSortIndicator(SearchModel::DC_SOURCES, Qt::AscendingOrder);
 }
 
-void search_widget::load()
-{
-    /*
+void search_widget::load() {
+    model->load();
+
     Preferences pref;
     pref.beginGroup("SearchWidget");
     checkPlus->setChecked(pref.value("CheckPlus", true).toBool());
     checkOwn->setChecked(pref.value("CheckOwn", true).toBool());
 
-
-    if(pref.contains("TreeResultHeader"))
-    {
+    if(pref.contains("TreeResultHeader")) {
         treeResult->header()->restoreState(pref.value("TreeResultHeader").toByteArray());
     }
 
-    nCurTabSearch = pref.value("CurrentTab", 0).toInt();    
+    int size = pref.beginReadArray("Tabs");
 
-    int size = pref.beginReadArray("SearchResults");
-
-    for (int i = 0; i < size; ++i)
-    {
+    for (int i = 0; i < size; ++i) {
         pref.setArrayIndex(i);
-        QString title = pref.value("Title", QString()).toString();        
-        searchItems.push_back(SearchResult(pref));
-        if (searchItems[searchItems.size() - 1].resultType == RT_USER_DIRS)
-            nCurTabSearch = tabSearch->addTab(iconUserFiles, title);
-        else
-            nCurTabSearch = tabSearch->addTab(iconSearchResult, title);
-    }
-
-    if (size > 0)
-    {
-        tabSearch->setCurrentIndex(nCurTabSearch);
-        tabSearch->show();
-        //searchFilter->show();
-        closeAll->setEnabled(true);
+        QString title = pref.value("Title", QString()).toString();
+        qDebug() << "load " << title;
+        tabSearch->addTab(QIcon(res::searchResult()), title);
     }
 
     pref.endArray();
+
+    int currentTab = pref.value("CurrentTab", -1).toInt();
+    if (currentTab < tabSearch->count()) {
+        tabSearch->setCurrentIndex(currentTab);
+    }
 
     // restore comboName
     size = pref.beginReadArray("ComboNames");
@@ -268,27 +253,25 @@ void search_widget::load()
     pref.endArray();
     comboName->setCurrentIndex(-1);
     pref.endGroup();
-    */
+
+    if (tabSearch->count() != 0) tabSearch->show();
 }
 
-void search_widget::save() const
-{
-    /*
+void search_widget::save() const {
+    model->save();
     Preferences pref;
     pref.beginGroup("SearchWidget");
     pref.setValue("CheckPlus", checkPlus->isChecked());
     pref.setValue("CheckOwn", checkOwn->isChecked());
     pref.setValue("CurrentTab", tabSearch->currentIndex());
     pref.setValue("TreeResultHeader", treeResult->header()->saveState());
-    pref.beginWriteArray("SearchResults", searchItems.size());
-    int i = 0;
 
-    foreach(const SearchResult& sr,  searchItems)
-    {
+    pref.beginWriteArray("Tabs", tabSearch->count());
+
+    for (int i = 0; i < tabSearch->count(); ++i) {
         pref.setArrayIndex(i);
         pref.setValue("Title", tabSearch->tabText(i));
-        sr.save(pref);
-        ++i;
+        qDebug() << "save " << tabSearch->tabText(i);
     }
 
     pref.endArray();
@@ -296,22 +279,16 @@ void search_widget::save() const
     // save comboName
     pref.beginWriteArray("ComboNames", comboName->count());
 
-    for(int index = 0; index < comboName->count(); ++index)
-    {
+    for(int index = 0; index < comboName->count(); ++index) {
         pref.setArrayIndex(index);
         pref.setValue("CName", comboName->itemText(index));
     }
 
     pref.endArray();
-
     pref.endGroup();
-    */
 }
 
-search_widget::~search_widget()
-{
-    save();
-}
+search_widget::~search_widget() { save(); }
 
 void search_widget::addCondRow() {
     int row = tableCond->rowCount();
@@ -330,25 +307,13 @@ void search_widget::addCondRow() {
 
 void search_widget::itemCondClicked(QTableWidgetItem* item)
 {
-    if (item->column() == 0)
-    {
+    if (item->column() == 0) {
         tableCond->editItem(tableCond->item(item->row(), 1));
     }
 }
 
-void search_widget::sortChanged(int logicalIndex, Qt::SortOrder order)
-{
-    /*
-    if (nSortedColumn != logicalIndex)
-    {
-        nSortedColumn = logicalIndex;
-        if (logicalIndex == SearchModel::SW_AVAILABILITY)
-            treeResult->header()->setSortIndicator(SWDelegate::SW_AVAILABILITY, Qt::DescendingOrder);
-        if (logicalIndex == SWDelegate::SW_SIZE)
-            treeResult->header()->setSortIndicator(SWDelegate::SW_SIZE, Qt::DescendingOrder);
-    }
-    nSortedColumn = logicalIndex;
-    */
+void search_widget::sortChanged(int logicalIndex, Qt::SortOrder order) {
+    filterModel->sort(logicalIndex, order);
 }
 
 void search_widget::startSearch() {
@@ -644,6 +609,8 @@ void search_widget::closeTab(int index)
 void search_widget::selectTab(int nTabNum)
 {
     model->resetToIndex(nTabNum);
+    filterModel->setSourceModel(model);
+    filterModel->sort(treeResult->header()->sortIndicatorSection(), treeResult->header()->sortIndicatorOrder());
 }
 
 void search_widget::setSizeType()

@@ -1,6 +1,7 @@
 #include "search_model.h"
 #include "misc.h"
 #include "res.h"
+#include "preferences.h"
 
 SearchModel::SearchModel(QObject *parent) :
     QAbstractTableModel(parent), currentIndex(-1) {
@@ -42,7 +43,7 @@ QVariant SearchModel::data(const QModelIndex& index, int role) const {
                         (QString::number(100 * nCompleteSources / nSources)) : "0";
 
                     strSrc += "%(";
-                    strSrc += QString::number(nCompleteSources);
+                    strSrc += QString::number(nSources);
                     strSrc += ")";
                     return strSrc;
                 }
@@ -173,11 +174,9 @@ int SearchModel::addDataTo(const QList<QED2KSearchResultEntry>& entries, int ind
 
 void SearchModel::resetToIndex(int index) {
     Q_ASSERT(index < search_results.size());
-    qDebug() << "start reset";
     beginResetModel();
     currentIndex = index;
     endResetModel();
-    qDebug() << "end reset";
 }
 
 void SearchModel::appendData(const QList<QED2KSearchResultEntry>& entries) {
@@ -230,4 +229,54 @@ quint64 SearchModel::media_length(const QModelIndex& indx) const {
 
 QString SearchModel::media_codec(const QModelIndex& indx) const {
     return at(indx).m_strMediaCodec;
+}
+
+void SearchModel::save() {
+    Preferences pref;
+    pref.beginGroup("SearchModel");
+
+    pref.beginWriteArray("SearchResults", search_results.size());
+    int i = 0;
+
+    foreach(const QList<QED2KSearchResultEntry>& entries,  search_results) {
+        pref.setArrayIndex(i);
+
+        int j = 0;
+        pref.beginWriteArray("SearchResult", entries.size());
+        qDebug() << "save model size " << entries.size();
+        foreach(const QED2KSearchResultEntry& entry, entries) {
+            pref.setArrayIndex(j);
+            entry.save(pref);
+            ++j;
+        }
+
+        pref.endArray();
+        ++i;
+    }
+
+    pref.endArray();
+    pref.endGroup();
+}
+
+void SearchModel::load() {
+    Preferences pref;
+    pref.beginGroup("SearchModel");
+    int size = pref.beginReadArray("SearchResults");
+    search_results.reserve(size);
+    for(int i = 0; i < size; ++i) {
+        pref.setArrayIndex(i);
+        search_results.append(QList<QED2KSearchResultEntry>());
+        int subs = pref.beginReadArray("SearchResult");
+        for(int j = 0; j != subs; ++j) {
+            pref.setArrayIndex(j);
+            search_results.last().append(QED2KSearchResultEntry::load(pref));
+            search_results.last().last().getType(); // cache type
+        }
+
+        qDebug() << "load model size " << search_results.last().size();
+        pref.endArray();
+    }
+
+    pref.endArray();
+    pref.endGroup();
 }

@@ -47,6 +47,9 @@ public:
     void resetToIndex(int);
     int addDataTo(const QList<QED2KSearchResultEntry>&, int);
     void appendData(const QList<QED2KSearchResultEntry>&);
+    void save();
+    void load();
+    int levels() const { return search_results.size(); }
 private:                
     int currentIndex;
     QList<QList<QED2KSearchResultEntry> > search_results;
