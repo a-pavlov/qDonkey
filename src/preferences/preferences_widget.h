@@ -11,6 +11,14 @@ class preferences_widget : public QWidget, private Ui::preferences_widget {
 public:
     explicit preferences_widget(QWidget *parent = 0);
     ~preferences_widget();
+
+private:
+    void restoreFromPref();
+private slots:
+    void on_btnOk_clicked();
+    void on_btnCancel_clicked();
+    void enableApplyButtons();
+    void disableApplyButtons();
 };
 
 #endif // PREFERENCES_WIDGET_H

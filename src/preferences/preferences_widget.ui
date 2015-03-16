@@ -21,7 +21,7 @@
      </property>
      <layout class="QVBoxLayout" name="verticalLayout_4">
       <item>
-       <widget class="QCheckBox" name="checkBox_2">
+       <widget class="QCheckBox" name="checkConfirm">
         <property name="text">
          <string>Confirm on exit</string>
         </property>
@@ -50,7 +50,7 @@
           </widget>
          </item>
          <item>
-          <widget class="QLineEdit" name="lineEdit">
+          <widget class="QLineEdit" name="serverHost">
            <property name="readOnly">
             <bool>true</bool>
            </property>
@@ -64,9 +64,12 @@
           </widget>
          </item>
          <item>
-          <widget class="QSpinBox" name="spinBox">
+          <widget class="QSpinBox" name="serverPort">
            <property name="readOnly">
             <bool>true</bool>
+           </property>
+           <property name="maximum">
+            <number>65535</number>
            </property>
           </widget>
          </item>
@@ -102,7 +105,11 @@
             </widget>
            </item>
            <item>
-            <widget class="QSpinBox" name="spinBox_2"/>
+            <widget class="QSpinBox" name="listenPort">
+             <property name="maximum">
+              <number>65535</number>
+             </property>
+            </widget>
            </item>
            <item>
             <spacer name="horizontalSpacer_2">
@@ -120,7 +127,7 @@
           </layout>
          </item>
          <item>
-          <widget class="QCheckBox" name="checkBox">
+          <widget class="QCheckBox" name="checkUPnP">
            <property name="text">
             <string>Use UPnP / NAT-PMP port forwarding from my router</string>
            </property>
@@ -139,7 +146,7 @@
          </widget>
         </item>
         <item>
-         <widget class="QLineEdit" name="lineEdit_2"/>
+         <widget class="QLineEdit" name="editNick"/>
         </item>
         <item>
          <spacer name="horizontalSpacer_3">
@@ -171,7 +178,7 @@
       <item>
        <layout class="QHBoxLayout" name="horizontalLayout_10">
         <item>
-         <widget class="QLineEdit" name="textSavePath">
+         <widget class="QLineEdit" name="editInputDir">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
             <horstretch>0</horstretch>
