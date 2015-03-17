@@ -234,7 +234,7 @@
            <number>0</number>
           </property>
           <item row="0" column="0">
-           <widget class="QTreeView" name="transfersView_2">
+           <widget class="QTreeView" name="trView">
             <property name="styleSheet">
              <string notr="true">border: none;</string>
             </property>

@@ -115,6 +115,7 @@ private:
 
     static QED2KSession* m_instance;
 public:
+    static const qreal MAX_RATIO;
     static QED2KSession* instance();
     static void drop();
     void start();

@@ -33,6 +33,7 @@ QString toString(FileType type) {
 }
 
 QED2KSession* QED2KSession::m_instance = NULL;
+const qreal QED2KSession::MAX_RATIO = 9999.0;
 
 QED2KSession* QED2KSession::instance() {
     if (!m_instance) m_instance = new QED2KSession;
