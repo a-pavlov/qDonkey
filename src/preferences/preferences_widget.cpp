@@ -2,6 +2,7 @@
 #include "ui_preferences_widget.h"
 #include "preferences.h"
 #include <QMessageBox>
+#include <QFileDialog>
 
 preferences_widget::preferences_widget(QWidget *parent) :
     QWidget(parent) {
@@ -66,4 +67,21 @@ void preferences_widget::on_btnOk_clicked() {
 void preferences_widget::on_btnCancel_clicked() {
     restoreFromPref();
     disableApplyButtons();
+}
+
+void preferences_widget::on_browseSaveDirButton_clicked()
+{
+    const QString path = misc::expandPath(editInputDir->text());
+    QDir inputDir(path);
+    QString dir;
+    if (!path.isEmpty() && inputDir.exists()) {
+        dir = QFileDialog::getExistingDirectory(this, tr("Choose input directory"), inputDir.absolutePath());
+    } else {
+        dir = QFileDialog::getExistingDirectory(this, tr("Choose input directory"), QDir::homePath());
+    }
+
+    if (!dir.isNull()) {
+        misc::normalizePath(dir);
+        editInputDir->setText(dir);
+    }
 }

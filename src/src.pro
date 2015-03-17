@@ -78,13 +78,15 @@ HEADERS +=  misc.h \
             res.h \
             fs_utils.h \
             ed2k_link_maker.h \
-            collection_save_dlg.h
+            collection_save_dlg.h \
+    inputdir_dialog.h
 
 SOURCES +=  main.cpp \
             misc.cpp \
             fs_utils.cpp \
             ed2k_link_maker.cpp \
-            collection_save_dlg.cpp
+            collection_save_dlg.cpp \
+    inputdir_dialog.cpp
 
 HEADERS +=  mainwindow.h\
             ico.h \
@@ -96,7 +98,8 @@ SOURCES += mainwindow.cpp \
          sessionapplication.cpp \
          iconprovider.cpp
 
-FORMS += mainwindow.ui ed2k_link_maker.ui collection_save_dlg.ui
+FORMS += mainwindow.ui ed2k_link_maker.ui collection_save_dlg.ui \
+    inputdir_dialog.ui
 
 DESTDIR = ../
 

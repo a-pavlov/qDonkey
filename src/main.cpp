@@ -45,6 +45,8 @@
 #include <QTimer>
 #include "sessionapplication.h"
 #include "mainwindow.h"
+#include "preferences.h"
+#include "inputdir_dialog.h"
 #else
 #include "qtsinglecoreapplication.h"
 #include <iostream>
@@ -249,6 +251,14 @@ int main(int argc, char *argv[])
     // Set environment variable
     if(qputenv("QDONKEY", QByteArray(VERSION)))
         std::cerr << "Couldn't set environment variable...\n";
+
+    Preferences pref;
+
+    if (pref.inputDir().isEmpty()) {
+        inputdir_dialog idd;
+        int res = idd.exec();
+        if (res == QDialog::Rejected) return 0;
+    }
 
     //app.setQuitOnLastWindowClosed(false);
 

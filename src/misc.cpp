@@ -1292,3 +1292,9 @@ bool CleanupEventFilter::eventFilter(QObject *obj, QEvent *event)
     return QObject::eventFilter(obj, event);
 }
 
+void misc::normalizePath(QString& path) {
+    Q_UNUSED(path);
+#if defined(Q_WS_WIN) || defined(Q_OS_OS2)
+    path.replace("/", "\\");
+#endif
+}

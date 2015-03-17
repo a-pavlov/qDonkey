@@ -19,6 +19,7 @@ private slots:
     void on_btnCancel_clicked();
     void enableApplyButtons();
     void disableApplyButtons();
+    void on_browseSaveDirButton_clicked();
 };
 
 #endif // PREFERENCES_WIDGET_H

@@ -223,6 +223,7 @@ public:
   static bool naturalSort(QString left, QString right, bool& result);
   static QString pyLocation();
   static bool prepareInputDirectory(const QString& path);
+  static void normalizePath(QString&);
 };
 
 //  Trick to get a portable sleep() function
