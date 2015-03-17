@@ -113,7 +113,6 @@ MainWindow::MainWindow(QWidget *parent, QStringList torrentCmdLine)
 
     Preferences pref;
     setWindowTitle(QString::fromUtf8(PRODUCT_NAME));
-    displaySpeedInTitle = true;
 
     // Clean exit on log out
     connect(static_cast<SessionApplication*>(qApp), SIGNAL(sessionIsShuttingDown()), this, SLOT(deleteSession()));
@@ -877,8 +876,11 @@ void MainWindow::updateGUI()
         systrayIcon->setToolTip(html); // tray icon
     }
 
-    if(Preferences().displaySpeedInTitle())
+    if(Preferences().displaySpeedInTitle()) {
         setWindowTitle(tr("[D: %1/s, U: %2/s] qDonkey %3", "D = Download; U = Upload; %3 is qDonkey version").arg(misc::friendlyUnit(status.payload_download_rate)).arg(misc::friendlyUnit(status.payload_upload_rate)).arg(misc::versionString()));
+    } else {
+        setWindowTitle("qDonkey");
+    }
 
     statusBar->setUpDown(status.payload_upload_rate, status.payload_download_rate);
     //Session::instance()->playPendingMedia();

@@ -41,26 +41,10 @@
 #include "qtlibed2k/qed2ksession.h"
 #include "ui_mainwindow.h"
 
-class downloadFromURL;
-class options_imp;
-class TransferListWidget;
-class TransferListFiltersWidget;
-class status_bar;
-class consoleDlg;
-class downloadFromURL;
-class HidableTabWidget;
-class LineEdit;
-class ExecutionLog;
-class PowerManagement;
-class search_widget;
-class messages_widget;
-class AboutDlg;
-class TestWgt;
-class QuickSearchModel;
-class QSortFilterProxyModel;
-class PeerListWidget;
-class TransferListWidget;
 
+class status_bar;
+class LineEdit;
+class PowerManagement;
 
 QT_BEGIN_NAMESPACE
 class QCloseEvent;
@@ -147,23 +131,16 @@ private:
     // GUI related
     bool m_posInitialized;
     QTimer *guiUpdater;
-    //HidableTabWidget *tabs;
     status_bar* statusBar;
-    QPointer<options_imp> options;
-    QPointer<consoleDlg> console;
     QPointer<QSystemTrayIcon> systrayIcon;
     QPointer<QTimer> systrayCreator;
     QPointer<QMenu> myTrayIconMenu;
 
-    bool displaySpeedInTitle;
     bool force_exit;
 
     // Keyboard shortcuts
     QShortcut *switchTransferShortcut;
     QShortcut *hideShortcut;
-
-    // Execution Log
-    QPointer<ExecutionLog> m_executionLog;
 
     // Power Management
     PowerManagement *m_pwr;

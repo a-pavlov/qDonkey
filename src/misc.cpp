@@ -1268,6 +1268,11 @@ QString misc::pyLocation(){
 #endif
 }
 
+bool misc::prepareInputDirectory(const QString& path) {
+    QDir input(path);
+    return (!path.isEmpty() && input.exists() && (input.exists(".metadata") || input.mkdir(".metadata")));
+}
+
 CleanupEventFilter::CleanupEventFilter(QObject *parent) : QObject(parent){}
 bool CleanupEventFilter::eventFilter(QObject *obj, QEvent *event)
 {
@@ -1286,3 +1291,4 @@ bool CleanupEventFilter::eventFilter(QObject *obj, QEvent *event)
 
     return QObject::eventFilter(obj, event);
 }
+

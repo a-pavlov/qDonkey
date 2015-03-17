@@ -222,6 +222,7 @@ public:
   static libed2k::server_met file2smet(const QString&, libed2k::error_code&);
   static bool naturalSort(QString left, QString right, bool& result);
   static QString pyLocation();
+  static bool prepareInputDirectory(const QString& path);
 };
 
 //  Trick to get a portable sleep() function
