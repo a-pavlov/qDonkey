@@ -4,7 +4,7 @@
 #include "preferences.h"
 
 SearchModel::SearchModel(QObject *parent) :
-    QAbstractTableModel(parent), currentIndex(-1), m_st(misc::ST_DEFAULT) {
+    QAbstractListModel(parent), currentIndex(-1), m_st(misc::ST_DEFAULT) {
     iconAny = QIcon(res::itemAny());
     iconAudio = QIcon(res::itemMusic());
     iconVideo = QIcon(res::itemVideo());
@@ -126,7 +126,7 @@ QVariant SearchModel::data(const QModelIndex& index, int role) const {
 QVariant SearchModel::headerData(int section, Qt::Orientation orientation, int role) const
 {
     if (orientation != Qt::Horizontal || role != Qt::DisplayRole)
-        return QAbstractTableModel::headerData(section, orientation, role);
+        return QAbstractListModel::headerData(section, orientation, role);
 
     switch(section) {
         case DC_NAME:        return tr("Filename");

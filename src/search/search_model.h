@@ -1,11 +1,11 @@
 #ifndef __SEARCHMODEL_H
 #define __SEARCHMODEL_H
 
-#include <QAbstractTableModel>
+#include <QAbstractListModel>
 #include <QIcon>
 #include "qed2ksession.h"
 
-class SearchModel : public QAbstractTableModel {
+class SearchModel : public QAbstractListModel {
     Q_OBJECT
 public:
     enum Roles {
