@@ -19,7 +19,7 @@
      <property name="orientation">
       <enum>Qt::Vertical</enum>
      </property>
-     <widget class="QWidget" name="">
+     <widget class="QWidget" name="layoutWidget">
       <layout class="QVBoxLayout" name="verticalLayout_4">
        <property name="spacing">
         <number>0</number>
@@ -61,7 +61,7 @@
             </property>
             <property name="icon">
              <iconset resource="../icons.qrc">
-              <normaloff>:/icons/play.ico</normaloff>:/icons/play.ico</iconset>
+              <normaloff>:/icons/NavigateForward.ico</normaloff>:/icons/NavigateForward.ico</iconset>
             </property>
             <property name="autoRaise">
              <bool>true</bool>
@@ -81,7 +81,7 @@
             </property>
             <property name="icon">
              <iconset resource="../icons.qrc">
-              <normaloff>:/icons/pause.ico</normaloff>:/icons/pause.ico</iconset>
+              <normaloff>:/icons/Pause.ico</normaloff>:/icons/Pause.ico</iconset>
             </property>
             <property name="autoRaise">
              <bool>true</bool>
@@ -204,7 +204,7 @@
             </property>
             <property name="icon">
              <iconset resource="../icons.qrc">
-              <normaloff>:/icons/stalled.ico</normaloff>:/icons/stalled.ico</iconset>
+              <normaloff>:/icons/Connection.ico</normaloff>:/icons/Connection.ico</iconset>
             </property>
             <property name="checkable">
              <bool>true</bool>
@@ -242,7 +242,16 @@
           <enum>QFrame::Sunken</enum>
          </property>
          <layout class="QGridLayout" name="gridLayout_15">
-          <property name="margin">
+          <property name="leftMargin">
+           <number>0</number>
+          </property>
+          <property name="topMargin">
+           <number>0</number>
+          </property>
+          <property name="rightMargin">
+           <number>0</number>
+          </property>
+          <property name="bottomMargin">
            <number>0</number>
           </property>
           <property name="spacing">
@@ -266,7 +275,7 @@
        </item>
       </layout>
      </widget>
-     <widget class="QWidget" name="">
+     <widget class="QWidget" name="layoutWidget">
       <layout class="QVBoxLayout" name="verticalLayout_5">
        <property name="spacing">
         <number>0</number>

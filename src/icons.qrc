@@ -373,9 +373,6 @@
         <file>icons/transfer_list/Upload.png</file>
         <file>icons/files/all.ico</file>
         <file>icons/files/HardDisk.ico</file>
-        <file>icons/pause.ico</file>
-        <file>icons/play.ico</file>
-        <file>icons/stalled.ico</file>
         <file>icons/search/clear2.ico</file>
         <file>icons/search/closeall.png</file>
         <file>icons/search/Download.png</file>
@@ -389,5 +386,12 @@
         <file>icons/statusbar/Up0down1.ico</file>
         <file>icons/statusbar/Up1down0.ico</file>
         <file>icons/statusbar/Up1down1.ico</file>
+        <file>icons/NavigateForward.ico</file>
+        <file>icons/Pause.ico</file>
+        <file>icons/Connection.ico</file>
+        <file>icons/Delete.ico</file>
+        <file>icons/Exit.ico</file>
+        <file>icons/Stop.ico</file>
+        <file>icons/FileSharedServer.ico</file>
     </qresource>
 </RCC>
