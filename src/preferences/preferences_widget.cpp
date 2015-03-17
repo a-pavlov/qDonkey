@@ -8,6 +8,7 @@ preferences_widget::preferences_widget(QWidget *parent) :
     restoreFromPref();
 
     connect(checkConfirm, SIGNAL(clicked(bool)), this, SLOT(enableApplyButtons()));
+    connect(checkDisplaySpeed, SIGNAL(clicked(bool)), this, SLOT(enableApplyButtons()));
     connect(editNick, SIGNAL(textChanged(QString)), this, SLOT(enableApplyButtons()));
     connect(listenPort, SIGNAL(valueChanged(int)), this, SLOT(enableApplyButtons()));
     connect(checkUPnP, SIGNAL(clicked(bool)), this, SLOT(enableApplyButtons()));
@@ -32,6 +33,7 @@ void preferences_widget::restoreFromPref() {
     Preferences pref;
 
     checkConfirm->setChecked(pref.confirmOnExit());
+    checkDisplaySpeed->setChecked(pref.displaySpeedInTitle());
     serverHost->setText(pref.serverHost());
     serverPort->setValue(pref.serverPort());
 
@@ -47,6 +49,7 @@ void preferences_widget::restoreFromPref() {
 void preferences_widget::on_btnOk_clicked() {
     Preferences pref;
     pref.setConfirmOnExit(checkConfirm->isChecked());
+    pref.setDisplaySpeedInTitle(checkDisplaySpeed->isChecked());
     pref.setNick(editNick->text());
     pref.setListenPort(listenPort->value());
     pref.setForwardPort(checkUPnP->isChecked());

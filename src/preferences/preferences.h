@@ -46,6 +46,9 @@ public:
     bool confirmOnExit() const;
     void setConfirmOnExit(bool);
 
+    bool displaySpeedInTitle() const;
+    void setDisplaySpeedInTitle(bool);
+
     QString serverHost() const;
     int serverPort() const;
 

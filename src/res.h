@@ -47,9 +47,8 @@ public:
     static QString prefRemote()             {return prefPrefix() + "emule-remote-icon.png";}
 
     // system tray resources
-    static QString trayConnected()          {return prefix() + "tray/tray-connected.png";}
-    static QString trayDisconnected()       {return prefix() + "tray/tray-disconnected.png";}
-    static QString newMessage()             {return prefix() + "statusbar/MessagePending.ico";}
+    static QString trayConnected()          {return prefix() + "TrayConnected.ico";}
+    static QString trayDisconnected()       {return prefix() + "TrayDisconnected.ico";}
 
     // toolbar resources
     static QString toolbarConnected()       {return toolbarPrefix() + "ConnectDrop.png";}
@@ -82,22 +81,6 @@ public:
     static QString searchFailed()           {return searchPrefix() + "error-search.png";}
 
     static QString searchActive()           {return searchPrefix() + "SearchActive.png"; }
-
-    // user resources
-    static QString userUpdate()             {return usersPrefix() + "userupdate.ico";}
-    static QString userDetails()            {return usersPrefix() + "UserDetails.ico";}
-    static QString userMessage()            {return usersPrefix() + "UserMessage.ico";}
-    static QString userAdd()                {return usersPrefix() + "UserAdd.ico";}
-    static QString userDelete()             {return usersPrefix() + "UserDelete.ico";}
-    static QString userFiles()              {return usersPrefix() + "UserFiles.ico";}
-    static QString userFriend()             {return usersPrefix() + "Friend.ico";}
-    static QString noUser()                 {return usersPrefix() + "client_red.ico";}
-    static QString chat()                   {return usersPrefix() + "Chat.ico";}
-
-    // TODO: recognize where the following icons are used and rename methods
-    static QString user1()                  {return usersPrefix() + "Friend1.ico";}
-    static QString user2()                  {return usersPrefix() + "Friend2.ico";}
-    static QString user3()                  {return usersPrefix() + "Friend3.ico";}
 
     // actions / transfers
     static QString add()                    {return transfersPrefix() + "add.png";}

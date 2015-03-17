@@ -27,6 +27,13 @@
         </property>
        </widget>
       </item>
+      <item>
+       <widget class="QCheckBox" name="checkDisplaySpeed">
+        <property name="text">
+         <string>Display speed in windows title</string>
+        </property>
+       </widget>
+      </item>
      </layout>
     </widget>
    </item>

@@ -73,11 +73,10 @@ private:
   misc(); // Forbidden
 
 public:
-  static QString productName()
-  {
+  static QString productName() {
       // do not use build date after actual version
       //static QString strBuildDate = QString::fromLocal8Bit(BUILDDATE).remove(QChar('\n'));
-      return tr("%1 v%2.%3.%4.%5", "e.g: qDonkey v0.x")
+      return tr("%1 v%2.%3.%4", "e.g: qDonkey v0.x")
               .arg(PRODUCT_NAME)
               .arg(VERSION_MAJOR)
               .arg(VERSION_MINOR)
@@ -85,7 +84,7 @@ public:
   }
 
   static QString versionString(){
-      return tr("%1.%2.%3.%4").arg(VERSION_MAJOR).arg(VERSION_MINOR).arg(VERSION_BUILD);
+      return tr("%1.%2.%3").arg(VERSION_MAJOR).arg(VERSION_MINOR).arg(VERSION_BUILD);
   }
 
   static inline QString toQString(const std::string &str) {

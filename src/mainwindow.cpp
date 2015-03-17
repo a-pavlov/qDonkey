@@ -125,10 +125,7 @@ MainWindow::MainWindow(QWidget *parent, QStringList torrentCmdLine)
 #endif
 
     statusBar = new status_bar(this, QMainWindow::statusBar());
-
-
     m_pwr = new PowerManagement(this);
-
 
     // Configure session according to options
     loadPreferences(false);
@@ -171,26 +168,18 @@ MainWindow::MainWindow(QWidget *parent, QStringList torrentCmdLine)
     if (!autoShutdownGroup->checkedAction())
         actionAutoShutdown_Disabled->setChecked(true);
 */
-    // Load Window state and sizes
+
     readSettings();
 
-    if (/*pref.startMinimized() &&*/ systrayIcon)
-        showMinimized();
-    else
-    {
-        show();
-        activateWindow();
-        raise();
-    }
+    show();
+    activateWindow();
+    raise();
 
     // Start watching the executable for updates
     executable_watcher = new QFileSystemWatcher();
     connect(executable_watcher, SIGNAL(fileChanged(QString)), this, SLOT(notifyOfUpdate(QString)));
     executable_watcher->addPath(qApp->applicationFilePath());
 
-
-    //connect(Session::instance(), SIGNAL(beginLoadSharedFileSystem()), this, SLOT(beginLoadSharedFileSystem()));
-    //connect(Session::instance(), SIGNAL(endLoadSharedFileSystem()), this, SLOT(endLoadSharedFileSystem()));
 
     // Resume unfinished torrents
     Session::instance()->startUpTransfers();
@@ -285,7 +274,6 @@ MainWindow::~MainWindow()
 
     // Delete Session::instance() object
     m_pwr->setActivityState(false);
-    qDebug() << "Saving session filesystem";
     //Session::instance()->dropDirectoryTransfers();
     //Session::instance()->saveFileSystem();
     qDebug("Deleting Session::instance()");
@@ -317,17 +305,10 @@ void MainWindow::readSettings()
     pref.endGroup();
 }
 
-void MainWindow::balloonClicked()
-{
-    if(isHidden())
-    {
+void MainWindow::balloonClicked() {
+    if(isHidden()) {
         show();
-
-        if(isMinimized())
-        {
-            showNormal();
-        }
-
+        if(isMinimized()) showNormal();
         raise();
         activateWindow();
     }
@@ -368,12 +349,6 @@ void MainWindow::createKeyboardShortcuts()
     connect(switchTransferShortcut, SIGNAL(activated()), this, SLOT(displayTransferTab()));
     hideShortcut = new QShortcut(QKeySequence(QString::fromUtf8("Esc")), this);
     connect(hideShortcut, SIGNAL(activated()), this, SLOT(hide()));
-}
-
-// Keyboard shortcuts slots
-void MainWindow::displayTransferTab() const
-{
-//  tabs->setCurrentWidget(transferList);
 }
 
 
@@ -440,26 +415,17 @@ void MainWindow::showEvent(QShowEvent *e)
 void MainWindow::closeEvent(QCloseEvent *e)
 {
     Preferences pref;
-/*
-    if(!force_exit && systrayIcon && !this->isHidden())
-    {
-        hide();
-        e->accept();
-        return;
-    }
-    */
-
     SessionStatus status = Session::instance()->getSessionStatus();
 
     // has active transfers or sessions speed > 0 (we have incoming peers)
-    if (pref.confirmOnExit() && (Session::instance()->hasActiveTransfers() || (status.payload_download_rate > 0) || (status.payload_upload_rate > 0)))
-    {
-        if (e->spontaneous() || force_exit)
-        {
+    if (pref.confirmOnExit() && (Session::instance()->hasActiveTransfers() || (status.payload_download_rate > 0) || (status.payload_upload_rate > 0))) {
+        if (e->spontaneous() || force_exit) {
             if(!isVisible())
                 show();
 
-            QMessageBox confirmBox(QMessageBox::Question, tr("Exiting qDonkey"), tr("Some files are currently transferring.\nAre you sure you want to quit qDonkey?"), QMessageBox::NoButton, this);
+            QMessageBox confirmBox(QMessageBox::Question, tr("Exiting qDonkey"),
+                                   tr("Some files are currently transferring.\nAre you sure you want to quit qDonkey?"),
+                                   QMessageBox::NoButton, this);
 
             QPushButton *noBtn = confirmBox.addButton(tr("No"), QMessageBox::NoRole);
             QPushButton *yesBtn = confirmBox.addButton(tr("Yes"), QMessageBox::YesRole);
@@ -485,9 +451,7 @@ void MainWindow::closeEvent(QCloseEvent *e)
 
     hide();
 
-    if(systrayIcon)
-    {
-        // Hide tray icon
+    if(systrayIcon) {
         systrayIcon->hide();
     }
 
@@ -770,6 +734,18 @@ void MainWindow::optionsSaved()
 // Load program preferences
 void MainWindow::loadPreferences(bool configure_session)
 {
+    if (!systrayIcon) {
+        if(!QSystemTrayIcon::isSystemTrayAvailable()) {
+            systrayCreator = new QTimer(this);
+            connect(systrayCreator, SIGNAL(timeout()), this, SLOT(createSystrayDelayed()));
+            systrayCreator->setSingleShot(true);
+            systrayCreator->start(2000);
+            qDebug("Info: System tray is unavailable, trying again later.");
+        }
+        else {
+            createTrayIcon();
+        }
+    }
     /*
     Session::instance()->addConsoleMessage(tr("Options were saved successfully."));
     const Preferences pref;
@@ -877,19 +853,18 @@ void MainWindow::updateGUI()
     SessionStatus status = Session::instance()->getSessionStatus();
 
     // update global informations
-    if(systrayIcon)
-    {
+    if(systrayIcon) {
 #if defined(Q_WS_X11) || defined(Q_WS_MAC)
         QString html = "<div style='background-color: #678db2; color: #fff;height: 18px; font-weight: bold; margin-bottom: 5px;'>";
         html += tr("qDonkey");
         html += "</div>";
         html += "<div style='vertical-align: baseline; height: 18px;'>";
-        html += "<img src=':iIcons/transfers/download.png'/>&nbsp;" +
+        html += "<img src=':icons/search/Download.png'/>&nbsp;" +
         tr("DL speed: %1 KiB/s", "e.g: Download speed: 10 KiB/s")
         .arg(QString::number(status.payload_download_rate/1024., 'f', 1));
         html += "</div>";
         html += "<div style='vertical-align: baseline; height: 18px;'>";
-        html += "<img src=':/icons/transfers/upload.png'/>&nbsp;" +
+        html += "<img src=':/icons/transfer_list/Upload.png'/>&nbsp;" +
         tr("UP speed: %1 KiB/s", "e.g: Upload speed: 10 KiB/s")
         .arg(QString::number(status.payload_upload_rate/1024., 'f', 1));
         html += "</div>";
@@ -902,10 +877,8 @@ void MainWindow::updateGUI()
         systrayIcon->setToolTip(html); // tray icon
     }
 
-    if(displaySpeedInTitle)
-    {
-        setWindowTitle(tr("[D: %1/s, U: %2/s] qDonkey %3", "D = Download; U = Upload; %3 is qDonkey version").arg(misc::friendlyUnit(status.payload_download_rate)).arg(misc::friendlyUnit(status.payload_upload_rate)).arg(QString::fromUtf8(VERSION)));
-    }
+    if(Preferences().displaySpeedInTitle())
+        setWindowTitle(tr("[D: %1/s, U: %2/s] qDonkey %3", "D = Download; U = Upload; %3 is qDonkey version").arg(misc::friendlyUnit(status.payload_download_rate)).arg(misc::friendlyUnit(status.payload_upload_rate)).arg(misc::versionString()));
 
     statusBar->setUpDown(status.payload_upload_rate, status.payload_download_rate);
     //Session::instance()->playPendingMedia();
@@ -1012,46 +985,10 @@ void MainWindow::createSystrayDelayed()
     }
 }
 
-QMenu* MainWindow::getTrayIconMenu()
-{
-    if(myTrayIconMenu)
-        return myTrayIconMenu;
-
-    // Tray icon Menu
-    myTrayIconMenu = new QMenu(this);
-    //actionToggleVisibility->setText(isVisible()? tr("Hide") : tr("Show"));
-    //myTrayIconMenu->addAction(actionToggleVisibility);
-    //myTrayIconMenu->addSeparator();
-    //myTrayIconMenu->addAction(actionOpen);
-
-    /* disable useless actions
-     myTrayIconMenu->addSeparator();
-     const bool isAltBWEnabled = Preferences().isAltBandwidthEnabled();
-     updateAltSpeedsBtn(isAltBWEnabled);
-     actionUse_alternative_speed_limits->setChecked(isAltBWEnabled);
-     myTrayIconMenu->addAction(actionUse_alternative_speed_limits);
-     myTrayIconMenu->addAction(actionSet_global_download_limit);
-     myTrayIconMenu->addAction(actionSet_global_upload_limit);
-     myTrayIconMenu->addSeparator();
-     myTrayIconMenu->addAction(actionStart_All);
-     myTrayIconMenu->addAction(actionPause_All);
-     myTrayIconMenu->addSeparator();
-     */
-
-    //myTrayIconMenu->addAction(actionExit);
-
-    //if(ui_locked)
-    //    myTrayIconMenu->setEnabled(false);
-
-    return myTrayIconMenu;
-}
-
-void MainWindow::createTrayIcon()
-{
+void MainWindow::createTrayIcon() {
     // Tray icon
-    systrayIcon = new QSystemTrayIcon(getSystrayIcon(), this);
-
-    systrayIcon->setContextMenu(getTrayIconMenu());
+    systrayIcon = new QSystemTrayIcon(icon_CurTray, this);
+    //systrayIcon->setContextMenu(getTrayIconMenu());
     connect(systrayIcon, SIGNAL(messageClicked()), this, SLOT(balloonClicked()));
 
     // End of Icon Menu
@@ -1062,26 +999,6 @@ void MainWindow::createTrayIcon()
 void MainWindow::minimizeWindow()
 {
     setWindowState(windowState() ^ Qt::WindowMinimized);
-}
-
-QIcon MainWindow::getSystrayIcon() const
-{
-    /*
-#if defined(Q_WS_X11)
-    TrayIcon::Style style = Preferences().trayIconStyle();
-
-    switch(style)
-    {
-        case TrayIcon::MONO_DARK:
-            return QIcon(res::trayConnected());
-        case TrayIcon::MONO_LIGHT:
-            return QIcon(res::trayConnected());
-        default:
-            break;
-    }
-#endif
-*/
-    return icon_CurTray;
 }
 
 void MainWindow::addConsoleMessage(const QString& msg, QColor color /*=QApplication::palette().color(QPalette::WindowText)*/) const { qDebug() << msg; }
@@ -1128,11 +1045,17 @@ void MainWindow::handleServerConnectionInitialized(quint32 client_id, quint32 tc
     id.setNum(client_id);
     log_msg += id;
     statusBar->setStatusMsg(log_msg);
+    statusBar->setConnected(true);
+    icon_CurTray = icon_TrayDisconn;
+    if (systrayIcon) systrayIcon->setIcon(icon_CurTray);
 }
 
 void MainWindow::handleServerConnectionClosed(QString) {
     actionConnect->setIcon(QIcon(res::toolbarDisconnected()));
     actionConnect->setText(tr("Connect"));
+    icon_CurTray = icon_TrayDisconn;
+    if (systrayIcon) systrayIcon->setIcon(icon_CurTray);
+    statusBar->setConnected(false);
 }
 
 void MainWindow::handleServerStatus(int files, int users) {

@@ -1,6 +1,7 @@
 #include "preferences.h"
 
 const QString pathConfOnExt = "Common/ConfirmOnExit";
+const QString pathDispSpeed = "Common/DisplaySpeedInTitle";
 const QString pathServerHost = "Network/ServerHost";
 const QString pathServerPort = "Network/ServerPort";
 const QString pathListenPort = "Network/ListenPort";
@@ -16,6 +17,14 @@ bool Preferences::confirmOnExit() const {
 
 void Preferences::setConfirmOnExit(bool flag) {
     setValue(pathConfOnExt, flag);
+}
+
+bool Preferences::displaySpeedInTitle() const {
+    return value(pathDispSpeed, false).toBool();
+}
+
+void Preferences::setDisplaySpeedInTitle(bool flag) {
+    setValue(pathDispSpeed, flag);
 }
 
 QString Preferences::serverHost() const {

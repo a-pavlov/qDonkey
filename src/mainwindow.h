@@ -75,11 +75,8 @@ QT_END_NAMESPACE
 class MainWindow : public QMainWindow, private Ui::MainWindow
 {
     Q_OBJECT
-    friend class callback_wrapper;
-
 public:
     enum Widgets {
-
         wTransfer = 0,
         wSearch,
         wPreferences
@@ -88,8 +85,6 @@ public:
     // Construct / Destruct
     MainWindow(QWidget *parent = 0, QStringList torrentCmdLine = QStringList());
     ~MainWindow();
-
-    QMenu* getTrayIconMenu();
 
 public slots:
     void showNotificationBaloon(QString title, QString msg) const;
@@ -118,13 +113,12 @@ protected slots:
     void readSettings();
     void on_actionExit_triggered();
     void createTrayIcon();
-    void fileError(const QED2KHandle& h, QString msg);
     void createSystrayDelayed();
+    void fileError(const QED2KHandle& h, QString msg);
     void minimizeWindow();
 
     // Keyboard shortcuts
     void createKeyboardShortcuts();
-    void displayTransferTab() const;
 
     // Torrent actions
     void updateGUI();
@@ -145,9 +139,6 @@ protected:
 #ifdef Q_WS_WIN
     bool winEvent(MSG * message, long * result);
 #endif
-
-private:
-    QIcon getSystrayIcon() const;
 
 private:
     bool eventFilter(QObject *watched, QEvent *event);
@@ -178,10 +169,6 @@ private:
     PowerManagement *m_pwr;
     QTimer *preventTimer;
     unsigned int m_nTaskbarButtonCreated;
-
-    QIcon icon_disconnected;
-    QIcon icon_connected;
-    QIcon icon_connecting;
 
     QIcon icon_TrayConn;
     QIcon icon_TrayDisconn;
