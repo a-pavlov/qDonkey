@@ -223,6 +223,7 @@ MainWindow::MainWindow(QWidget *parent, QStringList torrentCmdLine)
     //connect(actionPause_All, SIGNAL(triggered()), Session::instance(), SLOT(pauseAllTransfers()));
 
     Session::instance()->start();
+    Session::instance()->startServerConnection();
 }
 
 void MainWindow::deleteSession()

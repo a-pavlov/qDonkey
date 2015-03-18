@@ -281,14 +281,10 @@ bool writeResumeDataOne(std::ofstream& fs, const libed2k::save_resume_data_alert
 }
 
 QED2KSession::QED2KSession() : m_upnp(0), m_natpmp(0) {
+    Preferences pref;
     m_sp.name = "is";
-#ifdef INET_SERVER
-    m_sp.host = "91.200.42.46";
-    m_sp.port = 1176;
-#else
-    m_sp.host = "emule.is74.ru";
-    m_sp.port = 4661;
-#endif
+    m_sp.host = pref.serverHost().toUtf8().constData();
+    m_sp.port = pref.serverPort();
     m_sp.set_operations_timeout(30);
     m_sp.set_keep_alive_timeout(100);
     m_sp.set_reconnect_timeout(100);
@@ -461,18 +457,6 @@ void QED2KSession::setUploadRateLimit(long rate) {
     libed2k::session_settings settings = m_session->settings();
     settings.upload_rate_limit = rate;
     m_session->set_settings(settings);
-}
-
-void QED2KSession::finishLoad()
-{
-    qDebug() << "finish timer executed";
-    if (!m_fast_resume_transfers.empty())
-    {
-        qDebug() << "emit load completed";
-        emit fastResumeDataLoadCompleted();
-    }
-
-    finishTimer.stop();
 }
 
 void QED2KSession::startUpTransfers()
@@ -792,29 +776,28 @@ void QED2KSession::readAlerts()
         else if (libed2k::added_transfer_alert* p =
                  dynamic_cast<libed2k::added_transfer_alert*>(a.get()))
         {
-            //QED2KHandle(p->m_handle);
-            //emit addedTransfer(t);
+            emit transferAdded(QED2KHandle(p->m_handle));
         }
         else if (libed2k::paused_transfer_alert* p =
                  dynamic_cast<libed2k::paused_transfer_alert*>(a.get()))
         {
-            //emit pausedTransfer(QED2KHandle(p->m_handle));
+            emit transferPaused(QED2KHandle(p->m_handle));
         }
         else if (libed2k::resumed_transfer_alert* p =
                  dynamic_cast<libed2k::resumed_transfer_alert*>(a.get()))
         {
-            //emit resumedTransfer(QED2KHandle(p->m_handle));
+            emit transferResumed(QED2KHandle(p->m_handle));
         }
         else if (libed2k::deleted_transfer_alert* p =
                  dynamic_cast<libed2k::deleted_transfer_alert*>(a.get()))
         {            
-            QString hash = QString::fromStdString(p->m_hash.toString());
-            qDebug() << "delete transfer alert" << hash;
-            //emit deletedTransfer(QString::fromStdString(p->m_hash.toString()));
+            emit transferDeleted(QString::fromStdString(p->m_hash.toString()));
         }
         else if (libed2k::finished_transfer_alert* p =
                  dynamic_cast<libed2k::finished_transfer_alert*>(a.get()))
         {
+            emit transferFinished(QED2KHandle(p->m_handle));
+/*
             Preferences pref;
             QED2KHandle t(QED2KHandle(p->m_handle));
 
@@ -843,20 +826,8 @@ void QED2KSession::readAlerts()
                 m_fast_resume_transfers.remove(t.hash());
 
                 remove_by_state(std::max(50, 20));
-
-                if (m_fast_resume_transfers.empty())
-                {
-                    emit fastResumeDataLoadCompleted();
-                    //Session::instance()->handleED2KResumeDataLoaded();
-                    qDebug() << "ed2k emit finish data load completed";
-                }
-                else
-                {
-                    qDebug() << "start finish timer";
-                    finishTimer.start(1000);
-                }
             }
-
+*/
             //if (pref.isAutoRunEnabled() && p->m_had_picker)
             //    autoRunExternalProgram(t);
         }
@@ -870,21 +841,17 @@ void QED2KSession::readAlerts()
         }
         else if (libed2k::file_renamed_alert* p = dynamic_cast<libed2k::file_renamed_alert*>(a.get()))
         {
-            //emit savePathChanged(QED2KHandle(p->m_handle));
+            emit transferSavePathChanged(QED2KHandle(p->m_handle));
         }
         else if (libed2k::storage_moved_alert* p = dynamic_cast<libed2k::storage_moved_alert*>(a.get()))
         {
-            //emit savePathChanged(QED2KHandle(p->m_handle));
-            //emit registerNode(QED2KHandle(p->m_handle));
+            emit transferStorageMoved(QED2KHandle(p->m_handle));
         }
         else if (libed2k::file_error_alert* p = dynamic_cast<libed2k::file_error_alert*>(a.get()))
         {
             QED2KHandle h(p->m_handle);
-
-            if (h.is_valid())
-            {
-                //emit fileError(h,
-                //               QString::fromLocal8Bit(p->error.message().c_str(), p->error.message().size()));
+            if (h.is_valid()) {
+                emit fileError(h, QString::fromLocal8Bit(p->error.message().c_str(), p->error.message().size()));
                 h.pause();
             }
         }
@@ -1094,12 +1061,6 @@ void QED2KSession::loadFastResumeData()
             {}
         }
     }
-
-    finishTimer.start(1000);
-
-    // migration stage or empty transfers - immediately emit signal
-    if (m_fast_resume_transfers.isEmpty())
-        emit fastResumeDataLoadCompleted();
 }
 
 void QED2KSession::enableUPnP(bool b)
@@ -1145,29 +1106,6 @@ std::pair<libed2k::add_transfer_params, libed2k::error_code> QED2KSession::makeT
 {
     bool cancel = false;
     return libed2k::file2atp()(filepath.toUtf8().constData(), cancel);
-}
-
-void QED2KSession::remove_by_state(int sborder)
-{
-    // begin analize states
-    if (sborder < m_fast_resume_transfers.size())
-        return;
-
-    QHash<QString, QED2KHandle>::iterator i = m_fast_resume_transfers.begin();
-
-    while (i != m_fast_resume_transfers.end())
-    {
-        if (!i.value().is_valid() || (i.value().state() == QED2KHandle::downloading))
-        {
-            qDebug() << "remove state " << i.value().hash() << " is valid " << i.value().is_valid();
-            i = m_fast_resume_transfers.erase(i);
-        }
-        else
-        {
-            ++i;
-        }
-
-   }
 }
 
 QString QED2KSession::makeLink(const QString &filename, long filesize, const QString &filehash)

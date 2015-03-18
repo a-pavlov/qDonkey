@@ -28,11 +28,19 @@ void Preferences::setDisplaySpeedInTitle(bool flag) {
 }
 
 QString Preferences::serverHost() const {
-    return value(pathServerHost, "").toString();
+#ifdef INET_SERVER
+    return value(pathServerHost, "91.200.42.46").toString();
+#else
+    return value(pathServerHost, "emule.is74.ru");
+#endif
 }
 
 int Preferences::serverPort() const {
+#ifdef INET_SERVER
+    return value(pathServerPort, 1176).toInt();
+#else
     return value(pathServerPort, 4661).toInt();
+#endif
 }
 
 int Preferences::listenPort() const {

@@ -152,15 +152,12 @@ public:
 private:
     QScopedPointer<libed2k::session> m_session;
     QHash<QString, QED2KHandle> m_fast_resume_transfers;   // contains fast resume data were loading
-    void remove_by_state(int sborder);  // begin remove when start border great or equal transfers count
-    QTimer finishTimer;
     QTimer alertsTimer;
     // Port forwarding
     libed2k::upnp* m_upnp;
     libed2k::natpmp* m_natpmp;
     libed2k::server_connection_parameters m_sp;
 private slots:
-    void finishLoad();
     void readAlerts();
 public slots:
 	void startUpTransfers();
@@ -201,8 +198,9 @@ public slots:
     libed2k::peer_connection_handle findPeer(const libed2k::net_identifier& np);
     QString makeLink(const QString& filename, long filesize, const QString& filehash);
 signals:
-    void registerNode(QED2KHandle);    // temporary signal for node registration
-
+    /**
+     * servers related signals
+     */
     void serverNameResolved(QString strName);
     void serverConnectionInitialized(quint32 client_id, quint32 tcp_flags, quint32 aux_port);
     void serverConnectionClosed(QString strError);
@@ -214,34 +212,20 @@ signals:
     void searchResult(const libed2k::net_identifier& np, const QString& hash, 
                       const QList<QED2KSearchResultEntry>& vRes, bool bMoreResult);
 
-    //peer signals
+
+    /**
+     * peers related signals
+     */
     void peerConnected(const libed2k::net_identifier& np,
                        const QString& hash,
                        bool bActive);
 
     void peerDisconnected(const libed2k::net_identifier& np, const QString& hash, const libed2k::error_code ec);
-
-    /**
-      * incoming message signal
-     */
-    void peerMessage(const libed2k::net_identifier& np, const QString& hash, const QString& strMessage);
-    void peerCaptchaRequest(const libed2k::net_identifier& np, const QString& hash, const QPixmap& pm);
-    void peerCaptchaResult(const libed2k::net_identifier& np, const QString& hash, quint8 nResult);
-
-    /**
-      * peer rejected our query for files and possibly directories
-     */
-    void peerSharedFilesAccessDenied(const libed2k::net_identifier& np, const QString& hash);
-
-    /**
-      * requested peers files - all
-     */
     void peerSharedFiles(const libed2k::net_identifier& np, const QString& hash,
                          const std::vector<QED2KSearchResultEntry>& vRes);
 
     void peerIsModSharedFiles(const libed2k::net_identifier& np, const QString& hash, const QString& dir_hash,
                               const QList<QED2KSearchResultEntry>& vRes);
-
     /**
       * requested peers shared directories
      */
@@ -253,8 +237,33 @@ signals:
     void peerSharedDirectoryFiles(const libed2k::net_identifier& np, const QString& hash,
                                   const QString& strDirectory, const QList<QED2KSearchResultEntry>& vRes);
 
+    /**
+      * incoming message signals
+     */
+    void peerMessage(const libed2k::net_identifier& np, const QString& hash, const QString& strMessage);
+    void peerCaptchaRequest(const libed2k::net_identifier& np, const QString& hash, const QPixmap& pm);
+    void peerCaptchaResult(const libed2k::net_identifier& np, const QString& hash, quint8 nResult);
+
+    /**
+      * peer rejected our query for files and possibly directories
+     */
+    void peerSharedFilesAccessDenied(const libed2k::net_identifier& np, const QString& hash);
+
+
     void transferParametersReady(const libed2k::add_transfer_params&, const libed2k::error_code&);
-    void fastResumeDataLoadCompleted();
+
+    /**
+      * transfers related signals
+      *
+    */
+    void transferAdded(QED2KHandle);
+    void transferPaused(QED2KHandle);
+    void transferResumed(QED2KHandle);
+    void transferDeleted(QString);
+    void transferFinished(QED2KHandle);
+    void transferSavePathChanged(QED2KHandle);
+    void transferStorageMoved(QED2KHandle);
+    void fileError(QED2KHandle, QString);
 };
 
 typedef QED2KSession Session;
