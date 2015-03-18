@@ -7,6 +7,7 @@ transfers_widget::transfers_widget(QWidget *parent) :
     QWidget(parent) {
     setupUi(this);
     model = new TransferModel(this);
+    model->populate();
     trView->setItemDelegate(new TransferListDelegate(this));
     trView->setModel(model);
 }

@@ -42,17 +42,18 @@ public:
     };
 
 public:
-  TransferModelItem(const QED2KHandle& h);
-  inline int columnCount() const { return TM_END; }
-  QVariant data(int column, int role = Qt::DisplayRole) const;
-  bool setData(int column, const QVariant &value, int role = Qt::DisplayRole);
-  inline QString hash() const { return m_hash; }
+    TransferModelItem(const QED2KHandle& h);
+    TransferModelItem(const QString& name, qint64 size, const QDateTime& created);
+    inline int columnCount() const { return TM_END; }
+    QVariant data(int column, int role = Qt::DisplayRole) const;
+    bool setData(int column, const QVariant &value, int role = Qt::DisplayRole);
+    inline QString hash() const { return m_hash; }
 
 signals:
-  void labelChanged(QString previous, QString current);
+    void labelChanged(QString previous, QString current);
 
 private:
-  State state() const;
+    State state() const;
 
 private:
     QED2KHandle m_handle;
@@ -60,6 +61,7 @@ private:
     QDateTime m_seedTime;
     QString m_label;
     QString m_name;
+    qint64  m_size;
     mutable QIcon m_icon;
     mutable QColor m_fgColor;
     QString m_hash;

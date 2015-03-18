@@ -1,9 +1,21 @@
 #include "transfer_model.h"
+#include "preferences.h"
+
+#include <QDirIterator>
+#include <QFileInfo>
 
 TransferModel::TransferModel(QObject *parent) : QAbstractListModel(parent) {
 }
 
 void TransferModel::populate() {
+
+    Preferences pref;
+    QDirIterator dirIt(pref.inputDir(), QDir::NoDotAndDotDot| QDir::Files);
+    while(dirIt.hasNext()) {
+        dirIt.next();
+        QFileInfo info = dirIt.fileInfo();
+        addFile(info.fileName(), info.size(), info.created());
+    }
 
   // Load the Transfers
     /*
@@ -12,6 +24,7 @@ void TransferModel::populate() {
   for (it = Transfers.begin(); it != Transfers.end(); it++) {
     addTransfer(*it);
   }
+
   // Refresh timer
   connect(&m_refreshTimer, SIGNAL(timeout()), SLOT(forceModelRefresh()));
   m_refreshTimer.start(m_refreshInterval);
@@ -136,6 +149,14 @@ void TransferModel::addTransfer(const QED2KHandle& h) {
         emit transferAdded(item);
         endInsertTransfer();
     }
+}
+
+void TransferModel::addFile(const QString &name, qint64 size, const QDateTime &created) {
+    beginInsertTransfer(m_transfers.size());
+    TransferModelItem* item = new TransferModelItem(name, size, created);
+    m_transfers << item;
+    emit transferAdded(item);
+    endInsertTransfer();
 }
 
 void TransferModel::removeTransfer(const QString &hash) {

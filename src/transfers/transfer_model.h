@@ -35,6 +35,7 @@ public slots:
 
 private slots:
     void addTransfer(const QED2KHandle& h);
+    void addFile(const QString& name, qint64 size, const QDateTime& created);
     void handleTransferUpdate(const QED2KHandle& h);
     void notifyTransferChanged(int row);
     void forceModelRefresh();

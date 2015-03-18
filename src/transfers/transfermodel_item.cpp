@@ -4,10 +4,17 @@
 TransferModelItem::TransferModelItem(const QED2KHandle& h) : m_handle(h)
 {
     m_hash = h.hash();
+    m_size = -1;
     if (m_name.isEmpty()) m_name = h.name();
     //m_addedTime = TorrentPersistentData::getAddedDate(h.hash());
     //m_seedTime = TorrentPersistentData::getSeedDate(h.hash());
     //m_label = TorrentPersistentData::getLabel(h.hash());
+}
+
+TransferModelItem::TransferModelItem(const QString& name, qint64 size, const QDateTime& created) {
+    m_name = name;
+    m_size = size;
+    m_addedTime = created;
 }
 
 TransferModelItem::State TransferModelItem::state() const
