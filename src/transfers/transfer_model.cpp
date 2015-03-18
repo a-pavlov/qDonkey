@@ -1,5 +1,6 @@
 #include "transfer_model.h"
 #include "preferences.h"
+#include "qtlibed2k/qed2ksession.h"
 
 #include <QDirIterator>
 #include <QFileInfo>
@@ -17,35 +18,20 @@ void TransferModel::populate() {
         addFile(info.fileName(), info.size(), info.created());
     }
 
-  // Load the Transfers
-    /*
-  std::vector<Transfer> Transfers = Session::instance()->getTransfers();
-  std::vector<Transfer>::const_iterator it;
-  for (it = Transfers.begin(); it != Transfers.end(); it++) {
-    addTransfer(*it);
-  }
-
   // Refresh timer
   connect(&m_refreshTimer, SIGNAL(timeout()), SLOT(forceModelRefresh()));
   m_refreshTimer.start(m_refreshInterval);
+
   // Listen for Transfer changes
-  connect(Session::instance(), SIGNAL(addedTransfer(Transfer)),
-          SLOT(addTransfer(Transfer)));
-  connect(Session::instance(), SIGNAL(transferAboutToBeRemoved(Transfer, bool)),
-          SLOT(handleTransferAboutToBeRemoved(Transfer, bool)));
-  connect(Session::instance(), SIGNAL(deletedTransfer(QString)),
+  connect(Session::instance(), SIGNAL(transferAdded(QED2KHandle)), SLOT(addTransfer(QED2KHandle)));
+  connect(Session::instance(), SIGNAL(transferDeleted(QString)),
           SLOT(removeTransfer(QString)));
-  connect(Session::instance(), SIGNAL(finishedTransfer(Transfer)),
-          SLOT(handleTransferUpdate(Transfer)));
-  connect(Session::instance(), SIGNAL(metadataReceived(Transfer)),
-          SLOT(handleTransferUpdate(Transfer)));
-  connect(Session::instance(), SIGNAL(resumedTransfer(Transfer)),
-          SLOT(handleTransferUpdate(Transfer)));
-  connect(Session::instance(), SIGNAL(pausedTransfer(Transfer)),
-          SLOT(handleTransferUpdate(Transfer)));
-  connect(Session::instance(), SIGNAL(transferFinishedChecking(Transfer)),
-          SLOT(handleTransferUpdate(Transfer)));
-          */
+  connect(Session::instance(), SIGNAL(transferFinished(QED2KHandle)),
+          SLOT(handleTransferUpdate(QED2KHandle)));
+  connect(Session::instance(), SIGNAL(transferResumed(QED2KHandle)),
+          SLOT(handleTransferUpdate(QED2KHandle)));
+  connect(Session::instance(), SIGNAL(fileError(QED2KHandle, QString)),
+          SLOT(handleTransferUpdate(QED2KHandle)));
 }
 
 TransferModel::~TransferModel() {

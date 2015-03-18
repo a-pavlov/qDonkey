@@ -393,5 +393,12 @@
         <file>icons/Exit.ico</file>
         <file>icons/Stop.ico</file>
         <file>icons/FileSharedServer.ico</file>
+        <file>icons/transfer_list/checking.png</file>
+        <file>icons/transfer_list/error.png</file>
+        <file>icons/transfer_list/paused.png</file>
+        <file>icons/transfer_list/queued.png</file>
+        <file>icons/transfer_list/stalledDL.png</file>
+        <file>icons/transfer_list/stalledUP.png</file>
+        <file>icons/transfer_list/uploading.png</file>
     </qresource>
 </RCC>
