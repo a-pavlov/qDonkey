@@ -1,4 +1,5 @@
 #include "transfermodel_item.h"
+#include "res.h"
 #include <QDebug>
 
 TransferModelItem::TransferModelItem(const QED2KHandle& h) : m_handle(h)
@@ -17,18 +18,22 @@ TransferModelItem::TransferModelItem(const QString& name, qint64 size, const QDa
     m_addedTime = created;
 }
 
-TransferModelItem::State TransferModelItem::state() const
-{
-    /*
-  try {
-    // Pause or Queued
-    if (m_torrent.is_paused()) {
-      m_icon = QIcon(":/Icons/skin/paused.png");
-      m_fgColor = QColor("red");
-      return m_torrent.is_seed() ? STATE_PAUSED_UP : STATE_PAUSED_DL;
+TransferModelItem::State TransferModelItem::state() const {
+
+    // hashing in progress
+    if (!m_handle.is_valid()) {
+
     }
-    if (m_torrent.is_queued()) {
-      if (m_torrent.state() != qt_queued_for_checking
+
+    // Pause or Queued
+    if (m_handle.is_paused()) {
+        m_icon = QIcon(res::pause());
+        m_fgColor = QColor("red");
+        return m_handle.is_seed() ? STATE_PAUSED_UP : STATE_PAUSED_DL;
+    }
+
+    /*if (m_handle.is_queued()) {
+        if (m_torrent.state() != qt_queued_for_checking
           && m_torrent.state() != qt_checking_resume_data
           && m_torrent.state() != qt_checking_files) {
         m_icon = QIcon(":/Icons/skin/queued.png");
@@ -36,56 +41,42 @@ TransferModelItem::State TransferModelItem::state() const
         return m_torrent.is_seed() ? STATE_QUEUED_UP : STATE_QUEUED_DL;
       }
     }
-    // Other states
-    switch(m_torrent.state()) {
-    case qt_allocating:
-    case qt_downloading_metadata:
-    case qt_downloading: {
-      if (m_torrent.download_payload_rate() > 0) {
-        m_icon = QIcon(":/Icons/skin/downloading.png");
-        m_fgColor = QColor("green");
-        return STATE_DOWNLOADING;
-      } else {
-        m_icon = QIcon(":/Icons/skin/stalledDL.png");
-        m_fgColor = QColor("grey");
-        return STATE_STALLED_DL;
-      }
-    }
-    case qt_finished:
-    case qt_seeding:
-      if (m_torrent.upload_payload_rate() > 0) {
-        m_icon = QIcon(":/Icons/skin/uploading.png");
-        m_fgColor = QColor("orange");
-        return STATE_SEEDING;
-      } else {
-        m_icon = QIcon(":/Icons/skin/stalledUP.png");
-        m_fgColor = QColor("grey");
-        return STATE_STALLED_UP;
-      }
-    case qt_queued_for_checking:
-    case qt_checking_resume_data:
-    case qt_checking_files:
-      m_icon = QIcon(":/Icons/skin/checking.png");
-      m_fgColor = QColor("grey");
-      return m_torrent.is_seed() ? STATE_CHECKING_UP : STATE_CHECKING_DL;
-    default:
-      m_icon = QIcon(":/Icons/skin/error.png");
-      m_fgColor = QColor("red");
-      return STATE_INVALID;
-    }
-  } catch(libtorrent::invalid_handle&)
-    {
-    m_icon = QIcon(":/Icons/skin/error.png");
-    m_fgColor = QColor("red");
-    return STATE_INVALID;
-  }
-  catch(libed2k::libed2k_exception&)
-    {
-        m_icon = QIcon(":/Icons/skin/error.png");
-        m_fgColor = QColor("red");
-        return STATE_INVALID;
-    }
+
     */
+    // Other states
+    switch(m_handle.state()) {
+        case QED2KHandle::downloading: {
+            if (m_handle.download_payload_rate() > 0) {
+                m_icon = QIcon(":/Icons/skin/downloading.png");
+                m_fgColor = QColor("green");
+                return STATE_DOWNLOADING;
+            } else {
+                m_icon = QIcon(":/Icons/skin/stalledDL.png");
+                m_fgColor = QColor("grey");
+                return STATE_STALLED_DL;
+            }
+        }
+        case QED2KHandle::finished:
+        case QED2KHandle::seeding:
+            if (m_handle.upload_payload_rate() > 0) {
+                m_icon = QIcon(":/Icons/skin/uploading.png");
+                m_fgColor = QColor("orange");
+                return STATE_SEEDING;
+            } else {
+                m_icon = QIcon(":/Icons/skin/stalledUP.png");
+                m_fgColor = QColor("grey");
+                return STATE_STALLED_UP;
+            }
+        case QED2KHandle::queued_for_checking:
+        case QED2KHandle::checking_resume_data:
+            m_icon = QIcon(":/Icons/skin/checking.png");
+            m_fgColor = QColor("grey");
+            return STATE_CHECKING;
+        default:
+            m_icon = QIcon(":/Icons/skin/error.png");
+            m_fgColor = QColor("red");
+            return STATE_INVALID;
+    }
 
     return STATE_INVALID;
 }

@@ -6,11 +6,22 @@
 
 typedef libed2k::size_type TransferSize;
 typedef libed2k::transfer_status TransferStatus;
-typedef libed2k::transfer_status::state_t TransferState;
 typedef libed2k::peer_info PeerInfo;
 
 class QED2KHandle {
 public:
+    enum TransferState {
+        queued_for_checking,
+        checking_files,
+        downloading_metadata,
+        downloading,
+        finished,
+        seeding,
+        allocating,
+        checking_resume_data,
+        end
+    };
+
     QED2KHandle();
     explicit QED2KHandle(const libed2k::transfer_handle& h);
     const libed2k::transfer_handle& delegate() const { return m_delegate; }
@@ -34,19 +45,6 @@ public:
     bool is_seed() const;
     bool is_paused() const;
     bool is_sequential_download() const;
-
-    bool is_downloading() const {
-        return state() == libed2k::transfer_status::downloading;
-    }
-
-    bool is_queued() const {
-        return state() == libed2k::transfer_status::queued_for_checking;
-    }
-
-    bool is_checking_files() const {
-        return state() == libed2k::transfer_status::checking_files;
-    }
-
 
     void piece_availability(std::vector<int>& avail) const;
     std::vector<int> piece_priorities() const;
@@ -73,6 +71,9 @@ public:
     bool need_save_resume_data() const;
     void set_upload_mode(bool b) const;
     void set_eager_mode(bool b) const;
+
+    qreal download_payload_rate() const { return status().download_payload_rate; }
+    qreal upload_payload_rate() const { return status().upload_payload_rate; }
 
 private:
     libed2k::transfer_handle m_delegate;

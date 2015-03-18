@@ -917,7 +917,10 @@ void QED2KSession::saveTempFastResumeData()
 
         try
         {
-            if (h.is_valid() && !h.is_checking_files() && !h.is_queued() && h.need_save_resume_data())
+            if (h.is_valid() &&
+                    h.state() != QED2KHandle::checking_files &&
+                    h.state() != QED2KHandle::queued_for_checking &&
+                    h.need_save_resume_data())
             {
                 qDebug("Saving fastresume data for %s", qPrintable(h.name()));
                 h.save_resume_data();
@@ -949,7 +952,7 @@ void QED2KSession::saveFastResumeData()
         try
         {
 
-            if (h.is_checking_files() || h.is_queued())
+            if (h.state() == QED2KHandle::checking_files || h.state() == QED2KHandle::queued_for_checking)
             {
                 qDebug() << "transfer " << h.hash() << " in checking files or queued for checking";
                 continue;
@@ -1154,7 +1157,7 @@ void QED2KSession::remove_by_state(int sborder)
 
     while (i != m_fast_resume_transfers.end())
     {
-        if (!i.value().is_valid() || (i.value().is_downloading()))
+        if (!i.value().is_valid() || (i.value().state() == QED2KHandle::downloading))
         {
             qDebug() << "remove state " << i.value().hash() << " is valid " << i.value().is_valid();
             i = m_fast_resume_transfers.erase(i);

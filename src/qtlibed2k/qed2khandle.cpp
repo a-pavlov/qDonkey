@@ -33,44 +33,21 @@ QString QED2KHandle::creation_date() const { return QString(); }
 QString QED2KHandle::comment() const { return QString(); }
 QString QED2KHandle::next_announce() const { return QString(); }
 TransferStatus QED2KHandle::status() const { return m_delegate.status(); }
-TransferState QED2KHandle::state() const
-{
-    return m_delegate.state();
-    /*
-    TransferState ts;
-
-    switch (m_delegate.state())
-    {
-        case libed2k::transfer_status::queued_for_checking:
-            ts = qt_queued_for_checking;
-            break;
-        case libed2k::transfer_status::checking_files:
-            ts = qt_checking_files;
-            break;
-        case libed2k::transfer_status::downloading_metadata:
-            ts = qt_downloading_metadata;
-            break;
-        case libed2k::transfer_status::downloading:
-            ts = qt_downloading;
-            break;
-        case libed2k::transfer_status::finished:
-            ts = qt_seeding;
-            break;
-        case libed2k::transfer_status::seeding:
-            ts = qt_seeding;
-            break;
-        case libed2k::transfer_status::allocating:
-            ts = qt_allocating;
-            break;
-        case libed2k::transfer_status::checking_resume_data:
-            ts = qt_checking_resume_data;
-            break;
+QED2KHandle::TransferState QED2KHandle::state() const {
+    switch (m_delegate.state()) {
+        case libed2k::transfer_status::queued_for_checking: return queued_for_checking;
+        case libed2k::transfer_status::checking_files: return checking_files;
+        case libed2k::transfer_status::downloading_metadata: return downloading_metadata;
+        case libed2k::transfer_status::downloading: return downloading;
+        case libed2k::transfer_status::finished: return seeding;
+        case libed2k::transfer_status::seeding: return seeding;
+        case libed2k::transfer_status::allocating: return allocating;
+        case libed2k::transfer_status::checking_resume_data: return checking_resume_data;
         default:
-            ts = qt_unhandled_state;
+            Q_ASSERT(false);
     }
 
-    return (ts);
-    */
+    return end;
 }
 
 int QED2KHandle::upload_limit() const { return m_delegate.upload_limit(); }

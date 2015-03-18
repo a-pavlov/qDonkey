@@ -12,12 +12,15 @@ class TransferModelItem : public QObject {
     Q_OBJECT
 public:
     enum State {
+        STATE_HASHING,      // new file
         STATE_DOWNLOADING,
         STATE_QUEUED,
-        STATE_STALLED,
+        STATE_STALLED_DL,
+        STATE_STALLED_UP,
         STATE_SEEDING,
-        STATE_PAUSED,
-        STATE_HASHING,
+        STATE_PAUSED_UP,
+        STATE_PAUSED_DL,
+        STATE_CHECKING,
         STATE_INVALID
     };
 
@@ -48,9 +51,6 @@ public:
     QVariant data(int column, int role = Qt::DisplayRole) const;
     bool setData(int column, const QVariant &value, int role = Qt::DisplayRole);
     inline QString hash() const { return m_hash; }
-
-signals:
-    void labelChanged(QString previous, QString current);
 
 private:
     State state() const;

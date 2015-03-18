@@ -51,7 +51,8 @@ void TransferListDelegate::paint(QPainter * painter, const QStyleOptionViewItem 
             case TransferModelItem::STATE_DOWNLOADING:
                 display = tr("Downloading");
                 break;
-            case TransferModelItem::STATE_PAUSED:
+            case TransferModelItem::STATE_PAUSED_DL:
+            case TransferModelItem::STATE_PAUSED_UP:
                 display = tr("Paused");
                 break;
             case TransferModelItem::STATE_QUEUED:
@@ -60,7 +61,8 @@ void TransferListDelegate::paint(QPainter * painter, const QStyleOptionViewItem 
             case TransferModelItem::STATE_SEEDING:
                 display = tr("Seeding", "Torrent is complete and in upload-only mode");
                 break;
-            case TransferModelItem::STATE_STALLED:
+            case TransferModelItem::STATE_STALLED_UP:
+            case TransferModelItem::STATE_STALLED_DL:
                 display = tr("Stalled", "Torrent is waiting for download to begin");
                 break;
             default:

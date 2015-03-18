@@ -136,7 +136,7 @@ int TransferModel::transferRow(const QString &hash) const {
 }
 
 void TransferModel::addTransfer(const QED2KHandle& h) {
-    if (h.state() == libed2k::transfer_status::checking_resume_data) {
+    if (h.state() == QED2KHandle::checking_resume_data) {
         // we don't know yet whether this transfer finished or not
         m_uncheckedTransfers << h;
         return;
@@ -188,9 +188,9 @@ void TransferModel::endRemoveTransfer() {
 void TransferModel::processUncheckedTransfers() {
     for(QList<QED2KHandle>::iterator i = m_uncheckedTransfers.begin();
         i != m_uncheckedTransfers.end();) {
-        TransferState state = i->state();
+        QED2KHandle::TransferState state = i->state();
 
-        if (state != libed2k::transfer_status::checking_resume_data) {
+        if (state != QED2KHandle::checking_resume_data) {
             // now we know whether transfer finished or not
             // do not show finished transfers
             if (state != libed2k::transfer_status::seeding) addTransfer(*i);
