@@ -31,7 +31,7 @@ QString Preferences::serverHost() const {
 #ifdef INET_SERVER
     return value(pathServerHost, "91.200.42.46").toString();
 #else
-    return value(pathServerHost, "emule.is74.ru");
+    return value(pathServerHost, "emule.is74.ru").toString();
 #endif
 }
 
