@@ -91,6 +91,7 @@ private slots:
     void deletedTransfer(const QString& hash);
 
     void modelCountChanged(int);
+    void on_actionSearch_related_triggered();
 };
 
 #endif // SEARCH_WIDGET_H

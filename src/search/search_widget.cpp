@@ -821,3 +821,8 @@ void search_widget::modelCountChanged(int count) {
     actionClose_all->setEnabled(count != 0);
 }
 
+
+void search_widget::on_actionSearch_related_triggered()
+{
+    searchRelatedFiles();
+}
