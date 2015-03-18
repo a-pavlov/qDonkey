@@ -12,7 +12,7 @@ class TransferModelItem : public QObject {
     Q_OBJECT
 public:
     enum State {
-        STATE_HASHING,      // new file
+        STATE_LOCALFILE,      // new file
         STATE_DOWNLOADING,
         STATE_QUEUED,
         STATE_STALLED_DL,

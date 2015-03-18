@@ -72,6 +72,18 @@ public:
     void set_upload_mode(bool b) const;
     void set_eager_mode(bool b) const;
 
+    libed2k::size_type all_time_upload() const;
+    libed2k::size_type all_time_download() const;
+    libed2k::size_type total_done() const;
+    libed2k::size_type total_wanted_done() const;
+    libed2k::size_type total_wanted() const;
+    int num_seeds() const;
+    int num_peers() const;
+    int num_complete() const;
+    int num_incomplete() const;
+    int num_connections() const;
+    int connections_limit() const;
+
     qreal download_payload_rate() const { return status().download_payload_rate; }
     qreal upload_payload_rate() const { return status().upload_payload_rate; }
 

@@ -136,3 +136,15 @@ void QED2KHandle::save_resume_data() const { m_delegate.save_resume_data(); }
 bool QED2KHandle::need_save_resume_data() const { return m_delegate.need_save_resume_data(); }
 void QED2KHandle::set_upload_mode(bool b) const { m_delegate.set_upload_mode(b); }
 void QED2KHandle::set_eager_mode(bool b) const { m_delegate.set_eager_mode(b); }
+libed2k::size_type QED2KHandle::all_time_upload() const { return status().all_time_upload; }
+libed2k::size_type QED2KHandle::all_time_download() const { return status().all_time_download; }
+libed2k::size_type QED2KHandle::total_done() const { return status().total_done; }
+libed2k::size_type QED2KHandle::total_wanted_done() const { return status().total_wanted_done; }
+libed2k::size_type QED2KHandle::total_wanted() const { return status().total_wanted; }
+int QED2KHandle::num_seeds() const { return status().num_seeds; }
+int QED2KHandle::num_peers() const { return status().num_peers; }
+int QED2KHandle::num_complete() const { return status().num_complete; }
+int QED2KHandle::num_incomplete() const { return status().num_incomplete; }
+int QED2KHandle::num_connections() const { return status().num_connections; }
+int QED2KHandle::connections_limit() const { return status().connections_limit; }
+

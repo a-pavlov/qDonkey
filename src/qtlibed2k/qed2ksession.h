@@ -197,6 +197,7 @@ public slots:
     libed2k::peer_connection_handle getPeer(const libed2k::net_identifier& np);
     libed2k::peer_connection_handle findPeer(const libed2k::net_identifier& np);
     QString makeLink(const QString& filename, long filesize, const QString& filehash);
+    qreal getRealRatio(const QString &hash) const;
 signals:
     /**
      * servers related signals

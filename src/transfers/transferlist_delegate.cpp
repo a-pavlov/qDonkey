@@ -27,7 +27,7 @@ void TransferListDelegate::paint(QPainter * painter, const QStyleOptionViewItem 
         case TransferModelItem::TM_SIZE: {
             QItemDelegate::drawBackground(painter, opt, index);
             opt.displayAlignment = Qt::AlignRight;
-             QItemDelegate::drawDisplay(painter, opt, option.rect, misc::friendlyUnit(index.data().toLongLong()));
+            QItemDelegate::drawDisplay(painter, opt, option.rect, misc::friendlyUnit(index.data().toLongLong()));
             break;
     }
     case TransferModelItem::TM_SEEDS:
@@ -48,6 +48,9 @@ void TransferListDelegate::paint(QPainter * painter, const QStyleOptionViewItem 
         const int state = index.data().toInt();
         QString display;
         switch(state) {
+            case TransferModelItem::STATE_LOCALFILE:
+                display = tr("Local file");
+                break;
             case TransferModelItem::STATE_DOWNLOADING:
                 display = tr("Downloading");
                 break;
@@ -105,7 +108,7 @@ void TransferListDelegate::paint(QPainter * painter, const QStyleOptionViewItem 
             QItemDelegate::drawDisplay(painter, opt, opt.rect, QString::number(ratio, 'f', 2));
         break;
     }
-    case TransferModelItem::TM_PROGRESS:{
+    case TransferModelItem::TM_PROGRESS: {
         QStyleOptionProgressBarV2 newopt;
         qreal progress = index.data().toDouble()*100.;
         // We don't want to display 100% unless

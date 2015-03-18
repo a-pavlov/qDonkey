@@ -82,37 +82,7 @@ public:
 
     static QString searchActive()           {return searchPrefix() + "SearchActive.png"; }
 
-    // actions / transfers
-    static QString add()                    {return transfersPrefix() + "add.png";}
-    static QString del()                    {return transfersPrefix() + "delete.png";}
-    static QString play()                   {return transfersPrefix() + "play.png";}
-    static QString pause()                  {return transfersPrefix() + "pause.png";}
-    static QString upload()                 {return transfersPrefix() + "upload.png";}
-    static QString download()               {return transfersPrefix() + "download.png";}
-    static QString ratio()                  {return transfersPrefix() + "ratio.png";}
-    static QString fileInfo()               {return transfersPrefix() + "FileInfo.png";}
-    static QString allDownloads()           {return transfersPrefix() + "all-downloads.png";}
-    static QString downloading()            {return transfersPrefix() + "downloading.png";}
-    static QString uploading()              {return completed();}
-    static QString completed()              {return transfersPrefix() + "completed.png";}
-    static QString waiting()                {return transfersPrefix() + "waiting.png";}
-    static QString activeDownloads()        {return transfersPrefix() + "filteractive.png";}
-    static QString inactiveDownloads()      {return transfersPrefix() + "filterinactive.png";}
-    static QString error()                  {return transfersPrefix() + "error.png";}
-    static QString queuedDownloading()      {return pending();}
-    static QString queuedUploading()        {return pending();}
-    static QString pausedDownload()         {return transfersPrefix() + "downloading-pause.png";}
-    static QString pausedUpload()           {return transfersPrefix() + "completed-pause.png";}
-    static QString pending()                {return transfersPrefix() + "waiting-padded.png";}
-    static QString stalledDownload()        {return pending();}
-    static QString stalledUpload()          {return completed();}
-    static QString checkingDownload()       {return pending();}
-    static QString checkingUpload()         {return pending();}
-
-    static QString openFolder()             {return actionsPrefix() + "folder_open.ico";}
-    static QString shareFolder()            {return actionsPrefix() + "folder_share.ico";}
-    static QString unshareFolder()          {return actionsPrefix() + "folder_unshare.ico";}
-    static QString reloadFolder()           {return actionsPrefix() + "folder_reload.ico";}
+    static QString fileOnDisk()             {return prefix() + "files/HardDisk.ico"; }
 };
 
 #endif // RES_H

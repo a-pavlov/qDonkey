@@ -222,7 +222,6 @@ MainWindow::MainWindow(QWidget *parent, QStringList torrentCmdLine)
     //connect(actionStart_All, SIGNAL(triggered()), Session::instance(), SLOT(resumeAllTransfers()));
     //connect(actionPause_All, SIGNAL(triggered()), Session::instance(), SLOT(pauseAllTransfers()));
 
-    Session::instance()->start();
     actionConnect->trigger();
 }
 

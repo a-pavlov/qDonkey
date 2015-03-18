@@ -1,5 +1,6 @@
 #include "transfermodel_item.h"
 #include "res.h"
+#include "qtlibed2k/qed2ksession.h"
 #include <QDebug>
 
 TransferModelItem::TransferModelItem(const QED2KHandle& h) : m_handle(h)
@@ -22,12 +23,14 @@ TransferModelItem::State TransferModelItem::state() const {
 
     // hashing in progress
     if (!m_handle.is_valid()) {
-
+        m_icon = QIcon(res::fileOnDisk());
+        m_fgColor = QColor("blue");
+        return STATE_LOCALFILE;
     }
 
     // Pause or Queued
     if (m_handle.is_paused()) {
-        m_icon = QIcon(res::pause());
+        //m_icon = QIcon(res::());
         m_fgColor = QColor("red");
         return m_handle.is_seed() ? STATE_PAUSED_UP : STATE_PAUSED_DL;
     }
@@ -114,29 +117,27 @@ QVariant TransferModelItem::data(int column, int role) const
     case TM_SIZE:
         return -1;
     case TM_PROGRESS:
-        return m_handle.progress();
+        return (!m_handle.is_valid())?1.:m_handle.progress();
     case TM_STATUS:
         return state();
-    case TM_SEEDS: {
-        //return (role == Qt::DisplayRole) ? m_handle.num_seeds() : m_handle.num_complete();
-        }
-    case TM_PEERS: {
-        //return (role == Qt::DisplayRole) ? (m_torrent.num_peers()-m_torrent.num_seeds()) : m_torrent.num_incomplete();
-        }
+    case TM_SEEDS:
+        return (role == Qt::DisplayRole) ? m_handle.num_seeds() : m_handle.num_complete();
+    case TM_PEERS:
+        return (role == Qt::DisplayRole) ? (m_handle.num_peers() - m_handle.num_seeds()) : m_handle.num_incomplete();
     case TM_DLSPEED:
-        //return m_torrent.download_payload_rate();
+        return m_handle.download_payload_rate();
     case TM_UPSPEED:
-        //return m_torrent.upload_payload_rate();
+        return m_handle.upload_payload_rate();
     case TM_RATIO:
-        //return Session::instance()->getRealRatio(m_torrent.hash());
+        return Session::instance()->getRealRatio(m_handle.hash());
     case TM_ADD_DATE:
         return m_addedTime;
     case TM_SEED_DATE:
         return m_seedTime;
     case TM_AMOUNT_DOWNLOADED:
-        //return static_cast<qlonglong>(m_torrent.total_wanted_done());
+        return static_cast<qlonglong>(m_handle.total_wanted_done());
     case TM_AMOUNT_LEFT:
-        //return static_cast<qlonglong>(m_torrent.total_wanted() - m_torrent.total_wanted_done());
+        return static_cast<qlonglong>(m_handle.total_wanted() - m_handle.total_wanted_done());
     case TM_TIME_ELAPSED:
         //return (role == Qt::DisplayRole) ? m_torrent.active_time() : m_torrent.seeding_time();
     default:

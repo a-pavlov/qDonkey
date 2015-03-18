@@ -1114,3 +1114,29 @@ QString QED2KSession::makeLink(const QString &filename, long filesize, const QSt
                                                          libed2k::md4_hash::fromString(filehash.toStdString()), true));
 }
 
+qreal QED2KSession::getRealRatio(const QString &hash) const
+{
+    QED2KHandle h = getTransfer(hash);
+    if (!h.is_valid()) {
+        return 0.;
+    }
+
+    libed2k::size_type all_time_upload = h.all_time_upload();
+    libed2k::size_type all_time_download = h.all_time_download();
+    if (all_time_download == 0 && h.is_seed()) {
+        // Purely seeded transfer
+        all_time_download = h.total_done();
+    }
+
+    if (all_time_download == 0) {
+        if (all_time_upload == 0)
+            return 0;
+        return MAX_RATIO+1;
+    }
+
+    qreal ratio = all_time_upload / (float) all_time_download;
+    Q_ASSERT(ratio >= 0.);
+    if (ratio > MAX_RATIO)
+        ratio = MAX_RATIO;
+    return ratio;
+}

@@ -47,6 +47,7 @@
 #include "mainwindow.h"
 #include "preferences.h"
 #include "inputdir_dialog.h"
+#include "qtlibed2k/qed2ksession.h"
 #else
 #include "qtsinglecoreapplication.h"
 #include <iostream>
@@ -260,6 +261,8 @@ int main(int argc, char *argv[])
         if (res == QDialog::Rejected) return 0;
     }
 
+    //Session::instance()->configureSession();
+    Session::instance()->start();
     //app.setQuitOnLastWindowClosed(false);
 
 #if defined(Q_WS_X11) || defined(Q_WS_MAC)
