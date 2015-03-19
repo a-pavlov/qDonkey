@@ -43,6 +43,8 @@ void status_bar::setConnected(bool conn)
         labelNetImg->setPixmap(imgDisconnected.pixmap(16, 16));
         labelNet->setText(tr("eD2K:Disconnected"));
         labelNet->setToolTip(tr("eD2K:Disconnected"));
+        labelInfo->clear();
+        labelServer->clear();
     }
 }
 

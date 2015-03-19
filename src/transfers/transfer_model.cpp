@@ -53,17 +53,20 @@ QVariant TransferModel::headerData(int section, Qt::Orientation orientation,
             switch(section) {
                 case TransferModelItem::TM_NAME: return tr("Name", "i.e: Transfer name");
                 case TransferModelItem::TM_SIZE: return tr("Size", "i.e: Transfer size");
+                case TransferModelItem::TM_TYPE: return tr("Type", "i.e. file type");
                 case TransferModelItem::TM_PROGRESS: return tr("Done", "% Done");
                 case TransferModelItem::TM_STATUS: return tr("Status", "Transfer status (e.g. downloading, seeding, paused)");
                 case TransferModelItem::TM_SEEDS: return tr("Seeds", "i.e. full sources (often untranslated)");
                 case TransferModelItem::TM_PEERS: return tr("Peers", "i.e. partial sources (often untranslated)");
                 case TransferModelItem::TM_DLSPEED: return tr("Down Speed", "i.e: Download speed");
                 case TransferModelItem::TM_UPSPEED: return tr("Up Speed", "i.e: Upload speed");
+                case TransferModelItem::TM_HASH: return tr("Hash", "i.e transfer hash");
                 case TransferModelItem::TM_RATIO: return tr("Ratio", "Share ratio");
                 case TransferModelItem::TM_ADD_DATE: return tr("Added On", "Transfer was added to transfer list on 01/01/2010 08:00");
                 case TransferModelItem::TM_AMOUNT_DOWNLOADED: return tr("Amount downloaded", "Amount of data downloaded (e.g. in MB)");
                 case TransferModelItem::TM_AMOUNT_LEFT: return tr("Amount left", "Amount of data left to download (e.g. in MB)");
                 case TransferModelItem::TM_TIME_ELAPSED: return tr("Time Active", "Time (duration) the Transfer is active (not paused)");
+                case TransferModelItem::TM_ERROR: return tr("Problems", "i.e. errors occured on transfer or hashing file");
             default:
             return QVariant();
         }

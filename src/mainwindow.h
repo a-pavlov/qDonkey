@@ -104,12 +104,10 @@ protected slots:
     // Keyboard shortcuts
     void createKeyboardShortcuts();
 
-    // Torrent actions
     void updateGUI();
     void loadPreferences(bool configure_session = true);
     void processParams(const QString& params);
     void processParams(const QStringList& params);
-    void addTorrent(QString path);
     void addedTransfer(const QED2KHandle& h) const;
     void finishedTransfer(const QED2KHandle& h) const;
 

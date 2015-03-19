@@ -217,6 +217,9 @@ MainWindow::MainWindow(QWidget *parent, QStringList torrentCmdLine)
     connect(Session::instance(), SIGNAL(serverMessage(QString)), this, SLOT(handleServerMessage(QString)));
     connect(Session::instance(), SIGNAL(serverIdentity(QString,QString)), this, SLOT(handleServerIdentity(QString,QString)));
 
+    connect(Session::instance(), SIGNAL(transferAdded(QED2KHandle)), SLOT(addedTransfer(QED2KHandle)));
+    connect(Session::instance(), SIGNAL(transferFinished(QED2KHandle)), SLOT(finishedTransfer(QED2KHandle)));
+
     //Tray actions.
     //connect(actionToggleVisibility, SIGNAL(triggered()), this, SLOT(toggleVisibility()));
     //connect(actionStart_All, SIGNAL(triggered()), Session::instance(), SLOT(resumeAllTransfers()));
@@ -316,8 +319,9 @@ void MainWindow::balloonClicked() {
 // called when a transfer has started
 void MainWindow::addedTransfer(const QED2KHandle& h) const
 {
-    //if(TorrentPersistentData::getAddedDate(h.hash()).secsTo(QDateTime::currentDateTime()) <= 1 && !h.is_seed())
-    //    showNotificationBaloon(tr("Download starting"), tr("%1 has started downloading.", "e.g: xxx.avi has started downloading.").arg(h.name()));
+    qDebug() << "main windoe added transfer at " <<  h.birthday();
+    if (h.is_valid() && (h.birthday().secsTo(QDateTime::currentDateTime()) <= 1) && !h.is_seed())
+        showNotificationBaloon(tr("Download starting"), tr("%1 has started downloading.", "e.g: xxx.avi has started downloading.").arg(h.name()));
 }
 
 // called when a transfer has finished
@@ -720,11 +724,6 @@ void MainWindow::processParams(const QStringList& params)
     }
 }
 
-void MainWindow::addTorrent(QString path)
-{
-    //Session::instance()->addTorrent(path);
-}
-
 void MainWindow::optionsSaved()
 {
     loadPreferences();
@@ -1048,7 +1047,7 @@ void MainWindow::handleServerConnectionInitialized(quint32 client_id, quint32 tc
     log_msg += id;
     statusBar->setStatusMsg(log_msg);
     statusBar->setConnected(true);
-    icon_CurTray = icon_TrayDisconn;
+    icon_CurTray = icon_TrayConn;
     if (systrayIcon) systrayIcon->setIcon(icon_CurTray);
 }
 
@@ -1056,8 +1055,9 @@ void MainWindow::handleServerConnectionClosed(QString) {
     actionConnect->setIcon(QIcon(res::toolbarDisconnected()));
     actionConnect->setText(tr("Connect"));
     icon_CurTray = icon_TrayDisconn;
-    if (systrayIcon) systrayIcon->setIcon(icon_CurTray);
+    if (systrayIcon) systrayIcon->setIcon(icon_TrayDisconn);
     statusBar->setConnected(false);
+    showNotificationBaloon("xxx", "server disconnected");
 }
 
 void MainWindow::handleServerStatus(int files, int users) {

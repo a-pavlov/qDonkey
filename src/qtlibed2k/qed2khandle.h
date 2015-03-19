@@ -4,6 +4,7 @@
 #include <libed2k/transfer_handle.hpp>
 #include <QString>
 #include <QHash>
+#include <QDateTime>
 
 typedef libed2k::size_type TransferSize;
 typedef libed2k::transfer_status TransferStatus;
@@ -87,6 +88,7 @@ public:
     qreal download_payload_rate() const { return status().download_payload_rate; }
     qreal upload_payload_rate() const { return status().upload_payload_rate; }
     TransferBitfield pieces() const { return status().pieces; }
+    QDateTime birthday() const;
 
 private:
     libed2k::transfer_handle m_delegate;

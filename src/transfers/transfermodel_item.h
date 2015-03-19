@@ -36,7 +36,6 @@ public:
         TM_UPSPEED,
         TM_HASH,
         TM_RATIO,
-        TM_LABEL,
         TM_ADD_DATE,
         TM_SEED_DATE,
         TM_AMOUNT_DOWNLOADED,
