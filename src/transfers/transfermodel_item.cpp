@@ -21,70 +21,20 @@ TransferModelItem::TransferModelItem(const QString& filePath, qint64 size, const
 
 TransferModelItem::State TransferModelItem::state() const {
 
-    if (!m_errorMessage.isEmpty()) {
-        m_icon = QIcon(res::error());
-        m_fgColor = QColor("red");
-        return STATE_LOCALFILE;
-    }
+    if (!m_errorMessage.isEmpty()) return STATE_INVALID;
+    if (!m_handle.is_valid()) return STATE_LOCALFILE;
+    if (m_handle.is_paused()) return m_handle.is_seed()?STATE_PAUSED_UP:STATE_PAUSED_DL;
 
-    // hashing in progress
-    if (!m_handle.is_valid()) {
-        m_icon = QIcon(res::fileOnDisk());
-        m_fgColor = QColor("blue");
-        return STATE_LOCALFILE;
-    }
-
-    // Pause or Queued
-    if (m_handle.is_paused()) {
-        m_icon = QIcon(res::paused());
-        m_fgColor = QColor("red");
-        return m_handle.is_seed() ? STATE_PAUSED_UP : STATE_PAUSED_DL;
-    }
-
-    /*if (m_handle.is_queued()) {
-        if (m_torrent.state() != qt_queued_for_checking
-          && m_torrent.state() != qt_checking_resume_data
-          && m_torrent.state() != qt_checking_files) {
-        m_icon = QIcon(":/Icons/skin/queued.png");
-        m_fgColor = QColor("grey");
-        return m_torrent.is_seed() ? STATE_QUEUED_UP : STATE_QUEUED_DL;
-      }
-    }
-
-    */
-    // Other states
     switch(m_handle.state()) {
-        case QED2KHandle::downloading: {
-            if (m_handle.download_payload_rate() > 0) {
-                m_icon = QIcon(res::downloading());
-                m_fgColor = QColor("green");
-                return STATE_DOWNLOADING;
-            } else {
-                m_icon = QIcon(res::stalledDL());
-                m_fgColor = QColor("grey");
-                return STATE_STALLED_DL;
-            }
-        }
+        case QED2KHandle::downloading: return (m_handle.download_payload_rate() > 0)?STATE_DOWNLOADING:STATE_STALLED_DL;
         case QED2KHandle::finished:
         case QED2KHandle::seeding:
-            if (m_handle.upload_payload_rate() > 0) {
-                m_icon = QIcon(res::uploading());
-                m_fgColor = QColor("orange");
-                return STATE_SEEDING;
-            } else {
-                m_icon = QIcon(res::stalledUP());
-                m_fgColor = QColor("grey");
-                return STATE_STALLED_UP;
-            }
+            return (m_handle.upload_payload_rate() > 0)?STATE_SEEDING:STATE_STALLED_UP;
         case QED2KHandle::queued_for_checking:
         case QED2KHandle::checking_resume_data:
-            m_icon = QIcon(res::checking());
-            m_fgColor = QColor("grey");
             return STATE_CHECKING;
-        default:
-            m_icon = QIcon(res::error());
-            m_fgColor = QColor("red");
-            return STATE_INVALID;
+    default:
+        break;
     }
 
     return STATE_INVALID;
@@ -110,11 +60,37 @@ bool TransferModelItem::setData(int column, const QVariant &value, int role) {
 
 QVariant TransferModelItem::data(int column, int role) const {
     if (role == Qt::DecorationRole && column == TM_NAME) {
-        return m_icon;
+        switch(state()) {
+            case STATE_LOCALFILE:   return QIcon(res::fileOnDisk());
+            case STATE_DOWNLOADING: return QIcon(res::downloading());
+            case STATE_STALLED_DL:  return QIcon(res::stalledDL());
+            case STATE_STALLED_UP:  return QIcon(res::stalledUP());
+            case STATE_SEEDING:     return QIcon(res::uploading());
+            case STATE_PAUSED_UP:
+            case STATE_PAUSED_DL:   return QIcon(res::paused());
+            case STATE_CHECKING:
+            case STATE_QUEUED:      return QIcon(res::checking());
+            case STATE_INVALID:     return QIcon(res::error());
+            default:
+                return QVariant();
+        }
     }
 
     if (role == Qt::ForegroundRole) {
-        return m_fgColor;
+        switch(state()) {
+        case STATE_LOCALFILE:   return QColor("grey");
+        case STATE_DOWNLOADING: return QColor("green");
+        case STATE_STALLED_DL:
+        case STATE_STALLED_UP:  return QColor("grey");
+        case STATE_SEEDING:     return QColor("orange");
+        case STATE_PAUSED_UP:
+        case STATE_PAUSED_DL:   return QColor("red");
+        case STATE_CHECKING:
+        case STATE_QUEUED:      return QColor("grey");
+        case STATE_INVALID:     return QColor("red");
+        default:
+            return QVariant();
+        }
     }
 
     if (role != Qt::DisplayRole && role != Qt::UserRole) return QVariant();

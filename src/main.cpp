@@ -250,7 +250,7 @@ int main(int argc, char *argv[])
     //app.processEvents();
     
     // Set environment variable
-    if(qputenv("QDONKEY", QByteArray(VERSION)))
+    if(qputenv("QDONKEY", misc::versionString().toLocal8Bit()))
         std::cerr << "Couldn't set environment variable...\n";
 
     Preferences pref;

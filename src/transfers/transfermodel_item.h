@@ -68,8 +68,6 @@ private:
     QString m_filePath;
     QString m_errorMessage;
     qint64  m_size;
-    mutable QIcon m_icon;
-    mutable QColor m_fgColor;
     QString m_hash;
 };
 
