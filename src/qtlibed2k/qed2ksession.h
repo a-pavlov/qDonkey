@@ -15,6 +15,7 @@
 #include <QHash>
 #include <QStringList>
 #include <QHash>
+#include <QSet>
 
 #include <libed2k/session.hpp>
 #include <libed2k/session_status.hpp>
@@ -146,14 +147,19 @@ public:
     void loadFastResumeData();
     void enableUPnP(bool b);
 
+    void deferPlayMedia(QED2KHandle h);
+    bool playMedia(QED2KHandle h);
+    void playLink(const QString& strLink);
+
     libed2k::session* delegate() const;
 
     const libed2k::ip_filter& session_filter() const;
-
 private:
+    void playPendingMedia();
     QScopedPointer<libed2k::session> m_session;
     QHash<QString, QED2KHandle> m_fast_resume_transfers;   // contains fast resume data were loading
     QTimer alertsTimer;
+    QSet<QED2KHandle> m_pending_medias;
     // Port forwarding
     libed2k::upnp* m_upnp;
     libed2k::natpmp* m_natpmp;

@@ -15,6 +15,8 @@
 #include <QMessageBox>
 #include <QDir>
 #include <QDirIterator>
+#include <QDesktopServices>
+#include <QUrl>
 
 #include "qed2ksession.h"
 #include "misc.h"
@@ -553,7 +555,7 @@ void QED2KSession::addTransferFromFile(const QString& filename)
     }
 }
 
-QED2KHandle QED2KSession::addTransfer(const libed2k::add_transfer_params& atp) {
+QED2KHandle QED2KSession::addTransfer(const libed2k::add_transfer_params& atp){
     return QED2KHandle(delegate()->add_transfer(atp));
 }
 
@@ -1068,6 +1070,44 @@ void QED2KSession::enableUPnP(bool b)
     }
 }
 
+void QED2KSession::deferPlayMedia(QED2KHandle h) {
+    if (h.is_valid() && !playMedia(h)) {
+        qDebug() << "Defer playing file: " << h.filename();
+        h.set_sequential_download(false);
+        h.prioritize_extremity_pieces(true);
+        h.set_eager_mode(true);
+        m_pending_medias.insert(h);
+    }
+}
+
+void QED2KSession::playLink(const QString& strLink) {
+    deferPlayMedia(addLink(strLink).first);
+}
+
+bool QED2KSession::playMedia(QED2KHandle h) {
+    if (h.is_valid() && misc::isPreviewable(misc::file_extension(h.filename())))
+    {
+        TransferBitfield pieces = h.pieces();
+        const QList<int> extremity_pieces = h.file_extremity_pieces_at();
+
+        // check we have all boundary pieces for the file
+        foreach (int p, extremity_pieces) if (!pieces[p]) return false;
+
+        h.set_sequential_download(true);
+        return QDesktopServices::openUrl(QUrl::fromLocalFile(h.filepath()));
+    }
+
+    return false;
+}
+
+void QED2KSession::playPendingMedia() {
+    for (QSet<QED2KHandle>::iterator i = m_pending_medias.begin(); i != m_pending_medias.end();) {
+        if (!i->is_valid() || playMedia(*i))
+            i = m_pending_medias.erase(i);
+        else
+            ++i;
+    }
+}
 
 void QED2KSession::startServerConnection() { delegate()->server_connect(m_sp); }
 void QED2KSession::stopServerConnection() { delegate()->server_disconnect(); }

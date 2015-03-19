@@ -123,7 +123,7 @@ QVariant TransferModelItem::data(int column, int role) const
     //if (!m_torrent.is_valid()) return QVariant();
     switch(column) {
     case TM_NAME:       return misc::fileName(m_filePath);
-    case TM_SIZE:       return -1;
+    case TM_SIZE:       return m_size;
     case TM_PROGRESS:   return (!m_handle.is_valid())?1.:m_handle.progress();
     case TM_STATUS:     return state();
     case TM_SEEDS:      return (role == Qt::DisplayRole) ? m_handle.num_seeds() : m_handle.num_complete();

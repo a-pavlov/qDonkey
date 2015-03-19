@@ -3,10 +3,12 @@
 
 #include <libed2k/transfer_handle.hpp>
 #include <QString>
+#include <QHash>
 
 typedef libed2k::size_type TransferSize;
 typedef libed2k::transfer_status TransferStatus;
 typedef libed2k::peer_info PeerInfo;
+typedef libed2k::bitfield TransferBitfield;
 
 class QED2KHandle {
 public:
@@ -55,8 +57,7 @@ public:
     QString filepath() const;
     QString filename() const;
     TransferSize filesize() const;
-    std::vector<int> file_extremity_pieces_at(unsigned int index) const;
-    QStringList absolute_files_path() const;
+    QList<int> file_extremity_pieces_at() const;
     void get_peer_info(std::vector<PeerInfo>& peers) const;
 
     void pause() const;
@@ -64,7 +65,6 @@ public:
     void move_storage(const QString& path) const;
     void rename_file(int index, const QString& new_name) const;
     void prioritize_extremity_pieces(bool p) const;
-    void prioritize_extremity_pieces(bool p, unsigned int index) const;
 
     void set_sequential_download(bool sd) const;
     void save_resume_data() const;
@@ -86,10 +86,14 @@ public:
 
     qreal download_payload_rate() const { return status().download_payload_rate; }
     qreal upload_payload_rate() const { return status().upload_payload_rate; }
+    TransferBitfield pieces() const { return status().pieces; }
 
 private:
     libed2k::transfer_handle m_delegate;
 };
 
+inline uint qHash(const QED2KHandle& key) {
+    return qHash(key.hash());
+}
 
 #endif //__QED2kHANDLE__

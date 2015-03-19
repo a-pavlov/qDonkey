@@ -65,7 +65,7 @@ bool QED2KHandle::extremity_pieces_first() const {
 
     if (!misc::isPreviewable(ext)) return false; // No media file
 
-    const std::vector<int> extremities = file_extremity_pieces_at(0);
+    const QList<int> extremities = file_extremity_pieces_at();
     const std::vector<int> piece_priorities = m_delegate.piece_priorities();
     foreach (int e, extremities) if (piece_priorities[e] != 7) return false;
     return true;
@@ -83,23 +83,14 @@ QString QED2KHandle::filepath() const {  return misc::toQStringU(libed2k::combin
 QString QED2KHandle::filename() const { return misc::toQStringU(m_delegate.name()); }
 TransferSize QED2KHandle::filesize() const { return m_delegate.size(); }
 
-std::vector<int> QED2KHandle::file_extremity_pieces_at(unsigned int index) const {
-    Q_ASSERT(index == 0);
+QList<int> QED2KHandle::file_extremity_pieces_at() const {
     int last_piece = m_delegate.num_pieces() - 1;
     int penult_piece = std::max(last_piece - 1, 0);
 
-    std::vector<int> res;
-    res.push_back(0);
-    res.push_back(penult_piece);
-    res.push_back(last_piece);
-    return res;
+    QList<int> res;
+    return (res << 0 << penult_piece << last_piece);
 }
 
-QStringList QED2KHandle::absolute_files_path() const {
-    QStringList res;
-    res << filepath();
-    return res;
-}
 void QED2KHandle::get_peer_info(std::vector<PeerInfo>& infos) const 
 {
     std::vector<libed2k::peer_info> ed_infos;
@@ -118,15 +109,9 @@ void QED2KHandle::rename_file(int index, const QString& new_name) const {
     m_delegate.rename_file(new_name.toUtf8().constData());
 }
 
-
 void QED2KHandle::prioritize_extremity_pieces(bool p) const {
-    prioritize_extremity_pieces(p, 0);
-}
-void QED2KHandle::prioritize_extremity_pieces(bool p, unsigned int index) const {
-    Q_ASSERT(index == 0);
-
     int prio = p ? 7 : 1;
-    const std::vector<int> extremities = file_extremity_pieces_at(index);
+    const QList<int> extremities = file_extremity_pieces_at();
     foreach (int e, extremities)
         m_delegate.set_piece_priority(e, prio);
 }

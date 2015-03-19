@@ -541,34 +541,33 @@ void search_widget::processSearchResult(const QList<QED2KSearchResultEntry>& vRe
 }
 
 QED2KHandle search_widget::addTransfer(const QModelIndex& index) {
-    /*
-    QModelIndex index = proxy2source(treeResult->currentIndex());
-    QString hash = selected_data(treeResult, SWDelegate::SW_ID, index).toString();
-    QString filename = selected_data(treeResult, SWDelegate::SW_NAME, index).toString();
+    QString hash = selected_data(treeResult, SearchModel::DC_HASH, index).toString();
+    QString filename = selected_data(treeResult, SearchModel::DC_NAME, index).toString();
+    qlonglong size = selected_data(treeResult, SearchModel::DC_FILESIZE, index).toULongLong();
+
+    qDebug() << "download file " << filename << " with hash " << hash << " size " << size;
+
     EED2KFileType fileType = GetED2KFileTypeID(filename.toStdString());
     if (fileType == ED2KFT_EMULECOLLECTION) {
         filename.replace('\\', '-');
         filename.replace('/', '-');
     }
 
-    QString filepath = QDir(Preferences().getSavePath()).filePath(filename);
+    QString filepath = QDir(Preferences().inputDir()).filePath(filename);
 
     libed2k::add_transfer_params params;
     params.file_hash = libed2k::md4_hash::fromString(hash.toStdString());
     params.file_path = filepath.toUtf8().constData();
-    params.file_size = selected_data(treeResult, SWDelegate::SW_SIZE, index).toULongLong();
+    params.file_size = size;
     //params.seed_mode = false;
     //params.num_complete_sources = selected_data(treeResult, SWDelegate::SW_SOURCES, index).toInt();
     //params.num_incomplete_sources =
     //    selected_data(treeResult, SWDelegate::SW_AVAILABILITY, index).toInt() -
     //    params.num_complete_sources;
-    */
-    libed2k::add_transfer_params params;
     return Session::instance()->addTransfer(params);
 }
 
-void search_widget::warnDisconnected()
-{
+void search_widget::warnDisconnected() {
     QMessageBox::warning(
         this, tr("Server connection closed"),
         tr("You can't search in ED2K network on closed server connection, "
@@ -698,13 +697,11 @@ QList<QED2KHandle> search_widget::on_actionDownload_triggered() {
     QModelIndexList selected = treeResult->selectionModel()->selectedRows();
     QModelIndexList::const_iterator iter;
 
-    for (iter = selected.begin(); iter != selected.end(); ++iter)
-    {
-        //result << addTransfer(*iter);
+    for (iter = selected.begin(); iter != selected.end(); ++iter) {
+        result << addTransfer(*iter);
     }
 
     return result;
-    //return QList<QED2KHandle>();
 }
 
 void search_widget::on_actionDownload_pause_triggered() {
@@ -721,12 +718,11 @@ void search_widget::on_actionPreview_triggered() {
     QModelIndexList selected = treeResult->selectionModel()->selectedRows();
     QModelIndexList::const_iterator iter;
 
-    for (iter = selected.begin(); iter != selected.end(); ++iter)
-    {
+    for (iter = selected.begin(); iter != selected.end(); ++iter) {
         QString filename = selected_data(treeResult, SearchModel::DC_NAME, *iter).toString();
         if (misc::isPreviewable(misc::file_extension(filename))) {
-            //Transfer t = addTransfer(*iter);
-            //Session::instance()->deferPlayMedia(t, 0);
+            QED2KHandle h = addTransfer(*iter);
+            Session::instance()->deferPlayMedia(h);
         }
     }
 }
