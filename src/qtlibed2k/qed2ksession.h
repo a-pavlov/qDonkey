@@ -105,6 +105,7 @@ struct QED2KPeerOptions {
     QED2KPeerOptions(const libed2k::misc_options& mo, const libed2k::misc_options2& mo2);
 };
 
+QString fromHash(const libed2k::md4_hash&);
 
 class QED2KSession : public QObject {
     Q_OBJECT

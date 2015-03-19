@@ -14,7 +14,7 @@ private:
     static QString serverPrefix()       {return prefix() + "server/";}
     static QString statusbarPrefix()    {return prefix() + "statusbar/";}
     static QString toolbarPrefix()      {return prefix(); }
-    static QString transfersPrefix()    {return prefix() + "transfers/";}
+    static QString transfersPrefix()    {return prefix() + "transfer_list/";}
     static QString usersPrefix()        {return prefix() + "users/";}
 
 public:
@@ -82,7 +82,16 @@ public:
 
     static QString searchActive()           {return searchPrefix() + "SearchActive.png"; }
 
+    // transfer list
     static QString fileOnDisk()             {return prefix() + "files/HardDisk.ico"; }
+    static QString checking()               {return transfersPrefix() + "checking.png"; }
+    static QString error()                  {return transfersPrefix() + "error.png";}
+    static QString paused()                 {return transfersPrefix() + "paused.png";}
+    static QString queued()                 {return transfersPrefix() + "queued.png";}
+    static QString stalledDL()              {return transfersPrefix() + "stalledDL.png";}
+    static QString stalledUP()              {return transfersPrefix() + "stalledUP.png";}
+    static QString uploading()              {return transfersPrefix() + "uploading.png";}
+    static QString downloading()            {return transfersPrefix() + "downloading.png";}
 };
 
 #endif // RES_H

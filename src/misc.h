@@ -74,8 +74,6 @@ private:
 
 public:
   static QString productName() {
-      // do not use build date after actual version
-      //static QString strBuildDate = QString::fromLocal8Bit(BUILDDATE).remove(QChar('\n'));
       return tr("%1 v%2.%3.%4", "e.g: qDonkey v0.x")
               .arg(PRODUCT_NAME)
               .arg(VERSION_MAJOR)

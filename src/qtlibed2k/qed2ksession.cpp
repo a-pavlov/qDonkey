@@ -17,6 +17,7 @@
 #include <QDirIterator>
 
 #include "qed2ksession.h"
+#include "misc.h"
 
 QString toString(FileType type) {
     switch(type) {
@@ -219,6 +220,10 @@ QED2KPeerOptions::QED2KPeerOptions(const libed2k::misc_options& mo, const libed2
     m_bSourceExt2       = mo2.support_source_ext2();
     m_bExtMultipacket   = mo2.support_ext_multipacket();
     m_bLargeFiles       = mo2.support_large_files();
+}
+
+QString fromHash(const libed2k::md4_hash& h) {
+    return misc::toQStringU(h.toString());
 }
 
 bool writeResumeData(const libed2k::save_resume_data_alert* p)
@@ -548,27 +553,7 @@ void QED2KSession::addTransferFromFile(const QString& filename)
     }
 }
 
-QED2KHandle QED2KSession::addTransfer(const libed2k::add_transfer_params& atp)
-{
-    //QDir fpath = misc::uniquePath(QString::fromUtf8(_atp.file_path.c_str()), files());
-    //add_transfer_params atp = _atp;
-    //atp.file_path = fpath.absolutePath().toUtf8().constData();
-    //qDebug() << "add transfer for " << fpath;
-
-    {
-        // do not create file on windows with last point because of Qt truncate it point!
-        bool touch = true;
-#ifdef Q_WS_WIN
-        touch = (!atp.file_path.empty() && (atp.file_path.at(atp.file_path.size() - 1) != '.'));
-#endif
-        QFile f(misc::toQStringU(atp.file_path));
-        // file not exists, need touch and transfer are not exists
-        if (!f.exists() && touch && !QED2KHandle(delegate()->find_transfer(atp.file_hash)).is_valid())
-        {
-            f.open(QIODevice::WriteOnly);
-        }
-    }
-
+QED2KHandle QED2KSession::addTransfer(const libed2k::add_transfer_params& atp) {
     return QED2KHandle(delegate()->add_transfer(atp));
 }
 

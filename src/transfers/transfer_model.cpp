@@ -5,17 +5,19 @@
 #include <QDirIterator>
 #include <QFileInfo>
 
-TransferModel::TransferModel(QObject *parent) : QAbstractListModel(parent) {
+TransferModel::TransferModel(QObject *parent) : QAbstractListModel(parent),
+    m_refreshInterval(3000),
+    m_currentSharePosition(0) {
 }
 
-void TransferModel::populate() {
+void TransferModel::populate(const QString& path) {
 
-    Preferences pref;
-    QDirIterator dirIt(pref.inputDir(), QDir::NoDotAndDotDot| QDir::Files);
+    m_path = path;
+    QDirIterator dirIt(path, QDir::NoDotAndDotDot| QDir::Files);
     while(dirIt.hasNext()) {
         dirIt.next();
         QFileInfo info = dirIt.fileInfo();
-        addFile(info.fileName(), info.size(), info.created());
+        addFile(info.absoluteFilePath(), info.size(), info.created());
     }
 
   // Refresh timer
@@ -32,6 +34,8 @@ void TransferModel::populate() {
           SLOT(handleTransferUpdate(QED2KHandle)));
   connect(Session::instance(), SIGNAL(fileError(QED2KHandle, QString)),
           SLOT(handleTransferUpdate(QED2KHandle)));
+  connect(Session::instance(), SIGNAL(transferParametersReady(libed2k::add_transfer_params,libed2k::error_code)),
+          SLOT(addTransferParameters(libed2k::add_transfer_params,libed2k::error_code)));
 }
 
 TransferModel::~TransferModel() {
@@ -121,14 +125,29 @@ int TransferModel::transferRow(const QString &hash) const {
     return -1;
 }
 
+int TransferModel::filepathRow(const QString& filePath) const {
+    QList<TransferModelItem*>::const_iterator it;
+    int row = 0;
+    for (it = m_transfers.constBegin(); it != m_transfers.constEnd(); it++) {
+        if ((*it)->filePath() == filePath) return row;
+        ++row;
+    }
+
+    return -1;
+}
+
 void TransferModel::addTransfer(const QED2KHandle& h) {
+    qDebug() << Q_FUNC_INFO;
+
     if (h.state() == QED2KHandle::checking_resume_data) {
         // we don't know yet whether this transfer finished or not
+        qDebug() << "add unchecked transfer " << h.hash();
         m_uncheckedTransfers << h;
         return;
     }
 
-    if (transferRow(h.hash()) < 0) {
+    if (transferRow(h.hash()) != -1) {
+        qDebug() << "add transfer to list " << h.hash();
         beginInsertTransfer(m_transfers.size());
         TransferModelItem *item = new TransferModelItem(h);
         m_transfers << item;
@@ -179,17 +198,30 @@ void TransferModel::processUncheckedTransfers() {
         if (state != QED2KHandle::checking_resume_data) {
             // now we know whether transfer finished or not
             // do not show finished transfers
-            if (state != libed2k::transfer_status::seeding) addTransfer(*i);
+            if (state != QED2KHandle::seeding) addTransfer(*i);
             i = m_uncheckedTransfers.erase(i);
         }
         else
             ++i;
     }
+
+    int processedFiles = 0;
+
+    while (m_currentSharePosition != m_transfers.size() && processedFiles < FilesPerCycle) {
+        TransferModelItem* item = m_transfers.at(m_currentSharePosition);
+        if (!item->handle().is_valid()) {
+            Session::instance()->makeTransferParametersAsync(item->filePath());
+            ++processedFiles;
+        }
+
+        ++m_currentSharePosition;
+    }
 }
 
 void TransferModel::handleTransferUpdate(const QED2KHandle& h) {
     const int row = transferRow(h.hash());
-    if (row >= 0) {
+    if (row != -1) {
+        if (!m_transfers.at(row)->handle().is_valid()) m_transfers[row]->setHandle(h);
         notifyTransferChanged(row);
     }
 }
@@ -226,4 +258,18 @@ void TransferModel::handleTransferAboutToBeRemoved(const QED2KHandle &h, bool) {
   const int row = transferRow(h.hash());
   if (row >= 0)
       emit transferAboutToBeRemoved(m_transfers.at(row));
+}
+
+void TransferModel::addTransferParameters(const libed2k::add_transfer_params& atp, const libed2k::error_code& ec) {
+    int row = filepathRow(misc::toQStringU(atp.file_path));
+    if (row != -1) {
+        m_transfers.at(row)->setData(TransferModelItem::TM_HASH, fromHash(atp.file_hash));
+        qDebug() << "add transfer " << fromHash(atp.file_hash) << " to session";
+        if (!ec) {
+            m_transfers[row]->setHandle(Session::instance()->addTransfer(atp));
+        } else {
+            m_transfers.at(row)->setData(TransferModelItem::TM_ERROR, misc::toQStringU(ec.message()));
+        }
+        notifyTransferChanged(row);
+    }
 }

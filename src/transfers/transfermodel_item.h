@@ -34,6 +34,7 @@ public:
         TM_PEERS,
         TM_DLSPEED,
         TM_UPSPEED,
+        TM_HASH,
         TM_RATIO,
         TM_LABEL,
         TM_ADD_DATE,
@@ -41,16 +42,20 @@ public:
         TM_AMOUNT_DOWNLOADED,
         TM_AMOUNT_LEFT,
         TM_TIME_ELAPSED,
+        TM_ERROR,
         TM_END
     };
 
 public:
     TransferModelItem(const QED2KHandle& h);
-    TransferModelItem(const QString& name, qint64 size, const QDateTime& created);
+    TransferModelItem(const QString& filePath, qint64 size, const QDateTime& created);
     inline int columnCount() const { return TM_END; }
     QVariant data(int column, int role = Qt::DisplayRole) const;
     bool setData(int column, const QVariant &value, int role = Qt::DisplayRole);
     inline QString hash() const { return m_hash; }
+    inline QString filePath() const { return m_filePath; }
+    QED2KHandle handle() const { return m_handle; }
+    void setHandle(QED2KHandle h) { m_handle = h; }
 
 private:
     State state() const;
@@ -60,7 +65,8 @@ private:
     QDateTime m_addedTime;
     QDateTime m_seedTime;
     QString m_label;
-    QString m_name;
+    QString m_filePath;
+    QString m_errorMessage;
     qint64  m_size;
     mutable QIcon m_icon;
     mutable QColor m_fgColor;

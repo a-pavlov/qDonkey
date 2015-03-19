@@ -399,5 +399,6 @@
         <file>icons/transfer_list/stalledDL.png</file>
         <file>icons/transfer_list/stalledUP.png</file>
         <file>icons/transfer_list/uploading.png</file>
+        <file>icons/transfer_list/downloading.png</file>
     </qresource>
 </RCC>

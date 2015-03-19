@@ -7,12 +7,17 @@
 #include <QTimer>
 
 #include "transfermodel_item.h"
+#include "qtlibed2k/qed2ksession.h"
 
 class TransferModel : public QAbstractListModel {
     Q_OBJECT
     Q_DISABLE_COPY(TransferModel)
 
 public:
+    enum {
+         FilesPerCycle = 4
+    };
+
     explicit TransferModel(QObject *parent = 0);
     ~TransferModel();
     inline int rowCount(const QModelIndex& index = QModelIndex()) const { Q_UNUSED(index); return m_transfers.size(); }
@@ -21,10 +26,11 @@ public:
     bool setData(const QModelIndex &index, const QVariant &value, int role = Qt::DisplayRole);
     QVariant headerData(int section, Qt::Orientation orientation, int role) const;
     int transferRow(const QString &hash) const;
+    int filepathRow(const QString& filePath) const;
     QString transferHash(int row) const;
     void setRefreshInterval(int refreshInterval);
     Qt::ItemFlags flags(const QModelIndex &index) const;
-    void populate();
+    void populate(const QString& path);
 
 signals:
     void transferAdded(TransferModelItem *transferItem);
@@ -40,6 +46,7 @@ private slots:
     void notifyTransferChanged(int row);
     void forceModelRefresh();
     void handleTransferAboutToBeRemoved(const QED2KHandle& h, bool);
+    void addTransferParameters(const libed2k::add_transfer_params&, const libed2k::error_code&);
 
 private:
     void beginInsertTransfer(int row);
@@ -49,10 +56,11 @@ private:
     void processUncheckedTransfers();
 
 private:
-    QList<TransferModelItem*> m_transfers;
-    QList<QED2KHandle> m_uncheckedTransfers;
-    QHash<QString, int> m_danglingTransfers;
     int m_refreshInterval;
+    int m_currentSharePosition;
+    QList<TransferModelItem*> m_transfers;
+    QString m_path;
+    QList<QED2KHandle> m_uncheckedTransfers;
     QTimer m_refreshTimer;
 };
 
