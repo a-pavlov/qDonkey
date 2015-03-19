@@ -146,7 +146,7 @@ void TransferModel::addTransfer(const QED2KHandle& h) {
         return;
     }
 
-    if (transferRow(h.hash()) != -1) {
+    if (transferRow(h.hash()) == -1) {
         qDebug() << "add transfer to list " << h.hash();
         beginInsertTransfer(m_transfers.size());
         TransferModelItem *item = new TransferModelItem(h);
@@ -207,9 +207,11 @@ void TransferModel::processUncheckedTransfers() {
 
     int processedFiles = 0;
 
-    while (m_currentSharePosition != m_transfers.size() && processedFiles < FilesPerCycle) {
+    while (m_currentSharePosition < m_transfers.size() && processedFiles < FilesPerCycle) {
+        qDebug() << "look at position " << m_currentSharePosition;
         TransferModelItem* item = m_transfers.at(m_currentSharePosition);
-        if (!item->handle().is_valid()) {
+        if (!item->handle().is_valid())  {
+            qDebug() << "generate transfer parameters for " << item->filePath();
             Session::instance()->makeTransferParametersAsync(item->filePath());
             ++processedFiles;
         }
@@ -263,9 +265,9 @@ void TransferModel::handleTransferAboutToBeRemoved(const QED2KHandle &h, bool) {
 void TransferModel::addTransferParameters(const libed2k::add_transfer_params& atp, const libed2k::error_code& ec) {
     int row = filepathRow(misc::toQStringU(atp.file_path));
     if (row != -1) {
-        m_transfers.at(row)->setData(TransferModelItem::TM_HASH, fromHash(atp.file_hash));
-        qDebug() << "add transfer " << fromHash(atp.file_hash) << " to session";
         if (!ec) {
+            qDebug() << "add transfer " << fromHash(atp.file_hash) << " to session";
+            m_transfers.at(row)->setData(TransferModelItem::TM_HASH, fromHash(atp.file_hash));
             m_transfers[row]->setHandle(Session::instance()->addTransfer(atp));
         } else {
             m_transfers.at(row)->setData(TransferModelItem::TM_ERROR, misc::toQStringU(ec.message()));

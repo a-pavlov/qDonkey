@@ -9,7 +9,8 @@ class SearchModel : public QAbstractListModel {
     Q_OBJECT
 public:
     enum Roles {
-        SortRole = Qt::UserRole + 1
+        SortRole = Qt::UserRole + 1,
+        NativeRole = Qt::UserRole + 2
     };
 
     enum DisplayColumns {

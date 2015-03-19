@@ -39,19 +39,16 @@ void SWTabBar::mousePressEvent(QMouseEvent* event)
     else QTabBar::mousePressEvent(event);
 }
 
-int selected_row(QAbstractItemView* view)
-{
+int selected_row(QAbstractItemView* view) {
     QModelIndex index = view->currentIndex();
     return index.isValid() ? index.row() : -1;
 }
 
-QVariant selected_data(QAbstractItemView* view, int column, const QModelIndex& index)
-{
-    return view->model()->index(index.row(), column, index.parent()).data();
+QVariant selected_data(QAbstractItemView* view, int column, const QModelIndex& index) {
+    return view->model()->index(index.row(), column, index.parent()).data(SearchModel::NativeRole);
 }
 
-QVariant selected_data(QAbstractItemView* view, int column)
-{
+QVariant selected_data(QAbstractItemView* view, int column) {
     return selected_data(view, column, view->currentIndex());
 }
 
@@ -144,11 +141,11 @@ search_widget::search_widget(QWidget *parent)
     		this, SLOT(ed2kSearchFinished(const libed2k::net_identifier&, const QString&,
                                           const QList<QED2KSearchResultEntry>&, bool)));
 
-    connect(Session::instance(), SIGNAL(addedTransfer(Transfer)),
-            this, SLOT(addedTransfer(Transfer)));
+    connect(Session::instance(), SIGNAL(transferAdded(QED2KHandle)),
+            this, SLOT(addedTransfer(QED2KHandle)));
 
-    connect(Session::instance(), SIGNAL(deletedTransfer(QString)),
-            this, SLOT(deletedTransfer(const QString&)));
+    connect(Session::instance(), SIGNAL(transferDeleted(QString)),
+            this, SLOT(deletedTransfer(QString)));
 
     connect(model, SIGNAL(countChanged(int)), this, SLOT(modelCountChanged(int)));
 
@@ -191,7 +188,7 @@ search_widget::search_widget(QWidget *parent)
     treeResult->header()->setContextMenuPolicy(Qt::CustomContextMenu);
     connect(treeResult->header(), SIGNAL(customContextMenuRequested(const QPoint&)),
             this, SLOT(displayHSMenu(const QPoint&)));
-    connect(treeResult, SIGNAL(doubleClicked(const QModelIndex&)), this, SLOT(download()));
+    connect(treeResult, SIGNAL(doubleClicked(const QModelIndex&)), this, SLOT(on_actionDownload_triggered()));
 
     load();
 
@@ -559,10 +556,10 @@ QED2KHandle search_widget::addTransfer(const QModelIndex& index) {
     params.file_hash = libed2k::md4_hash::fromString(hash.toStdString());
     params.file_path = filepath.toUtf8().constData();
     params.file_size = size;
-    //params.seed_mode = false;
-    //params.num_complete_sources = selected_data(treeResult, SWDelegate::SW_SOURCES, index).toInt();
+    params.seed_mode = false;
+    params.num_complete_sources = selected_data(treeResult, SearchModel::DC_SOURCES, index).toInt();
     //params.num_incomplete_sources =
-    //    selected_data(treeResult, SWDelegate::SW_AVAILABILITY, index).toInt() -
+   //     selected_data(treeResult, SearchModel::DC_, index).toInt() -
     //    params.num_complete_sources;
     return Session::instance()->addTransfer(params);
 }

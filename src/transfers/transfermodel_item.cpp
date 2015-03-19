@@ -3,8 +3,8 @@
 #include "qtlibed2k/qed2ksession.h"
 #include <QDebug>
 
-TransferModelItem::TransferModelItem(const QED2KHandle& h) : m_handle(h)
-{
+TransferModelItem::TransferModelItem(const QED2KHandle& h) : m_handle(h) {
+    Q_ASSERT(h.is_valid());
     m_hash = h.hash();
     m_size = -1;
     if (m_filePath.isEmpty()) m_filePath = h.filepath();
@@ -108,8 +108,7 @@ bool TransferModelItem::setData(int column, const QVariant &value, int role) {
     return false;
 }
 
-QVariant TransferModelItem::data(int column, int role) const
-{
+QVariant TransferModelItem::data(int column, int role) const {
     if (role == Qt::DecorationRole && column == TM_NAME) {
         return m_icon;
     }

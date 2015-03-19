@@ -468,7 +468,7 @@ void QED2KSession::setUploadRateLimit(long rate) {
 
 void QED2KSession::startUpTransfers()
 {
-    loadFastResumeData();
+    //loadFastResumeData();
 }
 
 void QED2KSession::configureSession()

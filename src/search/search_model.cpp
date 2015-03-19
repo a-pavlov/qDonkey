@@ -30,6 +30,19 @@ QVariant SearchModel::data(const QModelIndex& index, int role) const {
 
     switch(role)
     {
+        case NativeRole: {
+            switch(index.column()) {
+                case DC_NAME: return filename(index);
+                case DC_FILESIZE: return size(index);
+                case DC_SOURCES: return sources(index);
+                case DC_TYPE: return type(index);
+                case DC_HASH: return hash(index);
+                case DC_MEDIA_BITRATE: return media_bitrate(index);
+                case DC_MEDIA_LENGTH: return media_length(index);
+                default: break;
+            }
+            break;
+        }
         case Qt::DisplayRole:  {
             switch(index.column()) {
                 case DC_NAME:        return filename(index);
