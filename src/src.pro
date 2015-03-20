@@ -76,14 +76,12 @@ HEADERS +=  misc.h \
             stacktrace.h \
             qinisettings.h \
             res.h \
-            fs_utils.h \
             ed2k_link_maker.h \
             collection_save_dlg.h \
     inputdir_dialog.h
 
 SOURCES +=  main.cpp \
             misc.cpp \
-            fs_utils.cpp \
             ed2k_link_maker.cpp \
             collection_save_dlg.cpp \
     inputdir_dialog.cpp
