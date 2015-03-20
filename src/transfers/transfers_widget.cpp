@@ -26,6 +26,7 @@ transfers_widget::transfers_widget(QWidget *parent) :
     menu->addAction(actionFirst_and_last_pieces_first);
     menu->addSeparator();
     menu->addAction(actionOpen_destination_folder);
+    menu->addAction(actionPreview);
     connect(trView, SIGNAL(customContextMenuRequested(const QPoint&)), this, SLOT(displayListMenu(const QPoint&)));
 }
 
@@ -109,6 +110,7 @@ void transfers_widget::on_actionPause_triggered() {
 void transfers_widget::on_actionRemove_triggered() {
     const QStringList hashes = getSelectedHashes();
     foreach (const QString &hash, hashes) {
+        model->removeTransfer(hash);
         Session::instance()->deleteTransfer(hash, true);
     }
 }
@@ -149,14 +151,15 @@ void transfers_widget::on_actionFirst_and_last_pieces_first_triggered() {
 }
 
 void transfers_widget::on_actionPreview_triggered() {
-    /*const QStringList hashes = getSelectedTorrentsHashes();
+    int counter = 0;
+    const QStringList hashes = getSelectedHashes();
     foreach (const QString &hash, hashes) {
         const QED2KHandle h = Session::instance()->getTransfer(hash);
-        if (h.is_valid()) {
-          new PreviewSelect(this, h);
+        if (h.is_valid() && misc::isPreviewable(misc::file_extension(h.filename())) && counter < 10) {
+            Session::instance()->deferPlayMedia(h);
+            ++counter;  // avoid run a lot of programs - max 10
         }
-      }
-      */
+    }
 }
 
 void transfers_widget::on_actionOpen_destination_folder_triggered()

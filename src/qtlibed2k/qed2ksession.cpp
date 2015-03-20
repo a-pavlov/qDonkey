@@ -435,22 +435,18 @@ SessionStatus QED2KSession::getSessionStatus() const { return m_session->status(
 void QED2KSession::deleteTransfer(const QString& hash, bool delete_files) {
     const QED2KHandle t = getTransfer(hash);
     if (!t.is_valid()) return;
-    //emit transferAboutToBeRemoved(t, delete_files);
+
+    QFileInfo info(t.filepath());
+    QString metaFilepath = QDir(misc::metadataDirectory(info.absolutePath())).absoluteFilePath(t.filename());
+    qDebug() << "metadata file " << metaFilepath;
+
+    if (QFile::remove(metaFilepath)) {
+        qDebug() << "fast resume data for " << hash << " erased ";
+    }
 
     m_session->remove_transfer(
         t.delegate(),
         delete_files ? libed2k::session::delete_files : libed2k::session::none);
-
-    if (QFile::remove(QDir(misc::ED2KBackupLocation()).absoluteFilePath(hash + ".fastresume")))
-    {
-        qDebug() << "Also deleted temp fast resume data: " << hash;
-    }
-    else
-    {
-        qDebug() << "fast resume wasn't removed for " << hash;
-    }
-
-    //emit deletedTransfer(hash);
 }
 
 void QED2KSession::setDownloadRateLimit(long rate) {
@@ -883,8 +879,9 @@ void QED2KSession::readAlerts()
         QList<QString> keys = m_fastTransfers.keys();
         int counter = 10;
 
-        while(!keys.empty() && counter != 0 ){
-            libed2k::transfer_resume_data trd = m_fastTransfers.take(keys.takeFirst());
+        while(!keys.empty() && counter != 0 ) {
+            QString key = keys.takeFirst();
+            libed2k::transfer_resume_data trd = m_fastTransfers.take(key);
             libed2k::add_transfer_params atp;
             QString filepath = QDir(m_currentPath).filePath(misc::toQStringU(trd.m_filename.m_collection));
             boost::shared_ptr<libed2k::base_tag> onDisk = trd.m_fast_resume_data.getTagByNameId(libed2k::CT_EMULE_RESERVED1);
@@ -909,6 +906,11 @@ void QED2KSession::readAlerts()
 
                 if (addDt) {
                     m_addTimes.insert(h.hash(), QDateTime::fromString(misc::toQStringU(addDt->asString()), Qt::ISODate));
+                }
+            } else {
+                qDebug() << "fast resume data file" << key << " lost target file, remove resume data";
+                if (QFile::remove(QDir(misc::metadataDirectory(m_currentPath)).filePath(key))) {
+                    qDebug() << "fast resume data file erased";
                 }
             }
 
@@ -1247,7 +1249,7 @@ void QED2KSession::loadDirectory(const QString& path) {
                 //item.m_params->file_path = trd.m_filepath.m_collection;
                 //item.m_params->file_size = trd.m_filesize;
                 //item.m_params->file_hash = trd.m_hash;
-                m_fastTransfers.insert(fromHash(trd.m_hash), trd);
+                m_fastTransfers.insert(misc::toQStringU(trd.m_filename.m_collection), trd);
             }
         }
         catch(const libed2k::libed2k_exception& e) {
