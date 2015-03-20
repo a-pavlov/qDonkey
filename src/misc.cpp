@@ -101,6 +101,8 @@ static struct { const char *source; const char *comment; } units[] = {
   QT_TRANSLATE_NOOP3("misc", "TB", "terabytes (1000 gigabytes)")
 };
 
+const QString misc::metadataFilename = ".metadata";
+
 QString misc::QDesktopServicesTempInetLocation(){
 #ifdef Q_WS_WIN
   LPWSTR path=new WCHAR[256];
@@ -1268,9 +1270,14 @@ QString misc::pyLocation(){
 #endif
 }
 
+QString misc::metadataDirectory(const QString& path) {
+    QDir dir(path);
+    return dir.filePath(metadataFilename);
+}
+
 bool misc::prepareInputDirectory(const QString& path) {
     QDir input(path);
-    return (!path.isEmpty() && input.exists() && (input.exists(".metadata") || input.mkdir(".metadata")));
+    return (!path.isEmpty() && input.exists() && (input.exists(metadataFilename) || input.mkdir(metadataFilename)));
 }
 
 CleanupEventFilter::CleanupEventFilter(QObject *parent) : QObject(parent){}

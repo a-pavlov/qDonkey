@@ -26,12 +26,9 @@ public:
     bool setData(const QModelIndex &index, const QVariant &value, int role = Qt::DisplayRole);
     QVariant headerData(int section, Qt::Orientation orientation, int role) const;
     int transferRow(const QString &hash) const;
-    int filepathRow(const QString& filePath) const;
     QString transferHash(int row) const;
     void setRefreshInterval(int refreshInterval);
     Qt::ItemFlags flags(const QModelIndex &index) const;
-    void populate(const QString& path);
-
 signals:
     void transferAdded(TransferModelItem *transferItem);
     void transferAboutToBeRemoved(TransferModelItem *transferItem);
@@ -41,13 +38,10 @@ public slots:
 
 private slots:
     void addTransfer(const QED2KHandle& h);
-    void addFile(const QString& name, qint64 size, const QDateTime& created);
     void handleTransferUpdate(const QED2KHandle& h);
     void notifyTransferChanged(int row);
     void forceModelRefresh();
     void handleTransferAboutToBeRemoved(const QED2KHandle& h, bool);
-    void addTransferParameters(const libed2k::add_transfer_params&, const libed2k::error_code&);
-
 private:
     void beginInsertTransfer(int row);
     void endInsertTransfer();
@@ -57,7 +51,6 @@ private:
 
 private:
     int m_refreshInterval;
-    int m_currentSharePosition;
     QList<TransferModelItem*> m_transfers;
     QString m_path;
     QList<QED2KHandle> m_uncheckedTransfers;

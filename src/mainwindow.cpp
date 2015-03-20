@@ -226,6 +226,7 @@ MainWindow::MainWindow(QWidget *parent, QStringList torrentCmdLine)
     //connect(actionPause_All, SIGNAL(triggered()), Session::instance(), SLOT(pauseAllTransfers()));
 
     actionConnect->trigger();
+    Session::instance()->loadDirectory(pref.inputDir());
 }
 
 void MainWindow::deleteSession()
@@ -317,18 +318,15 @@ void MainWindow::balloonClicked() {
 }
 
 // called when a transfer has started
-void MainWindow::addedTransfer(const QED2KHandle& h) const
-{
-    qDebug() << "main windoe added transfer at " <<  h.birthday();
-    if (h.is_valid() && (h.birthday().secsTo(QDateTime::currentDateTime()) <= 1) && !h.is_seed())
-        showNotificationBaloon(tr("Download starting"), tr("%1 has started downloading.", "e.g: xxx.avi has started downloading.").arg(h.name()));
+void MainWindow::addedTransfer(const QED2KHandle& h) const {
+    //if (h.is_valid() && (h.birthday().secsTo(QDateTime::currentDateTime()) <= 1) && !h.is_seed())
+    showNotificationBaloon(tr("Download starting"), tr("%1 has started downloading.", "e.g: xxx.avi has started downloading.").arg(h.name()));
 }
 
 // called when a transfer has finished
-void MainWindow::finishedTransfer(const QED2KHandle& h) const
-{
+void MainWindow::finishedTransfer(const QED2KHandle& h) const {
     //if(!TorrentPersistentData::isSeed(h.hash()))
-    //    showNotificationBaloon(tr("Download completion"), tr("%1 has finished downloading.", "e.g: xxx.avi has finished downloading.").arg(h.name()));
+    showNotificationBaloon(tr("Download completion"), tr("%1 has finished downloading.", "e.g: xxx.avi has finished downloading.").arg(h.name()));
 }
 
 // Notification when disk is full and other disk errors

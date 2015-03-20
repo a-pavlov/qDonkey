@@ -12,7 +12,6 @@ class TransferModelItem : public QObject {
     Q_OBJECT
 public:
     enum State {
-        STATE_LOCALFILE,      // new file
         STATE_DOWNLOADING,
         STATE_QUEUED,
         STATE_STALLED_DL,
@@ -47,12 +46,10 @@ public:
 
 public:
     TransferModelItem(const QED2KHandle& h);
-    TransferModelItem(const QString& filePath, qint64 size, const QDateTime& created);
     inline int columnCount() const { return TM_END; }
     QVariant data(int column, int role = Qt::DisplayRole) const;
     bool setData(int column, const QVariant &value, int role = Qt::DisplayRole);
     inline QString hash() const { return m_hash; }
-    inline QString filePath() const { return m_filePath; }
     QED2KHandle handle() const { return m_handle; }
     void setHandle(QED2KHandle h) { m_handle = h; }
 
@@ -63,10 +60,6 @@ private:
     QED2KHandle m_handle;
     QDateTime m_addedTime;
     QDateTime m_seedTime;
-    QString m_label;
-    QString m_filePath;
-    QString m_errorMessage;
-    qint64  m_size;
     QString m_hash;
 };
 

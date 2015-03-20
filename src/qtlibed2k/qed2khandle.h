@@ -88,8 +88,6 @@ public:
     qreal download_payload_rate() const { return status().download_payload_rate; }
     qreal upload_payload_rate() const { return status().upload_payload_rate; }
     TransferBitfield pieces() const { return status().pieces; }
-    QDateTime birthday() const;
-
 private:
     libed2k::transfer_handle m_delegate;
 };

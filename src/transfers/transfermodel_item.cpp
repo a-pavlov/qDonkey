@@ -6,23 +6,9 @@
 TransferModelItem::TransferModelItem(const QED2KHandle& h) : m_handle(h) {
     Q_ASSERT(h.is_valid());
     m_hash = h.hash();
-    m_size = -1;
-    if (m_filePath.isEmpty()) m_filePath = h.filepath();
-    //m_addedTime = TorrentPersistentData::getAddedDate(h.hash());
-    //m_seedTime = TorrentPersistentData::getSeedDate(h.hash());
-    //m_label = TorrentPersistentData::getLabel(h.hash());
-}
-
-TransferModelItem::TransferModelItem(const QString& filePath, qint64 size, const QDateTime& created) {
-    m_filePath = filePath;
-    m_size = size;
-    m_addedTime = created;
 }
 
 TransferModelItem::State TransferModelItem::state() const {
-
-    if (!m_errorMessage.isEmpty()) return STATE_INVALID;
-    if (!m_handle.is_valid()) return STATE_LOCALFILE;
     if (m_handle.is_paused()) return m_handle.is_seed()?STATE_PAUSED_UP:STATE_PAUSED_DL;
 
     switch(m_handle.state()) {
@@ -45,11 +31,7 @@ bool TransferModelItem::setData(int column, const QVariant &value, int role) {
     if (role != Qt::DisplayRole) return false;
 
     switch(column) {
-        case TM_NAME: m_filePath = value.toString();
-            return true;
         case TM_HASH: m_hash = value.toString();
-            return true;
-        case TM_ERROR: m_errorMessage = value.toString();
             return true;
         default:
         break;
@@ -61,7 +43,6 @@ bool TransferModelItem::setData(int column, const QVariant &value, int role) {
 QVariant TransferModelItem::data(int column, int role) const {
     if (role == Qt::DecorationRole && column == TM_NAME) {
         switch(state()) {
-            case STATE_LOCALFILE:   return QIcon(res::fileOnDisk());
             case STATE_DOWNLOADING: return QIcon(res::downloading());
             case STATE_STALLED_DL:  return QIcon(res::stalledDL());
             case STATE_STALLED_UP:  return QIcon(res::stalledUP());
@@ -78,7 +59,6 @@ QVariant TransferModelItem::data(int column, int role) const {
 
     if (role == Qt::ForegroundRole) {
         switch(state()) {
-        case STATE_LOCALFILE:   return QColor("grey");
         case STATE_DOWNLOADING: return QColor("green");
         case STATE_STALLED_DL:
         case STATE_STALLED_UP:  return QColor("grey");
@@ -97,8 +77,8 @@ QVariant TransferModelItem::data(int column, int role) const {
 
     //if (!m_torrent.is_valid()) return QVariant();
     switch(column) {
-    case TM_NAME:       return misc::fileName(m_filePath);
-    case TM_SIZE:       return m_size;
+    case TM_NAME:       return m_handle.filename();
+    case TM_SIZE:       return m_handle.filesize();
     case TM_PROGRESS:   return (!m_handle.is_valid())?1.:m_handle.progress();
     case TM_STATUS:     return state();
     case TM_SEEDS:      return (role == Qt::DisplayRole) ? m_handle.num_seeds() : m_handle.num_complete();
@@ -111,7 +91,6 @@ QVariant TransferModelItem::data(int column, int role) const {
     case TM_SEED_DATE:  return m_seedTime;
     case TM_AMOUNT_DOWNLOADED: return static_cast<qlonglong>(m_handle.total_wanted_done());
     case TM_AMOUNT_LEFT: return static_cast<qlonglong>(m_handle.total_wanted() - m_handle.total_wanted_done());
-    case TM_ERROR:      return m_errorMessage;
     case TM_TIME_ELAPSED: //return (role == Qt::DisplayRole) ? m_torrent.active_time() : m_torrent.seeding_time();
     default:
         return QVariant();

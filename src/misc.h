@@ -73,6 +73,7 @@ private:
   misc(); // Forbidden
 
 public:
+  static const QString metadataFilename;
   static QString productName() {
       return tr("%1 v%2.%3.%4", "e.g: qDonkey v0.x")
               .arg(PRODUCT_NAME)
@@ -220,6 +221,7 @@ public:
   static libed2k::server_met file2smet(const QString&, libed2k::error_code&);
   static bool naturalSort(QString left, QString right, bool& result);
   static QString pyLocation();
+  static QString metadataDirectory(const QString& path);
   static bool prepareInputDirectory(const QString& path);
   static void normalizePath(QString&);
 };

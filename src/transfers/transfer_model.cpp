@@ -6,36 +6,19 @@
 #include <QFileInfo>
 
 TransferModel::TransferModel(QObject *parent) : QAbstractListModel(parent),
-    m_refreshInterval(3000),
-    m_currentSharePosition(0) {
-}
+    m_refreshInterval(3000) {
 
-void TransferModel::populate(const QString& path) {
-
-    m_path = path;
-    QDirIterator dirIt(path, QDir::NoDotAndDotDot| QDir::Files);
-    while(dirIt.hasNext()) {
-        dirIt.next();
-        QFileInfo info = dirIt.fileInfo();
-        addFile(info.absoluteFilePath(), info.size(), info.created());
-    }
-
-  // Refresh timer
-  connect(&m_refreshTimer, SIGNAL(timeout()), SLOT(forceModelRefresh()));
-  m_refreshTimer.start(m_refreshInterval);
-
-  // Listen for Transfer changes
-  connect(Session::instance(), SIGNAL(transferAdded(QED2KHandle)), SLOT(addTransfer(QED2KHandle)));
-  connect(Session::instance(), SIGNAL(transferDeleted(QString)),
-          SLOT(removeTransfer(QString)));
-  connect(Session::instance(), SIGNAL(transferFinished(QED2KHandle)),
-          SLOT(handleTransferUpdate(QED2KHandle)));
-  connect(Session::instance(), SIGNAL(transferResumed(QED2KHandle)),
-          SLOT(handleTransferUpdate(QED2KHandle)));
-  connect(Session::instance(), SIGNAL(fileError(QED2KHandle, QString)),
-          SLOT(handleTransferUpdate(QED2KHandle)));
-  connect(Session::instance(), SIGNAL(transferParametersReady(libed2k::add_transfer_params,libed2k::error_code)),
-          SLOT(addTransferParameters(libed2k::add_transfer_params,libed2k::error_code)));
+    // Listen for Transfer changes
+    connect(Session::instance(), SIGNAL(transferAdded(QED2KHandle)), SLOT(addTransfer(QED2KHandle)));
+    connect(Session::instance(), SIGNAL(transferDeleted(QString)), SLOT(removeTransfer(QString)));
+    connect(Session::instance(), SIGNAL(transferFinished(QED2KHandle)), SLOT(handleTransferUpdate(QED2KHandle)));
+    connect(Session::instance(), SIGNAL(transferResumed(QED2KHandle)), SLOT(handleTransferUpdate(QED2KHandle)));
+    connect(Session::instance(), SIGNAL(transferRestored(QED2KHandle)), SLOT(addTransfer(QED2KHandle)));
+    connect(Session::instance(), SIGNAL(transferShared(QED2KHandle)), SLOT(addTransfer(QED2KHandle)));
+    connect(Session::instance(), SIGNAL(fileError(QED2KHandle, QString)),
+            SLOT(handleTransferUpdate(QED2KHandle)));
+    connect(Session::instance(), SIGNAL(transferParametersReady(libed2k::add_transfer_params,libed2k::error_code)),
+            SLOT(addTransferParameters(libed2k::add_transfer_params,libed2k::error_code)));
 }
 
 TransferModel::~TransferModel() {
@@ -66,7 +49,6 @@ QVariant TransferModel::headerData(int section, Qt::Orientation orientation,
                 case TransferModelItem::TM_AMOUNT_DOWNLOADED: return tr("Amount downloaded", "Amount of data downloaded (e.g. in MB)");
                 case TransferModelItem::TM_AMOUNT_LEFT: return tr("Amount left", "Amount of data left to download (e.g. in MB)");
                 case TransferModelItem::TM_TIME_ELAPSED: return tr("Time Active", "Time (duration) the Transfer is active (not paused)");
-                case TransferModelItem::TM_ERROR: return tr("Problems", "i.e. errors occured on transfer or hashing file");
             default:
             return QVariant();
         }
@@ -128,17 +110,6 @@ int TransferModel::transferRow(const QString &hash) const {
     return -1;
 }
 
-int TransferModel::filepathRow(const QString& filePath) const {
-    QList<TransferModelItem*>::const_iterator it;
-    int row = 0;
-    for (it = m_transfers.constBegin(); it != m_transfers.constEnd(); it++) {
-        if ((*it)->filePath() == filePath) return row;
-        ++row;
-    }
-
-    return -1;
-}
-
 void TransferModel::addTransfer(const QED2KHandle& h) {
     qDebug() << Q_FUNC_INFO;
 
@@ -157,14 +128,6 @@ void TransferModel::addTransfer(const QED2KHandle& h) {
         emit transferAdded(item);
         endInsertTransfer();
     }
-}
-
-void TransferModel::addFile(const QString &name, qint64 size, const QDateTime &created) {
-    beginInsertTransfer(m_transfers.size());
-    TransferModelItem* item = new TransferModelItem(name, size, created);
-    m_transfers << item;
-    emit transferAdded(item);
-    endInsertTransfer();
 }
 
 void TransferModel::removeTransfer(const QString &hash) {
@@ -206,20 +169,6 @@ void TransferModel::processUncheckedTransfers() {
         }
         else
             ++i;
-    }
-
-    int processedFiles = 0;
-
-    while (m_currentSharePosition < m_transfers.size() && processedFiles < FilesPerCycle) {
-        qDebug() << "look at position " << m_currentSharePosition;
-        TransferModelItem* item = m_transfers.at(m_currentSharePosition);
-        if (!item->handle().is_valid())  {
-            qDebug() << "generate transfer parameters for " << item->filePath();
-            Session::instance()->makeTransferParametersAsync(item->filePath());
-            ++processedFiles;
-        }
-
-        ++m_currentSharePosition;
     }
 }
 
@@ -263,18 +212,4 @@ void TransferModel::handleTransferAboutToBeRemoved(const QED2KHandle &h, bool) {
   const int row = transferRow(h.hash());
   if (row >= 0)
       emit transferAboutToBeRemoved(m_transfers.at(row));
-}
-
-void TransferModel::addTransferParameters(const libed2k::add_transfer_params& atp, const libed2k::error_code& ec) {
-    int row = filepathRow(misc::toQStringU(atp.file_path));
-    if (row != -1) {
-        if (!ec) {
-            qDebug() << "add transfer " << fromHash(atp.file_hash) << " to session";
-            m_transfers.at(row)->setData(TransferModelItem::TM_HASH, fromHash(atp.file_hash));
-            m_transfers[row]->setHandle(Session::instance()->addTransfer(atp));
-        } else {
-            m_transfers.at(row)->setData(TransferModelItem::TM_ERROR, misc::toQStringU(ec.message()));
-        }
-        notifyTransferChanged(row);
-    }
 }

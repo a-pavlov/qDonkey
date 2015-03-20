@@ -228,35 +228,32 @@ QString fromHash(const libed2k::md4_hash& h) {
     return misc::toQStringU(h.toString());
 }
 
-bool writeResumeData(const libed2k::save_resume_data_alert* p)
+bool writeResumeData(const libed2k::save_resume_data_alert* p, const QString& path, const QDateTime& birthday)
 {
     qDebug() << Q_FUNC_INFO;
-    try
-    {
+    try {
         QED2KHandle h(p->m_handle);
         qDebug() << "save fast resume data for " << h.hash();
 
-        if (h.is_valid() && p->resume_data)
-        {
-            QDir libed2kBackup(misc::ED2KBackupLocation());
+        if (h.is_valid() && p->resume_data) {
+            QDir bkpDir(path);
             // Remove old fastresume file if it exists
             std::vector<char> out;
             libed2k::bencode(back_inserter(out), *p->resume_data);
-            const QString filepath = libed2kBackup.absoluteFilePath(h.hash() +".fastresume");
-            libed2k::transfer_resume_data trd(p->m_handle.hash(), p->m_handle.save_path(), p->m_handle.name(), p->m_handle.size(), out);
+            const QString filepath = bkpDir.absoluteFilePath(h.filename());
+            libed2k::transfer_resume_data trd(p->m_handle.hash(), p->m_handle.save_path(), p->m_handle.name(), p->m_handle.size(), h.is_seed(), out);
+            trd.m_fast_resume_data.add_tag(libed2k::make_string_tag(birthday.toString(Qt::ISODate).toUtf8().constData(), libed2k::CT_EMULE_RESERVED1, true));
 
             std::ofstream fs(filepath.toLocal8Bit(), std::ios_base::out | std::ios_base::binary);
 
-            if (fs)
-            {
+            if (fs) {
                 libed2k::archive::ed2k_oarchive oa(fs);
                 oa << trd;
                 return true;
             }
         }
     }
-    catch(const libed2k::libed2k_exception& e)
-    {
+    catch(const libed2k::libed2k_exception& e) {
         qDebug() << "error on write resume data " << misc::toQStringU(e.what());
     }
 
@@ -272,7 +269,7 @@ bool writeResumeDataOne(std::ofstream& fs, const libed2k::save_resume_data_alert
         {
             std::vector<char> out;
             libed2k::bencode(back_inserter(out), *p->resume_data);
-            libed2k::transfer_resume_data trd(p->m_handle.hash(), p->m_handle.save_path(), p->m_handle.name(), p->m_handle.size(), out);
+            libed2k::transfer_resume_data trd(p->m_handle.hash(), p->m_handle.save_path(), p->m_handle.name(), p->m_handle.size(), p->m_handle.is_seed(), out);
             libed2k::archive::ed2k_oarchive oa(fs);
             oa << trd;
             return true;
@@ -763,7 +760,12 @@ void QED2KSession::readAlerts()
         else if (libed2k::added_transfer_alert* p =
                  dynamic_cast<libed2k::added_transfer_alert*>(a.get()))
         {
-            emit transferAdded(QED2KHandle(p->m_handle));
+            QED2KHandle h(p->m_handle);
+            if (m_sharedFiles.contains(h.hash())) {
+                emit transferShared(h);
+            } else {
+                emit transferAdded(QED2KHandle(h));
+            }
         }
         else if (libed2k::paused_transfer_alert* p =
                  dynamic_cast<libed2k::paused_transfer_alert*>(a.get()))
@@ -820,11 +822,16 @@ void QED2KSession::readAlerts()
         }
         else if (libed2k::save_resume_data_alert* p = dynamic_cast<libed2k::save_resume_data_alert*>(a.get()))
         {
-            writeResumeData(p);
+            Preferences pref;
+            QED2KHandle h(p->m_handle);
+            writeResumeData(p, misc::metadataDirectory(pref.inputDir()), birthday(h.hash()));
         }
         else if (libed2k::transfer_params_alert* p = dynamic_cast<libed2k::transfer_params_alert*>(a.get()))
         {
             emit transferParametersReady(p->m_atp, p->m_ec);
+            if (!p->m_ec) m_sharedFiles << addTransfer(p->m_atp).hash();
+            else qDebug() << "transfer params error: " << misc::toQStringU(p->m_ec.message());
+
         }
         else if (libed2k::file_renamed_alert* p = dynamic_cast<libed2k::file_renamed_alert*>(a.get()))
         {
@@ -857,6 +864,12 @@ void QED2KSession::readAlerts()
 
         a = m_session->pop_alert();
     }
+
+    int counter = 4;
+    while(!m_pendingFiles.empty() && counter != 0) {
+        makeTransferParametersAsync(m_pendingFiles.takeFirst());
+        ++counter;
+    }
 }
 
 // Called periodically
@@ -888,75 +901,62 @@ void QED2KSession::saveTempFastResumeData()
 void QED2KSession::saveFastResumeData()
 {
     qDebug("Saving fast resume data...");
+    Preferences pref;
     int part_num = 0;
     int num_resume_data = 0;
     // Pause session
     delegate()->pause();
     std::vector<libed2k::transfer_handle> transfers =  delegate()->get_transfers();
 
-    for (std::vector<libed2k::transfer_handle>::iterator th_itr = transfers.begin(); th_itr != transfers.end(); th_itr++)
-    {
+    for (std::vector<libed2k::transfer_handle>::iterator th_itr = transfers.begin(); th_itr != transfers.end(); th_itr++) {
         QED2KHandle h = QED2KHandle(*th_itr);
-        if (!h.is_valid())
-        {
+        if (!h.is_valid()) {
             qDebug() << "transfer invalid or hasn't metadata";
             continue;
         }
 
-        try
-        {
+        try {
 
-            if (h.state() == QED2KHandle::checking_files || h.state() == QED2KHandle::queued_for_checking)
-            {
-                qDebug() << "transfer " << h.hash() << " in checking files or queued for checking";
+            if (h.state() == QED2KHandle::checking_files || h.state() == QED2KHandle::queued_for_checking) {
+                qDebug() << "skip transfer " << h.hash() << " because of checking files or queued for checking";
                 continue;
             }
 
-            if (h.need_save_resume_data())
-            {
+            if (h.need_save_resume_data()) {
                 if(!h.is_seed())
                     ++part_num;
-
                 h.save_resume_data();
                 ++num_resume_data;
             }
         }
-        catch(libed2k::libed2k_exception& e)
-        {
-            qDebug() << "exception on request saving " << misc::toQStringU(e.what());
+        catch(libed2k::libed2k_exception& e) {
+            qDebug() << "exception on save fast resume " << misc::toQStringU(e.what());
         }
     }
 
-    while (num_resume_data > 0)
-    {
+    while (num_resume_data > 0) {
         libed2k::alert const* a = delegate()->wait_for_alert(libed2k::seconds(30));
 
-        if (a == 0)
-        {
+        if (a == 0) {
             qDebug("On save fast resume data we got empty alert - alert wasn't generated");
             break;
         }
 
-        if (libed2k::save_resume_data_failed_alert const* rda = dynamic_cast<libed2k::save_resume_data_failed_alert const*>(a))
-        {
+        if (libed2k::save_resume_data_failed_alert const* rda = dynamic_cast<libed2k::save_resume_data_failed_alert const*>(a)) {
             qDebug() << "save resume data failed alert " << misc::toQStringU(rda->message().c_str());
             --num_resume_data;
 
-            try
-            {
-                // Remove torrent from session
+            try {
                 if (rda->m_handle.is_valid())
                     delegate()->remove_transfer(rda->m_handle);
             }
-            catch(const libed2k::libed2k_exception& e)
-            {
+            catch(const libed2k::libed2k_exception& e) {
                 qDebug() << "exception on remove transfer after save " << misc::toQStringU(e.what());
             }
-        }
-        else if (libed2k::save_resume_data_alert const* rd = dynamic_cast<libed2k::save_resume_data_alert const*>(a))
-        {
+        } else if (libed2k::save_resume_data_alert const* rd = dynamic_cast<libed2k::save_resume_data_alert const*>(a)) {
             --num_resume_data;
-            writeResumeData(rd);
+            QED2KHandle h(rd->m_handle);
+            writeResumeData(rd, misc::metadataDirectory(pref.inputDir()), birthday(h.hash()));
 
             try
             {
@@ -972,80 +972,79 @@ void QED2KSession::saveFastResumeData()
     }
 }
 
-void QED2KSession::loadFastResumeData()
-{
-    qDebug("load fast resume data");
-    // avoid load collections from previous fail
-    QDir bkp_dir(misc::ED2KCollectionLocation());
-    if (bkp_dir.exists())
-    {
-        foreach(QString filename, bkp_dir.entryList(QDir::Files))
-        {
-            qDebug() << "remove fail file: " << filename;
-            QFile::remove(bkp_dir.absoluteFilePath(filename));
-        }
-    }
+void QED2KSession::loadFastResumeData(const QString& path) {
+    qDebug() << Q_FUNC_INFO << path;
 
     // we need files 32 length(MD4_HASH_SIZE*2) name and extension fastresume
     QStringList filter;
-    filter << "????????????????????????????????.fastresume";
+    //filter << "????????????????????????????????.fastresume";
 
-    QDir fastresume_dir(misc::ED2KBackupLocation());
-    const QStringList files = fastresume_dir.entryList(filter, QDir::Files, QDir::Unsorted);
+    QDir fastresumeDir(path);
+    const QStringList files = fastresumeDir.entryList(filter, QDir::Files, QDir::Unsorted);
 
-    foreach (const QString &file, files)
-    {
+    foreach (const QString &file, files) {
         qDebug("Trying to load fastresume data: %s", qPrintable(file));
-        const QString file_abspath = fastresume_dir.absoluteFilePath(file);
+        const QString file_abspath = fastresumeDir.absoluteFilePath(file);
         // extract hash from name
-        libed2k::md4_hash hash = libed2k::md4_hash::fromString(
-            file.toStdString().substr(0, libed2k::MD4_HASH_SIZE*2));
+        //libed2k::md4_hash hash = libed2k::md4_hash::fromString(
+        //    file.toStdString().substr(0, libed2k::MD4_HASH_SIZE*2));
 
-        if (hash.defined())
-        {
-            try
+        try {
+            std::ifstream fs(file_abspath.toLocal8Bit(), std::ios_base::in | std::ios_base::binary);
+
+            if (fs)
             {
-                std::ifstream fs(file_abspath.toLocal8Bit(), std::ios_base::in | std::ios_base::binary);
+                libed2k::transfer_resume_data trd;
+                libed2k::archive::ed2k_iarchive ia(fs);
+                ia >> trd;
 
-                if (fs)
+                // add transfer
+                PersistentDataItem item;
+                item.m_params = QSharedPointer<libed2k::add_transfer_params>(new libed2k::add_transfer_params);
+                item.m_params->seed_mode = false;
+                item.m_params->file_path = trd.m_filepath.m_collection;
+                item.m_params->file_size = trd.m_filesize;
+                item.m_params->file_hash = trd.m_hash;
+
+                if (trd.m_fast_resume_data.count() > 0)
                 {
-                    libed2k::transfer_resume_data trd;
-                    libed2k::archive::ed2k_iarchive ia(fs);
-                    ia >> trd;
-                    // compare hashes
-                    if (trd.m_hash == hash)
-                    {
-                        // add transfer
-                        libed2k::add_transfer_params params;
-                        params.seed_mode = false;
-                        params.file_path = trd.m_filepath.m_collection;
-                        params.file_size = trd.m_filesize;
-                        params.file_hash = trd.m_hash;
-
-                        if (trd.m_fast_resume_data.count() > 0)
-                        {
-                            params.resume_data = const_cast<std::vector<char>* >(
-                                &trd.m_fast_resume_data.getTagByNameId(libed2k::FT_FAST_RESUME_DATA)->asBlob());
-                        }
-
-                        QFileInfo qfi(QString::fromUtf8(trd.m_filepath.m_collection.c_str()));
-                        // add transfer only when file still exists
-                        if (qfi.exists() && qfi.isFile())
-                        {                            
-                            QED2KHandle h(delegate()->add_transfer(params));
-                            m_fast_resume_transfers.insert(h.hash(), h);
-                        }
-                        else
-                        {
-                            qDebug() << "file not exists: " << qfi.fileName();
-                        }
-                    }
-                    else // bad file
-                        QFile::remove(file_abspath);
+                    item.m_params->resume_data = const_cast<std::vector<char>* >(
+                        &trd.m_fast_resume_data.getTagByNameId(libed2k::FT_FAST_RESUME_DATA)->asBlob());
                 }
+
+                boost::shared_ptr<libed2k::base_tag> resumeTag = trd.m_fast_resume_data.getTagByNameId(libed2k::FT_FAST_RESUME_DATA);
+
+                if (resumeTag) {
+                    item.m_params->resume_data = const_cast<std::vector<char>* >(&resumeTag->asBlob());
+                }
+
+                boost::shared_ptr<libed2k::base_tag> birthdayTag = trd.m_fast_resume_data.getTagByNameId(libed2k::CT_EMULE_RESERVED1);
+
+                if (birthdayTag) {
+                    item.m_birthday = QDateTime::fromString(misc::toQStringU(birthdayTag->asString()), Qt::ISODate);
+                } else {
+                    item.m_birthday = QDateTime::currentDateTime();
+                }
+
+                /*
+                //QFileInfo qfi(QString::fromUtf8(trd.m_filepath.m_collection.c_str()));
+                // add transfer only when file still exists
+                if (qfi.exists() && qfi.isFile())
+                {
+                    //QED2KHandle h(delegate()->add_transfer(params));
+                    //m_fast_resume_transfers.insert(h.hash(), h);
+                }
+                else
+                {
+                    qDebug() << "file not exists: " << qfi.fileName();
+                    // check file should exists!
+                }
+                */
             }
-            catch(const libed2k::libed2k_exception&)
-            {}
+        }
+        catch(const libed2k::libed2k_exception& e) {
+            qDebug() << "incorrect fast resume file format detected: " << misc::toQStringU(e.what());
+            QFile::remove(file_abspath);
         }
     }
 }
@@ -1164,4 +1163,55 @@ qreal QED2KSession::getRealRatio(const QString &hash) const
     if (ratio > MAX_RATIO)
         ratio = MAX_RATIO;
     return ratio;
+}
+
+void QED2KSession::loadDirectory(const QString& path) {
+    qDebug() << Q_FUNC_INFO << path;
+    emit resetInputDirectory(path);
+
+    QStringList filter;
+    //filter << "????????????????????????????????.fastresume";
+
+    QDir fastresumeDir(misc::metadataDirectory(path));
+    const QStringList files = fastresumeDir.entryList(filter, QDir::Files, QDir::Unsorted);
+
+    QHash<QString, libed2k::transfer_resume_data> data;
+
+    foreach (const QString &file, files) {
+        qDebug("Trying to load fastresume data: %s", qPrintable(file));
+        const QString file_abspath = fastresumeDir.absoluteFilePath(file);
+        // extract hash from name
+        //libed2k::md4_hash hash = libed2k::md4_hash::fromString(
+        //    file.toStdString().substr(0, libed2k::MD4_HASH_SIZE*2));
+
+        try {
+            std::ifstream fs(file_abspath.toLocal8Bit(), std::ios_base::in | std::ios_base::binary);
+
+            if (fs) {
+                libed2k::transfer_resume_data trd;
+                libed2k::archive::ed2k_iarchive ia(fs);
+                ia >> trd;
+
+                QString hash = fromHash(trd.m_hash);
+                //item.m_params->seed_mode = false;
+                //item.m_params->file_path = trd.m_filepath.m_collection;
+                //item.m_params->file_size = trd.m_filesize;
+                //item.m_params->file_hash = trd.m_hash;
+                data.insert(fromHash(trd.m_hash), trd);
+            }
+        }
+        catch(const libed2k::libed2k_exception& e) {
+            qDebug() << "incorrect fast resume file format detected: " << misc::toQStringU(e.what());
+            QFile::remove(file_abspath);
+        }
+    }
+
+    QDirIterator dirIt(path, QDir::NoDotAndDotDot | QDir::Files);
+    while(dirIt.hasNext()) {
+        QString filepath = dirIt.next();
+        QFileInfo info = dirIt.fileInfo();
+        if (!data.contains(info.fileName())) {
+            m_pendingFiles << filepath;
+        }
+    }
 }

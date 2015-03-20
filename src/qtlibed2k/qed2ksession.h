@@ -16,6 +16,8 @@
 #include <QStringList>
 #include <QHash>
 #include <QSet>
+#include <QDateTime>
+#include <QSharedPointer>
 
 #include <libed2k/session.hpp>
 #include <libed2k/session_status.hpp>
@@ -106,6 +108,18 @@ struct QED2KPeerOptions {
     QED2KPeerOptions(const libed2k::misc_options& mo, const libed2k::misc_options2& mo2);
 };
 
+/**
+ * @brief The PersistentDataItem struct handles libed2k related transfer params
+ * and additional birthday parameter for transfer
+ */
+struct PersistentDataItem {
+    QSharedPointer<libed2k::add_transfer_params> m_params;
+    QDateTime m_birthday;
+    bool has_metadata() const { return !m_params.isNull(); }
+};
+
+typedef QHash<QString, PersistentDataItem> PersistentData;
+
 QString fromHash(const libed2k::md4_hash&);
 
 class QED2KSession : public QObject {
@@ -144,22 +158,32 @@ public:
     std::pair<libed2k::add_transfer_params, libed2k::error_code> makeTransferParameters(const QString& filepath) const;
 
     /** scan ed2k backup directory and load all files were matched name filter */
-    void loadFastResumeData();
+    void loadFastResumeData(const QString&);
     void enableUPnP(bool b);
 
     void deferPlayMedia(QED2KHandle h);
     bool playMedia(QED2KHandle h);
     void playLink(const QString& strLink);
+    void loadDirectory(const QString& path);
+
+    QDateTime birthday(const QString& hash) const {
+        PersistentDataItem item;
+        return m_persistentData.value(hash, item).m_birthday;
+    }
 
     libed2k::session* delegate() const;
 
     const libed2k::ip_filter& session_filter() const;
+
 private:
     void playPendingMedia();
     QScopedPointer<libed2k::session> m_session;
     QHash<QString, QED2KHandle> m_fast_resume_transfers;   // contains fast resume data were loading
     QTimer alertsTimer;
     QSet<QED2KHandle> m_pending_medias;
+    PersistentData m_persistentData;
+    QStringList m_pendingFiles;
+    QSet<QString> m_sharedFiles;
     // Port forwarding
     libed2k::upnp* m_upnp;
     libed2k::natpmp* m_natpmp;
@@ -261,17 +285,31 @@ signals:
     void transferParametersReady(const libed2k::add_transfer_params&, const libed2k::error_code&);
 
     /**
-      * transfers related signals
-      *
-    */
+     * @brief transferAdded - completely new transfer was added to session
+     */
     void transferAdded(QED2KHandle);
     void transferPaused(QED2KHandle);
     void transferResumed(QED2KHandle);
     void transferDeleted(QString);
+    /**
+     * @brief transferFinished - new transfer finished download
+     */
     void transferFinished(QED2KHandle);
+    /**
+     * @brief transferShared - new transfer created from local file
+     */
+    void transferShared(QED2KHandle);
     void transferSavePathChanged(QED2KHandle);
     void transferStorageMoved(QED2KHandle);
+
+    /**
+     * @brief transferRestored - transfer was restored from fast resume data
+     */
+    void transferRestored(QED2KHandle);
+
     void fileError(QED2KHandle, QString);
+
+    void resetInputDirectory(const QString& path);
 };
 
 typedef QED2KSession Session;

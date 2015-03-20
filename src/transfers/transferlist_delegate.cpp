@@ -48,9 +48,6 @@ void TransferListDelegate::paint(QPainter * painter, const QStyleOptionViewItem 
         const int state = index.data().toInt();
         QString display;
         switch(state) {
-            case TransferModelItem::STATE_LOCALFILE:
-                display = tr("Local file");
-                break;
             case TransferModelItem::STATE_DOWNLOADING:
                 display = tr("Downloading");
                 break;

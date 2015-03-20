@@ -132,4 +132,3 @@ int QED2KHandle::num_complete() const { return status().num_complete; }
 int QED2KHandle::num_incomplete() const { return status().num_incomplete; }
 int QED2KHandle::num_connections() const { return status().num_connections; }
 int QED2KHandle::connections_limit() const { return status().connections_limit; }
-QDateTime QED2KHandle::birthday() const { return QDateTime::fromString(misc::toQStringU(m_delegate.birthday_iso()), Qt::ISODate); }
