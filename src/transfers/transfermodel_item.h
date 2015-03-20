@@ -36,11 +36,9 @@ public:
         TM_HASH,
         TM_RATIO,
         TM_ADD_DATE,
-        TM_SEED_DATE,
         TM_AMOUNT_DOWNLOADED,
         TM_AMOUNT_LEFT,
         TM_TIME_ELAPSED,
-        TM_ERROR,
         TM_END
     };
 

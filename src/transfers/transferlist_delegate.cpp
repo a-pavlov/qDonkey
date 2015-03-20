@@ -91,7 +91,6 @@ void TransferListDelegate::paint(QPainter * painter, const QStyleOptionViewItem 
         break;
     }
     case TransferModelItem::TM_ADD_DATE:
-    case TransferModelItem::TM_SEED_DATE:
         QItemDelegate::drawBackground(painter, opt, index);
         QItemDelegate::drawDisplay(painter, opt, opt.rect, index.data().toDateTime().toLocalTime().toString(Qt::DefaultLocaleShortDate));
         break;

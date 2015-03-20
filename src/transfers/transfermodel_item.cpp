@@ -87,8 +87,7 @@ QVariant TransferModelItem::data(int column, int role) const {
     case TM_UPSPEED:    return m_handle.upload_payload_rate();
     case TM_HASH:       return m_hash;
     case TM_RATIO:      return Session::instance()->getRealRatio(m_handle.hash());
-    case TM_ADD_DATE:   return m_addedTime;
-    case TM_SEED_DATE:  return m_seedTime;
+    case TM_ADD_DATE:   return Session::instance()->hasBeenAdded(m_handle.hash());
     case TM_AMOUNT_DOWNLOADED: return static_cast<qlonglong>(m_handle.total_wanted_done());
     case TM_AMOUNT_LEFT: return static_cast<qlonglong>(m_handle.total_wanted() - m_handle.total_wanted_done());
     case TM_TIME_ELAPSED: //return (role == Qt::DisplayRole) ? m_torrent.active_time() : m_torrent.seeding_time();

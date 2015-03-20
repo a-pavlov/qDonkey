@@ -32,22 +32,7 @@
          <property name="frameShadow">
           <enum>QFrame::Raised</enum>
          </property>
-         <layout class="QHBoxLayout" name="horizontalLayout_4">
-          <property name="spacing">
-           <number>6</number>
-          </property>
-          <property name="leftMargin">
-           <number>9</number>
-          </property>
-          <property name="topMargin">
-           <number>3</number>
-          </property>
-          <property name="rightMargin">
-           <number>9</number>
-          </property>
-          <property name="bottomMargin">
-           <number>3</number>
-          </property>
+         <layout class="QHBoxLayout" name="horizontalLayout">
           <item>
            <widget class="QToolButton" name="startTransfersBtn_2">
             <property name="maximumSize">
@@ -116,7 +101,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QToolButton" name="downloadingBtn_2">
+           <widget class="QToolButton" name="btnDownloading">
             <property name="minimumSize">
              <size>
               <width>0</width>
@@ -130,11 +115,11 @@
              </size>
             </property>
             <property name="text">
-             <string>In progress</string>
+             <string>Downloading</string>
             </property>
             <property name="icon">
              <iconset resource="../icons.qrc">
-              <normaloff>:/icons/transfer_list/DownloadFiles.png</normaloff>:/icons/transfer_list/DownloadFiles.png</iconset>
+              <normaloff>:/icons/transfer_list/Download.png</normaloff>:/icons/transfer_list/Download.png</iconset>
             </property>
             <property name="checkable">
              <bool>true</bool>
@@ -148,7 +133,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QToolButton" name="completedBtn_2">
+           <widget class="QToolButton" name="btnUploading">
             <property name="enabled">
              <bool>true</bool>
             </property>
@@ -159,11 +144,11 @@
              </size>
             </property>
             <property name="text">
-             <string>Completed</string>
+             <string>Uploading</string>
             </property>
             <property name="icon">
              <iconset resource="../icons.qrc">
-              <normaloff>:/icons/catalog.png</normaloff>:/icons/catalog.png</iconset>
+              <normaloff>:/icons/transfer_list/Upload.png</normaloff>:/icons/transfer_list/Upload.png</iconset>
             </property>
             <property name="checkable">
              <bool>true</bool>
@@ -177,7 +162,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QToolButton" name="waitingBtn_2">
+           <widget class="QToolButton" name="btnStalled">
             <property name="maximumSize">
              <size>
               <width>16777215</width>
@@ -185,11 +170,11 @@
              </size>
             </property>
             <property name="text">
-             <string>New</string>
+             <string>Stalled</string>
             </property>
             <property name="icon">
              <iconset resource="../icons.qrc">
-              <normaloff>:/icons/FileSharedServer.ico</normaloff>:/icons/FileSharedServer.ico</iconset>
+              <normaloff>:/icons/transfer_list/queued.png</normaloff>:/icons/transfer_list/queued.png</iconset>
             </property>
             <property name="checkable">
              <bool>true</bool>
@@ -203,14 +188,40 @@
            </widget>
           </item>
           <item>
-           <spacer name="horizontalSpacer_4">
+           <widget class="QToolButton" name="btnStalled_2">
+            <property name="maximumSize">
+             <size>
+              <width>16777215</width>
+              <height>24</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>Paused</string>
+            </property>
+            <property name="icon">
+             <iconset resource="../icons.qrc">
+              <normaloff>:/icons/Pause.ico</normaloff>:/icons/Pause.ico</iconset>
+            </property>
+            <property name="checkable">
+             <bool>true</bool>
+            </property>
+            <property name="toolButtonStyle">
+             <enum>Qt::ToolButtonTextBesideIcon</enum>
+            </property>
+            <property name="autoRaise">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <spacer name="horizontalSpacer">
             <property name="orientation">
              <enum>Qt::Horizontal</enum>
             </property>
             <property name="sizeHint" stdset="0">
              <size>
-              <width>640</width>
-              <height>10</height>
+              <width>40</width>
+              <height>20</height>
              </size>
             </property>
            </spacer>
@@ -227,7 +238,16 @@
           <enum>QFrame::Sunken</enum>
          </property>
          <layout class="QGridLayout" name="gridLayout_15">
-          <property name="margin">
+          <property name="leftMargin">
+           <number>0</number>
+          </property>
+          <property name="topMargin">
+           <number>0</number>
+          </property>
+          <property name="rightMargin">
+           <number>0</number>
+          </property>
+          <property name="bottomMargin">
            <number>0</number>
           </property>
           <property name="spacing">

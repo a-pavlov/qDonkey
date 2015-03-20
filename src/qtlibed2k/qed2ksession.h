@@ -165,12 +165,7 @@ public:
     bool playMedia(QED2KHandle h);
     void playLink(const QString& strLink);
     void loadDirectory(const QString& path);
-
-    QDateTime birthday(const QString& hash) const {
-        PersistentDataItem item;
-        return m_persistentData.value(hash, item).m_birthday;
-    }
-
+    QDateTime hasBeenAdded(const QString& hash) const;
     libed2k::session* delegate() const;
 
     const libed2k::ip_filter& session_filter() const;
@@ -184,10 +179,13 @@ private:
     PersistentData m_persistentData;
     QStringList m_pendingFiles;
     QSet<QString> m_sharedFiles;
+    QHash<QString, QDateTime> m_addTimes;
+    QHash<QString, libed2k::transfer_resume_data> m_fastTransfers;
     // Port forwarding
     libed2k::upnp* m_upnp;
     libed2k::natpmp* m_natpmp;
     libed2k::server_connection_parameters m_sp;
+    QString m_currentPath;
 private slots:
     void readAlerts();
 public slots:
