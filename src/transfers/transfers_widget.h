@@ -19,7 +19,7 @@ public:
 private slots:
     void on_actionStart_triggered();
 
-    void on_actionActionPause_triggered();
+    void on_actionPause_triggered();
 
     void on_actionRemove_triggered();
 

@@ -14,6 +14,7 @@ TransferModel::TransferModel(QObject *parent) : QAbstractListModel(parent),
     connect(Session::instance(), SIGNAL(transferFinished(QED2KHandle)), SLOT(handleTransferUpdate(QED2KHandle)));
     connect(Session::instance(), SIGNAL(transferResumed(QED2KHandle)), SLOT(handleTransferUpdate(QED2KHandle)));
     connect(Session::instance(), SIGNAL(transferRestored(QED2KHandle)), SLOT(addTransfer(QED2KHandle)));
+    connect(Session::instance(), SIGNAL(transferPaused(QED2KHandle)), SLOT(handleTransferUpdate(QED2KHandle)));
     connect(Session::instance(), SIGNAL(transferShared(QED2KHandle)), SLOT(addTransfer(QED2KHandle)));
     connect(Session::instance(), SIGNAL(fileError(QED2KHandle, QString)),
             SLOT(handleTransferUpdate(QED2KHandle)));

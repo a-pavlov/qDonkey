@@ -65,9 +65,10 @@ void transfers_widget::on_actionStart_triggered() {
     }
 }
 
-void transfers_widget::on_actionActionPause_triggered() {
+void transfers_widget::on_actionPause_triggered() {
     const QStringList hashes = getSelectedHashes();
     foreach (const QString &hash, hashes) {
+        qDebug() << "pause " << hash;
         Session::instance()->getTransfer(hash).pause();
     }
 }
