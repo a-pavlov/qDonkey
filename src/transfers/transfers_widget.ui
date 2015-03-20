@@ -185,6 +185,9 @@
             <property name="styleSheet">
              <string notr="true">border: none;</string>
             </property>
+            <property name="selectionMode">
+             <enum>QAbstractItemView::ExtendedSelection</enum>
+            </property>
             <property name="verticalScrollMode">
              <enum>QAbstractItemView::ScrollPerPixel</enum>
             </property>
@@ -315,6 +318,9 @@
    <property name="text">
     <string>Start</string>
    </property>
+   <property name="toolTip">
+    <string>Resume transfer</string>
+   </property>
   </action>
   <action name="actionPause">
    <property name="icon">
@@ -324,6 +330,9 @@
    <property name="text">
     <string>Pause</string>
    </property>
+   <property name="toolTip">
+    <string>Pause transfer</string>
+   </property>
   </action>
   <action name="actionRemove">
    <property name="icon">
@@ -331,7 +340,7 @@
      <normaloff>:/icons/oxygen/dialog-cancel.png</normaloff>:/icons/oxygen/dialog-cancel.png</iconset>
    </property>
    <property name="text">
-    <string>Remove</string>
+    <string>Remove transfer and file</string>
    </property>
   </action>
   <action name="actionED2K_link">

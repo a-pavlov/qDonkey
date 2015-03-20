@@ -35,10 +35,44 @@ transfers_widget::~transfers_widget()
 
 void transfers_widget::displayListMenu(const QPoint&) {
     QModelIndexList selected = trView->selectionModel()->selectedRows();
-    //QModelIndexList selected = treeResult->selectionModel()->selectedRows();
-    //bool enabled =
-    //    selected.size() == 1 &&
-    //    misc::isMD4Hash(selected_data(treeResult, SearchModel::DC_HASH).toString());
+    const QStringList hashes = getSelectedHashes();
+    bool has_start = false;
+    bool has_pause = false;
+    bool has_preview = false;
+    bool has_link = (hashes.size() == 1);
+    int all_same_sequential_download_mode = 0;
+    int all_same_prio_firstlast = 0;
+    int seeders = 0;
+    int invalid = 0;
+
+    foreach(const QString& hash, hashes) {
+        QED2KHandle h = Session::instance()->getTransfer(hash);
+        if (h.is_valid()) {
+            if (h.is_seed()) ++seeders; else {
+                if (h.is_sequential_download()) ++all_same_sequential_download_mode;
+                if (h.extremity_pieces_first()) ++all_same_prio_firstlast;
+            }
+            if (h.is_paused()) has_start = true; else has_pause = true;
+            if (misc::isPreviewable(misc::file_extension(h.filename()))) has_preview = true;
+        } else {
+            ++invalid;
+        }
+    }
+
+    actionStart->setEnabled(has_start);
+    actionPause->setEnabled(has_pause);
+    actionPreview->setEnabled(has_preview);
+    actionED2K_link->setEnabled(has_link);
+
+    actionSeries_download->setChecked(all_same_sequential_download_mode == (hashes.size() - seeders - invalid));
+    actionFirst_and_last_pieces_first->setChecked(all_same_prio_firstlast == (hashes.size() - seeders- invalid));
+    if (seeders == (hashes.size() - invalid)) {
+        actionSeries_download->setDisabled(true);
+        actionSeries_download->setChecked(false);
+        actionFirst_and_last_pieces_first->setDisabled(true);
+        actionFirst_and_last_pieces_first->setChecked(false);
+    }
+
     menu->exec(QCursor::pos());
 }
 
@@ -68,7 +102,6 @@ void transfers_widget::on_actionStart_triggered() {
 void transfers_widget::on_actionPause_triggered() {
     const QStringList hashes = getSelectedHashes();
     foreach (const QString &hash, hashes) {
-        qDebug() << "pause " << hash;
         Session::instance()->getTransfer(hash).pause();
     }
 }
@@ -105,8 +138,7 @@ void transfers_widget::on_actionSeries_download_triggered()
     }
 }
 
-void transfers_widget::on_actionFirst_and_last_pieces_first_triggered()
-{
+void transfers_widget::on_actionFirst_and_last_pieces_first_triggered() {
     QStringList hashes = getSelectedHashes();
     foreach (const QString &hash, hashes) {
         QED2KHandle h = Session::instance()->getTransfer(hash);
