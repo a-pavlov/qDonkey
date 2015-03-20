@@ -144,6 +144,7 @@ public:
     std::vector<QED2KHandle> getActiveTransfers() const;
     virtual bool hasActiveTransfers() const; // override default behaviour by active transfers usage
     SessionStatus getSessionStatus() const;
+
     void deleteTransfer(const QString& hash, bool delete_files);
 
     void setDownloadRateLimit(long rate);

@@ -34,73 +34,6 @@
          </property>
          <layout class="QHBoxLayout" name="horizontalLayout">
           <item>
-           <widget class="QToolButton" name="startTransfersBtn_2">
-            <property name="maximumSize">
-             <size>
-              <width>24</width>
-              <height>24</height>
-             </size>
-            </property>
-            <property name="text">
-             <string>...</string>
-            </property>
-            <property name="icon">
-             <iconset resource="../icons.qrc">
-              <normaloff>:/icons/NavigateForward.ico</normaloff>:/icons/NavigateForward.ico</iconset>
-            </property>
-            <property name="autoRaise">
-             <bool>true</bool>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QToolButton" name="pauseTransfersBtn_2">
-            <property name="maximumSize">
-             <size>
-              <width>24</width>
-              <height>24</height>
-             </size>
-            </property>
-            <property name="text">
-             <string>...</string>
-            </property>
-            <property name="icon">
-             <iconset resource="../icons.qrc">
-              <normaloff>:/icons/Pause.ico</normaloff>:/icons/Pause.ico</iconset>
-            </property>
-            <property name="autoRaise">
-             <bool>true</bool>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QToolButton" name="toolButton">
-            <property name="text">
-             <string>...</string>
-            </property>
-            <property name="icon">
-             <iconset resource="../icons.qrc">
-              <normaloff>:/icons/Delete.ico</normaloff>:/icons/Delete.ico</iconset>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QFrame" name="frame_6">
-            <property name="maximumSize">
-             <size>
-              <width>16777215</width>
-              <height>24</height>
-             </size>
-            </property>
-            <property name="frameShape">
-             <enum>QFrame::VLine</enum>
-            </property>
-            <property name="frameShadow">
-             <enum>QFrame::Raised</enum>
-            </property>
-           </widget>
-          </item>
-          <item>
            <widget class="QToolButton" name="btnDownloading">
             <property name="minimumSize">
              <size>
@@ -119,7 +52,7 @@
             </property>
             <property name="icon">
              <iconset resource="../icons.qrc">
-              <normaloff>:/icons/transfer_list/Download.png</normaloff>:/icons/transfer_list/Download.png</iconset>
+              <normaloff>:/icons/transfer_list/downloading.png</normaloff>:/icons/transfer_list/downloading.png</iconset>
             </property>
             <property name="checkable">
              <bool>true</bool>
@@ -148,7 +81,7 @@
             </property>
             <property name="icon">
              <iconset resource="../icons.qrc">
-              <normaloff>:/icons/transfer_list/Upload.png</normaloff>:/icons/transfer_list/Upload.png</iconset>
+              <normaloff>:/icons/transfer_list/uploading.png</normaloff>:/icons/transfer_list/uploading.png</iconset>
             </property>
             <property name="checkable">
              <bool>true</bool>
@@ -174,7 +107,7 @@
             </property>
             <property name="icon">
              <iconset resource="../icons.qrc">
-              <normaloff>:/icons/transfer_list/queued.png</normaloff>:/icons/transfer_list/queued.png</iconset>
+              <normaloff>:/icons/transfer_list/stalledDL.png</normaloff>:/icons/transfer_list/stalledDL.png</iconset>
             </property>
             <property name="checkable">
              <bool>true</bool>
@@ -200,7 +133,7 @@
             </property>
             <property name="icon">
              <iconset resource="../icons.qrc">
-              <normaloff>:/icons/Pause.ico</normaloff>:/icons/Pause.ico</iconset>
+              <normaloff>:/icons/transfer_list/paused.png</normaloff>:/icons/transfer_list/paused.png</iconset>
             </property>
             <property name="checkable">
              <bool>true</bool>
@@ -238,16 +171,7 @@
           <enum>QFrame::Sunken</enum>
          </property>
          <layout class="QGridLayout" name="gridLayout_15">
-          <property name="leftMargin">
-           <number>0</number>
-          </property>
-          <property name="topMargin">
-           <number>0</number>
-          </property>
-          <property name="rightMargin">
-           <number>0</number>
-          </property>
-          <property name="bottomMargin">
+          <property name="margin">
            <number>0</number>
           </property>
           <property name="spacing">
@@ -255,6 +179,9 @@
           </property>
           <item row="0" column="0">
            <widget class="QTreeView" name="trView">
+            <property name="contextMenuPolicy">
+             <enum>Qt::CustomContextMenu</enum>
+            </property>
             <property name="styleSheet">
              <string notr="true">border: none;</string>
             </property>
@@ -383,28 +310,80 @@
   <action name="actionStart">
    <property name="icon">
     <iconset resource="../icons.qrc">
-     <normaloff>:/icons/NavigateForward.ico</normaloff>:/icons/NavigateForward.ico</iconset>
+     <normaloff>:/icons/oxygen/media-playback-start.png</normaloff>:/icons/oxygen/media-playback-start.png</iconset>
    </property>
    <property name="text">
     <string>Start</string>
    </property>
   </action>
-  <action name="actionActionPause">
+  <action name="actionPause">
    <property name="icon">
     <iconset resource="../icons.qrc">
-     <normaloff>:/icons/Pause.ico</normaloff>:/icons/Pause.ico</iconset>
+     <normaloff>:/icons/oxygen/media-playback-pause.png</normaloff>:/icons/oxygen/media-playback-pause.png</iconset>
    </property>
    <property name="text">
-    <string>actionPause</string>
+    <string>Pause</string>
    </property>
   </action>
   <action name="actionRemove">
    <property name="icon">
     <iconset resource="../icons.qrc">
-     <normaloff>:/icons/Delete.ico</normaloff>:/icons/Delete.ico</iconset>
+     <normaloff>:/icons/oxygen/dialog-cancel.png</normaloff>:/icons/oxygen/dialog-cancel.png</iconset>
    </property>
    <property name="text">
     <string>Remove</string>
+   </property>
+  </action>
+  <action name="actionED2K_link">
+   <property name="icon">
+    <iconset resource="../icons.qrc">
+     <normaloff>:/icons/common/eD2kLink.png</normaloff>:/icons/common/eD2kLink.png</iconset>
+   </property>
+   <property name="text">
+    <string>ED2K link</string>
+   </property>
+  </action>
+  <action name="actionSeries_download">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Series download</string>
+   </property>
+  </action>
+  <action name="actionFirst_and_last_pieces_first">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>First and last pieces first</string>
+   </property>
+  </action>
+  <action name="actionOpen_destination_folder">
+   <property name="icon">
+    <iconset resource="../icons.qrc">
+     <normaloff>:/icons/common/folder_open.ico</normaloff>:/icons/common/folder_open.ico</iconset>
+   </property>
+   <property name="text">
+    <string>Open destination folder</string>
+   </property>
+  </action>
+  <action name="actionRename">
+   <property name="icon">
+    <iconset resource="../icons.qrc">
+     <normaloff>:/icons/oxygen/edit-rename.png</normaloff>:/icons/oxygen/edit-rename.png</iconset>
+   </property>
+   <property name="text">
+    <string>Rename</string>
+   </property>
+  </action>
+  <action name="actionPreview">
+   <property name="icon">
+    <iconset resource="../icons.qrc">
+     <normaloff>:/icons/search/preview32.png</normaloff>:/icons/search/preview32.png</iconset>
+   </property>
+   <property name="text">
+    <string>Preview</string>
    </property>
   </action>
  </widget>

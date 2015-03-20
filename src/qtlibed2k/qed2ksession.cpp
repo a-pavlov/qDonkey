@@ -432,8 +432,7 @@ bool QED2KSession::hasActiveTransfers() const
 
 SessionStatus QED2KSession::getSessionStatus() const { return m_session->status(); }
 
-void QED2KSession::deleteTransfer(const QString& hash, bool delete_files)
-{
+void QED2KSession::deleteTransfer(const QString& hash, bool delete_files) {
     const QED2KHandle t = getTransfer(hash);
     if (!t.is_valid()) return;
     //emit transferAboutToBeRemoved(t, delete_files);
