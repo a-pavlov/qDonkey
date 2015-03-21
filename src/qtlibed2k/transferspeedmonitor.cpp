@@ -56,7 +56,7 @@ TransferSpeedMonitor::TransferSpeedMonitor(QED2KSession* session) :
     QThread(session), m_abort(false), m_session(session)
 {
     connect(m_session, SIGNAL(transferDeleted(QString)), SLOT(removeSamples(QString)));
-    connect(m_session, SIGNAL(transferPaused(QED2KHandle)), SLOT(removeSamples(QED2Handle)));
+    connect(m_session, SIGNAL(transferPaused(QED2KHandle)), SLOT(removeSamples(QED2KHandle)));
 }
 
 TransferSpeedMonitor::~TransferSpeedMonitor() {
