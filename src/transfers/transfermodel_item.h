@@ -7,6 +7,7 @@
 #include <QColor>
 
 #include "qtlibed2k/qed2khandle.h"
+#include "qtlibed2k/qed2ksession.h"
 
 class TransferModelItem : public QObject {
     Q_OBJECT
@@ -60,6 +61,7 @@ private:
     QDateTime m_addedTime;
     QDateTime m_seedTime;
     QString m_hash;
+    FileType m_ft;
 };
 
 #endif

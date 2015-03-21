@@ -21,8 +21,13 @@
 #include "qed2ksession.h"
 #include "misc.h"
 
+FileType toFileType(const QString& filename) {
+    return static_cast<FileType>(libed2k::GetED2KFileTypeID(filename.toUtf8().constData()));
+}
+
 QString toString(FileType type) {
     switch(type) {
+        case FT_ANY:                return QObject::tr("Any");
         case FT_AUDIO:              return QObject::tr("Audio");
         case FT_VIDEO:              return QObject::tr("Video");
         case FT_IMAGE:              return QObject::tr("Picture");
@@ -110,7 +115,7 @@ void QED2KSearchResultEntry::save(Preferences& pref) const {
 FileType QED2KSearchResultEntry::getType() {
     if (m_type == FT_UNKNOWN) {
         // EED2KFileType fileType
-        m_type = static_cast<FileType>(libed2k::GetED2KFileTypeID(m_strFilename.toStdString()));
+        m_type = toFileType(m_strFilename);
     }
 
     return m_type;

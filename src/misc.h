@@ -55,7 +55,6 @@ const int ed2k_max_download = 10000;
 const int ed2k_max_upload   = 8000;
 
 typedef QMap<QString, QList<QString> > shared_map;
-class QTorrentHandle;
 
 /*  Miscellaneaous functions that can be useful */
 class misc : public QObject{
@@ -117,10 +116,6 @@ public:
       return (s.length() == 40);
   }
 
-  static inline bool isTorrentLink(const QString& s)
-  {
-      return s.startsWith("<a");
-  }
 
   static inline QString file_extension(const QString &filename) {
     QString extension;
@@ -134,8 +129,6 @@ public:
 #ifndef DISABLE_GUI
   static void shutdownComputer(bool sleep=false);
 #endif
-
-  static QString ifaceFromHumanName(const QString& strHumanIface);
 
   static QString parseHtmlLinks(const QString &raw_text);
 
@@ -161,9 +154,6 @@ public:
   // Get screen center
   static QPoint screenCenter(QWidget *win);
 #endif
-  static int pythonVersion();
-  static QString searchEngineLocation();
-  static QString BTBackupLocation();
   static QString ED2KBackupLocation();
   static QString ED2KMetaLocation(const QString&);
   static QString ED2KCollectionLocation();
@@ -180,8 +170,6 @@ public:
   static bool isPreviewable(QString extension);
   static QString branchPath(QString file_path, bool uses_slashes=false);
   static QString fileName(QString file_path);
-
-  static QString bcLinkToMagnet(QString bc_link);
   // Replace ~ in path
   static QString expandPath(QString path);
   // Take a number of seconds and return an user-friendly
@@ -220,7 +208,6 @@ public:
   static QStringList migrationSharedFiles();
   static libed2k::server_met file2smet(const QString&, libed2k::error_code&);
   static bool naturalSort(QString left, QString right, bool& result);
-  static QString pyLocation();
   static QString metadataDirectory(const QString& path);
   static bool prepareInputDirectory(const QString& path);
   static void normalizePath(QString&);

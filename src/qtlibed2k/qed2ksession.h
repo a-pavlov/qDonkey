@@ -68,6 +68,7 @@ enum FileType {
     FT_UNKNOWN          = 9
 };
 
+FileType toFileType(const QString& filename);
 QString toString(FileType type);
 
 struct QED2KSearchResultEntry {

@@ -38,7 +38,6 @@
 #include <QDebug>
 #include <QProcess>
 #include <QSettings>
-#include <QNetworkInterface>
 #include <QTextCodec>
 #ifdef DISABLE_GUI
 #include <QCoreApplication>
@@ -523,50 +522,6 @@ QPoint misc::screenCenter(QWidget *win) {
 }
 #endif
 
-/**
- * Detects the version of python by calling
- * "python --version" and parsing the output.
- */
-int misc::pythonVersion() {
-  static int version = -1;
-  if (version < 0) {
-    QProcess python_proc;
-    python_proc.start("python", QStringList() << "--version", QIODevice::ReadOnly);
-    if (!python_proc.waitForFinished()) return -1;
-    if (python_proc.exitCode() < 0) return -1;
-    QByteArray output = python_proc.readAllStandardOutput();
-    if (output.isEmpty())
-      output = python_proc.readAllStandardError();
-    const QByteArray version_str = output.split(' ').last();
-    qDebug() << "Python version is:" << version_str.trimmed();
-    if (version_str.startsWith("3."))
-      version = 3;
-    else
-      version = 2;
-  }
-  return version;
-}
-
-QString misc::searchEngineLocation() {
-  QString folder = "nova";
-  if (pythonVersion() >= 3)
-    folder = "nova3";
-  const QString location = QDir::cleanPath(QDesktopServicesDataLocation()
-                                           + QDir::separator() + folder);
-  QDir locationDir(location);
-  if (!locationDir.exists())
-    locationDir.mkpath(locationDir.absolutePath());
-  return location;
-}
-
-QString misc::BTBackupLocation() {
-  const QString location = QDir::cleanPath(QDesktopServicesDataLocation()
-                                           + QDir::separator() + "BT_backup");
-  QDir locationDir(location);
-  if (!locationDir.exists())
-    locationDir.mkpath(locationDir.absolutePath());
-  return location;
-}
 
 QString misc::ED2KBackupLocation()
 {
@@ -692,20 +647,6 @@ bool misc::isPreviewable(QString extension) {
       extension == "AIFC" || extension == "RA" || extension == "RAM" || extension == "M4P" ||
       extension == "M4A" || extension == "3GP" || extension == "AAC" || extension == "SWA" ||
       extension == "MPC" || extension == "MPP" || extension == "M3U" || extension == "WEBM";
-}
-
-QString misc::bcLinkToMagnet(QString bc_link) {
-  QByteArray raw_bc = bc_link.toUtf8();
-  raw_bc = raw_bc.mid(8); // skip bc://bt/
-  raw_bc = QByteArray::fromBase64(raw_bc); // Decode base64
-  // Format is now AA/url_encoded_filename/size_bytes/info_hash/ZZ
-  QStringList parts = QString(raw_bc).split("/");
-  if (parts.size() != 5) return QString::null;
-  QString filename = parts.at(1);
-  QString hash = parts.at(3);
-  QString magnet = "magnet:?xt=urn:btih:" + hash;
-  magnet += "&dn=" + filename;
-  return magnet;
 }
 
 // Replace ~ in path
@@ -953,29 +894,6 @@ QString misc::parseHtmlLinks(const QString &raw_text)
   result.replace(reNoScheme, "<a href=\"http://\\1\">");
 
   return result;
-}
-
-
-QString misc::ifaceFromHumanName(const QString& strHumanIface)
-{
-    QString strRes;
-
-    if (strHumanIface.isEmpty()) return strRes;
-
-    foreach (const QNetworkInterface& iface, QNetworkInterface::allInterfaces())
-    {
-        if ((iface.flags() & QNetworkInterface::IsLoopBack) ||
-            (!iface.isValid()) ||
-            ((iface.flags() & QNetworkInterface::IsUp) == 0))
-                continue;
-
-        if (strHumanIface == iface.humanReadableName())
-        {
-            strRes = iface.name();
-        }
-    }
-
-    return strRes;
 }
 
 QStringList misc::getFileLines(const QString& filename, const char* codec /*= NULL*/)
@@ -1261,14 +1179,6 @@ shared_map misc::migrationShareds()
 
    return false;
  }
-
-QString misc::pyLocation(){
-#ifdef Q_WS_WIN
-    return fsutils::toNativePath(QCoreApplication::applicationDirPath() + "/python/python.exe");
-#else
-    return QString("python");
-#endif
-}
 
 QString misc::metadataDirectory(const QString& path) {
     QDir dir(path);

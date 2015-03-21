@@ -6,6 +6,7 @@
 TransferModelItem::TransferModelItem(const QED2KHandle& h) : m_handle(h) {
     Q_ASSERT(h.is_valid());
     m_hash = h.hash();
+    m_ft = toFileType(h.filename());
 }
 
 TransferModelItem::State TransferModelItem::state() const {
@@ -79,6 +80,7 @@ QVariant TransferModelItem::data(int column, int role) const {
     switch(column) {
         case TM_NAME:       return m_handle.filename();
         case TM_SIZE:       return m_handle.filesize();
+        case TM_TYPE:       return toString(m_ft);
         case TM_PROGRESS:   return (!m_handle.is_valid())?1.:m_handle.progress();
         case TM_STATUS:     return state();
         case TM_SEEDS:      return (role == Qt::DisplayRole) ? m_handle.num_seeds() : m_handle.num_complete();
