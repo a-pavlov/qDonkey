@@ -84,6 +84,8 @@ public:
     int num_incomplete() const;
     int num_connections() const;
     int connections_limit() const;
+    qlonglong active_time() const;
+    qlonglong seeding_time() const;
 
     qreal download_payload_rate() const { return status().download_payload_rate; }
     qreal upload_payload_rate() const { return status().upload_payload_rate; }

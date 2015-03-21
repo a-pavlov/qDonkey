@@ -507,21 +507,6 @@ bool MainWindow::event(QEvent * e)
     return QMainWindow::event(e);
 }
 
-#ifdef Q_WS_WIN
-bool MainWindow::winEvent(MSG * message, long * result)
-{
-    if (message->message == m_nTaskbarButtonCreated)
-    {
-        qDebug() << "initialize task bar";
-        m_tbar->initialize();
-        m_tbar->setState(winId(), taskbar_iface::S_NOPROGRESS);
-        return true;
-    }
-
-    return false;
-}
-#endif
-
 // Action executed when a file is dropped
 /*void MainWindow::dropEvent(QDropEvent *event)
 {

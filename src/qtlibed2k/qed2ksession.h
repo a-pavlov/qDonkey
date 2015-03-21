@@ -26,6 +26,7 @@
 #include "qed2khandle.h"
 #include "preferences/preferences.h"
 #include "misc.h"
+#include "transferspeedmonitor.h"
 
 
 typedef libed2k::session_status SessionStatus;
@@ -167,6 +168,7 @@ public:
     void playLink(const QString& strLink);
     void loadDirectory(const QString& path);
     QDateTime hasBeenAdded(const QString& hash) const;
+    qlonglong getETA(const QString& hash) const;
     libed2k::session* delegate() const;
 
     const libed2k::ip_filter& session_filter() const;
@@ -187,6 +189,7 @@ private:
     libed2k::natpmp* m_natpmp;
     libed2k::server_connection_parameters m_sp;
     QString m_currentPath;
+    QScopedPointer<TransferSpeedMonitor>    m_speedMon;
 private slots:
     void readAlerts();
 public slots:

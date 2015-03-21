@@ -132,3 +132,5 @@ int QED2KHandle::num_complete() const { return status().num_complete; }
 int QED2KHandle::num_incomplete() const { return status().num_incomplete; }
 int QED2KHandle::num_connections() const { return status().num_connections; }
 int QED2KHandle::connections_limit() const { return status().connections_limit; }
+qlonglong QED2KHandle::active_time() const { return status().active_time; }
+qlonglong QED2KHandle::seeding_time() const { return status().seeding_time; }

@@ -45,6 +45,7 @@ QVariant TransferModel::headerData(int section, Qt::Orientation orientation,
                 case TransferModelItem::TM_DLSPEED: return tr("Down Speed", "i.e: Download speed");
                 case TransferModelItem::TM_UPSPEED: return tr("Up Speed", "i.e: Upload speed");
                 case TransferModelItem::TM_HASH: return tr("Hash", "i.e transfer hash");
+                case TransferModelItem::TM_ETA: return tr("ETA", "i.e: Estimated Time of Arrival / Time left");
                 case TransferModelItem::TM_RATIO: return tr("Ratio", "Share ratio");
                 case TransferModelItem::TM_ADD_DATE: return tr("Added On", "Transfer was added to transfer list on 01/01/2010 08:00");
                 case TransferModelItem::TM_AMOUNT_DOWNLOADED: return tr("Amount downloaded", "Amount of data downloaded (e.g. in MB)");

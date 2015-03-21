@@ -118,10 +118,6 @@ protected:
     void showEvent(QShowEvent *);
     bool event(QEvent * event);
 
-#ifdef Q_WS_WIN
-    bool winEvent(MSG * message, long * result);
-#endif
-
 private:
     bool eventFilter(QObject *watched, QEvent *event);
     QFileSystemWatcher *executable_watcher;

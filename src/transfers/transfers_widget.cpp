@@ -28,6 +28,15 @@ transfers_widget::transfers_widget(QWidget *parent) :
     menu->addAction(actionOpen_destination_folder);
     menu->addAction(actionPreview);
     connect(trView, SIGNAL(customContextMenuRequested(const QPoint&)), this, SLOT(displayListMenu(const QPoint&)));
+
+    /*
+    // Default hidden columns
+    if (!column_loaded) {
+        trView->setColumnHidden(TransferModelItem::TM_AMOUNT_DOWNLOADED, true);
+        trView->setColumnHidden(TransferModelItem::TM_AMOUNT_LEFT, true);
+        trView->setColumnHidden(TransferModelItem::TM_TIME_ELAPSED, true);
+    }
+    */
 }
 
 transfers_widget::~transfers_widget()

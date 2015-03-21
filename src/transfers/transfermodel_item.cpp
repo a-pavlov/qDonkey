@@ -77,21 +77,22 @@ QVariant TransferModelItem::data(int column, int role) const {
 
     //if (!m_torrent.is_valid()) return QVariant();
     switch(column) {
-    case TM_NAME:       return m_handle.filename();
-    case TM_SIZE:       return m_handle.filesize();
-    case TM_PROGRESS:   return (!m_handle.is_valid())?1.:m_handle.progress();
-    case TM_STATUS:     return state();
-    case TM_SEEDS:      return (role == Qt::DisplayRole) ? m_handle.num_seeds() : m_handle.num_complete();
-    case TM_PEERS:      return (role == Qt::DisplayRole) ? (m_handle.num_peers() - m_handle.num_seeds()) : m_handle.num_incomplete();
-    case TM_DLSPEED:    return m_handle.download_payload_rate();
-    case TM_UPSPEED:    return m_handle.upload_payload_rate();
-    case TM_HASH:       return m_hash;
-    case TM_RATIO:      return Session::instance()->getRealRatio(m_handle.hash());
-    case TM_ADD_DATE:   return Session::instance()->hasBeenAdded(m_handle.hash());
-    case TM_AMOUNT_DOWNLOADED: return static_cast<qlonglong>(m_handle.total_wanted_done());
-    case TM_AMOUNT_LEFT: return static_cast<qlonglong>(m_handle.total_wanted() - m_handle.total_wanted_done());
-    case TM_TIME_ELAPSED: //return (role == Qt::DisplayRole) ? m_torrent.active_time() : m_torrent.seeding_time();
-    default:
-        return QVariant();
+        case TM_NAME:       return m_handle.filename();
+        case TM_SIZE:       return m_handle.filesize();
+        case TM_PROGRESS:   return (!m_handle.is_valid())?1.:m_handle.progress();
+        case TM_STATUS:     return state();
+        case TM_SEEDS:      return (role == Qt::DisplayRole) ? m_handle.num_seeds() : m_handle.num_complete();
+        case TM_PEERS:      return (role == Qt::DisplayRole) ? (m_handle.num_peers() - m_handle.num_seeds()) : m_handle.num_incomplete();
+        case TM_DLSPEED:    return m_handle.download_payload_rate();
+        case TM_UPSPEED:    return m_handle.upload_payload_rate();
+        case TM_HASH:       return m_hash;
+        case TM_ETA:        return (m_handle.is_seed() || m_handle.is_paused())?MAX_ETA:Session::instance()->getETA(m_handle.hash());
+        case TM_RATIO:      return Session::instance()->getRealRatio(m_handle.hash());
+        case TM_ADD_DATE:   return Session::instance()->hasBeenAdded(m_handle.hash());
+        case TM_AMOUNT_DOWNLOADED: return static_cast<qlonglong>(m_handle.total_wanted_done());
+        case TM_AMOUNT_LEFT: return static_cast<qlonglong>(m_handle.total_wanted() - m_handle.total_wanted_done());
+        case TM_TIME_ELAPSED: return (role == Qt::DisplayRole) ? m_handle.active_time() : m_handle.seeding_time();
+        default:
+            return QVariant();
     }
 }

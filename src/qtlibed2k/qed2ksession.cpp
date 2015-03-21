@@ -298,6 +298,8 @@ QED2KSession::QED2KSession() : m_upnp(0), m_natpmp(0) {
     m_sp.set_announce_timeout(60);
     m_sp.announce_items_per_call_limit = 60;
     connect(&alertsTimer, SIGNAL(timeout()), this, SLOT(readAlerts()));
+    m_speedMon.reset(new TransferSpeedMonitor(this));
+    m_speedMon->start();
 }
 
 void QED2KSession::start()
@@ -1271,4 +1273,8 @@ void QED2KSession::loadDirectory(const QString& path) {
 QDateTime QED2KSession::hasBeenAdded(const QString& hash) const {
     QDateTime t;
     return m_addTimes.value(hash, t);
+}
+
+qlonglong QED2KSession::getETA(const QString& hash) const {
+    return m_speedMon->getETA(hash);
 }

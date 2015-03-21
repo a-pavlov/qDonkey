@@ -34,6 +34,7 @@ public:
         TM_DLSPEED,
         TM_UPSPEED,
         TM_HASH,
+        TM_ETA,
         TM_RATIO,
         TM_ADD_DATE,
         TM_AMOUNT_DOWNLOADED,
