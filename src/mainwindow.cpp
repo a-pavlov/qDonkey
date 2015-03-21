@@ -179,37 +179,19 @@ MainWindow::MainWindow(QWidget *parent, QStringList torrentCmdLine)
     connect(executable_watcher, SIGNAL(fileChanged(QString)), this, SLOT(notifyOfUpdate(QString)));
     executable_watcher->addPath(qApp->applicationFilePath());
 
-
-    // Resume unfinished torrents
-    Session::instance()->startUpTransfers();
-
     // Add torrent given on command line
     processParams(torrentCmdLine);
-
-    qDebug("GUI has been built");
-
 #ifdef Q_WS_MAC
     qt_mac_set_dock_menu(getTrayIconMenu());
 #endif
 
     // Make sure the Window is visible if we don't have a tray icon
-    if (!systrayIcon && isHidden())
-    {
+    if (!systrayIcon && isHidden())  {
         show();
         activateWindow();
         raise();
     }
 
-    //connect(servers, SIGNAL(sigConnectPending(QED2KServerFingerprint)),
-    //        this, SLOT(ed2kConnectionPending(QED2KServerFingerprint)));
-    //connect(Session::instance(), SIGNAL(serverConnectionInitialized(QED2KServerFingerprint, quint32, quint32, quint32)),
-    //      this, SLOT(ed2kConnectionInitialized(QED2KServerFingerprint, quint32, quint32, quint32)));
-    //connect(Session::instance(), SIGNAL(serverStatus(QED2KServerFingerprint, int, int)),
-    //      this, SLOT(ed2kServerStatus(QED2KServerFingerprint, int, int)));
-   // connect(Session::instance(), SIGNAL(serverConnectionClosed(QED2KServerFingerprint, QString)),
-    //      this, SLOT(ed2kConnectionClosed(QED2KServerFingerprint, QString)));
-
-    //connect(Session::instance(), SIGNAL(newConsoleMessage(const QString&)), servers, SLOT(addHtmlLogMessage(const QString&)));
     connect(Session::instance(), SIGNAL(serverNameResolved(QString)), this, SLOT(handleServerNameResolved(QString)));
     connect(Session::instance(), SIGNAL(serverConnectionInitialized(quint32,quint32,quint32)), this, SLOT(handleServerConnectionInitialized(quint32,quint32,quint32)));
     connect(Session::instance(), SIGNAL(serverConnectionClosed(QString)), this, SLOT(handleServerConnectionClosed(QString)));
@@ -229,8 +211,7 @@ MainWindow::MainWindow(QWidget *parent, QStringList torrentCmdLine)
     Session::instance()->loadDirectory(pref.inputDir());
 }
 
-void MainWindow::deleteSession()
-{
+void MainWindow::deleteSession() {
     guiUpdater->stop();
     Session::drop();
     m_pwr->setActivityState(false);
@@ -319,19 +300,16 @@ void MainWindow::balloonClicked() {
 
 // called when a transfer has started
 void MainWindow::addedTransfer(const QED2KHandle& h) const {
-    //if (h.is_valid() && (h.birthday().secsTo(QDateTime::currentDateTime()) <= 1) && !h.is_seed())
     showNotificationBaloon(tr("Download starting"), tr("%1 has started downloading.", "e.g: xxx.avi has started downloading.").arg(h.name()));
 }
 
 // called when a transfer has finished
 void MainWindow::finishedTransfer(const QED2KHandle& h) const {
-    //if(!TorrentPersistentData::isSeed(h.hash()))
     showNotificationBaloon(tr("Download completion"), tr("%1 has finished downloading.", "e.g: xxx.avi has finished downloading.").arg(h.name()));
 }
 
 // Notification when disk is full and other disk errors
-void MainWindow::fileError(const QED2KHandle& h, QString msg)
-{
+void MainWindow::fileError(const QED2KHandle& h, QString msg) {
     QDateTime cdt = QDateTime::currentDateTime();
 
     if(m_last_file_error.secsTo(cdt) > 1)

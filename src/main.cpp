@@ -267,9 +267,7 @@ int main(int argc, char *argv[])
         if (res == QDialog::Rejected) return 0;
     }
 
-    //Session::instance()->configureSession();
     Session::instance()->start();
-    //app.setQuitOnLastWindowClosed(false)
 
     MainWindow window(0, dataList);
 

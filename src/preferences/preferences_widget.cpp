@@ -1,6 +1,7 @@
 #include "preferences_widget.h"
 #include "ui_preferences_widget.h"
 #include "preferences.h"
+#include "qtlibed2k/qed2ksession.h"
 #include <QMessageBox>
 #include <QFileDialog>
 
@@ -61,6 +62,7 @@ void preferences_widget::on_btnOk_clicked() {
         pref.setForwardPort(checkUPnP->isChecked());
         pref.setInputDir(editInputDir->text());
         disableApplyButtons();
+        Session::instance()->loadDirectory(pref.inputDir());
     }
 }
 

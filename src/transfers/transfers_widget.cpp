@@ -12,6 +12,7 @@ transfers_widget::transfers_widget(QWidget *parent) :
     QWidget(parent) {
     setupUi(this);
     model = new TransferModel(this);
+    trView->setRootIsDecorated(false);
     trView->setItemDelegate(new TransferListDelegate(this));
     trView->setModel(model);
     menu = new QMenu(this);

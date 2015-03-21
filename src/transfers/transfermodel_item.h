@@ -14,7 +14,6 @@ class TransferModelItem : public QObject {
 public:
     enum State {
         STATE_DOWNLOADING,
-        STATE_QUEUED,
         STATE_STALLED_DL,
         STATE_STALLED_UP,
         STATE_SEEDING,

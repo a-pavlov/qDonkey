@@ -18,6 +18,7 @@
 #include <QSet>
 #include <QDateTime>
 #include <QSharedPointer>
+#include <QLinkedList>
 
 #include <libed2k/session.hpp>
 #include <libed2k/session_status.hpp>
@@ -142,8 +143,8 @@ public:
     virtual ~QED2KSession();
 
     QED2KHandle getTransfer(const QString& hash) const;
-    std::vector<QED2KHandle> getTransfers() const;
-    std::vector<QED2KHandle> getActiveTransfers() const;
+    QLinkedList<QED2KHandle> getTransfers() const;
+    QLinkedList<QED2KHandle> getActiveTransfers() const;
     virtual bool hasActiveTransfers() const; // override default behaviour by active transfers usage
     SessionStatus getSessionStatus() const;
 
@@ -180,11 +181,11 @@ private:
     QHash<QString, QED2KHandle> m_fast_resume_transfers;   // contains fast resume data were loading
     QTimer alertsTimer;
     QSet<QED2KHandle> m_pending_medias;
-    PersistentData m_persistentData;
-    QStringList m_pendingFiles;
-    QSet<QString> m_sharedFiles;
-    QHash<QString, QDateTime> m_addTimes;
-    QHash<QString, libed2k::transfer_resume_data> m_fastTransfers;
+
+    QStringList m_pendingFiles; // new files awaiting to calculate parameters and share
+    QSet<QString> m_sharedFiles;    // earlier shared files(from metadata dir) and new shared files from inout directory
+    QHash<QString, QDateTime> m_addTimes;   // creation dates for transfers
+    QHash<QString, libed2k::transfer_resume_data> m_fastTransfers;  // transfers information from metadata directory
     // Port forwarding
     libed2k::upnp* m_upnp;
     libed2k::natpmp* m_natpmp;
@@ -194,7 +195,6 @@ private:
 private slots:
     void readAlerts();
 public slots:
-	void startUpTransfers();
 	void configureSession();
     virtual QPair<QED2KHandle, ErrorCode> addLink(QString strLink, bool resumed = false);
     virtual void addTransferFromFile(const QString& filename);

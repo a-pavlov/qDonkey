@@ -30,7 +30,6 @@
 
 #include <QMutexLocker>
 #include <QList>
-#include <vector>
 
 #include "transferspeedmonitor.h"
 #include "qed2ksession.h"
@@ -108,8 +107,8 @@ qlonglong TransferSpeedMonitor::getETA(const QString &hash) const {
 }
 
 void TransferSpeedMonitor::getSamples() {
-  const std::vector<QED2KHandle> Transfers = m_session->getActiveTransfers();
-  std::vector<QED2KHandle>::const_iterator it;
+  const QLinkedList<QED2KHandle> Transfers = m_session->getActiveTransfers();
+  QLinkedList<QED2KHandle>::const_iterator it;
   for (it = Transfers.begin(); it != Transfers.end(); it++) {
       if (!it->is_paused())
         m_samples[it->hash()].addSample(it->status().download_payload_rate);

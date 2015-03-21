@@ -50,8 +50,7 @@ QVariant TransferModelItem::data(int column, int role) const {
             case STATE_SEEDING:     return QIcon(res::uploading());
             case STATE_PAUSED_UP:
             case STATE_PAUSED_DL:   return QIcon(res::paused());
-            case STATE_CHECKING:
-            case STATE_QUEUED:      return QIcon(res::checking());
+            case STATE_CHECKING:    return QIcon(res::checking());
             case STATE_INVALID:     return QIcon(res::error());
             default:
                 return QVariant();
@@ -67,7 +66,6 @@ QVariant TransferModelItem::data(int column, int role) const {
         case STATE_PAUSED_UP:
         case STATE_PAUSED_DL:   return QColor("red");
         case STATE_CHECKING:
-        case STATE_QUEUED:      return QColor("grey");
         case STATE_INVALID:     return QColor("red");
         default:
             return QVariant();

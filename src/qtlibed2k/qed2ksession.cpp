@@ -300,7 +300,7 @@ QED2KSession::QED2KSession() : m_upnp(0), m_natpmp(0) {
     m_sp.set_operations_timeout(30);
     m_sp.set_keep_alive_timeout(100);
     m_sp.set_reconnect_timeout(100);
-    m_sp.set_announce_timeout(60);
+    m_sp.set_announce_timeout(20);
     m_sp.announce_items_per_call_limit = 60;
     connect(&alertsTimer, SIGNAL(timeout()), this, SLOT(readAlerts()));
     m_speedMon.reset(new TransferSpeedMonitor(this));
@@ -336,43 +336,6 @@ void QED2KSession::start()
     m_session->set_alert_mask(libed2k::alert::all_categories);
     m_session->set_alert_queue_size_limit(100000);
 
-#if 0
-    // attempt load filters
-    QFile fdata(misc::ED2KMetaLocation("ipfilter.dat"));
-    if (fdata.open(QFile::ReadOnly))
-    {
-        qDebug() << "ipfilter.dat was opened";
-        int filters_count = 0;
-        libed2k::ip_filter filter;
-        QTextStream fstream(&fdata);
-
-        while(!fstream.atEnd())
-        {
-            libed2k::error_code ec;
-            libed2k::dat_rule drule = libed2k::datline2filter(fstream.readLine().toStdString(), ec);
-
-            if (!ec && drule.level < 127)
-            {
-                filter.add_rule(drule.begin, drule.end, libed2k::ip_filter::blocked);
-                ++filters_count;
-            }
-            else
-            {
-                qDebug() << "Error code: " << QString(libed2k::libed2k_exception(ec).what())
-                         << " level:" << drule.level;
-            }
-        }
-
-        m_session->set_ip_filter(filter);
-        qDebug() << filters_count << " were added";
-
-        fdata.close();
-    }
-    else
-    {
-        qDebug() << "ipfilter.dat wasn't found";
-    }
-#endif
     // start listening on special interface and port and start server connection
     configureSession();
     alertsTimer.setInterval(1000);
@@ -402,9 +365,9 @@ QED2KHandle QED2KSession::getTransfer(const QString &hash) const {
     return QED2KHandle(m_session->find_transfer(libed2k::md4_hash::fromString(hash.toStdString())));
 }
 
-std::vector<QED2KHandle> QED2KSession::getTransfers() const {
+QLinkedList<QED2KHandle> QED2KSession::getTransfers() const {
     std::vector<libed2k::transfer_handle> handles = m_session->get_transfers();
-    std::vector<QED2KHandle> transfers;
+    QLinkedList<QED2KHandle> transfers;
 
     for (std::vector<libed2k::transfer_handle>::iterator i = handles.begin();
          i != handles.end(); ++i)
@@ -413,10 +376,11 @@ std::vector<QED2KHandle> QED2KSession::getTransfers() const {
     return transfers;
 }
 
-std::vector<QED2KHandle> QED2KSession::getActiveTransfers() const
+QLinkedList<QED2KHandle> QED2KSession::getActiveTransfers() const
 {
     std::vector<libed2k::transfer_handle> handles = m_session->get_active_transfers();
-    std::vector<QED2KHandle> transfers;
+    QLinkedList<QED2KHandle> transfers;
+
 
     for (std::vector<libed2k::transfer_handle>::iterator i = handles.begin();
          i != handles.end(); ++i)
@@ -427,8 +391,8 @@ std::vector<QED2KHandle> QED2KSession::getActiveTransfers() const
 
 bool QED2KSession::hasActiveTransfers() const
 {
-    std::vector<QED2KHandle> torrents = getActiveTransfers();
-    std::vector<QED2KHandle>::iterator torrentIT;
+    QLinkedList<QED2KHandle> torrents = getActiveTransfers();
+    QLinkedList<QED2KHandle>::iterator torrentIT;
     for (torrentIT = torrents.begin(); torrentIT != torrents.end(); torrentIT++) {
         const QED2KHandle h(*torrentIT);
         if (h.is_valid() && !h.is_seed() && !h.is_paused() )
@@ -468,13 +432,7 @@ void QED2KSession::setUploadRateLimit(long rate) {
     m_session->set_settings(settings);
 }
 
-void QED2KSession::startUpTransfers()
-{
-    //loadFastResumeData();
-}
-
-void QED2KSession::configureSession()
-{
+void QED2KSession::configureSession() {
     qDebug() << Q_FUNC_INFO;
     Preferences pref;
     const unsigned short old_listenPort = m_session->settings().listen_port;
@@ -801,39 +759,6 @@ void QED2KSession::readAlerts()
             } else {
                 emit transferFinished(h);
             }
-/*
-            Preferences pref;
-            QED2KHandle t(QED2KHandle(p->m_handle));
-
-
-
-            //if (p->m_had_picker)
-            //    emit finishedTransfer(t);
-
-            if (t.is_seed())
-            {
-                const QDir current_dir(t.save_path());
-                const QDir save_dir(pref.inputDir());
-                // move transfer on finish only when temp folder enable + transfer in temp folder
-                if (current_dir != save_dir) {
-                  qDebug("Moving eDonkey transfer from the temp folder to dst");
-                  t.move_storage(save_dir.absolutePath());
-                }
-                else
-                {
-                    emit registerNode(t);
-                }
-            }
-
-            if (!m_fast_resume_transfers.empty())
-            {
-                m_fast_resume_transfers.remove(t.hash());
-
-                remove_by_state(std::max(50, 20));
-            }
-*/
-            //if (pref.isAutoRunEnabled() && p->m_had_picker)
-            //    autoRunExternalProgram(t);
         }
         else if (libed2k::save_resume_data_alert* p = dynamic_cast<libed2k::save_resume_data_alert*>(a.get()))
         {
@@ -844,9 +769,14 @@ void QED2KSession::readAlerts()
         }
         else if (libed2k::transfer_params_alert* p = dynamic_cast<libed2k::transfer_params_alert*>(a.get()))
         {
-            emit transferParametersReady(p->m_atp, p->m_ec);
-            if (!p->m_ec) m_sharedFiles << addTransfer(p->m_atp).hash();
-            else qDebug() << "transfer params error: " << misc::toQStringU(p->m_ec.message());
+            QFileInfo info(misc::toQStringU(p->m_atp.file_path));
+            if (info.absoluteDir() == QDir(m_currentPath)) {
+                emit transferParametersReady(p->m_atp, p->m_ec);
+                if (!p->m_ec) m_sharedFiles << addTransfer(p->m_atp).hash();
+                else qDebug() << "transfer params error: " << misc::toQStringU(p->m_ec.message());
+            } else {
+                qDebug() << "ignore add transfer parameters for old directory: " << misc::toQStringU(p->m_atp.file_path);
+            }
 
         }
         else if (libed2k::file_renamed_alert* p = dynamic_cast<libed2k::file_renamed_alert*>(a.get()))
@@ -1230,6 +1160,15 @@ void QED2KSession::loadDirectory(const QString& path) {
     qDebug() << Q_FUNC_INFO << path;
     if (QDir(m_currentPath) == QDir(path)) return;
     emit resetInputDirectory(path);
+
+    QLinkedList<QED2KHandle> transfers = Session::instance()->getTransfers();
+    foreach(QED2KHandle h, transfers) {
+        if (h.is_seed()) Session::instance()->deleteTransfer(h.hash(), false);
+    }
+
+    m_pendingFiles.clear();
+    m_sharedFiles.clear();
+    m_fastTransfers.clear();
 
     m_currentPath = path;
     QStringList filter;
