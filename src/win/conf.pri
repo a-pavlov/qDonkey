@@ -1,12 +1,17 @@
 # Adapt EMT_ROOT on windows
 INCLUDEPATH += $$(BOOST_ROOT)
 LIBS += -L$$(BOOST_ROOT)/stage/lib
-INCLUDEPATH += $$(EMT_ROOT)/include
-LIBS += -L$$(EMT_ROOT)/lib
+INCLUDEPATH += $$(LIBED2K_ROOT)/include
+
+CONFIG(debug, debug|release) {
+LIBS += -L$$(LIBED2K_ROOT)/win32/Debug/
+} else {
+LIBS += -L$$(LIBED2K_ROOT)/win32/Release/
+}
 
 DEFINES += "\"BUILDDATE=\\\"$$system(date /t && time /t)\\\"\""
 
-# LIBTORRENT/LIBED2K DEFINES
+# LIBED2K DEFINES
 DEFINES += BOOST_ALL_NO_LIB
 DEFINES += BOOST_ASIO_HASH_MAP_BUCKETS=1021
 DEFINES += BOOST_EXCEPTION_DISABLE
@@ -39,7 +44,6 @@ DEFINES += __USE_W32_SOCKETS
 DEFINES += WITH_SHIPPED_GEOIP_H
 
 CONFIG(debug, debug|release) {
-  DEFINES += TORRENT_DEBUG
   DEFINES += LIBED2K_DEBUG
 } else {
   DEFINES += NDEBUG
@@ -49,12 +53,7 @@ CONFIG(win7) {
   DEFINES += WIN7_SDK
 }
 
-win32-g++ {
-  include(winconf-mingw.pri)
-}
-else {
-  include(winconf-msvc.pri)
-}
+include(conf-msvc.pri)
 
 DEFINES += WITH_GEOIP_EMBEDDED
 message("On Windows, GeoIP database must be embedded.")

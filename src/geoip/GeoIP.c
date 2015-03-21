@@ -20,7 +20,7 @@
 
 #include "GeoIP.h"
 
-#include "libtorrent/ConvertUTF.h"
+#include "libed2k/ConvertUTF.h"
 
 #ifndef WIN32
 #include <netdb.h>

@@ -70,8 +70,6 @@
 #include "misc.h"
 #include "res.h"
 
-using namespace libtorrent;
-
 QString GeoIPManager::selfCode;
 
 QString GeoIPManager::geoipFolder(bool embedded) {
@@ -118,13 +116,13 @@ void GeoIPManager::exportEmbeddedDb() {
 }
 #endif
 
-void GeoIPManager::loadDatabase(session *s) {
+void GeoIPManager::loadDatabase() {
 #ifdef WITH_GEOIP_EMBEDDED
   exportEmbeddedDb();
 #endif
   if (QFile::exists(geoipDBpath(false))) {
     qDebug("Loading GeoIP database from %s...", qPrintable(geoipDBpath(false)));
-    s->load_country_db(geoipDBpath(false).toLocal8Bit().constData());
+    //s->load_country_db(geoipDBpath(false).toLocal8Bit().constData());
     // load local database
     if (selfCode.isEmpty()){
         GeoIP* db = GeoIP_open(geoipDBpath(false).toLocal8Bit().constData(), GEOIP_STANDARD);

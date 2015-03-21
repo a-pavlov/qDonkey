@@ -304,7 +304,6 @@ QED2KSession::QED2KSession() : m_upnp(0), m_natpmp(0) {
     m_sp.announce_items_per_call_limit = 60;
     connect(&alertsTimer, SIGNAL(timeout()), this, SLOT(readAlerts()));
     m_speedMon.reset(new TransferSpeedMonitor(this));
-    m_speedMon->start();
 }
 
 void QED2KSession::start()
@@ -378,6 +377,7 @@ void QED2KSession::start()
     configureSession();
     alertsTimer.setInterval(1000);
     alertsTimer.start();
+	m_speedMon->start();
 }
 
 void QED2KSession::stop()

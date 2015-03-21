@@ -31,7 +31,6 @@
 #ifndef GEOIPMANAGER_H
 #define GEOIPMANAGER_H
 
-#include <libtorrent/session.hpp>
 #include "GeoIP.h"
 #include <QString>
 #include <QIcon>
@@ -40,7 +39,7 @@ class GeoIPManager : public QObject {
   Q_OBJECT
 
 public:
-  static void loadDatabase(libtorrent::session *s);
+  static void loadDatabase();
   static QIcon CountryISOCodeToIcon(const char* iso);
   static QString CountryISOCodeToName(const char* iso);
   static QString selfCode;

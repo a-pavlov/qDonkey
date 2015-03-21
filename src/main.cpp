@@ -248,7 +248,13 @@ int main(int argc, char *argv[])
     }
 
     //app.processEvents();
-    
+#if defined(Q_WS_X11) || defined(Q_WS_MAC)
+    signal(SIGABRT, sigabrtHandler);
+    signal(SIGTERM, sigtermHandler);
+    signal(SIGINT, sigintHandler);
+    signal(SIGSEGV, sigsegvHandler);
+#endif
+
     // Set environment variable
     if(qputenv("QDONKEY", misc::versionString().toLocal8Bit()))
         std::cerr << "Couldn't set environment variable...\n";
@@ -263,14 +269,7 @@ int main(int argc, char *argv[])
 
     //Session::instance()->configureSession();
     Session::instance()->start();
-    //app.setQuitOnLastWindowClosed(false);
-
-#if defined(Q_WS_X11) || defined(Q_WS_MAC)
-    signal(SIGABRT, sigabrtHandler);
-    signal(SIGTERM, sigtermHandler);
-    signal(SIGINT, sigintHandler);
-    signal(SIGSEGV, sigsegvHandler);
-#endif
+    //app.setQuitOnLastWindowClosed(false)
 
     MainWindow window(0, dataList);
 

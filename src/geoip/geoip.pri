@@ -3,10 +3,10 @@ INCLUDEPATH += $$PWD
 HEADERS +=  $$PWD/geoipmanager.h
 SOURCES +=  $$PWD/geoipmanager.cpp
 
-unix {
+#unix {
     HEADERS += $$PWD/GeoIP.h
     SOURCES += $$PWD/GeoIP.c
-}
+#}
 
 
 # Add GeoIP resource file if the GeoIP database
