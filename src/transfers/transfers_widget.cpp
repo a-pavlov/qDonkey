@@ -1,6 +1,7 @@
 #include "transfers_widget.h"
 #include "ui_transfers_widget.h"
 #include "transfer_model.h"
+#include "peermodel.h"
 #include "transferlist_delegate.h"
 #include "ed2k_link_maker.h"
 #include "qed2ksession.h"
@@ -11,10 +12,15 @@
 transfers_widget::transfers_widget(QWidget *parent) :
     QWidget(parent) {
     setupUi(this);
-    model = new TransferModel(this);
+    tmodel = new TransferModel(this);
+    pmodel = new PeerModel(this);
+
     trView->setRootIsDecorated(false);
     trView->setItemDelegate(new TransferListDelegate(this));
-    trView->setModel(model);
+    trView->setModel(tmodel);
+
+    peerView->setModel(pmodel);
+    peerView->setRootIsDecorated(false);
     menu = new QMenu(this);
     menu->addAction(actionStart);
     menu->addAction(actionPause);
@@ -88,7 +94,7 @@ void transfers_widget::displayListMenu(const QPoint&) {
 }
 
 QString transfers_widget::getHashFromRow(int row) const {
-    return model->transferHash(row);
+    return tmodel->transferHash(row);
 }
 
 QStringList transfers_widget::getSelectedHashes() const {
@@ -120,7 +126,7 @@ void transfers_widget::on_actionPause_triggered() {
 void transfers_widget::on_actionRemove_triggered() {
     const QStringList hashes = getSelectedHashes();
     foreach (const QString &hash, hashes) {
-        model->removeTransfer(hash);
+        tmodel->removeTransfer(hash);
         Session::instance()->deleteTransfer(hash, true);
     }
 }

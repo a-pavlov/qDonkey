@@ -9,6 +9,7 @@
 #include "qed2khandle.h"
 
 class TransferModel;
+class PeerModel;
 
 class transfers_widget : public QWidget, private Ui::transfers_widget {
     Q_OBJECT
@@ -38,7 +39,8 @@ private:
     QString getHashFromRow(int row) const;
     QStringList getSelectedHashes() const;
     QModelIndex mapToSource(const QModelIndex& index) const;
-    TransferModel* model;
+    TransferModel* tmodel;
+    PeerModel* pmodel;
     QMenu* menu;
 };
 

@@ -293,7 +293,7 @@
         </widget>
        </item>
        <item>
-        <widget class="QTreeView" name="connectionsView_2">
+        <widget class="QTreeView" name="peerView">
          <property name="verticalScrollMode">
           <enum>QAbstractItemView::ScrollPerPixel</enum>
          </property>
