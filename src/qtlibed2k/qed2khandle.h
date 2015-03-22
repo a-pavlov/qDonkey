@@ -2,14 +2,38 @@
 #define __QED2kHANDLE__
 
 #include <libed2k/transfer_handle.hpp>
+#include <libed2k/peer_info.hpp>
+
 #include <QString>
 #include <QHash>
 #include <QDateTime>
 
 typedef libed2k::size_type TransferSize;
 typedef libed2k::transfer_status TransferStatus;
-typedef libed2k::peer_info PeerInfo;
 typedef libed2k::bitfield TransferBitfield;
+
+struct PeerInfo {
+    QString m_hash;
+    QString m_address;
+    QString m_client;
+    QString m_file;
+    quint64 m_speed_down;
+    quint64 m_total_down;
+    quint64 m_speed_up;
+    quint64 m_total_up;
+    float   m_progress;
+    bool    m_hack;
+
+    PeerInfo();
+
+    bool operator<(const PeerInfo& p) const {
+        return qMakePair(m_hash, m_address) < qMakePair(p.m_hash, p.m_address);
+    }
+
+    bool operator==(const PeerInfo& p) const {
+        return m_hash == p.m_hash && m_address == p.m_address;
+    }
+};
 
 class QED2KHandle {
 public:
@@ -59,7 +83,7 @@ public:
     QString filename() const;
     TransferSize filesize() const;
     QList<int> file_extremity_pieces_at() const;
-    void get_peer_info(std::vector<PeerInfo>& peers) const;
+    QList<PeerInfo> get_peer_info() const;
 
     void pause() const;
     void resume() const;

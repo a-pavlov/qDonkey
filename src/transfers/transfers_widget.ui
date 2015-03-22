@@ -254,6 +254,18 @@
     <string>Preview</string>
    </property>
   </action>
+  <action name="actionShow_all_transfers">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="../icons.qrc">
+     <normaloff>:/icons/search/SearchResult.png</normaloff>:/icons/search/SearchResult.png</iconset>
+   </property>
+   <property name="text">
+    <string>Show all transfers</string>
+   </property>
+  </action>
  </widget>
  <resources>
   <include location="../icons.qrc"/>

@@ -4,6 +4,7 @@
 #include <QWidget>
 #include <QMenu>
 #include <QStringList>
+#include <QTimer>
 
 #include "ui_transfers_widget.h"
 #include "qed2khandle.h"
@@ -35,6 +36,7 @@ private slots:
 
     void on_actionOpen_destination_folder_triggered();
 
+    void refreshModels();
 private:
     QString getHashFromRow(int row) const;
     QStringList getSelectedHashes() const;
@@ -42,6 +44,7 @@ private:
     TransferModel* tmodel;
     PeerModel* pmodel;
     QMenu* menu;
+    QTimer m_refreshTimer;
 };
 
 #endif // TRANSFERS_WIDGET_H

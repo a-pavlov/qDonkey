@@ -4,6 +4,10 @@
 #include "misc.h"
 
 
+PeerInfo::PeerInfo() : m_speed_down(0), m_total_down(0),
+    m_speed_up(0), m_total_up(0),
+    m_progress(0.f), m_hack(false) {}
+
 QED2KHandle::QED2KHandle() {}
 
 QED2KHandle::QED2KHandle(const libed2k::transfer_handle& h): m_delegate(h) {
@@ -91,10 +95,31 @@ QList<int> QED2KHandle::file_extremity_pieces_at() const {
     return (res << 0 << penult_piece << last_piece);
 }
 
-void QED2KHandle::get_peer_info(std::vector<PeerInfo>& infos) const 
-{
-    std::vector<libed2k::peer_info> ed_infos;
-    m_delegate.get_peer_info(ed_infos);
+QList<PeerInfo> QED2KHandle::get_peer_info() const {
+    std::vector<libed2k::peer_info> inf;
+    m_delegate.get_peer_info(inf);
+    QList<PeerInfo> res;
+    for(std::vector<libed2k::peer_info>::const_iterator peer = inf.begin(); peer != inf.end(); ++peer) {
+        PeerInfo info;
+        libed2k::error_code ec;
+        QString peer_ip = misc::toQString(peer->ip.address().to_string(ec));
+        info.m_address = peer_ip + ":" + QString::number(peer->ip.port());
+        if(ec) continue;
+
+        if (peer->payload_down_speed == 0 && peer->payload_up_speed == 0) continue;
+
+        info.m_hash         = hash();
+        info.m_client       = misc::toQStringU(peer->client);
+        info.m_file         = filename();
+        info.m_total_down   = peer->total_download;
+        info.m_speed_down   = peer->payload_down_speed;
+        info.m_total_up     = peer->total_upload;
+        info.m_speed_up     = peer->payload_up_speed;
+        info.m_progress     = peer->progress;
+        res.push_back(info);
+    }
+
+    return res;
 }
 
 void QED2KHandle::pause() const { m_delegate.pause(); }

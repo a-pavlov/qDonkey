@@ -22,8 +22,12 @@ transfers_widget::transfers_widget(QWidget *parent) :
     peerView->setModel(pmodel);
     peerView->setRootIsDecorated(false);
     menu = new QMenu(this);
+    menu->addAction(actionShow_all_transfers);
+    menu->addSeparator();
     menu->addAction(actionStart);
     menu->addAction(actionPause);
+    menu->addSeparator();
+    menu->addAction(actionPreview);
     menu->addSeparator();
     menu->addAction(actionRemove);
     menu->addAction(actionRename);
@@ -33,9 +37,10 @@ transfers_widget::transfers_widget(QWidget *parent) :
     menu->addAction(actionFirst_and_last_pieces_first);
     menu->addSeparator();
     menu->addAction(actionOpen_destination_folder);
-    menu->addAction(actionPreview);
     connect(trView, SIGNAL(customContextMenuRequested(const QPoint&)), this, SLOT(displayListMenu(const QPoint&)));
 
+    connect(&m_refreshTimer, SIGNAL(timeout()), SLOT(refreshModels()));
+    m_refreshTimer.start(3000);
     /*
     // Default hidden columns
     if (!column_loaded) {
@@ -80,6 +85,8 @@ void transfers_widget::displayListMenu(const QPoint&) {
     actionPause->setEnabled(has_pause);
     actionPreview->setEnabled(has_preview);
     actionED2K_link->setEnabled(has_link);
+    actionRemove->setDisabled(hashes.isEmpty());
+    actionRename->setEnabled(has_link);
 
     actionSeries_download->setChecked(all_same_sequential_download_mode == (hashes.size() - seeders - invalid));
     actionFirst_and_last_pieces_first->setChecked(all_same_prio_firstlast == (hashes.size() - seeders- invalid));
@@ -199,4 +206,8 @@ void transfers_widget::on_actionOpen_destination_folder_triggered()
         Preferences pref;
         QDesktopServices::openUrl(QUrl::fromLocalFile(pref.inputDir()));
     }
+}
+
+void transfers_widget::refreshModels() {
+    pmodel->populate();
 }
