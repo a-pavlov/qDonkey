@@ -9,8 +9,8 @@ Only base features: search on server and download/upload on max speed. Features 
 Screenshots
 -----------
 
-[![Transfers page](https://github.com/a-pavlov/qDonkey/tree/master/raw/transfers.png)](https://github.com/a-pavlov/qDonkey/tree/master/raw/transfers.png)
-[![Search page](https://github.com/a-pavlov/qDonkey/tree/master/raw/search.png)](https://github.com/a-pavlov/qDonkey/tree/master/raw/search.png)
+* [![Transfers page](https://github.com/a-pavlov/qDonkey/tree/master/raw/transfers.png)](https://github.com/a-pavlov/qDonkey/tree/master/raw/transfers.png)
+* [![Search page](https://github.com/a-pavlov/qDonkey/tree/master/raw/search.png)](https://github.com/a-pavlov/qDonkey/tree/master/raw/search.png)
 
 
 
