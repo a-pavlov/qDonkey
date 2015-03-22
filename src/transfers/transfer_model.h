@@ -14,10 +14,6 @@ class TransferModel : public QAbstractListModel {
     Q_DISABLE_COPY(TransferModel)
 
 public:
-    enum {
-         FilesPerCycle = 4
-    };
-
     explicit TransferModel(QObject *parent = 0);
     ~TransferModel();
     inline int rowCount(const QModelIndex& index = QModelIndex()) const { Q_UNUSED(index); return m_transfers.size(); }

@@ -10,7 +10,7 @@ class PeerModel : public QAbstractListModel
     Q_OBJECT
 public:
     enum Roles {
-        NativeRole = Qt::UserRole + 1
+        SortRole = Qt::UserRole + 1
     };
 
     enum Columns { PM_IP, PM_CLIENT, PM_FILE, PM_PROGRESS, PM_SPEED, PM_TOTAL, COL_COUNT };

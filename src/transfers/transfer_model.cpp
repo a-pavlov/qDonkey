@@ -125,7 +125,7 @@ void TransferModel::addTransfer(const QED2KHandle& h) {
     if (transferRow(h.hash()) == -1) {
         qDebug() << "add transfer to list " << h.hash();
         beginInsertTransfer(m_transfers.size());
-        TransferModelItem *item = new TransferModelItem(h);
+        TransferModelItem *item = new TransferModelItem(h, Session::instance()->status(h.hash()));
         m_transfers << item;
         emit transferAdded(item);
         endInsertTransfer();

@@ -11,6 +11,7 @@
 
 class TransferModel;
 class PeerModel;
+class QSortFilterProxyModel;
 
 class transfers_widget : public QWidget, private Ui::transfers_widget {
     Q_OBJECT
@@ -37,12 +38,19 @@ private slots:
     void on_actionOpen_destination_folder_triggered();
 
     void refreshModels();
+
+    void trSortChanged(int logicalIndex, Qt::SortOrder order);
+    void pSortChanged(int logicalIndex, Qt::SortOrder order);
+    void on_actionShow_all_transfers_triggered();
+
 private:
     QString getHashFromRow(int row) const;
     QStringList getSelectedHashes() const;
     QModelIndex mapToSource(const QModelIndex& index) const;
     TransferModel* tmodel;
     PeerModel* pmodel;
+    QSortFilterProxyModel* tsort_model;
+    QSortFilterProxyModel* psort_model;
     QMenu* menu;
     QTimer m_refreshTimer;
 };

@@ -724,6 +724,8 @@ void QED2KSession::readAlerts()
                  dynamic_cast<libed2k::added_transfer_alert*>(a.get()))
         {
             QED2KHandle h(p->m_handle);
+            if (!h.is_seed()) m_currentSessionTransfers.insert(h.hash());
+
             if (!m_addTimes.contains(h.hash())) {
                 m_addTimes.insert(h.hash(), QDateTime::currentDateTime());
             }
@@ -777,7 +779,6 @@ void QED2KSession::readAlerts()
             } else {
                 qDebug() << "ignore add transfer parameters for old directory: " << misc::toQStringU(p->m_atp.file_path);
             }
-
         }
         else if (libed2k::file_renamed_alert* p = dynamic_cast<libed2k::file_renamed_alert*>(a.get()))
         {
@@ -1221,4 +1222,8 @@ QDateTime QED2KSession::hasBeenAdded(const QString& hash) const {
 
 qlonglong QED2KSession::getETA(const QString& hash) const {
     return m_speedMon->getETA(hash);
+}
+
+QString QED2KSession::status(const QString& hash) const {
+    return m_currentSessionTransfers.contains(hash)?"N":"R";
 }

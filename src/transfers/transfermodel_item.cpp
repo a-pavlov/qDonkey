@@ -3,7 +3,7 @@
 #include "qtlibed2k/qed2ksession.h"
 #include <QDebug>
 
-TransferModelItem::TransferModelItem(const QED2KHandle& h) : m_handle(h) {
+TransferModelItem::TransferModelItem(const QED2KHandle& h, const QString& status) : m_handle(h), m_status(status) {
     Q_ASSERT(h.is_valid());
     m_hash = h.hash();
     m_ft = toFileType(h.filename());
@@ -42,6 +42,11 @@ bool TransferModelItem::setData(int column, const QVariant &value, int role) {
 }
 
 QVariant TransferModelItem::data(int column, int role) const {
+
+    if (role == FilterRole) {
+        return m_status;
+    }
+
     if (role == Qt::DecorationRole && column == TM_NAME) {
         switch(state()) {
             case STATE_DOWNLOADING: return QIcon(res::downloading());

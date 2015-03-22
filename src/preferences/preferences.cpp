@@ -10,6 +10,7 @@ const QString pathUserHash  = "Network/UserHash";
 const QString pathUPnp      = "Network/UPnP";
 const QString pathInputDir  = "HD/InputDir";
 const QString pathSysTrAvail= "System/SystrayAvailable";
+const QString pathShowAllransfers = "Common/ShowAllTransfers";
 
 bool Preferences::confirmOnExit() const {
     return value(pathConfOnExt, true).toBool();
@@ -91,4 +92,12 @@ bool Preferences::sysTrayAvailable() const {
 
 void Preferences::setSysTrayAvailable(bool flag) {
     setValue(pathSysTrAvail, flag);
+}
+
+bool Preferences::showAllTransfers() const {
+    return value(pathShowAllransfers, true).toBool();
+}
+
+void Preferences::setShowAllTransfers(bool flag) {
+    setValue(pathShowAllransfers, flag);
 }

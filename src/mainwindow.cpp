@@ -100,6 +100,7 @@ MainWindow::MainWindow(QWidget *parent, QStringList torrentCmdLine)
     stackedWidget->addWidget(new search_widget(this));
     stackedWidget->addWidget(new preferences_widget(this));
     stackedWidget->setCurrentIndex(0);
+    setWindowTitle(tr("qDonkey %1").arg(misc::versionString()));
     QCoreApplication::instance()->installEventFilter(this);
 
     //QApplication::setOverrideCursor(Qt::WaitCursor);
@@ -112,7 +113,6 @@ MainWindow::MainWindow(QWidget *parent, QStringList torrentCmdLine)
 #endif
 
     Preferences pref;
-    setWindowTitle(QString::fromUtf8(PRODUCT_NAME));
 
     // Clean exit on log out
     connect(static_cast<SessionApplication*>(qApp), SIGNAL(sessionIsShuttingDown()), this, SLOT(deleteSession()));
@@ -839,11 +839,11 @@ void MainWindow::updateGUI()
     if(Preferences().displaySpeedInTitle()) {
         setWindowTitle(tr("[D: %1/s, U: %2/s] qDonkey %3", "D = Download; U = Upload; %3 is qDonkey version").arg(misc::friendlyUnit(status.payload_download_rate)).arg(misc::friendlyUnit(status.payload_upload_rate)).arg(misc::versionString()));
     } else {
-        setWindowTitle("qDonkey");
+        setWindowTitle(tr("qDonkey %1").arg(misc::versionString()));
     }
 
     statusBar->setUpDown(status.payload_upload_rate, status.payload_download_rate);
-    //Session::instance()->playPendingMedia();
+    Session::instance()->playPendingMedia();
 }
 
 void MainWindow::showNotificationBaloon(QString title, QString msg) const {

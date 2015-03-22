@@ -8,19 +8,38 @@
 
 #include <QDesktopServices>
 #include <QUrl>
+#include <QSortFilterProxyModel>
 
 transfers_widget::transfers_widget(QWidget *parent) :
     QWidget(parent) {
     setupUi(this);
     tmodel = new TransferModel(this);
     pmodel = new PeerModel(this);
+    psort_model = new QSortFilterProxyModel(this);
+    psort_model->setSourceModel(pmodel);
+    psort_model->setSortRole(PeerModel::SortRole);
+    psort_model->setDynamicSortFilter(true);
+
+    tsort_model = new QSortFilterProxyModel(this);
+    tsort_model->setSourceModel(tmodel);
+    tsort_model->setDynamicSortFilter(true);
+    tsort_model->setFilterRole(TransferModelItem::FilterRole);
 
     trView->setRootIsDecorated(false);
     trView->setItemDelegate(new TransferListDelegate(this));
-    trView->setModel(tmodel);
+    trView->setModel(tsort_model);
+    trView->setSortingEnabled(true);
 
-    peerView->setModel(pmodel);
+    peerView->setModel(psort_model);
     peerView->setRootIsDecorated(false);
+    peerView->setSortingEnabled(true);
+
+    connect(trView->header(), SIGNAL(sortIndicatorChanged(int, Qt::SortOrder)),
+            this, SLOT(trSortChanged(int, Qt::SortOrder)));
+
+    connect(peerView->header(), SIGNAL(sortIndicatorChanged(int, Qt::SortOrder)),
+            this, SLOT(pSortChanged(int, Qt::SortOrder)));
+
     menu = new QMenu(this);
     menu->addAction(actionShow_all_transfers);
     menu->addSeparator();
@@ -41,6 +60,10 @@ transfers_widget::transfers_widget(QWidget *parent) :
 
     connect(&m_refreshTimer, SIGNAL(timeout()), SLOT(refreshModels()));
     m_refreshTimer.start(3000);
+    Preferences pref;
+    actionShow_all_transfers->setChecked(pref.showAllTransfers());
+    on_actionShow_all_transfers_triggered();
+    //actionShow_all_transfers->;
     /*
     // Default hidden columns
     if (!column_loaded) {
@@ -49,10 +72,13 @@ transfers_widget::transfers_widget(QWidget *parent) :
         trView->setColumnHidden(TransferModelItem::TM_TIME_ELAPSED, true);
     }
     */
+
+    trView->header()->setSortIndicator(TransferModelItem::TM_NAME, Qt::DescendingOrder);
 }
 
-transfers_widget::~transfers_widget()
-{
+transfers_widget::~transfers_widget() {
+    Preferences pref;
+    pref.setShowAllTransfers(actionShow_all_transfers->isChecked());
 }
 
 void transfers_widget::displayListMenu(const QPoint&) {
@@ -114,7 +140,7 @@ QStringList transfers_widget::getSelectedHashes() const {
     return hashes;
 }
 
-QModelIndex transfers_widget::mapToSource(const QModelIndex& index) const { return index; }
+QModelIndex transfers_widget::mapToSource(const QModelIndex& index) const { return tsort_model->mapToSource(index); }
 
 void transfers_widget::on_actionStart_triggered() {
     const QStringList hashes = getSelectedHashes();
@@ -210,4 +236,21 @@ void transfers_widget::on_actionOpen_destination_folder_triggered()
 
 void transfers_widget::refreshModels() {
     pmodel->populate();
+}
+
+void transfers_widget::trSortChanged(int logicalIndex, Qt::SortOrder order) {
+    tsort_model->sort(logicalIndex, order);
+}
+
+void transfers_widget::pSortChanged(int logicalIndex, Qt::SortOrder order) {
+    psort_model->sort(logicalIndex, order);
+}
+
+void transfers_widget::on_actionShow_all_transfers_triggered()
+{
+    if (actionShow_all_transfers->isChecked()) {
+        tsort_model->setFilterFixedString("");
+    } else {
+        tsort_model->setFilterFixedString("N");
+    }
 }

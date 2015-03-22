@@ -12,6 +12,10 @@
 class TransferModelItem : public QObject {
     Q_OBJECT
 public:
+    enum {
+         FilterRole = Qt::UserRole + 2
+    };
+
     enum State {
         STATE_DOWNLOADING,
         STATE_STALLED_DL,
@@ -44,7 +48,7 @@ public:
     };
 
 public:
-    TransferModelItem(const QED2KHandle& h);
+    TransferModelItem(const QED2KHandle& h, const QString& status);
     inline int columnCount() const { return TM_END; }
     QVariant data(int column, int role = Qt::DisplayRole) const;
     bool setData(int column, const QVariant &value, int role = Qt::DisplayRole);
@@ -54,7 +58,7 @@ public:
 
 private:
     State state() const;
-
+    const QString m_status;
 private:
     QED2KHandle m_handle;
     QDateTime m_addedTime;

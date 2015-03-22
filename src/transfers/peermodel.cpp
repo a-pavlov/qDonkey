@@ -41,6 +41,19 @@ QVariant PeerModel::data(const QModelIndex& index, int role) const {
             }
         }
         break;
+    case SortRole: {
+        switch(index.column()) {
+            case PM_IP:        return at(index).m_address;
+            case PM_CLIENT:    return at(index).m_client;
+            case PM_FILE:      return at(index).m_file;
+            case PM_PROGRESS:  return at(index).m_progress;
+            case PM_SPEED:     return speed(index);
+            case PM_TOTAL:     total(index);
+            default:
+            break;
+            }
+        }
+        break;
     case Qt::DecorationRole: {
         if (index.column() == PM_IP)
             if (at(index).m_speed_down > 0) return QIcon(res::downloading());
@@ -52,6 +65,15 @@ QVariant PeerModel::data(const QModelIndex& index, int role) const {
             if (at(index).m_speed_up > 0) return QColor("orange");
         }
         break;
+    case Qt::TextAlignmentRole: {
+        switch(index.column()) {
+            case PM_SPEED:
+            case PM_TOTAL:
+            return Qt::AlignRight;
+        default:
+            return Qt::AlignLeft;
+        }
+    }
     default:
         break;
     }
@@ -60,19 +82,31 @@ QVariant PeerModel::data(const QModelIndex& index, int role) const {
 }
 
 QVariant PeerModel::headerData(int section, Qt::Orientation orientation, int role) const {
-    if (orientation != Qt::Horizontal || role != Qt::DisplayRole)
+    if (orientation != Qt::Horizontal)
         return QAbstractListModel::headerData(section, orientation, role);
 
-    switch(section) {
-        case PM_IP:        return tr("IP");
-        case PM_CLIENT:    return tr("Client");
-        case PM_FILE:      return tr("File name");
-        case PM_PROGRESS:  return tr("Progress");
-        case PM_SPEED:     return tr("Speed");
-        case PM_TOTAL:     return tr("Bytes");
+    if (role == Qt::TextAlignmentRole) {
+        switch(section) {
+            case PM_SPEED:
+            case PM_TOTAL:
+            return Qt::AlignRight;
         default:
-            Q_ASSERT(false);
-            break;
+            return Qt::AlignLeft;
+        }
+    }
+
+    if (role == Qt::DisplayRole) {
+        switch(section) {
+            case PM_IP:        return tr("IP");
+            case PM_CLIENT:    return tr("Client");
+            case PM_FILE:      return tr("File name");
+            case PM_PROGRESS:  return tr("Progress");
+            case PM_SPEED:     return tr("Speed");
+            case PM_TOTAL:     return tr("Bytes");
+            default:
+                Q_ASSERT(false);
+                break;
+        }
     }
 
     return QVariant();

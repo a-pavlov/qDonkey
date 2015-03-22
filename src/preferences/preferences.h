@@ -69,6 +69,9 @@ public:
 
     bool sysTrayAvailable() const;
     void setSysTrayAvailable(bool);
+
+    bool showAllTransfers() const;
+    void setShowAllTransfers(bool);
 };
 
 #endif // PREFERENCES_H

@@ -193,7 +193,7 @@ search_widget::search_widget(QWidget *parent)
     load();
 
     // sort by name ascending
-    treeResult->header()->setSortIndicator(SearchModel::DC_SOURCES, Qt::AscendingOrder);
+    treeResult->header()->setSortIndicator(SearchModel::DC_SOURCES, Qt::DescendingOrder);
 }
 
 void search_widget::load() {

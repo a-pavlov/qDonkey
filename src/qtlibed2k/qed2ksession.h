@@ -171,12 +171,13 @@ public:
     void loadDirectory(const QString& path);
     QDateTime hasBeenAdded(const QString& hash) const;
     qlonglong getETA(const QString& hash) const;
+    QString status(const QString& hash) const;
+    void playPendingMedia();
     libed2k::session* delegate() const;
 
     const libed2k::ip_filter& session_filter() const;
 
 private:
-    void playPendingMedia();
     QScopedPointer<libed2k::session> m_session;
     QHash<QString, QED2KHandle> m_fast_resume_transfers;   // contains fast resume data were loading
     QTimer alertsTimer;
@@ -186,6 +187,7 @@ private:
     QSet<QString> m_sharedFiles;    // earlier shared files(from metadata dir) and new shared files from inout directory
     QHash<QString, QDateTime> m_addTimes;   // creation dates for transfers
     QHash<QString, libed2k::transfer_resume_data> m_fastTransfers;  // transfers information from metadata directory
+    QSet<QString>   m_currentSessionTransfers;  // transfers were added to session not as seed
     // Port forwarding
     libed2k::upnp* m_upnp;
     libed2k::natpmp* m_natpmp;
