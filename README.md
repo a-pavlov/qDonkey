@@ -4,7 +4,7 @@ is74.ru(eDonkey server address hardcoded, but can be replaced in properties file
 
 Features
 --------
-Only base features: search on server and dwnload on max speed.
+Only base features: search on server and download/upload on max speed. Features like irc, messages removed. I made controls like in torrent clients - user can see all transfers in transfer window.
 
 Screenshots
 -----------
