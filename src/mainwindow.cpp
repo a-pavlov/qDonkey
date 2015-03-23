@@ -182,7 +182,7 @@ MainWindow::MainWindow(QWidget *parent, QStringList torrentCmdLine)
     // Add torrent given on command line
     processParams(torrentCmdLine);
 #ifdef Q_WS_MAC
-    qt_mac_set_dock_menu(getTrayIconMenu());
+    //qt_mac_set_dock_menu(icon_CurTray);
 #endif
 
     // Make sure the Window is visible if we don't have a tray icon
@@ -473,9 +473,6 @@ bool MainWindow::event(QEvent * e)
                 qDebug("MAC: Received a toolbar change event!");
                 bool ret = QMainWindow::event(e);
 
-                qDebug("MAC: new toolbar visibility is %d", !actionTop_tool_bar->isChecked());
-                actionTop_tool_bar->toggle();
-                Preferences().setToolbarDisplayed(actionTop_tool_bar->isChecked());
                 return ret;
             }
 #endif

@@ -7,10 +7,9 @@ SOURCES += qmacapplication.cpp
 
 # Use pkg-config to get all necessary libtorrent DEFINES
 CONFIG += link_pkgconfig
-PKGCONFIG += libtorrent-rasterbar
 
 # Special include/libs paths (macports)
-INCLUDEPATH += /usr/include/openssl /usr/include /opt/local/include/boost /opt/local/include
+INCLUDEPATH += /usr/include /opt/local/include/boost /opt/local/include
 INCLUDEPATH += $$(LIBED2K_ROOT)/include
 LIBS += -L/opt/local/lib
 LIBS += -L$$(LIBED2K_ROOT)/lib -led2k

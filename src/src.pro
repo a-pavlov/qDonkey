@@ -24,9 +24,9 @@ win32 {
 }
 
 # Mac specific configuration
-macx {
-  include(mac/conf.pri)
-}
+#macx {
+#  include(mac/conf.pri)
+#}
 
 # Unix specific configuration
 unix:!macx {
@@ -63,6 +63,12 @@ usesystemqtsingleapplication {
 } else {
     include(qtsingleapp/qtsingleapplication.pri)
 }
+
+# Mac specific configuration
+macx {
+  include(mac/conf.pri)
+}
+
 
 include(qtlibed2k/qtlibed2k.pri)
 include(geoip/geoip.pri)
