@@ -27,7 +27,7 @@ QVariant PeerModel::data(const QModelIndex& index, int role) const {
             case PM_CLIENT:    return at(index).m_client;
             case PM_FILE:      return at(index).m_file;
             case PM_PROGRESS:  {
-                QString res = QString::number(at(index).m_progress, 'f', 1)+"%";
+                QString res = QString::number(at(index).m_progress*100, 'f', 1)+"%";
                 return res;
             }
 
