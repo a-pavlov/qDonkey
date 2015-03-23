@@ -8,6 +8,10 @@ Dependencies
 * libed2k
 * Qt4
 
+Platforms
+--------
+Linux, Windows, Macos
+
 Features
 --------
 Only base features: search on server and download/upload on max speed. Features like irc, messages removed. I made controls like in torrent clients - user can see all transfers in transfer window.
