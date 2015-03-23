@@ -29,7 +29,7 @@ QMAKE_CXXFLAGS += -fpermissive
 #QMAKE_BUNDLE_DATA += document_icon
 #ICON = Icons/qmule_mac.icns
 #QMAKE_INFO_PLIST = Info.plist
-ICON = Icons/emule.icns
+ICON = icons/mule.icns
 QMAKE_INFO_PLIST = mac/Info.plist
 
 DEFINES += WITH_GEOIP_EMBEDDED
