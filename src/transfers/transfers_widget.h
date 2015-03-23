@@ -42,7 +42,7 @@ private slots:
     void trSortChanged(int logicalIndex, Qt::SortOrder order);
     void pSortChanged(int logicalIndex, Qt::SortOrder order);
     void on_actionShow_all_transfers_triggered();
-
+    void displayHSMenu(const QPoint&);
 private:
     QString getHashFromRow(int row) const;
     QStringList getSelectedHashes() const;

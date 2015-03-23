@@ -271,6 +271,7 @@ void MainWindow::writeSettings()
     Preferences pref;
     pref.beginGroup(QString::fromUtf8("MainWindow"));
     pref.setValue("geometry", saveGeometry());
+    pref.setValue("CurrentTab", stackedWidget->currentIndex());
     pref.endGroup();
 }
 
@@ -279,13 +280,13 @@ void MainWindow::readSettings()
     Preferences pref;
     pref.beginGroup(QString::fromUtf8("MainWindow"));
 
-    if(pref.contains("geometry"))
-    {
+    if(pref.contains("geometry")) {
         if(restoreGeometry(pref.value("geometry").toByteArray()))
             m_posInitialized = true;
     }
 
-    const QByteArray splitterState = pref.value("vsplitterState").toByteArray();
+    stackedWidget->setCurrentIndex(pref.value("CurrentTab", wTransfer).toInt());
+
     pref.endGroup();
 }
 

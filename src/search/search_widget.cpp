@@ -203,6 +203,9 @@ void search_widget::load() {
     pref.beginGroup("SearchWidget");
     checkPlus->setChecked(pref.value("CheckPlus", true).toBool());
     checkOwn->setChecked(pref.value("CheckOwn", true).toBool());
+    if (pref.contains("SeachListHeader")) {
+        treeResult->header()->restoreState(pref.value("SeachListHeader").toByteArray());
+    }
 
     if (pref.value("defMegas", false).toBool()) {
         //defMegas->setChecked(true);
@@ -214,10 +217,6 @@ void search_widget::load() {
 
     if (pref.value("defKilos", false).toBool()) {
         //defKilos->setChecked(true);
-    }
-
-    if(pref.contains("TreeResultHeader")) {
-        treeResult->header()->restoreState(pref.value("TreeResultHeader").toByteArray());
     }
 
     int size = pref.beginReadArray("Tabs");
@@ -258,7 +257,7 @@ void search_widget::save() const {
     pref.setValue("CheckPlus", checkPlus->isChecked());
     pref.setValue("CheckOwn", checkOwn->isChecked());
     pref.setValue("CurrentTab", tabSearch->currentIndex());
-    pref.setValue("TreeResultHeader", treeResult->header()->saveState());
+    pref.setValue("SeachListHeader", treeResult->header()->saveState());
 
     pref.setValue("defValue", defValue->isChecked());
     pref.setValue("defKilos", defKilos->isChecked());

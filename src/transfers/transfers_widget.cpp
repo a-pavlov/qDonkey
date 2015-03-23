@@ -63,15 +63,24 @@ transfers_widget::transfers_widget(QWidget *parent) :
     Preferences pref;
     actionShow_all_transfers->setChecked(pref.showAllTransfers());
     on_actionShow_all_transfers_triggered();
-    //actionShow_all_transfers->;
-    /*
-    // Default hidden columns
-    if (!column_loaded) {
+
+    if(pref.contains("TransferListHeader")) {
+        trView->header()->restoreState(pref.value("TransferListHeader").toByteArray());
+    } else {
         trView->setColumnHidden(TransferModelItem::TM_AMOUNT_DOWNLOADED, true);
         trView->setColumnHidden(TransferModelItem::TM_AMOUNT_LEFT, true);
         trView->setColumnHidden(TransferModelItem::TM_TIME_ELAPSED, true);
+        trView->setColumnHidden(TransferModelItem::TM_HASH, true);
+        trView->setColumnHidden(TransferModelItem::TM_TYPE, true);
     }
-    */
+
+    if (pref.contains("PeerListHeader")) {
+        peerView->header()->restoreState(pref.value("PeerListHeader").toByteArray());
+    }
+
+    trView->header()->setContextMenuPolicy(Qt::CustomContextMenu);
+    connect(trView->header(), SIGNAL(customContextMenuRequested(const QPoint&)),
+                SLOT(displayHSMenu(const QPoint&)));
 
     trView->header()->setSortIndicator(TransferModelItem::TM_NAME, Qt::DescendingOrder);
 }
@@ -79,6 +88,8 @@ transfers_widget::transfers_widget(QWidget *parent) :
 transfers_widget::~transfers_widget() {
     Preferences pref;
     pref.setShowAllTransfers(actionShow_all_transfers->isChecked());
+    pref.setValue("TransferListHeader", trView->header()->saveState());
+    pref.setValue("PeerListHeader", peerView->header()->saveState());
 }
 
 void transfers_widget::displayListMenu(const QPoint&) {
@@ -252,5 +263,27 @@ void transfers_widget::on_actionShow_all_transfers_triggered()
         tsort_model->setFilterFixedString("");
     } else {
         tsort_model->setFilterFixedString("N");
+    }
+}
+
+void transfers_widget::displayHSMenu(const QPoint&) {
+    QMenu hideshowColumn(this);
+    hideshowColumn.setTitle(tr("Column visibility"));
+    QList<QAction*> actions;
+    for (int i=0; i < tmodel->columnCount(); ++i) {
+        QAction *myAct = hideshowColumn.addAction(
+            tmodel->headerData(i, Qt::Horizontal, Qt::DisplayRole).toString());
+        myAct->setCheckable(true);
+        myAct->setChecked(!trView->isColumnHidden(i));
+        actions.append(myAct);
+    }
+
+    QAction *act = hideshowColumn.exec(QCursor::pos());
+    if (act) {
+        int col = actions.indexOf(act);
+        Q_ASSERT(col >= 0);
+        trView->setColumnHidden(col, !trView->isColumnHidden(col));
+        if (!trView->isColumnHidden(col) && trView->columnWidth(col) <= 5)
+            trView->setColumnWidth(col, 100);
     }
 }
