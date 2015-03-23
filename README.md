@@ -22,6 +22,9 @@ Screenshots
 * [![Transfers page](https://github.com/a-pavlov/qDonkey/tree/master/raw/transfers.png)](https://github.com/a-pavlov/qDonkey/tree/master/raw/transfers.png)
 * [![Search page](https://github.com/a-pavlov/qDonkey/tree/master/raw/search.png)](https://github.com/a-pavlov/qDonkey/tree/master/raw/search.png)
 
+Builds
+-----------
 
+[Windows](https://drive.google.com/file/d/0B39-MtFuW1DTUUVLeGM3Rkd6MkU/view?usp=sharing)
 
 
