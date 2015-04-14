@@ -1,6 +1,6 @@
 # Global
+CONFIG += qt thread core gui
 TEMPLATE = app
-CONFIG += qt thread
 
 # Store temporary files in separate directories
 win32 {
@@ -16,6 +16,11 @@ UI_DIR = $$OBJECTS_DIR/uic
 
 CONFIG(inet) {
     DEFINES += INET_SERVER
+}
+
+greaterThan(QT_MAJOR_VERSION, 4) {
+    QT += widgets
+    DEFINES += HAVE_QT5
 }
 
 # Windows specific configuration
