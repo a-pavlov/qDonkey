@@ -5,8 +5,6 @@
 
 QMAKE_CXXFLAGS += -Wformat -Wformat-security -Werror=return-type -Wno-unused-parameter
 QMAKE_LFLAGS_APP += -rdynamic
-CONFIG += link_pkgconfig
-PKGCONFIG += libtorrent-rasterbar 
 INCLUDEPATH += $$(LIBED2K_ROOT)/include 
 INCLUDEPATH += $$(BOOST_ROOT)/include
 
