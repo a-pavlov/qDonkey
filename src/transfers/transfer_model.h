@@ -38,13 +38,13 @@ private slots:
     void notifyTransferChanged(int row);
     void forceModelRefresh();
     void handleTransferAboutToBeRemoved(const QED2KHandle& h, bool);
+    void processActiveTransfers();
 private:
     void beginInsertTransfer(int row);
     void endInsertTransfer();
     void beginRemoveTransfer(int row);
     void endRemoveTransfer();
     void processUncheckedTransfers();
-
 private:
     int m_refreshInterval;
     QList<TransferModelItem*> m_transfers;

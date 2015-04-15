@@ -6,7 +6,7 @@
 #include <QFileInfo>
 
 TransferModel::TransferModel(QObject *parent) : QAbstractListModel(parent),
-    m_refreshInterval(3000) {
+    m_refreshInterval(2000) {
 
     // Listen for Transfer changes
     connect(Session::instance(), SIGNAL(transferAdded(QED2KHandle)), SLOT(addTransfer(QED2KHandle)));
@@ -20,6 +20,8 @@ TransferModel::TransferModel(QObject *parent) : QAbstractListModel(parent),
             SLOT(handleTransferUpdate(QED2KHandle)));
     connect(Session::instance(), SIGNAL(transferParametersReady(libed2k::add_transfer_params,libed2k::error_code)),
             SLOT(addTransferParameters(libed2k::add_transfer_params,libed2k::error_code)));
+    connect(&m_refreshTimer, SIGNAL(timeout()), this, SLOT(processActiveTransfers()));
+    m_refreshTimer.start(m_refreshInterval);
 }
 
 TransferModel::~TransferModel() {
@@ -171,6 +173,13 @@ void TransferModel::processUncheckedTransfers() {
         }
         else
             ++i;
+    }
+}
+
+void TransferModel::processActiveTransfers() {
+    QLinkedList<QED2KHandle> transfers = Session::instance()->getActiveTransfers();
+    foreach(const QED2KHandle h, transfers) {
+        handleTransferUpdate(h);
     }
 }
 
