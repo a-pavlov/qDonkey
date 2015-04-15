@@ -95,6 +95,8 @@ QVariant SearchModel::data(const QModelIndex& index, int role) const {
                 case FT_PROGRAM: return iconProgram;
                 case FT_DOCUMENT: return iconDoc;
                 case FT_EMULECOLLECTION: return iconEM;
+                default:
+                    break;
                 }
             }
             break;
@@ -124,10 +126,10 @@ QVariant SearchModel::data(const QModelIndex& index, int role) const {
         }
         case Qt::ForegroundRole: {
             QColor color(Qt::black);
-                //QString strHash = hash(index);
-                //if (misc::isMD4Hash(strHash) && Session::instance()->getTransfer(strHash).is_valid())
-                //        color = Qt::red;
-            break;
+            QString h = hash(index);
+            Q_ASSERT(misc::isMD4Hash(h));
+            if (Session::instance()->getTransfer(h).is_valid()) color = Qt::red;
+            return color;
         }
         default:
             break;
