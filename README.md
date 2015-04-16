@@ -26,6 +26,7 @@ Search page:
 Builds
 -----------
 
-[Windows](https://drive.google.com/file/d/0B39-MtFuW1DTNUg4bEpiMGE4UTg/view?usp=sharing)
+* [Windows 0.0.1](https://drive.google.com/file/d/0B39-MtFuW1DTNUg4bEpiMGE4UTg/view?usp=sharing)
+* [Windows 0.0.3](https://drive.google.com/file/d/0B39-MtFuW1DTZ3d5SUtpSXNkRTg/view?usp=sharing)
 
 
