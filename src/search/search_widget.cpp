@@ -194,15 +194,16 @@ search_widget::search_widget(QWidget *parent)
 
     // sort by name ascending
     treeResult->header()->setSortIndicator(SearchModel::DC_SOURCES, Qt::DescendingOrder);
+    filterModel->showOwn(checkOwn->isChecked());
 }
 
 void search_widget::load() {
     model->load();
-
     Preferences pref;
     pref.beginGroup("SearchWidget");
     checkPlus->setChecked(pref.value("CheckPlus", true).toBool());
     checkOwn->setChecked(pref.value("CheckOwn", true).toBool());
+
     if (pref.contains("SeachListHeader")) {
         treeResult->header()->restoreState(pref.value("SeachListHeader").toByteArray());
     }
