@@ -137,6 +137,30 @@ void transfers_widget::displayListMenu(const QPoint&) {
     menu->exec(QCursor::pos());
 }
 
+void transfers_widget::keyPressEvent( QKeyEvent * event)
+{
+    if (focusWidget() == trView)
+    {
+        qDebug() << event;
+        const QStringList hashes = getSelectedHashes();
+        foreach (const QString &hash, hashes) {
+            if (event->key() == Qt::Key_Delete) {
+                tmodel->removeTransfer(hash);
+                Session::instance()->deleteTransfer(hash, true);
+            }
+            else if (event->key() == Qt::Key_Return) {
+                QED2KHandle h = Session::instance()->getTransfer(hash);
+                if (h.is_valid())
+                {
+                    if (h.is_seed()) QDesktopServices::openUrl(QUrl(h.filepath()));
+                    else if (h.is_paused()) h.resume();
+                    else h.pause();
+                }
+            }
+        }
+    }
+}
+
 QString transfers_widget::getHashFromRow(int row) const {
     return tmodel->transferHash(row);
 }
@@ -151,7 +175,12 @@ QStringList transfers_widget::getSelectedHashes() const {
     return hashes;
 }
 
-QModelIndex transfers_widget::mapToSource(const QModelIndex& index) const { return tsort_model->mapToSource(index); }
+QModelIndex transfers_widget::mapToSource(const QModelIndex& index) const {
+    Q_ASSERT(index.isValid());
+    QModelIndex res = tsort_model->mapToSource(index);
+    Q_ASSERT(res.isValid());
+    return res;
+}
 
 void transfers_widget::on_actionStart_triggered() {
     const QStringList hashes = getSelectedHashes();
@@ -285,5 +314,16 @@ void transfers_widget::displayHSMenu(const QPoint&) {
         trView->setColumnHidden(col, !trView->isColumnHidden(col));
         if (!trView->isColumnHidden(col) && trView->columnWidth(col) <= 5)
             trView->setColumnWidth(col, 100);
+    }
+}
+
+void transfers_widget::on_trView_doubleClicked(const QModelIndex &index)
+{
+    QString hash = getHashFromRow(mapToSource(index).row());
+    QED2KHandle handle = Session::instance()->getTransfer(hash);
+    if (handle.is_valid()) {
+        if (handle.is_seed()) QDesktopServices::openUrl(QUrl(Session::instance()->getTransfer(hash).filepath()));
+        else if (handle.is_paused()) handle.resume();
+        else handle.pause();
     }
 }

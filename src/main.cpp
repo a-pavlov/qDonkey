@@ -275,6 +275,7 @@ int main(int argc, char *argv[])
                     &window, SLOT(processParams(const QString&)));
 
     app.setActivationWindow(&window);
+    app.setQuitOnLastWindowClosed(true);
 
     LOGGER_INIT(LOG_ALL)
 

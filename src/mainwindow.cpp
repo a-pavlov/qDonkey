@@ -584,11 +584,11 @@ bool MainWindow::eventFilter(QObject *watched, QEvent *event)
         case QEvent::KeyRelease:
         {
             QKeyEvent *keyEvent = static_cast<QKeyEvent*>(event);
-            int mask = Qt::ControlModifier | Qt::ShiftModifier | Qt::AltModifier;
+            //int mask = Qt::ControlModifier | Qt::ShiftModifier | Qt::AltModifier;
 
-            if(keyEvent->modifiers() == mask)
-            {
-            }
+            //if(keyEvent->modifiers() == mask)
+            //{
+            //}
 
             break;
         }

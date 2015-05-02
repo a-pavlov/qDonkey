@@ -43,6 +43,9 @@ private slots:
     void pSortChanged(int logicalIndex, Qt::SortOrder order);
     void on_actionShow_all_transfers_triggered();
     void displayHSMenu(const QPoint&);
+    void on_trView_doubleClicked(const QModelIndex &index);
+protected:
+    void keyPressEvent ( QKeyEvent * event) ;
 private:
     QString getHashFromRow(int row) const;
     QStringList getSelectedHashes() const;
