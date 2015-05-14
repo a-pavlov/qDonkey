@@ -72,6 +72,9 @@ public:
 
     bool showAllTransfers() const;
     void setShowAllTransfers(bool);
+
+    void setLocale(const QString&);
+    QString getLocale() const;
 };
 
 #endif // PREFERENCES_H

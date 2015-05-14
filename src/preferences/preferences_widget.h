@@ -12,6 +12,7 @@ public:
     explicit preferences_widget(QWidget *parent = 0);
     ~preferences_widget();
 
+    void setLocale(const QString&);
 private:
     void restoreFromPref();
 private slots:
