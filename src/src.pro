@@ -60,7 +60,7 @@ DEFINES += QT_USE_FAST_CONCATENATION QT_USE_FAST_OPERATOR_PLUS
 
 INCLUDEPATH += $$PWD
 
-RESOURCES +=  icons.qrc 
+RESOURCES +=  icons.qrc lang.qrc 
 
 # Source code
 usesystemqtsingleapplication {
@@ -106,6 +106,9 @@ SOURCES += mainwindow.cpp \
          ico.cpp \
          sessionapplication.cpp \
          iconprovider.cpp
+
+TRANSLATIONS =  $$LANG_PATH/qDonkey_en.ts \
+		$$LANG_PATH/qDonkey_ru.ts
 
 FORMS += mainwindow.ui ed2k_link_maker.ui collection_save_dlg.ui \
     inputdir_dialog.ui
