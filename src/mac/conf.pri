@@ -17,7 +17,7 @@ LIBS += -L$$(LIBED2K_ROOT)/lib -led2k
 # Boost system lib
 LIBS += -lboost_system-mt
 # Boost filesystem lib (Not needed for libtorrent >= 0.16.0)
-LIBS += -lboost_filesystem-mt -lboost_thread-mt -lboost_date_time-mt
+LIBS += -lboost_filesystem-mt -lboost_thread-mt 
 # Carbon
 LIBS += -framework Carbon -framework IOKit
 LIBS += -lz
