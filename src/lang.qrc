@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/">
+        <file>lang/qDonkey_en.qm</file>
+        <file>lang/qDonkey_ru.qm</file>
+    </qresource>
+</RCC>

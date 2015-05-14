@@ -74,11 +74,7 @@ private:
 public:
   static const QString metadataFilename;
   static QString productName() {
-      return tr("%1 v%2.%3.%4", "e.g: qDonkey v0.x")
-              .arg(PRODUCT_NAME)
-              .arg(VERSION_MAJOR)
-              .arg(VERSION_MINOR)
-              .arg(VERSION_BUILD);
+      return QString::fromUtf8(PRODUCT_NAME);
   }
 
   static QString versionString(){

@@ -11,6 +11,7 @@ const QString pathUPnp      = "Network/UPnP";
 const QString pathInputDir  = "HD/InputDir";
 const QString pathSysTrAvail= "System/SystrayAvailable";
 const QString pathShowAllransfers = "Common/ShowAllTransfers";
+const QString pathLocale    = "Common/Locale";
 
 bool Preferences::confirmOnExit() const {
     return value(pathConfOnExt, true).toBool();
@@ -100,4 +101,12 @@ bool Preferences::showAllTransfers() const {
 
 void Preferences::setShowAllTransfers(bool flag) {
     setValue(pathShowAllransfers, flag);
+}
+
+void Preferences::setLocale(const QString& locale) {
+    setValue(pathLocale, locale);
+}
+
+QString Preferences::getLocale() const {
+    return value(pathLocale, "").toString();
 }

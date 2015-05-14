@@ -43,6 +43,7 @@
 #include <QFont>
 #include <QPushButton>
 #include <QTimer>
+#include <QTranslator>
 #include "sessionapplication.h"
 #include "mainwindow.h"
 #include "preferences.h"
@@ -185,10 +186,9 @@ int main(int argc, char *argv[])
         return 0;
     }
 
-    //Preferences pref;
-
+    Preferences pref;
     // Load translation
-    QString locale;// = pref.getLocale();
+    QString locale = pref.getLocale();
     QTranslator qtTranslator;
     QTranslator translator;
 
@@ -196,7 +196,6 @@ int main(int argc, char *argv[])
     {
         locale = QLocale::system().name();
         qDebug("locale is empty, use %s", qPrintable(locale));
-        //pref.setLocale(locale);
 
         if(locale.isEmpty())
         {
@@ -218,7 +217,7 @@ int main(int argc, char *argv[])
 
     app.installTranslator(&qtTranslator);
 
-    if(translator.load(QString::fromUtf8(":/lang/qDonkey-") + locale)) {
+    if(translator.load(QString::fromUtf8(":/lang/qDonkey_") + locale)) {
         qDebug("%s locale recognized, using translation.", qPrintable(locale));
     }
     else {
@@ -258,8 +257,6 @@ int main(int argc, char *argv[])
     // Set environment variable
     if(qputenv("QDONKEY", misc::versionString().toLocal8Bit()))
         std::cerr << "Couldn't set environment variable...\n";
-
-    Preferences pref;
 
     if (pref.inputDir().isEmpty()) {
         inputdir_dialog idd;
