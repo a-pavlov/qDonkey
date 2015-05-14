@@ -219,6 +219,7 @@ int main(int argc, char *argv[])
 
     if(translator.load(QString::fromUtf8(":/lang/qDonkey_") + locale)) {
         qDebug("%s locale recognized, using translation.", qPrintable(locale));
+		pref.setLocale(locale);
     }
     else {
         qDebug("%s locale unrecognized, using default (en_GB).", qPrintable(locale));
