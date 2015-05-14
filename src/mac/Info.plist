@@ -7,34 +7,22 @@
 		<dict>
 			<key>CFBundleTypeExtensions</key>
 			<array>
-				<string>torrent</string>
+				<string>ed2k</string>
 			</array>
 			<key>CFBundleTypeIconFile</key>
-			<string>qBitTorrentDocument</string>
+			<string>ED2KLink</string>
 			<key>CFBundleTypeName</key>
-			<string>BitTorrent Document</string>
+			<string>eDonkey link</string>
 			<key>CFBundleTypeRole</key>
 			<string>Viewer</string>
 			<key>LSHandlerRank</key>
 			<string>Owner</string>
-			<key>LSItemContentTypes</key>
-			<array>
-				<string>org.bittorrent.torrent</string>
-			</array>
 			<key>LSIsAppleDefaultForType</key>
 			<true/>
 		</dict>
 	</array>
 	<key>CFBundleURLTypes</key>
 	<array>
-		<dict>
-			<key>CFBundleURLSchemes</key>
-			<array>
-				<string>magnet</string>
-			</array>
-			<key>CFBundleURLName</key>
-			<string>BitTorrent Magnet URL</string>
-		</dict>
     <dict>
 			<key>CFBundleURLSchemes</key>
 			<array>
@@ -47,7 +35,7 @@
 	<key>CFBundleName</key>
 	<string>qDonkey</string>
 	<key>CFBundleIconFile</key>
-	<string>emule.icns</string>
+	<string>mule.icns</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundlePackageType</key>
@@ -68,35 +56,5 @@
 	<string>YES</string>
 	<key>NSHumanReadableCopyright</key>
 	<string>Copyright © 2014 The emule project</string>
-	<key>UTExportedTypeDeclarations</key>
-	<array>
-		<dict>
-			<key>UTTypeConformsTo</key>
-			<array>
-				<string>public.data</string>
-				<string>public.item</string>
-				<string>com.bittorrent.torrent</string>
-			</array>
-			<key>UTTypeDescription</key>
-			<string>BitTorrent Document</string>
-			<key>UTTypeIconFile</key>
-			<string>qBitTorrentDocument</string>
-			<key>UTTypeIdentifier</key>
-			<string>org.bittorrent.torrent</string>
-			<key>UTTypeReferenceURL</key>
-			<string>http://www.bittorrent.org/beps/bep_0000.html</string>
-			<key>UTTypeTagSpecification</key>
-			<dict>
-				<key>com.apple.ostype</key>
-				<string>TORR</string>
-				<key>public.filename-extension</key>
-				<array>
-					<string>torrent</string>
-				</array>
-				<key>public.mime-type</key>
-				<string>application/x-bittorrent</string>
-			</dict>
-		</dict>
-	</array>
 </dict>
 </plist>
