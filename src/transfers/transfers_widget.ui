@@ -33,7 +33,16 @@
           <enum>QFrame::Sunken</enum>
          </property>
          <layout class="QGridLayout" name="gridLayout_15">
-          <property name="margin">
+          <property name="leftMargin">
+           <number>0</number>
+          </property>
+          <property name="topMargin">
+           <number>0</number>
+          </property>
+          <property name="rightMargin">
+           <number>0</number>
+          </property>
+          <property name="bottomMargin">
            <number>0</number>
           </property>
           <property name="spacing">
@@ -184,6 +193,18 @@
    </property>
    <property name="text">
     <string>Show transfers from previous sessions</string>
+   </property>
+  </action>
+  <action name="actionLoad_ED2K_link">
+   <property name="icon">
+    <iconset resource="../icons.qrc">
+     <normaloff>:/icons/magnet.png</normaloff>:/icons/magnet.png</iconset>
+   </property>
+   <property name="text">
+    <string>Load ED2K link</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+L</string>
    </property>
   </action>
  </widget>

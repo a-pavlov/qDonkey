@@ -44,6 +44,8 @@ private slots:
     void on_actionShow_all_transfers_triggered();
     void displayHSMenu(const QPoint&);
     void on_trView_doubleClicked(const QModelIndex &index);
+    void on_actionLoad_ED2K_link_triggered();
+
 protected:
     void keyPressEvent ( QKeyEvent * event) ;
 private:

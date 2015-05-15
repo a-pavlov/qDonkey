@@ -9,6 +9,9 @@
 #include <QDesktopServices>
 #include <QUrl>
 #include <QSortFilterProxyModel>
+#include <QInputDialog>
+#include <QMessageBox>
+#include <QClipboard>
 
 transfers_widget::transfers_widget(QWidget *parent) :
     QWidget(parent) {
@@ -56,6 +59,7 @@ transfers_widget::transfers_widget(QWidget *parent) :
     menu->addAction(actionFirst_and_last_pieces_first);
     menu->addSeparator();
     menu->addAction(actionOpen_destination_folder);
+    menu->addAction(actionLoad_ED2K_link);
     connect(trView, SIGNAL(customContextMenuRequested(const QPoint&)), this, SLOT(displayListMenu(const QPoint&)));
 
     connect(&m_refreshTimer, SIGNAL(timeout()), SLOT(refreshModels()));
@@ -142,19 +146,24 @@ void transfers_widget::keyPressEvent( QKeyEvent * event)
     if (focusWidget() == trView)
     {
         qDebug() << event;
-        const QStringList hashes = getSelectedHashes();
-        foreach (const QString &hash, hashes) {
-            if (event->key() == Qt::Key_Delete) {
-                tmodel->removeTransfer(hash);
-                Session::instance()->deleteTransfer(hash, true);
-            }
-            else if (event->key() == Qt::Key_Return) {
-                QED2KHandle h = Session::instance()->getTransfer(hash);
-                if (h.is_valid())
-                {
-                    if (h.is_seed()) QDesktopServices::openUrl(QUrl(h.filepath()));
-                    else if (h.is_paused()) h.resume();
-                    else h.pause();
+        if (event->key() == Qt::Key_L && (event->modifiers().testFlag(Qt::ControlModifier))) {
+            on_actionLoad_ED2K_link_triggered();
+        } else
+        {
+            const QStringList hashes = getSelectedHashes();
+            foreach (const QString &hash, hashes) {
+                if (event->key() == Qt::Key_Delete) {
+                    tmodel->removeTransfer(hash);
+                    Session::instance()->deleteTransfer(hash, true);
+                }
+                else if (event->key() == Qt::Key_Return) {
+                    QED2KHandle h = Session::instance()->getTransfer(hash);
+                    if (h.is_valid())
+                    {
+                        if (h.is_seed()) QDesktopServices::openUrl(QUrl(h.filepath()));
+                        else if (h.is_paused()) h.resume();
+                        else h.pause();
+                    }
                 }
             }
         }
@@ -325,5 +334,26 @@ void transfers_widget::on_trView_doubleClicked(const QModelIndex &index)
         if (handle.is_seed()) QDesktopServices::openUrl(QUrl(Session::instance()->getTransfer(hash).filepath()));
         else if (handle.is_paused()) handle.resume();
         else handle.pause();
+    }
+}
+
+void transfers_widget::on_actionLoad_ED2K_link_triggered()
+{
+    bool ok;
+    QString clipboardText = QApplication::clipboard()->text();
+    QString link = clipboardText.startsWith("ed2k://", Qt::CaseInsensitive)?clipboardText : "";
+    link = QInputDialog::getText(this, tr("Add ED2K link"), tr("ED2K link:"), QLineEdit::Normal, link, &ok);
+    if (ok && !link.isEmpty())
+    {
+        if ((link.length() > 1024))
+        {
+            QMessageBox::critical(this, tr("Add ED2K link"), tr("Link too long"));
+            return;
+        }
+
+        if (!link.endsWith("|/")) link += "|/";
+
+        QPair<QED2KHandle,ErrorCode> res = Session::instance()->addLink(link.trimmed());
+        if (!res.first.is_valid()) QMessageBox::critical(this, tr("Add ED2K link"), res.second? tr(res.second.message().c_str()) : tr("Incorrect link"));
     }
 }

@@ -1034,73 +1034,105 @@ Are you sure you want to quit qDonkey?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transfers/transfers_widget.ui" line="95"/>
+        <location filename="../transfers/transfers_widget.ui" line="104"/>
         <source>Start</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transfers/transfers_widget.ui" line="98"/>
+        <location filename="../transfers/transfers_widget.ui" line="107"/>
         <source>Resume transfer</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transfers/transfers_widget.ui" line="107"/>
+        <location filename="../transfers/transfers_widget.ui" line="116"/>
         <source>Pause</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transfers/transfers_widget.ui" line="110"/>
+        <location filename="../transfers/transfers_widget.ui" line="119"/>
         <source>Pause transfer</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transfers/transfers_widget.ui" line="119"/>
+        <location filename="../transfers/transfers_widget.ui" line="128"/>
         <source>Remove transfer and file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transfers/transfers_widget.ui" line="122"/>
+        <location filename="../transfers/transfers_widget.ui" line="131"/>
         <source>Del</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transfers/transfers_widget.ui" line="131"/>
+        <location filename="../transfers/transfers_widget.ui" line="140"/>
         <source>ED2K link</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transfers/transfers_widget.ui" line="139"/>
+        <location filename="../transfers/transfers_widget.ui" line="148"/>
         <source>Series download</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transfers/transfers_widget.ui" line="147"/>
+        <location filename="../transfers/transfers_widget.ui" line="156"/>
         <source>First and last pieces first</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transfers/transfers_widget.ui" line="156"/>
+        <location filename="../transfers/transfers_widget.ui" line="165"/>
         <source>Open destination folder</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transfers/transfers_widget.ui" line="165"/>
+        <location filename="../transfers/transfers_widget.ui" line="174"/>
         <source>Rename</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transfers/transfers_widget.ui" line="174"/>
+        <location filename="../transfers/transfers_widget.ui" line="183"/>
         <source>Preview</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transfers/transfers_widget.ui" line="186"/>
+        <location filename="../transfers/transfers_widget.ui" line="195"/>
         <source>Show transfers from previous sessions</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transfers/transfers_widget.cpp" line="300"/>
+        <location filename="../transfers/transfers_widget.ui" line="204"/>
+        <source>Load ED2K link</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../transfers/transfers_widget.ui" line="207"/>
+        <source>Ctrl+L</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../transfers/transfers_widget.cpp" line="304"/>
         <source>Column visibility</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../transfers/transfers_widget.cpp" line="340"/>
+        <source>ED2K link:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../transfers/transfers_widget.cpp" line="340"/>
+        <location filename="../transfers/transfers_widget.cpp" line="345"/>
+        <location filename="../transfers/transfers_widget.cpp" line="352"/>
+        <source>Add ED2K link</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../transfers/transfers_widget.cpp" line="345"/>
+        <source>Link too long</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../transfers/transfers_widget.cpp" line="352"/>
+        <source>Incorrect link</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
