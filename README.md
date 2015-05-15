@@ -29,6 +29,6 @@ Builds
 * [Windows 0.0.1](https://drive.google.com/file/d/0B39-MtFuW1DTNUg4bEpiMGE4UTg/view?usp=sharing)
 * [Windows 0.0.3](https://drive.google.com/file/d/0B39-MtFuW1DTZ3d5SUtpSXNkRTg/view?usp=sharing)
 * [Windows 0.0.4 Localized](https://drive.google.com/file/d/0B39-MtFuW1DTLVdPSnB1LTV1ejQ/view?usp=sharing)
-* [Mac OS X 0.0.3](https://drive.google.com/open?id=0B39-MtFuW1DTdFlvb3BvTm9Dejg&authuser=0)
+* [Mac OS X 0.0.4 Localized](https://drive.google.com/open?id=0B39-MtFuW1DTV0FIWVpYMDlBcmc&authuser=0)
 
 
