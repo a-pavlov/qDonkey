@@ -10,7 +10,7 @@ Dependencies
 
 Platforms
 --------
-Linux, Windows, Macos
+Linux, Windows, Mac OS X
 
 Features
 --------
