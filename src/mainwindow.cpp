@@ -51,6 +51,7 @@
 #include <QSortFilterProxyModel>
 #include <QMenu>
 #include <QUrl>
+#include <QMimeData>
 
 #include <libed2k/log.hpp>
 

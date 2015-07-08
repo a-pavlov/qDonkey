@@ -155,7 +155,7 @@ public:
   static QString ED2KCollectionLocation();
   static QString XCatalogCacheLocation();
   static QString cacheLocation();
-  static long long freeDiskSpaceOnPath(QString path);
+  //static long long freeDiskSpaceOnPath(QString path);
   // return best userfriendly storage unit (B, KiB, MiB, GiB, TiB)
   // use Binary prefix standards from IEC 60027-2
   // see http://en.wikipedia.org/wiki/Kilobyte

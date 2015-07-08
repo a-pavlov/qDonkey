@@ -62,7 +62,7 @@ static libed2k::md4_hash QStringToMD4(const QString& s)
 
 QString md4toQString(const libed2k::md4_hash& hash)
 {
-    return QString::fromAscii(hash.toString().c_str(), hash.toString().size());
+    return QString::fromStdString(hash.toString());
 }
 
 QED2KSearchResultEntry::QED2KSearchResultEntry() :

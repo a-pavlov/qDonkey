@@ -2,11 +2,10 @@ RC_FILE = donkey.rc
 
 #Adapt the lib names/versions accordingly
 CONFIG(debug, debug|release) {
-  LIBS += libboost_system-vc90-mt-gd-1_55.lib \
+  LIBS += libboost_system-vc120-mt-gd-1_58.lib \
           libed2kd.lib
-          #ssleay32MD.lib
 } else {
-  LIBS += libboost_system-vc90-mt-1_55.lib \
+  LIBS += libboost_system-vc120-mt-1_58.lib \
           libed2k.lib 
 }
 
