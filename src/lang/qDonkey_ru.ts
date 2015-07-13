@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="ru_RU">
+<TS version="2.1" language="ru_RU">
 <context>
     <name>MainWindow</name>
     <message>
@@ -27,7 +27,7 @@
     <message>
         <location filename="../mainwindow.ui" line="100"/>
         <location filename="../mainwindow.ui" line="103"/>
-        <location filename="../mainwindow.cpp" line="1015"/>
+        <location filename="../mainwindow.cpp" line="1016"/>
         <source>Connect</source>
         <translation>Соединение</translation>
     </message>
@@ -44,108 +44,108 @@
         <translation>Поиск</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="103"/>
-        <location filename="../mainwindow.cpp" line="840"/>
+        <location filename="../mainwindow.cpp" line="104"/>
+        <location filename="../mainwindow.cpp" line="841"/>
         <source>qDonkey %1</source>
         <translation>куОсел %1</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="304"/>
+        <location filename="../mainwindow.cpp" line="305"/>
         <source>Download starting</source>
         <translation>Загрузка началась</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="304"/>
+        <location filename="../mainwindow.cpp" line="305"/>
         <source>%1 has started downloading.</source>
         <comment>e.g: xxx.avi has started downloading.</comment>
         <translation>%1 загружается.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="309"/>
+        <location filename="../mainwindow.cpp" line="310"/>
         <source>Download completion</source>
         <translation>Загрузка завершена</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="309"/>
+        <location filename="../mainwindow.cpp" line="310"/>
         <source>%1 has finished downloading.</source>
         <comment>e.g: xxx.avi has finished downloading.</comment>
         <translation>%1 загружен.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="318"/>
+        <location filename="../mainwindow.cpp" line="319"/>
         <source>I/O Error</source>
         <translation>Ошибка ввода вывода</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="318"/>
+        <location filename="../mainwindow.cpp" line="319"/>
         <source>An I/O error occured for %1.
 Reason: %2</source>
         <translation>Ошибка ввода вывода при загрузке %1 причина %2 </translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="328"/>
+        <location filename="../mainwindow.cpp" line="329"/>
         <source>Alt+1</source>
         <comment>shortcut to switch to first tab</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="406"/>
+        <location filename="../mainwindow.cpp" line="407"/>
         <source>Exiting qDonkey</source>
         <translation>Выход из Осла</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="407"/>
+        <location filename="../mainwindow.cpp" line="408"/>
         <source>Some files are currently transferring.
 Are you sure you want to quit qDonkey?</source>
         <translation>Есть активные передачи, выйти из Осла?</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="410"/>
+        <location filename="../mainwindow.cpp" line="411"/>
         <source>No</source>
         <translation>Нет</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="411"/>
+        <location filename="../mainwindow.cpp" line="412"/>
         <source>Yes</source>
         <translation>Да</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="412"/>
+        <location filename="../mainwindow.cpp" line="413"/>
         <source>Always</source>
         <translation>Всегда</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="816"/>
+        <location filename="../mainwindow.cpp" line="817"/>
         <source>qDonkey</source>
         <translation>куОсел</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="820"/>
-        <location filename="../mainwindow.cpp" line="830"/>
+        <location filename="../mainwindow.cpp" line="821"/>
+        <location filename="../mainwindow.cpp" line="831"/>
         <source>DL speed: %1 KiB/s</source>
         <comment>e.g: Download speed: 10 KiB/s</comment>
         <translation>Скорость загрузки %1 Кб/сек</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="825"/>
-        <location filename="../mainwindow.cpp" line="832"/>
+        <location filename="../mainwindow.cpp" line="826"/>
+        <location filename="../mainwindow.cpp" line="833"/>
         <source>UP speed: %1 KiB/s</source>
         <comment>e.g: Upload speed: 10 KiB/s</comment>
         <translation>Скорость отдачи %1 Кб/сек</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="838"/>
+        <location filename="../mainwindow.cpp" line="839"/>
         <source>[D: %1/s, U: %2/s] qDonkey %3</source>
         <comment>D = Download; U = Upload; %3 is qDonkey version</comment>
         <translation>[Загрузка %1 Отдача %2] куОсел %3</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="987"/>
+        <location filename="../mainwindow.cpp" line="988"/>
         <source>Cancel</source>
         <translation>Отмена</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1002"/>
+        <location filename="../mainwindow.cpp" line="1003"/>
         <source>Disconnect</source>
         <translation>Отсоединиться</translation>
     </message>
@@ -234,6 +234,26 @@ Are you sure you want to quit qDonkey?</source>
         <location filename="../qtlibed2k/qed2ksession.cpp" line="38"/>
         <source>Emule collection</source>
         <translation>Emule коллекция</translation>
+    </message>
+    <message>
+        <location filename="../main.cpp" line="225"/>
+        <source>Usage:</source>
+        <translation>Использование:</translation>
+    </message>
+    <message>
+        <location filename="../main.cpp" line="226"/>
+        <source>displays program version</source>
+        <translation>показать версию программы</translation>
+    </message>
+    <message>
+        <location filename="../main.cpp" line="227"/>
+        <source>displays this help message</source>
+        <translation>показать эту помощь</translation>
+    </message>
+    <message>
+        <location filename="../main.cpp" line="228"/>
+        <source>[files or urls]: downloads the torrents passed by the user (optional)</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -423,24 +443,16 @@ Are you sure you want to quit qDonkey?</source>
 <context>
     <name>UsageDisplay</name>
     <message>
-        <location filename="../main.cpp" line="73"/>
         <source>Usage:</source>
-        <translation type="unfinished"></translation>
+        <translation type="vanished">Использование:</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="74"/>
         <source>displays program version</source>
-        <translation type="unfinished"></translation>
+        <translation type="vanished">показать версию программы</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="75"/>
         <source>displays this help message</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../main.cpp" line="76"/>
-        <source>[files or urls]: downloads the torrents passed by the user (optional)</source>
-        <translation type="unfinished"></translation>
+        <translation type="vanished">показать эту помощь</translation>
     </message>
 </context>
 <context>
@@ -1114,7 +1126,7 @@ Are you sure you want to quit qDonkey?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transfers/transfers_widget.cpp" line="304"/>
+        <location filename="../transfers/transfers_widget.cpp" line="309"/>
         <source>Column visibility</source>
         <translation>Видимость колонок</translation>
     </message>
@@ -1123,24 +1135,24 @@ Are you sure you want to quit qDonkey?</source>
         <translation type="obsolete">До</translation>
     </message>
     <message>
-        <location filename="../transfers/transfers_widget.cpp" line="340"/>
+        <location filename="../transfers/transfers_widget.cpp" line="345"/>
         <source>ED2K link:</source>
         <translation>ED2K ссылка</translation>
     </message>
     <message>
-        <location filename="../transfers/transfers_widget.cpp" line="340"/>
         <location filename="../transfers/transfers_widget.cpp" line="345"/>
-        <location filename="../transfers/transfers_widget.cpp" line="352"/>
+        <location filename="../transfers/transfers_widget.cpp" line="350"/>
+        <location filename="../transfers/transfers_widget.cpp" line="357"/>
         <source>Add ED2K link</source>
         <translation>Добавление ED2K ссылки</translation>
     </message>
     <message>
-        <location filename="../transfers/transfers_widget.cpp" line="345"/>
+        <location filename="../transfers/transfers_widget.cpp" line="350"/>
         <source>Link too long</source>
         <translation>Ссылка слишком длинная</translation>
     </message>
     <message>
-        <location filename="../transfers/transfers_widget.cpp" line="352"/>
+        <location filename="../transfers/transfers_widget.cpp" line="357"/>
         <source>Incorrect link</source>
         <translation>Неправильная ссылка</translation>
     </message>
