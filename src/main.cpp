@@ -64,21 +64,6 @@
 #include <stdlib.h>
 #include "misc.h"
 
-class UsageDisplay: public QObject {
-    Q_OBJECT
-
-public:
-    static void displayUsage(char* prg_name)
-    {
-        std::cout << qPrintable(tr("Usage:")) << std::endl;
-        std::cout << '\t' << prg_name << " --version: " << qPrintable(tr("displays program version")) << std::endl;
-        std::cout << '\t' << prg_name << " --help: " << qPrintable(tr("displays this help message")) << std::endl;
-        std::cout << '\t' << prg_name << " " << qPrintable(tr("[files or urls]: downloads the torrents passed by the user (optional)")) << std::endl;
-    }
-};
-
-#include "main.moc"
-
 #if defined(Q_WS_X11) || defined(Q_WS_MAC)
 void sigintHandler(int)
 {
@@ -237,7 +222,10 @@ int main(int argc, char *argv[])
 
     if(!al.filter(QRegExp("^-+help$")).isEmpty())
     {
-        UsageDisplay::displayUsage(argv[0]);
+        std::cout << qPrintable(QObject::tr("Usage:")) << std::endl;
+        std::cout << '\t' << argv[0] << " --version: " << qPrintable(QObject::tr("displays program version")) << std::endl;
+        std::cout << '\t' << argv[0] << " --help: " << qPrintable(QObject::tr("displays this help message")) << std::endl;
+        std::cout << '\t' << argv[0] << " " << qPrintable(QObject::tr("[files or urls]: downloads the torrents passed by the user (optional)")) << std::endl;
         return 0;
     }
 
