@@ -46,7 +46,7 @@ bool QMacApplication::event(QEvent * ev) {
       QString path = static_cast<QFileOpenEvent *>(ev)->file();
       if (path.isEmpty()) {
         // Get the url instead
-        path = static_cast<QFileOpenEvent *>(ev)->url().toString();
+		path = QUrl::fromPercentEncoding(file_event->url().toEncoded().data());
       }
       qDebug("Received a mac file open event: %s", qPrintable(path));
       emit newFileOpenMacEvent(path);
