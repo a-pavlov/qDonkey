@@ -439,7 +439,7 @@ Are you sure you want to quit qDonkey?</source>
     </message>
     <message>
         <location filename="../main.cpp" line="76"/>
-        <source>[files or urls]: downloads the torrents passed by the user (optional)</source>
+        <source>ed2k links: downloads the files passed by the user (optional)</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1109,29 +1109,29 @@ Are you sure you want to quit qDonkey?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transfers/transfers_widget.cpp" line="304"/>
+        <location filename="../transfers/transfers_widget.cpp" line="309"/>
         <source>Column visibility</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transfers/transfers_widget.cpp" line="340"/>
+        <location filename="../transfers/transfers_widget.cpp" line="345"/>
         <source>ED2K link:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transfers/transfers_widget.cpp" line="340"/>
         <location filename="../transfers/transfers_widget.cpp" line="345"/>
-        <location filename="../transfers/transfers_widget.cpp" line="352"/>
+        <location filename="../transfers/transfers_widget.cpp" line="350"/>
+        <location filename="../transfers/transfers_widget.cpp" line="357"/>
         <source>Add ED2K link</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transfers/transfers_widget.cpp" line="345"/>
+        <location filename="../transfers/transfers_widget.cpp" line="350"/>
         <source>Link too long</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transfers/transfers_widget.cpp" line="352"/>
+        <location filename="../transfers/transfers_widget.cpp" line="357"/>
         <source>Incorrect link</source>
         <translation type="unfinished"></translation>
     </message>

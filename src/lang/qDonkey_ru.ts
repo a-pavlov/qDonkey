@@ -22,7 +22,7 @@
     <message>
         <location filename="../mainwindow.ui" line="88"/>
         <source>&amp;Options...</source>
-        <translation>Опции</translation>
+        <translation>&amp;Опции...</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="100"/>
@@ -425,22 +425,22 @@ Are you sure you want to quit qDonkey?</source>
     <message>
         <location filename="../main.cpp" line="73"/>
         <source>Usage:</source>
-        <translation type="unfinished"></translation>
+        <translation>Использование:</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="74"/>
         <source>displays program version</source>
-        <translation type="unfinished"></translation>
+        <translation>показать версию программы</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="75"/>
         <source>displays this help message</source>
-        <translation type="unfinished"></translation>
+        <translation>показать помощь</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="76"/>
-        <source>[files or urls]: downloads the torrents passed by the user (optional)</source>
-        <translation type="unfinished"></translation>
+        <source>ed2k links: downloads the files passed by the user (optional)</source>
+        <translation>ed2k ссылки: загрузить файлы указанные пользователем</translation>
     </message>
 </context>
 <context>
@@ -1111,10 +1111,10 @@ Are you sure you want to quit qDonkey?</source>
     <message>
         <location filename="../transfers/transfers_widget.ui" line="207"/>
         <source>Ctrl+L</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl-L</translation>
     </message>
     <message>
-        <location filename="../transfers/transfers_widget.cpp" line="304"/>
+        <location filename="../transfers/transfers_widget.cpp" line="309"/>
         <source>Column visibility</source>
         <translation>Видимость колонок</translation>
     </message>
@@ -1123,24 +1123,24 @@ Are you sure you want to quit qDonkey?</source>
         <translation type="obsolete">До</translation>
     </message>
     <message>
-        <location filename="../transfers/transfers_widget.cpp" line="340"/>
+        <location filename="../transfers/transfers_widget.cpp" line="345"/>
         <source>ED2K link:</source>
         <translation>ED2K ссылка</translation>
     </message>
     <message>
-        <location filename="../transfers/transfers_widget.cpp" line="340"/>
         <location filename="../transfers/transfers_widget.cpp" line="345"/>
-        <location filename="../transfers/transfers_widget.cpp" line="352"/>
+        <location filename="../transfers/transfers_widget.cpp" line="350"/>
+        <location filename="../transfers/transfers_widget.cpp" line="357"/>
         <source>Add ED2K link</source>
         <translation>Добавление ED2K ссылки</translation>
     </message>
     <message>
-        <location filename="../transfers/transfers_widget.cpp" line="345"/>
+        <location filename="../transfers/transfers_widget.cpp" line="350"/>
         <source>Link too long</source>
         <translation>Ссылка слишком длинная</translation>
     </message>
     <message>
-        <location filename="../transfers/transfers_widget.cpp" line="352"/>
+        <location filename="../transfers/transfers_widget.cpp" line="357"/>
         <source>Incorrect link</source>
         <translation>Неправильная ссылка</translation>
     </message>

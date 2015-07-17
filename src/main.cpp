@@ -73,7 +73,7 @@ public:
         std::cout << qPrintable(tr("Usage:")) << std::endl;
         std::cout << '\t' << prg_name << " --version: " << qPrintable(tr("displays program version")) << std::endl;
         std::cout << '\t' << prg_name << " --help: " << qPrintable(tr("displays this help message")) << std::endl;
-        std::cout << '\t' << prg_name << " " << qPrintable(tr("[files or urls]: downloads the torrents passed by the user (optional)")) << std::endl;
+        std::cout << '\t' << prg_name << " " << qPrintable(tr("ed2k links: downloads the files passed by the user (optional)")) << std::endl;
     }
 };
 
