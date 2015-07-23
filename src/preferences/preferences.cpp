@@ -1,4 +1,5 @@
 #include "preferences.h"
+#include <QApplication>
 
 const QString pathConfOnExt = "Common/ConfirmOnExit";
 const QString pathDispSpeed = "Common/DisplaySpeedInTitle";
