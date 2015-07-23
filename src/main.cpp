@@ -225,7 +225,7 @@ int main(int argc, char *argv[])
         std::cout << qPrintable(QObject::tr("Usage:")) << std::endl;
         std::cout << '\t' << argv[0] << " --version: " << qPrintable(QObject::tr("displays program version")) << std::endl;
         std::cout << '\t' << argv[0] << " --help: " << qPrintable(QObject::tr("displays this help message")) << std::endl;
-        std::cout << '\t' << argv[0] << " " << qPrintable(QObject::tr("[ed2k links]: downloads the files passed by the user (optional)")) << std::endl;
+        std::cout << '\t' << argv[0] << " " << qPrintable(QObject::tr("downloads the files passed by the user via ed2k link or .emulecollection (optional)")) << std::endl;
         return 0;
     }
 

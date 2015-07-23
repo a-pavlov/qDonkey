@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="ru_RU">
+<TS version="2.0" language="ru_RU">
 <context>
     <name>MainWindow</name>
     <message>
@@ -27,7 +27,7 @@
     <message>
         <location filename="../mainwindow.ui" line="100"/>
         <location filename="../mainwindow.ui" line="103"/>
-        <location filename="../mainwindow.cpp" line="1016"/>
+        <location filename="../mainwindow.cpp" line="1017"/>
         <source>Connect</source>
         <translation>Соединение</translation>
     </message>
@@ -45,7 +45,7 @@
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="104"/>
-        <location filename="../mainwindow.cpp" line="841"/>
+        <location filename="../mainwindow.cpp" line="842"/>
         <source>qDonkey %1</source>
         <translation>куОсел %1</translation>
     </message>
@@ -115,37 +115,37 @@ Are you sure you want to quit qDonkey?</source>
         <translation>Всегда</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="817"/>
+        <location filename="../mainwindow.cpp" line="818"/>
         <source>qDonkey</source>
         <translation>куОсел</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="821"/>
-        <location filename="../mainwindow.cpp" line="831"/>
+        <location filename="../mainwindow.cpp" line="822"/>
+        <location filename="../mainwindow.cpp" line="832"/>
         <source>DL speed: %1 KiB/s</source>
         <comment>e.g: Download speed: 10 KiB/s</comment>
         <translation>Скорость загрузки %1 Кб/сек</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="826"/>
-        <location filename="../mainwindow.cpp" line="833"/>
+        <location filename="../mainwindow.cpp" line="827"/>
+        <location filename="../mainwindow.cpp" line="834"/>
         <source>UP speed: %1 KiB/s</source>
         <comment>e.g: Upload speed: 10 KiB/s</comment>
         <translation>Скорость отдачи %1 Кб/сек</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="839"/>
+        <location filename="../mainwindow.cpp" line="840"/>
         <source>[D: %1/s, U: %2/s] qDonkey %3</source>
         <comment>D = Download; U = Upload; %3 is qDonkey version</comment>
         <translation>[Загрузка %1 Отдача %2] куОсел %3</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="988"/>
+        <location filename="../mainwindow.cpp" line="989"/>
         <source>Cancel</source>
         <translation>Отмена</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1003"/>
+        <location filename="../mainwindow.cpp" line="1004"/>
         <source>Disconnect</source>
         <translation>Отсоединиться</translation>
     </message>
@@ -252,8 +252,8 @@ Are you sure you want to quit qDonkey?</source>
     </message>
     <message>
         <location filename="../main.cpp" line="228"/>
-        <source>[files or urls]: downloads the torrents passed by the user (optional)</source>
-        <translation type="unfinished"></translation>
+        <source>downloads the files passed by the user via ed2k link or .emulecollection (optional)</source>
+        <translation>скачать файлы из ссылки или файла коллекции(опционально)</translation>
     </message>
 </context>
 <context>
@@ -444,15 +444,15 @@ Are you sure you want to quit qDonkey?</source>
     <name>UsageDisplay</name>
     <message>
         <source>Usage:</source>
-        <translation type="vanished">Использование:</translation>
+        <translation type="obsolete">Использование:</translation>
     </message>
     <message>
         <source>displays program version</source>
-        <translation type="vanished">показать версию программы</translation>
+        <translation type="obsolete">показать версию программы</translation>
     </message>
     <message>
         <source>displays this help message</source>
-        <translation type="vanished">показать эту помощь</translation>
+        <translation type="obsolete">показать эту помощь</translation>
     </message>
 </context>
 <context>
@@ -683,78 +683,102 @@ Are you sure you want to quit qDonkey?</source>
         <translation>Показывать скорость в заголовке окна</translation>
     </message>
     <message>
-        <location filename="../preferences/preferences_widget.ui" line="42"/>
+        <source>Add transfers from collections on pause</source>
+        <translation type="obsolete">Добавлять трансферы из коллекций на паузе</translation>
+    </message>
+    <message>
+        <location filename="../preferences/preferences_widget.ui" line="40"/>
+        <source>Add transfers from collections and links on pause</source>
+        <translation>Добавлять трансферы из коллекций и ссылок на паузе</translation>
+    </message>
+    <message>
+        <location filename="../preferences/preferences_widget.ui" line="49"/>
         <source>Language</source>
         <translation>Язык</translation>
     </message>
     <message>
-        <location filename="../preferences/preferences_widget.ui" line="70"/>
+        <location filename="../preferences/preferences_widget.ui" line="77"/>
         <source>Network settings</source>
         <translation>Настройки сети</translation>
     </message>
     <message>
-        <location filename="../preferences/preferences_widget.ui" line="76"/>
+        <location filename="../preferences/preferences_widget.ui" line="83"/>
         <source>Server</source>
         <translation>Сервер</translation>
     </message>
     <message>
-        <location filename="../preferences/preferences_widget.ui" line="82"/>
+        <location filename="../preferences/preferences_widget.ui" line="89"/>
         <source>Host:</source>
         <translation>Хост:</translation>
     </message>
     <message>
-        <location filename="../preferences/preferences_widget.ui" line="96"/>
+        <location filename="../preferences/preferences_widget.ui" line="103"/>
         <source>Port</source>
         <translation>Порт</translation>
     </message>
     <message>
-        <location filename="../preferences/preferences_widget.ui" line="129"/>
+        <location filename="../preferences/preferences_widget.ui" line="136"/>
         <source>Connection</source>
         <translation>Соединение</translation>
     </message>
     <message>
-        <location filename="../preferences/preferences_widget.ui" line="137"/>
+        <location filename="../preferences/preferences_widget.ui" line="144"/>
         <source>Port used for incoming connections:</source>
         <translation>Порт для входящие соединений:</translation>
     </message>
     <message>
-        <location filename="../preferences/preferences_widget.ui" line="166"/>
+        <location filename="../preferences/preferences_widget.ui" line="173"/>
         <source>Use UPnP / NAT-PMP port forwarding from my router</source>
         <translation>Использовать UPnP/NAT-PMP на роутере доя проброса порта</translation>
     </message>
     <message>
-        <location filename="../preferences/preferences_widget.ui" line="178"/>
+        <location filename="../preferences/preferences_widget.ui" line="185"/>
         <source>User name</source>
         <translation>Имя пользователя</translation>
     </message>
     <message>
-        <location filename="../preferences/preferences_widget.ui" line="206"/>
+        <location filename="../preferences/preferences_widget.ui" line="213"/>
+        <source>File associations</source>
+        <translation>Ассоциации</translation>
+    </message>
+    <message>
+        <location filename="../preferences/preferences_widget.ui" line="219"/>
+        <source>Use qDonkey for emule collections</source>
+        <translation>Использовать для открытия коллекций .emulecollection</translation>
+    </message>
+    <message>
+        <location filename="../preferences/preferences_widget.ui" line="226"/>
+        <source>Use qDonkey for ed2k links</source>
+        <translation>Использовать для открытия ссылок ed2k://</translation>
+    </message>
+    <message>
+        <location filename="../preferences/preferences_widget.ui" line="236"/>
         <source>Save files to location</source>
         <translation>Сохранять файлы в директорию</translation>
     </message>
     <message>
-        <location filename="../preferences/preferences_widget.ui" line="288"/>
+        <location filename="../preferences/preferences_widget.ui" line="318"/>
         <source>Accept</source>
         <translation>Применить</translation>
     </message>
     <message>
-        <location filename="../preferences/preferences_widget.ui" line="298"/>
+        <location filename="../preferences/preferences_widget.ui" line="328"/>
         <source>Cancel</source>
         <translation>Отмена</translation>
     </message>
     <message>
-        <location filename="../preferences/preferences_widget.cpp" line="141"/>
+        <location filename="../preferences/preferences_widget.cpp" line="152"/>
         <source>Input directory configuration</source>
         <translation>Настройка каталога закачек</translation>
     </message>
     <message>
-        <location filename="../preferences/preferences_widget.cpp" line="141"/>
+        <location filename="../preferences/preferences_widget.cpp" line="152"/>
         <source>Unable to write metadata into directiry, check it exists and writeable</source>
         <translation>Не могу записать метаданные в директорию, проверьте наличие и права</translation>
     </message>
     <message>
-        <location filename="../preferences/preferences_widget.cpp" line="185"/>
-        <location filename="../preferences/preferences_widget.cpp" line="187"/>
+        <location filename="../preferences/preferences_widget.cpp" line="203"/>
+        <location filename="../preferences/preferences_widget.cpp" line="205"/>
         <source>Choose input directory</source>
         <translation>Выбери дерикторию закачек</translation>
     </message>
@@ -764,7 +788,7 @@ Are you sure you want to quit qDonkey?</source>
     <message>
         <location filename="../search/search_widget.ui" line="14"/>
         <source>search_widget</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../search/search_widget.ui" line="54"/>

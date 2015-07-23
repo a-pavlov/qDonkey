@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="en_US">
+<TS version="2.0" language="en_US">
 <context>
     <name>MainWindow</name>
     <message>
@@ -27,7 +27,7 @@
     <message>
         <location filename="../mainwindow.ui" line="100"/>
         <location filename="../mainwindow.ui" line="103"/>
-        <location filename="../mainwindow.cpp" line="1016"/>
+        <location filename="../mainwindow.cpp" line="1017"/>
         <source>Connect</source>
         <translation type="unfinished"></translation>
     </message>
@@ -45,7 +45,7 @@
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="104"/>
-        <location filename="../mainwindow.cpp" line="841"/>
+        <location filename="../mainwindow.cpp" line="842"/>
         <source>qDonkey %1</source>
         <translation type="unfinished"></translation>
     </message>
@@ -115,37 +115,37 @@ Are you sure you want to quit qDonkey?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="817"/>
+        <location filename="../mainwindow.cpp" line="818"/>
         <source>qDonkey</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="821"/>
-        <location filename="../mainwindow.cpp" line="831"/>
+        <location filename="../mainwindow.cpp" line="822"/>
+        <location filename="../mainwindow.cpp" line="832"/>
         <source>DL speed: %1 KiB/s</source>
         <comment>e.g: Download speed: 10 KiB/s</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="826"/>
-        <location filename="../mainwindow.cpp" line="833"/>
+        <location filename="../mainwindow.cpp" line="827"/>
+        <location filename="../mainwindow.cpp" line="834"/>
         <source>UP speed: %1 KiB/s</source>
         <comment>e.g: Upload speed: 10 KiB/s</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="839"/>
+        <location filename="../mainwindow.cpp" line="840"/>
         <source>[D: %1/s, U: %2/s] qDonkey %3</source>
         <comment>D = Download; U = Upload; %3 is qDonkey version</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="988"/>
+        <location filename="../mainwindow.cpp" line="989"/>
         <source>Cancel</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1003"/>
+        <location filename="../mainwindow.cpp" line="1004"/>
         <source>Disconnect</source>
         <translation type="unfinished"></translation>
     </message>
@@ -252,7 +252,7 @@ Are you sure you want to quit qDonkey?</source>
     </message>
     <message>
         <location filename="../main.cpp" line="228"/>
-        <source>[files or urls]: downloads the torrents passed by the user (optional)</source>
+        <source>downloads the files passed by the user via ed2k link or .emulecollection (optional)</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -663,78 +663,98 @@ Are you sure you want to quit qDonkey?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/preferences_widget.ui" line="42"/>
+        <location filename="../preferences/preferences_widget.ui" line="40"/>
+        <source>Add transfers from collections and links on pause</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../preferences/preferences_widget.ui" line="49"/>
         <source>Language</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/preferences_widget.ui" line="70"/>
+        <location filename="../preferences/preferences_widget.ui" line="77"/>
         <source>Network settings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/preferences_widget.ui" line="76"/>
+        <location filename="../preferences/preferences_widget.ui" line="83"/>
         <source>Server</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/preferences_widget.ui" line="82"/>
+        <location filename="../preferences/preferences_widget.ui" line="89"/>
         <source>Host:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/preferences_widget.ui" line="96"/>
+        <location filename="../preferences/preferences_widget.ui" line="103"/>
         <source>Port</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/preferences_widget.ui" line="129"/>
+        <location filename="../preferences/preferences_widget.ui" line="136"/>
         <source>Connection</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/preferences_widget.ui" line="137"/>
+        <location filename="../preferences/preferences_widget.ui" line="144"/>
         <source>Port used for incoming connections:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/preferences_widget.ui" line="166"/>
+        <location filename="../preferences/preferences_widget.ui" line="173"/>
         <source>Use UPnP / NAT-PMP port forwarding from my router</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/preferences_widget.ui" line="178"/>
+        <location filename="../preferences/preferences_widget.ui" line="185"/>
         <source>User name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/preferences_widget.ui" line="206"/>
+        <location filename="../preferences/preferences_widget.ui" line="213"/>
+        <source>File associations</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../preferences/preferences_widget.ui" line="219"/>
+        <source>Use qDonkey for emule collections</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../preferences/preferences_widget.ui" line="226"/>
+        <source>Use qDonkey for ed2k links</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../preferences/preferences_widget.ui" line="236"/>
         <source>Save files to location</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/preferences_widget.ui" line="288"/>
+        <location filename="../preferences/preferences_widget.ui" line="318"/>
         <source>Accept</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/preferences_widget.ui" line="298"/>
+        <location filename="../preferences/preferences_widget.ui" line="328"/>
         <source>Cancel</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/preferences_widget.cpp" line="141"/>
+        <location filename="../preferences/preferences_widget.cpp" line="152"/>
         <source>Input directory configuration</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/preferences_widget.cpp" line="141"/>
+        <location filename="../preferences/preferences_widget.cpp" line="152"/>
         <source>Unable to write metadata into directiry, check it exists and writeable</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/preferences_widget.cpp" line="185"/>
-        <location filename="../preferences/preferences_widget.cpp" line="187"/>
+        <location filename="../preferences/preferences_widget.cpp" line="203"/>
+        <location filename="../preferences/preferences_widget.cpp" line="205"/>
         <source>Choose input directory</source>
         <translation type="unfinished"></translation>
     </message>

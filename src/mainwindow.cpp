@@ -670,14 +670,15 @@ void MainWindow::processParams(const QStringList& params)
         }
         else
         {
+            pref.pausedTransfersFromCollection();
             if (param.startsWith("ed2k://", Qt::CaseInsensitive))
             {
-                Session::instance()->addLink(param);
+                Session::instance()->addLink(param, !pref.pausedTransfersFromCollection());
             }
             else if (param.endsWith(".emulecollection"))
             {
-                //collection_save_dlg dialog(this, param);
-                //dialog.exec();
+                // do not ask any - start download all links from collection
+                Session::instance()->addTransferFromFile(param, !pref.pausedTransfersFromCollection());
             }
 
         }

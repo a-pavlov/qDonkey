@@ -66,6 +66,9 @@ QString languageToLocalizedString(QLocale::Language language, const QString& cou
 preferences_widget::preferences_widget(QWidget *parent) :
     QWidget(parent) {
     setupUi(this);
+#ifndef Q_OS_WIN
+    file_associations->setVisible(false);
+#endif
     // List language files
     const QDir lang_dir(":/lang");
     const QStringList lang_files = lang_dir.entryList(QStringList() << QString(misc::productName() + QString::fromUtf8("_*.qm")), QDir::Files);
@@ -83,11 +86,14 @@ preferences_widget::preferences_widget(QWidget *parent) :
     restoreFromPref();
     connect(checkConfirm, SIGNAL(clicked(bool)), this, SLOT(enableApplyButtons()));
     connect(checkDisplaySpeed, SIGNAL(clicked(bool)), this, SLOT(enableApplyButtons()));
+    connect(checkPausedCT, SIGNAL(clicked(bool)), this, SLOT(enableApplyButtons()));
     connect(editNick, SIGNAL(textChanged(QString)), this, SLOT(enableApplyButtons()));
     connect(listenPort, SIGNAL(valueChanged(int)), this, SLOT(enableApplyButtons()));
     connect(checkUPnP, SIGNAL(clicked(bool)), this, SLOT(enableApplyButtons()));
     connect(editInputDir, SIGNAL(textChanged(QString)), this, SLOT(enableApplyButtons()));
     connect(comboLang, SIGNAL(currentIndexChanged(int)), this, SLOT(enableApplyButtons()));
+    connect(checkAssocCollections, SIGNAL(clicked()), this, SLOT(enableApplyButtons()));
+    connect(checkAssocLinks, SIGNAL(clicked()), this, SLOT(enableApplyButtons()));
 }
 
 preferences_widget::~preferences_widget()
@@ -125,6 +131,7 @@ void preferences_widget::restoreFromPref() {
 
     checkConfirm->setChecked(pref.confirmOnExit());
     checkDisplaySpeed->setChecked(pref.displaySpeedInTitle());
+    checkPausedCT->setChecked(pref.pausedTransfersFromCollection());
     serverHost->setText(pref.serverHost());
     serverPort->setValue(pref.serverPort());
 
@@ -133,6 +140,10 @@ void preferences_widget::restoreFromPref() {
     checkUPnP->setChecked(pref.forwardPort());
     editInputDir->setText(pref.inputDir());
     setLocale(pref.getLocale());
+#ifdef Q_OS_WIN
+    checkAssocCollections->setChecked(Preferences::isLinkAssocSet("ed2k"));
+    checkAssocLinks->setChecked(Preferences::isFileAssocSet(".emulecollection"));
+#endif
 }
 
 void preferences_widget::on_btnOk_clicked() {
@@ -162,10 +173,17 @@ void preferences_widget::on_btnOk_clicked() {
 
         pref.setConfirmOnExit(checkConfirm->isChecked());
         pref.setDisplaySpeedInTitle(checkDisplaySpeed->isChecked());
+        pref.setPausedTransfersFromCollection(checkPausedCT->isChecked());
         pref.setNick(editNick->text());
         pref.setListenPort(listenPort->value());
         pref.setForwardPort(checkUPnP->isChecked());
         pref.setInputDir(editInputDir->text());
+#ifdef Q_OS_WIN
+        // Windows: file association settings
+        Preferences::setFileAssoc(".emulecollection", checkAssocCollections->isChecked());
+        Preferences::setLinkAssoc("ed2k", checkAssocLinks->isChecked());
+        Preferences::setCommonAssocSection(checkAssocCollections->isChecked() || checkAssocLinks);
+#endif
         disableApplyButtons();
         Session::instance()->loadDirectory(pref.inputDir());
     }

@@ -481,6 +481,7 @@ QPair<QED2KHandle, ErrorCode> QED2KSession::addLink(QString strLink, bool resume
         try
         {
             h = addTransfer(atp);
+            if (!resumed) h.pause();
         }
         catch(libed2k::libed2k_exception e)
         {
@@ -493,16 +494,15 @@ QPair<QED2KHandle, ErrorCode> QED2KSession::addLink(QString strLink, bool resume
     return qMakePair(h, ec);
 }
 
-void QED2KSession::addTransferFromFile(const QString& filename)
+void QED2KSession::addTransferFromFile(const QString& filename, bool resumed /* = false*/)
 {
-    if (QFile::exists(filename))
-    {
+    if (QFile::exists(filename))  {
+        ErrorCode ec;
         Preferences pref;
         libed2k::emule_collection ecoll = libed2k::emule_collection::fromFile(
             filename.toLocal8Bit().constData());
 
-        foreach(const libed2k::emule_collection_entry& ece, ecoll.m_files)
-        {
+        foreach(const libed2k::emule_collection_entry& ece, ecoll.m_files) {
             QString filepath = QDir(pref.inputDir()).filePath(
                 QString::fromUtf8(ece.m_filename.c_str(), ece.m_filename.size()));
             qDebug() << "add transfer " << filepath;
@@ -510,7 +510,14 @@ void QED2KSession::addTransferFromFile(const QString& filename)
             atp.file_hash = ece.m_filehash;
             atp.file_path = filepath.toUtf8().constData();
             atp.file_size = ece.m_filesize;
-            addTransfer(atp);
+            atp.duplicate_is_error = true;
+
+            try {
+                QED2KHandle h = addTransfer(atp);
+                if (!resumed) h.pause();
+            } catch(libed2k::libed2k_exception e) {
+                ec = e.error();
+            }
         }
     }
 }
