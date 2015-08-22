@@ -306,7 +306,7 @@ Are you sure you want to quit qDonkey?</source>
         <location filename="../transfers/transferlist_delegate.cpp" line="62"/>
         <source>Stalled</source>
         <comment>Torrent is waiting for download to begin</comment>
-        <translation>Тупик</translation>
+        <translation>Завершено</translation>
     </message>
     <message>
         <location filename="../transfers/transferlist_delegate.cpp" line="76"/>
@@ -708,7 +708,7 @@ Are you sure you want to quit qDonkey?</source>
     <message>
         <location filename="../preferences/preferences_widget.ui" line="166"/>
         <source>Use UPnP / NAT-PMP port forwarding from my router</source>
-        <translation>Использовать UPnP/NAT-PMP на роутере доя проброса порта</translation>
+        <translation>Использовать UPnP/NAT-PMP на роутере для проброса порта входящих соединений</translation>
     </message>
     <message>
         <location filename="../preferences/preferences_widget.ui" line="178"/>
