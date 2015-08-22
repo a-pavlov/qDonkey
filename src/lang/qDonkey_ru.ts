@@ -22,7 +22,7 @@
     <message>
         <location filename="../mainwindow.ui" line="88"/>
         <source>&amp;Options...</source>
-        <translation>Опции</translation>
+        <translation>&amp;Опции...</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="100"/>
@@ -248,12 +248,12 @@ Are you sure you want to quit qDonkey?</source>
     <message>
         <location filename="../main.cpp" line="227"/>
         <source>displays this help message</source>
-        <translation>показать эту помощь</translation>
+        <translation>показать помощь</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="228"/>
         <source>downloads the files passed by the user via ed2k link or .emulecollection (optional)</source>
-        <translation>скачать файлы из ссылки или файла коллекции(опционально)</translation>
+        <translation>скачать файл используя ссылку или ed2k коллекцию</translation>
     </message>
 </context>
 <context>
@@ -326,7 +326,7 @@ Are you sure you want to quit qDonkey?</source>
         <location filename="../transfers/transferlist_delegate.cpp" line="62"/>
         <source>Stalled</source>
         <comment>Torrent is waiting for download to begin</comment>
-        <translation>Тупик</translation>
+        <translation>Завершено</translation>
     </message>
     <message>
         <location filename="../transfers/transferlist_delegate.cpp" line="76"/>
@@ -452,7 +452,11 @@ Are you sure you want to quit qDonkey?</source>
     </message>
     <message>
         <source>displays this help message</source>
-        <translation type="obsolete">показать эту помощь</translation>
+        <translation type="obsolete">показать помощь</translation>
+    </message>
+    <message>
+        <source>ed2k links: downloads the files passed by the user (optional)</source>
+        <translation type="obsolete">ed2k ссылки: загрузить файлы указанные пользователем</translation>
     </message>
 </context>
 <context>
@@ -683,10 +687,6 @@ Are you sure you want to quit qDonkey?</source>
         <translation>Показывать скорость в заголовке окна</translation>
     </message>
     <message>
-        <source>Add transfers from collections on pause</source>
-        <translation type="obsolete">Добавлять трансферы из коллекций на паузе</translation>
-    </message>
-    <message>
         <location filename="../preferences/preferences_widget.ui" line="40"/>
         <source>Add transfers from collections and links on pause</source>
         <translation>Добавлять трансферы из коллекций и ссылок на паузе</translation>
@@ -729,7 +729,7 @@ Are you sure you want to quit qDonkey?</source>
     <message>
         <location filename="../preferences/preferences_widget.ui" line="173"/>
         <source>Use UPnP / NAT-PMP port forwarding from my router</source>
-        <translation>Использовать UPnP/NAT-PMP на роутере доя проброса порта</translation>
+        <translation>Использовать UPnP/NAT-PMP на роутере для проброса порта входящих соединений</translation>
     </message>
     <message>
         <location filename="../preferences/preferences_widget.ui" line="185"/>
@@ -739,17 +739,17 @@ Are you sure you want to quit qDonkey?</source>
     <message>
         <location filename="../preferences/preferences_widget.ui" line="213"/>
         <source>File associations</source>
-        <translation>Ассоциации</translation>
+        <translation>Ассоциирование</translation>
     </message>
     <message>
         <location filename="../preferences/preferences_widget.ui" line="219"/>
         <source>Use qDonkey for emule collections</source>
-        <translation>Использовать для открытия коллекций .emulecollection</translation>
+        <translation>Использовать осла для коллекций</translation>
     </message>
     <message>
         <location filename="../preferences/preferences_widget.ui" line="226"/>
         <source>Use qDonkey for ed2k links</source>
-        <translation>Использовать для открытия ссылок ed2k://</translation>
+        <translation>Использовать осла для ed2k ссылок</translation>
     </message>
     <message>
         <location filename="../preferences/preferences_widget.ui" line="236"/>
@@ -788,7 +788,7 @@ Are you sure you want to quit qDonkey?</source>
     <message>
         <location filename="../search/search_widget.ui" line="14"/>
         <source>search_widget</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../search/search_widget.ui" line="54"/>
@@ -1147,7 +1147,7 @@ Are you sure you want to quit qDonkey?</source>
     <message>
         <location filename="../transfers/transfers_widget.ui" line="207"/>
         <source>Ctrl+L</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl-L</translation>
     </message>
     <message>
         <location filename="../transfers/transfers_widget.cpp" line="309"/>
