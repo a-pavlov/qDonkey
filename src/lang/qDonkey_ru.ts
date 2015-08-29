@@ -323,10 +323,16 @@ Are you sure you want to quit qDonkey?</source>
         <translation>Сидирует</translation>
     </message>
     <message>
-        <location filename="../transfers/transferlist_delegate.cpp" line="62"/>
-        <source>Stalled</source>
-        <comment>Torrent is waiting for download to begin</comment>
+        <location filename="../transfers/transferlist_delegate.cpp" line="61"/>
+        <source>Completed</source>
+        <comment>Transfer is completed and upload speed is zero</comment>
         <translation>Завершено</translation>
+    </message>
+    <message>
+        <location filename="../transfers/transferlist_delegate.cpp" line="64"/>
+        <source>Stalled</source>
+        <comment>Transfer is waiting for download to begin</comment>
+        <translation>Тупик</translation>
     </message>
     <message>
         <location filename="../transfers/transferlist_delegate.cpp" line="76"/>
