@@ -55,9 +55,11 @@ void TransferListDelegate::paint(QPainter * painter, const QStyleOptionViewItem 
                 display = tr("Paused");
                 break;
             case TransferModelItem::STATE_SEEDING:
-                display = tr("Seeding", "Torrent is complete and in upload-only mode");
+                display = tr("Seeding", "Transfert is complete and in upload-only mode");
                 break;
             case TransferModelItem::STATE_STALLED_UP:
+                display = tr("Completed", "Transfer is completed and upload speed is zero");
+                break;
             case TransferModelItem::STATE_STALLED_DL:
                 display = tr("Stalled", "Torrent is waiting for download to begin");
                 break;
