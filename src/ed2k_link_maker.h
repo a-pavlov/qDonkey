@@ -7,17 +7,14 @@
 class ed2k_link_maker : public QDialog, public Ui::ed2k_link_maker
 {
     Q_OBJECT
-    QString m_fileName;
-    QString m_hash;
-    quint64 m_fileSize;
-
 public:
-    ed2k_link_maker(QString fileName, QString hash, quint64 fileSize, QWidget *parent = 0);
+    ed2k_link_maker(QWidget *parent = 0);
     ~ed2k_link_maker();
-
+    void addED2KLink(const QString& fileName, const QString& hash, quint64 fileSize);
+    void build();
 private:
-    void createED2KLink();
-
+    typedef QPair<QPair<QString, QString>, quint64> LINK;
+    QList<LINK> m_links;
 private slots:
     void checkChanged(int state);
     void putToClipboard();

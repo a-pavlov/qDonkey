@@ -650,14 +650,9 @@ void search_widget::displayListMenu(const QPoint&)
     if (tabSearch->currentIndex() < 0)
         return;
 
-
     QModelIndexList selected = treeResult->selectionModel()->selectedRows();
-    bool enabled =
-        selected.size() == 1 &&
-        misc::isMD4Hash(selected_data(treeResult, SearchModel::DC_HASH).toString());
-
-    actionSearch_related->setEnabled(enabled);
-    actionED2K_link->setEnabled(enabled);
+    actionSearch_related->setEnabled(selected.size() == 1 && misc::isMD4Hash(selected_data(treeResult, SearchModel::DC_HASH).toString()));
+    actionED2K_link->setDisabled(selected.isEmpty());
     fileMenu->exec(QCursor::pos());
 }
 
@@ -736,13 +731,17 @@ void search_widget::on_actionED2K_link_triggered() {
         return;
     }
 
+    ed2k_link_maker dlg(this);
     QModelIndexList selected = treeResult->selectionModel()->selectedRows();
+    QModelIndexList::const_iterator iter;
+    for (iter = selected.begin(); iter != selected.end(); ++iter) {
+        QString file_name = selected_data(treeResult, SearchModel::DC_NAME, selected[0]).toString();
+        QString hash = selected_data(treeResult, SearchModel::DC_HASH, selected[0]).toString();
+        quint64 file_size = selected_data(treeResult, SearchModel::DC_FILESIZE, selected[0]).toULongLong();
+        dlg.addED2KLink(file_name, hash, file_size);
+    }
 
-    QString file_name = selected_data(treeResult, SearchModel::DC_NAME, selected[0]).toString();
-    QString hash = selected_data(treeResult, SearchModel::DC_HASH, selected[0]).toString();
-    quint64 file_size = selected_data(treeResult, SearchModel::DC_FILESIZE, selected[0]).toULongLong();
-
-    ed2k_link_maker dlg(file_name, hash, file_size, this);
+    dlg.build();
     dlg.exec();
 }
 
