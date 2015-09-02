@@ -27,7 +27,7 @@
     <message>
         <location filename="../mainwindow.ui" line="100"/>
         <location filename="../mainwindow.ui" line="103"/>
-        <location filename="../mainwindow.cpp" line="1015"/>
+        <location filename="../mainwindow.cpp" line="712"/>
         <source>Connect</source>
         <translation type="unfinished"></translation>
     </message>
@@ -44,109 +44,119 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="103"/>
-        <location filename="../mainwindow.cpp" line="840"/>
+        <location filename="../mainwindow.cpp" line="101"/>
+        <location filename="../mainwindow.cpp" line="590"/>
         <source>qDonkey %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="304"/>
+        <location filename="../mainwindow.cpp" line="270"/>
         <source>Download starting</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="304"/>
+        <location filename="../mainwindow.cpp" line="270"/>
         <source>%1 has started downloading.</source>
         <comment>e.g: xxx.avi has started downloading.</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="309"/>
+        <location filename="../mainwindow.cpp" line="275"/>
         <source>Download completion</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="309"/>
+        <location filename="../mainwindow.cpp" line="275"/>
         <source>%1 has finished downloading.</source>
         <comment>e.g: xxx.avi has finished downloading.</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="318"/>
+        <location filename="../mainwindow.cpp" line="284"/>
         <source>I/O Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="318"/>
+        <location filename="../mainwindow.cpp" line="284"/>
         <source>An I/O error occured for %1.
 Reason: %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="328"/>
+        <location filename="../mainwindow.cpp" line="294"/>
         <source>Alt+1</source>
         <comment>shortcut to switch to first tab</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="406"/>
+        <location filename="../mainwindow.cpp" line="366"/>
         <source>Exiting qDonkey</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="407"/>
+        <location filename="../mainwindow.cpp" line="367"/>
         <source>Some files are currently transferring.
 Are you sure you want to quit qDonkey?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="410"/>
+        <location filename="../mainwindow.cpp" line="370"/>
         <source>No</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="411"/>
+        <location filename="../mainwindow.cpp" line="371"/>
         <source>Yes</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="412"/>
+        <location filename="../mainwindow.cpp" line="372"/>
         <source>Always</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="816"/>
+        <location filename="../mainwindow.cpp" line="566"/>
         <source>qDonkey</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="820"/>
-        <location filename="../mainwindow.cpp" line="830"/>
+        <location filename="../mainwindow.cpp" line="570"/>
+        <location filename="../mainwindow.cpp" line="580"/>
         <source>DL speed: %1 KiB/s</source>
         <comment>e.g: Download speed: 10 KiB/s</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="825"/>
-        <location filename="../mainwindow.cpp" line="832"/>
+        <location filename="../mainwindow.cpp" line="575"/>
+        <location filename="../mainwindow.cpp" line="582"/>
         <source>UP speed: %1 KiB/s</source>
         <comment>e.g: Upload speed: 10 KiB/s</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="838"/>
+        <location filename="../mainwindow.cpp" line="588"/>
         <source>[D: %1/s, U: %2/s] qDonkey %3</source>
         <comment>D = Download; U = Upload; %3 is qDonkey version</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="987"/>
+        <location filename="../mainwindow.cpp" line="684"/>
         <source>Cancel</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1002"/>
+        <location filename="../mainwindow.cpp" line="699"/>
         <source>Disconnect</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="716"/>
+        <source>Server message</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="716"/>
+        <source>Server connection closed</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -299,23 +309,29 @@ Are you sure you want to quit qDonkey?</source>
     <message>
         <location filename="../transfers/transferlist_delegate.cpp" line="58"/>
         <source>Seeding</source>
-        <comment>Torrent is complete and in upload-only mode</comment>
+        <comment>Transfert is complete and in upload-only mode</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transfers/transferlist_delegate.cpp" line="62"/>
+        <location filename="../transfers/transferlist_delegate.cpp" line="61"/>
+        <source>Completed</source>
+        <comment>Transfer is completed and upload speed is zero</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../transfers/transferlist_delegate.cpp" line="64"/>
         <source>Stalled</source>
         <comment>Torrent is waiting for download to begin</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transfers/transferlist_delegate.cpp" line="76"/>
+        <location filename="../transfers/transferlist_delegate.cpp" line="78"/>
         <source>/s</source>
         <comment>/second (.i.e per second)</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transfers/transferlist_delegate.cpp" line="84"/>
+        <location filename="../transfers/transferlist_delegate.cpp" line="86"/>
         <source>Seeded for %1</source>
         <comment>e.g. Seeded for 3m10s</comment>
         <translation type="unfinished"></translation>
@@ -975,7 +991,7 @@ Are you sure you want to quit qDonkey?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../search/search_widget.cpp" line="752"/>
+        <location filename="../search/search_widget.cpp" line="751"/>
         <source>Column visibility</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1034,104 +1050,110 @@ Are you sure you want to quit qDonkey?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transfers/transfers_widget.ui" line="104"/>
+        <location filename="../transfers/transfers_widget.ui" line="107"/>
         <source>Start</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transfers/transfers_widget.ui" line="107"/>
+        <location filename="../transfers/transfers_widget.ui" line="110"/>
         <source>Resume transfer</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transfers/transfers_widget.ui" line="116"/>
+        <location filename="../transfers/transfers_widget.ui" line="113"/>
+        <location filename="../transfers/transfers_widget.ui" line="128"/>
+        <source>Ctrl+P</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../transfers/transfers_widget.ui" line="122"/>
         <source>Pause</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transfers/transfers_widget.ui" line="119"/>
+        <location filename="../transfers/transfers_widget.ui" line="125"/>
         <source>Pause transfer</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transfers/transfers_widget.ui" line="128"/>
+        <location filename="../transfers/transfers_widget.ui" line="137"/>
         <source>Remove transfer and file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transfers/transfers_widget.ui" line="131"/>
+        <location filename="../transfers/transfers_widget.ui" line="140"/>
         <source>Del</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transfers/transfers_widget.ui" line="140"/>
+        <location filename="../transfers/transfers_widget.ui" line="149"/>
         <source>ED2K link</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transfers/transfers_widget.ui" line="148"/>
+        <location filename="../transfers/transfers_widget.ui" line="157"/>
         <source>Series download</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transfers/transfers_widget.ui" line="156"/>
+        <location filename="../transfers/transfers_widget.ui" line="165"/>
         <source>First and last pieces first</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transfers/transfers_widget.ui" line="165"/>
+        <location filename="../transfers/transfers_widget.ui" line="174"/>
         <source>Open destination folder</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transfers/transfers_widget.ui" line="174"/>
+        <location filename="../transfers/transfers_widget.ui" line="183"/>
         <source>Rename</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transfers/transfers_widget.ui" line="183"/>
+        <location filename="../transfers/transfers_widget.ui" line="192"/>
         <source>Preview</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transfers/transfers_widget.ui" line="195"/>
+        <location filename="../transfers/transfers_widget.ui" line="204"/>
         <source>Show transfers from previous sessions</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transfers/transfers_widget.ui" line="204"/>
+        <location filename="../transfers/transfers_widget.ui" line="213"/>
         <source>Load ED2K link</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transfers/transfers_widget.ui" line="207"/>
+        <location filename="../transfers/transfers_widget.ui" line="216"/>
         <source>Ctrl+L</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transfers/transfers_widget.cpp" line="309"/>
+        <location filename="../transfers/transfers_widget.cpp" line="315"/>
         <source>Column visibility</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transfers/transfers_widget.cpp" line="345"/>
+        <location filename="../transfers/transfers_widget.cpp" line="351"/>
         <source>ED2K link:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transfers/transfers_widget.cpp" line="345"/>
-        <location filename="../transfers/transfers_widget.cpp" line="350"/>
-        <location filename="../transfers/transfers_widget.cpp" line="357"/>
+        <location filename="../transfers/transfers_widget.cpp" line="351"/>
+        <location filename="../transfers/transfers_widget.cpp" line="356"/>
+        <location filename="../transfers/transfers_widget.cpp" line="363"/>
         <source>Add ED2K link</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transfers/transfers_widget.cpp" line="350"/>
+        <location filename="../transfers/transfers_widget.cpp" line="356"/>
         <source>Link too long</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transfers/transfers_widget.cpp" line="357"/>
+        <location filename="../transfers/transfers_widget.cpp" line="363"/>
         <source>Incorrect link</source>
         <translation type="unfinished"></translation>
     </message>
