@@ -27,7 +27,7 @@
     <message>
         <location filename="../mainwindow.ui" line="100"/>
         <location filename="../mainwindow.ui" line="103"/>
-        <location filename="../mainwindow.cpp" line="1017"/>
+        <location filename="../mainwindow.cpp" line="712"/>
         <source>Connect</source>
         <translation>Соединение</translation>
     </message>
@@ -44,110 +44,120 @@
         <translation>Поиск</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="104"/>
-        <location filename="../mainwindow.cpp" line="842"/>
+        <location filename="../mainwindow.cpp" line="101"/>
+        <location filename="../mainwindow.cpp" line="590"/>
         <source>qDonkey %1</source>
         <translation>куОсел %1</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="305"/>
+        <location filename="../mainwindow.cpp" line="270"/>
         <source>Download starting</source>
         <translation>Загрузка началась</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="305"/>
+        <location filename="../mainwindow.cpp" line="270"/>
         <source>%1 has started downloading.</source>
         <comment>e.g: xxx.avi has started downloading.</comment>
         <translation>%1 загружается.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="310"/>
+        <location filename="../mainwindow.cpp" line="275"/>
         <source>Download completion</source>
         <translation>Загрузка завершена</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="310"/>
+        <location filename="../mainwindow.cpp" line="275"/>
         <source>%1 has finished downloading.</source>
         <comment>e.g: xxx.avi has finished downloading.</comment>
         <translation>%1 загружен.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="319"/>
+        <location filename="../mainwindow.cpp" line="284"/>
         <source>I/O Error</source>
         <translation>Ошибка ввода вывода</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="319"/>
+        <location filename="../mainwindow.cpp" line="284"/>
         <source>An I/O error occured for %1.
 Reason: %2</source>
         <translation>Ошибка ввода вывода при загрузке %1 причина %2 </translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="329"/>
+        <location filename="../mainwindow.cpp" line="294"/>
         <source>Alt+1</source>
         <comment>shortcut to switch to first tab</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="407"/>
+        <location filename="../mainwindow.cpp" line="366"/>
         <source>Exiting qDonkey</source>
         <translation>Выход из Осла</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="408"/>
+        <location filename="../mainwindow.cpp" line="367"/>
         <source>Some files are currently transferring.
 Are you sure you want to quit qDonkey?</source>
         <translation>Есть активные передачи, выйти из Осла?</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="411"/>
+        <location filename="../mainwindow.cpp" line="370"/>
         <source>No</source>
         <translation>Нет</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="412"/>
+        <location filename="../mainwindow.cpp" line="371"/>
         <source>Yes</source>
         <translation>Да</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="413"/>
+        <location filename="../mainwindow.cpp" line="372"/>
         <source>Always</source>
         <translation>Всегда</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="818"/>
+        <location filename="../mainwindow.cpp" line="566"/>
         <source>qDonkey</source>
         <translation>куОсел</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="822"/>
-        <location filename="../mainwindow.cpp" line="832"/>
+        <location filename="../mainwindow.cpp" line="570"/>
+        <location filename="../mainwindow.cpp" line="580"/>
         <source>DL speed: %1 KiB/s</source>
         <comment>e.g: Download speed: 10 KiB/s</comment>
         <translation>Скорость загрузки %1 Кб/сек</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="827"/>
-        <location filename="../mainwindow.cpp" line="834"/>
+        <location filename="../mainwindow.cpp" line="575"/>
+        <location filename="../mainwindow.cpp" line="582"/>
         <source>UP speed: %1 KiB/s</source>
         <comment>e.g: Upload speed: 10 KiB/s</comment>
         <translation>Скорость отдачи %1 Кб/сек</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="840"/>
+        <location filename="../mainwindow.cpp" line="588"/>
         <source>[D: %1/s, U: %2/s] qDonkey %3</source>
         <comment>D = Download; U = Upload; %3 is qDonkey version</comment>
         <translation>[Загрузка %1 Отдача %2] куОсел %3</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="989"/>
+        <location filename="../mainwindow.cpp" line="684"/>
         <source>Cancel</source>
         <translation>Отмена</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1004"/>
+        <location filename="../mainwindow.cpp" line="699"/>
         <source>Disconnect</source>
         <translation>Отсоединиться</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="716"/>
+        <source>Server message</source>
+        <translation>Сервер</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="716"/>
+        <source>Server connection closed</source>
+        <translation>Соединение с сервером разорвано</translation>
     </message>
 </context>
 <context>
@@ -235,26 +245,6 @@ Are you sure you want to quit qDonkey?</source>
         <source>Emule collection</source>
         <translation>Emule коллекция</translation>
     </message>
-    <message>
-        <location filename="../main.cpp" line="225"/>
-        <source>Usage:</source>
-        <translation>Использование:</translation>
-    </message>
-    <message>
-        <location filename="../main.cpp" line="226"/>
-        <source>displays program version</source>
-        <translation>показать версию программы</translation>
-    </message>
-    <message>
-        <location filename="../main.cpp" line="227"/>
-        <source>displays this help message</source>
-        <translation>показать помощь</translation>
-    </message>
-    <message>
-        <location filename="../main.cpp" line="228"/>
-        <source>downloads the files passed by the user via ed2k link or .emulecollection (optional)</source>
-        <translation>скачать файл используя ссылку или ed2k коллекцию</translation>
-    </message>
 </context>
 <context>
     <name>SearchModel</name>
@@ -319,8 +309,19 @@ Are you sure you want to quit qDonkey?</source>
     <message>
         <location filename="../transfers/transferlist_delegate.cpp" line="58"/>
         <source>Seeding</source>
-        <comment>Torrent is complete and in upload-only mode</comment>
+        <comment>Transfert is complete and in upload-only mode</comment>
         <translation>Сидирует</translation>
+    </message>
+    <message>
+        <location filename="../transfers/transferlist_delegate.cpp" line="64"/>
+        <source>Stalled</source>
+        <comment>Torrent is waiting for download to begin</comment>
+        <translation>Тупик</translation>
+    </message>
+    <message>
+        <source>Seeding</source>
+        <comment>Torrent is complete and in upload-only mode</comment>
+        <translation type="obsolete">Сидирует</translation>
     </message>
     <message>
         <location filename="../transfers/transferlist_delegate.cpp" line="61"/>
@@ -329,19 +330,18 @@ Are you sure you want to quit qDonkey?</source>
         <translation>Завершено</translation>
     </message>
     <message>
-        <location filename="../transfers/transferlist_delegate.cpp" line="64"/>
         <source>Stalled</source>
         <comment>Transfer is waiting for download to begin</comment>
-        <translation>Тупик</translation>
+        <translation type="obsolete">Тупик</translation>
     </message>
     <message>
-        <location filename="../transfers/transferlist_delegate.cpp" line="76"/>
+        <location filename="../transfers/transferlist_delegate.cpp" line="78"/>
         <source>/s</source>
         <comment>/second (.i.e per second)</comment>
         <translation>/сек</translation>
     </message>
     <message>
-        <location filename="../transfers/transferlist_delegate.cpp" line="84"/>
+        <location filename="../transfers/transferlist_delegate.cpp" line="86"/>
         <source>Seeded for %1</source>
         <comment>e.g. Seeded for 3m10s</comment>
         <translation>Сидирует %1</translation>
@@ -449,20 +449,24 @@ Are you sure you want to quit qDonkey?</source>
 <context>
     <name>UsageDisplay</name>
     <message>
+        <location filename="../main.cpp" line="73"/>
         <source>Usage:</source>
-        <translation type="obsolete">Использование:</translation>
+        <translation>Использование:</translation>
     </message>
     <message>
+        <location filename="../main.cpp" line="74"/>
         <source>displays program version</source>
-        <translation type="obsolete">показать версию программы</translation>
+        <translation>показать версию программы</translation>
     </message>
     <message>
+        <location filename="../main.cpp" line="75"/>
         <source>displays this help message</source>
-        <translation type="obsolete">показать помощь</translation>
+        <translation>показать помощь</translation>
     </message>
     <message>
+        <location filename="../main.cpp" line="76"/>
         <source>ed2k links: downloads the files passed by the user (optional)</source>
-        <translation type="obsolete">ed2k ссылки: загрузить файлы указанные пользователем</translation>
+        <translation>ed2k ссылки: загрузить файлы указанные пользователем</translation>
     </message>
 </context>
 <context>
@@ -693,98 +697,78 @@ Are you sure you want to quit qDonkey?</source>
         <translation>Показывать скорость в заголовке окна</translation>
     </message>
     <message>
-        <location filename="../preferences/preferences_widget.ui" line="40"/>
-        <source>Add transfers from collections and links on pause</source>
-        <translation>Добавлять трансферы из коллекций и ссылок на паузе</translation>
-    </message>
-    <message>
-        <location filename="../preferences/preferences_widget.ui" line="49"/>
+        <location filename="../preferences/preferences_widget.ui" line="42"/>
         <source>Language</source>
         <translation>Язык</translation>
     </message>
     <message>
-        <location filename="../preferences/preferences_widget.ui" line="77"/>
+        <location filename="../preferences/preferences_widget.ui" line="70"/>
         <source>Network settings</source>
         <translation>Настройки сети</translation>
     </message>
     <message>
-        <location filename="../preferences/preferences_widget.ui" line="83"/>
+        <location filename="../preferences/preferences_widget.ui" line="76"/>
         <source>Server</source>
         <translation>Сервер</translation>
     </message>
     <message>
-        <location filename="../preferences/preferences_widget.ui" line="89"/>
+        <location filename="../preferences/preferences_widget.ui" line="82"/>
         <source>Host:</source>
         <translation>Хост:</translation>
     </message>
     <message>
-        <location filename="../preferences/preferences_widget.ui" line="103"/>
+        <location filename="../preferences/preferences_widget.ui" line="96"/>
         <source>Port</source>
         <translation>Порт</translation>
     </message>
     <message>
-        <location filename="../preferences/preferences_widget.ui" line="136"/>
+        <location filename="../preferences/preferences_widget.ui" line="129"/>
         <source>Connection</source>
         <translation>Соединение</translation>
     </message>
     <message>
-        <location filename="../preferences/preferences_widget.ui" line="144"/>
+        <location filename="../preferences/preferences_widget.ui" line="137"/>
         <source>Port used for incoming connections:</source>
         <translation>Порт для входящие соединений:</translation>
     </message>
     <message>
-        <location filename="../preferences/preferences_widget.ui" line="173"/>
+        <location filename="../preferences/preferences_widget.ui" line="166"/>
         <source>Use UPnP / NAT-PMP port forwarding from my router</source>
         <translation>Использовать UPnP/NAT-PMP на роутере для проброса порта входящих соединений</translation>
     </message>
     <message>
-        <location filename="../preferences/preferences_widget.ui" line="185"/>
+        <location filename="../preferences/preferences_widget.ui" line="178"/>
         <source>User name</source>
         <translation>Имя пользователя</translation>
     </message>
     <message>
-        <location filename="../preferences/preferences_widget.ui" line="213"/>
-        <source>File associations</source>
-        <translation>Ассоциирование</translation>
-    </message>
-    <message>
-        <location filename="../preferences/preferences_widget.ui" line="219"/>
-        <source>Use qDonkey for emule collections</source>
-        <translation>Использовать осла для коллекций</translation>
-    </message>
-    <message>
-        <location filename="../preferences/preferences_widget.ui" line="226"/>
-        <source>Use qDonkey for ed2k links</source>
-        <translation>Использовать осла для ed2k ссылок</translation>
-    </message>
-    <message>
-        <location filename="../preferences/preferences_widget.ui" line="236"/>
+        <location filename="../preferences/preferences_widget.ui" line="206"/>
         <source>Save files to location</source>
         <translation>Сохранять файлы в директорию</translation>
     </message>
     <message>
-        <location filename="../preferences/preferences_widget.ui" line="318"/>
+        <location filename="../preferences/preferences_widget.ui" line="288"/>
         <source>Accept</source>
         <translation>Применить</translation>
     </message>
     <message>
-        <location filename="../preferences/preferences_widget.ui" line="328"/>
+        <location filename="../preferences/preferences_widget.ui" line="298"/>
         <source>Cancel</source>
         <translation>Отмена</translation>
     </message>
     <message>
-        <location filename="../preferences/preferences_widget.cpp" line="152"/>
+        <location filename="../preferences/preferences_widget.cpp" line="141"/>
         <source>Input directory configuration</source>
         <translation>Настройка каталога закачек</translation>
     </message>
     <message>
-        <location filename="../preferences/preferences_widget.cpp" line="152"/>
+        <location filename="../preferences/preferences_widget.cpp" line="141"/>
         <source>Unable to write metadata into directiry, check it exists and writeable</source>
         <translation>Не могу записать метаданные в директорию, проверьте наличие и права</translation>
     </message>
     <message>
-        <location filename="../preferences/preferences_widget.cpp" line="203"/>
-        <location filename="../preferences/preferences_widget.cpp" line="205"/>
+        <location filename="../preferences/preferences_widget.cpp" line="185"/>
+        <location filename="../preferences/preferences_widget.cpp" line="187"/>
         <source>Choose input directory</source>
         <translation>Выбери дерикторию закачек</translation>
     </message>
@@ -1022,7 +1006,7 @@ Are you sure you want to quit qDonkey?</source>
         <translation>&apos; параметр</translation>
     </message>
     <message>
-        <location filename="../search/search_widget.cpp" line="752"/>
+        <location filename="../search/search_widget.cpp" line="751"/>
         <source>Column visibility</source>
         <translation>Видимость колонок</translation>
     </message>
@@ -1081,82 +1065,88 @@ Are you sure you want to quit qDonkey?</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../transfers/transfers_widget.ui" line="104"/>
+        <location filename="../transfers/transfers_widget.ui" line="107"/>
         <source>Start</source>
         <translation>Старт</translation>
     </message>
     <message>
-        <location filename="../transfers/transfers_widget.ui" line="107"/>
+        <location filename="../transfers/transfers_widget.ui" line="110"/>
         <source>Resume transfer</source>
         <translation>Возобновить трансфер</translation>
     </message>
     <message>
-        <location filename="../transfers/transfers_widget.ui" line="116"/>
+        <location filename="../transfers/transfers_widget.ui" line="113"/>
+        <location filename="../transfers/transfers_widget.ui" line="128"/>
+        <source>Ctrl+P</source>
+        <translation>Ctrl-P</translation>
+    </message>
+    <message>
+        <location filename="../transfers/transfers_widget.ui" line="122"/>
         <source>Pause</source>
         <translation>Пауза</translation>
     </message>
     <message>
-        <location filename="../transfers/transfers_widget.ui" line="119"/>
+        <location filename="../transfers/transfers_widget.ui" line="125"/>
         <source>Pause transfer</source>
         <translation>Приостановить трансфер</translation>
     </message>
     <message>
-        <location filename="../transfers/transfers_widget.ui" line="128"/>
+        <location filename="../transfers/transfers_widget.ui" line="137"/>
         <source>Remove transfer and file</source>
         <translation>Удалить трансфер и файл на диске</translation>
     </message>
     <message>
-        <location filename="../transfers/transfers_widget.ui" line="131"/>
+        <location filename="../transfers/transfers_widget.ui" line="140"/>
         <source>Del</source>
         <translation>Удалить</translation>
     </message>
     <message>
-        <location filename="../transfers/transfers_widget.ui" line="140"/>
+        <location filename="../transfers/transfers_widget.ui" line="149"/>
         <source>ED2K link</source>
         <translation>ED2K ссылка</translation>
     </message>
     <message>
-        <location filename="../transfers/transfers_widget.ui" line="148"/>
+        <location filename="../transfers/transfers_widget.ui" line="157"/>
         <source>Series download</source>
         <translation>Последовательная закачка</translation>
     </message>
     <message>
-        <location filename="../transfers/transfers_widget.ui" line="156"/>
+        <location filename="../transfers/transfers_widget.ui" line="165"/>
         <source>First and last pieces first</source>
         <translation>Первый и последний куски вперед</translation>
     </message>
     <message>
-        <location filename="../transfers/transfers_widget.ui" line="165"/>
+        <location filename="../transfers/transfers_widget.ui" line="174"/>
         <source>Open destination folder</source>
         <translation>Открыть папку назначения</translation>
     </message>
     <message>
-        <location filename="../transfers/transfers_widget.ui" line="174"/>
+        <location filename="../transfers/transfers_widget.ui" line="183"/>
         <source>Rename</source>
         <translation>Переименовать</translation>
     </message>
     <message>
-        <location filename="../transfers/transfers_widget.ui" line="183"/>
+        <location filename="../transfers/transfers_widget.ui" line="192"/>
         <source>Preview</source>
         <translation>Предпросмотр</translation>
     </message>
     <message>
-        <location filename="../transfers/transfers_widget.ui" line="195"/>
+        <location filename="../transfers/transfers_widget.ui" line="204"/>
         <source>Show transfers from previous sessions</source>
         <translation>Показывать трансферы из предыдущих сессий</translation>
     </message>
     <message>
-        <location filename="../transfers/transfers_widget.ui" line="204"/>
+        <location filename="../transfers/transfers_widget.ui" line="213"/>
         <source>Load ED2K link</source>
         <translation>Загрузить ed2k ссылку</translation>
     </message>
     <message>
-        <location filename="../transfers/transfers_widget.ui" line="207"/>
+        <location filename="../transfers/transfers_widget.ui" line="216"/>
         <source>Ctrl+L</source>
         <translation>Ctrl-L</translation>
     </message>
     <message>
-        <location filename="../transfers/transfers_widget.cpp" line="309"/>
+        <location filename="../transfers/transfers_widget.cpp" line="315"/>
         <source>Column visibility</source>
         <translation>Видимость колонок</translation>
     </message>
@@ -1165,24 +1155,24 @@ Are you sure you want to quit qDonkey?</source>
         <translation type="obsolete">До</translation>
     </message>
     <message>
-        <location filename="../transfers/transfers_widget.cpp" line="345"/>
+        <location filename="../transfers/transfers_widget.cpp" line="351"/>
         <source>ED2K link:</source>
         <translation>ED2K ссылка</translation>
     </message>
     <message>
-        <location filename="../transfers/transfers_widget.cpp" line="345"/>
-        <location filename="../transfers/transfers_widget.cpp" line="350"/>
-        <location filename="../transfers/transfers_widget.cpp" line="357"/>
+        <location filename="../transfers/transfers_widget.cpp" line="351"/>
+        <location filename="../transfers/transfers_widget.cpp" line="356"/>
+        <location filename="../transfers/transfers_widget.cpp" line="363"/>
         <source>Add ED2K link</source>
         <translation>Добавление ED2K ссылки</translation>
     </message>
     <message>
-        <location filename="../transfers/transfers_widget.cpp" line="350"/>
+        <location filename="../transfers/transfers_widget.cpp" line="356"/>
         <source>Link too long</source>
         <translation>Ссылка слишком длинная</translation>
     </message>
     <message>
-        <location filename="../transfers/transfers_widget.cpp" line="357"/>
+        <location filename="../transfers/transfers_widget.cpp" line="363"/>
         <source>Incorrect link</source>
         <translation>Неправильная ссылка</translation>
     </message>

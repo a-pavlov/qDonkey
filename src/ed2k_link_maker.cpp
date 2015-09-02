@@ -5,50 +5,52 @@
 #include <QUrl>
 
 
-ed2k_link_maker::ed2k_link_maker(QString fileName, QString hash, quint64 fileSize, QWidget *parent)
-    : QDialog(parent), m_fileName(fileName), m_hash(hash), m_fileSize(fileSize)
+ed2k_link_maker::ed2k_link_maker(QWidget *parent /* = 0*/)
+    : QDialog(parent)
 {
     setupUi(this);
-
-    if (!m_fileName.length() || !m_hash.length())
-        return;
-
     connect(checkForum, SIGNAL(stateChanged(int)), this, SLOT(checkChanged(int)));
     connect(checkSize, SIGNAL(stateChanged(int)), this, SLOT(checkChanged(int)));
     connect(btnCopy, SIGNAL(clicked()), this, SLOT(putToClipboard()));
     connect(btnClose, SIGNAL(clicked()), this, SLOT(close()));
-
-    createED2KLink();
 }
 
 ed2k_link_maker::~ed2k_link_maker()
 {
-
 }
 
-void ed2k_link_maker::createED2KLink()
+void ed2k_link_maker::addED2KLink(const QString& fileName, const QString& hash, quint64 fileSize)
+{
+    m_links.push_back(qMakePair(qMakePair(fileName, hash), fileSize));
+}
+
+void ed2k_link_maker::build()
 {
     editLink->clear();
     checkSize->setDisabled(true);
 
-    QString size = QString::number(m_fileSize);
-
-    QString link = "ed2k://|file|" + QString(QUrl::toPercentEncoding(m_fileName)) + "|" +
-        size + "|" + m_hash + "|/";
-
-    if (checkForum->checkState() == Qt::Checked)
+    foreach(const LINK& l, m_links)
     {
-        link = "[u][b][url=" + link + "]" + m_fileName + "[/url][/b][/u]";
-        checkSize->setEnabled(true);
-        if (checkSize->checkState() == Qt::Checked)
-            link += " " + misc::friendlyUnit(m_fileSize);
+        QString size = QString::number(l.second);
+
+        QString link = "ed2k://|file|" + QString(QUrl::toPercentEncoding(l.first.first)) + "|" +
+            size + "|" + l.first.second + "|/";
+
+        if (checkForum->checkState() == Qt::Checked)
+        {
+            link = "[u][b][url=" + link + "]" + l.first.first + "[/url][/b][/u]";
+            checkSize->setEnabled(true);
+            if (checkSize->checkState() == Qt::Checked)
+                link += " " + misc::friendlyUnit(l.second);
+        }
+
+        editLink->appendPlainText(link);
     }
-    editLink->appendPlainText(link);
 }
 
 void ed2k_link_maker::checkChanged(int state)
 {
-    createED2KLink();
+    build();
 }
 
 void ed2k_link_maker::putToClipboard()

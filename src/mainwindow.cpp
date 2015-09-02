@@ -53,8 +53,6 @@
 #include <QUrl>
 #include <QMimeData>
 
-#include <libed2k/log.hpp>
-
 #include "mainwindow.h"
 #include "misc.h"
 
@@ -136,38 +134,11 @@ MainWindow::MainWindow(QWidget *parent, QStringList torrentCmdLine)
     guiUpdater->start(2000);
 
     // Accept drag 'n drops
-    //setAcceptDrops(true);
     createKeyboardShortcuts();
 
 #ifdef Q_WS_MAC
     setUnifiedTitleAndToolBarOnMac(true);
 #endif
-
-    // View settings
-
-
-
-    // Auto shutdown actions
-/*    QActionGroup * autoShutdownGroup = new QActionGroup(this);
-    autoShutdownGroup->setExclusive(true);
-    autoShutdownGroup->addAction(actionAutoShutdown_Disabled);
-    autoShutdownGroup->addAction(actionAutoExit_mule);
-    autoShutdownGroup->addAction(actionAutoShutdown_system);
-    autoShutdownGroup->addAction(actionAutoSuspend_system);
-
-#if !defined(Q_WS_X11) || defined(QT_DBUS_LIB)
-    actionAutoShutdown_system->setChecked(pref.shutdownWhenDownloadsComplete());
-    actionAutoSuspend_system->setChecked(pref.suspendWhenDownloadsComplete());
-#else
-    actionAutoShutdown_system->setDisabled(true);
-    actionAutoSuspend_system->setDisabled(true);
-#endif
-
-    actionAutoExit_mule->setChecked(pref.shutdownqBTWhenDownloadsComplete());
-
-    if (!autoShutdownGroup->checkedAction())
-        actionAutoShutdown_Disabled->setChecked(true);
-*/
 
     readSettings();
 
@@ -202,11 +173,6 @@ MainWindow::MainWindow(QWidget *parent, QStringList torrentCmdLine)
 
     connect(Session::instance(), SIGNAL(transferAdded(QED2KHandle)), SLOT(addedTransfer(QED2KHandle)));
     connect(Session::instance(), SIGNAL(transferFinished(QED2KHandle)), SLOT(finishedTransfer(QED2KHandle)));
-
-    //Tray actions.
-    //connect(actionToggleVisibility, SIGNAL(triggered()), this, SLOT(toggleVisibility()));
-    //connect(actionStart_All, SIGNAL(triggered()), Session::instance(), SLOT(resumeAllTransfers()));
-    //connect(actionPause_All, SIGNAL(triggered()), Session::instance(), SLOT(pauseAllTransfers()));
 
     actionConnect->trigger();
     Session::instance()->loadDirectory(pref.inputDir());
@@ -370,17 +336,11 @@ void MainWindow::toggleVisibility(QSystemTrayIcon::ActivationReason e)
             hide();
         }
     }
-
-    //actionToggleVisibility->setText(isVisible()? tr("Hide") : tr("Show"));
 }
 
 void MainWindow::showEvent(QShowEvent *e)
 {
     qDebug("** Show Event **");
-
-//  if(getCurrentTabWidget() == transferList) {
-//    properties->loadDynamicData();
-    //}
 
     e->accept();
 
@@ -456,14 +416,6 @@ bool MainWindow::event(QEvent * e)
             if(isMinimized())
             {
                 qDebug("minimisation");
-
-                /*if(systrayIcon) {
-                    qDebug("Minimize to Tray enabled, hiding!");
-                    e->accept();
-                    QTimer::singleShot(0, this, SLOT(hide()));
-                    return true;
-                }
-                */
             }
 
             break;
@@ -484,115 +436,10 @@ bool MainWindow::event(QEvent * e)
     return QMainWindow::event(e);
 }
 
-// Action executed when a file is dropped
-/*void MainWindow::dropEvent(QDropEvent *event)
-{
-    event->acceptProposedAction();
-    QStringList files;
-
-    if(event->mimeData()->hasUrls())
-    {
-        const QList<QUrl> urls = event->mimeData()->urls();
-
-        foreach (const QUrl &url, urls)
-        {
-            if (!url.isEmpty())
-            {
-                if (url.scheme().compare("file", Qt::CaseInsensitive) == 0)
-                files << url.toLocalFile();
-                else
-                files << url.toString();
-            }
-        }
-    }
-    else
-    {
-        files = event->mimeData()->text().split(QString::fromUtf8("\n"));
-    }
-
-    // Add file to download list
-    Preferences pref;
-    const bool useTorrentAdditionDialog = pref.useAdditionDialog();
-
-    foreach (QString file, files)
-    {
-        qDebug("Dropped file %s on download list", qPrintable(file));
-
-        if (misc::isUrl(file))
-        {
-            Session::instance()->downloadFromUrl(file); // TODO - check it for using only in torrent
-            continue;
-        }
-
-        // Bitcomet or Magnet link
-        if (file.startsWith("bc://bt/", Qt::CaseInsensitive))
-        {
-            qDebug("Converting bc link to magnet link");
-            file = misc::bcLinkToMagnet(file);
-        }
-
-        if (file.startsWith("magnet:", Qt::CaseInsensitive))
-        {
-            if (useTorrentAdditionDialog)
-            {
-                torrentAdditionDialog *dialog = new torrentAdditionDialog(this);
-                dialog->showLoadMagnetURI(file);
-            }
-            else
-            {
-                Session::instance()->addLink(file); // TODO - check it fir using only in torrent
-            }
-
-            continue;
-        }
-
-        // Local file
-        if (useTorrentAdditionDialog)
-        {
-            torrentAdditionDialog *dialog = new torrentAdditionDialog(this);
-
-            if (file.startsWith("file:", Qt::CaseInsensitive))
-            file = QUrl(file).toLocalFile();
-
-            dialog->showLoad(file);
-        }
-        else
-        {
-            Session::instance()->addLink(file); // TODO - possibly it is torrent only
-        }
-    }
-}*/
-
-// Decode if we accept drag 'n drop or not
-/*void MainWindow::dragEnterEvent(QDragEnterEvent *event)
-{
-    foreach (const QString &mime, event->mimeData()->formats())
-    {
-        qDebug("mimeData: %s", mime.toLocal8Bit().data());
-    }
-
-    if(event->mimeData()->hasFormat(QString::fromUtf8("text/plain")) ||
-       event->mimeData()->hasFormat(QString::fromUtf8("text/uri-list")))
-    {
-        event->acceptProposedAction();
-    }
-}*/
-
 bool MainWindow::eventFilter(QObject *watched, QEvent *event)
 {
     switch (event->type())
     {
-        case QEvent::KeyRelease:
-        {
-            QKeyEvent *keyEvent = static_cast<QKeyEvent*>(event);
-            //int mask = Qt::ControlModifier | Qt::ShiftModifier | Qt::AltModifier;
-
-            //if(keyEvent->modifiers() == mask)
-            //{
-            //}
-
-            break;
-        }
         case QEvent::DragEnter:
         {
 
@@ -705,104 +552,7 @@ void MainWindow::loadPreferences(bool configure_session)
             createTrayIcon();
         }
     }
-    /*
-    Session::instance()->addConsoleMessage(tr("Options were saved successfully."));
-    const Preferences pref;
-    const bool newSystrayIntegration = pref.systrayIntegration();
-    actionLock_mule->setVisible(newSystrayIntegration);
 
-    if(newSystrayIntegration != (systrayIcon != 0))
-    {
-        if(newSystrayIntegration)
-        {
-            // create the trayicon
-            if(!QSystemTrayIcon::isSystemTrayAvailable())
-            {
-                if(!configure_session)
-                { // Program startup
-                    systrayCreator = new QTimer(this);
-                    connect(systrayCreator, SIGNAL(timeout()), this, SLOT(createSystrayDelayed()));
-                    systrayCreator->setSingleShot(true);
-                    systrayCreator->start(2000);
-                    qDebug("Info: System tray is unavailable, trying again later.");
-                }
-                else
-                {
-                    qDebug("Warning: System tray is unavailable.");
-                }
-            }
-            else
-            {
-                createTrayIcon();
-            }
-        }
-        else
-        {
-            // Destroy trayicon
-            delete systrayIcon;
-            delete myTrayIconMenu;
-        }
-    }
-     // Reload systray icon
-    if(newSystrayIntegration && systrayIcon)
-    {
-        systrayIcon->setIcon(getSystrayIcon());
-    }
-     // General
-    if(pref.isToolbarDisplayed())
-    {
-        toolBar->setVisible(true);
-    }
-    else
-    {
-        // Clear search filter before hiding the top toolbar
-        search_filter->clear();
-        toolBar->setVisible(false);
-    }
-
-    if(pref.preventFromSuspend())
-    {
-        preventTimer->start(PREVENT_SUSPEND_INTERVAL);
-    }
-    else
-    {
-        preventTimer->stop();
-        m_pwr->setActivityState(false);
-    }
-
-    const uint new_refreshInterval = pref.getRefreshInterval();
-    transferList->setRefreshInterval(new_refreshInterval);
-    transfersView->setAlternatingRowColors(pref.useAlternatingRowColors());
-
-     // Queueing System
-    if(pref.isQueueingSystemEnabled())
-    {
-        if(!actionDecreasePriority->isVisible())
-        {
-            transferList->hidePriorityColumn(false);
-            actionDecreasePriority->setVisible(true);
-            actionIncreasePriority->setVisible(true);
-        }
-    }
-    else
-    {
-        if(actionDecreasePriority->isVisible())
-        {
-            transferList->hidePriorityColumn(true);
-            actionDecreasePriority->setVisible(false);
-            actionIncreasePriority->setVisible(false);
-        }
-    }
-
-    // Torrent properties
-    // Icon provider
-#if defined(Q_WS_X11)
-    IconProvider::instance()->useSystemIconTheme(pref.useSystemIconTheme());
-#endif
-
-    if(configure_session)
-        Session::instance()->configureSession();
-*/
     qDebug("GUI settings loaded");
 }
 
@@ -871,52 +621,6 @@ void MainWindow::showNotificationBaloon(QString title, QString msg) const {
         systrayIcon->showMessage(title, msg, QSystemTrayIcon::Information, TIME_TRAY_BALLOON);
 }
 
-/*****************************************************
- *                                                   *
- *                      Utils                        *
- *                                                   *
- *****************************************************/
-
-void MainWindow::downloadFromURLList(const QStringList& url_list)
-{
-    /*
-    Preferences settings;
-    const bool useTorrentAdditionDialog = settings.value(QString::fromUtf8("Preferences/Downloads/AdditionDialog"), true).toBool();
-
-    foreach (QString url, url_list)
-    {
-        if (url.startsWith("bc://bt/", Qt::CaseInsensitive))
-        {
-            qDebug("Converting bc link to magnet link");
-            url = misc::bcLinkToMagnet(url);
-        }
-
-        if (url.startsWith("magnet:", Qt::CaseInsensitive))
-        {
-            if (useTorrentAdditionDialog)
-            {
-                torrentAdditionDialog *dialog = new torrentAdditionDialog(this);
-                dialog->showLoadMagnetURI(url);
-            }
-            else
-            {
-                Session::instance()->addLink(url);
-            }
-        }
-        else
-        {
-            Session::instance()->downloadFromUrl(url);
-        }
-    }
-    */
-}
-
-/*****************************************************
- *                                                   *
- *                     Options                       *
- *                                                   *
- *****************************************************/
-
 void MainWindow::createSystrayDelayed()
 {
     static int timeout = 20;
@@ -950,9 +654,7 @@ void MainWindow::createSystrayDelayed()
 void MainWindow::createTrayIcon() {
     // Tray icon
     systrayIcon = new QSystemTrayIcon(icon_CurTray, this);
-    //systrayIcon->setContextMenu(getTrayIconMenu());
     connect(systrayIcon, SIGNAL(messageClicked()), this, SLOT(balloonClicked()));
-
     // End of Icon Menu
     connect(systrayIcon, SIGNAL(activated(QSystemTrayIcon::ActivationReason)), this, SLOT(toggleVisibility(QSystemTrayIcon::ActivationReason)));
     systrayIcon->show();
@@ -979,11 +681,6 @@ void MainWindow::on_actionOptions_triggered() {
 }
 
 void MainWindow::on_actionConnect_triggered() {
-    //QMessageBox confirmBox(QMessageBox::Question, tr("Server connection"), tr("Do you want to break network connection?"), QMessageBox::NoButton, this);
-    //confirmBox.addButton(tr("No"), QMessageBox::NoRole);
-    //QPushButton *yesBtn = confirmBox.addButton(tr("Yes"), QMessageBox::YesRole);
-    //confirmBox.setDefaultButton(yesBtn);
-
     if (!Session::instance()->isServerConnected()) {
         actionConnect->setIcon(QIcon(res::toolbarConnecting()));
         actionConnect->setText(tr("Cancel"));
@@ -1018,18 +715,18 @@ void MainWindow::handleServerConnectionClosed(QString) {
     icon_CurTray = icon_TrayDisconn;
     if (systrayIcon) systrayIcon->setIcon(icon_TrayDisconn);
     statusBar->setConnected(false);
-    showNotificationBaloon("xxx", "server disconnected");
+    showNotificationBaloon(tr("Server message"), tr("Server connection closed"));
 }
 
 void MainWindow::handleServerStatus(int files, int users) {
     statusBar->setServerInfo(files, users);
 }
 
-void MainWindow::handleServerMessage(QString) {
-
+void MainWindow::handleServerMessage(QString msg) {
+    qDebug() << "Server message: " << msg;
 }
 
-void MainWindow::handleServerIdentity(QString,QString) {
-
+void MainWindow::handleServerIdentity(QString a, QString b) {
+    qDebug() << "Server identity: " << a << ":" << b;
 }
 

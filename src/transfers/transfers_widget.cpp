@@ -102,7 +102,6 @@ void transfers_widget::displayListMenu(const QPoint&) {
     bool has_start = false;
     bool has_pause = false;
     bool has_preview = false;
-    bool has_link = (hashes.size() == 1);
     int all_same_sequential_download_mode = 0;
     int all_same_prio_firstlast = 0;
     int seeders = 0;
@@ -125,9 +124,9 @@ void transfers_widget::displayListMenu(const QPoint&) {
     actionStart->setEnabled(has_start);
     actionPause->setEnabled(has_pause);
     actionPreview->setEnabled(has_preview);
-    actionED2K_link->setEnabled(has_link);
+    actionED2K_link->setDisabled(hashes.isEmpty());
     actionRemove->setDisabled(hashes.isEmpty());
-    actionRename->setEnabled(has_link);
+    actionRename->setDisabled(hashes.size() != 1);
 
     actionSeries_download->setChecked(all_same_sequential_download_mode == (hashes.size() - seeders - invalid));
     actionFirst_and_last_pieces_first->setChecked(all_same_prio_firstlast == (hashes.size() - seeders- invalid));
@@ -145,14 +144,19 @@ void transfers_widget::keyPressEvent( QKeyEvent * event)
 {
     if (focusWidget() == trView)
     {
-        qDebug() << event;
         if (event->key() == Qt::Key_L && (event->modifiers().testFlag(Qt::ControlModifier))) {
             on_actionLoad_ED2K_link_triggered();
         } else
         {
             const QStringList hashes = getSelectedHashes();
             foreach (const QString &hash, hashes) {
-                if (event->key() == Qt::Key_Delete) {
+                if (event->key() == Qt::Key_P) {
+                    QED2KHandle h = Session::instance()->getTransfer(hash);
+                    if (h.is_valid())
+                    {
+                        if (h.is_paused()) h.resume(); else h.pause();
+                    }
+                } else if (event->key() == Qt::Key_Delete) {
                     tmodel->removeTransfer(hash);
                     Session::instance()->deleteTransfer(hash, true);
                 }
@@ -160,7 +164,7 @@ void transfers_widget::keyPressEvent( QKeyEvent * event)
                     QED2KHandle h = Session::instance()->getTransfer(hash);
                     if (h.is_valid())
                     {
-                        if (h.is_seed()) QDesktopServices::openUrl(QUrl(h.filepath()));
+                        if (h.is_seed()) QDesktopServices::openUrl(QUrl::fromLocalFile(h.filepath()));
                         else if (h.is_paused()) h.resume();
                         else h.pause();
                     }
@@ -214,15 +218,17 @@ void transfers_widget::on_actionRemove_triggered() {
 }
 
 void transfers_widget::on_actionED2K_link_triggered() {
-    const QModelIndexList selectedIndexes = trView->selectionModel()->selectedRows();
-    const QString hash = getHashFromRow(mapToSource(selectedIndexes[0]).row());
-    QED2KHandle h = Session::instance()->getTransfer(hash);
-    if (h.is_valid()) {
-        const QString file_name = h.filename();
-        quint64 file_size = h.filesize();
-        ed2k_link_maker dlg(file_name, hash, file_size, this);
-        dlg.exec();
+    ed2k_link_maker dlg(this);
+    const QStringList hashes = getSelectedHashes();
+    foreach (const QString &hash, hashes) {
+        QED2KHandle h = Session::instance()->getTransfer(hash);
+        if (h.is_valid()) {
+            dlg.addED2KLink(h.filename(), h.hash(), h.filesize());
+        }
     }
+
+    dlg.build();
+    dlg.exec();
 }
 
 void transfers_widget::on_actionSeries_download_triggered()
