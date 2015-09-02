@@ -72,7 +72,6 @@ public:
 
 public slots:
     void showNotificationBaloon(QString title, QString msg) const;
-    void downloadFromURLList(const QStringList& urls);
     void deleteSession();
     void addConsoleMessage(const QString& msg, QColor color = QApplication::palette().color(QPalette::WindowText)) const;
 
