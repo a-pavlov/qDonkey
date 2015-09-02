@@ -144,14 +144,19 @@ void transfers_widget::keyPressEvent( QKeyEvent * event)
 {
     if (focusWidget() == trView)
     {
-        qDebug() << event;
         if (event->key() == Qt::Key_L && (event->modifiers().testFlag(Qt::ControlModifier))) {
             on_actionLoad_ED2K_link_triggered();
         } else
         {
             const QStringList hashes = getSelectedHashes();
             foreach (const QString &hash, hashes) {
-                if (event->key() == Qt::Key_Delete) {
+                if (event->key() == Qt::Key_P) {
+                    QED2KHandle h = Session::instance()->getTransfer(hash);
+                    if (h.is_valid())
+                    {
+                        if (h.is_paused()) h.resume(); else h.pause();
+                    }
+                } else if (event->key() == Qt::Key_Delete) {
                     tmodel->removeTransfer(hash);
                     Session::instance()->deleteTransfer(hash, true);
                 }
@@ -159,7 +164,7 @@ void transfers_widget::keyPressEvent( QKeyEvent * event)
                     QED2KHandle h = Session::instance()->getTransfer(hash);
                     if (h.is_valid())
                     {
-                        if (h.is_seed()) QDesktopServices::openUrl(QUrl(h.filepath()));
+                        if (h.is_seed()) QDesktopServices::openUrl(QUrl::fromLocalFile(h.filepath()));
                         else if (h.is_paused()) h.resume();
                         else h.pause();
                     }

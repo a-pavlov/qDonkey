@@ -62,6 +62,9 @@
             <property name="verticalScrollMode">
              <enum>QAbstractItemView::ScrollPerPixel</enum>
             </property>
+            <property name="itemsExpandable">
+             <bool>false</bool>
+            </property>
             <attribute name="headerShowSortIndicator" stdset="0">
              <bool>true</bool>
             </attribute>
@@ -106,6 +109,9 @@
    <property name="toolTip">
     <string>Resume transfer</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+P</string>
+   </property>
   </action>
   <action name="actionPause">
    <property name="icon">
@@ -117,6 +123,9 @@
    </property>
    <property name="toolTip">
     <string>Pause transfer</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+P</string>
    </property>
   </action>
   <action name="actionRemove">

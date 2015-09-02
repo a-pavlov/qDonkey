@@ -589,7 +589,6 @@ bool MainWindow::eventFilter(QObject *watched, QEvent *event)
             //if(keyEvent->modifiers() == mask)
             //{
             //}
-
             break;
         }
         case QEvent::DragEnter:
@@ -1016,7 +1015,7 @@ void MainWindow::handleServerConnectionClosed(QString) {
     icon_CurTray = icon_TrayDisconn;
     if (systrayIcon) systrayIcon->setIcon(icon_TrayDisconn);
     statusBar->setConnected(false);
-    showNotificationBaloon("xxx", "server disconnected");
+    showNotificationBaloon(tr("Server message"), tr("Server connection closed"));
 }
 
 void MainWindow::handleServerStatus(int files, int users) {
