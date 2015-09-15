@@ -1,4 +1,6 @@
+#ifndef Q_MOC_RUN
 #include <libed2k/constants.hpp>
+#endif
 
 #include "qed2khandle.h"
 #include "misc.h"

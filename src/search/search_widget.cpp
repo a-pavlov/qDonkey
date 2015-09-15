@@ -5,7 +5,9 @@
 #include <QStandardItemModel>
 #include <QMessageBox>
 
+#ifndef Q_MOC_RUN
 #include <libed2k/file.hpp>
+#endif
 
 #include "search/search_widget.h"
 #include "preferences.h"
