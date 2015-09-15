@@ -1,5 +1,7 @@
 #include <fstream>
 #include <iostream>
+
+#ifndef Q_MOC_RUN
 #include <libed2k/bencode.hpp>
 #include <libed2k/file.hpp>
 #include <libed2k/md4_hash.hpp>
@@ -11,6 +13,7 @@
 #include <libed2k/util.hpp>
 #include <libed2k/upnp.hpp>
 #include <libed2k/natpmp.hpp>
+#endif
 
 #include <QMessageBox>
 #include <QDir>

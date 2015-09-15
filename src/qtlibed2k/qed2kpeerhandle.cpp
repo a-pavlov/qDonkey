@@ -2,7 +2,9 @@
 
 #include "qed2kpeerhandle.h"
 #include "qed2ksession.h"
+#ifndef Q_MOC_RUN
 #include "libed2k/error_code.hpp"
+#endif
 
 #define PEER_ACTION(action, data)
 

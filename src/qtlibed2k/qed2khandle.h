@@ -1,8 +1,10 @@
 #ifndef __QED2kHANDLE__
 #define __QED2kHANDLE__
 
+#ifndef Q_MOC_RUN
 #include <libed2k/transfer_handle.hpp>
 #include <libed2k/peer_info.hpp>
+#endif
 
 #include <QString>
 #include <QHash>

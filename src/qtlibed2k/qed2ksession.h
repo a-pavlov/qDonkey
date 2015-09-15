@@ -20,9 +20,11 @@
 #include <QSharedPointer>
 #include <QLinkedList>
 
+#ifndef Q_MOC_RUN
 #include <libed2k/session.hpp>
 #include <libed2k/session_status.hpp>
 #include <libed2k/server_connection.hpp>
+#endif
 
 #include "qed2khandle.h"
 #include "preferences/preferences.h"

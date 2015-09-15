@@ -1,7 +1,9 @@
 #ifndef QED2KPEERHANDLE_H
 #define QED2KPEERHANDLE_H
 
+#ifndef Q_MOC_RUN
 #include <libed2k/session.hpp>
+#endif
 
 class QED2KPeerHandle {
 public:

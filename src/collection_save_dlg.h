@@ -2,7 +2,9 @@
 #define COLLECTION_SAVE_DLG_H
 
 #include <QDialog>
+#ifndef Q_MOC_RUN
 #include <libed2k/file.hpp>
+#endif
 #include "ui_collection_save_dlg.h"
 
 struct FileData
