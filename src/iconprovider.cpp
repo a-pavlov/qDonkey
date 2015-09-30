@@ -36,7 +36,7 @@ IconProvider* IconProvider::m_instance = 0;
 
 IconProvider::IconProvider()
 {
-//#if defined(Q_WS_X11)
+//#if defined(Q_OS_X11)
   //m_useSystemTheme = Preferences().useSystemIconTheme();
 //#endif
 }
@@ -58,7 +58,7 @@ void IconProvider::drop()
 
 QIcon IconProvider::getIcon(const QString &iconId)
 {
-#if defined(Q_WS_X11)
+#if defined(Q_OS_X11)
   if (m_useSystemTheme) {
     QIcon icon = QIcon::fromTheme(iconId, QIcon(res::oxygenIcon(iconId)));
     icon = generateDifferentSizes(icon);
@@ -68,7 +68,7 @@ QIcon IconProvider::getIcon(const QString &iconId)
   return QIcon(res::oxygenIcon(iconId));
 }
 
-#if defined(Q_WS_X11)
+#if defined(Q_OS_X11)
 void IconProvider::useSystemIconTheme(bool enable)
 {
   m_useSystemTheme = enable;
@@ -104,7 +104,7 @@ QIcon IconProvider::generateDifferentSizes(const QIcon& icon)
 QString IconProvider::getIconPath(const QString& iconId)
 {
 /*
-#if defined(Q_WS_X11)
+#if defined(Q_OS_X11)
   if (m_useSystemTheme) {
     QString path = QDir::temp().absoluteFilePath(iconId+".png");
     if (!QFile::exists(path)) {

@@ -29,7 +29,7 @@
  */
 
 #include <QtGlobal>
-#if defined(Q_WS_X11) && defined(QT_DBUS_LIB)
+#if defined(Q_OS_X11) && defined(QT_DBUS_LIB)
 #include <QDBusConnection>
 #include "notifications.h"
 #endif
@@ -66,7 +66,7 @@
 #include "transfers/transfers_widget.h"
 #include "preferences/preferences_widget.h"
 
-#ifdef Q_WS_MAC
+#ifdef Q_OS_MAC
 #include "qmacapplication.h"
 void qt_mac_set_dock_menu(QMenu *menu);
 #endif
@@ -105,7 +105,7 @@ MainWindow::MainWindow(QWidget *parent, QStringList torrentCmdLine)
     //QApplication::setOverrideCursor(Qt::WaitCursor);
     m_last_file_error = QDateTime::currentDateTime().addSecs(-1); // imagine last file error event was 1 seconds in past
 
-#ifdef Q_WS_WIN
+#ifdef Q_OS_WIN
     m_nTaskbarButtonCreated = RegisterWindowMessage(L"TaskbarButtonCreated");
 #else
     m_nTaskbarButtonCreated = 0;
@@ -118,7 +118,7 @@ MainWindow::MainWindow(QWidget *parent, QStringList torrentCmdLine)
 
     this->setWindowIcon(QIcon(res::favicon()));
 
-#ifdef Q_WS_MAC
+#ifdef Q_OS_MAC
     connect(static_cast<QMacApplication*>(qApp), SIGNAL(newFileOpenMacEvent(QString)), this, SLOT(processParams(QString)));
 #endif
 
@@ -136,7 +136,7 @@ MainWindow::MainWindow(QWidget *parent, QStringList torrentCmdLine)
     // Accept drag 'n drops
     createKeyboardShortcuts();
 
-#ifdef Q_WS_MAC
+#ifdef Q_OS_MAC
     setUnifiedTitleAndToolBarOnMac(true);
 #endif
 
@@ -153,7 +153,7 @@ MainWindow::MainWindow(QWidget *parent, QStringList torrentCmdLine)
 
     // Add torrent given on command line
     processParams(torrentCmdLine);
-#ifdef Q_WS_MAC
+#ifdef Q_OS_MAC
     //qt_mac_set_dock_menu(icon_CurTray);
 #endif
 
@@ -195,7 +195,7 @@ MainWindow::~MainWindow()
     qDebug("GUI destruction");
     hide();
 
-#ifdef Q_WS_MAC
+#ifdef Q_OS_MAC
     // Workaround to avoid bug http://bugreports.qt.nokia.com/browse/QTBUG-7305
     setUnifiedTitleAndToolBarOnMac(false);
 #endif
@@ -420,7 +420,7 @@ bool MainWindow::event(QEvent * e)
 
             break;
         }
-#ifdef Q_WS_MAC
+#ifdef Q_OS_MAC
             case QEvent::ToolBarChange:
             {
                 qDebug("MAC: Received a toolbar change event!");
@@ -563,7 +563,7 @@ void MainWindow::updateGUI()
 
     // update global informations
     if(systrayIcon) {
-#if defined(Q_WS_X11) || defined(Q_WS_MAC)
+#if defined(Q_OS_X11) || defined(Q_OS_MAC)
         QString html = "<div style='background-color: #678db2; color: #fff;height: 18px; font-weight: bold; margin-bottom: 5px;'>";
         html += tr("qDonkey");
         html += "</div>";
@@ -600,7 +600,7 @@ void MainWindow::showNotificationBaloon(QString title, QString msg) const {
     // forward all notifications to the console
     addConsoleMessage(msg);
 
-#if defined(Q_WS_X11) && defined(QT_DBUS_LIB)
+#if defined(Q_OS_X11) && defined(QT_DBUS_LIB)
     org::freedesktop::Notifications notifications("org.freedesktop.Notifications",
             "/org/freedesktop/Notifications",
             QDBusConnection::sessionBus());

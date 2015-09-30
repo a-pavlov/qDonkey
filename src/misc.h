@@ -194,7 +194,7 @@ public:
   static QString emuleConfig(const QString& filename);
   static QString emuleConfigFilename();
 
-#ifdef Q_WS_WIN32
+#ifdef Q_OS_WIN32
   static QStringList emuleSharedFiles();
   static QStringList emuleSharedDirs();
   static QString emuleKeyFile();

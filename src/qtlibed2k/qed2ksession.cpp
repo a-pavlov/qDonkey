@@ -81,7 +81,7 @@ QED2KSearchResultEntry::QED2KSearchResultEntry() :
 //static
 QED2KSearchResultEntry QED2KSearchResultEntry::load(const Preferences& pref) {
     QED2KSearchResultEntry res;
-#ifdef Q_WS_MAC
+#ifdef Q_OS_MAC
     res.m_nFilesize = pref.value("Filesize", 0).toString().toULongLong();
 #else
     res.m_nFilesize = pref.value("Filesize", 0).toULongLong();
@@ -99,7 +99,7 @@ QED2KSearchResultEntry QED2KSearchResultEntry::load(const Preferences& pref) {
 }
 
 void QED2KSearchResultEntry::save(Preferences& pref) const {
-#ifdef Q_WS_MAC
+#ifdef Q_OS_MAC
     pref.setValue("Filesize",       QString::number(m_nFilesize));
 #else
     pref.setValue("Filesize",       m_nFilesize);
@@ -534,7 +534,7 @@ QString QED2KSession::postTransfer(const libed2k::add_transfer_params& atp)
     {
         // do not create file on windows with last point because of Qt truncate it point!
         bool touch = true;
-#ifdef Q_WS_WIN
+#ifdef Q_OS_WIN
         touch = (!atp.file_path.empty() && (atp.file_path.at(atp.file_path.size() - 1) != '.'));
 #endif
         QFile f(misc::toQStringU(atp.file_path));

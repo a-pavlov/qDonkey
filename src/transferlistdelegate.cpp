@@ -15,7 +15,7 @@
 #include "transport/transfer.h"
 #include "utils.h"
 
-#ifdef Q_WS_WIN
+#ifdef Q_OS_WIN
   #include <QPlastiqueStyle>
 #endif
 

@@ -55,7 +55,7 @@
 #include <stdio.h>
 #endif
 
-#if defined(Q_WS_X11) || defined(Q_WS_MAC)
+#if defined(Q_OS_X11) || defined(Q_OS_MAC)
 #include <signal.h>
 #include <execinfo.h>
 #include "stacktrace.h"
@@ -64,7 +64,7 @@
 #include <stdlib.h>
 #include "misc.h"
 
-#if defined(Q_WS_X11) || defined(Q_WS_MAC)
+#if defined(Q_OS_X11) || defined(Q_OS_MAC)
 void sigintHandler(int)
 {
     signal(SIGINT, 0);
@@ -102,7 +102,7 @@ void sigabrtHandler(int)
 }
 #endif
 
-#ifdef Q_WS_WIN
+#ifdef Q_OS_WIN
 
 void customMessageHandler(QtMsgType type, const char *msg)
 {
@@ -142,11 +142,11 @@ int main(int argc, char *argv[])
     QString uid = misc::getUserIDString();
     SessionApplication app("qDonkey-" + uid, argc, argv);
 
-#ifdef Q_WS_WIN
+#ifdef Q_OS_WIN
     qInstallMsgHandler(customMessageHandler);
 #endif
 
-#if defined(Q_WS_MAC)
+#if defined(Q_OS_MAC)
       QDir dir(QApplication::applicationDirPath());
       dir.cdUp();
       dir.cd("plugins");
@@ -236,7 +236,7 @@ int main(int argc, char *argv[])
     }
 
     //app.processEvents();
-#if defined(Q_WS_X11) || defined(Q_WS_MAC)
+#if defined(Q_OS_X11) || defined(Q_OS_MAC)
     signal(SIGABRT, sigabrtHandler);
     signal(SIGTERM, sigtermHandler);
     signal(SIGINT, sigintHandler);
