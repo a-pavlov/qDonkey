@@ -55,7 +55,7 @@
 #include <stdio.h>
 #endif
 
-#if defined(Q_WS_X11) || defined(Q_WS_MAC)
+#if defined(Q_OS_X11) || defined(Q_OS_MAC)
 #include <signal.h>
 #include <execinfo.h>
 #include "stacktrace.h"
@@ -64,22 +64,7 @@
 #include <stdlib.h>
 #include "misc.h"
 
-class UsageDisplay: public QObject {
-    Q_OBJECT
-
-public:
-    static void displayUsage(char* prg_name)
-    {
-        std::cout << qPrintable(tr("Usage:")) << std::endl;
-        std::cout << '\t' << prg_name << " --version: " << qPrintable(tr("displays program version")) << std::endl;
-        std::cout << '\t' << prg_name << " --help: " << qPrintable(tr("displays this help message")) << std::endl;
-        std::cout << '\t' << prg_name << " " << qPrintable(tr("ed2k links: downloads the files passed by the user (optional)")) << std::endl;
-    }
-};
-
-#include "main.moc"
-
-#if defined(Q_WS_X11) || defined(Q_WS_MAC)
+#if defined(Q_OS_X11) || defined(Q_OS_MAC)
 void sigintHandler(int)
 {
     signal(SIGINT, 0);
@@ -117,7 +102,7 @@ void sigabrtHandler(int)
 }
 #endif
 
-#ifdef Q_WS_WIN
+#ifdef Q_OS_WIN
 
 void customMessageHandler(QtMsgType type, const char *msg)
 {
@@ -157,11 +142,11 @@ int main(int argc, char *argv[])
     QString uid = misc::getUserIDString();
     SessionApplication app("qDonkey-" + uid, argc, argv);
 
-#ifdef Q_WS_WIN
+#ifdef Q_OS_WIN
     qInstallMsgHandler(customMessageHandler);
 #endif
 
-#if defined(Q_WS_MAC)
+#if defined(Q_OS_MAC)
       QDir dir(QApplication::applicationDirPath());
       dir.cdUp();
       dir.cd("plugins");
@@ -237,7 +222,10 @@ int main(int argc, char *argv[])
 
     if(!al.filter(QRegExp("^-+help$")).isEmpty())
     {
-        UsageDisplay::displayUsage(argv[0]);
+        std::cout << qPrintable(QObject::tr("Usage:")) << std::endl;
+        std::cout << '\t' << argv[0] << " --version: " << qPrintable(QObject::tr("displays program version")) << std::endl;
+        std::cout << '\t' << argv[0] << " --help: " << qPrintable(QObject::tr("displays this help message")) << std::endl;
+        std::cout << '\t' << argv[0] << " " << qPrintable(QObject::tr("downloads the files passed by the user via ed2k link or .emulecollection (optional)")) << std::endl;
         return 0;
     }
 
@@ -248,7 +236,7 @@ int main(int argc, char *argv[])
     }
 
     //app.processEvents();
-#if defined(Q_WS_X11) || defined(Q_WS_MAC)
+#if defined(Q_OS_X11) || defined(Q_OS_MAC)
     signal(SIGABRT, sigabrtHandler);
     signal(SIGTERM, sigtermHandler);
     signal(SIGINT, sigintHandler);

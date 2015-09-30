@@ -65,7 +65,7 @@ static libed2k::md4_hash QStringToMD4(const QString& s)
 
 QString md4toQString(const libed2k::md4_hash& hash)
 {
-    return QString::fromAscii(hash.toString().c_str(), hash.toString().size());
+    return QString::fromStdString(hash.toString());
 }
 
 QED2KSearchResultEntry::QED2KSearchResultEntry() :
@@ -81,7 +81,7 @@ QED2KSearchResultEntry::QED2KSearchResultEntry() :
 //static
 QED2KSearchResultEntry QED2KSearchResultEntry::load(const Preferences& pref) {
     QED2KSearchResultEntry res;
-#ifdef Q_WS_MAC
+#ifdef Q_OS_MAC
     res.m_nFilesize = pref.value("Filesize", 0).toString().toULongLong();
 #else
     res.m_nFilesize = pref.value("Filesize", 0).toULongLong();
@@ -99,7 +99,7 @@ QED2KSearchResultEntry QED2KSearchResultEntry::load(const Preferences& pref) {
 }
 
 void QED2KSearchResultEntry::save(Preferences& pref) const {
-#ifdef Q_WS_MAC
+#ifdef Q_OS_MAC
     pref.setValue("Filesize",       QString::number(m_nFilesize));
 #else
     pref.setValue("Filesize",       m_nFilesize);
@@ -484,6 +484,7 @@ QPair<QED2KHandle, ErrorCode> QED2KSession::addLink(QString strLink, bool resume
         try
         {
             h = addTransfer(atp);
+            if (!resumed) h.pause();
         }
         catch(libed2k::libed2k_exception e)
         {
@@ -496,16 +497,15 @@ QPair<QED2KHandle, ErrorCode> QED2KSession::addLink(QString strLink, bool resume
     return qMakePair(h, ec);
 }
 
-void QED2KSession::addTransferFromFile(const QString& filename)
+void QED2KSession::addTransferFromFile(const QString& filename, bool resumed /* = false*/)
 {
-    if (QFile::exists(filename))
-    {
+    if (QFile::exists(filename))  {
+        ErrorCode ec;
         Preferences pref;
         libed2k::emule_collection ecoll = libed2k::emule_collection::fromFile(
             filename.toLocal8Bit().constData());
 
-        foreach(const libed2k::emule_collection_entry& ece, ecoll.m_files)
-        {
+        foreach(const libed2k::emule_collection_entry& ece, ecoll.m_files) {
             QString filepath = QDir(pref.inputDir()).filePath(
                 QString::fromUtf8(ece.m_filename.c_str(), ece.m_filename.size()));
             qDebug() << "add transfer " << filepath;
@@ -513,7 +513,14 @@ void QED2KSession::addTransferFromFile(const QString& filename)
             atp.file_hash = ece.m_filehash;
             atp.file_path = filepath.toUtf8().constData();
             atp.file_size = ece.m_filesize;
-            addTransfer(atp);
+            atp.duplicate_is_error = true;
+
+            try {
+                QED2KHandle h = addTransfer(atp);
+                if (!resumed) h.pause();
+            } catch(libed2k::libed2k_exception e) {
+                ec = e.error();
+            }
         }
     }
 }
@@ -527,7 +534,7 @@ QString QED2KSession::postTransfer(const libed2k::add_transfer_params& atp)
     {
         // do not create file on windows with last point because of Qt truncate it point!
         bool touch = true;
-#ifdef Q_WS_WIN
+#ifdef Q_OS_WIN
         touch = (!atp.file_path.empty() && (atp.file_path.at(atp.file_path.size() - 1) != '.'));
 #endif
         QFile f(misc::toQStringU(atp.file_path));

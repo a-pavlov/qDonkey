@@ -75,6 +75,17 @@ public:
 
     void setLocale(const QString&);
     QString getLocale() const;
+
+    bool pausedTransfersFromCollection() const;
+    void setPausedTransfersFromCollection(bool);
+
+#ifdef Q_OS_WIN
+    static bool isFileAssocSet(const QString& file);
+    static void setFileAssoc(const QString& file, bool set);
+    static void setCommonAssocSection(bool set);
+    static bool isLinkAssocSet(const QString& link);
+    static void setLinkAssoc(const QString& link, bool set);
+#endif
 };
 
 #endif // PREFERENCES_H

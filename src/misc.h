@@ -157,7 +157,7 @@ public:
   static QString ED2KCollectionLocation();
   static QString XCatalogCacheLocation();
   static QString cacheLocation();
-  static long long freeDiskSpaceOnPath(QString path);
+  //static long long freeDiskSpaceOnPath(QString path);
   // return best userfriendly storage unit (B, KiB, MiB, GiB, TiB)
   // use Binary prefix standards from IEC 60027-2
   // see http://en.wikipedia.org/wiki/Kilobyte
@@ -194,7 +194,7 @@ public:
   static QString emuleConfig(const QString& filename);
   static QString emuleConfigFilename();
 
-#ifdef Q_WS_WIN32
+#ifdef Q_OS_WIN32
   static QStringList emuleSharedFiles();
   static QStringList emuleSharedDirs();
   static QString emuleKeyFile();

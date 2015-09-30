@@ -4,9 +4,9 @@ LIBS += -L$$(BOOST_ROOT)/stage/lib
 INCLUDEPATH += $$(LIBED2K_ROOT)/include
 
 CONFIG(debug, debug|release) {
-LIBS += -L$$(LIBED2K_ROOT)/win32/Debug/
+LIBS += -L$$(LIBED2K_ROOT)/Debug/
 } else {
-LIBS += -L$$(LIBED2K_ROOT)/win32/Release/
+LIBS += -L$$(LIBED2K_ROOT)/Release/
 }
 
 DEFINES += "\"BUILDDATE=\\\"$$system(date /t && time /t)\\\"\""

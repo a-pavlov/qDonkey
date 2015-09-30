@@ -50,7 +50,7 @@
 #include <QKeyEvent>
 #include <QComboBox>
 
-#ifdef Q_WS_WIN
+#ifdef Q_OS_WIN
 #include <shlobj.h>
 #include <windows.h>
 #include <PowrProf.h>
@@ -60,13 +60,13 @@ const int UNLEN = 256;
 #include <sys/types.h>
 #endif
 
-#ifdef Q_WS_MAC
+#ifdef Q_OS_MAC
 #include <CoreServices/CoreServices.h>
 #include <Carbon/Carbon.h>
 #endif
 
-#ifndef Q_WS_WIN
-#if defined(Q_WS_MAC) || defined(Q_OS_FREEBSD)
+#ifndef Q_OS_WIN
+#if defined(Q_OS_MAC) || defined(Q_OS_FREEBSD)
 #include <sys/param.h>
 #include <sys/mount.h>
 #else
@@ -78,13 +78,13 @@ const int UNLEN = 256;
 
 
 #ifndef DISABLE_GUI
-#if defined(Q_WS_X11) && defined(QT_DBUS_LIB)
+#if defined(Q_OS_X11) && defined(QT_DBUS_LIB)
 #include <QDBusInterface>
 #include <QDBusMessage>
 #endif
 #endif // DISABLE_GUI
 
-#ifdef Q_WS_WIN
+#ifdef Q_OS_WIN
 #include <QDesktopServices>
 #endif
 
@@ -103,10 +103,10 @@ static struct { const char *source; const char *comment; } units[] = {
 const QString misc::metadataFilename = ".metadata";
 
 QString misc::QDesktopServicesTempInetLocation(){
-#ifdef Q_WS_WIN
+#ifdef O_OS_WIN
   LPWSTR path=new WCHAR[256];
   QString result;
-#if defined Q_WS_WINCE
+#if defined O_OS_WINCE
   if (SHGetSpecialFolderPath(0, path, CSIDL_INTERNET_CACHE, FALSE))
 #else
   if (SHGetSpecialFolderPath(0, path, CSIDL_INTERNET_CACHE, FALSE))
@@ -121,10 +121,10 @@ QString misc::QDesktopServicesTempInetLocation(){
 }
 
 QString misc::QDesktopServicesDataLocation() {
-#ifdef Q_WS_WIN
+#ifdef O_OS_WIN
   LPWSTR path=new WCHAR[256];
   QString result;
-#if defined Q_WS_WINCE
+#if defined O_OS_WINCE
   if (SHGetSpecialFolderPath(0, path, CSIDL_APPDATA, FALSE))
 #else
   if (SHGetSpecialFolderPath(0, path, CSIDL_LOCAL_APPDATA, FALSE))
@@ -136,7 +136,7 @@ QString misc::QDesktopServicesDataLocation() {
     result += "\\";
   return result;
 #else
-#ifdef Q_WS_MAC
+#ifdef O_OS_MAC
   FSRef ref;
   OSErr err = FSFindFolder(kUserDomain, kApplicationSupportFolderType, false, &ref);
   if (err)
@@ -159,10 +159,10 @@ QString misc::QDesktopServicesDataLocation() {
 }
 
 QString misc::QDesktopServicesCacheLocation() {
-#ifdef Q_WS_WIN
+#ifdef O_OS_WIN
   return QDesktopServicesDataLocation() + QLatin1String("\\cache");
 #else
-#ifdef Q_WS_MAC
+#ifdef O_OS_MAC
   // http://developer.apple.com/documentation/Carbon/Reference/Folder_Manager/Reference/reference.html
   FSRef ref;
   OSErr err = FSFindFolder(kUserDomain, kCachedDataFolderType, false, &ref);
@@ -185,14 +185,14 @@ QString misc::QDesktopServicesCacheLocation() {
 }
 
 QString misc::QDesktopServicesDownloadLocation() {
-#ifdef Q_WS_WIN
+#ifdef O_OS_WIN
   // TODO: Use IKnownFolderManager to get path of FOLDERID_Downloads
   // instead of hardcoding "Downloads"
   // Unfortunately, this would break compatibility with WinXP
   return QDir(QDesktopServices::storageLocation(QDesktopServices::DocumentsLocation)).absoluteFilePath(tr("Downloads"));
 #endif
 
-#ifdef Q_WS_X11
+#ifdef O_OS_X11
   QString save_path;
   // Default save path on Linux
   QString config_path = QString::fromLocal8Bit(qgetenv("XDG_CONFIG_HOME").constData());
@@ -227,7 +227,7 @@ QString misc::QDesktopServicesDownloadLocation() {
   return save_path;
 #endif
 
-#ifdef Q_WS_MAC
+#ifdef O_OS_MAC
   // TODO: How to support this on Mac OS X?
 #endif
 
@@ -235,7 +235,7 @@ QString misc::QDesktopServicesDownloadLocation() {
   qDebug() << Q_FUNC_INFO << " use downloads";
   return QDir::home().absoluteFilePath(tr("Downloads"));
 }
-
+/*
 long long misc::freeDiskSpaceOnPath(QString path) {
   if (path.isEmpty()) return -1;
   path.replace("\\", "/");
@@ -250,7 +250,7 @@ long long misc::freeDiskSpaceOnPath(QString path) {
   }
   Q_ASSERT(dir_path.exists());
 
-#ifndef Q_WS_WIN
+#ifndef O_OS_WIN
   unsigned long long available;
   struct statfs stats;
   const QString statfs_path = dir_path.path()+"/.";
@@ -288,10 +288,10 @@ long long misc::freeDiskSpaceOnPath(QString path) {
   }
 #endif
 }
-
+*/
 #ifndef DISABLE_GUI
 void misc::shutdownComputer(bool sleep) {
-#if defined(Q_WS_X11) && defined(QT_DBUS_LIB)
+#if defined(O_OS_X11) && defined(QT_DBUS_LIB)
   // Use dbus to power off / suspend the system
   if (sleep) {
     // Recent systems use UPower
@@ -321,7 +321,7 @@ void misc::shutdownComputer(bool sleep) {
     halIface.call("Shutdown");
   }
 #endif
-#ifdef Q_WS_MAC
+#ifdef O_OS_MAC
   AEEventID EventToSend;
   if (sleep)
     EventToSend = kAESleep;
@@ -362,7 +362,7 @@ void misc::shutdownComputer(bool sleep) {
 
   AEDisposeDesc(&eventReply);
 #endif
-#ifdef Q_WS_WIN
+#ifdef O_OS_WIN
   HANDLE hToken;              // handle to process token
   TOKEN_PRIVILEGES tkp;       // pointer to token structure
   if (!OpenProcessToken(GetCurrentProcess(), TOKEN_ADJUST_PRIVILEGES | TOKEN_QUERY, &hToken))
@@ -458,7 +458,7 @@ bool misc::sameFiles(const QString &path1, const QString &path2) {
 
 QString misc::updateLabelInSavePath(QString defaultSavePath, QString save_path, const QString &old_label, const QString &new_label) {
   if (old_label == new_label) return save_path;
-#if defined(Q_WS_WIN) || defined(Q_OS_OS2)
+#if defined(O_OS_WIN) || defined(Q_OS_OS2)
   defaultSavePath.replace("\\", "/");
   save_path.replace("\\", "/");
 #endif
@@ -718,7 +718,7 @@ QString misc::userFriendlyDuration(qlonglong seconds, int type) {
 
 QString misc::getUserIDString() {
   QString uid = "0";
-#ifdef Q_WS_WIN
+#ifdef Q_OS_WIN
   char buffer[UNLEN+1] = {0};
   DWORD buffer_len = UNLEN + 1;  
   if (GetUserNameA(buffer, &buffer_len))
@@ -733,7 +733,7 @@ QString misc::getUserIDString() {
 
 QString misc::getUserName()
 {
-#ifdef Q_WS_WIN
+#ifdef O_OS_WIN
     return getUserIDString();
 #else
     QString res;
@@ -962,7 +962,7 @@ QString misc::userHash()
 }
 
 
-#ifdef Q_WS_WIN32
+#ifdef O_OS_WIN32
 
 QString ShellGetFolderPath(int iCSIDL)
 {
@@ -1211,7 +1211,7 @@ bool CleanupEventFilter::eventFilter(QObject *obj, QEvent *event)
 
 void misc::normalizePath(QString& path) {
     Q_UNUSED(path);
-#if defined(Q_WS_WIN) || defined(Q_OS_OS2)
+#if defined(O_OS_WIN) || defined(Q_OS_OS2)
     path.replace("/", "\\");
 #endif
 }
