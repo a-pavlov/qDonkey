@@ -6,7 +6,7 @@ Dependencies
 --------
 * boost
 * libed2k
-* Qt4
+* Qt5
 
 Platforms
 --------
