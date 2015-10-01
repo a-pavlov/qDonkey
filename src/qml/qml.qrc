@@ -1,0 +1,9 @@
+<RCC>
+    <qresource prefix="/">
+        <file>main.qml</file>
+        <file>MainForm.ui.qml</file>
+        <file>Connection.qml</file>
+        <file>Transfers.qml</file>
+        <file>Search.qml</file>
+    </qresource>
+</RCC>
