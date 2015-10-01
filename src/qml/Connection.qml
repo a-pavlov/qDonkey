@@ -96,12 +96,36 @@ ColumnLayout {
         }
     }
 
-    Repeater {
-        model: 3
+    ListView {
+        anchors {
+            left: parent.left
+            right: parent.right
+            top: column.bottom
+            bottom: parent.bottom
+        }
 
-        ListItem.Subtitled {
-            text: "Server item"
-            subText: "With some subtext, icon, and secondary item!"
+        model: ListModel {
+            ListElement {
+                alias: "Bill Smith"
+                ip: "192.168.3.102"
+                port:   4567
+
+            }
+            ListElement {
+                alias: "John Brown"
+                ip: "999.333.44.55"
+                port:   1234
+            }
+            ListElement {
+                alias: "Sam Wise"
+                ip: "game.of.thrones"
+                port: 4589
+            }
+        }
+
+        delegate: ListItem.Subtitled {
+            text: alias
+            subText: ip + ":" + port
             secondaryItem: Switch {
                 id: enablingSwitch
                 anchors.verticalCenter: parent.verticalCenter
@@ -114,6 +138,7 @@ ColumnLayout {
                 name: "action/settings_input_component"
                 size: Units.dp(32)
             }
+
         }
     }
 }
