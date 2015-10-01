@@ -2,35 +2,24 @@
 #include <fstream>
 #include <QDebug>
 
-QED2KServerFingerprint::QED2KServerFingerprint() {
-    port = -1;
+QED2KServer::QED2KServer() : port(-1), clientId(0), filesCount(0), usersCount(0), maxUsers(0), lowidUsers(0) {
 }
 
-QED2KServerFingerprint::QED2KServerFingerprint(const QString& a, const QString& h, int p) :
-    alias(a), host(h), port(p) {}
-
-
-bool QED2KServerFingerprint::isDefined() const {
-    return !alias.isEmpty() && !host.isEmpty() && port != -1;
-}
-
-QED2KServer::QED2KServer(const QED2KServerFingerprint& fp) : fingerprint(fp) {
+QED2KServer::QED2KServer(const QString& a, const QString& h, qint32 p) : alias(a), host(h), port(p),
+    clientId(0), filesCount(0), usersCount(0), maxUsers(0), lowidUsers(0) {
 }
 
 //static
 QED2KServer QED2KServer::fromServerMetEntry(const libed2k::server_met_entry& sme) {
-    QED2KServerFingerprint fp;
-    fp.alias = QString::fromUtf8(sme.m_list.getStringTagByNameId(libed2k::FT_FILENAME).c_str());
+    QED2KServer s;
+    s.alias = QString::fromUtf8(sme.m_list.getStringTagByNameId(libed2k::FT_FILENAME).c_str());
 
     if (sme.m_network_point.m_nIP == 0)
-        fp.host = QString::fromStdString(sme.m_list.getStringTagByNameId(libed2k::ST_PREFERENCE));
+        s.host = QString::fromStdString(sme.m_list.getStringTagByNameId(libed2k::ST_PREFERENCE));
     else
-        fp.host = QString::fromStdString(libed2k::int2ipstr(sme.m_network_point.m_nIP));
+        s.host = QString::fromStdString(libed2k::int2ipstr(sme.m_network_point.m_nIP));
 
-    fp.port    = sme.m_network_point.m_nPort;
-
-    QED2KServer s(fp);
-
+    s.port = sme.m_network_point.m_nPort;
     s.clientId   = 0;
     s.filesCount = sme.m_list.getIntTagByName("files");
     s.usersCount = sme.m_list.getIntTagByName("users");

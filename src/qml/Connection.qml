@@ -80,6 +80,12 @@ ColumnLayout {
                 enabled: false
                 text: "Add"
                 textColor: Theme.primaryColor
+                onClicked: {
+                    serverModel.create(serverAlias.text, serverIP.text, serverPort.text)
+                    serverAlias.text = ""
+                    serverIP.text = ""
+                    serverPort.text = ""
+                }
             }
 
             Button {
@@ -107,6 +113,7 @@ ColumnLayout {
         model: serverModel
 
         delegate: ListItem.Subtitled {
+            id: itm
             text: alias
             subText: host + ":" + port
             secondaryItem: Switch {
@@ -120,6 +127,13 @@ ColumnLayout {
                 anchors.centerIn: parent
                 name: "action/settings_input_component"
                 size: Units.dp(32)
+            }
+
+            MouseArea {
+                anchors.fill: parent
+                onDoubleClicked: {
+                    console.log("Double click on " + itm.text);
+                }
             }
 
         }

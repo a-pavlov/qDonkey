@@ -9,23 +9,10 @@
 #include <libed2k/file.hpp>
 #endif
 
-struct QED2KServerFingerprint {
+struct QED2KServer {
     QString alias;
     QString host;
-    int port;
-
-    QED2KServerFingerprint();
-    QED2KServerFingerprint(const QString& a, const QString& h, int p);
-
-    bool isDefined() const;
-
-    bool operator<(const QED2KServerFingerprint& sf) const {
-        return qMakePair(alias, qMakePair(host, port)) < qMakePair(sf.alias, qMakePair(sf.host, sf.port));
-    }
-};
-
-struct QED2KServer {
-    QED2KServerFingerprint fingerprint;
+    qint32  port;
     quint32 clientId;
     QString serverIp;
     quint32 filesCount;
@@ -35,12 +22,12 @@ struct QED2KServer {
     QString name;
     QString description;
 
-    QED2KServer(const QED2KServerFingerprint&);
+    QED2KServer();
+    QED2KServer(const QString& a, const QString& h, qint32 p);
     static QED2KServer fromServerMetEntry(const libed2k::server_met_entry&);
 
-    bool operator<(const QED2KServer& s) const {
-        return fingerprint < s.fingerprint;
-    }
+    bool operator<(const QED2KServer& s) const { return alias < s.alias; }
+    bool operator==(const QED2KServer& s) const { return alias == s.alias; }
 };
 
 QList<QED2KServer> fromServersMet(const QString& filename);

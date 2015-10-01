@@ -19,7 +19,14 @@ public:
         UsersCountRole,
         FilesCountRole,
         DescriptionRole,
+        StatusRole,
         SizeRole
+    };
+
+    enum ServerStatus {
+        ServerConnected,
+        ServerConnecting,
+        ServerDisconnected
     };
 
     ServerModel(QObject* parent = 0);
@@ -27,6 +34,11 @@ public:
     int rowCount(const QModelIndex & parent = QModelIndex()) const;
     QVariant data(const QModelIndex & index, int role = Qt::DisplayRole) const;
     void add(const QED2KServer&);
+    Q_INVOKABLE void create(const QString& alias, const QString& host, int port);
+    QModelIndex getIndex(const QString& alias) const;
+
+    Q_INVOKABLE void update(const QString& alias);
+
 };
 
 #endif //__SERVER_MODEL__
