@@ -104,28 +104,11 @@ ColumnLayout {
             bottom: parent.bottom
         }
 
-        model: ListModel {
-            ListElement {
-                alias: "Bill Smith"
-                ip: "192.168.3.102"
-                port:   4567
-
-            }
-            ListElement {
-                alias: "John Brown"
-                ip: "999.333.44.55"
-                port:   1234
-            }
-            ListElement {
-                alias: "Sam Wise"
-                ip: "game.of.thrones"
-                port: 4589
-            }
-        }
+        model: serverModel
 
         delegate: ListItem.Subtitled {
             text: alias
-            subText: ip + ":" + port
+            subText: host + ":" + port
             secondaryItem: Switch {
                 id: enablingSwitch
                 anchors.verticalCenter: parent.verticalCenter

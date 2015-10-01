@@ -2,8 +2,6 @@ TEMPLATE = app
 
 QT += qml quick widgets
 
-SOURCES += main.cpp
-
 RESOURCES += qml.qrc ../lang.qrc
 
 
@@ -28,13 +26,17 @@ include(../powermanagement/powermanagement.pri)
 
 INCLUDEPATH += $$PWD/..
 
-HEADERS = ../preferences/preferences.h \
+HEADERS +=  ../preferences/preferences.h \
             ../misc.h \
-            ../qinisettings.h
+            ../qinisettings.h \
+            mainwindow.h \
+            server_model.h
 
-SOURCES = ../preferences/preferences.cpp \
+SOURCES +=  ../preferences/preferences.cpp \
             ../misc.cpp \
-            main.cpp
+            main.cpp \
+            mainwindow.cpp \
+            server_model.cpp
 
 LANG_PATH = ../lang
 TRANSLATIONS =  $$LANG_PATH/qDonkey_en.ts \
