@@ -295,16 +295,7 @@ bool writeResumeDataOne(std::ofstream& fs, const libed2k::save_resume_data_alert
     return false;
 }
 
-QED2KSession::QED2KSession() : m_upnp(0), m_natpmp(0) {
-    Preferences pref;
-    m_sp.name = "is";
-    m_sp.host = pref.serverHost().toUtf8().constData();
-    m_sp.port = pref.serverPort();
-    m_sp.set_operations_timeout(30);
-    m_sp.set_keep_alive_timeout(100);
-    m_sp.set_reconnect_timeout(100);
-    m_sp.set_announce_timeout(20);
-    m_sp.announce_items_per_call_limit = 60;
+QED2KSession::QED2KSession() : m_upnp(0), m_natpmp(0) {   
     connect(&alertsTimer, SIGNAL(timeout()), this, SLOT(readAlerts()));
     m_speedMon.reset(new TransferSpeedMonitor(this));
 }
@@ -628,31 +619,31 @@ void QED2KSession::readAlerts()
         if (libed2k::server_name_resolved_alert* p =
             dynamic_cast<libed2k::server_name_resolved_alert*>(a.get()))
         {
-            emit serverNameResolved(QString::fromUtf8(p->endpoint.c_str(), p->endpoint.size()));
+            emit serverNameResolved(misc::toQStringU(p->name), QString::fromUtf8(p->endpoint.c_str(), p->endpoint.size()));
         }
         if (libed2k::server_connection_initialized_alert* p =
             dynamic_cast<libed2k::server_connection_initialized_alert*>(a.get()))
         {
-            emit serverConnectionInitialized(p->client_id, p->tcp_flags, p->aux_port);
+            emit serverConnectionInitialized(misc::toQStringU(p->name), p->client_id, p->tcp_flags, p->aux_port);
             qDebug() << "server initialized: " << QString::fromStdString(p->name) << " " << QString::fromStdString(p->host) << " " << p->port;
         }
         else if (libed2k::server_status_alert* p = dynamic_cast<libed2k::server_status_alert*>(a.get()))
         {
-            emit serverStatus(p->files_count, p->users_count);
+            emit serverStatus(misc::toQStringU(p->name), p->files_count, p->users_count);
         }
         else if (libed2k::server_identity_alert* p = dynamic_cast<libed2k::server_identity_alert*>(a.get()))
         {
-            emit serverIdentity(QString::fromUtf8(p->server_name.c_str(), p->server_name.size()),
+            emit serverIdentity(misc::toQStringU(p->name), QString::fromUtf8(p->server_name.c_str(), p->server_name.size()),
                                 QString::fromUtf8(p->server_descr.c_str(), p->server_descr.size()));
         }
         else if (libed2k::server_message_alert* p = dynamic_cast<libed2k::server_message_alert*>(a.get()))
         {
-            emit serverMessage(QString::fromUtf8(p->server_message.c_str(), p->server_message.size()));
+            emit serverMessage(misc::toQStringU(p->name), QString::fromUtf8(p->server_message.c_str(), p->server_message.size()));
         }
         else if (libed2k::server_connection_closed* p =
                  dynamic_cast<libed2k::server_connection_closed*>(a.get()))
         {
-            emit serverConnectionClosed(QString::fromLocal8Bit(p->m_error.message().c_str()));
+            emit serverConnectionClosed(misc::toQStringU(p->name), QString::fromLocal8Bit(p->m_error.message().c_str()));
         }
         else if (libed2k::shared_files_alert* p = dynamic_cast<libed2k::shared_files_alert*>(a.get()))
         {
@@ -1110,7 +1101,19 @@ void QED2KSession::playPendingMedia() {
     }
 }
 
-void QED2KSession::startServerConnection() { delegate()->server_connect(m_sp); }
+void QED2KSession::startServerConnection(const QED2KServer& s) {
+    libed2k::server_connection_parameters sp;
+    sp.name = s.alias.toUtf8().constData();
+    sp.host = s.host.toUtf8().constData();
+    sp.port = s.port;
+    sp.set_operations_timeout(30);
+    sp.set_keep_alive_timeout(100);
+    sp.set_reconnect_timeout(100);
+    sp.set_announce_timeout(20);
+    sp.announce_items_per_call_limit = 60;
+    delegate()->server_connect(sp);
+}
+
 void QED2KSession::stopServerConnection() { delegate()->server_disconnect(); }
 
 bool QED2KSession::isServerConnected() const

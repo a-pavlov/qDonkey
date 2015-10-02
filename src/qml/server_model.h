@@ -23,11 +23,6 @@ public:
         SizeRole
     };
 
-    enum ServerStatus {
-        ServerConnected,
-        ServerConnecting,
-        ServerDisconnected
-    };
 
     ServerModel(QObject* parent = 0);
     QHash<int, QByteArray> roleNames() const;
@@ -38,7 +33,9 @@ public:
     QModelIndex getIndex(const QString& alias) const;
 
     Q_INVOKABLE void update(const QString& alias);
-
+public slots:
+    void on_serverConnectionInitialized(QString alias, quint32 client_id, quint32 tcp_flags, quint32 aux_port);
+    void on_serverConnectionClosed(QString alias, QString strError);
 };
 
 #endif //__SERVER_MODEL__

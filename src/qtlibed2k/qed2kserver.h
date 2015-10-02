@@ -10,6 +10,12 @@
 #endif
 
 struct QED2KServer {
+    enum ServerStatus {
+        ServerConnected,
+        ServerConnecting,
+        ServerDisconnected
+    };
+
     QString alias;
     QString host;
     qint32  port;
@@ -21,6 +27,8 @@ struct QED2KServer {
     quint32 lowidUsers;
     QString name;
     QString description;
+    ServerStatus status;
+
 
     QED2KServer();
     QED2KServer(const QString& a, const QString& h, qint32 p);

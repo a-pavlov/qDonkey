@@ -26,6 +26,7 @@
 #include <libed2k/server_connection.hpp>
 #endif
 
+#include "qed2kserver.h"
 #include "qed2khandle.h"
 #include "preferences/preferences.h"
 #include "misc.h"
@@ -156,7 +157,7 @@ public:
     void setUploadRateLimit(long rate);
     virtual void saveTempFastResumeData();
     virtual void saveFastResumeData();
-    void startServerConnection();
+    void startServerConnection(const QED2KServer& s);
     void stopServerConnection();
     bool isServerConnected() const;
     void makeTransferParametersAsync(const QString& filepath);
@@ -193,7 +194,6 @@ private:
     // Port forwarding
     libed2k::upnp* m_upnp;
     libed2k::natpmp* m_natpmp;
-    libed2k::server_connection_parameters m_sp;
     QString m_currentPath;
     QScopedPointer<TransferSpeedMonitor>    m_speedMon;
 private slots:
@@ -240,12 +240,12 @@ signals:
     /**
      * servers related signals
      */
-    void serverNameResolved(QString strName);
-    void serverConnectionInitialized(quint32 client_id, quint32 tcp_flags, quint32 aux_port);
-    void serverConnectionClosed(QString strError);
-    void serverStatus(int nFiles, int nUsers);
-    void serverMessage(QString strMessage);
-    void serverIdentity(QString strName, QString strDescription);
+    void serverNameResolved(QString alias, QString strName);
+    void serverConnectionInitialized(QString alias, quint32 client_id, quint32 tcp_flags, quint32 aux_port);
+    void serverConnectionClosed(QString alias, QString strError);
+    void serverStatus(QString alias, int nFiles, int nUsers);
+    void serverMessage(QString alias, QString strMessage);
+    void serverIdentity(QString alias, QString strName, QString strDescription);
 
     // TODO - add server identifier
     void searchResult(const libed2k::net_identifier& np, const QString& hash, 

@@ -10,7 +10,7 @@ ColumnLayout {
         left: parent.left
         right: parent.right
     }
-
+/*
     function enableServerBtns() {
         addServer.enabled = serverAlias.text.length != 0 && serverIP.text.length != 0 && serverPort.text.length != 0;
         clearServer.enabled = serverAlias.text.length != 0 || serverIP.text.length != 0 || serverPort.text.length != 0;
@@ -101,12 +101,13 @@ ColumnLayout {
             }
         }
     }
+    */
 
     ListView {
         anchors {
             left: parent.left
             right: parent.right
-            top: column.bottom
+            top: parent.top
             bottom: parent.bottom
         }
 
@@ -116,26 +117,34 @@ ColumnLayout {
             id: itm
             text: alias
             subText: host + ":" + port
-            secondaryItem: Switch {
-                id: enablingSwitch
-                anchors.verticalCenter: parent.verticalCenter
-            }
-
-            onClicked: enablingSwitch.checked = !enablingSwitch.checked
+            //secondaryItem: Switch {
+            //    id: enablingSwitch
+            //    anchors.verticalCenter: parent.verticalCenter
+            //}
 
             action: Icon {
+                id: icns
                 anchors.centerIn: parent
-                name: "action/settings_input_component"
-                size: Units.dp(32)
+                state: "rotated"
+                name: (status == 0)?"action/done":"action/settings_ethernet"
+                rotation: (status != 1)?0:0
+
+                NumberAnimation on rotation {
+                    running: status == 1
+                    from: 0
+                    to: 360
+                    loops: Animation.Infinite
+                    duration: 1600
+                }
             }
 
             MouseArea {
                 anchors.fill: parent
                 onDoubleClicked: {
                     console.log("Double click on " + itm.text);
+                    serverModel.update(itm.text)
                 }
             }
-
         }
     }
 }

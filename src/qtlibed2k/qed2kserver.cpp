@@ -2,11 +2,11 @@
 #include <fstream>
 #include <QDebug>
 
-QED2KServer::QED2KServer() : port(-1), clientId(0), filesCount(0), usersCount(0), maxUsers(0), lowidUsers(0) {
+QED2KServer::QED2KServer() : port(-1), clientId(0), filesCount(0), usersCount(0), maxUsers(0), lowidUsers(0), status(ServerDisconnected) {
 }
 
 QED2KServer::QED2KServer(const QString& a, const QString& h, qint32 p) : alias(a), host(h), port(p),
-    clientId(0), filesCount(0), usersCount(0), maxUsers(0), lowidUsers(0) {
+    clientId(0), filesCount(0), usersCount(0), maxUsers(0), lowidUsers(0), status(ServerDisconnected) {
 }
 
 //static

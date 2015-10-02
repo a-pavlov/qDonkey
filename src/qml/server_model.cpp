@@ -1,5 +1,6 @@
 #include "server_model.h"
-
+#include "qed2ksession.h"
+#include <QDebug>
 
 ServerModel::ServerModel(QObject* parent) : QAbstractListModel(parent) {
 
@@ -33,7 +34,7 @@ QVariant ServerModel::data(const QModelIndex& index, int role) const {
     case UsersCountRole: return s.usersCount;
     case FilesCountRole: return s.filesCount;
     case DescriptionRole: return s.description;
-    case StatusRole: return ServerDisconnected; // call session
+    case StatusRole: return s.status;
     default:
         break;
     }
@@ -62,6 +63,45 @@ QModelIndex ServerModel::getIndex(const QString& alias) const {
 
 void ServerModel::update(const QString& alias) {
     QModelIndex index = getIndex(alias);
-    if (index.isValid()) emit dataChanged(index, index);
+    if (index.isValid()) {
+        Q_ASSERT(index.row() < servers.size());
+        switch(servers.at(index.row()).status) {
+            case QED2KServer::ServerConnected:
+            case QED2KServer::ServerConnecting:
+                qDebug() << "disconnect " << alias;
+                Session::instance()->stopServerConnection();
+                break;
+            case QED2KServer::ServerDisconnected:
+                qDebug() << "connect " << alias;
+                Session::instance()->startServerConnection(servers.at(index.row()));
+                servers[index.row()].status = QED2KServer::ServerConnecting;
+                emit dataChanged(index, index);
+                break;
+            default:
+                break;
+        }
+    }
+}
+
+void ServerModel::on_serverConnectionInitialized(QString alias, quint32 client_id, quint32 tcp_flags, quint32 aux_port) {
+    Q_UNUSED(client_id);
+    Q_UNUSED(tcp_flags);
+    Q_UNUSED(aux_port);
+    QModelIndex index = getIndex(alias);
+    if (index.isValid()) {
+        Q_ASSERT(index.row() < servers.size());
+        servers[index.row()].status = QED2KServer::ServerConnected;
+        emit dataChanged(index, index);
+    }
+}
+
+void ServerModel::on_serverConnectionClosed(QString alias, QString strError) {
+    Q_UNUSED(strError);
+    QModelIndex index = getIndex(alias);
+    if (index.isValid()) {
+        Q_ASSERT(index.row() < servers.size());
+        servers[index.row()].status = QED2KServer::ServerDisconnected;
+        emit dataChanged(index, index);
+    }
 }
 
