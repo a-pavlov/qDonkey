@@ -145,6 +145,8 @@ ColumnLayout {
                     serverModel.update(itm.text)
                 }
             }
+
+            //model: ["A", "B", "C"]
         }
     }
 }

@@ -5,5 +5,7 @@
         <file>Connection.qml</file>
         <file>Transfers.qml</file>
         <file>Search.qml</file>
+        <file>SearchResult.qml</file>
+        <file>Preferences.qml</file>
     </qresource>
 </RCC>

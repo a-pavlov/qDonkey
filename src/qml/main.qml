@@ -17,20 +17,24 @@ ApplicationWindow {
     }
 
     property var conn: [
-            "Connection"
+        "Connection"
     ]
 
     property var transfers: [
-            "Transfers"
+        "Transfers"
     ]
 
     property var search: [
-            "Search"
+        "Search"
     ]
 
-    property var sections: [ conn, transfers, search ]
+    property var preferences: [
+        "Preferences"
+    ]
 
-    property var sectionTitles: [ "Connection", "Transfers", "Search" ]
+    property var sections: [ conn, transfers, search, preferences ]
+
+    property var sectionTitles: [ "Connection", "Transfers", "Search", "Preferences" ]
 
     property string selectedComponent: conn[0]
 
@@ -39,7 +43,7 @@ ApplicationWindow {
 
         title: "qDonkey"
 
-        actionBar.maxActionCount: navDrawer.enabled ? 1 : 2
+        actionBar.maxActionCount: navDrawer.enabled ? 1 : 3
 
         actions: [
             Action {
