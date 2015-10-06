@@ -103,11 +103,17 @@ ColumnLayout {
     }
     */
 
+    Label {
+        id: title
+        text: "Choose server for connection"
+        style: "title"
+    }
+
     ListView {
         anchors {
             left: parent.left
             right: parent.right
-            top: parent.top
+            top: title.bottom
             bottom: parent.bottom
         }
 

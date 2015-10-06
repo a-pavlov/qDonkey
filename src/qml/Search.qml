@@ -5,6 +5,20 @@ import Material.ListItems 0.1 as ListItem
 import Material.Extras 0.1
 
 Item {
+    function switchBtns() {
+        btnStart.enabled = sText.text.length != 0
+    }
+
+    Dialog {
+        id: alertNoConnection
+        width: Units.dp(300)
+        text: "You are not connected to any ED2K server. Please, connect first"
+        //hasActions: true
+        //positiveButtonText: "Ok"
+        //negativeButtonText: "disagree"
+    }
+
+
     ColumnLayout {
         anchors {
             fill: parent
@@ -28,16 +42,67 @@ Item {
                 width: parent.width
 
                 TextField {
+                    id: sText
                     Layout.alignment: Qt.AlignLeft
                     Layout.preferredWidth: 0.5 * parent.width
                     text: ""
                     placeholderText: "Search phrase"
+                    onTextChanged: switchBtns()
                 }
 
                 MenuField {
+                    id: sType
                     Layout.alignment: Qt.AlignLeft
                     Layout.preferredWidth: 0.5*parent.width
-                    model: ["Any", "Video", "Audio", "Document", "Archive", "ED2K Link"]
+
+                    textRole: "name"
+                    model: ListModel {
+                        id: sTypeModel
+                        ListElement {
+                            name: "Any"
+                            value: ""
+                        }
+
+                        ListElement {
+                            name: "Archive"
+                            value: "Arc"
+                        }
+
+                        ListElement {
+                            name: "Audio"
+                            value: "Audio"
+                        }
+
+                        ListElement {
+                            name: "CD Image"
+                            value: "Iso"
+                        }
+
+                        ListElement {
+                            name: "Picture"
+                            value: "Image"
+                        }
+
+                        ListElement {
+                            name: "Program"
+                            value: "Pro"
+                        }
+
+                        ListElement {
+                            name: "Video"
+                            value: "Video"
+                        }
+
+                        ListElement {
+                            name: "Document"
+                            value: "Doc"
+                        }
+
+                        ListElement {
+                            name: "Emule collection"
+                            value: "EmuleCollection"
+                        }
+                    }
                 }
             }
         }
@@ -46,12 +111,16 @@ Item {
             content: RowLayout {
                 width: parent.width
                 TextField {
+                    id: sMin
                     Layout.preferredWidth: 0.5*parent.width
                     placeholderText: "Min size, Mb"
+                    validator: IntValidator {}
                 }
 
                 TextField {
+                    id: sMax
                     placeholderText: "Max size, Mb"
+                    validator: IntValidator {}
                 }
             }
         }
@@ -61,24 +130,48 @@ Item {
             content: RowLayout {
                 width: parent.width
                 TextField {
+                    id: sAvailibility
                     Layout.preferredWidth: 0.5*parent.width
                     placeholderText: "Availibility"
+                    validator: IntValidator {}
                 }
 
                 TextField {
+                    id: sFullSrc
                     placeholderText: "Full sources"
+                    validator: IntValidator {}
+                }
+            }
+        }
+
+        ListItem.Standard {
+            content: RowLayout {
+                width: parent.width
+                TextField {
+                    id: sMediaLength
+                    Layout.preferredWidth: 0.5*parent.width
+                    placeholderText: "Media length"
+                    validator: IntValidator {}
+                }
+
+                TextField {
+                    id: sMediaBitrate
+                    placeholderText: "Media bitrate"
+                    validator: IntValidator {}
                 }
             }
         }
 
         ListItem.Standard {
             content : TextField {
+                id: sExt
                 placeholderText: "Extension"
             }
         }
 
         ListItem.Standard {
             content : TextField {
+                id: sCodec
                 placeholderText: "Codec"
             }
         }
@@ -93,18 +186,46 @@ Item {
             }
 
             Button {
+                id: btnStart
                 text: "Start"
                 textColor: Theme.primaryColor
+                enabled: false
+                onClicked: {
+                    if (!session.isServerConnected()) {
+                        alertNoConnection.show()
+                    } else {
+                        /*QString& strQuery,
+                                           quint64 nMinSize,
+                                           quint64 nMaxSize,
+                                           unsigned int nSources,
+                                           unsigned int nCompleteSources,
+                                           QString strFileType,
+                                           QString strFileExt,
+                                           QString strMediaCodec,
+                                           quint32 nMediaLength,
+                                           quint32 nMediaBitrate
+                                           */
+                        session.searchFiles(sText.text, sMin.text, sMax.text,
+                                            sAvailibility.text, sFullSrc.text,
+                                            sTypeModel.get(sType.selectedIndex).value, sExt.text, sCodec.text,
+                                            sMediaLength.text, sMediaBitrate.text)
+                        console.log("Start search for: " + sText.text);
+                    }
+                }
             }
 
             Button {
+                id: btnMore
                 text: "More"
                 textColor: Theme.primaryColor;
+                enabled: false
             }
 
             Button {
+                id: btnCancel
                 text: "Cancel"
                 textColor: Theme.primaryColor
+                enabled: false
             }
         }
     }

@@ -159,7 +159,7 @@ public:
     virtual void saveFastResumeData();
     void startServerConnection(const QED2KServer& s);
     void stopServerConnection();
-    bool isServerConnected() const;
+    Q_INVOKABLE bool isServerConnected() const;
     void makeTransferParametersAsync(const QString& filepath);
     void cancelTransferParameters(const QString& filepath);
     std::pair<libed2k::add_transfer_params, libed2k::error_code> makeTransferParameters(const QString& filepath) const;
@@ -208,7 +208,7 @@ public slots:
 	/**
 	  * number parameters were ignored on zero value
 	 */
-	void searchFiles(const QString& strQuery,
+    Q_INVOKABLE void searchFiles(const QString& strQuery,
 	                quint64 nMinSize,
 	                quint64 nMaxSize,
 	                unsigned int nSources,
@@ -222,15 +222,15 @@ public slots:
 	/**
 	  * set found file hash here
 	 */
-	void searchRelatedFiles(QString strHash);
+    Q_INVOKABLE void searchRelatedFiles(QString strHash);
 	/**
 	  * you can search more results only when previous call return succuss
 	 */
-	void searchMoreResults();
+    Q_INVOKABLE void searchMoreResults();
 	/**
 	  * stops current search
 	 */
-    void cancelSearch();
+    Q_INVOKABLE void cancelSearch();
 
     libed2k::peer_connection_handle getPeer(const libed2k::net_identifier& np);
     libed2k::peer_connection_handle findPeer(const libed2k::net_identifier& np);

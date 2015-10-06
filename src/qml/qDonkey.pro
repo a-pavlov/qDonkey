@@ -30,7 +30,8 @@ HEADERS +=  ../preferences/preferences.h \
             ../misc.h \
             ../qinisettings.h \
             mainwindow.h \
-            server_model.h
+            server_model.h \
+            ../res.h
 
 SOURCES +=  ../preferences/preferences.cpp \
             ../misc.cpp \

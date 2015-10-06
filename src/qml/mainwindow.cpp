@@ -17,5 +17,6 @@ MainWindow::MainWindow(QObject* parent) : QObject(parent) {
             SLOT(on_serverConnectionClosed(QString,QString)));
     engine = new QQmlApplicationEngine(this);
     engine->rootContext()->setContextProperty("serverModel", smodel);
+    engine->rootContext()->setContextProperty("session", Session::instance());
     engine->load(QUrl(QStringLiteral("qrc:/main.qml")));
 }
