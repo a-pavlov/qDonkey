@@ -251,6 +251,11 @@ signals:
     void searchResult(const libed2k::net_identifier& np, const QString& hash, 
                       const QList<QED2KSearchResultEntry>& vRes, bool bMoreResult);
 
+    /**
+     * @brief searchFinished - simplified signal emitted after search completed
+     */
+    void searchFinished(bool bMoreResult);
+
 
     /**
      * peers related signals

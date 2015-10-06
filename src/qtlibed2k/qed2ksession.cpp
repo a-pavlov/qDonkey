@@ -673,6 +673,7 @@ void QED2KSession::readAlerts()
             else
             {
                 emit searchResult(p->m_np, md4toQString(p->m_hash), vRes, bMoreResult);
+                emit searchFinished(bMoreResult);
             }
         }
         else if (libed2k::listen_failed_alert* p = dynamic_cast<libed2k::listen_failed_alert*>(a.get()))

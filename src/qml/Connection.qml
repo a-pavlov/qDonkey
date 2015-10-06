@@ -104,6 +104,11 @@ ColumnLayout {
     */
 
     Label {
+        anchors {
+            left: parent.left
+            top: parent.top
+        }
+
         id: title
         text: "Choose server for connection"
         style: "title"

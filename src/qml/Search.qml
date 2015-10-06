@@ -5,6 +5,18 @@ import Material.ListItems 0.1 as ListItem
 import Material.Extras 0.1
 
 Item {
+    Connections {
+        target: session
+        onSearchFinished: {
+            console.log("search finished, more result: " + bMoreResult)
+            btnStart.enabled = true
+            btnCancel.enabled = false
+            btnMore.enabled = bMoreResult
+            progress.enabled = false
+            progress.visible = false
+        }
+    }
+
     function switchBtns() {
         btnStart.enabled = sText.text.length != 0
     }
@@ -13,7 +25,7 @@ Item {
         id: alertNoConnection
         width: Units.dp(300)
         text: "You are not connected to any ED2K server. Please, connect first"
-        //hasActions: true
+        hasActions: false
         //positiveButtonText: "Ok"
         //negativeButtonText: "disagree"
     }
@@ -185,6 +197,15 @@ Item {
                 margins: Units.dp(16)
             }
 
+            ProgressCircle {
+                id: progress
+                Layout.alignment: Qt.AlignCenter
+                width: Units.dp(24)
+                height: Units.dp(24)
+                enabled: false
+                visible: false
+            }
+
             Button {
                 id: btnStart
                 text: "Start"
@@ -210,6 +231,11 @@ Item {
                                             sTypeModel.get(sType.selectedIndex).value, sExt.text, sCodec.text,
                                             sMediaLength.text, sMediaBitrate.text)
                         console.log("Start search for: " + sText.text);
+                        progress.enabled = true
+                        progress.visible = true
+                        btnStart.enabled = false
+                        btnCancel.enabled = true
+                        btnMore.enabled = false
                     }
                 }
             }
