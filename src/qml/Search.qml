@@ -245,6 +245,14 @@ Item {
                 text: "More"
                 textColor: Theme.primaryColor;
                 enabled: false
+                onClicked: {
+                    btnStart.enabled = false
+                    btnMore.enabled = false
+                    btnCancel.enabled = true
+                    progress.enabled = true
+                    progress.visible = true
+                    session.searchMoreResults()
+                }
             }
 
             Button {
@@ -252,6 +260,14 @@ Item {
                 text: "Cancel"
                 textColor: Theme.primaryColor
                 enabled: false
+                onClicked: {
+                    session.cancelSearch()
+                    btnMore.enabled = false
+                    btnStart.enabled = true
+                    btnCancel.enabled = false
+                    progress.enabled = false
+                    progress.visible = false
+                }
             }
         }
     }
