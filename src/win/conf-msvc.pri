@@ -2,10 +2,10 @@ RC_FILE = donkey.rc
 
 #Adapt the lib names/versions accordingly
 CONFIG(debug, debug|release) {
-  LIBS += libboost_system-vc120-mt-gd-1_58.lib \
+  LIBS += libboost_system-vc120-mt-gd-1_59.lib \
           ed2k.lib
 } else {
-  LIBS += libboost_system-vc120-mt-1_58.lib \
+  LIBS += libboost_system-vc120-mt-1_59.lib \
           ed2k.lib 
 }
 
