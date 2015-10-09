@@ -1,53 +1,65 @@
-/*
- * QML Material - An application framework implementing Material Design.
- * Copyright (C) 2015 Michael Spencer <sonrisesoftware@gmail.com>
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as
- * published by the Free Software Foundation, either version 2.1 of the
- * License, or (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- * GNU Lesser General Public License for more details.
- *
- * You should have received a copy of the GNU Lesser General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
- */
-import QtQuick 2.2
+import QtQuick 2.0
+import QtQuick.Layouts 1.1
 import Material 0.1
 import Material.ListItems 0.1 as ListItem
 
-TabbedPage {
-    id: page
-    title: "Page Title that is very long to demonstrate eliding titles in ActionBar"
+Page {
+    id: searchResults
+    title: "Back to search"
+    ColumnLayout {
+        spacing: 0
+        anchors {
+            left: parent.left
+            right: parent.right
+            bottom: parent.bottom
+            top: parent.top
+        }
 
-    Tab {
-        title: "Overview"
-        iconName: "action/home"
+        Label {
+            anchors {
+                left: parent.left
+                top: parent.top
+            }
 
-        Rectangle {
-            color: Palette.colors.red["200"]
+            id: title
+            text: "Search results"
+            style: "title"
+        }
 
-            Button {
-                anchors.centerIn: parent
-                darkBackground: true
-                text: "Go to tab 3"
-                onClicked: page.selectedTab = 2
+        ListView {
+            anchors {
+                left: parent.left
+                right: parent.right
+                top: title.bottom
+                bottom: parent.bottom
+            }
+
+            model: searchModel
+
+            delegate: ListItem.Subtitled {
+                id: searchItem
+                text: name + searchModel.rowCount()
+                subText: hash + " size: " + filesize
+                //secondaryItem: Switch {
+                //    id: enablingSwitch
+                //    anchors.verticalCenter: parent.verticalCenter
+                //}
+
+                action: Icon {
+                    id: icns
+                    anchors.centerIn: parent
+                    source:  Qt.resolvedUrl("qrc:/images/audio.svg")
+                }
+/*
+                MouseArea {
+                    anchors.fill: parent
+                    onDoubleClicked: {
+                        console.log("Double click on " + itm.text);
+                        serverModel.update(itm.text)
+                    }
+                }
+*/
             }
         }
-    }
-
-    Tab {
-        title: "Projects"
-
-        Rectangle { color: Palette.colors.purple["200"] }
-    }
-
-    Tab {
-        title: "Inbox"
-
-        Rectangle { color: Palette.colors.orange["200"] }
     }
 }

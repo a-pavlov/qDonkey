@@ -14,6 +14,7 @@ Item {
             btnMore.enabled = bMoreResult
             progress.enabled = false
             progress.visible = false
+            pageStack.push(Qt.resolvedUrl("SearchResult.qml"))
         }
     }
 
@@ -267,6 +268,14 @@ Item {
                     btnCancel.enabled = false
                     progress.enabled = false
                     progress.visible = false
+                }
+            }
+
+            Button {
+                id: btnCheck
+                text: "Check"
+                onClicked: {
+                    pageStack.push(Qt.resolvedUrl("SearchResult.qml"))
                 }
             }
         }

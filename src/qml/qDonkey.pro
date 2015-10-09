@@ -2,7 +2,7 @@ TEMPLATE = app
 
 QT += qml quick widgets
 
-RESOURCES += qml.qrc ../lang.qrc
+RESOURCES += qml.qrc ../lang.qrc icons.qrc
 
 
 # Windows specific configuration
@@ -31,13 +31,15 @@ HEADERS +=  ../preferences/preferences.h \
             ../qinisettings.h \
             mainwindow.h \
             server_model.h \
+            search_model.h \
             ../res.h
 
 SOURCES +=  ../preferences/preferences.cpp \
             ../misc.cpp \
             main.cpp \
             mainwindow.cpp \
-            server_model.cpp
+            server_model.cpp \
+            search_model.cpp
 
 LANG_PATH = ../lang
 TRANSLATIONS =  $$LANG_PATH/qDonkey_en.ts \
@@ -51,3 +53,4 @@ QML_IMPORT_PATH =
 include(deployment.pri)
 
 include(version.pri)
+
