@@ -2,8 +2,7 @@ TEMPLATE = app
 
 QT += qml quick widgets
 
-RESOURCES += qml.qrc ../lang.qrc icons.qrc
-
+RESOURCES += qml.qrc ../lang.qrc
 
 # Windows specific configuration
 win32 {
