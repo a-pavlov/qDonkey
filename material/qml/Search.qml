@@ -275,7 +275,7 @@ Item {
                 id: btnCheck
                 text: "Check"
                 onClicked: {
-                    pageStack.push(Qt.resolvedUrl("SearchResult.qml"))
+                    pageStack.push(Qt.resolvedUrl("qml/SearchResult.qml"))
                 }
             }
         }

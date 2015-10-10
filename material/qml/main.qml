@@ -6,7 +6,6 @@ ApplicationWindow {
     id: qDonkey
     title: "qDonkey"
     width:  400
-
     visible: true
 
     theme {
@@ -16,27 +15,16 @@ ApplicationWindow {
         tabHighlightColor: "white"
     }
 
-    property var conn: [
-        "Connection"
-    ]
-
-    property var transfers: [
-        "Transfers"
-    ]
-
-    property var search: [
-        "Search"
-    ]
-
-    property var preferences: [
-        "Preferences"
-    ]
+    property string conn: "Connection"
+    property string transfers: "Transfers"
+    property string search: "Search"
+    property string preferences: "Preferences"
 
     property var sections: [ conn, transfers, search, preferences ]
 
     property var sectionTitles: [ "Connection", "Transfers", "Search", "Preferences" ]
 
-    property string selectedComponent: conn[0]
+    property string selectedComponent: conn
 
     initialPage: TabbedPage {
         id: page
@@ -58,6 +46,7 @@ ApplicationWindow {
                 enabled: false
             }
         ]
+
 
         backAction: navDrawer.action
 
@@ -81,27 +70,37 @@ ApplicationWindow {
                         delegate: Column {
                             width: parent.width
 
-                            ListItem.Subheader {
+                            ListItem.Standard {
                                 text: sectionTitles[index]
+                                selected: modelData = qDonkey.selectedComponent
+                                onClicked: {
+                                    console.log(Qt.resolvedUrl("model data % selected").arg(modelData));
+                                    qDonkey.selectedComponent = modelData
+                                    navDrawer.close()
+                                }
                             }
-
+/*
                             Repeater {
                                 model: modelData
                                 delegate: ListItem.Standard {
                                     text: modelData
                                     selected: modelData == qDonkey.selectedComponent
                                     onClicked: {
-                                        console.log(Qt.resolvedUrl("% selected").arg(modelData));
+                                        console.log(Qt.resolvedUrl("model data % selected").arg(modelData));
                                         qDonkey.selectedComponent = modelData
                                         navDrawer.close()
                                     }
                                 }
-                            }
+                            }*/
                         }
+
                     }
                 }
+
             }
+
         }
+
 
         Repeater {
             model: !navDrawer.enabled ? sections : 0
@@ -109,7 +108,7 @@ ApplicationWindow {
             delegate: Tab {
                 title: sectionTitles[index]
 
-                property string selectedComponent: modelData[0]
+                property string selectedComponent: modelData
                 property var section: modelData
 
                 sourceComponent: tabDelegate
@@ -130,7 +129,6 @@ ApplicationWindow {
 
     Component {
         id: tabDelegate
-
         Item {
             Flickable {
                 id: flickable
@@ -144,6 +142,7 @@ ApplicationWindow {
 
                 clip: true
                 contentHeight: Math.max(example.implicitHeight + 40, height)
+
                 Loader {
                     id: example
                     anchors.fill: parent
@@ -169,6 +168,9 @@ ApplicationWindow {
             Scrollbar {
                 flickableItem: flickable
             }
+
         }
+
     }
+
 }
