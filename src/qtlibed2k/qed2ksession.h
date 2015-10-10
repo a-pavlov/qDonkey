@@ -28,7 +28,7 @@
 
 #include "qed2kserver.h"
 #include "qed2khandle.h"
-#include "preferences/preferences.h"
+#include "preferences.h"
 #include "misc.h"
 #include "transferspeedmonitor.h"
 

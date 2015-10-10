@@ -2,7 +2,7 @@ TEMPLATE = app
 
 QT += qml quick widgets
 
-RESOURCES += qml.qrc ../lang.qrc
+RESOURCES += qml.qrc ../src/lang.qrc
 
 # Windows specific configuration
 win32 {
@@ -19,34 +19,33 @@ unix:!macx {
   include(unixconf.pri)
 }
 
-include(../qtlibed2k/qtlibed2k.pri)
-include(../geoip/geoip.pri)
-include(../powermanagement/powermanagement.pri)
+include(../src/qtlibed2k/qtlibed2k.pri)
+#include(../src/geoip/geoip.pri)
+#include(../src/powermanagement/powermanagement.pri)
 
-INCLUDEPATH += $$PWD/..
+INCLUDEPATH += $$PWD/../src $$PWD/../src/preferences
 
-HEADERS +=  ../preferences/preferences.h \
-            ../misc.h \
-            ../qinisettings.h \
+HEADERS +=  ../src/preferences/preferences.h \
+            ../src/misc.h \
+            ../src/qinisettings.h \
             mainwindow.h \
             server_model.h \
-            search_model.h \
-            ../res.h
+            search_model.h
 
-SOURCES +=  ../preferences/preferences.cpp \
-            ../misc.cpp \
+SOURCES +=  ../src/preferences/preferences.cpp \
+            ../src/misc.cpp \
             main.cpp \
             mainwindow.cpp \
             server_model.cpp \
             search_model.cpp
 
-LANG_PATH = ../lang
+LANG_PATH = ../src/lang
 TRANSLATIONS =  $$LANG_PATH/qDonkey_en.ts \
                 $$LANG_PATH/qDonkey_ru.ts
 DESTDIR = .
 
 # Additional import path used to resolve QML modules in Qt Creator's code model
-QML_IMPORT_PATH =
+QML_IMPORT_PATH =qml
 
 # Default rules for deployment.
 include(deployment.pri)

@@ -1,0 +1,10 @@
+<RCC>
+    <qresource prefix="/">
+        <file>qml/main.qml</file>
+        <file>qml/Connection.qml</file>
+        <file>qml/Transfers.qml</file>
+        <file>qml/Search.qml</file>
+        <file>qml/SearchResult.qml</file>
+        <file>qml/Preferences.qml</file>
+    </qresource>
+</RCC>
