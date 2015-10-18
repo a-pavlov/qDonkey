@@ -34,8 +34,7 @@ struct QED2KServer {
     QED2KServer(const QString& a, const QString& h, qint32 p);
     static QED2KServer fromServerMetEntry(const libed2k::server_met_entry&);
 
-    bool operator<(const QED2KServer& s) const { return alias < s.alias; }
-    bool operator==(const QED2KServer& s) const { return alias == s.alias; }
+    bool operator==(const QED2KServer& s) const { return alias == s.alias && host == s.host && port == s.port; }
 };
 
 QList<QED2KServer> fromServersMet(const QString& filename);

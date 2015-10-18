@@ -41,15 +41,19 @@ ColumnLayout {
                     id: icns
                     anchors.centerIn: parent
                     name: "action/done"
-                    //source: Qt.resolvedUrl("qrc:/images/robot.gif")
                 }
 
+                valueText: {
+                    if (status==0) return "Connected"
+                    if (status==1) return "Connecting..."
+                    if (status==2) return ""
+                }
 
                 MouseArea {
                     anchors.fill: parent
                     onDoubleClicked: {
                         console.log("Double click on " + itm.text);
-                        serverModel.update(itm.text)
+                        serverModel.update(itm.text, itm.host, itm.port)
                 }
             }
         }

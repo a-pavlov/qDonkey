@@ -43,6 +43,12 @@ QVariant ServerModel::data(const QModelIndex& index, int role) const {
 }
 
 void ServerModel::add(const QED2KServer& s) {
+    foreach(const QED2KServer& srv, servers) {
+        if (srv == s) {
+            return;
+        }
+    }
+
     beginInsertRows(QModelIndex(), servers.size(), servers.size());
     servers << s;
     endInsertRows();
@@ -53,16 +59,16 @@ void ServerModel::create(const QString& alias, const QString& host, int port) {
     add(fp);
 }
 
-QModelIndex ServerModel::getIndex(const QString& alias) const {
+QModelIndex ServerModel::getIndex(const QString& alias, const QString& host, int port) const {
     for(int i = 0; i < servers.size(); ++i) {
-        if (servers.at(i).alias == alias) return index(i);
+        if (servers.at(i).alias == QED2KServer(alias, host, port)) return index(i);
     }
 
     return QModelIndex();
 }
 
-void ServerModel::update(const QString& alias) {
-    QModelIndex index = getIndex(alias);
+void ServerModel::update(const QString& alias, const QString& host, int port) {
+    QModelIndex index = getIndex(alias, host, port);
     if (index.isValid()) {
         Q_ASSERT(index.row() < servers.size());
         switch(servers.at(index.row()).status) {
@@ -83,11 +89,11 @@ void ServerModel::update(const QString& alias) {
     }
 }
 
-void ServerModel::on_serverConnectionInitialized(QString alias, quint32 client_id, quint32 tcp_flags, quint32 aux_port) {
+void ServerModel::on_serverConnectionInitialized(QString alias, QString host, int port, quint32 client_id, quint32 tcp_flags, quint32 aux_port) {
     Q_UNUSED(client_id);
     Q_UNUSED(tcp_flags);
     Q_UNUSED(aux_port);
-    QModelIndex index = getIndex(alias);
+    QModelIndex index = getIndex(alias, host, port);
     if (index.isValid()) {
         Q_ASSERT(index.row() < servers.size());
         servers[index.row()].status = QED2KServer::ServerConnected;
@@ -95,9 +101,9 @@ void ServerModel::on_serverConnectionInitialized(QString alias, quint32 client_i
     }
 }
 
-void ServerModel::on_serverConnectionClosed(QString alias, QString strError) {
+void ServerModel::on_serverConnectionClosed(QString alias, QString host, int port, QString strError) {
     Q_UNUSED(strError);
-    QModelIndex index = getIndex(alias);
+    QModelIndex index = getIndex(alias, host, port);
     if (index.isValid()) {
         Q_ASSERT(index.row() < servers.size());
         servers[index.row()].status = QED2KServer::ServerDisconnected;

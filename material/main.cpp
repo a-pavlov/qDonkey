@@ -3,7 +3,7 @@
 #include "qed2ksession.h"
 
 #ifdef Q_OS_WIN
-void customMessageHandler(QtMsgType type, const char *msg)
+void customMessageHandler(QtMsgType type, const QMessageLogContext &context, const QString &msg)
 {
     QString txt;
 
@@ -39,7 +39,7 @@ int main(int argc, char *argv[])
 {
     QApplication app(argc, argv);
 #ifdef Q_OS_WIN
-    qInstallMsgHandler(customMessageHandler);
+    qInstallMessageHandler(customMessageHandler);
 #endif
     Session::instance()->start();
     MainWindow mw;
