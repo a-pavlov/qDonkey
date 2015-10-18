@@ -2,7 +2,10 @@ TEMPLATE = app
 
 QT += qml quick widgets
 
-RESOURCES += qml.qrc ../src/lang.qrc
+RESOURCES += qml.qrc ../src/lang.qrc \
+    images.qrc
+
+DEFINES += IS74
 
 # Windows specific configuration
 win32 {
@@ -20,8 +23,6 @@ unix:!macx {
 }
 
 include(../src/qtlibed2k/qtlibed2k.pri)
-#include(../src/geoip/geoip.pri)
-#include(../src/powermanagement/powermanagement.pri)
 
 INCLUDEPATH += $$PWD/../src $$PWD/../src/preferences
 

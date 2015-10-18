@@ -48,7 +48,7 @@ Page {
                 action: Icon {
                     id: icns
                     anchors.centerIn: parent
-                    source:  Qt.resolvedUrl("images/audio.svg")
+                    source:  Qt.resolvedUrl("qrc:/images/audio.svg")
                 }
 /*
                 MouseArea {

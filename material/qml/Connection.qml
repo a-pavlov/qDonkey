@@ -1,4 +1,4 @@
-import QtQuick 2.0
+import QtQuick 2.5
 import QtQuick.Layouts 1.1
 import Material 0.1
 import Material.ListItems 0.1 as ListItem
@@ -35,13 +35,17 @@ ColumnLayout {
         delegate: ListItem.Subtitled {
             id: itm
             text: alias
-            subText: host + ":" + port
-            //secondaryItem: Switch {
-            //    id: enablingSwitch
-            //    anchors.verticalCenter: parent.verticalCenter
-            //}
+            subText: host + ":" + port            
+            opacity: 1.0
 
-            action: Icon {
+            OpacityAnimator on opacity {
+                from: 0.2;
+                to: 1;
+                duration: 1000
+                running: status==1
+            }
+
+            /*action: Icon {
                 id: icns
                 anchors.centerIn: parent
                 state: "rotated"
@@ -55,7 +59,14 @@ ColumnLayout {
                     loops: Animation.Infinite
                     duration: 1600
                 }
+            }*/
+
+            action: Icon {
+                id: icns
+                anchors.centerIn: parent
+                source:  Qt.resolvedUrl("qrc:/images/audio.svg")
             }
+
 
             MouseArea {
                 anchors.fill: parent
