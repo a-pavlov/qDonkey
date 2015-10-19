@@ -624,7 +624,7 @@ void QED2KSession::readAlerts()
         if (libed2k::server_connection_initialized_alert* p =
             dynamic_cast<libed2k::server_connection_initialized_alert*>(a.get()))
         {
-            emit serverConnectionInitialized(misc::toQStringU(p->name), p->client_id, p->tcp_flags, p->aux_port);
+            emit serverConnectionInitialized(misc::toQStringU(p->name), misc::toQString(p->host), p->port, p->client_id, p->tcp_flags, p->aux_port);
             qDebug() << "server initialized: " << QString::fromStdString(p->name) << " " << QString::fromStdString(p->host) << " " << p->port;
         }
         else if (libed2k::server_status_alert* p = dynamic_cast<libed2k::server_status_alert*>(a.get()))
@@ -643,7 +643,7 @@ void QED2KSession::readAlerts()
         else if (libed2k::server_connection_closed* p =
                  dynamic_cast<libed2k::server_connection_closed*>(a.get()))
         {
-            emit serverConnectionClosed(misc::toQStringU(p->name), QString::fromLocal8Bit(p->m_error.message().c_str()));
+            emit serverConnectionClosed(misc::toQStringU(p->name), misc::toQString(p->host), p->port, QString::fromLocal8Bit(p->m_error.message().c_str()));
         }
         else if (libed2k::shared_files_alert* p = dynamic_cast<libed2k::shared_files_alert*>(a.get()))
         {

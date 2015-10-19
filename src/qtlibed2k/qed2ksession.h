@@ -241,8 +241,8 @@ signals:
      * servers related signals
      */
     void serverNameResolved(QString alias, QString strName);
-    void serverConnectionInitialized(QString alias, quint32 client_id, quint32 tcp_flags, quint32 aux_port);
-    void serverConnectionClosed(QString alias, QString strError);
+    void serverConnectionInitialized(QString alias, QString host, int port, quint32 client_id, quint32 tcp_flags, quint32 aux_port);
+    void serverConnectionClosed(QString alias, QString host, int port, QString strError);
     void serverStatus(QString alias, int nFiles, int nUsers);
     void serverMessage(QString alias, QString strMessage);
     void serverIdentity(QString alias, QString strName, QString strDescription);

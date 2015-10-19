@@ -17,10 +17,10 @@ MainWindow::MainWindow(QObject* parent) : QObject(parent) {
     }
     searchmodel = new SearchModel(this);
 
-    connect(Session::instance(), SIGNAL(serverConnectionInitialized(QString,quint32,quint32,quint32)),
-            smodel, SLOT(on_serverConnectionInitialized(QString,quint32,quint32,quint32)));
-    connect(Session::instance(), SIGNAL(serverConnectionClosed(QString,QString)), smodel,
-            SLOT(on_serverConnectionClosed(QString,QString)));
+    connect(Session::instance(), SIGNAL(serverConnectionInitialized(QString,QString, int, quint32,quint32,quint32)),
+            smodel, SLOT(on_serverConnectionInitialized(QString,QString,int,quint32,quint32,quint32)));
+    connect(Session::instance(), SIGNAL(serverConnectionClosed(QString,QString,int,QString)), smodel,
+            SLOT(on_serverConnectionClosed(QString,QString,int,QString)));
     connect(Session::instance(), SIGNAL(searchResult(libed2k::net_identifier,QString,QList<QED2KSearchResultEntry>,bool)),
             searchmodel, SLOT(on_searchResult(libed2k::net_identifier,QString,QList<QED2KSearchResultEntry>,bool)));
     engine = new QQmlApplicationEngine(this);

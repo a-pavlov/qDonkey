@@ -53,7 +53,7 @@ ColumnLayout {
                     anchors.fill: parent
                     onDoubleClicked: {
                         console.log("Double click on " + itm.text);
-                        serverModel.update(itm.text, itm.host, itm.port)
+                        serverModel.update(alias, host, port)
                 }
             }
         }
