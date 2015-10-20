@@ -23,7 +23,7 @@ Page {
                 bottom: parent.bottom
             }
 
-            model: searchModel
+            model: searchFPModel
 
             delegate: ListItem.SimpleMenu {
                 id: searchItem
@@ -71,7 +71,21 @@ Page {
                 model: ["Download", "Preview", "Search related"]
 
                 onSelectedIndexChanged: {
-                    console.log("Selected index changed to " + selectedIndex);
+                    switch(selectedIndex) {
+                    case 2:
+                        session.searchRelatedFiles(hash)
+                        console.log("search related files " + hash)
+                        break
+                    case 0:
+                        console.log("start download")
+                        break
+                    case 1:
+                        console.log("start preview")
+                        break
+                    default:
+                        console.log("undefined index " + selectedIndex)
+                    }
+
                 }
             }
         }

@@ -95,3 +95,7 @@ bool SWSortFilterProxyModel::filterAcceptsRow(int source_row, const QModelIndex&
     }
     return true;
 }
+
+void SWSortFilterProxyModel::sort() {
+    QSortFilterProxyModel::sort(SearchModel::DC_SOURCES, Qt::DescendingOrder);
+}

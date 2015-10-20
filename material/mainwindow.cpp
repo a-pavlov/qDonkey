@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include "server_model.h"
 #include "search_model.h"
+#include "../src/search/search_widget_fp_model.h"
 #include "qed2kserver.h"
 #include "qed2ksession.h"
 #include <QQmlApplicationEngine>
@@ -16,6 +17,10 @@ MainWindow::MainWindow(QObject* parent) : QObject(parent) {
         smodel->add(s);
     }
     searchmodel = new SearchModel(this);
+    searchFilterProxyModel = new SWSortFilterProxyModel(this);
+    searchFilterProxyModel->setDynamicSortFilter(true);
+    searchFilterProxyModel->setSourceModel(searchmodel);
+    searchFilterProxyModel->sort();
 
     connect(Session::instance(), SIGNAL(serverConnectionInitialized(QString,QString, int, quint32,quint32,quint32)),
             smodel, SLOT(on_serverConnectionInitialized(QString,QString,int,quint32,quint32,quint32)));
@@ -26,6 +31,7 @@ MainWindow::MainWindow(QObject* parent) : QObject(parent) {
     engine = new QQmlApplicationEngine(this);
     engine->rootContext()->setContextProperty("serverModel", smodel);
     engine->rootContext()->setContextProperty("searchModel", searchmodel);
+    engine->rootContext()->setContextProperty("searchFPModel", searchFilterProxyModel);
     engine->rootContext()->setContextProperty("session", Session::instance());
 
 #ifdef IS74

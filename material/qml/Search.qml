@@ -5,6 +5,13 @@ import Material.ListItems 0.1 as ListItem
 import Material.Extras 0.1
 
 Item {
+    Dialog {
+        id: alertEmptyResult
+        width: Units.dp(300)
+        text: "Sorry, your last search returned empty result"
+        hasActions: false
+    }
+
     Connections {
         target: session
         onSearchFinished: {
@@ -14,7 +21,12 @@ Item {
             btnMore.enabled = bMoreResult
             progress.enabled = false
             progress.visible = false
-            pageStack.push(Qt.resolvedUrl("SearchResult.qml"))
+            if (resultsCount > 0) {
+                //searchFPModel.sort(103, Qt::DescendingOrder)
+                pageStack.push(Qt.resolvedUrl("SearchResult.qml"))
+            } else
+                alertEmptyResult.show()
+
         }
     }
 
@@ -228,6 +240,7 @@ Item {
                                            quint32 nMediaLength,
                                            quint32 nMediaBitrate
                                            */
+                        searchModel.clean()
                         session.searchFiles(sText.text, sMin.text, sMax.text,
                                             sAvailibility.text, sFullSrc.text,
                                             sTypeModel.get(sType.selectedIndex).value, sExt.text, sCodec.text,

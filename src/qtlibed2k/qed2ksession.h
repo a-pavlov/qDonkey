@@ -254,7 +254,7 @@ signals:
     /**
      * @brief searchFinished - simplified signal emitted after search completed
      */
-    void searchFinished(bool bMoreResult);
+    void searchFinished(int resultsCount, bool bMoreResult);
 
 
     /**

@@ -183,7 +183,7 @@ void SearchModel::clean() {
 
 
 void SearchModel::appendData(const QList<QED2KSearchResultEntry>& entries) {
-
+    if (entries.isEmpty()) return;
     beginInsertRows(QModelIndex(), rowCount(), rowCount() + entries.size() - 1);
     search_results.append(entries);
     qDebug() << "results count " << search_results.size();

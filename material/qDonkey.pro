@@ -29,12 +29,14 @@ INCLUDEPATH += $$PWD/../src $$PWD/../src/preferences
 HEADERS +=  ../src/preferences/preferences.h \
             ../src/misc.h \
             ../src/qinisettings.h \
+            ../src/search/search_widget_fp_model.h \
             mainwindow.h \
             server_model.h \
             search_model.h
 
 SOURCES +=  ../src/preferences/preferences.cpp \
             ../src/misc.cpp \
+            ../src/search/search_widget_fp_model.cpp \
             main.cpp \
             mainwindow.cpp \
             server_model.cpp \

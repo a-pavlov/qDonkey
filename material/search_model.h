@@ -40,7 +40,7 @@ public:
     quint64 media_bitrate(const QModelIndex&) const;
     QString media_codec(const QModelIndex&) const;
 
-    void clean();
+    Q_INVOKABLE void clean();
     void appendData(const QList<QED2KSearchResultEntry>&);
 private:
     misc::SizeType m_st;
