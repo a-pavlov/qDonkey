@@ -30,6 +30,7 @@ Page {
                 text: name
                 subText: sources
                 valueText: filesize
+                selectedIndex: -1
 
                 action: Icon {
                     id: icns
@@ -68,6 +69,10 @@ Page {
                 }
 
                 model: ["Download", "Preview", "Search related"]
+
+                onSelectedIndexChanged: {
+                    console.log("Selected index changed to " + selectedIndex);
+                }
             }
         }
     }
