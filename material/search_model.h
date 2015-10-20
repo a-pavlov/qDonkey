@@ -45,6 +45,7 @@ public:
 private:
     misc::SizeType m_st;
     QList<QED2KSearchResultEntry> search_results;
+    bool m_moreResults;
 signals:
     void countChanged(int);
 public slots:

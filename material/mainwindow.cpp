@@ -10,7 +10,7 @@ MainWindow::MainWindow(QObject* parent) : QObject(parent) {
     smodel = new ServerModel(this);
 #ifdef IS74
     smodel->add(QED2KServer("is74", "emule.is74.ru", 4661));
-    smodel->update("is74", "emule.is74.ru", 4661);
+    //smodel->update("is74", "emule.is74.ru", 4661);
 #endif
     foreach(const QED2KServer s, fromServersMet("./server.met")) {
         smodel->add(s);

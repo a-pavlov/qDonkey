@@ -20,6 +20,7 @@ Item {
 
     function switchBtns() {
         btnStart.enabled = sText.text.length != 0
+        btnMore.enabled=false
     }
 
     Dialog {
@@ -271,13 +272,6 @@ Item {
                 }
             }
 
-            Button {
-                id: btnCheck
-                text: "Check"
-                onClicked: {
-                    pageStack.push(Qt.resolvedUrl("qml/SearchResult.qml"))
-                }
-            }
         }
     }
 /*

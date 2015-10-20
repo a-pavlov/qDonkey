@@ -2,7 +2,7 @@
 #include "misc.h"
 
 SearchModel::SearchModel(QObject *parent) :
-    QAbstractListModel(parent), m_st(misc::ST_DEFAULT) {
+    QAbstractListModel(parent), m_st(misc::ST_DEFAULT), m_moreResults(false) {
 }
 
 QHash<int, QByteArray> SearchModel::roleNames() const {
@@ -186,6 +186,7 @@ void SearchModel::appendData(const QList<QED2KSearchResultEntry>& entries) {
 
     beginInsertRows(QModelIndex(), rowCount(), rowCount() + entries.size() - 1);
     search_results.append(entries);
+    qDebug() << "results count " << search_results.size();
     endInsertRows();
 }
 
@@ -245,7 +246,7 @@ void SearchModel::on_searchResult(const libed2k::net_identifier& np, const QStri
     const QList<QED2KSearchResultEntry>& vRes, bool bMoreResult) {
     Q_UNUSED(np);
     Q_UNUSED(hash);
-    Q_UNUSED(bMoreResult);
+    m_moreResults = bMoreResult;
     appendData(vRes);
 }
 
