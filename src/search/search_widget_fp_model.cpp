@@ -79,6 +79,13 @@ bool SWSortFilterProxyModel::lessThan(const QModelIndex& left, const QModelIndex
                                    Qt::CaseSensitive) < 0);
     }
 
+    // HACK to source SearchModel in QML
+    if (left.column() == SearchModel::DC_SOURCES) {
+        SearchModel* sm = dynamic_cast<SearchModel*>(sourceModel());
+        Q_ASSERT(sm != NULL);
+        return sm->sources(left) < sm->sources(right);
+    }
+
     return QSortFilterProxyModel::lessThan(left, right);
 }
 
@@ -96,6 +103,6 @@ bool SWSortFilterProxyModel::filterAcceptsRow(int source_row, const QModelIndex&
     return true;
 }
 
-void SWSortFilterProxyModel::sort() {
+void SWSortFilterProxyModel::sortData() {
     QSortFilterProxyModel::sort(SearchModel::DC_SOURCES, Qt::DescendingOrder);
 }

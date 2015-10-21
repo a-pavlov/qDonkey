@@ -17,6 +17,7 @@ public:
         DC_MEDIA_BITRATE,
         DC_MEDIA_LENGTH,
         DC_MEDIA_CODEC,
+        DC_PREVIEWABLE,
         DC_END
     };
 

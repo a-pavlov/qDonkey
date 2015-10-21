@@ -68,24 +68,26 @@ Page {
                     }
                 }
 
-                model: ["Download", "Preview", "Search related"]
+
+                model: previewable?["Search related", "Download", "Preview"]:[ "Search related", "Download"]
 
                 onSelectedIndexChanged: {
                     switch(selectedIndex) {
-                    case 2:
+                    case 0:
                         session.searchRelatedFiles(hash)
                         console.log("search related files " + hash)
                         break
-                    case 0:
+                    case 1:
                         console.log("start download")
                         break
-                    case 1:
+                    case 2:
                         console.log("start preview")
                         break
                     default:
                         console.log("undefined index " + selectedIndex)
                     }
 
+                    selectedIndex=-1
                 }
             }
         }

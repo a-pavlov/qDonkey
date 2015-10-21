@@ -5,11 +5,12 @@
 
 class SWSortFilterProxyModel : public QSortFilterProxyModel
 {
+    Q_OBJECT
 public:
     SWSortFilterProxyModel(QObject* parent = 0);
     virtual bool lessThan(const QModelIndex& left, const QModelIndex& right) const;
     void showOwn(bool f);
-    Q_INVOKABLE void sort();
+    Q_INVOKABLE void sortData();
 protected:
     virtual bool filterAcceptsRow(int source_row, const QModelIndex& source_parent) const;
 

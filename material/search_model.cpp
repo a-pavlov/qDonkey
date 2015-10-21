@@ -15,6 +15,7 @@ QHash<int, QByteArray> SearchModel::roleNames() const {
     roles[DC_MEDIA_BITRATE] = "bitrate";
     roles[DC_MEDIA_LENGTH] = "media_length";
     roles[DC_MEDIA_CODEC] = "media_codec";
+    roles[DC_PREVIEWABLE] = "previewable";
     return roles;
 }
 
@@ -57,6 +58,7 @@ QVariant SearchModel::data(const QModelIndex& index, int role) const {
         }
         case DC_MEDIA_LENGTH: return media_length(index) > 0 ? misc::userFriendlyDuration(media_length(index), 1) : "";
         case DC_MEDIA_CODEC:  return media_codec(index);
+        case DC_PREVIEWABLE: return misc::isPreviewable(misc::file_extension(filename(index)));
         case DC_END:
             Q_ASSERT(false);
             break;

@@ -22,7 +22,7 @@ Item {
             progress.enabled = false
             progress.visible = false
             if (resultsCount > 0) {
-                //searchFPModel.sort(103, Qt::DescendingOrder)
+                searchFPModel.sortData()
                 pageStack.push(Qt.resolvedUrl("SearchResult.qml"))
             } else
                 alertEmptyResult.show()

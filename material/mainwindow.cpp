@@ -18,9 +18,8 @@ MainWindow::MainWindow(QObject* parent) : QObject(parent) {
     }
     searchmodel = new SearchModel(this);
     searchFilterProxyModel = new SWSortFilterProxyModel(this);
-    searchFilterProxyModel->setDynamicSortFilter(true);
+    searchFilterProxyModel->setDynamicSortFilter(false);
     searchFilterProxyModel->setSourceModel(searchmodel);
-    searchFilterProxyModel->sort();
 
     connect(Session::instance(), SIGNAL(serverConnectionInitialized(QString,QString, int, quint32,quint32,quint32)),
             smodel, SLOT(on_serverConnectionInitialized(QString,QString,int,quint32,quint32,quint32)));
