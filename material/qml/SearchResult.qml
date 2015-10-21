@@ -79,6 +79,7 @@ Page {
                         break
                     case 1:
                         console.log("start download")
+                        session.addTransfer(hash, name, filesize_num, sources_num)
                         break
                     case 2:
                         console.log("start preview")

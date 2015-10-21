@@ -203,6 +203,7 @@ public slots:
     virtual QPair<QED2KHandle, ErrorCode> addLink(QString strLink, bool resumed = false);
     virtual void addTransferFromFile(const QString& filename, bool resumed = false);
     virtual QED2KHandle addTransfer(const libed2k::add_transfer_params&);
+    Q_INVOKABLE void addTransfer(const QString& hash, const QString& filename, qlonglong size, int sources);
     QString postTransfer(const libed2k::add_transfer_params&);  // async add transfer and return hash from atp
 
 	/**

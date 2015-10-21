@@ -32,7 +32,9 @@ HEADERS +=  ../src/preferences/preferences.h \
             ../src/search/search_widget_fp_model.h \
             mainwindow.h \
             server_model.h \
-            search_model.h
+            search_model.h \
+            transfer_model.h \
+            transfermodel_item.h
 
 SOURCES +=  ../src/preferences/preferences.cpp \
             ../src/misc.cpp \
@@ -40,7 +42,9 @@ SOURCES +=  ../src/preferences/preferences.cpp \
             main.cpp \
             mainwindow.cpp \
             server_model.cpp \
-            search_model.cpp
+            search_model.cpp \
+            transfer_model.cpp \
+            transfermodel_item.cpp
 
 LANG_PATH = ../src/lang
 TRANSLATIONS =  $$LANG_PATH/qDonkey_en.ts \

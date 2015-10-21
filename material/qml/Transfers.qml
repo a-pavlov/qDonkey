@@ -22,12 +22,12 @@ Item {
             bottom: parent.bottom
         }
 
-        model: ["Transfer1", "Transfer2", "Trasfer3"]
+        model: transferModel
 
         delegate: ListItem.SimpleMenu {
             id: transfer
-            text: modelData
-            subText: "stalled"
+            text: name
+            subText: size
             selectedIndex: -1
 
             secondaryItem: ProgressCircle {

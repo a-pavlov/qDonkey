@@ -9,7 +9,9 @@ QHash<int, QByteArray> SearchModel::roleNames() const {
     QHash<int, QByteArray> roles;
     roles[DC_NAME]  = "name";
     roles[DC_FILESIZE] = "filesize";
+    roles[DC_FILESIZE_NUM] = "filesize_num";
     roles[DC_SOURCES] = "sources";
+    roles[DC_SOURCES_NUM]="sources_num";
     roles[DC_TYPE] = "type";
     roles[DC_HASH] = "hash";
     roles[DC_MEDIA_BITRATE] = "bitrate";
@@ -32,6 +34,7 @@ QVariant SearchModel::data(const QModelIndex& index, int role) const {
     switch(role) {
         case DC_NAME:        return filename(index);
         case DC_FILESIZE:    return misc::friendlyUnit(size(index), m_st);
+        case DC_FILESIZE_NUM:return size(index);
         case DC_SOURCES: {
             quint64 nSources = sources(index);
             quint64 nCompleteSources = complete_sources(index);
@@ -44,6 +47,7 @@ QVariant SearchModel::data(const QModelIndex& index, int role) const {
             strSrc += ")";
             return strSrc;
         }
+        case DC_SOURCES_NUM:return sources(index);
         case DC_TYPE:       return toString(type(index));
         case DC_HASH:       return hash(index);
         case DC_MEDIA_BITRATE: {

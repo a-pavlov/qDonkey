@@ -13,6 +13,7 @@
 #include <libed2k/util.hpp>
 #include <libed2k/upnp.hpp>
 #include <libed2k/natpmp.hpp>
+#include <libed2k/file.hpp>
 #endif
 
 #include <QMessageBox>
@@ -518,6 +519,26 @@ void QED2KSession::addTransferFromFile(const QString& filename, bool resumed /* 
 
 QED2KHandle QED2KSession::addTransfer(const libed2k::add_transfer_params& atp){
     return QED2KHandle(delegate()->add_transfer(atp));
+}
+
+void QED2KSession::addTransfer(const QString& hash, const QString& filename, qlonglong size, int sources) {
+    using namespace libed2k;
+    qDebug() << "download file " << filename << " with hash " << hash << " size " << size;
+    EED2KFileType fileType = GetED2KFileTypeID(filename.toStdString());
+    if (fileType == ED2KFT_EMULECOLLECTION) {
+    //    filename.replace('\\', '-');
+    //    filename.replace('/', '-');
+    }
+
+    // TODO - fix preferences
+    QString filepath = QDir(Preferences().inputDir()).filePath(filename);
+    libed2k::add_transfer_params params;
+    params.file_hash = libed2k::md4_hash::fromString(hash.toStdString());
+    params.file_path = filepath.toUtf8().constData();
+    params.file_size = size;
+    params.seed_mode = false;
+    params.num_complete_sources = sources;
+    addTransfer(params);
 }
 
 QString QED2KSession::postTransfer(const libed2k::add_transfer_params& atp)

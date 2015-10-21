@@ -11,7 +11,9 @@ public:
     enum DisplayColumns {
         DC_NAME = Qt::UserRole + 1,
         DC_FILESIZE,
+        DC_FILESIZE_NUM,
         DC_SOURCES,
+        DC_SOURCES_NUM,
         DC_TYPE,
         DC_HASH,
         DC_MEDIA_BITRATE,
