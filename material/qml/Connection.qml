@@ -40,7 +40,7 @@ ColumnLayout {
                 action: Icon {
                     id: icns
                     anchors.centerIn: parent
-                    name: "action/done"
+                    source: (status==0)?Qt.resolvedUrl("qrc:/images/flash.svg"):Qt.resolvedUrl("qrc:/images/flash-off.svg")
                 }
 
                 valueText: {

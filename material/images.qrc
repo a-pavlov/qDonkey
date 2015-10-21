@@ -14,5 +14,18 @@
         <file>images/file-multiple.svg</file>
         <file>images/robot.gif</file>
         <file>images/video.svg</file>
+        <file>images/close-circle.svg</file>
+        <file>images/close-circle-outline.svg</file>
+        <file>images/flash.svg</file>
+        <file>images/flash-off.svg</file>
+        <file>images/folder-download.svg</file>
+        <file>images/folder-plus.svg</file>
+        <file>images/folder-remove.svg</file>
+        <file>images/folder-upload.svg</file>
+        <file>images/pause-circle.svg</file>
+        <file>images/pause-circle-outline.svg</file>
+        <file>images/play-circle.svg</file>
+        <file>images/play-circle-outline.svg</file>
+        <file>images/stop.svg</file>
     </qresource>
 </RCC>
