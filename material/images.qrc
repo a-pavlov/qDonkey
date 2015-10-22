@@ -27,5 +27,13 @@
         <file>images/play-circle.svg</file>
         <file>images/play-circle-outline.svg</file>
         <file>images/stop.svg</file>
+        <file>images/alert-circle.svg</file>
+        <file>images/chevron-double-down.svg</file>
+        <file>images/chevron-double-up.svg</file>
+        <file>images/timer.svg</file>
+        <file>images/file-check.svg</file>
+        <file>images/information.svg</file>
+        <file>images/information-outline.svg</file>
+        <file>images/wrench.svg</file>
     </qresource>
 </RCC>

@@ -9,13 +9,9 @@
 #include "qtlibed2k/qed2khandle.h"
 #include "qtlibed2k/qed2ksession.h"
 
-class TransferModelItem : public QObject {
+class TransferModelItemEnum : public QObject {
     Q_OBJECT
 public:
-    enum {
-         FilterRole = Qt::UserRole + 2
-    };
-
     enum State {
         STATE_DOWNLOADING,
         STATE_STALLED_DL,
@@ -25,6 +21,18 @@ public:
         STATE_PAUSED_DL,
         STATE_CHECKING,
         STATE_INVALID
+    };
+
+    Q_ENUMS(State)
+
+    static void qmlRegister();
+};
+
+class TransferModelItem : public QObject {
+    Q_OBJECT
+public:
+    enum {
+         FilterRole = Qt::UserRole + 2
     };
 
     enum Column {
@@ -57,7 +65,7 @@ public:
     void setHandle(QED2KHandle h) { m_handle = h; }
 
 private:
-    State state() const;
+    TransferModelItemEnum::State state() const;
     const QString m_status;
 private:
     QED2KHandle m_handle;

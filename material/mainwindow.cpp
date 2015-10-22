@@ -2,6 +2,7 @@
 #include "server_model.h"
 #include "search_model.h"
 #include "transfer_model.h"
+#include "transfermodel_item.h"
 #include "../src/search/search_widget_fp_model.h"
 #include "qed2kserver.h"
 #include "qed2ksession.h"
@@ -31,6 +32,7 @@ MainWindow::MainWindow(QObject* parent) : QObject(parent) {
     connect(Session::instance(), SIGNAL(searchResult(libed2k::net_identifier,QString,QList<QED2KSearchResultEntry>,bool)),
             searchmodel, SLOT(on_searchResult(libed2k::net_identifier,QString,QList<QED2KSearchResultEntry>,bool)));
     engine = new QQmlApplicationEngine(this);
+    TransferModelItemEnum::qmlRegister();
     engine->rootContext()->setContextProperty("serverModel", smodel);
     engine->rootContext()->setContextProperty("searchModel", searchmodel);
     engine->rootContext()->setContextProperty("searchFPModel", searchFilterProxyModel);

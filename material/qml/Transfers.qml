@@ -2,6 +2,7 @@ import QtQuick 2.0
 import QtQuick.Layouts 1.1
 import Material 0.1
 import Material.ListItems 0.1 as ListItem
+import TransferModelItemEnum 1.0
 
 Item {
     ColumnLayout {
@@ -38,8 +39,9 @@ Item {
                 indeterminate: false
                 minimumValue: 0
                 maximumValue: 100
+                value: progress
 
-                SequentialAnimation on value {
+                /*SequentialAnimation on value {
                     running: true
                     loops: NumberAnimation.Infinite
 
@@ -50,7 +52,7 @@ Item {
                     }
 
                     PauseAnimation { duration: 1000 }
-                }
+                }*/
 
                 Label {
                     anchors.centerIn: parent
@@ -60,7 +62,28 @@ Item {
 
             action: Icon {
                 anchors.centerIn: parent
-                source: Qt.resolvedUrl("qrc:/images/folder-plus.svg")
+                source: {
+                    switch(status) {
+                    case TransferModelItem.STATE_STALLED_DL:
+                        return Qt.resolvedUrl("qrc:/images/timer.svg")
+                    case TransferModelItem.STATE_STALLED_UP:
+                        return Qt.resolvedUrl("qrc:/images/file-check.svg")
+                    case TransferModelItem.STATE_DOWNLOADING:
+                        return Qt.resolvedUrl("qrc:/images/chevron-double-down.svg")
+                    case TransferModelItem.STATE_SEEDING:
+                        return Qt.resolvedUrl("qrc:/images/chevron-double-up.svg")
+                    case TransferModelItem.STATE_PAUSED_DL:
+                    case TransferModelItem.STATE_PAUSED_UP:
+                        return Qt.resolvedUrl("qrc:/images/pause-circle.svg")
+                    case TransferModelItem.STATE_CHECKING:
+                        return Qt.resolvedUrl("qrc:/images/wrench.svg")
+                    case TransferModelItem.STATE_INVALID:
+                        return Qt.resolvedUrl("qrc:/images/alert-circle.svg")
+                    default:
+                        return Qt.resolvedUrl("qrc:/images/alert-circle.svg")
+                    }
+                }
+
                 size: Units.dp(32)
             }
 
