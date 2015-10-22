@@ -14,12 +14,25 @@ Item {
             top: parent.top
         }
     }
+	
+    RowLayout {
+        Switch {
+            id: showPreviusTransfers
+            checked: false
+            enabled: true
+            color: Theme.light.textColor
+        }
+
+        Label {
+            text: "Show transfers from previous sessions"
+        }
+    }
 
     ListView {
         anchors {
             left: parent.left
             right: parent.right
-            top: parent.top
+            top: showPreviusTransfers.bottom
             bottom: parent.bottom
         }
 
