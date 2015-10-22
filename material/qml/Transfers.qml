@@ -87,8 +87,30 @@ Item {
                 size: Units.dp(32)
             }
 
-            maximumLineCount: 2
+            maximumLineCount: 3
             model: ["Pause", "Resume", "Remove"]
+
+            onSelectedIndexChanged: {
+                switch(selectedIndex) {
+                case 0:
+                    console.log("pause " + hash)
+                    session.pauseTransfer(hash);
+                    break
+                case 1:
+                    console.log("resume " + hash)
+                    session.resumeTransfer(hash);
+                    break
+                case 2:
+                    console.log("remove " + hash)
+                    session.deleteTransfer(hash,true)
+                    transferModel.removeTransfer(hash)
+                    break
+                default:
+                    console.log("undefined index " + selectedIndex)
+                }
+
+                selectedIndex=-1
+            }
         }
     }
 }

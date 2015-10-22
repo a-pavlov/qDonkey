@@ -31,7 +31,7 @@ signals:
     void transferAboutToBeRemoved(TransferModelItem *transferItem);
 
 public slots:
-    void removeTransfer(const QString& hash);
+    Q_INVOKABLE void removeTransfer(const QString& hash);
 
 private slots:
     void addTransfer(const QED2KHandle& h);

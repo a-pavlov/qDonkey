@@ -6,6 +6,21 @@ import Material.ListItems 0.1 as ListItem
 Page {
     id: searchResults
     title: "Back to search"
+
+    Dialog {
+        id: alertTransferAddSucc
+        width: Units.dp(300)
+        text: "Transfer was added to download list"
+        hasActions: false
+    }
+
+    Dialog {
+        id: alertTransferAddFail
+        width: Units.dp(300)
+        text: "Unable to add transfer"
+        hasActions: false
+    }
+
     ColumnLayout {
         spacing: 0
         anchors {
@@ -79,7 +94,12 @@ Page {
                         break
                     case 1:
                         console.log("start download")
-                        session.addTransfer(hash, name, filesize_num, sources_num)
+                        if (session.addTransfer(hash, name, filesize_num, sources_num)) {
+                            alertTransferAddSucc.show()
+                        } else {
+                            alertTransferAddFail.show()
+                        }
+
                         break
                     case 2:
                         console.log("start preview")

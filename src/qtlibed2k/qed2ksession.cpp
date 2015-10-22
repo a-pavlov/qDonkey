@@ -521,7 +521,7 @@ QED2KHandle QED2KSession::addTransfer(const libed2k::add_transfer_params& atp){
     return QED2KHandle(delegate()->add_transfer(atp));
 }
 
-void QED2KSession::addTransfer(const QString& hash, const QString& filename, qlonglong size, int sources) {
+bool QED2KSession::addTransfer(const QString& hash, const QString& filename, qlonglong size, int sources) {
     using namespace libed2k;
     qDebug() << "download file " << filename << " with hash " << hash << " size " << size;
     EED2KFileType fileType = GetED2KFileTypeID(filename.toStdString());
@@ -538,7 +538,8 @@ void QED2KSession::addTransfer(const QString& hash, const QString& filename, qlo
     params.file_size = size;
     params.seed_mode = false;
     params.num_complete_sources = sources;
-    addTransfer(params);
+    QED2KHandle h = addTransfer(params);
+    return h.is_valid();
 }
 
 QString QED2KSession::postTransfer(const libed2k::add_transfer_params& atp)
@@ -595,6 +596,16 @@ void QED2KSession::searchFiles(const QString& strQuery,
         msgBox.setIcon(QMessageBox::Critical);
         msgBox.exec();
     }
+}
+
+void QED2KSession::pauseTransfer(const QString& hash) {
+    QED2KHandle h = getTransfer(hash);
+    if (h.is_valid()) h.pause();
+}
+
+void QED2KSession::resumeTransfer(const QString& hash) {
+    QED2KHandle h = getTransfer(hash);
+    if (h.is_valid()) h.resume();
 }
 
 void QED2KSession::searchRelatedFiles(QString strHash)

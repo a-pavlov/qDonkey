@@ -151,7 +151,7 @@ public:
     virtual bool hasActiveTransfers() const; // override default behaviour by active transfers usage
     SessionStatus getSessionStatus() const;
 
-    void deleteTransfer(const QString& hash, bool delete_files);
+    Q_INVOKABLE void deleteTransfer(const QString& hash, bool delete_files);
 
     void setDownloadRateLimit(long rate);
     void setUploadRateLimit(long rate);
@@ -179,7 +179,8 @@ public:
     libed2k::session* delegate() const;
 
     const libed2k::ip_filter& session_filter() const;
-
+    Q_INVOKABLE void pauseTransfer(const QString& hash);
+    Q_INVOKABLE void resumeTransfer(const QString& hash);
 private:
     QScopedPointer<libed2k::session> m_session;
     QHash<QString, QED2KHandle> m_fast_resume_transfers;   // contains fast resume data were loading
@@ -203,7 +204,7 @@ public slots:
     virtual QPair<QED2KHandle, ErrorCode> addLink(QString strLink, bool resumed = false);
     virtual void addTransferFromFile(const QString& filename, bool resumed = false);
     virtual QED2KHandle addTransfer(const libed2k::add_transfer_params&);
-    Q_INVOKABLE void addTransfer(const QString& hash, const QString& filename, qlonglong size, int sources);
+    Q_INVOKABLE bool addTransfer(const QString& hash, const QString& filename, qlonglong size, int sources);
     QString postTransfer(const libed2k::add_transfer_params&);  // async add transfer and return hash from atp
 
 	/**
