@@ -15,19 +15,6 @@ Item {
         }
     }
 	
-    RowLayout {
-        Switch {
-            id: showPreviusTransfers
-            checked: false
-            enabled: true
-            color: Theme.light.textColor
-        }
-
-        Label {
-            text: "Show transfers from previous sessions"
-        }
-    }
-
     ListView {
         anchors {
             left: parent.left
@@ -53,6 +40,7 @@ Item {
                 minimumValue: 0
                 maximumValue: 100
                 value: progress
+                dashThickness: Units.dp(8)
 
                 /*SequentialAnimation on value {
                     running: true

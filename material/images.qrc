@@ -35,5 +35,8 @@
         <file>images/information.svg</file>
         <file>images/information-outline.svg</file>
         <file>images/wrench.svg</file>
+        <file>images/access-point-network.svg</file>
+        <file>images/account.svg</file>
+        <file>images/speedometer.svg</file>
     </qresource>
 </RCC>

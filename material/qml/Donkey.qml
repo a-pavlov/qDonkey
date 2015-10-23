@@ -16,6 +16,10 @@ ApplicationWindow {
         tabHighlightColor: "white"
     }
 
+    Component.onCompleted: {
+        initDialog.show()
+    }
+
     property string connections: "Connection"
     property string transfers: "Transfers"
     property string search: "Search"
@@ -98,14 +102,12 @@ ApplicationWindow {
     }
 
     Dialog {
-        id: prefDialog
+        id: initDialog
         anchors.centerIn: parent
-
         width: Units.dp(350)
-        height: column.implicitHeight + Units.dp(32)
-
+        height: init_column.implicitHeight + Units.dp(32)
         ColumnLayout {
-            id: column
+            id: init_column
 
             anchors {
                 fill: parent
@@ -123,7 +125,7 @@ ApplicationWindow {
                 }
 
                 style: "title"
-                text: "Edit shipping info"
+                text: "Setup incoming directory"
             }
 
             Item {
@@ -134,72 +136,195 @@ ApplicationWindow {
             ListItem.Standard {
                 action: Icon {
                     anchors.centerIn: parent
-                    name: "action/account_child"
+                    source: Qt.resolvedUrl("qrc:/images/folder-download.svg")
                 }
 
                 content: TextField {
                     anchors.centerIn: parent
                     width: parent.width
+                    floatingLabel: true
+                    placeholderText: "Incoming directory"
+                    text: "/home"
+                }
+            }
 
-                    text: "Alex Nelson"
+
+            Item {
+                Layout.fillWidth: true
+                Layout.preferredHeight: Units.dp(8)
+            }
+
+            RowLayout {
+                Layout.alignment: Qt.AlignRight
+                spacing: Units.dp(8)
+
+                anchors {
+                    right: parent.right
+                    margins: Units.dp(16)
+                }
+
+                Button {
+                    text: "Cancel"
+                    textColor: Theme.primaryColor
+                }
+
+                Button {
+                    text: "Ok"
+                    textColor: Theme.primaryColor
+                }
+            }
+
+        }
+    }
+
+    Dialog {
+        id: prefDialog
+        anchors.centerIn: parent
+
+        width: Units.dp(350)
+        height: column.implicitHeight + Units.dp(32)
+
+        ColumnLayout {
+            id: column
+
+            anchors {
+                fill: parent
+                topMargin: Units.dp(16)
+                bottomMargin: Units.dp(16)
+            }
+
+            Label {                
+
+                anchors {
+                    left: parent.left
+                    right: parent.right
+                    margins: Units.dp(16)
+                }
+
+                style: "title"
+                text: "Preferences"
+            }
+
+            Item {
+                Layout.fillWidth: true
+                Layout.preferredHeight: Units.dp(8)
+            }
+
+            ListItem.Standard {
+                action: Icon {
+                    anchors.centerIn: parent
+                    source: Qt.resolvedUrl("qrc:/images/account.svg")
+                }
+
+                content: TextField {
+                    anchors.centerIn: parent
+                    width: parent.width
+                    floatingLabel: true
+                    placeholderText: "Enter your nickname"
+
+                    text: "qDonkey"
+                }
+            }
+
+            ListItem.Standard {
+
+                action: Icon {
+                    anchors.centerIn: parent
+                    source: Qt.resolvedUrl("qrc:/images/access-point-network.svg")
+                }
+
+                content: TextField {
+                    anchors.centerIn: parent
+                    width: parent.width
+                    floatingLabel: true
+                    placeholderText: "Listen port"
+
+                    text: "4661"
+                }
+            }
+
+            ListItem.Standard {
+                height: grid.height + Units.dp(8)
+                implicitHeight: grid.implicitHeight + Units.dp(8)
+
+                action: Icon {
+                    anchors.centerIn: parent
+                    source: Qt.resolvedUrl("qrc:/images/speedometer.svg")
+                }
+
+                content: GridLayout {
+                    id: grid
+                    columns: 2
+                    anchors.centerIn: parent
+                    rowSpacing: Units.dp(1)
+                    columnSpacing: Units.dp(10)
+
+                    CheckBox {
+                        checked: true
+                        enabled: true
+                        text: "Down"
+                        onCheckedChanged: {
+                            limitDownload.enabled=checked
+                        }
+                    }
+
+                    TextField {
+                        id: limitDownload
+                        width: parent.width
+                        floatingLabel: true
+                        placeholderText: "Dowload limit Kb/s"
+                        text: "200"
+                        validator: IntValidator {}
+                    }
+
+                    CheckBox {
+                        Layout.alignment: Qt.AlignVCenter
+                        checked: true
+                        text: "Up"
+                         onCheckedChanged: {
+                            limitUpload.enabled=checked
+                        }
+                    }
+
+                    TextField {
+                        id: limitUpload
+                        width: parent.width
+                        floatingLabel: true
+                        placeholderText: "Upload limit Kb/s"
+                        text: "200"
+                        validator: IntValidator {}
+                    }
                 }
             }
 
             ListItem.Standard {
                 action: Icon {
                     anchors.centerIn: parent
-                    name: "maps/place"
+                    source: Qt.resolvedUrl("qrc:/images/folder-download.svg")
                 }
 
                 content: TextField {
                     anchors.centerIn: parent
                     width: parent.width
-
-                    text: "100 Main Street"
+                    floatingLabel: true
+                    placeholderText: "Incoming directory"
+                    text: "/home"
                 }
             }
 
             ListItem.Standard {
                 action: Item {}
-
                 content: RowLayout {
-                    anchors.centerIn: parent
-                    width: parent.width
-
-                    TextField {
-                        Layout.alignment: Qt.AlignVCenter
-                        Layout.preferredWidth: 0.4 * parent.width
-
-                        text: "New York"
+                    Switch {
+                        id: showPreviusTransfers
+                        checked: false
+                        enabled: true
+                        darkBackground: false
                     }
 
-                    MenuField {
-                        Layout.alignment: Qt.AlignVCenter
-                        Layout.preferredWidth: 0.2 * parent.width
-
-                        model: ["NY", "NC", "ND"]
+                    Label {
+                        text: "Show old transfers"
                     }
-
-                    TextField {
-                        Layout.alignment: Qt.AlignVCenter
-                        Layout.preferredWidth: 0.3 * parent.width
-
-                        text: "10011"
-                    }
-                }
-            }
-
-            ListItem.Standard {
-                action: Icon {
-                    anchors.centerIn: parent
-                    name: "communication/email"
-                }
-
-                content: TextField {
-                    anchors.centerIn: parent
-                    width: parent.width
-
-                    placeholderText: "Email"
                 }
             }
 
@@ -223,7 +348,7 @@ ApplicationWindow {
                 }
 
                 Button {
-                    text: "Done"
+                    text: "Ok"
                     textColor: Theme.primaryColor
                 }
             }

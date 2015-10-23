@@ -38,7 +38,6 @@ MainWindow::MainWindow(QObject* parent) : QObject(parent) {
     engine->rootContext()->setContextProperty("searchFPModel", searchFilterProxyModel);
     engine->rootContext()->setContextProperty("transferModel", transferModel);
     engine->rootContext()->setContextProperty("session", Session::instance());
-
 #ifdef IS74
     engine->load(QUrl(QStringLiteral("qrc:/qml/Donkey.qml")));
 #else
