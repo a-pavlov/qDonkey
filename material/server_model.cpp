@@ -61,7 +61,7 @@ void ServerModel::create(const QString& alias, const QString& host, int port) {
 
 QModelIndex ServerModel::getIndex(const QString& alias, const QString& host, int port) const {
     for(int i = 0; i < servers.size(); ++i) {
-        if (servers.at(i).alias == QED2KServer(alias, host, port)) return index(i);
+        if (servers.at(i) == QED2KServer(alias, host, port)) return index(i);
     }
 
     return QModelIndex();

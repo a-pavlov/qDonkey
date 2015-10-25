@@ -6,6 +6,8 @@
 class QQmlApplicationEngine;
 class ServerModel;
 class SearchModel;
+class SWSortFilterProxyModel;
+class TransferModel;
 
 
 class MainWindow:  public QObject {
@@ -15,6 +17,8 @@ private:
     QObject*                mainWindow;
     ServerModel*            smodel;
     SearchModel*            searchmodel;
+    SWSortFilterProxyModel* searchFilterProxyModel;
+    TransferModel*          transferModel;
 public:
     explicit MainWindow(QObject* parent = 0);
 

@@ -6,6 +6,21 @@ import Material.ListItems 0.1 as ListItem
 Page {
     id: searchResults
     title: "Back to search"
+
+    Dialog {
+        id: alertTransferAddSucc
+        width: Units.dp(300)
+        text: "Transfer was added to download list"
+        hasActions: false
+    }
+
+    Dialog {
+        id: alertTransferAddFail
+        width: Units.dp(300)
+        text: "Unable to add transfer"
+        hasActions: false
+    }
+
     ColumnLayout {
         spacing: 0
         anchors {
@@ -15,50 +30,86 @@ Page {
             top: parent.top
         }
 
-        Label {
-            anchors {
-                left: parent.left
-                top: parent.top
-            }
-
-            id: title
-            text: "Search results"
-            style: "title"
-        }
-
         ListView {
             anchors {
                 left: parent.left
                 right: parent.right
-                top: title.bottom
+                top: parent.top
                 bottom: parent.bottom
             }
 
-            model: searchModel
+            model: searchFPModel
 
-            delegate: ListItem.Subtitled {
+            delegate: ListItem.SimpleMenu {
                 id: searchItem
-                text: name + searchModel.rowCount()
-                subText: hash + " size: " + filesize
-                //secondaryItem: Switch {
-                //    id: enablingSwitch
-                //    anchors.verticalCenter: parent.verticalCenter
-                //}
+                text: name
+                subText: sources
+                valueText: filesize
+                selectedIndex: -1
 
                 action: Icon {
                     id: icns
                     anchors.centerIn: parent
-                    source:  Qt.resolvedUrl("qrc:/images/audio.svg")
-                }
-/*
-                MouseArea {
-                    anchors.fill: parent
-                    onDoubleClicked: {
-                        console.log("Double click on " + itm.text);
-                        serverModel.update(itm.text)
+                    source: {
+                        switch(type) {
+                        case "Any":
+                            Qt.resolvedUrl("qrc:/images/file.svg")
+                            break
+                        case "Video":
+                            Qt.resolvedUrl("qrc:/images/file-video.svg")
+                            break
+                        case "Audio":
+                            Qt.resolvedUrl("qrc:/images/file-music.svg")
+                            break
+                        case "Document":
+                            Qt.resolvedUrl("qrc:/images/file-document.svg")
+                            break
+                        case "Picture":
+                            Qt.resolvedUrl("qrc:/images/file-image.svg")
+                            break
+                        case "Archive":
+                            Qt.resolvedUrl("qrc:/images/archive.svg")
+                            break
+                        case "CD image":
+                            Qt.resolvedUrl("qrc:/images/disqus.svg")
+                            break
+                        case "Emule collection":
+                            Qt.resolvedUrl("qrc:/images/file-multiple.svg")
+                            break
+                        default:
+                            Qt.resolvedUrl("qrc:/images/file.svg")
+                            break
+                        }
                     }
                 }
-*/
+
+
+                model: previewable?["Search related", "Download", "Preview"]:[ "Search related", "Download"]
+
+                onSelectedIndexChanged: {
+                    switch(selectedIndex) {
+                    case 0:
+                        session.searchRelatedFiles(hash)
+                        console.log("search related files " + hash)
+                        break
+                    case 1:
+                        console.log("start download")
+                        if (session.addTransfer(hash, name, filesize_num, sources_num)) {
+                            alertTransferAddSucc.show()
+                        } else {
+                            alertTransferAddFail.show()
+                        }
+
+                        break
+                    case 2:
+                        console.log("start preview")
+                        break
+                    default:
+                        console.log("undefined index " + selectedIndex)
+                    }
+
+                    selectedIndex=-1
+                }
             }
         }
     }

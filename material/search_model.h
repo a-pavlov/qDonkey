@@ -11,12 +11,15 @@ public:
     enum DisplayColumns {
         DC_NAME = Qt::UserRole + 1,
         DC_FILESIZE,
+        DC_FILESIZE_NUM,
         DC_SOURCES,
+        DC_SOURCES_NUM,
         DC_TYPE,
         DC_HASH,
         DC_MEDIA_BITRATE,
         DC_MEDIA_LENGTH,
         DC_MEDIA_CODEC,
+        DC_PREVIEWABLE,
         DC_END
     };
 
@@ -40,11 +43,12 @@ public:
     quint64 media_bitrate(const QModelIndex&) const;
     QString media_codec(const QModelIndex&) const;
 
-    void clean();
+    Q_INVOKABLE void clean();
     void appendData(const QList<QED2KSearchResultEntry>&);
 private:
     misc::SizeType m_st;
     QList<QED2KSearchResultEntry> search_results;
+    bool m_moreResults;
 signals:
     void countChanged(int);
 public slots:

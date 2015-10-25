@@ -2,19 +2,22 @@
 #include "misc.h"
 
 SearchModel::SearchModel(QObject *parent) :
-    QAbstractListModel(parent), m_st(misc::ST_DEFAULT) {
+    QAbstractListModel(parent), m_st(misc::ST_DEFAULT), m_moreResults(false) {
 }
 
 QHash<int, QByteArray> SearchModel::roleNames() const {
     QHash<int, QByteArray> roles;
     roles[DC_NAME]  = "name";
     roles[DC_FILESIZE] = "filesize";
+    roles[DC_FILESIZE_NUM] = "filesize_num";
     roles[DC_SOURCES] = "sources";
+    roles[DC_SOURCES_NUM]="sources_num";
     roles[DC_TYPE] = "type";
     roles[DC_HASH] = "hash";
     roles[DC_MEDIA_BITRATE] = "bitrate";
     roles[DC_MEDIA_LENGTH] = "media_length";
     roles[DC_MEDIA_CODEC] = "media_codec";
+    roles[DC_PREVIEWABLE] = "previewable";
     return roles;
 }
 
@@ -31,6 +34,7 @@ QVariant SearchModel::data(const QModelIndex& index, int role) const {
     switch(role) {
         case DC_NAME:        return filename(index);
         case DC_FILESIZE:    return misc::friendlyUnit(size(index), m_st);
+        case DC_FILESIZE_NUM:return size(index);
         case DC_SOURCES: {
             quint64 nSources = sources(index);
             quint64 nCompleteSources = complete_sources(index);
@@ -43,6 +47,7 @@ QVariant SearchModel::data(const QModelIndex& index, int role) const {
             strSrc += ")";
             return strSrc;
         }
+        case DC_SOURCES_NUM:return sources(index);
         case DC_TYPE:       return toString(type(index));
         case DC_HASH:       return hash(index);
         case DC_MEDIA_BITRATE: {
@@ -57,6 +62,7 @@ QVariant SearchModel::data(const QModelIndex& index, int role) const {
         }
         case DC_MEDIA_LENGTH: return media_length(index) > 0 ? misc::userFriendlyDuration(media_length(index), 1) : "";
         case DC_MEDIA_CODEC:  return media_codec(index);
+        case DC_PREVIEWABLE: return misc::isPreviewable(misc::file_extension(filename(index)));
         case DC_END:
             Q_ASSERT(false);
             break;
@@ -183,9 +189,10 @@ void SearchModel::clean() {
 
 
 void SearchModel::appendData(const QList<QED2KSearchResultEntry>& entries) {
-
+    if (entries.isEmpty()) return;
     beginInsertRows(QModelIndex(), rowCount(), rowCount() + entries.size() - 1);
     search_results.append(entries);
+    qDebug() << "results count " << search_results.size();
     endInsertRows();
 }
 
@@ -245,7 +252,7 @@ void SearchModel::on_searchResult(const libed2k::net_identifier& np, const QStri
     const QList<QED2KSearchResultEntry>& vRes, bool bMoreResult) {
     Q_UNUSED(np);
     Q_UNUSED(hash);
-    Q_UNUSED(bMoreResult);
+    m_moreResults = bMoreResult;
     appendData(vRes);
 }
 

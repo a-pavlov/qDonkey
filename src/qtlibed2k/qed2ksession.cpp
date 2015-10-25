@@ -13,6 +13,7 @@
 #include <libed2k/util.hpp>
 #include <libed2k/upnp.hpp>
 #include <libed2k/natpmp.hpp>
+#include <libed2k/file.hpp>
 #endif
 
 #include <QMessageBox>
@@ -520,6 +521,27 @@ QED2KHandle QED2KSession::addTransfer(const libed2k::add_transfer_params& atp){
     return QED2KHandle(delegate()->add_transfer(atp));
 }
 
+bool QED2KSession::addTransfer(const QString& hash, const QString& filename, qlonglong size, int sources) {
+    using namespace libed2k;
+    qDebug() << "download file " << filename << " with hash " << hash << " size " << size;
+    EED2KFileType fileType = GetED2KFileTypeID(filename.toStdString());
+    if (fileType == ED2KFT_EMULECOLLECTION) {
+    //    filename.replace('\\', '-');
+    //    filename.replace('/', '-');
+    }
+
+    // TODO - fix preferences
+    QString filepath = QDir(Preferences().inputDir()).filePath(filename);
+    libed2k::add_transfer_params params;
+    params.file_hash = libed2k::md4_hash::fromString(hash.toStdString());
+    params.file_path = filepath.toUtf8().constData();
+    params.file_size = size;
+    params.seed_mode = false;
+    params.num_complete_sources = sources;
+    QED2KHandle h = addTransfer(params);
+    return h.is_valid();
+}
+
 QString QED2KSession::postTransfer(const libed2k::add_transfer_params& atp)
 {
     {
@@ -576,6 +598,16 @@ void QED2KSession::searchFiles(const QString& strQuery,
     }
 }
 
+void QED2KSession::pauseTransfer(const QString& hash) {
+    QED2KHandle h = getTransfer(hash);
+    if (h.is_valid()) h.pause();
+}
+
+void QED2KSession::resumeTransfer(const QString& hash) {
+    QED2KHandle h = getTransfer(hash);
+    if (h.is_valid()) h.resume();
+}
+
 void QED2KSession::searchRelatedFiles(QString strHash)
 {
     libed2k::search_request sr = (generateSearchRequest(QStringToMD4(strHash)));
@@ -624,7 +656,7 @@ void QED2KSession::readAlerts()
         if (libed2k::server_connection_initialized_alert* p =
             dynamic_cast<libed2k::server_connection_initialized_alert*>(a.get()))
         {
-            emit serverConnectionInitialized(misc::toQStringU(p->name), p->client_id, p->tcp_flags, p->aux_port);
+            emit serverConnectionInitialized(misc::toQStringU(p->name), misc::toQString(p->host), p->port, p->client_id, p->tcp_flags, p->aux_port);
             qDebug() << "server initialized: " << QString::fromStdString(p->name) << " " << QString::fromStdString(p->host) << " " << p->port;
         }
         else if (libed2k::server_status_alert* p = dynamic_cast<libed2k::server_status_alert*>(a.get()))
@@ -643,7 +675,7 @@ void QED2KSession::readAlerts()
         else if (libed2k::server_connection_closed* p =
                  dynamic_cast<libed2k::server_connection_closed*>(a.get()))
         {
-            emit serverConnectionClosed(misc::toQStringU(p->name), QString::fromLocal8Bit(p->m_error.message().c_str()));
+            emit serverConnectionClosed(misc::toQStringU(p->name), misc::toQString(p->host), p->port, QString::fromLocal8Bit(p->m_error.message().c_str()));
         }
         else if (libed2k::shared_files_alert* p = dynamic_cast<libed2k::shared_files_alert*>(a.get()))
         {
@@ -673,7 +705,7 @@ void QED2KSession::readAlerts()
             else
             {
                 emit searchResult(p->m_np, md4toQString(p->m_hash), vRes, bMoreResult);
-                emit searchFinished(bMoreResult);
+                emit searchFinished(vRes.size(), bMoreResult);
             }
         }
         else if (libed2k::listen_failed_alert* p = dynamic_cast<libed2k::listen_failed_alert*>(a.get()))

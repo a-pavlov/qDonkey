@@ -1,0 +1,42 @@
+<RCC>
+    <qresource prefix="/">
+        <file>images/file.svg</file>
+        <file>images/file-cloud.svg</file>
+        <file>images/file-document.svg</file>
+        <file>images/file-image.svg</file>
+        <file>images/file-music.svg</file>
+        <file>images/file-video.svg</file>
+        <file>images/archive.svg</file>
+        <file>images/audio.svg</file>
+        <file>images/cube.svg</file>
+        <file>images/delete.svg</file>
+        <file>images/disqus.svg</file>
+        <file>images/file-multiple.svg</file>
+        <file>images/robot.gif</file>
+        <file>images/video.svg</file>
+        <file>images/close-circle.svg</file>
+        <file>images/close-circle-outline.svg</file>
+        <file>images/flash.svg</file>
+        <file>images/flash-off.svg</file>
+        <file>images/folder-download.svg</file>
+        <file>images/folder-plus.svg</file>
+        <file>images/folder-remove.svg</file>
+        <file>images/folder-upload.svg</file>
+        <file>images/pause-circle.svg</file>
+        <file>images/pause-circle-outline.svg</file>
+        <file>images/play-circle.svg</file>
+        <file>images/play-circle-outline.svg</file>
+        <file>images/stop.svg</file>
+        <file>images/alert-circle.svg</file>
+        <file>images/chevron-double-down.svg</file>
+        <file>images/chevron-double-up.svg</file>
+        <file>images/timer.svg</file>
+        <file>images/file-check.svg</file>
+        <file>images/information.svg</file>
+        <file>images/information-outline.svg</file>
+        <file>images/wrench.svg</file>
+        <file>images/access-point-network.svg</file>
+        <file>images/account.svg</file>
+        <file>images/speedometer.svg</file>
+    </qresource>
+</RCC>
