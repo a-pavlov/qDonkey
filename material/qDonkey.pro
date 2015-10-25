@@ -18,8 +18,12 @@ macx {
 }
 
 # Unix specific configuration
-unix:!macx {
+unix:!android {
   include(unixconf.pri)
+}
+
+android {
+  include(android.pri)
 }
 
 include(../src/qtlibed2k/qtlibed2k.pri)
