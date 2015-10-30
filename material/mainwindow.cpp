@@ -3,6 +3,7 @@
 #include "search_model.h"
 #include "transfer_model.h"
 #include "transfermodel_item.h"
+#include "preferences.h"
 #include "../src/search/search_widget_fp_model.h"
 #include "qed2kserver.h"
 #include "qed2ksession.h"
@@ -10,6 +11,8 @@
 #include <QQmlContext>
 
 MainWindow::MainWindow(QObject* parent) : QObject(parent) {
+    pref.reset(new Preferences);
+    connect(pref.data(), SIGNAL(inputDirChanged(QString)), this, SLOT(onIncomingDirChanged(QString)));
     smodel = new ServerModel(this);
 #ifdef IS74
     smodel->add(QED2KServer("is74", "emule.is74.ru", 4661));
@@ -38,6 +41,7 @@ MainWindow::MainWindow(QObject* parent) : QObject(parent) {
     engine->rootContext()->setContextProperty("searchFPModel", searchFilterProxyModel);
     engine->rootContext()->setContextProperty("transferModel", transferModel);
     engine->rootContext()->setContextProperty("session", Session::instance());
+    engine->rootContext()->setContextProperty("pref", pref.data());
 #ifdef IS74
     engine->load(QUrl(QStringLiteral("qrc:/qml/Donkey.qml")));
 #else
@@ -45,3 +49,10 @@ MainWindow::MainWindow(QObject* parent) : QObject(parent) {
 #endif
 }
 
+MainWindow::~MainWindow() {
+}
+
+void MainWindow::onIncomingDirChanged(QString dir) {
+    qDebug() << "user set incoming dir to: " << dir;
+    if (dir.isEmpty()) qApp->quit();
+}

@@ -444,11 +444,8 @@ void QED2KSession::configureSession() {
     s.upload_rate_limit = up_limit <= 0 ? -1 : up_limit*1024;
     m_session->set_settings(s);
 
-    if (new_listenPort != old_listenPort) m_session->listen_on(new_listenPort);
-
-    // UPnP / NAT-PMP
-    if (pref.forwardPort()) enableUPnP(true);
-    else enableUPnP(false);
+    if (new_listenPort != old_listenPort) m_session->listen_on(new_listenPort);    
+    enableUPnP(false);
 }
 
 
