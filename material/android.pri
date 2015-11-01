@@ -6,7 +6,7 @@
 QMAKE_CXXFLAGS += -Wformat -Wformat-security -Werror=return-type -Wno-unused-parameter
 QMAKE_LFLAGS_APP += -rdynamic
 INCLUDEPATH += $$(LIBED2K_ROOT)/include 
-INCLUDEPATH += $$(BOOST_ROOT)/include
+INCLUDEPATH += $$(BOOST_ROOT)
 
 CONFIG(debug, debug|release) {
 LIBS += -L$$(LIBED2K_ROOT)/bin/debug
@@ -16,6 +16,8 @@ LIBS += -L$$(LIBED2K_ROOT)/bin/release
 
 LIBS += -led2k -lboost_thread -lboost_system -lboost_date_time -lcrystax
 LIBS += -L$$(BOOST_ROOT)/lib
+LIBS += -L$$(BOOST_LIBRARYDIR)
+LIBS += -L/home/apavlov/dev/arm-linux-androideabi_standalone/arm-linux-androideabi/lib
 
 DEFINES += LIBED2K_USE_BOOST_DATE_TIME
 
