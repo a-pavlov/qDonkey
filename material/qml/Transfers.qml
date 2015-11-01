@@ -19,7 +19,7 @@ Item {
         anchors {
             left: parent.left
             right: parent.right
-            top: showPreviusTransfers.bottom
+            top: parent.top
             bottom: parent.bottom
         }
 

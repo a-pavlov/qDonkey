@@ -39,7 +39,7 @@ int main(int argc, char *argv[])
 {
     QApplication app(argc, argv);
 #ifdef Q_OS_WIN
-    qInstallMessageHandler(customMessageHandler);
+    //qInstallMessageHandler(customMessageHandler);
 #endif
     Session::instance()->start();
     MainWindow mw;

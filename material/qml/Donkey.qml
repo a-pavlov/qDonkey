@@ -17,7 +17,7 @@ ApplicationWindow {
     }
 
     Component.onCompleted: {
-        initDialog.show()
+        if (pref.inputDir.length == 0) initDialog.show()
     }
 
     property string connections: "Connection"
@@ -101,8 +101,14 @@ ApplicationWindow {
         }
     }
 
+    function switchBtns() {
+        console.log("swith btns: " + inputDirEdit.text)
+        btnInputOk.enabled=inputDirEdit.text.length != 0
+    }
+
     Dialog {
         id: initDialog
+        hasActions: false
         anchors.centerIn: parent
         width: Units.dp(350)
         height: init_column.implicitHeight + Units.dp(32)
@@ -134,17 +140,23 @@ ApplicationWindow {
             }
 
             ListItem.Standard {
+                id: incomingDir
                 action: Icon {
                     anchors.centerIn: parent
                     source: Qt.resolvedUrl("qrc:/images/folder-download.svg")
                 }
 
                 content: TextField {
+                    id: inputDirEdit
                     anchors.centerIn: parent
                     width: parent.width
                     floatingLabel: true
                     placeholderText: "Incoming directory"
-                    text: "/home"
+                    text: pref.defaultInputDir
+                    onTextChanged: {
+                        btnInputOk.enabled=text.length!=0
+                    }
+
                 }
             }
 
@@ -166,15 +178,51 @@ ApplicationWindow {
                 Button {
                     text: "Cancel"
                     textColor: Theme.primaryColor
+                    onClicked: {
+                        console.log("cancel clicked")
+                        pref.inputDir = ""
+                        initDialog.close()
+                    }
                 }
 
                 Button {
+                    id: btnInputOk
                     text: "Ok"
                     textColor: Theme.primaryColor
+                    enabled: true
+                    onClicked: {
+                        console.log("input dir" + inputDirEdit.text)
+                        pref.inputDir = inputDirEdit.text
+                        initDialog.close()
+                    }
                 }
             }
 
+
+
         }
+
+        /*
+        negativeButton : Button {
+            text: "Cancel"
+            textColor: Theme.primaryColor
+            onClicked: {
+                console.log("cancel clicked")
+                pref.inputDir = ""
+            }
+        }
+
+        positiveButton: Button {
+            id: btnInputOk
+            text: "Ok"
+            textColor: Theme.primaryColor
+            enabled: true
+            onClicked: {
+                console.log("input dir" + incomingDir.text)
+                pref.inputDir = incomingDir.text
+            }
+        }
+        */
     }
 
     Dialog {
