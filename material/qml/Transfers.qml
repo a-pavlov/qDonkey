@@ -4,7 +4,6 @@ import Material 0.1
 import Material.ListItems 0.1 as ListItem
 import TransferModelItemEnum 1.0
 
-Item {
     ColumnLayout {
         spacing: 0
         anchors {
@@ -108,6 +107,5 @@ Item {
         }
 
     }
-}
 
 

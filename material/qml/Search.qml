@@ -5,7 +5,7 @@ import Material 0.1
 import Material.ListItems 0.1 as ListItem
 import Material.Extras 0.1
 
-Item {
+Page {
     Dialog {
         id: alertEmptyResult
         width: Units.dp(300)
@@ -202,7 +202,7 @@ ScrollView {
                         } else {
 
                             searchModel.clean()
-                            session.searchFiles(sText.text, sMin.text, sMax.text,
+                            session.searchFiles(sText.text, sMin.text*1024*1024, sMax.text*1024*1024,
                                             sAvailibility.text, sFullSrc.text,
                                             sTypeModel.get(sType.selectedIndex).value, sExt.text, sCodec.text,
                                             sMediaLength.text, sMediaBitrate.text)
