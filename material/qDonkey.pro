@@ -1,11 +1,12 @@
 TEMPLATE = app
 
-QT += qml quick widgets
+QT += qml quick widgets svg
 
 RESOURCES += qml.qrc ../src/lang.qrc \
     images.qrc
 
 DEFINES += IS74
+QTPLUGN += qsvg
 
 # Windows specific configuration
 win32 {
@@ -18,8 +19,12 @@ macx {
 }
 
 # Unix specific configuration
-unix:!macx {
+unix:!android {
   include(unixconf.pri)
+}
+
+android {
+  include(android.pri)
 }
 
 include(../src/qtlibed2k/qtlibed2k.pri)
@@ -51,11 +56,15 @@ TRANSLATIONS =  $$LANG_PATH/qDonkey_en.ts \
                 $$LANG_PATH/qDonkey_ru.ts
 DESTDIR = .
 
-# Additional import path used to resolve QML modules in Qt Creator's code model
+# Additional import path used to resolve QML modules in Qt Creators code model
 QML_IMPORT_PATH =qml
 
 # Default rules for deployment.
 include(deployment.pri)
 
 include(version.pri)
+
+#contains(ANDROID_TARGET_ARCH,armeabi-v7a) {
+#    ANDROID_EXTRA_LIBS = /home/apavlov/dev/qDonkey/material/../../arm-linux-androideabi_standalone/arm-linux-androideabi/lib/libcrystax.so /home/apavlov/dev/qDonkey/material/../../crystax-ndk-10.2.1/sources/boost/1.58.0/libs/armeabi-v7a/libboost_system.so /home/apavlov/dev/qDonkey/material/../../crystax-ndk-10.2.1/sources/boost/1.58.0/libs/armeabi-v7a/libboost_date_time.so
+#}
 
