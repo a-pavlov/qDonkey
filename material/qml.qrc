@@ -5,7 +5,6 @@
         <file>qml/Transfers.qml</file>
         <file>qml/Search.qml</file>
         <file>qml/SearchResult.qml</file>
-        <file>qml/Preferences.qml</file>
         <file>qml/Donkey.qml</file>
     </qresource>
 </RCC>

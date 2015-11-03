@@ -18,11 +18,10 @@ ApplicationWindow {
     property string conn: "Connection"
     property string transfers: "Transfers"
     property string search: "Search"
-    property string preferences: "Preferences"
 
-    property var sections: [ conn, transfers, search, preferences ]
+    property var sections: [ conn, transfers, search ]
 
-    property var sectionTitles: [ "Connection", "Transfers", "Search", "Preferences" ]
+    property var sectionTitles: [ "Connection", "Transfers", "Search" ]
 
     property string selectedComponent: conn
 
@@ -57,7 +56,6 @@ ApplicationWindow {
 
             Flickable {
                 anchors.fill: parent
-
                 contentHeight: Math.max(content.implicitHeight, height)
 
                 Column {
