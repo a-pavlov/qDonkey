@@ -43,8 +43,24 @@ Item {
     }
 
     Flickable {
-
         id: flick
+
+        states: State {
+            name: "autoscroll"
+            PropertyChanges {
+                target: flick
+                contentY: col.height - height
+            }
+        }
+        onMovementEnded: {
+            if (contentY === col.height - height) {
+                state = "autoscroll"
+            }
+            else {
+                state = ""  // default state
+            }
+        }
+
         anchors {
             left: parent.left
             right: parent.right
