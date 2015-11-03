@@ -52,33 +52,15 @@ Page {
                     anchors.centerIn: parent
                     source: {
                         switch(type) {
-                        case "Any":
-                            Qt.resolvedUrl("qrc:/images/file.svg")
-                            break
-                        case "Video":
-                            Qt.resolvedUrl("qrc:/images/file-video.svg")
-                            break
-                        case "Audio":
-                            Qt.resolvedUrl("qrc:/images/file-music.svg")
-                            break
-                        case "Document":
-                            Qt.resolvedUrl("qrc:/images/file-document.svg")
-                            break
-                        case "Picture":
-                            Qt.resolvedUrl("qrc:/images/file-image.svg")
-                            break
-                        case "Archive":
-                            Qt.resolvedUrl("qrc:/images/archive.svg")
-                            break
-                        case "CD image":
-                            Qt.resolvedUrl("qrc:/images/disqus.svg")
-                            break
-                        case "Emule collection":
-                            Qt.resolvedUrl("qrc:/images/file-multiple.svg")
-                            break
-                        default:
-                            Qt.resolvedUrl("qrc:/images/file.svg")
-                            break
+                        case "Any": return Qt.resolvedUrl("qrc:/images/file.svg")
+                        case "Video": return Qt.resolvedUrl("qrc:/images/file-video.svg")
+                        case "Audio": return Qt.resolvedUrl("qrc:/images/file-music.svg")
+                        case "Document": return Qt.resolvedUrl("qrc:/images/file-document.svg")
+                        case "Picture": return Qt.resolvedUrl("qrc:/images/file-image.svg")
+                        case "Archive": return Qt.resolvedUrl("qrc:/images/archive.svg")
+                        case "CD image": return Qt.resolvedUrl("qrc:/images/disqus.svg")
+                        case "Emule collection": return Qt.resolvedUrl("qrc:/images/file-multiple.svg")
+                        default: return Qt.resolvedUrl("qrc:/images/file.svg")
                         }
                     }
                 }

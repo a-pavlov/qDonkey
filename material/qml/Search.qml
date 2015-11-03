@@ -1,5 +1,6 @@
 import QtQuick 2.0
 import QtQuick.Layouts 1.1
+import QtQuick.Controls 1.4
 import Material 0.1
 import Material.ListItems 0.1 as ListItem
 import Material.Extras 0.1
@@ -42,31 +43,13 @@ Item {
         hasActions: false
     }
 
-    Flickable {
+ScrollView {
+
+    anchors.fill: parent
+
+    contentItem: Flickable {
         id: flick
 
-        states: State {
-            name: "autoscroll"
-            PropertyChanges {
-                target: flick
-                contentY: col.height - height
-            }
-        }
-        onMovementEnded: {
-            if (contentY === col.height - height) {
-                state = "autoscroll"
-            }
-            else {
-                state = ""  // default state
-            }
-        }
-
-        anchors {
-            left: parent.left
-            right: parent.right
-            top: parent.top
-            bottom: parent.bottom
-        }
 
         clip: true
         contentHeight: Math.max(col.implicitHeight + Units.dp(40), col.height)
@@ -266,6 +249,7 @@ Item {
 
         }
     }
+}
 
     Scrollbar {
         flickableItem: flick

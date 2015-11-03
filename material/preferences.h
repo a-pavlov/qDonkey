@@ -41,16 +41,25 @@ class Preferences : public QIniSettings {
 
     Q_DISABLE_COPY(Preferences)
     Q_PROPERTY(int listenPort READ listenPort WRITE setListenPort)
-    Q_PROPERTY(QString nick READ nick WRITE setNick)
+    Q_PROPERTY(QString nick READ nick WRITE setNick NOTIFY nickChanged)
     Q_PROPERTY(QString userHash READ userHash WRITE setUserHash)
     Q_PROPERTY(QString inputDir READ inputDir WRITE setInputDir NOTIFY inputDirChanged)
-    Q_PROPERTY(bool showAllTransfers READ showAllTransfers WRITE setShowAllTransfers)
+    Q_PROPERTY(bool showAllTransfers READ showAllTransfers WRITE setShowAllTransfers NOTIFY showAllTransfersChanged)
     Q_PROPERTY(QString locale READ locale WRITE setLocale)
     Q_PROPERTY(bool pausedTransfersFromCollection READ pausedTransfersFromCollection WRITE setPausedTransfersFromCollection)
     Q_PROPERTY(QString defaultInputDir READ defaultInputDir)
+
+    Q_PROPERTY(bool upSpeedLimited READ upSpeedLimited WRITE setUpSpeedLimited NOTIFY upSpeedLimitedChanged)
+    Q_PROPERTY(bool dlSpeedLimited READ dlSpeedLimited WRITE setDlSpeedLimited NOTIFY dlSpeedLimitedChanged)
+
+    Q_PROPERTY(quint32 upSpeed READ upSpeed WRITE setUpSpeed NOTIFY upSpeedChanged)
+    Q_PROPERTY(quint32 dlSpeed READ dlSpeed WRITE setDlSpeed NOTIFY dlSpeedChanged)
+
 public:
   Preferences() : QIniSettings(COMPANY_NAME,  PRODUCT_NAME){
   }
+
+  Q_INVOKABLE void flush();
 
 public:
     int listenPort() const;
@@ -78,6 +87,19 @@ public:
 
     QString defaultInputDir() const;
 
+    //speed limits
+    bool upSpeedLimited() const;
+    void setUpSpeedLimited(bool);
+
+    bool dlSpeedLimited() const;
+    void setDlSpeedLimited(bool);
+
+    quint32 upSpeed() const;
+    void setUpSpeed(quint32);
+
+    quint32 dlSpeed() const;
+    void setDlSpeed(quint32);
+
 #ifdef Q_OS_WIN
     static bool isFileAssocSet(const QString& file);
     static void setFileAssoc(const QString& file, bool set);
@@ -87,6 +109,13 @@ public:
 #endif
 signals:
      void inputDirChanged(QString);
+     void listenPortChanged(int);
+     void showAllTransfersChanged(bool);
+     void nickChanged(QString);
+     void upSpeedLimitedChanged(bool);
+     void dlSpeedLimitedChanged(bool);
+     void upSpeedChanged(quint32);
+     void dlSpeedChanged(quint32);
 };
 
 #endif // PREFERENCES_H

@@ -47,13 +47,12 @@ Item {
                 secondaryItem: ProgressCircle {
                     id: determinateProgress
                     Layout.alignment: Qt.AlignCenter
-                    width: Units.dp(64)
-                    height: Units.dp(64)
+                    width: Units.dp(48)
+                    height: Units.dp(48)
                     indeterminate: false
                     minimumValue: 0
                     maximumValue: 100
                     value: progress
-                    //dashThickness: Units.dp(8)
 
                     Label {
                         anchors.centerIn: parent

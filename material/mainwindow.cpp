@@ -47,6 +47,8 @@ MainWindow::MainWindow(QObject* parent) : QObject(parent) {
 #else
     engine->load(QUrl(QStringLiteral("qrc:/qml/main.qml")));
 #endif
+
+    Session::instance()->loadDirectory(pref.data()->inputDir());
 }
 
 MainWindow::~MainWindow() {

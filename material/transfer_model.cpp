@@ -19,8 +19,6 @@ TransferModel::TransferModel(QObject *parent) : QAbstractListModel(parent),
     connect(Session::instance(), SIGNAL(transferShared(QED2KHandle)), SLOT(addTransfer(QED2KHandle)));
     connect(Session::instance(), SIGNAL(fileError(QED2KHandle, QString)),
             SLOT(handleTransferUpdate(QED2KHandle)));
-    connect(Session::instance(), SIGNAL(transferParametersReady(libed2k::add_transfer_params,libed2k::error_code)),
-            SLOT(addTransferParameters(libed2k::add_transfer_params,libed2k::error_code)));
     connect(&m_refreshTimer, SIGNAL(timeout()), this, SLOT(processActiveTransfers()));
     m_refreshTimer.start(m_refreshInterval);
 }

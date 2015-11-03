@@ -11,10 +11,18 @@ const QString pathListenPort = "Network/ListenPort";
 const QString pathNick      = "Network/Nick";
 const QString pathUserHash  = "Network/UserHash";
 const QString pathUPnp      = "Network/UPnP";
+const QString dlSpeedLim = "Network/DLSpeedLimited";
+const QString upSpeedLim = "Network/UPSpeedLimited";
+const QString dlSpeedValue = "Network/DLSpeed";
+const QString upSpeedValue = "Network/UPSpeed";
 const QString pathInputDir  = "HD/InputDir";
 const QString pathSysTrAvail= "System/SystrayAvailable";
 const QString pathShowAllransfers = "Common/ShowAllTransfers";
 const QString pathLocale    = "Common/Locale";
+
+void Preferences::flush() {
+    sync();
+}
 
 int Preferences::listenPort() const {
     return value(pathListenPort, 9001).toInt();
@@ -76,6 +84,38 @@ void Preferences::setPausedTransfersFromCollection(bool flag) {
 
 QString Preferences::defaultInputDir() const {
     return QStandardPaths::writableLocation(QStandardPaths::DownloadLocation);
+}
+
+bool Preferences::upSpeedLimited() const {
+    return value(upSpeedLim, false).toBool();
+}
+
+void Preferences::setUpSpeedLimited(bool value) {
+    setValue(upSpeedLim, value);
+}
+
+bool Preferences::dlSpeedLimited() const {
+    return value(dlSpeedLim, false).toBool();
+}
+
+void Preferences::setDlSpeedLimited(bool value) {
+    setValue(dlSpeedLim, value);
+}
+
+quint32 Preferences::upSpeed() const {
+    return value(upSpeedValue, 500).toUInt();
+}
+
+void Preferences::setUpSpeed(quint32 value){
+    setValue(upSpeedValue, value);
+}
+
+quint32 Preferences::dlSpeed() const {
+    return value(dlSpeedValue, 500).toUInt();
+}
+
+void Preferences::setDlSpeed(quint32 value) {
+    setValue(dlSpeedValue, value);
 }
 
 #ifdef Q_OS_WIN
