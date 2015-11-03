@@ -1,11 +1,12 @@
 TEMPLATE = app
 
-QT += qml quick widgets
+QT += qml quick widgets svg
 
 RESOURCES += qml.qrc ../src/lang.qrc \
     images.qrc
 
 DEFINES += IS74
+QTPLUGN += qsvg
 
 # Windows specific configuration
 win32 {
