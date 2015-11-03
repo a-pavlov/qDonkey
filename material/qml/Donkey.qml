@@ -23,10 +23,9 @@ ApplicationWindow {
     property string connections: "Connection"
     property string transfers: "Transfers"
     property string search: "Search"
-    property string preferences: "Preferences"
 
-    property var sections: [ connections, transfers, search, preferences ]
-    property var sectionTitles: [ connections, transfers, search, preferences ]
+    property var sections: [ connections, transfers, search ]
+    property var sectionTitles: [ connections, transfers, search ]
     property string selectedComponent: connections
 
     initialPage: TabbedPage {
@@ -197,32 +196,7 @@ ApplicationWindow {
                     }
                 }
             }
-
-
-
         }
-
-        /*
-        negativeButton : Button {
-            text: "Cancel"
-            textColor: Theme.primaryColor
-            onClicked: {
-                console.log("cancel clicked")
-                pref.inputDir = ""
-            }
-        }
-
-        positiveButton: Button {
-            id: btnInputOk
-            text: "Ok"
-            textColor: Theme.primaryColor
-            enabled: true
-            onClicked: {
-                console.log("input dir" + incomingDir.text)
-                pref.inputDir = incomingDir.text
-            }
-        }
-        */
     }
 
     Dialog {
@@ -241,7 +215,7 @@ ApplicationWindow {
                 bottomMargin: Units.dp(16)
             }
 
-            Label {                
+            Label {
 
                 anchors {
                     left: parent.left
