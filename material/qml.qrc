@@ -6,7 +6,7 @@
         <file>qml/Search.qml</file>
         <file>qml/SearchResult.qml</file>
         <file>qml/Donkey.qml</file>
-        <file>qml/PrefDialog.qml</file>
         <file>qml/InitDialog.qml</file>
+        <file>qml/Preferences.qml</file>
     </qresource>
 </RCC>

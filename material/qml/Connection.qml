@@ -18,7 +18,7 @@ ColumnLayout {
         }
 
         id: title
-        text: "Choose server for connection"
+        text: "Double click server for connection"
         style: "title"
     }
 

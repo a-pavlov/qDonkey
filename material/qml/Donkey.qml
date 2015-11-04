@@ -9,11 +9,6 @@ ApplicationWindow {
     width:  400
     visible: true
 
-
-    PrefDialog {
-        id: prefDialog
-    }
-
     InitDialog {
         id: initDialog
     }
@@ -32,26 +27,27 @@ ApplicationWindow {
     property string connections: "Connection"
     property string transfers: "Transfers"
     property string search: "Search"
+    property string preferences: "Preferences"
 
-    property var sections: [ connections, transfers, search ]
-    property var sectionTitles: [ connections, transfers, search ]
+    property var sections: [ connections, transfers, search, preferences ]
+    property var sectionTitles: [ "Conn", "Transfers", "Search", "Pref" ]
     property string selectedComponent: connections
 
     initialPage: TabbedPage {
         id: page
         title: "qDonkey"
-        actionBar.maxActionCount: 2
+        actionBar.maxActionCount: 1
 
         actions: [
-            Action {
+           /* Action {
                 iconName: "action/settings"
                 name: "Settings"
                 hoverAnimation: true
                 onTriggered: {
                     console.log("load preferences tab");
-                    prefDialog.show()
+                    pageStack.push(Qt.resolvedUrl("PrefDialog.qml"))
                 }
-            },
+            },*/
 
             Action {
                 iconName: "action/language"

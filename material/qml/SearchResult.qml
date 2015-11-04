@@ -46,6 +46,7 @@ Page {
                 subText: sources
                 valueText: filesize
                 selectedIndex: -1
+                maximumLineCount: 3
 
                 action: Icon {
                     id: icns
