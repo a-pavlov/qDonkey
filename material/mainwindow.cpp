@@ -13,6 +13,7 @@
 MainWindow::MainWindow(QObject* parent) : QObject(parent) {
     pref.reset(new Preferences);
     connect(pref.data(), SIGNAL(inputDirChanged(QString)), this, SLOT(onIncomingDirChanged(QString)));
+    connect(pref.data(), SIGNAL(preferencesChanged()), this, SLOT(onPreferencesChanged()));
     smodel = new ServerModel(this);
 #ifdef IS74
     smodel->add(QED2KServer("is74", "emule.is74.ru", 4661));
@@ -48,6 +49,7 @@ MainWindow::MainWindow(QObject* parent) : QObject(parent) {
     engine->load(QUrl(QStringLiteral("qrc:/qml/main.qml")));
 #endif
 
+    Session::instance()->start();
     Session::instance()->loadDirectory(pref.data()->inputDir());
 }
 
@@ -57,4 +59,13 @@ MainWindow::~MainWindow() {
 void MainWindow::onIncomingDirChanged(QString dir) {
     qDebug() << "user set incoming dir to: " << dir;
     if (dir.isEmpty()) qApp->quit();
+    Session::instance()->loadDirectory(dir);
+}
+
+void MainWindow::onPreferencesChanged() {
+    qDebug() << "preferences changed";
+    Preferences pref;
+    Session::instance()->configureSession();
+    //qDebug() << "load input diurectory " << pref.inputDir();
+    //Session::instance()->loadDirectory(pref.inputDir());
 }

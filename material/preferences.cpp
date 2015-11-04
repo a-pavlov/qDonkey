@@ -22,6 +22,7 @@ const QString pathLocale    = "Common/Locale";
 
 void Preferences::flush() {
     sync();
+    emit preferencesChanged();
 }
 
 int Preferences::listenPort() const {

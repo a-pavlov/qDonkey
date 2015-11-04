@@ -25,6 +25,7 @@ public:
     ~MainWindow();
 private slots:
     void onIncomingDirChanged(QString);
+    void onPreferencesChanged();
 
 };
 
