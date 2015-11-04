@@ -9,6 +9,7 @@ class ServerModel;
 class SearchModel;
 class SWSortFilterProxyModel;
 class TransferModel;
+class TransferDetailsModel;
 
 class MainWindow:  public QObject {
     Q_OBJECT
@@ -19,6 +20,7 @@ private:
     SearchModel*            searchmodel;
     SWSortFilterProxyModel* searchFilterProxyModel;
     TransferModel*          transferModel;
+    TransferDetailsModel*   transferDetails;
     QScopedPointer<Preferences>          pref;
 public:
     explicit MainWindow(QObject* parent = 0);

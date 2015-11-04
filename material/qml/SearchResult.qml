@@ -42,9 +42,9 @@ Page {
 
             delegate: ListItem.SimpleMenu {
                 id: searchItem
-                text: name
-                subText: sources
-                valueText: filesize
+                text: filesize
+                subText: name
+                valueText: sources
                 selectedIndex: -1
                 maximumLineCount: 3
 

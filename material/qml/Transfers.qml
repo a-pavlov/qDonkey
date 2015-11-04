@@ -25,8 +25,10 @@ import TransferModelItemEnum 1.0
 
             delegate: ListItem.SimpleMenu {
                 id: transfer
-                text: name + ":" + size
-                subText: {
+                text: size
+
+                subText: name
+                valueText: {
                     switch(status) {
                     case TransferModelItem.STATE_STALLED_DL: return "Stalled dl"
                     case TransferModelItem.STATE_STALLED_UP: return "Stalled up"
@@ -62,25 +64,24 @@ import TransferModelItemEnum 1.0
                 action: Icon {
                     anchors.centerIn: parent
                     source: {
-                        switch(status) {
-                            case TransferModelItem.STATE_STALLED_DL: return Qt.resolvedUrl("qrc:/images/timer.svg")
-                            case TransferModelItem.STATE_STALLED_UP: return Qt.resolvedUrl("qrc:/images/file-check.svg")
-                            case TransferModelItem.STATE_DOWNLOADING: return Qt.resolvedUrl("qrc:/images/chevron-double-down.svg")
-                            case TransferModelItem.STATE_SEEDING: return Qt.resolvedUrl("qrc:/images/chevron-double-up.svg")
-                            case TransferModelItem.STATE_PAUSED_DL:
-                            case TransferModelItem.STATE_PAUSED_UP:
-                                return Qt.resolvedUrl("qrc:/images/pause-circle.svg")
-                            case TransferModelItem.STATE_CHECKING: return Qt.resolvedUrl("qrc:/images/wrench.svg")
-                            case TransferModelItem.STATE_INVALID: return Qt.resolvedUrl("qrc:/images/alert-circle.svg")
-                            default: return Qt.resolvedUrl("qrc:/images/alert-circle.svg")
+                        switch(type) {
+                            case "Any": return Qt.resolvedUrl("qrc:/images/file.svg")
+                            case "Video": return Qt.resolvedUrl("qrc:/images/file-video.svg")
+                            case "Audio": return Qt.resolvedUrl("qrc:/images/file-music.svg")
+                            case "Document": return Qt.resolvedUrl("qrc:/images/file-document.svg")
+                            case "Picture": return Qt.resolvedUrl("qrc:/images/file-image.svg")
+                            case "Archive": return Qt.resolvedUrl("qrc:/images/archive.svg")
+                            case "CD image": return Qt.resolvedUrl("qrc:/images/disqus.svg")
+                            case "Emule collection": return Qt.resolvedUrl("qrc:/images/file-multiple.svg")
+                            default: return Qt.resolvedUrl("qrc:/images/file.svg")
                         }
                     }
 
-                    size: Units.dp(32)
+                    size: Units.dp(24)
                 }
 
-                maximumLineCount: 3
-                model: ["Pause", "Resume", "Remove"]
+                maximumLineCount: 4
+                model: ["Pause", "Resume", "Remove", "Details"]
 
                 onSelectedIndexChanged: {
                     switch(selectedIndex) {
@@ -96,6 +97,11 @@ import TransferModelItemEnum 1.0
                         console.log("remove " + hash)
                         session.deleteTransfer(hash,true)
                         transferModel.removeTransfer(hash)
+                        break
+                    case 3:
+                        console.log("details for " + hash);
+                        transferDetails.setHash(hash)
+                        pageStack.push(Qt.resolvedUrl("TransferDetails.qml"))
                         break
                     default:
                         console.log("undefined index " + selectedIndex)
