@@ -38,6 +38,10 @@ MainWindow::MainWindow(QObject* parent) : QObject(parent) {
             SLOT(on_serverConnectionClosed(QString,QString,int,QString)));
     connect(Session::instance(), SIGNAL(searchResult(libed2k::net_identifier,QString,QList<QED2KSearchResultEntry>,bool)),
             searchmodel, SLOT(on_searchResult(libed2k::net_identifier,QString,QList<QED2KSearchResultEntry>,bool)));
+
+
+    connect(Session::instance(), SIGNAL(serverConnectionInitialized(QString,QString,int,quint32,quint32,quint32)),
+            this, SLOT(onServerConnectionInitialized(QString,QString,int,quint32,quint32,quint32)));
     engine = new QQmlApplicationEngine(this);
     TransferModelItemEnum::qmlRegister();
     engine->rootContext()->setContextProperty("serverModel", smodel);
@@ -55,6 +59,7 @@ MainWindow::MainWindow(QObject* parent) : QObject(parent) {
 
     Session::instance()->start();
     Session::instance()->loadDirectory(pref.data()->inputDir());
+    restoreLastServerConnection();
 }
 
 MainWindow::~MainWindow() {
@@ -73,6 +78,26 @@ void MainWindow::onPreferencesChanged() {
     Preferences pref;
     Session::instance()->configureSession();
     if (!misc::prepareInputDirectory(pref.inputDir())) qDebug() << "preparation input dir failed";
-    //qDebug() << "load input diurectory " << pref.inputDir();
-    //Session::instance()->loadDirectory(pref.inputDir());
+}
+
+void MainWindow::onServerConnectionInitialized(QString alias, QString host,int port,quint32,quint32,quint32) {
+    Preferences pref;
+    pref.beginGroup("LastConnectedServer");
+    pref.setValue("Alias", alias);
+    pref.setValue("Host", host);
+    pref.setValue("Port", port);
+    pref.endGroup();
+}
+
+void MainWindow::restoreLastServerConnection() {
+    Preferences pref;
+    pref.beginGroup("LastConnectedServer");
+    if (pref.contains("Alias") && pref.contains("Host") && pref.contains("Port")) {
+        qDebug() << "restore server connection "
+                 << pref.value("Alias", "").toString() << " "
+                 << pref.value("Host", "").toString() << " "
+                 <<  pref.value("Port", -1).toInt();
+        smodel->update(pref.value("Alias", "").toString(), pref.value("Host", "").toString(), pref.value("Port", -1).toInt());
+    }
+    pref.endGroup();
 }
