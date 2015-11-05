@@ -432,15 +432,15 @@ void QED2KSession::configureSession() {
     Preferences pref;
     const unsigned short old_listenPort = m_session->settings().listen_port;
     const unsigned short new_listenPort = pref.listenPort();
-    const int down_limit = -1; //pref.getED2KDownloadLimit();
-    const int up_limit = -1; //pref.getED2KUploadLimit();
+    const int up_limit = pref.upSpeedLimited()?pref.upSpeed():-1;
+    const int dl_limit = pref.dlSpeedLimited()?pref.dlSpeed():-1;
 
     // set common settings before for announce correct nick on server
     libed2k::session_settings s = m_session->settings();
     s.client_name = pref.nick().toUtf8().constData();
     s.m_show_shared_catalogs = false; //pref.isShowSharedDirectories();
     s.m_show_shared_files = false; //pref.isShowSharedFiles();
-    s.download_rate_limit = down_limit <= 0 ? -1 : down_limit*1024;
+    s.download_rate_limit = dl_limit <= 0 ? -1 : dl_limit*1024;
     s.upload_rate_limit = up_limit <= 0 ? -1 : up_limit*1024;
     m_session->set_settings(s);
 

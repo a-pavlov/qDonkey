@@ -52,10 +52,10 @@ QVariant TransferModelItem::data(int column, int role) const {
         case TM_STATUS:     return state();
         case TM_SEEDS:      return m_handle.num_seeds();
         case TM_PEERS:      return (m_handle.num_peers() - m_handle.num_seeds());
-        case TM_DLSPEED:    return m_handle.download_payload_rate();
-        case TM_UPSPEED:    return m_handle.upload_payload_rate();
+        case TM_DLSPEED:    return misc::friendlyUnit(m_handle.download_payload_rate()) + tr("/s");
+        case TM_UPSPEED:    return misc::friendlyUnit(m_handle.upload_payload_rate()) + tr("/s");
         case TM_HASH:       return m_hash;
-        case TM_ETA:        return (m_handle.is_seed() || m_handle.is_paused())?MAX_ETA:Session::instance()->getETA(m_handle.hash());
+        case TM_ETA:        return misc::userFriendlyDuration((m_handle.is_seed() || m_handle.is_paused())?MAX_ETA:Session::instance()->getETA(m_handle.hash()));
         case TM_RATIO:      return Session::instance()->getRealRatio(m_handle.hash());
         case TM_ADD_DATE:   return Session::instance()->hasBeenAdded(m_handle.hash());
         case TM_AMOUNT_DOWNLOADED: return static_cast<qlonglong>(m_handle.total_wanted_done());

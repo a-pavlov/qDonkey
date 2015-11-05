@@ -3,6 +3,7 @@
 #include "search_model.h"
 #include "transfer_model.h"
 #include "transfermodel_item.h"
+#include "transferdetailsmodel.h"
 #include "preferences.h"
 #include "../src/search/search_widget_fp_model.h"
 #include "qed2kserver.h"
@@ -13,6 +14,7 @@
 MainWindow::MainWindow(QObject* parent) : QObject(parent) {
     pref.reset(new Preferences);
     connect(pref.data(), SIGNAL(inputDirChanged(QString)), this, SLOT(onIncomingDirChanged(QString)));
+    connect(pref.data(), SIGNAL(preferencesChanged()), this, SLOT(onPreferencesChanged()));
     smodel = new ServerModel(this);
 #ifdef IS74
     smodel->add(QED2KServer("is74", "emule.is74.ru", 4661));
@@ -27,6 +29,8 @@ MainWindow::MainWindow(QObject* parent) : QObject(parent) {
     searchFilterProxyModel->setSourceModel(searchmodel);
 
     transferModel = new TransferModel(this);
+    transferDetails = new TransferDetailsModel(this);
+    transferDetails->setSourceModel(transferModel);
 
     connect(Session::instance(), SIGNAL(serverConnectionInitialized(QString,QString, int, quint32,quint32,quint32)),
             smodel, SLOT(on_serverConnectionInitialized(QString,QString,int,quint32,quint32,quint32)));
@@ -34,12 +38,17 @@ MainWindow::MainWindow(QObject* parent) : QObject(parent) {
             SLOT(on_serverConnectionClosed(QString,QString,int,QString)));
     connect(Session::instance(), SIGNAL(searchResult(libed2k::net_identifier,QString,QList<QED2KSearchResultEntry>,bool)),
             searchmodel, SLOT(on_searchResult(libed2k::net_identifier,QString,QList<QED2KSearchResultEntry>,bool)));
+
+
+    connect(Session::instance(), SIGNAL(serverConnectionInitialized(QString,QString,int,quint32,quint32,quint32)),
+            this, SLOT(onServerConnectionInitialized(QString,QString,int,quint32,quint32,quint32)));
     engine = new QQmlApplicationEngine(this);
     TransferModelItemEnum::qmlRegister();
     engine->rootContext()->setContextProperty("serverModel", smodel);
     engine->rootContext()->setContextProperty("searchModel", searchmodel);
     engine->rootContext()->setContextProperty("searchFPModel", searchFilterProxyModel);
     engine->rootContext()->setContextProperty("transferModel", transferModel);
+    engine->rootContext()->setContextProperty("transferDetails", transferDetails);
     engine->rootContext()->setContextProperty("session", Session::instance());
     engine->rootContext()->setContextProperty("pref", pref.data());
 #ifdef IS74
@@ -48,13 +57,47 @@ MainWindow::MainWindow(QObject* parent) : QObject(parent) {
     engine->load(QUrl(QStringLiteral("qrc:/qml/main.qml")));
 #endif
 
+    Session::instance()->start();
     Session::instance()->loadDirectory(pref.data()->inputDir());
+    restoreLastServerConnection();
 }
 
 MainWindow::~MainWindow() {
+    Session::instance()->drop();
 }
 
 void MainWindow::onIncomingDirChanged(QString dir) {
     qDebug() << "user set incoming dir to: " << dir;
     if (dir.isEmpty()) qApp->quit();
+    if (misc::prepareInputDirectory(dir)) Session::instance()->loadDirectory(dir);
+    else qDebug() << "prepare input directory failed";
+}
+
+void MainWindow::onPreferencesChanged() {
+    qDebug() << "preferences changed";
+    Preferences pref;
+    Session::instance()->configureSession();
+    if (!misc::prepareInputDirectory(pref.inputDir())) qDebug() << "preparation input dir failed";
+}
+
+void MainWindow::onServerConnectionInitialized(QString alias, QString host,int port,quint32,quint32,quint32) {
+    Preferences pref;
+    pref.beginGroup("LastConnectedServer");
+    pref.setValue("Alias", alias);
+    pref.setValue("Host", host);
+    pref.setValue("Port", port);
+    pref.endGroup();
+}
+
+void MainWindow::restoreLastServerConnection() {
+    Preferences pref;
+    pref.beginGroup("LastConnectedServer");
+    if (pref.contains("Alias") && pref.contains("Host") && pref.contains("Port")) {
+        qDebug() << "restore server connection "
+                 << pref.value("Alias", "").toString() << " "
+                 << pref.value("Host", "").toString() << " "
+                 <<  pref.value("Port", -1).toInt();
+        smodel->update(pref.value("Alias", "").toString(), pref.value("Host", "").toString(), pref.value("Port", -1).toInt());
+    }
+    pref.endGroup();
 }

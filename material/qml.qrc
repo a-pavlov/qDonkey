@@ -8,5 +8,6 @@
         <file>qml/Donkey.qml</file>
         <file>qml/InitDialog.qml</file>
         <file>qml/Preferences.qml</file>
+        <file>qml/TransferDetails.qml</file>
     </qresource>
 </RCC>

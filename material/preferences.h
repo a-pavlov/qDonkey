@@ -116,6 +116,7 @@ signals:
      void dlSpeedLimitedChanged(bool);
      void upSpeedChanged(quint32);
      void dlSpeedChanged(quint32);
+     void preferencesChanged();
 };
 
 #endif // PREFERENCES_H

@@ -9,6 +9,7 @@ class ServerModel;
 class SearchModel;
 class SWSortFilterProxyModel;
 class TransferModel;
+class TransferDetailsModel;
 
 class MainWindow:  public QObject {
     Q_OBJECT
@@ -19,12 +20,17 @@ private:
     SearchModel*            searchmodel;
     SWSortFilterProxyModel* searchFilterProxyModel;
     TransferModel*          transferModel;
+    TransferDetailsModel*   transferDetails;
     QScopedPointer<Preferences>          pref;
+
+    void restoreLastServerConnection();
 public:
     explicit MainWindow(QObject* parent = 0);
     ~MainWindow();
 private slots:
     void onIncomingDirChanged(QString);
+    void onPreferencesChanged();
+    void onServerConnectionInitialized(QString,QString,int,quint32,quint32,quint32);
 
 };
 
