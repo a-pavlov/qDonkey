@@ -45,10 +45,10 @@ Page {
 
     Flickable {
         id: flick
-        anchors.top: parent.top
+        anchors.fill: parent
 
-        width: parent.width
-        height: parent.height-buttonsRow.implicitHeight
+        //width: parent.width
+        //height: parent.height-buttonsRow.implicitHeight
         contentHeight: Math.max(col.implicitHeight + Units.dp(40), col.height)
         contentWidth: parent.width //Math.max(col.implicitWidth + Units.dp(30), col.width)
 
@@ -175,95 +175,90 @@ Page {
                 }
             }
 
-        }
-    }
+            RowLayout {
+                id: buttonsRow
+                Layout.alignment: Qt.AlignRight
 
-    RowLayout {
-        id: buttonsRow
-        Layout.alignment: Qt.AlignRight
 
-        anchors {
-            top: flick.bottom
-            bottom: parent.bottom
-            right: parent.right
-            left: parent.left
-        }
+                spacing: Units.dp(8)
 
-        spacing: Units.dp(8)
+                Item {
+                    Layout.fillWidth: true
+                    Layout.preferredHeight: Units.dp(8)
+                }
 
-        Item {
-            Layout.fillWidth: true
-            Layout.preferredHeight: Units.dp(8)
-        }
+                ProgressCircle {
+                    id: progress
+                    Layout.fillWidth: true
+                    Layout.alignment: Qt.AlignCenter
+                    width: Units.dp(24)
+                    height: Units.dp(24)
+                    enabled: false
+                    visible: false
+                }
 
-        ProgressCircle {
-            id: progress
-            Layout.fillWidth: true
-            Layout.alignment: Qt.AlignCenter
-            width: Units.dp(24)
-            height: Units.dp(24)
-            enabled: false
-            visible: false
-        }
+                Button {
+                    id: btnStart
+                    Layout.fillWidth: false
+                    text: "Start"
+                    textColor: Theme.primaryColor
+                    enabled: false
+                    onClicked: {
+                        if (!session.isServerConnected()) {
+                            alertNoConnection.show()
+                        } else {
 
-        Button {
-            id: btnStart
-            Layout.fillWidth: false
-            text: "Start"
-            textColor: Theme.primaryColor
-            enabled: false
-            onClicked: {
-                if (!session.isServerConnected()) {
-                    alertNoConnection.show()
-                } else {
+                            searchModel.clean()
+                            session.searchFiles(sText.text, sMin.text*1024*1024, sMax.text*1024*1024,
+                                            sAvailibility.text, sFullSrc.text,
+                                            sTypeModel.get(sType.selectedIndex).value, sExt.text, sCodec.text,
+                                            sMediaLength.text, sMediaBitrate.text)
+                            console.log("Start search for: " + sText.text);
+                            progress.enabled = true
+                            progress.visible = true
+                            btnStart.enabled = false
+                            btnCancel.enabled = true
+                            btnMore.enabled = false
+                        }
+                    }
+                }
 
-                    searchModel.clean()
-                    session.searchFiles(sText.text, sMin.text*1024*1024, sMax.text*1024*1024,
-                                    sAvailibility.text, sFullSrc.text,
-                                    sTypeModel.get(sType.selectedIndex).value, sExt.text, sCodec.text,
-                                    sMediaLength.text, sMediaBitrate.text)
-                    console.log("Start search for: " + sText.text);
-                    progress.enabled = true
-                    progress.visible = true
-                    btnStart.enabled = false
-                    btnCancel.enabled = true
-                    btnMore.enabled = false
+                Button {
+                    id: btnMore
+                    Layout.fillWidth: false
+                    text: "More"
+                    textColor: Theme.primaryColor;
+                    enabled: false
+                    onClicked: {
+                        btnStart.enabled = false
+                        btnMore.enabled = false
+                        btnCancel.enabled = true
+                        progress.enabled = true
+                        progress.visible = true
+                        session.searchMoreResults()
+                    }
+                }
+
+                Button {
+                    id: btnCancel
+                    Layout.fillWidth: false
+                    text: "Cancel"
+                    textColor: Theme.primaryColor
+                    enabled: false
+                    onClicked: {
+                        session.cancelSearch()
+                         btnMore.enabled = false
+                        btnStart.enabled = true
+                        btnCancel.enabled = false
+                        progress.enabled = false
+                        progress.visible = false
+                    }
                 }
             }
-        }
 
-        Button {
-            id: btnMore
-            Layout.fillWidth: false
-            text: "More"
-            textColor: Theme.primaryColor;
-            enabled: false
-            onClicked: {
-                btnStart.enabled = false
-                btnMore.enabled = false
-                btnCancel.enabled = true
-                progress.enabled = true
-                progress.visible = true
-                session.searchMoreResults()
-            }
-        }
-
-        Button {
-            id: btnCancel
-            Layout.fillWidth: false
-            text: "Cancel"
-            textColor: Theme.primaryColor
-            enabled: false
-            onClicked: {
-                session.cancelSearch()
-                 btnMore.enabled = false
-                btnStart.enabled = true
-                btnCancel.enabled = false
-                progress.enabled = false
-                progress.visible = false
-            }
         }
     }
+
 
     Scrollbar {
         flickableItem: flick

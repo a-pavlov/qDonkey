@@ -68,3 +68,13 @@ include(version.pri)
 #    ANDROID_EXTRA_LIBS = /home/apavlov/dev/qDonkey/material/../../arm-linux-androideabi_standalone/arm-linux-androideabi/lib/libcrystax.so /home/apavlov/dev/qDonkey/material/../../crystax-ndk-10.2.1/sources/boost/1.58.0/libs/armeabi-v7a/libboost_system.so /home/apavlov/dev/qDonkey/material/../../crystax-ndk-10.2.1/sources/boost/1.58.0/libs/armeabi-v7a/libboost_date_time.so
 #}
 
+DISTFILES += \
+    android/AndroidManifest.xml \
+    android/AndroidManifest.xml.bak \
+    android/AndroidManifest.xml~ \
+    android/res/values/libs.xml \
+    android/build.gradle \
+    android/AndroidManifest.xml~
+
+ANDROID_PACKAGE_SOURCE_DIR = $$PWD/android
+

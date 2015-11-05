@@ -19,10 +19,10 @@ Page {
 
     Flickable {
         id: flick
-        anchors.top: parent.top
+        anchors.fill: parent
         contentWidth: parent.width
-        width: parent.width
-        height: parent.height-buttonsRow.implicitHeight
+        //width: parent.width
+        //height: parent.height-buttonsRow.implicitHeight
         contentHeight: col.implicitHeight + Units.dp(40)
 
         ColumnLayout {
@@ -181,65 +181,57 @@ Page {
             Item {
                 Layout.fillWidth: true
                 Layout.preferredHeight: Units.dp(8)
-           }
-        }
-    }
-
-    RowLayout {
-        id: buttonsRow
-        Layout.alignment: Qt.AlignRight
-        spacing: Units.dp(8)
-
-        anchors {
-            left: parent.left
-            right: parent.right
-            top: flick.bottom
-            bottom: parent.bottom
-            margins: Units.dp(16)
-        }
-
-        Item {
-            Layout.fillWidth: true
-            Layout.preferredHeight: Units.dp(64)
-        }
-
-        Button {
-            id: btnCancel
-            text: "Cancel"
-            textColor: Theme.primaryColor
-            enabled: false
-            onClicked: {
-                nick.text = pref.nick
-                listenPort.text= pref.listenPort
-                checkDownload.checked=pref.dlSpeedLimited
-                limitDownload.text=pref.dlSpeed
-                checkUpload.checked=pref.upSpeedLimited
-                limitUpload.text=pref.upSpeed
-                inputDir.text=pref.inputDir
-                showPreviusTransfers.checked=pref.showAllTransfers
-                btnCancel.enabled=false
-                btnApply.enabled=false
             }
-        }
 
-        Button {
-            id: btnApply
-            text: "Apply"
-            textColor: Theme.primaryColor
-            enabled: false
-            onClicked: {
-                console.log("write settings")
-                pref.nick = nick.text
-                pref.listenPort = listenPort.text
-                pref.dlSpeedLimited = checkDownload.checked
-                pref.dlSpeed = limitDownload.text
-                pref.upSpeedLimited = checkUpload.checked
-                pref.upSpeed = limitUpload.text
-                pref.inputDir=inputDir.text
-                pref.showAllTransfers=showPreviusTransfers.checked
-                pref.flush()
-                btnCancel.enabled=false
-                btnApply.enabled=false
+            RowLayout {
+                id: buttonsRow
+                Layout.alignment: Qt.AlignRight
+                spacing: Units.dp(8)
+
+                Item {
+                    Layout.fillWidth: true
+                    Layout.preferredHeight: Units.dp(8)
+                }
+
+                Button {
+                    id: btnCancel
+                    text: "Cancel"
+                    textColor: Theme.primaryColor
+                    enabled: false
+                    onClicked: {
+                        nick.text = pref.nick
+                        listenPort.text= pref.listenPort
+                        checkDownload.checked=pref.dlSpeedLimited
+                        limitDownload.text=pref.dlSpeed
+                        checkUpload.checked=pref.upSpeedLimited
+                        limitUpload.text=pref.upSpeed
+                        inputDir.text=pref.inputDir
+                        showPreviusTransfers.checked=pref.showAllTransfers
+                        btnCancel.enabled=false
+                        btnApply.enabled=false
+                    }
+                }
+
+                Button {
+                    id: btnApply
+                    text: "Apply"
+                    textColor: Theme.primaryColor
+                    enabled: false
+                    onClicked: {
+                        console.log("write settings")
+                        pref.nick = nick.text
+                        pref.listenPort = listenPort.text
+                        pref.dlSpeedLimited = checkDownload.checked
+                        pref.dlSpeed = limitDownload.text
+                        pref.upSpeedLimited = checkUpload.checked
+                        pref.upSpeed = limitUpload.text
+                        pref.inputDir=inputDir.text
+                        pref.showAllTransfers=showPreviusTransfers.checked
+                        pref.flush()
+                        btnCancel.enabled=false
+                        btnApply.enabled=false
+                    }
+                }
             }
         }
     }

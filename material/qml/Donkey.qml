@@ -80,7 +80,7 @@ ApplicationWindow {
                 }
 
                 clip: true
-                contentHeight: Math.max(example.implicitHeight + 40, height)
+                contentHeight: Math.max(example.implicitHeight + 140, height+100)
 
                 Loader {
                     id: example
