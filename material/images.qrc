@@ -38,5 +38,8 @@
         <file>images/access-point-network.svg</file>
         <file>images/account.svg</file>
         <file>images/speedometer.svg</file>
+        <file>images/gd.svg</file>
+        <file>images/ru.svg</file>
+        <file>images/us.svg</file>
     </qresource>
 </RCC>

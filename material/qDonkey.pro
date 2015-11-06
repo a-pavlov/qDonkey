@@ -55,6 +55,17 @@ SOURCES +=  ../src/misc.cpp \
             transferdetailsmodel.cpp \
             transfersortfiltermodel.cpp
 
+lupdate_only {
+    SOURCES += qml/Connection.qml \
+    qml/Donkey.qml \
+    qml/InitDialog.qml \
+    qml/Preferences.qml \
+    qml/Search.qml \
+    qml/SearchResult.qml \
+    qml/TransferDetails.qml \
+    qml/Transfers.qml
+}
+
 LANG_PATH = ../src/lang
 TRANSLATIONS =  $$LANG_PATH/qDonkey_en.ts \
                 $$LANG_PATH/qDonkey_ru.ts
@@ -68,9 +79,6 @@ include(deployment.pri)
 
 include(version.pri)
 
-#contains(ANDROID_TARGET_ARCH,armeabi-v7a) {
-#    ANDROID_EXTRA_LIBS = /home/apavlov/dev/qDonkey/material/../../arm-linux-androideabi_standalone/arm-linux-androideabi/lib/libcrystax.so /home/apavlov/dev/qDonkey/material/../../crystax-ndk-10.2.1/sources/boost/1.58.0/libs/armeabi-v7a/libboost_system.so /home/apavlov/dev/qDonkey/material/../../crystax-ndk-10.2.1/sources/boost/1.58.0/libs/armeabi-v7a/libboost_date_time.so
-#}
 
 DISTFILES += \
     android/AndroidManifest.xml \

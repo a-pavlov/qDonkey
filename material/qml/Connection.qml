@@ -18,7 +18,7 @@ ColumnLayout {
         }
 
         id: title
-        text: "Double click server for connection"
+        text: qsTr("Double click server for connection")
         style: "title"
     }
 
@@ -44,15 +44,14 @@ ColumnLayout {
                 }
 
                 valueText: {
-                    if (status==0) return "Connected"
-                    if (status==1) return "Connecting..."
+                    if (status==0) return qsTr("Connected")
+                    if (status==1) return qsTr("Connecting...")
                     if (status==2) return ""
                 }
 
                 MouseArea {
                     anchors.fill: parent
                     onDoubleClicked: {
-                        console.log("Double click on " + itm.text);
                         serverModel.update(alias, host, port)
                 }
             }

@@ -112,8 +112,6 @@ void MainWindow::onServerConnectionClosed(QString,QString,int,QString) {
 void MainWindow::onShowAllTransfersChanged(bool showAll) {
     qDebug() << "switch show all transfers " << showAll;
     transferProxy->setFilterFixedString(showAll?"":"N");
-    qDebug() << "sort column " << transferProxy->sortColumn();
-    transferProxy->sort(0);
 }
 
 void MainWindow::restoreLastServerConnection() {

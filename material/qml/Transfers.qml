@@ -30,16 +30,16 @@ import TransferModelItemEnum 1.0
                 subText: name
                 valueText: {
                     switch(status) {
-                    case TransferModelItem.STATE_STALLED_DL: return "Stalled dl"
-                    case TransferModelItem.STATE_STALLED_UP: return "Stalled up"
-                    case TransferModelItem.STATE_DOWNLOADING: return "Downloading..."
-                    case TransferModelItem.STATE_SEEDING: return "Seeding..."
+                    case TransferModelItem.STATE_STALLED_DL: return qsTr("Stalled dl")
+                    case TransferModelItem.STATE_STALLED_UP: return qsTr("Stalled up")
+                    case TransferModelItem.STATE_DOWNLOADING: return qsTr("Downloading...")
+                    case TransferModelItem.STATE_SEEDING: return qsTr("Seeding...")
                     case TransferModelItem.STATE_PAUSED_DL:
                     case TransferModelItem.STATE_PAUSED_UP:
-                        return "Paused"
-                    case TransferModelItem.STATE_CHECKING: return "Checking..."
-                    case TransferModelItem.STATE_INVALID: return "Invalid"
-                    default: return "Invalid"
+                        return qsTr("Paused")
+                    case TransferModelItem.STATE_CHECKING: return qsTr("Checking...")
+                    case TransferModelItem.STATE_INVALID: return qsTr("Invalid")
+                    default: return qsTr("Invalid")
                     }
                 }
 
@@ -81,7 +81,7 @@ import TransferModelItemEnum 1.0
                 }
 
                 maximumLineCount: 4
-                model: ["Pause", "Resume", "Remove", "Details"]
+                model: [qsTr("Pause"), qsTr("Resume"), qsTr("Remove"), qsTr("Details")]
 
                 onSelectedIndexChanged: {
                     switch(selectedIndex) {
