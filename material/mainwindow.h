@@ -33,6 +33,7 @@ private slots:
     void onIncomingDirChanged(QString);
     void onPreferencesChanged();
     void onServerConnectionInitialized(QString,QString,int,quint32,quint32,quint32);
+    void onServerConnectionClosed(QString,QString,int,QString);
     void onShowAllTransfersChanged(bool);
 
 };

@@ -48,8 +48,11 @@ MainWindow::MainWindow(QObject* parent) : QObject(parent) {
     connect(Session::instance(), SIGNAL(searchResult(libed2k::net_identifier,QString,QList<QED2KSearchResultEntry>,bool)),
             searchmodel, SLOT(on_searchResult(libed2k::net_identifier,QString,QList<QED2KSearchResultEntry>,bool)));
     connect(pref.data(), SIGNAL(showAllTransfersChanged(bool)), this, SLOT(onShowAllTransfersChanged(bool)));
+
     connect(Session::instance(), SIGNAL(serverConnectionInitialized(QString,QString,int,quint32,quint32,quint32)),
             this, SLOT(onServerConnectionInitialized(QString,QString,int,quint32,quint32,quint32)));
+    connect(Session::instance(), SIGNAL(serverConnectionClosed(QString,QString,int,QString)), this,
+            SLOT(onServerConnectionClosed(QString,QString,int,QString)));
     engine = new QQmlApplicationEngine(this);
     TransferModelItemEnum::qmlRegister();
     engine->rootContext()->setContextProperty("serverModel", smodel);
@@ -94,6 +97,15 @@ void MainWindow::onServerConnectionInitialized(QString alias, QString host,int p
     pref.setValue("Alias", alias);
     pref.setValue("Host", host);
     pref.setValue("Port", port);
+    pref.endGroup();
+}
+
+void MainWindow::onServerConnectionClosed(QString,QString,int,QString) {
+    Preferences pref;
+    pref.beginGroup("LastConnectedServer");
+    pref.remove("Alias");
+    pref.remove("Host");
+    pref.remove("Port");
     pref.endGroup();
 }
 
