@@ -7,6 +7,7 @@ ApplicationWindow {
     id: qDonkey
     title: "qDonkey"
     width:  400
+    height: 500
     visible: true
 
     InitDialog {
@@ -80,7 +81,7 @@ ApplicationWindow {
                 }
 
                 clip: true
-                contentHeight: Math.max(example.implicitHeight + 140, height+100)
+                contentHeight: Math.max(example.implicitHeight + Units.dp(40), height+Units.dp(40))
 
                 Loader {
                     id: example
