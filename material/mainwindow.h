@@ -10,6 +10,7 @@ class SearchModel;
 class SWSortFilterProxyModel;
 class TransferModel;
 class TransferDetailsModel;
+class TransferSortFilterModel;
 
 class MainWindow:  public QObject {
     Q_OBJECT
@@ -21,6 +22,7 @@ private:
     SWSortFilterProxyModel* searchFilterProxyModel;
     TransferModel*          transferModel;
     TransferDetailsModel*   transferDetails;
+    TransferSortFilterModel* transferProxy;
     QScopedPointer<Preferences>          pref;
 
     void restoreLastServerConnection();
@@ -31,6 +33,7 @@ private slots:
     void onIncomingDirChanged(QString);
     void onPreferencesChanged();
     void onServerConnectionInitialized(QString,QString,int,quint32,quint32,quint32);
+    void onShowAllTransfersChanged(bool);
 
 };
 

@@ -40,7 +40,8 @@ HEADERS +=  ../src/misc.h \
             transfer_model.h \
             transfermodel_item.h \
             preferences.h \
-            transferdetailsmodel.h
+            transferdetailsmodel.h \
+            transfersortfiltermodel.h
 
 SOURCES +=  ../src/misc.cpp \
             ../src/search/search_widget_fp_model.cpp \
@@ -51,7 +52,8 @@ SOURCES +=  ../src/misc.cpp \
             transfer_model.cpp \
             transfermodel_item.cpp \
             preferences.cpp \
-            transferdetailsmodel.cpp
+            transferdetailsmodel.cpp \
+            transfersortfiltermodel.cpp
 
 LANG_PATH = ../src/lang
 TRANSLATIONS =  $$LANG_PATH/qDonkey_en.ts \
