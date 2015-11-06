@@ -9,7 +9,7 @@ Page {
     Dialog {
         id: alertEmptyResult
         width: Units.dp(300)
-        text: "Sorry, your last search returned empty result"
+        text: qsTr("Sorry, your last search returned empty result")
         hasActions: false
     }
 
@@ -39,7 +39,7 @@ Page {
     Dialog {
         id: alertNoConnection
         width: Units.dp(300)
-        text: "You are not connected to any ED2K server. Please, connect first"
+        text: qsTr("You are not connected to any ED2K server. Please, connect first")
         hasActions: false
     }
 
@@ -68,7 +68,7 @@ Page {
                 }
 
                 style:  "title"
-                text: "Seach in ed2k network"
+                text: qsTr("Seach in ed2k network")
             }
 
             ListItem.Standard {
@@ -80,7 +80,7 @@ Page {
                         Layout.alignment: Qt.AlignLeft
                         Layout.preferredWidth: 0.5 * parent.width
                         text: ""
-                        placeholderText: "Search phrase"
+                        placeholderText: qsTr("Search phrase")
                         onTextChanged: switchBtns()
                     }
 
@@ -92,15 +92,15 @@ Page {
                         textRole: "name"
                         model: ListModel {
                             id: sTypeModel
-                            ListElement { name: "Any"; value: "" }
-                            ListElement { name: "Archive"; value: "Arc" }
-                            ListElement { name: "Audio"; value: "Audio" }
-                            ListElement { name: "CD Image"; value: "Iso" }
-                            ListElement { name: "Picture"; value: "Image" }
-                            ListElement { name: "Program"; value: "Pro" }
-                            ListElement { name: "Video"; value: "Video" }
-                            ListElement { name: "Document"; value: "Doc" }
-                            ListElement { name: "Emule collection"; value: "EmuleCollection" }
+                            ListElement { name: qsTr("Any"); value: "" }
+                            ListElement { name: qsTr("Archive"); value: "Arc" }
+                            ListElement { name: qsTr("Audio"); value: "Audio" }
+                            ListElement { name: qsTr("CD Image"); value: "Iso" }
+                            ListElement { name: qsTr("Picture"); value: "Image" }
+                            ListElement { name: qsTr("Program"); value: "Pro" }
+                            ListElement { name: qsTr("Video"); value: "Video" }
+                            ListElement { name: qsTr("Document"); value: "Doc" }
+                            ListElement { name: qsTr("Emule collection"); value: "EmuleCollection" }
                         }
                     }
                 }
@@ -112,13 +112,13 @@ Page {
                     TextField {
                         id: sMin
                         Layout.preferredWidth: 0.5*parent.width
-                        placeholderText: "Min size, Mb"
+                        placeholderText: qsTr("Min size, Mb")
                         validator: IntValidator {}
                     }
 
                     TextField {
                         id: sMax
-                        placeholderText: "Max size, Mb"
+                        placeholderText: qsTr("Max size, Mb")
                         validator: IntValidator {}
                     }
                 }
@@ -131,13 +131,13 @@ Page {
                     TextField {
                         id: sAvailibility
                         Layout.preferredWidth: 0.5*parent.width
-                        placeholderText: "Availibility"
+                        placeholderText: qsTr("Availibility")
                         validator: IntValidator {}
                     }
 
                     TextField {
                         id: sFullSrc
-                        placeholderText: "Full sources"
+                        placeholderText: qsTr("Full sources")
                         validator: IntValidator {}
                     }
                 }
@@ -149,13 +149,13 @@ Page {
                     TextField {
                         id: sMediaLength
                         Layout.preferredWidth: 0.5*parent.width
-                        placeholderText: "Media length"
+                        placeholderText: qsTr("Media length")
                         validator: IntValidator {}
                     }
 
                     TextField {
                         id: sMediaBitrate
-                        placeholderText: "Media bitrate"
+                        placeholderText: qsTr("Media bitrate")
                         validator: IntValidator {}
                     }
                 }
@@ -164,14 +164,14 @@ Page {
             ListItem.Standard {
                 content : TextField {
                     id: sExt
-                    placeholderText: "Extension"
+                    placeholderText: qsTr("Extension")
                 }
             }
 
             ListItem.Standard {
                 content : TextField {
                     id: sCodec
-                    placeholderText: "Codec"
+                    placeholderText: qsTr("Codec")
                 }
             }
 
@@ -200,7 +200,7 @@ Page {
                 Button {
                     id: btnStart
                     Layout.fillWidth: false
-                    text: "Start"
+                    text: qsTr("Start")
                     textColor: Theme.primaryColor
                     enabled: false
                     onClicked: {
@@ -226,7 +226,7 @@ Page {
                 Button {
                     id: btnMore
                     Layout.fillWidth: false
-                    text: "More"
+                    text: qsTr("More")
                     textColor: Theme.primaryColor;
                     enabled: false
                     onClicked: {
@@ -242,7 +242,7 @@ Page {
                 Button {
                     id: btnCancel
                     Layout.fillWidth: false
-                    text: "Cancel"
+                    text: qsTr("Cancel")
                     textColor: Theme.primaryColor
                     enabled: false
                     onClicked: {
@@ -258,7 +258,6 @@ Page {
 
         }
     }
-
 
     Scrollbar {
         flickableItem: flick

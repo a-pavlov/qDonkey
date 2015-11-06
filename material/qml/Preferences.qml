@@ -17,6 +17,21 @@ Page {
         btnCancel.enabled=false
     }
 
+    function getLangIndex(locale) {
+        var i;
+        for(i = 0; i < langModel.count; ++i) {
+            if (langModel.get(i).key === pref.locale) return i
+        }
+
+        return 0;
+    }
+
+    Dialog {
+        id: langRestart
+        hasActions: false
+        text: qsTr("New language will be available after restart")
+    }
+
     Flickable {
         id: flick
         anchors.fill: parent
@@ -43,7 +58,35 @@ Page {
                 }
 
                 style: "title"
-                text: "Preferences"
+                text: qsTr("Preferences")
+            }
+
+            ListItem.Standard {
+                action: Icon {
+                    anchors.centerIn: parent
+                    name: "action/language"
+                }
+
+                content: MenuField {
+                    id: language
+                    Layout.alignment: Qt.AlignLeft
+                    width: parent.width
+
+                    selectedIndex: getLangIndex(pref.locale)
+
+                    textRole: "value"
+
+                    model: ListModel {
+                        id: langModel
+                        ListElement { key: "en"; value: qsTr("English");  }
+                        ListElement { key: "ru"; value: qsTr("Russian");  }
+                    }
+
+                    onItemSelected: {
+                        langRestart.show()
+                        btnOn()
+                    }
+                }
             }
 
             ListItem.Standard {
@@ -57,7 +100,7 @@ Page {
                     anchors.centerIn: parent
                     width: parent.width
                     floatingLabel: true
-                    placeholderText: "Enter your nickname"
+                    placeholderText: qsTr("Enter your nickname")
                     text: pref.nick
                     onTextChanged: btnOn()
                 }
@@ -75,7 +118,7 @@ Page {
                     anchors.centerIn: parent
                     width: parent.width
                     floatingLabel: true
-                    placeholderText: "Listen port"
+                    placeholderText: qsTr("Listen port")
                     text: pref.listenPort
                     validator: IntValidator {}
                     maximumLength: 5
@@ -102,7 +145,7 @@ Page {
                     CheckBox {
                         id: checkDownload
                         checked: pref.dlSpeedLimited
-                        text: "Down"
+                        text: qsTr("Down")
                         onCheckedChanged: {
                             limitDownload.enabled=checked
                             btnOn()
@@ -114,7 +157,7 @@ Page {
                         enabled: pref.dlSpeedLimited
                         width: parent.width
                         floatingLabel: true
-                        placeholderText: "Dowload limit Kb/s"
+                        placeholderText: qsTr("Dowload limit Kb/s")
                         text: pref.dlSpeed
                         validator: IntValidator {}
                         onTextChanged: btnOn()
@@ -124,7 +167,7 @@ Page {
                         id: checkUpload
                         Layout.alignment: Qt.AlignVCenter
                         checked: pref.upSpeedLimited
-                        text: "Up"
+                        text: qsTr("Up")
                          onCheckedChanged: {
                             limitUpload.enabled=checked
                              btnOn()
@@ -136,7 +179,7 @@ Page {
                         enabled: pref.upSpeedLimited
                         width: parent.width
                         floatingLabel: true
-                        placeholderText: "Upload limit Kb/s"
+                        placeholderText: qsTr("Upload limit Kb/s")
                         text: pref.upSpeed
                         validator: IntValidator {}
                         onTextChanged: btnOn()
@@ -155,7 +198,7 @@ Page {
                     anchors.centerIn: parent
                     width: parent.width
                     floatingLabel: true
-                    placeholderText: "Incoming directory"
+                    placeholderText: qsTr("Incoming directory")
                     text: pref.inputDir
                     onTextChanged: btnOn()
                 }
@@ -173,7 +216,7 @@ Page {
                     }
 
                     Label {
-                        text: "Show old transfers"
+                        text: qsTr("Show old transfers")
                     }
                 }
             }
@@ -195,7 +238,7 @@ Page {
 
                 Button {
                     id: btnCancel
-                    text: "Cancel"
+                    text: qsTr("Cancel")
                     textColor: Theme.primaryColor
                     enabled: false
                     onClicked: {
@@ -207,6 +250,7 @@ Page {
                         limitUpload.text=pref.upSpeed
                         inputDir.text=pref.inputDir
                         showPreviusTransfers.checked=pref.showAllTransfers
+                        language.selectedIndex=getLangIndex(pref.locale)
                         btnCancel.enabled=false
                         btnApply.enabled=false
                     }
@@ -214,7 +258,7 @@ Page {
 
                 Button {
                     id: btnApply
-                    text: "Apply"
+                    text: qsTr("Apply")
                     textColor: Theme.primaryColor
                     enabled: false
                     onClicked: {
@@ -227,6 +271,7 @@ Page {
                         pref.upSpeed = limitUpload.text
                         pref.inputDir=inputDir.text
                         pref.showAllTransfers=showPreviusTransfers.checked
+                        pref.locale=langModel.get(language.selectedIndex).key
                         pref.flush()
                         btnCancel.enabled=false
                         btnApply.enabled=false

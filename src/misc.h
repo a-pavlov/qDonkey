@@ -209,6 +209,8 @@ public:
   static QString metadataDirectory(const QString& path);
   static bool prepareInputDirectory(const QString& path);
   static void normalizePath(QString&);
+
+  static int naturalCompare(const QString &s1, const QString &s2,  Qt::CaseSensitivity cs);
 };
 
 //  Trick to get a portable sleep() function

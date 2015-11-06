@@ -31,31 +31,14 @@ ApplicationWindow {
     property string preferences: "Preferences"
 
     property var sections: [ connections, transfers, search, preferences ]
-    property var sectionTitles: [ "Conn", "Transfers", "Search", "Pref" ]
+    property var sectionTitles: [ qsTr("Conn"), qsTr("Transfers"), qsTr("Search"), qsTr("Pref") ]
     property string selectedComponent: connections
+
 
     initialPage: TabbedPage {
         id: page
         title: "qDonkey"
-        actionBar.maxActionCount: 1
-
-        actions: [
-           /* Action {
-                iconName: "action/settings"
-                name: "Settings"
-                hoverAnimation: true
-                onTriggered: {
-                    console.log("load preferences tab");
-                    pageStack.push(Qt.resolvedUrl("PrefDialog.qml"))
-                }
-            },*/
-
-            Action {
-                iconName: "action/language"
-                name: "Language"
-                enabled: false
-            }
-        ]
+        actionBar.maxActionCount: 0
 
         Repeater {
             model: sections

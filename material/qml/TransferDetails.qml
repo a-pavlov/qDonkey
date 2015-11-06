@@ -7,7 +7,7 @@ import TransferModelItemEnum 1.0
 
 Page {
     id: searchResults
-    title: "Back to transfers"
+    title: qsTr("Back to transfers")
 
     ListView {
         anchors.fill: parent
@@ -81,7 +81,7 @@ Page {
                         horizontalAlignment: Qt.AlignHCenter
                         style: "body1"
                         visible: text != ""
-                        text: "Size " + size
+                        text: qsTr("Size %1").arg(size)
                     }
 
                     RowLayout {
@@ -135,7 +135,7 @@ Page {
                         elide: Text.ElideRight
                         horizontalAlignment: Qt.AlignVCenter
                         style: "body1"
-                        text: "Seeds/Peers " + seeds + "/" + peers
+                        text: qsTr("Seeds/Peers %1/%2").arg(seeds).arg(peers)
                     }
 
 
@@ -150,7 +150,7 @@ Page {
                             elide: Text.ElideRight
                             horizontalAlignment: Qt.AlignHCenter
                             style: "body1"
-                            text: "ETA " + eta
+                            text: qsTr("ETA %1").arg(eta)
                         }
 
                         ProgressBar {

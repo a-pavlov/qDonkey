@@ -52,6 +52,7 @@ public:
         TM_AMOUNT_DOWNLOADED,
         TM_AMOUNT_LEFT,
         TM_TIME_ELAPSED,
+        TM_AGE,
         TM_END
     };
 

@@ -28,7 +28,7 @@ Dialog {
             }
 
             style: "title"
-            text: "Setup incoming directory"
+            text: qsTr("Setup incoming directory")
         }
 
         Item {
@@ -48,7 +48,7 @@ Dialog {
                 anchors.centerIn: parent
                 width: parent.width
                 floatingLabel: true
-                placeholderText: "Incoming directory"
+                placeholderText: qsTr("Incoming directory")
                 text: pref.defaultInputDir
                 onTextChanged: {
                     btnInputOk.enabled=text.length!=0
@@ -73,7 +73,7 @@ Dialog {
             }
 
             Button {
-                text: "Cancel"
+                text: qsTr("Cancel")
                 textColor: Theme.primaryColor
                 onClicked: {
                     console.log("cancel clicked")
@@ -84,7 +84,7 @@ Dialog {
 
             Button {
                 id: btnInputOk
-                text: "Ok"
+                text: qsTr("Ok")
                 textColor: Theme.primaryColor
                 enabled: true
                 onClicked: {

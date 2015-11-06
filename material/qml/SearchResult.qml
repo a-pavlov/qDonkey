@@ -5,19 +5,19 @@ import Material.ListItems 0.1 as ListItem
 
 Page {
     id: searchResults
-    title: "Back to search"
+    title: qsTr("Back to search")
 
     Dialog {
         id: alertTransferAddSucc
         width: Units.dp(300)
-        text: "Transfer was added to download list"
+        text: qsTr("Transfer was added to download list")
         hasActions: false
     }
 
     Dialog {
         id: alertTransferAddFail
         width: Units.dp(300)
-        text: "Unable to add transfer"
+        text: qsTr("Unable to add transfer")
         hasActions: false
     }
 
@@ -67,7 +67,7 @@ Page {
                 }
 
 
-                model: previewable?["Search related", "Download", "Preview"]:[ "Search related", "Download"]
+                model: previewable?[qsTr("Search related"), qsTr("Download"), qsTr("Preview")]:[ qsTr("Search related"), qsTr("Download")]
 
                 onSelectedIndexChanged: {
                     switch(selectedIndex) {

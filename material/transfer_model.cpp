@@ -48,6 +48,7 @@ QHash<int, QByteArray> TransferModel::roleNames() const {
     roles[TransferModelItem::TM_AMOUNT_DOWNLOADED]  = "amount_dl";
     roles[TransferModelItem::TM_AMOUNT_LEFT]    = "amount_left";
     roles[TransferModelItem::TM_TIME_ELAPSED]   = "time_elapsed";
+    roles[TransferModelItem::TM_AGE] = "age";
     return roles;
 }
 

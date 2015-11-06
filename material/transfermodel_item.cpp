@@ -61,6 +61,7 @@ QVariant TransferModelItem::data(int column, int role) const {
         case TM_AMOUNT_DOWNLOADED: return static_cast<qlonglong>(m_handle.total_wanted_done());
         case TM_AMOUNT_LEFT: return static_cast<qlonglong>(m_handle.total_wanted() - m_handle.total_wanted_done());
         case TM_TIME_ELAPSED: return m_handle.active_time(); // : m_handle.seeding_time();
+        case TM_AGE:        return m_status;
         default:
             return QVariant();
     }

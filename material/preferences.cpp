@@ -65,6 +65,7 @@ bool Preferences::showAllTransfers() const {
 
 void Preferences::setShowAllTransfers(bool flag) {
     setValue(pathShowAllransfers, flag);
+    emit showAllTransfersChanged(flag);
 }
 
 void Preferences::setLocale(const QString& locale) {
