@@ -24,7 +24,7 @@ Page {
             }
 
             style:  "body2"
-            text: qsTr("Double click on icon for open/pause/resume")
+            text: qsTr("Click for action menu")
         }
 
 
@@ -96,24 +96,23 @@ Page {
                             default: return Qt.resolvedUrl("qrc:/images/file.svg")
                         }
                     }
-
-                    //size: Units.dp(24)
-
-                    MouseArea {
-                        anchors.fill: parent
-                        propagateComposedEvents: true
-                        onDoubleClicked: {
-                            session.switchTransfer(hash)
-                        }
-
-                        onClicked: {
-                            console.log("mouse clicked");
-                        }
-                    }
                 }
 
-                maximumLineCount: 4
-                model: [qsTr("Pause"), qsTr("Resume"), qsTr("Remove"), qsTr("Details")]
+                maximumLineCount: {
+                    if (status == TransferModelItem.STATE_STALLED_UP ||
+                            status == TransferModelItem.STATE_SEEDING) return 4
+                    return 3
+                }
+
+                model: {
+                    switch(status) {
+                    case TransferModelItem.STATE_STALLED_UP:
+                    case TransferModelItem.STATE_SEEDING:
+                        return [qsTr("Pause"), qsTr("Resume"), qsTr("Remove"), qsTr("Details"), qsTr("Open")]
+                    default:
+                        return [qsTr("Pause"), qsTr("Resume"), qsTr("Remove"), qsTr("Details")]
+                    }
+                }
 
                 onSelectedIndexChanged: {
                     switch(selectedIndex) {
@@ -135,6 +134,9 @@ Page {
                         transferDetails.setHash(hash)
                         pageStack.push(Qt.resolvedUrl("TransferDetails.qml"))
                         break
+                    case 4:
+                        session.openTransfer(hash)
+                        break;
                     default:
                         console.log("undefined index " + selectedIndex)
                     }

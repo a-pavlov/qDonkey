@@ -20,7 +20,7 @@ ColumnLayout {
         }
 
         id: title
-        text: qsTr("Double click on server for connect/disconnect")
+        text: qsTr("Double click for connect")
         style: "body2"
     }
 

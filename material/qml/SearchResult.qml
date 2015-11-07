@@ -37,7 +37,7 @@ Page {
                 left: parent.left
             }
 
-            text: qsTr("Double click on icon for download")
+            text: qsTr("Click for download")
             style: "body2"
         }
 
@@ -78,16 +78,6 @@ Page {
                         }
                     }
 
-                    MouseArea {
-                        anchors.fill: parent
-                        onDoubleClicked: {
-                            if (session.addTransfer(hash, name, filesize_num, sources_num)) {
-                                alertTransferAddSucc.show()
-                            } else {
-                                alertTransferAddFail.show()
-                            }
-                        }
-                    }
                 }
 
 
