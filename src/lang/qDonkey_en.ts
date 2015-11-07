@@ -5,7 +5,7 @@
     <name>Connection</name>
     <message>
         <location filename="../../material/qml/Connection.qml" line="23"/>
-        <source>Double click on server for connect/disconnect</source>
+        <source>Double click for connect</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -346,21 +346,21 @@
     </message>
     <message>
         <location filename="../../material/qml/SearchResult.qml" line="40"/>
-        <source>Double click on icon for download</source>
+        <source>Click for download</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../material/qml/SearchResult.qml" line="94"/>
+        <location filename="../../material/qml/SearchResult.qml" line="84"/>
         <source>Search related</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../material/qml/SearchResult.qml" line="94"/>
+        <location filename="../../material/qml/SearchResult.qml" line="84"/>
         <source>Download</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../material/qml/SearchResult.qml" line="94"/>
+        <location filename="../../material/qml/SearchResult.qml" line="84"/>
         <source>Preview</source>
         <translation type="unfinished"></translation>
     </message>
@@ -500,7 +500,7 @@
     <name>Transfers</name>
     <message>
         <location filename="../../material/qml/Transfers.qml" line="27"/>
-        <source>Double click on icon for open/pause/resume</source>
+        <source>Click for action menu</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -540,23 +540,32 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../material/qml/Transfers.qml" line="116"/>
+        <location filename="../../material/qml/Transfers.qml" line="111"/>
+        <location filename="../../material/qml/Transfers.qml" line="113"/>
         <source>Pause</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../material/qml/Transfers.qml" line="116"/>
+        <location filename="../../material/qml/Transfers.qml" line="111"/>
+        <location filename="../../material/qml/Transfers.qml" line="113"/>
         <source>Resume</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../material/qml/Transfers.qml" line="116"/>
+        <location filename="../../material/qml/Transfers.qml" line="111"/>
+        <location filename="../../material/qml/Transfers.qml" line="113"/>
         <source>Remove</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../material/qml/Transfers.qml" line="116"/>
+        <location filename="../../material/qml/Transfers.qml" line="111"/>
+        <location filename="../../material/qml/Transfers.qml" line="113"/>
         <source>Details</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../material/qml/Transfers.qml" line="111"/>
+        <source>Open</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

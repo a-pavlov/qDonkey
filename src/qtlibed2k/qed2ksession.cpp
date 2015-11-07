@@ -622,12 +622,10 @@ void QED2KSession::cancelSearch()
     m_session->post_cancel_search();
 }
 
-void QED2KSession::switchTransfer(QString hash) {
+void QED2KSession::openTransfer(QString hash) {
     QED2KHandle h = getTransfer(hash);
     if (h.is_valid()) {
         if (h.is_seed()) QDesktopServices::openUrl(QUrl::fromLocalFile(h.filepath()));
-        else if (h.is_paused()) h.resume();
-        else h.pause();
     }
 }
 
