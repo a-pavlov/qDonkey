@@ -40,14 +40,14 @@ class Preferences : public QIniSettings {
     Q_OBJECT
 
     Q_DISABLE_COPY(Preferences)
-    Q_PROPERTY(int listenPort READ listenPort WRITE setListenPort)
+    Q_PROPERTY(int listenPort READ listenPort WRITE setListenPort NOTIFY listenPortChanged)
     Q_PROPERTY(QString nick READ nick WRITE setNick NOTIFY nickChanged)
     Q_PROPERTY(QString userHash READ userHash WRITE setUserHash)
     Q_PROPERTY(QString inputDir READ inputDir WRITE setInputDir NOTIFY inputDirChanged)
     Q_PROPERTY(bool showAllTransfers READ showAllTransfers WRITE setShowAllTransfers NOTIFY showAllTransfersChanged)
     Q_PROPERTY(QString locale READ locale WRITE setLocale)
     Q_PROPERTY(bool pausedTransfersFromCollection READ pausedTransfersFromCollection WRITE setPausedTransfersFromCollection)
-    Q_PROPERTY(QString defaultInputDir READ defaultInputDir)
+    Q_PROPERTY(QString defaultInputDir READ defaultInputDir NOTIFY defaultInputDirChanged)
 
     Q_PROPERTY(bool upSpeedLimited READ upSpeedLimited WRITE setUpSpeedLimited NOTIFY upSpeedLimitedChanged)
     Q_PROPERTY(bool dlSpeedLimited READ dlSpeedLimited WRITE setDlSpeedLimited NOTIFY dlSpeedLimitedChanged)
@@ -109,6 +109,7 @@ public:
 #endif
 signals:
      void inputDirChanged(QString);
+     void defaultInputDirChanged(QString);
      void listenPortChanged(int);
      void showAllTransfersChanged(bool);
      void nickChanged(QString);

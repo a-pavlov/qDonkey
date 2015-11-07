@@ -58,7 +58,8 @@ MainWindow::MainWindow(QObject* parent) : QObject(parent) {
     engine->rootContext()->setContextProperty("serverModel", smodel);
     engine->rootContext()->setContextProperty("searchModel", searchmodel);
     engine->rootContext()->setContextProperty("searchFPModel", searchFilterProxyModel);
-    engine->rootContext()->setContextProperty("transferModel", transferProxy);
+    engine->rootContext()->setContextProperty("transferProxy", transferProxy);
+    engine->rootContext()->setContextProperty("transferModel", transferModel);
     engine->rootContext()->setContextProperty("transferDetails", transferDetails);
     engine->rootContext()->setContextProperty("session", Session::instance());
     engine->rootContext()->setContextProperty("pref", pref.data());

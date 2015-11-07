@@ -41,7 +41,7 @@ Page {
 
 
 
-            model: transferModel
+            model: transferProxy
 
             delegate: ListItem.SimpleMenu {
                 id: transfer

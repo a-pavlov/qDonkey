@@ -526,7 +526,7 @@ Are you sure you want to quit qDonkey?</source>
     <message>
         <location filename="../../material/qml/SearchResult.qml" line="13"/>
         <source>Transfer was added to download list</source>
-        <translation>Загруззка  добавлена в список</translation>
+        <translation>Загрузка  добавлена в список</translation>
     </message>
     <message>
         <location filename="../../material/qml/SearchResult.qml" line="20"/>
