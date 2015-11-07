@@ -126,3 +126,4 @@ void MainWindow::restoreLastServerConnection() {
     }
     pref.endGroup();
 }
+

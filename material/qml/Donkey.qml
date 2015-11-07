@@ -10,6 +10,25 @@ ApplicationWindow {
     height: 500
     visible: true
 
+    property string lastErrorFilename: ""
+    property string lastErrorMessage: ""
+
+    Dialog {
+        id: ioErrorDialog
+        hasActions: false
+        title: qsTr("I/O error")
+        text: qsTr("Filename: %1 message %2").arg(lastErrorFilename).arg(lastErrorMessage)
+    }
+
+    Connections {
+        target: session
+        onFileIOError: {
+            lastErrorFilename=filename
+            lastErrorMessage=message
+            ioErrorDialog.show()
+        }
+    }
+
     InitDialog {
         id: initDialog
     }

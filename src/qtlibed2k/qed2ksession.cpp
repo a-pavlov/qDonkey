@@ -299,6 +299,7 @@ bool writeResumeDataOne(std::ofstream& fs, const libed2k::save_resume_data_alert
 QED2KSession::QED2KSession() : m_upnp(0), m_natpmp(0) {   
     connect(&alertsTimer, SIGNAL(timeout()), this, SLOT(readAlerts()));
     m_speedMon.reset(new TransferSpeedMonitor(this));
+    last_error_dt = QDateTime::currentDateTime().addSecs(-1);
 }
 
 void QED2KSession::start()
@@ -621,6 +622,15 @@ void QED2KSession::cancelSearch()
     m_session->post_cancel_search();
 }
 
+void QED2KSession::switchTransfer(QString hash) {
+    QED2KHandle h = getTransfer(hash);
+    if (h.is_valid()) {
+        if (h.is_seed()) QDesktopServices::openUrl(QUrl::fromLocalFile(h.filepath()));
+        else if (h.is_paused()) h.resume();
+        else h.pause();
+    }
+}
+
 libed2k::peer_connection_handle QED2KSession::getPeer(const libed2k::net_identifier& np)
 {
     libed2k::peer_connection_handle pch = m_session->find_peer_connection(np);
@@ -824,6 +834,11 @@ void QED2KSession::readAlerts()
             QED2KHandle h(p->m_handle);
             if (h.is_valid()) {
                 emit fileError(h, QString::fromLocal8Bit(p->error.message().c_str(), p->error.message().size()));
+                QDateTime cdt = QDateTime::currentDateTime();
+                if (last_error_dt.secsTo(cdt) > 2) {
+                    emit fileIOError(h.filename(), QString::fromLocal8Bit(p->error.message().c_str(), p->error.message().size()));
+                    last_error_dt = cdt;
+                }
                 h.pause();
             }
         }

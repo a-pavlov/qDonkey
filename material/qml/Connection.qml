@@ -6,29 +6,33 @@ import Material.ListItems 0.1 as ListItem
 ColumnLayout {
     id: connection
     spacing: 0
-    anchors {
+    anchors.fill: parent
+    /*anchors {
         left: parent.left
         right: parent.right
-    }
+    }*/
 
     Label {
         anchors {
             left: parent.left
             top: parent.top
+            margins: Units.dp(16)
         }
 
         id: title
-        text: qsTr("Double click server for connection")
-        style: "title"
+        text: qsTr("Double click on server for connect/disconnect")
+        style: "body2"
     }
 
     ListView {
-        anchors {
+        Layout.fillWidth: true
+        Layout.fillHeight: true
+        /*anchors {
             left: parent.left
             right: parent.right
             top: title.bottom
             bottom: parent.bottom
-        }
+        }*/
 
         model: serverModel
 

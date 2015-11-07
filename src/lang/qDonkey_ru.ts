@@ -4,17 +4,21 @@
 <context>
     <name>Connection</name>
     <message>
-        <location filename="../../material/qml/Connection.qml" line="21"/>
         <source>Double click server for connection</source>
-        <translation>Двойнок клик на сервере для соединения</translation>
+        <translation type="vanished">Двойнок клик на сервере для соединения</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Connection.qml" line="47"/>
+        <location filename="../../material/qml/Connection.qml" line="23"/>
+        <source>Double click on server for connect/disconnect</source>
+        <translation>Двойной клик на сервере для соединения/отсоединения</translation>
+    </message>
+    <message>
+        <location filename="../../material/qml/Connection.qml" line="51"/>
         <source>Connected</source>
         <translation>Соединен</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Connection.qml" line="48"/>
+        <location filename="../../material/qml/Connection.qml" line="52"/>
         <source>Connecting...</source>
         <translation>Соединяюсь...</translation>
     </message>
@@ -22,22 +26,32 @@
 <context>
     <name>Donkey</name>
     <message>
-        <location filename="../../material/qml/Donkey.qml" line="33"/>
+        <location filename="../../material/qml/Donkey.qml" line="18"/>
+        <source>I/O error</source>
+        <translation>Ошибка ввода-вывода</translation>
+    </message>
+    <message>
+        <location filename="../../material/qml/Donkey.qml" line="19"/>
+        <source>Filename: %1 message %2</source>
+        <translation>Файл %1 ошибка %2</translation>
+    </message>
+    <message>
+        <location filename="../../material/qml/Donkey.qml" line="52"/>
         <source>Conn</source>
         <translation>Серверы</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Donkey.qml" line="33"/>
+        <location filename="../../material/qml/Donkey.qml" line="52"/>
         <source>Transfers</source>
         <translation>Загрузки</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Donkey.qml" line="33"/>
+        <location filename="../../material/qml/Donkey.qml" line="52"/>
         <source>Search</source>
         <translation>Поиск</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Donkey.qml" line="33"/>
+        <location filename="../../material/qml/Donkey.qml" line="52"/>
         <source>Pref</source>
         <translation>Опции</translation>
     </message>
@@ -214,9 +228,13 @@ Are you sure you want to quit qDonkey?</source>
         <translation>Изменения языка вступят в силу после перезапуска программы</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Preferences.qml" line="61"/>
         <source>Preferences</source>
-        <translation>Опции</translation>
+        <translation type="vanished">Опции</translation>
+    </message>
+    <message>
+        <location filename="../../material/qml/Preferences.qml" line="61"/>
+        <source>Change preferences here</source>
+        <translation>Настройка программы</translation>
     </message>
     <message>
         <location filename="../../material/qml/Preferences.qml" line="81"/>
@@ -340,9 +358,13 @@ Are you sure you want to quit qDonkey?</source>
         <translation>Вы не соединены ни с одним сервером</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Search.qml" line="71"/>
         <source>Seach in ed2k network</source>
-        <translation>Поиск в ослосети</translation>
+        <translation type="vanished">Поиск в ослосети</translation>
+    </message>
+    <message>
+        <location filename="../../material/qml/Search.qml" line="71"/>
+        <source>Enter phrase and press start</source>
+        <translation>Введите поисковую фразу и нажмите старт</translation>
     </message>
     <message>
         <location filename="../../material/qml/Search.qml" line="83"/>
@@ -500,25 +522,30 @@ Are you sure you want to quit qDonkey?</source>
     <message>
         <location filename="../../material/qml/SearchResult.qml" line="13"/>
         <source>Transfer was added to download list</source>
-        <translation>Закачка добавлена в список</translation>
+        <translation>Загруззка  добавлена в список</translation>
     </message>
     <message>
         <location filename="../../material/qml/SearchResult.qml" line="20"/>
         <source>Unable to add transfer</source>
-        <translation>Ошибка при добавлении закачки</translation>
+        <translation>Ошибка при добавлении загрузки</translation>
     </message>
     <message>
-        <location filename="../../material/qml/SearchResult.qml" line="70"/>
+        <location filename="../../material/qml/SearchResult.qml" line="40"/>
+        <source>Double click on icon for download</source>
+        <translation>Двойной клик на иконке для загрузки</translation>
+    </message>
+    <message>
+        <location filename="../../material/qml/SearchResult.qml" line="94"/>
         <source>Search related</source>
         <translation>Искать связанные</translation>
     </message>
     <message>
-        <location filename="../../material/qml/SearchResult.qml" line="70"/>
+        <location filename="../../material/qml/SearchResult.qml" line="94"/>
         <source>Download</source>
         <translation>Скачать</translation>
     </message>
     <message>
-        <location filename="../../material/qml/SearchResult.qml" line="70"/>
+        <location filename="../../material/qml/SearchResult.qml" line="94"/>
         <source>Preview</source>
         <translation>Просмотр</translation>
     </message>
@@ -538,7 +565,7 @@ Are you sure you want to quit qDonkey?</source>
     <message>
         <location filename="../../material/qml/TransferDetails.qml" line="138"/>
         <source>Seeds/Peers %1/%2</source>
-        <translation>Сиды/Пиры %1/2%</translation>
+        <translation>Сиды/Пиры %1/%2</translation>
     </message>
     <message>
         <location filename="../../material/qml/TransferDetails.qml" line="153"/>
@@ -703,58 +730,63 @@ Are you sure you want to quit qDonkey?</source>
 <context>
     <name>Transfers</name>
     <message>
-        <location filename="../../material/qml/Transfers.qml" line="33"/>
+        <location filename="../../material/qml/Transfers.qml" line="27"/>
+        <source>Double click on icon for open/pause/resume</source>
+        <translation>Двойной клик на иконке для открытия/паузы/возобновления</translation>
+    </message>
+    <message>
+        <location filename="../../material/qml/Transfers.qml" line="53"/>
         <source>Stalled dl</source>
         <translation>Ждет источники</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Transfers.qml" line="34"/>
+        <location filename="../../material/qml/Transfers.qml" line="54"/>
         <source>Stalled up</source>
         <translation>Бездействует</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Transfers.qml" line="35"/>
+        <location filename="../../material/qml/Transfers.qml" line="55"/>
         <source>Downloading...</source>
         <translation>Закачка...</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Transfers.qml" line="36"/>
+        <location filename="../../material/qml/Transfers.qml" line="56"/>
         <source>Seeding...</source>
         <translation>Сидирует...</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Transfers.qml" line="39"/>
+        <location filename="../../material/qml/Transfers.qml" line="59"/>
         <source>Paused</source>
         <translation>Пауза</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Transfers.qml" line="40"/>
+        <location filename="../../material/qml/Transfers.qml" line="60"/>
         <source>Checking...</source>
         <translation>Проверка...</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Transfers.qml" line="41"/>
-        <location filename="../../material/qml/Transfers.qml" line="42"/>
+        <location filename="../../material/qml/Transfers.qml" line="61"/>
+        <location filename="../../material/qml/Transfers.qml" line="62"/>
         <source>Invalid</source>
         <translation>Ошибка</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Transfers.qml" line="84"/>
+        <location filename="../../material/qml/Transfers.qml" line="116"/>
         <source>Pause</source>
         <translation>Пауза</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Transfers.qml" line="84"/>
+        <location filename="../../material/qml/Transfers.qml" line="116"/>
         <source>Resume</source>
         <translation>Возобновить</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Transfers.qml" line="84"/>
+        <location filename="../../material/qml/Transfers.qml" line="116"/>
         <source>Remove</source>
         <translation>Удалить</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Transfers.qml" line="84"/>
+        <location filename="../../material/qml/Transfers.qml" line="116"/>
         <source>Details</source>
         <translation>Детали</translation>
     </message>

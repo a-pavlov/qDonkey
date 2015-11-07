@@ -23,20 +23,33 @@ Page {
 
     ColumnLayout {
         spacing: 0
-        anchors {
+        anchors.fill: parent
+        /*anchors {
             left: parent.left
             right: parent.right
             bottom: parent.bottom
             top: parent.top
+        }*/
+
+        Label {
+            anchors {
+                top: parent.top
+                left: parent.left
+            }
+
+            text: qsTr("Double click on icon for download")
+            style: "body2"
         }
 
         ListView {
-            anchors {
+            Layout.fillHeight: true
+            Layout.fillWidth: true
+            /*anchors {
                 left: parent.left
                 right: parent.right
                 top: parent.top
                 bottom: parent.bottom
-            }
+            }*/
 
             model: searchFPModel
 
@@ -62,6 +75,17 @@ Page {
                         case "CD image": return Qt.resolvedUrl("qrc:/images/disqus.svg")
                         case "Emule collection": return Qt.resolvedUrl("qrc:/images/file-multiple.svg")
                         default: return Qt.resolvedUrl("qrc:/images/file.svg")
+                        }
+                    }
+
+                    MouseArea {
+                        anchors.fill: parent
+                        onDoubleClicked: {
+                            if (session.addTransfer(hash, name, filesize_num, sources_num)) {
+                                alertTransferAddSucc.show()
+                            } else {
+                                alertTransferAddFail.show()
+                            }
                         }
                     }
                 }

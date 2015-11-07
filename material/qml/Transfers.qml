@@ -4,22 +4,42 @@ import Material 0.1
 import Material.ListItems 0.1 as ListItem
 import TransferModelItemEnum 1.0
 
+Page {
     ColumnLayout {
         spacing: 0
-        anchors {
+        anchors.fill: parent
+        /*anchors {
             left: parent.left
             right: parent.right
             bottom: parent.bottom
             top: parent.top
-        }
+        }*/
 
-        ListView {
+        Label {
+            id: title
             anchors {
                 left: parent.left
                 right: parent.right
-                top: parent.top
+                margins: Units.dp(16)
+            }
+
+            style:  "body2"
+            text: qsTr("Double click on icon for open/pause/resume")
+        }
+
+
+        ListView {
+            Layout.fillHeight: true
+            Layout.fillWidth: true
+            /*anchors {
+                left: parent.left
+                right: parent.right
+                top: title.bottom
                 bottom: parent.bottom
             }
+            */
+
+
 
             model: transferModel
 
@@ -77,7 +97,19 @@ import TransferModelItemEnum 1.0
                         }
                     }
 
-                    size: Units.dp(24)
+                    //size: Units.dp(24)
+
+                    MouseArea {
+                        anchors.fill: parent
+                        propagateComposedEvents: true
+                        onDoubleClicked: {
+                            session.switchTransfer(hash)
+                        }
+
+                        onClicked: {
+                            console.log("mouse clicked");
+                        }
+                    }
                 }
 
                 maximumLineCount: 4
@@ -109,9 +141,11 @@ import TransferModelItemEnum 1.0
 
                     selectedIndex=-1
                 }
+
             }
         }
 
     }
+}
 
 

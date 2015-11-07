@@ -197,6 +197,7 @@ private:
     libed2k::natpmp* m_natpmp;
     QString m_currentPath;
     QScopedPointer<TransferSpeedMonitor>    m_speedMon;
+    QDateTime               last_error_dt;
 private slots:
     void readAlerts();
 public slots:
@@ -233,6 +234,13 @@ public slots:
 	  * stops current search
 	 */
     Q_INVOKABLE void cancelSearch();
+
+    /**
+      * pause on resumed transfer
+      * resume on paused transfer
+      * open on completed transfer`
+    */
+    Q_INVOKABLE void switchTransfer(QString hash);
 
     libed2k::peer_connection_handle getPeer(const libed2k::net_identifier& np);
     libed2k::peer_connection_handle findPeer(const libed2k::net_identifier& np);
@@ -322,6 +330,7 @@ signals:
     void transferRestored(QED2KHandle);
 
     void fileError(QED2KHandle, QString);
+    void fileIOError(QString filename, QString message);
 
     void resetInputDirectory(const QString& path);
 };
