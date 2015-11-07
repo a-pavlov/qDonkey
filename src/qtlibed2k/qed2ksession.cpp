@@ -624,8 +624,9 @@ void QED2KSession::cancelSearch()
 
 void QED2KSession::openTransfer(QString hash) {
     QED2KHandle h = getTransfer(hash);
-    if (h.is_valid()) {
-        if (h.is_seed()) QDesktopServices::openUrl(QUrl::fromLocalFile(h.filepath()));
+    if (h.is_valid() && h.is_seed()) {
+        qDebug() << "open file " << QUrl::fromLocalFile(h.filepath());
+        QDesktopServices::openUrl(QUrl::fromLocalFile(h.filepath()));
     }
 }
 
