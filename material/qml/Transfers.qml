@@ -99,22 +99,16 @@ Page {
                 }
 
                 maximumLineCount: {
-                    if (status == TransferModelItem.STATE_STALLED_UP ||
-                            status == TransferModelItem.STATE_SEEDING) return 4
-                    return 3
+                                        return 4
                 }
 
                 model: {
-                    switch(status) {
-                    case TransferModelItem.STATE_STALLED_UP:
-                    case TransferModelItem.STATE_SEEDING:
-                        return [qsTr("Pause"), qsTr("Resume"), qsTr("Remove"), qsTr("Details"), qsTr("Open")]
-                    default:
-                        return [qsTr("Pause"), qsTr("Resume"), qsTr("Remove"), qsTr("Details")]
-                    }
+                    return [qsTr("Pause"), qsTr("Resume"), qsTr("Remove"), qsTr("Details"), qsTr("Open")]
+
                 }
 
                 onSelectedIndexChanged: {
+                    console.log("selected index changed " + selectedIndex)
                     switch(selectedIndex) {
                     case 0:
                         console.log("pause " + hash)
