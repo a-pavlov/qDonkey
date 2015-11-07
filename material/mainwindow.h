@@ -11,6 +11,7 @@ class SWSortFilterProxyModel;
 class TransferModel;
 class TransferDetailsModel;
 class TransferSortFilterModel;
+class QED2KHandle;
 
 class MainWindow:  public QObject {
     Q_OBJECT
@@ -35,7 +36,6 @@ private slots:
     void onServerConnectionInitialized(QString,QString,int,quint32,quint32,quint32);
     void onServerConnectionClosed(QString,QString,int,QString);
     void onShowAllTransfersChanged(bool);
-
 };
 
 

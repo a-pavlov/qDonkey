@@ -56,8 +56,8 @@ Page {
             id: col
             anchors {
                 fill: parent
-                topMargin: Units.dp(16)
-                bottomMargin: Units.dp(16)
+                //topMargin: Units.dp(16)
+                //bottomMargin: Units.dp(16)
             }
 
             Label {
@@ -67,8 +67,8 @@ Page {
                     margins: Units.dp(16)
                 }
 
-                style:  "title"
-                text: qsTr("Seach in ed2k network")
+                style:  "body2"
+                text: qsTr("Enter phrase and press start")
             }
 
             ListItem.Standard {

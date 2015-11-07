@@ -45,8 +45,8 @@ Page {
 
             anchors {
                 fill: parent
-                topMargin: Units.dp(16)
-                bottomMargin: Units.dp(16)
+                //topMargin: Units.dp(16)
+                //bottomMargin: Units.dp(16)
             }
 
             Label {
@@ -57,8 +57,8 @@ Page {
                     margins: Units.dp(16)
                 }
 
-                style: "title"
-                text: qsTr("Preferences")
+                style: "body2"
+                text: qsTr("Change preferences here")
             }
 
             ListItem.Standard {
