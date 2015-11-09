@@ -14,7 +14,9 @@ ApplicationWindow {
 
     Dialog {
         id: ioErrorDialog
-        hasActions: false
+        hasActions: true
+        positiveButtonText: qsTr("Ok")
+        negativeButton.visible: false
         title: qsTr("I/O error")
         text: qsTr("Filename: %1 message %2").arg(lastErrorFilename).arg(lastErrorMessage)
     }

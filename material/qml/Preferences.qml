@@ -28,7 +28,9 @@ Page {
 
     Dialog {
         id: langRestart
-        hasActions: false
+        hasActions: true
+        positiveButtonText: qsTr("Ok")
+        negativeButton.visible: false
         text: qsTr("New language will be available after restart")
     }
 

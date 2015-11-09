@@ -11,14 +11,18 @@ Page {
         id: alertTransferAddSucc
         width: Units.dp(300)
         text: qsTr("Transfer was added to download list")
-        hasActions: false
+        hasActions: true
+        positiveButtonText: qsTr("Ok")
+        negativeButton.visible: false
     }
 
     Dialog {
         id: alertTransferAddFail
         width: Units.dp(300)
         text: qsTr("Unable to add transfer")
-        hasActions: false
+        hasActions: true
+        positiveButtonText: qsTr("Ok")
+        negativeButton.visible: false
     }
 
     ColumnLayout {

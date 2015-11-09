@@ -10,7 +10,9 @@ Page {
         id: alertEmptyResult
         width: Units.dp(300)
         text: qsTr("Sorry, your last search returned empty result")
-        hasActions: false
+        hasActions: true
+        positiveButtonText: qsTr("Ok")
+        negativeButton.visible: false
     }
 
     Connections {
@@ -40,7 +42,9 @@ Page {
         id: alertNoConnection
         width: Units.dp(300)
         text: qsTr("You are not connected to any ED2K server. Please, connect first")
-        hasActions: false
+        hasActions: true
+        positiveButtonText: qsTr("Ok")
+        negativeButton.visible: false
     }
 
     Flickable {
