@@ -11,6 +11,7 @@
 #include "qed2ksession.h"
 #include <QQmlApplicationEngine>
 #include <QQmlContext>
+#include <QKeyEvent>
 
 MainWindow::MainWindow(QObject* parent) : QObject(parent) {
     pref.reset(new Preferences);
@@ -76,6 +77,14 @@ MainWindow::MainWindow(QObject* parent) : QObject(parent) {
 
 MainWindow::~MainWindow() {
     Session::instance()->drop();
+}
+
+void MainWindow::keyReleaseEvent(QKeyEvent* event) {
+    if (event->key() == Qt::Key_Exit) {
+        qDebug() << "exit key pressed";
+    }
+
+    event->setAccepted(true);
 }
 
 void MainWindow::onIncomingDirChanged(QString dir) {
