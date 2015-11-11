@@ -41,7 +41,8 @@ HEADERS +=  ../src/misc.h \
             transfermodel_item.h \
             preferences.h \
             transferdetailsmodel.h \
-            transfersortfiltermodel.h
+            transfersortfiltermodel.h \
+            notificationclient.h
 
 SOURCES +=  ../src/misc.cpp \
             ../src/search/search_widget_fp_model.cpp \
@@ -53,7 +54,8 @@ SOURCES +=  ../src/misc.cpp \
             transfermodel_item.cpp \
             preferences.cpp \
             transferdetailsmodel.cpp \
-            transfersortfiltermodel.cpp
+            transfersortfiltermodel.cpp \
+            notificationclient.cpp
 
 lupdate_only {
     SOURCES += qml/Connection.qml \
@@ -72,21 +74,11 @@ TRANSLATIONS =  $$LANG_PATH/qDonkey_en.ts \
 DESTDIR = .
 
 # Additional import path used to resolve QML modules in Qt Creators code model
-QML_IMPORT_PATH =qml
+QML_IMPORT_PATH = qml
 
 # Default rules for deployment.
 include(deployment.pri)
 
 include(version.pri)
 
-
-DISTFILES += \
-    android/AndroidManifest.xml \
-    android/AndroidManifest.xml.bak \
-    android/AndroidManifest.xml~ \
-    android/res/values/libs.xml \
-    android/build.gradle \
-    android/AndroidManifest.xml~
-
-ANDROID_PACKAGE_SOURCE_DIR = $$PWD/android
 

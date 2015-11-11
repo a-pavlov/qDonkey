@@ -9,6 +9,7 @@
 #include "../src/search/search_widget_fp_model.h"
 #include "qed2kserver.h"
 #include "qed2ksession.h"
+#include "notificationclient.h"
 #include <QQmlApplicationEngine>
 #include <QQmlContext>
 
@@ -19,11 +20,16 @@ MainWindow::MainWindow(QObject* parent) : QObject(parent) {
     smodel = new ServerModel(this);
 #ifdef IS74
     smodel->add(QED2KServer("is74", "emule.is74.ru", 4661));
+    smodel->add(QED2KServer("Sec1", "91.200.42.46", 1176));
+    smodel->add(QED2KServer("TV", "176.103.48.36", 4148));
+    smodel->add(QED2KServer("PEERATES", "88.191.221.121", 7111));
     //smodel->update("is74", "emule.is74.ru", 4661);
 #endif
     foreach(const QED2KServer s, fromServersMet("./server.met")) {
         smodel->add(s);
     }
+
+    notificationClient = new NotificationClient(this);
     searchmodel = new SearchModel(this);
     searchFilterProxyModel = new SWSortFilterProxyModel(this);
     searchFilterProxyModel->setDynamicSortFilter(false);
@@ -53,6 +59,10 @@ MainWindow::MainWindow(QObject* parent) : QObject(parent) {
             this, SLOT(onServerConnectionInitialized(QString,QString,int,quint32,quint32,quint32)));
     connect(Session::instance(), SIGNAL(serverConnectionClosed(QString,QString,int,QString)), this,
             SLOT(onServerConnectionClosed(QString,QString,int,QString)));
+
+    connect(Session::instance(), SIGNAL(transferAdded(QED2KHandle)), SLOT(addedTransfer(QED2KHandle)));
+    connect(Session::instance(), SIGNAL(transferFinished(QED2KHandle)), SLOT(finishedTransfer(QED2KHandle)));
+    connect(Session::instance(), SIGNAL(fileIOError(QString, QString)), SLOT(fileError(QString, QString)));
     engine = new QQmlApplicationEngine(this);
     TransferModelItemEnum::qmlRegister();
     engine->rootContext()->setContextProperty("serverModel", smodel);
@@ -126,5 +136,22 @@ void MainWindow::restoreLastServerConnection() {
         smodel->update(pref.value("Alias", "").toString(), pref.value("Host", "").toString(), pref.value("Port", -1).toInt());
     }
     pref.endGroup();
+}
+
+// called when a transfer has started
+void MainWindow::addedTransfer(const QED2KHandle& h) {
+    //showNotificationBaloon(tr("Download starting"), tr("%1 has started downloading.", "e.g: xxx.avi has started downloading.").arg(h.name()));
+    notificationClient->setNotification(tr("%1 has started downloading").arg(h.name()));
+}
+
+// called when a transfer has finished
+void MainWindow::finishedTransfer(const QED2KHandle& h) {
+    //showNotificationBaloon(tr("Download completion"), tr("%1 has finished downloading.", "e.g: xxx.avi has finished downloading.").arg(h.name()));
+    notificationClient->setNotification(tr("%1 has finished downloading").arg(h.name()));
+}
+
+// Notification when disk is full and other disk errors
+void MainWindow::fileError(QString filename, QString msg) {
+    notificationClient->setNotification(tr("I/O error on %1: %2").arg(filename).arg(msg));
 }
 

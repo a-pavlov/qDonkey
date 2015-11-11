@@ -1,8 +1,6 @@
 # COMPILATION SPECIFIC
-!nox:dbus {
-  QT += dbus
-}
 
+QT += androidextras
 QMAKE_CXXFLAGS += -Wformat -Wformat-security -Werror=return-type -Wno-unused-parameter
 QMAKE_LFLAGS_APP += -rdynamic
 INCLUDEPATH += $$(LIBED2K_ROOT)/include 
@@ -30,27 +28,21 @@ DEFINES += "BUILDDATE='\"$$system(date -R)\"'"
 DEFINES += BOOST_EXCEPTION_DISABLE
 
 
-# Man page
-nox {
-    man.files = ../doc/qbittorrent-nox.1
-} else {
-    man.files = ../doc/qbittorrent.1
-}
-
-man.path = $$MANPREFIX/man/man1/
-INSTALLS += man
-
 # INSTALL
 target.path = $$PREFIX/bin/
 INSTALLS += target
 
-dbus {
-  include(src/qtnotify/qtnotify.pri)
-}
 
-!nox {
-  #DEFINE added by configure
-  contains(DEFINES, WITH_GEOIP_EMBEDDED) {
-    message("You chose to embed GeoIP database in qMule executable.")
-  }
-}
+DISTFILES += \
+    android/AndroidManifest.xml \
+    android/AndroidManifest.xml.bak \
+    android/AndroidManifest.xml~ \
+    android/res/values/libs.xml \
+    android/build.gradle \
+    android/AndroidManifest.xml~
+
+OTHER_FILES +=  android/src/org/dkfsoft/qDonkey/NotificationClient.java \
+                android/AndroidManifest.xml
+
+
+ANDROID_PACKAGE_SOURCE_DIR = $$PWD/android

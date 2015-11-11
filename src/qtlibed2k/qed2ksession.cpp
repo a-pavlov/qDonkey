@@ -625,8 +625,23 @@ void QED2KSession::cancelSearch()
 void QED2KSession::openTransfer(QString hash) {
     QED2KHandle h = getTransfer(hash);
     if (h.is_valid() && h.is_seed()) {
-        qDebug() << "open file " << QUrl::fromLocalFile(h.filepath());
-        QDesktopServices::openUrl(QUrl::fromLocalFile(h.filepath()));
+        QUrl u1 = QUrl::fromLocalFile(h.filepath());
+        QUrl u2(h.filepath());
+
+        qDebug() << u1 << " 2 " << u2;
+        if (u1.isValid()) qDebug() << "u1 valid";
+        if (u2.isValid()) qDebug() << "u2 valid";
+
+        if (QDesktopServices::openUrl(u1))
+        {
+            qDebug() << u1 << " opened";
+        }
+
+        if (QDesktopServices::openUrl(u2))
+        {
+            qDebug() << u2 << " opened";
+
+        }
     }
 }
 
