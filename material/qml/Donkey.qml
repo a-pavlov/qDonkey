@@ -22,11 +22,11 @@ ApplicationWindow {
     }
 
     onClosing: {
-        if (forceExit) {
-            close.accepted=true
-        } else {
+        if (pref.askOnExit && !forceExit) {
             quitAsk.show()
             close.accepted=false
+        } else {
+            close.accepted=true
         }
     }
 

@@ -45,7 +45,7 @@ class Preferences : public QIniSettings {
     Q_PROPERTY(QString userHash READ userHash WRITE setUserHash)
     Q_PROPERTY(QString inputDir READ inputDir WRITE setInputDir NOTIFY inputDirChanged)
     Q_PROPERTY(bool showAllTransfers READ showAllTransfers WRITE setShowAllTransfers NOTIFY showAllTransfersChanged)
-    Q_PROPERTY(QString locale READ locale WRITE setLocale)
+    Q_PROPERTY(QString locale READ locale WRITE setLocale NOTIFY localeChanged)
     Q_PROPERTY(bool pausedTransfersFromCollection READ pausedTransfersFromCollection WRITE setPausedTransfersFromCollection)
     Q_PROPERTY(QString defaultInputDir READ defaultInputDir NOTIFY defaultInputDirChanged)
 
@@ -54,6 +54,7 @@ class Preferences : public QIniSettings {
 
     Q_PROPERTY(quint32 upSpeed READ upSpeed WRITE setUpSpeed NOTIFY upSpeedChanged)
     Q_PROPERTY(quint32 dlSpeed READ dlSpeed WRITE setDlSpeed NOTIFY dlSpeedChanged)
+    Q_PROPERTY(bool askOnExit READ askOnExit WRITE setAskOnExit NOTIFY askOnExitChanged)
 
 public:
   Preferences() : QIniSettings(COMPANY_NAME,  PRODUCT_NAME){
@@ -100,6 +101,9 @@ public:
     quint32 dlSpeed() const;
     void setDlSpeed(quint32);
 
+    bool askOnExit() const;
+    void setAskOnExit(bool);
+
 #ifdef Q_OS_WIN
     static bool isFileAssocSet(const QString& file);
     static void setFileAssoc(const QString& file, bool set);
@@ -109,6 +113,7 @@ public:
 #endif
 signals:
      void inputDirChanged(QString);
+     void localeChanged(QString);
      void defaultInputDirChanged(QString);
      void listenPortChanged(int);
      void showAllTransfersChanged(bool);
@@ -118,6 +123,7 @@ signals:
      void upSpeedChanged(quint32);
      void dlSpeedChanged(quint32);
      void preferencesChanged();
+     void askOnExitChanged(bool);
 };
 
 #endif // PREFERENCES_H

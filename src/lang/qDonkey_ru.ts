@@ -31,36 +31,51 @@
     <name>Donkey</name>
     <message>
         <location filename="../../material/qml/Donkey.qml" line="18"/>
+        <source>Do you really want to quit?</source>
+        <translation>Вы уверены что хотите выйти?</translation>
+    </message>
+    <message>
+        <location filename="../../material/qml/Donkey.qml" line="19"/>
+        <source>Yes</source>
+        <translation>Да</translation>
+    </message>
+    <message>
+        <location filename="../../material/qml/Donkey.qml" line="20"/>
+        <source>No</source>
+        <translation>Нет</translation>
+    </message>
+    <message>
+        <location filename="../../material/qml/Donkey.qml" line="36"/>
         <source>Ok</source>
         <translation>Готово</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Donkey.qml" line="20"/>
+        <location filename="../../material/qml/Donkey.qml" line="38"/>
         <source>I/O error</source>
         <translation>Ошибка ввода-вывода</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Donkey.qml" line="21"/>
+        <location filename="../../material/qml/Donkey.qml" line="39"/>
         <source>Filename: %1 message %2</source>
         <translation>Файл %1 ошибка %2</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Donkey.qml" line="54"/>
+        <location filename="../../material/qml/Donkey.qml" line="85"/>
         <source>Conn</source>
         <translation>Серверы</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Donkey.qml" line="54"/>
+        <location filename="../../material/qml/Donkey.qml" line="85"/>
         <source>Transfers</source>
         <translation>Загрузки</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Donkey.qml" line="54"/>
+        <location filename="../../material/qml/Donkey.qml" line="85"/>
         <source>Search</source>
         <translation>Поиск</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Donkey.qml" line="54"/>
+        <location filename="../../material/qml/Donkey.qml" line="85"/>
         <source>Pref</source>
         <translation>Опции</translation>
     </message>
@@ -301,12 +316,17 @@ Are you sure you want to quit qDonkey?</source>
         <translation>Показывать старые загрузки</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Preferences.qml" line="243"/>
+        <location filename="../../material/qml/Preferences.qml" line="238"/>
+        <source>Ask before exit program</source>
+        <translation>Спрашивать перед выходом</translation>
+    </message>
+    <message>
+        <location filename="../../material/qml/Preferences.qml" line="260"/>
         <source>Cancel</source>
         <translation>Отмена</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Preferences.qml" line="263"/>
+        <location filename="../../material/qml/Preferences.qml" line="281"/>
         <source>Apply</source>
         <translation>Применить</translation>
     </message>

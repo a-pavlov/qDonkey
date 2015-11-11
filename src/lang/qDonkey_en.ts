@@ -23,36 +23,51 @@
     <name>Donkey</name>
     <message>
         <location filename="../../material/qml/Donkey.qml" line="18"/>
-        <source>Ok</source>
+        <source>Do you really want to quit?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../material/qml/Donkey.qml" line="19"/>
+        <source>Yes</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../material/qml/Donkey.qml" line="20"/>
+        <source>No</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../material/qml/Donkey.qml" line="36"/>
+        <source>Ok</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../material/qml/Donkey.qml" line="38"/>
         <source>I/O error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../material/qml/Donkey.qml" line="21"/>
+        <location filename="../../material/qml/Donkey.qml" line="39"/>
         <source>Filename: %1 message %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../material/qml/Donkey.qml" line="54"/>
+        <location filename="../../material/qml/Donkey.qml" line="85"/>
         <source>Conn</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../material/qml/Donkey.qml" line="54"/>
+        <location filename="../../material/qml/Donkey.qml" line="85"/>
         <source>Transfers</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../material/qml/Donkey.qml" line="54"/>
+        <location filename="../../material/qml/Donkey.qml" line="85"/>
         <source>Search</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../material/qml/Donkey.qml" line="54"/>
+        <location filename="../../material/qml/Donkey.qml" line="85"/>
         <source>Pref</source>
         <translation type="unfinished"></translation>
     </message>
@@ -148,12 +163,17 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../material/qml/Preferences.qml" line="243"/>
+        <location filename="../../material/qml/Preferences.qml" line="238"/>
+        <source>Ask before exit program</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../material/qml/Preferences.qml" line="260"/>
         <source>Cancel</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../material/qml/Preferences.qml" line="263"/>
+        <location filename="../../material/qml/Preferences.qml" line="281"/>
         <source>Apply</source>
         <translation type="unfinished"></translation>
     </message>
