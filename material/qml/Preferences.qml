@@ -223,6 +223,23 @@ Page {
                 }
             }
 
+            ListItem.Standard {
+                action: Item {}
+                content: RowLayout {
+                    Switch {
+                        id: askOnExit
+                        checked: pref.askOnExit
+                        enabled: true
+                        darkBackground: false
+                        onCheckedChanged: btnOn()
+                    }
+
+                    Label {
+                        text: qsTr("Ask before exit program")
+                    }
+                }
+            }
+
             Item {
                 Layout.fillWidth: true
                 Layout.preferredHeight: Units.dp(8)
@@ -253,6 +270,7 @@ Page {
                         inputDir.text=pref.inputDir
                         showPreviusTransfers.checked=pref.showAllTransfers
                         language.selectedIndex=getLangIndex(pref.locale)
+                        askOnExit.checked=pref.askOnExit
                         btnCancel.enabled=false
                         btnApply.enabled=false
                     }
@@ -274,6 +292,7 @@ Page {
                         pref.inputDir=inputDir.text
                         pref.showAllTransfers=showPreviusTransfers.checked
                         pref.locale=langModel.get(language.selectedIndex).key
+                        pref.askOnExit=askOnExit.checked
                         pref.flush()
                         btnCancel.enabled=false
                         btnApply.enabled=false

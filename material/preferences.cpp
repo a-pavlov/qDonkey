@@ -19,6 +19,7 @@ const QString pathInputDir  = "HD/InputDir";
 const QString pathSysTrAvail= "System/SystrayAvailable";
 const QString pathShowAllransfers = "Common/ShowAllTransfers";
 const QString pathLocale    = "Common/Locale";
+const QString askOnExitValue = "Common/AskOnExit";
 
 void Preferences::flush() {
     sync();
@@ -32,6 +33,7 @@ int Preferences::listenPort() const {
 void Preferences::setListenPort(int port) {
     Q_ASSERT(port > 0);
     setValue(pathListenPort, port);
+    emit listenPortChanged(port);
 }
 
 QString Preferences::nick() const {
@@ -40,6 +42,7 @@ QString Preferences::nick() const {
 
 void Preferences::setNick(const QString& nick) {
     setValue(pathNick, nick);
+    emit nickChanged(nick);
 }
 
 QString Preferences::userHash() const {
@@ -70,6 +73,7 @@ void Preferences::setShowAllTransfers(bool flag) {
 
 void Preferences::setLocale(const QString& locale) {
     setValue(pathLocale, locale);
+    emit localeChanged(locale);
 }
 
 QString Preferences::locale() const {
@@ -81,7 +85,7 @@ bool Preferences::pausedTransfersFromCollection() const {
 }
 
 void Preferences::setPausedTransfersFromCollection(bool flag) {
-    setValue(pathPausedCT, flag);
+    setValue(pathPausedCT, flag);    
 }
 
 QString Preferences::defaultInputDir() const {
@@ -94,6 +98,7 @@ bool Preferences::upSpeedLimited() const {
 
 void Preferences::setUpSpeedLimited(bool value) {
     setValue(upSpeedLim, value);
+    emit upSpeedLimitedChanged(value);
 }
 
 bool Preferences::dlSpeedLimited() const {
@@ -102,6 +107,7 @@ bool Preferences::dlSpeedLimited() const {
 
 void Preferences::setDlSpeedLimited(bool value) {
     setValue(dlSpeedLim, value);
+    emit dlSpeedLimitedChanged(value);
 }
 
 quint32 Preferences::upSpeed() const {
@@ -110,6 +116,7 @@ quint32 Preferences::upSpeed() const {
 
 void Preferences::setUpSpeed(quint32 value){
     setValue(upSpeedValue, value);
+    upSpeedChanged(value);
 }
 
 quint32 Preferences::dlSpeed() const {
@@ -118,6 +125,16 @@ quint32 Preferences::dlSpeed() const {
 
 void Preferences::setDlSpeed(quint32 value) {
     setValue(dlSpeedValue, value);
+    emit dlSpeedChanged(value);
+}
+
+bool Preferences::askOnExit() const {
+    return value(askOnExitValue, true).toBool();
+}
+
+void Preferences::setAskOnExit(bool b) {
+    setValue(askOnExitValue, b);
+    emit askOnExitChanged(b);
 }
 
 #ifdef Q_OS_WIN
