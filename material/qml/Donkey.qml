@@ -12,10 +12,30 @@ ApplicationWindow {
 
     property string lastErrorFilename: ""
     property string lastErrorMessage: ""
+    property bool forceExit: false
+
+    Dialog {
+        id: quitAsk
+        text: qsTr("Do you really want to quit?");
+        positiveButtonText: qsTr("Yes")
+        negativeButtonText: qsTr("No")
+        hasActions: true
+    }
+
+    onClosing: {
+        if (forceExit) {
+            close.accepted=true
+        } else {
+            quitAsk.show()
+            close.accepted=false
+        }
+    }
 
     Dialog {
         id: ioErrorDialog
-        hasActions: false
+        hasActions: true
+        positiveButtonText: qsTr("Ok")
+        negativeButton.visible: false
         title: qsTr("I/O error")
         text: qsTr("Filename: %1 message %2").arg(lastErrorFilename).arg(lastErrorMessage)
     }
@@ -26,6 +46,19 @@ ApplicationWindow {
             lastErrorFilename=filename
             lastErrorMessage=message
             ioErrorDialog.show()
+        }
+    }
+
+    Connections {
+        target: quitAsk
+        onAccepted: {
+            console.log("exit accepted");
+            forceExit=true
+            close()
+        }
+
+        onRejected: {
+            console.log("exit rejected");
         }
     }
 
@@ -58,6 +91,7 @@ ApplicationWindow {
         id: page
         title: "qDonkey"
         actionBar.maxActionCount: 0
+        focus: true
 
         Repeater {
             model: sections

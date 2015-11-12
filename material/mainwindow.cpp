@@ -12,6 +12,7 @@
 #include "notificationclient.h"
 #include <QQmlApplicationEngine>
 #include <QQmlContext>
+#include <QKeyEvent>
 
 MainWindow::MainWindow(QObject* parent) : QObject(parent) {
     pref.reset(new Preferences);
@@ -88,6 +89,14 @@ MainWindow::~MainWindow() {
     Session::instance()->drop();
 }
 
+void MainWindow::keyReleaseEvent(QKeyEvent* event) {
+    if (event->key() == Qt::Key_Exit) {
+        qDebug() << "exit key pressed";
+    }
+
+    event->setAccepted(true);
+}
+
 void MainWindow::onIncomingDirChanged(QString dir) {
     qDebug() << "user set incoming dir to: " << dir;
     if (dir.isEmpty()) qApp->quit();
@@ -141,12 +150,14 @@ void MainWindow::restoreLastServerConnection() {
 // called when a transfer has started
 void MainWindow::addedTransfer(const QED2KHandle& h) {
     //showNotificationBaloon(tr("Download starting"), tr("%1 has started downloading.", "e.g: xxx.avi has started downloading.").arg(h.name()));
+    qDebug() << "started transssfer " << h.name();
     notificationClient->setNotification(tr("%1 has started downloading").arg(h.name()));
 }
 
 // called when a transfer has finished
 void MainWindow::finishedTransfer(const QED2KHandle& h) {
     //showNotificationBaloon(tr("Download completion"), tr("%1 has finished downloading.", "e.g: xxx.avi has finished downloading.").arg(h.name()));
+    qDebug() << "finished transfer "   << h.name();
     notificationClient->setNotification(tr("%1 has finished downloading").arg(h.name()));
 }
 

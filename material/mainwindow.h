@@ -13,6 +13,8 @@ class TransferDetailsModel;
 class TransferSortFilterModel;
 class QED2KHandle;
 class NotificationClient;
+class QKeyEvent;
+
 
 class MainWindow:  public QObject {
     Q_OBJECT
@@ -32,6 +34,8 @@ private:
 public:
     explicit MainWindow(QObject* parent = 0);
     ~MainWindow();
+protected:
+    void keyReleaseEvent(QKeyEvent* event);
 private slots:
     void onIncomingDirChanged(QString);
     void onPreferencesChanged();
