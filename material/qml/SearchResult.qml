@@ -7,6 +7,7 @@ Page {
     id: searchResults
     title: qsTr("Back to search")
 
+
     Dialog {
         id: alertTransferAddSucc
         width: Units.dp(300)
@@ -28,13 +29,6 @@ Page {
     ColumnLayout {
         spacing: 0
         anchors.fill: parent
-        /*anchors {
-            left: parent.left
-            right: parent.right
-            bottom: parent.bottom
-            top: parent.top
-        }*/
-
         Label {
             anchors {
                 top: parent.top
@@ -48,12 +42,6 @@ Page {
         ListView {
             Layout.fillHeight: true
             Layout.fillWidth: true
-            /*anchors {
-                left: parent.left
-                right: parent.right
-                top: parent.top
-                bottom: parent.bottom
-            }*/
 
             model: searchFPModel
 
@@ -91,10 +79,8 @@ Page {
                     switch(selectedIndex) {
                     case 0:
                         session.searchRelatedFiles(hash)
-                        console.log("search related files " + hash)
                         break
                     case 1:
-                        console.log("start download")
                         if (session.addTransfer(hash, name, filesize_num, sources_num)) {
                             alertTransferAddSucc.show()
                         } else {

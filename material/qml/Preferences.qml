@@ -38,18 +38,11 @@ Page {
         id: flick
         anchors.fill: parent
         contentWidth: parent.width
-        //width: parent.width
-        //height: parent.height-buttonsRow.implicitHeight
         contentHeight: col.implicitHeight + Units.dp(40)
 
         ColumnLayout {
             id: col
-
-            anchors {
-                fill: parent
-                //topMargin: Units.dp(16)
-                //bottomMargin: Units.dp(16)
-            }
+            anchors.fill: parent
 
             Label {
 

@@ -50,19 +50,12 @@ Page {
     Flickable {
         id: flick
         anchors.fill: parent
-
-        //width: parent.width
-        //height: parent.height-buttonsRow.implicitHeight
         contentHeight: Math.max(col.implicitHeight + Units.dp(40), col.height)
         contentWidth: parent.width //Math.max(col.implicitWidth + Units.dp(30), col.width)
 
          ColumnLayout {
             id: col
-            anchors {
-                fill: parent
-                //topMargin: Units.dp(16)
-                //bottomMargin: Units.dp(16)
-            }
+            anchors.fill: parent
 
             Label {
                 anchors {

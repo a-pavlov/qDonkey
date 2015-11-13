@@ -51,13 +51,8 @@ ApplicationWindow {
     Connections {
         target: quitAsk
         onAccepted: {
-            console.log("exit accepted");
             forceExit=true
             close()
-        }
-
-        onRejected: {
-            console.log("exit rejected");
         }
     }
 
