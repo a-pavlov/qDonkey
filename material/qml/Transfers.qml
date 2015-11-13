@@ -8,12 +8,6 @@ Page {
     ColumnLayout {
         spacing: 0
         anchors.fill: parent
-        /*anchors {
-            left: parent.left
-            right: parent.right
-            bottom: parent.bottom
-            top: parent.top
-        }*/
 
         Label {
             id: title
@@ -31,16 +25,6 @@ Page {
         ListView {
             Layout.fillHeight: true
             Layout.fillWidth: true
-            /*anchors {
-                left: parent.left
-                right: parent.right
-                top: title.bottom
-                bottom: parent.bottom
-            }
-            */
-
-
-
             model: transferProxy
 
             delegate: ListItem.SimpleMenu {
@@ -108,31 +92,26 @@ Page {
                 }
 
                 onSelectedIndexChanged: {
-                    console.log("selected index changed " + selectedIndex)
                     switch(selectedIndex) {
                     case 0:
-                        console.log("pause " + hash)
                         session.pauseTransfer(hash);
                         break
                     case 1:
-                        console.log("resume " + hash)
                         session.resumeTransfer(hash);
                         break
                     case 2:
-                        console.log("remove " + hash)
                         session.deleteTransfer(hash,true)
                         transferModel.removeTransfer(hash)
                         break
                     case 3:
-                        console.log("details for " + hash);
                         transferDetails.setHash(hash)
                         pageStack.push(Qt.resolvedUrl("TransferDetails.qml"))
                         break
                     case 4:
                         session.openTransfer(hash)
-                        break;
+                        break
                     default:
-                        console.log("undefined index " + selectedIndex)
+                        break
                     }
 
                     selectedIndex=-1

@@ -7,11 +7,6 @@ ColumnLayout {
     id: connection
     spacing: 0
     anchors.fill: parent
-    /*anchors {
-        left: parent.left
-        right: parent.right
-    }*/
-
     Label {
         anchors {
             left: parent.left
@@ -27,13 +22,6 @@ ColumnLayout {
     ListView {
         Layout.fillWidth: true
         Layout.fillHeight: true
-        /*anchors {
-            left: parent.left
-            right: parent.right
-            top: title.bottom
-            bottom: parent.bottom
-        }*/
-
         model: serverModel
 
         delegate: ListItem.Subtitled {
