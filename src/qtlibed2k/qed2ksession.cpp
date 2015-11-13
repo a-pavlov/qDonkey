@@ -629,13 +629,13 @@ void QED2KSession::openTransfer(QString hash) {
         QUrl u2(h.filepath());
 
         qDebug() << u1 << " 2 " << u2;
-        if (u1.isValid()) qDebug() << "u1 valid";
-        if (u2.isValid()) qDebug() << "u2 valid";
+        //if (u1.isValid()) qDebug() << "u1 valid";
+        //if (u2.isValid()) qDebug() << "u2 valid";
 
-        if (QDesktopServices::openUrl(u1))
-        {
-            qDebug() << u1 << " opened";
-        }
+        //if (QDesktopServices::openUrl(u1))
+        //{
+        //    qDebug() << u1 << " opened";
+        //}
 
         if (QDesktopServices::openUrl(u2))
         {
