@@ -625,8 +625,9 @@ void QED2KSession::cancelSearch()
 void QED2KSession::openTransfer(QString hash) {
     QED2KHandle h = getTransfer(hash);
     if (h.is_valid() && h.is_seed()) {
-        qDebug() << "open file " << QUrl::fromLocalFile(h.filepath());
-        QDesktopServices::openUrl(QUrl::fromLocalFile(h.filepath()));
+        //qDebug() << "open file " << QUrl::fromLocalFile(h.filepath());
+        //QDesktopServices::openUrl(QUrl::fromLocalFile(h.filepath()));
+        setCurrentMediaFile(h.filepath());
     }
 }
 
@@ -1283,4 +1284,13 @@ qlonglong QED2KSession::getETA(const QString& hash) const {
 
 QString QED2KSession::status(const QString& hash) const {
     return m_currentSessionTransfers.contains(hash)?"N":"R";
+}
+
+QString QED2KSession::currentMediaFile() const {
+    return currentMF.toString(QUrl::PreferLocalFile);
+}
+
+void QED2KSession::setCurrentMediaFile(const QString& filename) {
+    currentMF = QUrl::fromLocalFile(filename);
+    emit currentMediaFileChanged(filename);
 }

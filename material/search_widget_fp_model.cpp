@@ -6,7 +6,7 @@
 SWSortFilterProxyModel::SWSortFilterProxyModel(QObject* parent):
     QSortFilterProxyModel(parent), m_showOwn(false)
 {
-    setSortRole(SearchModel::SortRole);
+    //setSortRole(SearchModel::SortRole);
 }
 
 bool SWSortFilterProxyModel::lessThan(const QModelIndex& left, const QModelIndex& right) const {

@@ -1,6 +1,6 @@
 TEMPLATE = app
 
-QT += qml quick widgets svg
+QT += qml quick widgets svg multimedia
 
 RESOURCES += qml.qrc ../src/lang.qrc \
     images.qrc
@@ -33,7 +33,7 @@ INCLUDEPATH += $$PWD/../src
 
 HEADERS +=  ../src/misc.h \
             ../src/qinisettings.h \
-            ../src/search/search_widget_fp_model.h \
+            search_widget_fp_model.h \
             mainwindow.h \
             server_model.h \
             search_model.h \
@@ -44,7 +44,7 @@ HEADERS +=  ../src/misc.h \
             transfersortfiltermodel.h
 
 SOURCES +=  ../src/misc.cpp \
-            ../src/search/search_widget_fp_model.cpp \
+            search_widget_fp_model.cpp \
             main.cpp \
             mainwindow.cpp \
             server_model.cpp \

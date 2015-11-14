@@ -109,6 +109,8 @@ Page {
                         break
                     case 4:
                         session.openTransfer(hash)
+                        console.log("file " + session.currentMediaFile)
+                        pageStack.push(Qt.resolvedUrl("Player.qml"))
                         break
                     default:
                         break

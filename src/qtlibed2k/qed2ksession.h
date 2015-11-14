@@ -19,6 +19,7 @@
 #include <QDateTime>
 #include <QSharedPointer>
 #include <QLinkedList>
+#include <QUrl>
 
 #ifndef Q_MOC_RUN
 #include <libed2k/session.hpp>
@@ -181,6 +182,10 @@ public:
     const libed2k::ip_filter& session_filter() const;
     Q_INVOKABLE void pauseTransfer(const QString& hash);
     Q_INVOKABLE void resumeTransfer(const QString& hash);
+    Q_PROPERTY(QString currentMediaFile READ currentMediaFile WRITE setCurrentMediaFile NOTIFY currentMediaFileChanged)
+
+    QString currentMediaFile() const;
+    void setCurrentMediaFile(const QString&);
 private:
     QScopedPointer<libed2k::session> m_session;
     QHash<QString, QED2KHandle> m_fast_resume_transfers;   // contains fast resume data were loading
@@ -198,6 +203,7 @@ private:
     QString m_currentPath;
     QScopedPointer<TransferSpeedMonitor>    m_speedMon;
     QDateTime               last_error_dt;
+    QUrl                    currentMF;
 private slots:
     void readAlerts();
 public slots:
@@ -331,6 +337,8 @@ signals:
     void fileIOError(QString filename, QString message);
 
     void resetInputDirectory(const QString& path);
+
+    void currentMediaFileChanged(QString);
 };
 
 typedef QED2KSession Session;
