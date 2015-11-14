@@ -30,52 +30,52 @@
 <context>
     <name>Donkey</name>
     <message>
-        <location filename="../../material/qml/Donkey.qml" line="18"/>
+        <location filename="../../material/qml/Donkey.qml" line="19"/>
         <source>Do you really want to quit?</source>
         <translation>Вы уверены что хотите выйти?</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Donkey.qml" line="19"/>
+        <location filename="../../material/qml/Donkey.qml" line="20"/>
         <source>Yes</source>
         <translation>Да</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Donkey.qml" line="20"/>
+        <location filename="../../material/qml/Donkey.qml" line="21"/>
         <source>No</source>
         <translation>Нет</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Donkey.qml" line="36"/>
+        <location filename="../../material/qml/Donkey.qml" line="37"/>
         <source>Ok</source>
         <translation>Готово</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Donkey.qml" line="38"/>
+        <location filename="../../material/qml/Donkey.qml" line="39"/>
         <source>I/O error</source>
         <translation>Ошибка ввода-вывода</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Donkey.qml" line="39"/>
+        <location filename="../../material/qml/Donkey.qml" line="40"/>
         <source>Filename: %1 message %2</source>
         <translation>Файл %1 ошибка %2</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Donkey.qml" line="80"/>
+        <location filename="../../material/qml/Donkey.qml" line="81"/>
         <source>Conn</source>
         <translation>Серверы</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Donkey.qml" line="80"/>
+        <location filename="../../material/qml/Donkey.qml" line="81"/>
         <source>Transfers</source>
         <translation>Загрузки</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Donkey.qml" line="80"/>
+        <location filename="../../material/qml/Donkey.qml" line="81"/>
         <source>Search</source>
         <translation>Поиск</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Donkey.qml" line="80"/>
+        <location filename="../../material/qml/Donkey.qml" line="81"/>
         <source>Pref</source>
         <translation>Опции</translation>
     </message>
@@ -211,6 +211,21 @@ Are you sure you want to quit qDonkey?</source>
     <message>
         <source>Server connection closed</source>
         <translation type="vanished">Соединение с сервером разорвано</translation>
+    </message>
+    <message>
+        <location filename="../../material/mainwindow.cpp" line="168"/>
+        <source>%1 has started downloading</source>
+        <translation>%1началась загрузка</translation>
+    </message>
+    <message>
+        <location filename="../../material/mainwindow.cpp" line="175"/>
+        <source>%1 has finished downloading</source>
+        <translation>%1 загрузка завершена</translation>
+    </message>
+    <message>
+        <location filename="../../material/mainwindow.cpp" line="180"/>
+        <source>I/O error on %1: %2</source>
+        <translation>Ошибка ввода вывода %1 сообщение %2</translation>
     </message>
 </context>
 <context>
@@ -789,65 +804,74 @@ Are you sure you want to quit qDonkey?</source>
         <translation>Нажмите для меню действий</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Transfers.qml" line="37"/>
+        <location filename="../../material/qml/Transfers.qml" line="26"/>
+        <source>Unable to open file of this type</source>
+        <translation>Не могу открыть файл этого типа</translation>
+    </message>
+    <message>
+        <location filename="../../material/qml/Transfers.qml" line="44"/>
         <source>Stalled dl</source>
         <translation>Ждет источники</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Transfers.qml" line="38"/>
+        <location filename="../../material/qml/Transfers.qml" line="45"/>
         <source>Stalled up</source>
         <translation>Бездействует</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Transfers.qml" line="39"/>
+        <location filename="../../material/qml/Transfers.qml" line="46"/>
         <source>Downloading...</source>
         <translation>Закачка...</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Transfers.qml" line="40"/>
+        <location filename="../../material/qml/Transfers.qml" line="47"/>
         <source>Seeding...</source>
         <translation>Сидирует...</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Transfers.qml" line="43"/>
+        <location filename="../../material/qml/Transfers.qml" line="50"/>
         <source>Paused</source>
         <translation>Пауза</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Transfers.qml" line="44"/>
+        <location filename="../../material/qml/Transfers.qml" line="51"/>
         <source>Checking...</source>
         <translation>Проверка...</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Transfers.qml" line="45"/>
-        <location filename="../../material/qml/Transfers.qml" line="46"/>
+        <location filename="../../material/qml/Transfers.qml" line="52"/>
+        <location filename="../../material/qml/Transfers.qml" line="53"/>
         <source>Invalid</source>
         <translation>Ошибка</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Transfers.qml" line="90"/>
+        <location filename="../../material/qml/Transfers.qml" line="97"/>
         <source>Pause</source>
         <translation>Пауза</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Transfers.qml" line="90"/>
+        <location filename="../../material/qml/Transfers.qml" line="97"/>
         <source>Resume</source>
         <translation>Возобновить</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Transfers.qml" line="90"/>
+        <location filename="../../material/qml/Transfers.qml" line="97"/>
         <source>Remove</source>
         <translation>Удалить</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Transfers.qml" line="90"/>
+        <location filename="../../material/qml/Transfers.qml" line="97"/>
         <source>Details</source>
         <translation>Детали</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Transfers.qml" line="90"/>
+        <location filename="../../material/qml/Transfers.qml" line="97"/>
+        <source>Preview</source>
+        <translation>Предпросмотр</translation>
+    </message>
+    <message>
         <source>Open</source>
-        <translation>Открыть</translation>
+        <translation type="vanished">Открыть</translation>
     </message>
 </context>
 <context>

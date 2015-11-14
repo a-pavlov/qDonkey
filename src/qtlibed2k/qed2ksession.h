@@ -170,6 +170,7 @@ public:
     void enableUPnP(bool b);
 
     void deferPlayMedia(QED2KHandle h);
+    Q_INVOKABLE void deferPlayMediaFile(const QString& hash);
     bool playMedia(QED2KHandle h);
     void playLink(const QString& strLink);
     void loadDirectory(const QString& path);
@@ -211,7 +212,7 @@ public slots:
     virtual QPair<QED2KHandle, ErrorCode> addLink(QString strLink, bool resumed = false);
     virtual void addTransferFromFile(const QString& filename, bool resumed = false);
     virtual QED2KHandle addTransfer(const libed2k::add_transfer_params&);
-    Q_INVOKABLE bool addTransfer(const QString& hash, const QString& filename, qlonglong size, int sources);
+    Q_INVOKABLE bool addTransfer(const QString& hash, const QString& filename, qlonglong size, int sources, bool preview);
     QString postTransfer(const libed2k::add_transfer_params&);  // async add transfer and return hash from atp
 
 	/**

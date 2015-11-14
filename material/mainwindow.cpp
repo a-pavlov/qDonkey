@@ -13,6 +13,7 @@
 #include <QQmlApplicationEngine>
 #include <QQmlContext>
 #include <QKeyEvent>
+#include <QTimer>
 
 MainWindow::MainWindow(QObject* parent) : QObject(parent) {
     pref.reset(new Preferences);
@@ -91,6 +92,10 @@ MainWindow::MainWindow(QObject* parent) : QObject(parent) {
     Session::instance()->start();
     Session::instance()->loadDirectory(pref.data()->inputDir());
     restoreLastServerConnection();
+
+    playTimer = new QTimer(this);
+    connect(playTimer, SIGNAL(timeout()), this, SLOT(onPlayTimeout()));
+    playTimer->start(2500);
 }
 
 MainWindow::~MainWindow() {
@@ -175,3 +180,7 @@ void MainWindow::fileError(QString filename, QString msg) {
     notificationClient->setNotification(tr("I/O error on %1: %2").arg(filename).arg(msg));
 }
 
+
+void MainWindow::onPlayTimeout() {
+    Session::instance()->playPendingMedia();
+}

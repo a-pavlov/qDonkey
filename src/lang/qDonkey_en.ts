@@ -22,52 +22,52 @@
 <context>
     <name>Donkey</name>
     <message>
-        <location filename="../../material/qml/Donkey.qml" line="18"/>
+        <location filename="../../material/qml/Donkey.qml" line="19"/>
         <source>Do you really want to quit?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../material/qml/Donkey.qml" line="19"/>
+        <location filename="../../material/qml/Donkey.qml" line="20"/>
         <source>Yes</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../material/qml/Donkey.qml" line="20"/>
+        <location filename="../../material/qml/Donkey.qml" line="21"/>
         <source>No</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../material/qml/Donkey.qml" line="36"/>
+        <location filename="../../material/qml/Donkey.qml" line="37"/>
         <source>Ok</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../material/qml/Donkey.qml" line="38"/>
+        <location filename="../../material/qml/Donkey.qml" line="39"/>
         <source>I/O error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../material/qml/Donkey.qml" line="39"/>
+        <location filename="../../material/qml/Donkey.qml" line="40"/>
         <source>Filename: %1 message %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../material/qml/Donkey.qml" line="80"/>
+        <location filename="../../material/qml/Donkey.qml" line="81"/>
         <source>Conn</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../material/qml/Donkey.qml" line="80"/>
+        <location filename="../../material/qml/Donkey.qml" line="81"/>
         <source>Transfers</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../material/qml/Donkey.qml" line="80"/>
+        <location filename="../../material/qml/Donkey.qml" line="81"/>
         <source>Search</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../material/qml/Donkey.qml" line="80"/>
+        <location filename="../../material/qml/Donkey.qml" line="81"/>
         <source>Pref</source>
         <translation type="unfinished"></translation>
     </message>
@@ -92,6 +92,24 @@
     <message>
         <location filename="../../material/qml/InitDialog.qml" line="87"/>
         <source>Ok</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>MainWindow</name>
+    <message>
+        <location filename="../../material/mainwindow.cpp" line="168"/>
+        <source>%1 has started downloading</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../material/mainwindow.cpp" line="175"/>
+        <source>%1 has finished downloading</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../material/mainwindow.cpp" line="180"/>
+        <source>I/O error on %1: %2</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -546,64 +564,69 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../material/qml/Transfers.qml" line="37"/>
-        <source>Stalled dl</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../material/qml/Transfers.qml" line="38"/>
-        <source>Stalled up</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../material/qml/Transfers.qml" line="39"/>
-        <source>Downloading...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../material/qml/Transfers.qml" line="40"/>
-        <source>Seeding...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../material/qml/Transfers.qml" line="43"/>
-        <source>Paused</source>
+        <location filename="../../material/qml/Transfers.qml" line="26"/>
+        <source>Unable to open file of this type</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../material/qml/Transfers.qml" line="44"/>
-        <source>Checking...</source>
+        <source>Stalled dl</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../material/qml/Transfers.qml" line="45"/>
+        <source>Stalled up</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../../material/qml/Transfers.qml" line="46"/>
+        <source>Downloading...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../material/qml/Transfers.qml" line="47"/>
+        <source>Seeding...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../material/qml/Transfers.qml" line="50"/>
+        <source>Paused</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../material/qml/Transfers.qml" line="51"/>
+        <source>Checking...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../material/qml/Transfers.qml" line="52"/>
+        <location filename="../../material/qml/Transfers.qml" line="53"/>
         <source>Invalid</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../material/qml/Transfers.qml" line="90"/>
+        <location filename="../../material/qml/Transfers.qml" line="97"/>
         <source>Pause</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../material/qml/Transfers.qml" line="90"/>
+        <location filename="../../material/qml/Transfers.qml" line="97"/>
         <source>Resume</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../material/qml/Transfers.qml" line="90"/>
+        <location filename="../../material/qml/Transfers.qml" line="97"/>
         <source>Remove</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../material/qml/Transfers.qml" line="90"/>
+        <location filename="../../material/qml/Transfers.qml" line="97"/>
         <source>Details</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../material/qml/Transfers.qml" line="90"/>
-        <source>Open</source>
+        <location filename="../../material/qml/Transfers.qml" line="97"/>
+        <source>Preview</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

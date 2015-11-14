@@ -14,6 +14,7 @@ class TransferSortFilterModel;
 class QED2KHandle;
 class NotificationClient;
 class QKeyEvent;
+class QTimer;
 
 
 class MainWindow:  public QObject {
@@ -29,6 +30,7 @@ private:
     TransferSortFilterModel* transferProxy;
     QScopedPointer<Preferences>          pref;
     NotificationClient*     notificationClient;
+    QTimer*                 playTimer;
 
     void restoreLastServerConnection();
 public:
@@ -45,6 +47,7 @@ private slots:
     void addedTransfer(const QED2KHandle&);
     void finishedTransfer(const QED2KHandle&);
     void fileError(QString, QString);
+    void onPlayTimeout();
 };
 
 
