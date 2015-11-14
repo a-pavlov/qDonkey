@@ -81,7 +81,7 @@ Page {
                         session.searchRelatedFiles(hash)
                         break
                     case 1:
-                        if (session.addTransfer(hash, name, filesize_num, sources_num)) {
+                        if (session.addTransfer(hash, name, filesize_num, sources_num, false)) {
                             alertTransferAddSucc.show()
                         } else {
                             alertTransferAddFail.show()
@@ -89,7 +89,11 @@ Page {
 
                         break
                     case 2:
-                        console.log("start preview")
+                        if (session.addTransfer(hash, name, filesize_num, sources_num, true)) {
+                            alertTransferAddSucc.show()
+                        } else {
+                            alertTransferAddFail.show()
+                        }
                         break
                     default:
                         console.log("undefined index " + selectedIndex)

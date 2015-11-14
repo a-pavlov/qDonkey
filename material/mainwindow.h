@@ -13,6 +13,7 @@ class TransferDetailsModel;
 class TransferSortFilterModel;
 class QED2KHandle;
 class QKeyEvent;
+class QTimer;
 
 class MainWindow:  public QObject {
     Q_OBJECT
@@ -26,6 +27,7 @@ private:
     TransferDetailsModel*   transferDetails;
     TransferSortFilterModel* transferProxy;
     QScopedPointer<Preferences>          pref;
+    QTimer*                 playTimer;
 
     void restoreLastServerConnection();
 public:
@@ -39,6 +41,7 @@ private slots:
     void onServerConnectionInitialized(QString,QString,int,quint32,quint32,quint32);
     void onServerConnectionClosed(QString,QString,int,QString);
     void onShowAllTransfersChanged(bool);
+    void onPlayTimeout();
 };
 
 

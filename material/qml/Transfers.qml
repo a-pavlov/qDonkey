@@ -87,7 +87,7 @@ Page {
                 }
 
                 model: {
-                    return [qsTr("Pause"), qsTr("Resume"), qsTr("Remove"), qsTr("Details"), qsTr("Open")]
+                    return [qsTr("Pause"), qsTr("Resume"), qsTr("Remove"), qsTr("Details"), qsTr("Preview")]
 
                 }
 
@@ -108,9 +108,7 @@ Page {
                         pageStack.push(Qt.resolvedUrl("TransferDetails.qml"))
                         break
                     case 4:
-                        session.openTransfer(hash)
-                        console.log("file " + session.currentMediaFile)
-                        pageStack.push(Qt.resolvedUrl("Player.qml"))
+                        session.deferPlayMediaFile(hash)
                         break
                     default:
                         break

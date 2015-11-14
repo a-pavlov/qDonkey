@@ -519,7 +519,7 @@ QED2KHandle QED2KSession::addTransfer(const libed2k::add_transfer_params& atp){
     return QED2KHandle(delegate()->add_transfer(atp));
 }
 
-bool QED2KSession::addTransfer(const QString& hash, const QString& filename, qlonglong size, int sources) {
+bool QED2KSession::addTransfer(const QString& hash, const QString& filename, qlonglong size, int sources, bool preview) {
     using namespace libed2k;
     qDebug() << "download file " << filename << " with hash " << hash << " size " << size;
     EED2KFileType fileType = GetED2KFileTypeID(filename.toStdString());
@@ -537,6 +537,7 @@ bool QED2KSession::addTransfer(const QString& hash, const QString& filename, qlo
     params.seed_mode = false;
     params.num_complete_sources = sources;
     QED2KHandle h = addTransfer(params);
+    if (preview) deferPlayMedia(h);
     return h.is_valid();
 }
 
@@ -1115,6 +1116,10 @@ void QED2KSession::deferPlayMedia(QED2KHandle h) {
         h.set_eager_mode(true);
         m_pending_medias.insert(h);
     }
+}
+
+void QED2KSession::deferPlayMediaFile(const QString& hash) {
+    deferPlayMedia(getTransfer(hash));
 }
 
 void QED2KSession::playLink(const QString& strLink) {
