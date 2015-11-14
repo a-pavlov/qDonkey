@@ -10,19 +10,19 @@ unix:!android {
     INSTALLS += target
 }
 
-deployment.files += server.met
-deployment.path = /
+#deployment.files += server.met
+#deployment.path = /
 
-logo_ldpi.files += images/ldpi/logo.png
-logo_ldpi.path = /res/drawable-ldpi/
+#logo_ldpi.files += images/ldpi/logo.png
+#logo_ldpi.path = /res/drawable-ldpi/
 
-logo_mdpi.files += images/mdpi/logo.png
-logo_mdpi.path = /res/drawable-mdpi/
+#logo_mdpi.files += images/mdpi/logo.png
+#logo_mdpi.path = /res/drawable-mdpi/
 
-logo_hdpi.files += images/hdpi/logo.png
-logo_hdpi.path = /res/drawable-hdpi/
+#logo_hdpi.files += images/hdpi/logo.png
+#logo_hdpi.path = /res/drawable-hdpi/
 
-INSTALLS += deployment logo_ldpi logo_mdpi logo_hdpi
+#INSTALLS += deployment logo_ldpi logo_mdpi logo_hdpi
 
 export(INSTALLS)
 
