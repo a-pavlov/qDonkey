@@ -248,6 +248,11 @@ QString SearchModel::media_codec(const QModelIndex& indx) const {
     return at(indx).m_strMediaCodec;
 }
 
+QString SearchModel::getHash(int row) const {
+    Q_ASSERT(row < rowCount());
+    return search_results[row].m_hFile;
+}
+
 void SearchModel::on_searchResult(const libed2k::net_identifier& np, const QString& hash,
     const QList<QED2KSearchResultEntry>& vRes, bool bMoreResult) {
     Q_UNUSED(np);

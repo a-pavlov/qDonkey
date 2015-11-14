@@ -42,6 +42,7 @@ public:
     quint64 media_length(const QModelIndex&) const;
     quint64 media_bitrate(const QModelIndex&) const;
     QString media_codec(const QModelIndex&) const;
+    QString getHash(int row) const;
 
     Q_INVOKABLE void clean();
     void appendData(const QList<QED2KSearchResultEntry>&);

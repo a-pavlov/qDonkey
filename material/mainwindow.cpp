@@ -21,11 +21,19 @@ MainWindow::MainWindow(QObject* parent) : QObject(parent) {
     smodel = new ServerModel(this);
 #ifdef IS74
     smodel->add(QED2KServer("is74", "emule.is74.ru", 4661));
-    smodel->add(QED2KServer("Sec1", "91.200.42.46", 1176));
-    smodel->add(QED2KServer("TV", "176.103.48.36", 4148));
-    smodel->add(QED2KServer("PEERATES", "88.191.221.121", 7111));
-    //smodel->update("is74", "emule.is74.ru", 4661);
 #endif
+
+    smodel->add(QED2KServer("TV Underground", "176.103.48.36", 4184));
+    smodel->add(QED2KServer("eMule Security No1", "91.200.42.46" ,1176));
+    smodel->add(QED2KServer("eMule Security No2", "91.200.42.47", 3883));
+    smodel->add(QED2KServer("eMule Security No3", "91.200.42.119", 9939));
+    smodel->add(QED2KServer("eMule Security No4", "77.120.115.66", 5041));
+    smodel->add(QED2KServer("eMule oVPN.to Anonymous ed2k-Server", "213.163.71.135", 4242));
+    smodel->add(QED2KServer("emule lover QQ Qun 212431292", "27.152.28.252", 4242));
+    smodel->add(QED2KServer("PEERATES.NET", "195.154.83.5" ,7111));
+    smodel->add(QED2KServer("PeerBooter", "212.83.184.152", 7111));
+    smodel->add(QED2KServer("!! www.Sharing-Devils.org No.1 ...", "195.154.109.229" ,4232));
+
     foreach(const QED2KServer s, fromServersMet("./server.met")) {
         smodel->add(s);
     }
@@ -151,6 +159,7 @@ void MainWindow::restoreLastServerConnection() {
 void MainWindow::addedTransfer(const QED2KHandle& h) {
     //showNotificationBaloon(tr("Download starting"), tr("%1 has started downloading.", "e.g: xxx.avi has started downloading.").arg(h.name()));
     qDebug() << "started transssfer " << h.name();
+    searchFilterProxyModel->invalidate();
     notificationClient->setNotification(tr("%1 has started downloading").arg(h.name()));
 }
 

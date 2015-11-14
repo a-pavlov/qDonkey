@@ -21,6 +21,13 @@ Page {
             text: qsTr("Click for action menu")
         }
 
+        Dialog {
+            id: failOnOpen
+            text: qsTr("Unable to open file of this type")
+            hasActions: true
+            negativeButton.visible: false
+        }
+
 
         ListView {
             Layout.fillHeight: true
@@ -108,7 +115,13 @@ Page {
                         pageStack.push(Qt.resolvedUrl("TransferDetails.qml"))
                         break
                     case 4:
-                        session.openTransfer(hash)
+                        if (!session.openTransfer(hash)) {
+                            failOnOpen.show()
+
+                        }
+
+                        //console.log("file " + session.currentMediaFile)
+                        //pageStack.push(Qt.resolvedUrl("Player.qml"))
                         break
                     default:
                         break

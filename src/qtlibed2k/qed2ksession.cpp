@@ -622,13 +622,13 @@ void QED2KSession::cancelSearch()
     m_session->post_cancel_search();
 }
 
-void QED2KSession::openTransfer(QString hash) {
+bool QED2KSession::openTransfer(QString hash) {
     QED2KHandle h = getTransfer(hash);
     if (h.is_valid() && h.is_seed()) {
         QUrl u1 = QUrl::fromLocalFile(h.filepath());
-        QUrl u2(h.filepath());
+        //QUrl u2(h.filepath());
 
-        qDebug() << u1 << " 2 " << u2;
+        qDebug() << u1;
         //if (u1.isValid()) qDebug() << "u1 valid";
         //if (u2.isValid()) qDebug() << "u2 valid";
 
@@ -637,12 +637,18 @@ void QED2KSession::openTransfer(QString hash) {
         //    qDebug() << u1 << " opened";
         //}
 
-        if (QDesktopServices::openUrl(u2))
-        {
-            qDebug() << u2 << " opened";
+        return (QDesktopServices::openUrl(u1));
 
-        }
+        //{
+        //    qDebug() << u2 << " opened";
+
+        //}
+        //qDebug() << "open file " << QUrl::fromLocalFile(h.filepath());
+        //QDesktopServices::openUrl(QUrl::fromLocalFile(h.filepath()));
+        //setCurrentMediaFile(h.filepath());
     }
+
+    return false;
 }
 
 libed2k::peer_connection_handle QED2KSession::getPeer(const libed2k::net_identifier& np)
@@ -1298,4 +1304,13 @@ qlonglong QED2KSession::getETA(const QString& hash) const {
 
 QString QED2KSession::status(const QString& hash) const {
     return m_currentSessionTransfers.contains(hash)?"N":"R";
+}
+
+QString QED2KSession::currentMediaFile() const {
+    return currentMF.toString(QUrl::PreferLocalFile);
+}
+
+void QED2KSession::setCurrentMediaFile(const QString& filename) {
+    currentMF = QUrl::fromLocalFile(filename);
+    emit currentMediaFileChanged(filename);
 }
