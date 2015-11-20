@@ -5,6 +5,7 @@
 #include "transfermodel_item.h"
 #include "transferdetailsmodel.h"
 #include "transfersortfiltermodel.h"
+#include "peermodel.h"
 #include "preferences.h"
 #include "../src/search/search_widget_fp_model.h"
 #include "qed2kserver.h"
@@ -43,6 +44,8 @@ MainWindow::MainWindow(QObject* parent) : QObject(parent) {
     transferProxy->setSortRole(TransferModelItem::TM_NAME);
     transferProxy->sort(0);
 
+    pmodel = new PeerModel(this);
+
     connect(Session::instance(), SIGNAL(serverConnectionInitialized(QString,QString, int, quint32,quint32,quint32)),
             smodel, SLOT(on_serverConnectionInitialized(QString,QString,int,quint32,quint32,quint32)));
     connect(Session::instance(), SIGNAL(serverConnectionClosed(QString,QString,int,QString)), smodel,
@@ -65,6 +68,7 @@ MainWindow::MainWindow(QObject* parent) : QObject(parent) {
     engine->rootContext()->setContextProperty("transferDetails", transferDetails);
     engine->rootContext()->setContextProperty("session", Session::instance());
     engine->rootContext()->setContextProperty("pref", pref.data());
+    engine->rootContext()->setContextProperty("peerModel", pmodel);
 #ifdef IS74
     engine->load(QUrl(QStringLiteral("qrc:/qml/Donkey.qml")));
 #else

@@ -186,7 +186,7 @@ Page {
 
                 ProgressCircle {
                     id: progress
-                    Layout.fillWidth: true
+                    Layout.fillWidth: false
                     Layout.alignment: Qt.AlignCenter
                     width: Units.dp(24)
                     height: Units.dp(24)

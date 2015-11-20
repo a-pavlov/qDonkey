@@ -41,7 +41,8 @@ HEADERS +=  ../src/misc.h \
             transfermodel_item.h \
             preferences.h \
             transferdetailsmodel.h \
-            transfersortfiltermodel.h
+            transfersortfiltermodel.h \
+            peermodel.h
 
 SOURCES +=  ../src/misc.cpp \
             search_widget_fp_model.cpp \
@@ -53,7 +54,8 @@ SOURCES +=  ../src/misc.cpp \
             transfermodel_item.cpp \
             preferences.cpp \
             transferdetailsmodel.cpp \
-            transfersortfiltermodel.cpp
+            transfersortfiltermodel.cpp \
+            peermodel.cpp
 
 lupdate_only {
     SOURCES += qml/Connection.qml \

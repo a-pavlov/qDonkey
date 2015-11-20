@@ -11,6 +11,7 @@ class SWSortFilterProxyModel;
 class TransferModel;
 class TransferDetailsModel;
 class TransferSortFilterModel;
+class PeerModel;
 class QED2KHandle;
 class QKeyEvent;
 class QTimer;
@@ -28,6 +29,7 @@ private:
     TransferSortFilterModel* transferProxy;
     QScopedPointer<Preferences>          pref;
     QTimer*                 playTimer;
+    PeerModel*              pmodel;
 
     void restoreLastServerConnection();
 public:

@@ -4,144 +4,81 @@ import Material 0.1
 import Material.ListItems 0.1 as ListItem
 import TransferModelItemEnum 1.0
 
-
 Page {
     id: searchResults
     title: qsTr("Back to transfers")
 
-    ListView {
+    ColumnLayout {
+        id: main
         anchors.fill: parent
-        model: transferDetails
+        Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter
+        Layout.fillWidth: true
 
-        delegate: ListItem.BaseListItem {
-            fullHeight: true
-            height: info.implicitHeight
-            RowLayout {
-                anchors.fill: parent
-                Icon {
-                    Layout.alignment: Qt.AlignLeft
+        ListView {
+            //anchors.fill: parent
+            Layout.fillWidth: true
+            Layout.fillHeight: true
+            model: transferDetails
 
-                    source: {
-                            switch(type) {
-                                case "Any": return Qt.resolvedUrl("qrc:/images/file.svg")
-                                case "Video": return Qt.resolvedUrl("qrc:/images/file-video.svg")
-                                case "Audio": return Qt.resolvedUrl("qrc:/images/file-music.svg")
-                                case "Document": return Qt.resolvedUrl("qrc:/images/file-document.svg")
-                                case "Picture": return Qt.resolvedUrl("qrc:/images/file-image.svg")
-                                case "Archive": return Qt.resolvedUrl("qrc:/images/archive.svg")
-                                case "CD image": return Qt.resolvedUrl("qrc:/images/disqus.svg")
-                                case "Emule collection": return Qt.resolvedUrl("qrc:/images/file-multiple.svg")
-                                default: return Qt.resolvedUrl("qrc:/images/file.svg")
+            delegate: ListItem.BaseListItem {
+                fullHeight: true
+                height: info.implicitHeight
+                RowLayout {
+                    anchors.fill: parent
+                    Icon {
+                        Layout.alignment: Qt.AlignLeft
+
+                        source: {
+                                switch(type) {
+                                    case "Any": return Qt.resolvedUrl("qrc:/images/file.svg")
+                                    case "Video": return Qt.resolvedUrl("qrc:/images/file-video.svg")
+                                    case "Audio": return Qt.resolvedUrl("qrc:/images/file-music.svg")
+                                    case "Document": return Qt.resolvedUrl("qrc:/images/file-document.svg")
+                                    case "Picture": return Qt.resolvedUrl("qrc:/images/file-image.svg")
+                                    case "Archive": return Qt.resolvedUrl("qrc:/images/archive.svg")
+                                    case "CD image": return Qt.resolvedUrl("qrc:/images/disqus.svg")
+                                    case "Emule collection": return Qt.resolvedUrl("qrc:/images/file-multiple.svg")
+                                    default: return Qt.resolvedUrl("qrc:/images/file.svg")
+                                }
                             }
-                        }
 
-                    size: Units.dp(32)
-                }
+                        size: Units.dp(32)
+                    }
 
-                ColumnLayout {
-                    id: info
-                    Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter
-                    Layout.fillWidth: true
-
-                    spacing: Units.dp(3)
-
-                    Label {
-                        id: labelHash
-
-                        Layout.alignment: Qt.AlignVCenter
+                    ColumnLayout {
+                        id: info
+                        Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter
                         Layout.fillWidth: true
 
-                        elide: Text.ElideRight
-                        style: "subheading"
-                        wrapMode: Text.WrapAnywhere
-                        maximumLineCount: 2
-                        text: hash
-                    }
+                        spacing: Units.dp(3)
 
-                    Label {
-                        id: labelName
-                        Layout.fillWidth: true
-                        color: Theme.light.subTextColor
-                        elide: Text.ElideRight
-                        wrapMode: Text.WordWrap
-                        style: "body1"
+                        Label {
+                            id: labelHash
 
-                        maximumLineCount: 3
-                        text: name
-                    }
-
-                    Label {
-                        id: labelSize
-
-                        Layout.alignment: Qt.AlignVCenter
-                        Layout.preferredWidth: visible ? implicitWidth : 0
-
-                        color: Theme.light.subTextColor
-                        elide: Text.ElideRight
-                        horizontalAlignment: Qt.AlignHCenter
-                        style: "body1"
-                        visible: text != ""
-                        text: qsTr("Size %1").arg(size)
-                    }
-
-                    RowLayout {
-
-                        Icon {
                             Layout.alignment: Qt.AlignVCenter
-                            source: Qt.resolvedUrl("qrc:/images/chevron-double-down.svg")
-                            size: Units.dp(16)
+                            Layout.fillWidth: true
+
+                            elide: Text.ElideRight
+                            style: "subheading"
+                            wrapMode: Text.WrapAnywhere
+                            maximumLineCount: 2
+                            text: hash
                         }
 
                         Label {
-                            id: labelDlSpeed
-
-                            Layout.alignment: Qt.AlignVCenter
-                            Layout.preferredWidth: visible ? implicitWidth : 0
-
+                            id: labelName
+                            Layout.fillWidth: true
                             color: Theme.light.subTextColor
                             elide: Text.ElideRight
-                            horizontalAlignment: Qt.AlignVCenter
+                            wrapMode: Text.WordWrap
                             style: "body1"
-                            text: dl_speed
-                        }
 
-                        Icon {
-                            Layout.alignment: Qt.AlignVCenter
-                            source: Qt.resolvedUrl("qrc:/images/chevron-double-up.svg")
-                            size: Units.dp(16)
+                            maximumLineCount: 3
+                            text: name
                         }
 
                         Label {
-                            id: labelUpSpeed
-
-                            Layout.alignment: Qt.AlignVCenter
-                            Layout.preferredWidth: visible ? implicitWidth : 0
-
-                            color: Theme.light.subTextColor
-                            elide: Text.ElideRight
-                            horizontalAlignment: Qt.AlignVCenter
-                            style: "body1"
-                            text: up_speed
-                        }
-                    }
-
-                    Label {
-                        id: labelSeedsPeers
-
-                        Layout.alignment: Qt.AlignVCenter
-                        Layout.preferredWidth: visible ? implicitWidth : 0
-
-                        color: Theme.light.subTextColor
-                        elide: Text.ElideRight
-                        horizontalAlignment: Qt.AlignVCenter
-                        style: "body1"
-                        text: qsTr("Seeds/Peers %1/%2").arg(seeds).arg(peers)
-                    }
-
-
-                    RowLayout {
-                        Label {
-                            id: labelRemain
+                            id: labelSize
 
                             Layout.alignment: Qt.AlignVCenter
                             Layout.preferredWidth: visible ? implicitWidth : 0
@@ -150,23 +87,103 @@ Page {
                             elide: Text.ElideRight
                             horizontalAlignment: Qt.AlignHCenter
                             style: "body1"
-                            text: qsTr("ETA %1").arg(eta)
+                            visible: text != ""
+                            text: qsTr("Size %1").arg(size)
                         }
 
-                        ProgressBar {
-                            Layout.fillWidth: true
-                            color: theme.accentColor
+                        RowLayout {
 
-                            indeterminate: false
-                            minimumValue: 0
-                            maximumValue: 100
-                            value: progress
+                            Icon {
+                                Layout.alignment: Qt.AlignVCenter
+                                source: Qt.resolvedUrl("qrc:/images/chevron-double-down.svg")
+                                size: Units.dp(16)
+                            }
+
+                            Label {
+                                id: labelDlSpeed
+
+                                Layout.alignment: Qt.AlignVCenter
+                                Layout.preferredWidth: visible ? implicitWidth : 0
+
+                                color: Theme.light.subTextColor
+                                elide: Text.ElideRight
+                                horizontalAlignment: Qt.AlignVCenter
+                                style: "body1"
+                                text: dl_speed
+                            }
+
+                            Icon {
+                                Layout.alignment: Qt.AlignVCenter
+                                source: Qt.resolvedUrl("qrc:/images/chevron-double-up.svg")
+                                size: Units.dp(16)
+                            }
+
+                            Label {
+                                id: labelUpSpeed
+
+                                Layout.alignment: Qt.AlignVCenter
+                                Layout.preferredWidth: visible ? implicitWidth : 0
+
+                                color: Theme.light.subTextColor
+                                elide: Text.ElideRight
+                                horizontalAlignment: Qt.AlignVCenter
+                                style: "body1"
+                                text: up_speed
+                            }
                         }
+
+                        Label {
+                            id: labelSeedsPeers
+
+                            Layout.alignment: Qt.AlignVCenter
+                            Layout.preferredWidth: visible ? implicitWidth : 0
+
+                            color: Theme.light.subTextColor
+                            elide: Text.ElideRight
+                            horizontalAlignment: Qt.AlignVCenter
+                            style: "body1"
+                            text: qsTr("Seeds/Peers %1/%2").arg(seeds).arg(peers)
+                        }
+
+
+                        RowLayout {
+                            Label {
+                                id: labelRemain
+
+                                Layout.alignment: Qt.AlignVCenter
+                                Layout.preferredWidth: visible ? implicitWidth : 0
+
+                                color: Theme.light.subTextColor
+                                elide: Text.ElideRight
+                                horizontalAlignment: Qt.AlignHCenter
+                                style: "body1"
+                                text: qsTr("ETA %1").arg(eta)
+                            }
+
+                            ProgressBar {
+                                Layout.fillWidth: true
+                                color: theme.accentColor
+
+                                indeterminate: false
+                                minimumValue: 0
+                                maximumValue: 100
+                                value: progress
+                            }
+                        }
+
                     }
-
                 }
             }
+        }
 
+        ListView {
+            id: peers
+            model: peerModel
+            delegate: ListItem.Subtitled {
+                text: ip
+                subText: speed
+                valueText: total
+            }
         }
     }
 }
