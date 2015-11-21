@@ -338,7 +338,7 @@ void QED2KSession::start()
     alertsTimer.setInterval(1000);
     alertsTimer.start();
 	m_speedMon->start();
-    frdTimer.setInterval(1000*60);
+    frdTimer.setInterval(1000*60*2);
     frdTimer.start();
 }
 

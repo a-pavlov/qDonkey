@@ -5,6 +5,8 @@
 #include "qed2khandle.h"
 #include "qed2ksession.h"
 
+class QTimer;
+
 class PeerModel : public QAbstractListModel
 {
     Q_OBJECT
@@ -27,10 +29,14 @@ private:
     const PeerInfo& at(const QModelIndex&) const;
     quint64 speed(const QModelIndex&) const;
     quint64 total(const QModelIndex&) const;
+    QString m_hash;
+    QTimer* timer;
 signals:
     
 public slots:
     
+private slots:
+    void refreshContent();
 };
 
 #endif // PEERMODEL_H

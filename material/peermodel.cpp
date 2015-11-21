@@ -1,9 +1,12 @@
 #include "peermodel.h"
 #include "res.h"
+#include <QTimer>
 
 PeerModel::PeerModel(QObject *parent) :
     QAbstractListModel(parent)
 {
+    timer = new QTimer(this);
+    connect(timer, SIGNAL(timeout()), this, SLOT(refreshContent()));
 }
 
 int PeerModel::rowCount(const QModelIndex&) const {
@@ -77,6 +80,7 @@ QVariant PeerModel::headerData(int section, Qt::Orientation orientation, int rol
 }
 
 void PeerModel::populate(const QString& hash) {
+    m_hash = hash;
     QED2KHandle handle = Session::instance()->getTransfer(hash);
     QList<PeerInfo> peers;
     if (handle.is_valid()) {
@@ -118,6 +122,7 @@ void PeerModel::populate(const QString& hash) {
         }
     }
 
+    timer->start(1500);
 }
 
 const PeerInfo& PeerModel::at(const QModelIndex& index) const {
@@ -131,4 +136,8 @@ quint64 PeerModel::speed(const QModelIndex& index) const {
 
 quint64 PeerModel::total(const QModelIndex& index) const {
     return (at(index).m_speed_down>0)?at(index).m_total_down:at(index).m_total_up;
+}
+
+void PeerModel::refreshContent() {
+    if (!m_hash.isEmpty()) populate(m_hash);
 }

@@ -216,38 +216,45 @@ Are you sure you want to quit qDonkey?</source>
 <context>
     <name>PeerModel</name>
     <message>
+        <location filename="../../material/peermodel.cpp" line="42"/>
         <source>/s</source>
-        <translation type="vanished">/сек</translation>
+        <translation>/сек</translation>
     </message>
     <message>
+        <location filename="../../material/peermodel.cpp" line="67"/>
         <source>IP</source>
-        <translation type="vanished">IP</translation>
+        <translation>IP</translation>
     </message>
     <message>
+        <location filename="../../material/peermodel.cpp" line="68"/>
         <source>Client</source>
-        <translation type="vanished">Клиент</translation>
+        <translation>Клиент</translation>
     </message>
     <message>
+        <location filename="../../material/peermodel.cpp" line="69"/>
         <source>File name</source>
-        <translation type="vanished">Имя файла</translation>
+        <translation>Имя файла</translation>
     </message>
     <message>
+        <location filename="../../material/peermodel.cpp" line="70"/>
         <source>Progress</source>
-        <translation type="vanished">Прогресс</translation>
+        <translation>Прогресс</translation>
     </message>
     <message>
+        <location filename="../../material/peermodel.cpp" line="71"/>
         <source>Speed</source>
-        <translation type="vanished">Скорость</translation>
+        <translation>Скорость</translation>
     </message>
     <message>
+        <location filename="../../material/peermodel.cpp" line="72"/>
         <source>Bytes</source>
-        <translation type="vanished">Байт</translation>
+        <translation>Байт</translation>
     </message>
 </context>
 <context>
     <name>Preferences</name>
     <message>
-        <location filename="../../material/qml/Preferences.qml" line="34"/>
+        <location filename="../../material/qml/Preferences.qml" line="35"/>
         <source>New language will be available after restart</source>
         <translation>Изменения языка вступят в силу после перезапуска программы</translation>
     </message>
@@ -256,77 +263,86 @@ Are you sure you want to quit qDonkey?</source>
         <translation type="vanished">Опции</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Preferences.qml" line="32"/>
+        <location filename="../../material/qml/Preferences.qml" line="33"/>
         <source>Ok</source>
         <translation>Готово</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Preferences.qml" line="56"/>
         <source>Change preferences here</source>
-        <translation>Настройка программы</translation>
+        <translation type="vanished">Настройка программы</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Preferences.qml" line="76"/>
+        <location filename="../../material/qml/Preferences.qml" line="9"/>
+        <source>Setup options and click apply</source>
+        <translation>Настройте и нажмите применить</translation>
+    </message>
+    <message>
+        <location filename="../../material/qml/Preferences.qml" line="57"/>
+        <source>Change preferences here and click apply</source>
+        <translation>Нажмите применить для сохранения</translation>
+    </message>
+    <message>
+        <location filename="../../material/qml/Preferences.qml" line="77"/>
         <source>English</source>
         <translation>English</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Preferences.qml" line="77"/>
+        <location filename="../../material/qml/Preferences.qml" line="78"/>
         <source>Russian</source>
         <translation>Русский</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Preferences.qml" line="98"/>
+        <location filename="../../material/qml/Preferences.qml" line="99"/>
         <source>Enter your nickname</source>
         <translation>Введите ааш ник</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Preferences.qml" line="116"/>
+        <location filename="../../material/qml/Preferences.qml" line="117"/>
         <source>Listen port</source>
         <translation>Входящий порт</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Preferences.qml" line="143"/>
+        <location filename="../../material/qml/Preferences.qml" line="144"/>
         <source>Down</source>
         <translation>Загр</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Preferences.qml" line="155"/>
+        <location filename="../../material/qml/Preferences.qml" line="156"/>
         <source>Dowload limit Kb/s</source>
         <translation>Скорость загрузки Кб.с</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Preferences.qml" line="165"/>
+        <location filename="../../material/qml/Preferences.qml" line="166"/>
         <source>Up</source>
         <translation>Отд</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Preferences.qml" line="177"/>
+        <location filename="../../material/qml/Preferences.qml" line="178"/>
         <source>Upload limit Kb/s</source>
         <translation>Скорость отдачи Кб/c</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Preferences.qml" line="196"/>
+        <location filename="../../material/qml/Preferences.qml" line="197"/>
         <source>Incoming directory</source>
         <translation>Директория загрузок</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Preferences.qml" line="214"/>
+        <location filename="../../material/qml/Preferences.qml" line="215"/>
         <source>Show old transfers</source>
         <translation>Показывать старые загрузки</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Preferences.qml" line="231"/>
+        <location filename="../../material/qml/Preferences.qml" line="232"/>
         <source>Ask before exit program</source>
         <translation>Спрашивать перед выходом</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Preferences.qml" line="253"/>
+        <location filename="../../material/qml/Preferences.qml" line="254"/>
         <source>Cancel</source>
         <translation>Отмена</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Preferences.qml" line="274"/>
+        <location filename="../../material/qml/Preferences.qml" line="275"/>
         <source>Apply</source>
         <translation>Применить</translation>
     </message>
@@ -603,24 +619,29 @@ Are you sure you want to quit qDonkey?</source>
 <context>
     <name>TransferDetails</name>
     <message>
-        <location filename="../../material/qml/TransferDetails.qml" line="10"/>
+        <location filename="../../material/qml/TransferDetails.qml" line="9"/>
         <source>Back to transfers</source>
         <translation>Назад к загрузкам</translation>
     </message>
     <message>
-        <location filename="../../material/qml/TransferDetails.qml" line="84"/>
+        <location filename="../../material/qml/TransferDetails.qml" line="92"/>
         <source>Size %1</source>
         <translation>Размер %1</translation>
     </message>
     <message>
-        <location filename="../../material/qml/TransferDetails.qml" line="138"/>
+        <location filename="../../material/qml/TransferDetails.qml" line="146"/>
         <source>Seeds/Peers %1/%2</source>
         <translation>Сиды/Пиры %1/%2</translation>
     </message>
     <message>
-        <location filename="../../material/qml/TransferDetails.qml" line="153"/>
+        <location filename="../../material/qml/TransferDetails.qml" line="161"/>
         <source>ETA %1</source>
         <translation>Осталось %1</translation>
+    </message>
+    <message>
+        <location filename="../../material/qml/TransferDetails.qml" line="195"/>
+        <source>Total: </source>
+        <translation>Всего:</translation>
     </message>
 </context>
 <context>
@@ -846,8 +867,12 @@ Are you sure you want to quit qDonkey?</source>
     </message>
     <message>
         <location filename="../../material/qml/Transfers.qml" line="90"/>
+        <source>Preview</source>
+        <translation>Предпросмотр</translation>
+    </message>
+    <message>
         <source>Open</source>
-        <translation>Открыть</translation>
+        <translation type="vanished">Открыть</translation>
     </message>
 </context>
 <context>
