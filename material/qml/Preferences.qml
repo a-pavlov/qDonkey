@@ -34,6 +34,13 @@ Page {
         text: qsTr("New language will be available after restart")
     }
 
+    Dialog {
+        id: limitedSpeed
+        hasActions: true
+        negativeButton.visible: false
+        text: qsTr("Sorry, in free version maximum download speed is 200 Kb/s")
+    }
+
     Flickable {
         id: flick
         anchors.fill: parent
@@ -276,6 +283,16 @@ Page {
                     enabled: false
                     onClicked: {
                         console.log("write settings")
+                        if (limitDownload.text > 200 || !checkDownload.checked) {
+                            limitedSpeed.show()
+                        }
+
+                        if (limitDownload.text > 200) {
+                            limitDownload.text = 200
+                        }
+
+                        checkDownload.checked=true
+
                         pref.nick = nick.text
                         pref.listenPort = listenPort.text
                         pref.dlSpeedLimited = checkDownload.checked

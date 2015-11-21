@@ -93,7 +93,7 @@ QString Preferences::defaultInputDir() const {
 }
 
 bool Preferences::upSpeedLimited() const {
-    return value(upSpeedLim, false).toBool();
+    return value(upSpeedLim, true).toBool();
 }
 
 void Preferences::setUpSpeedLimited(bool value) {
@@ -102,7 +102,7 @@ void Preferences::setUpSpeedLimited(bool value) {
 }
 
 bool Preferences::dlSpeedLimited() const {
-    return value(dlSpeedLim, false).toBool();
+    return value(dlSpeedLim, true).toBool();
 }
 
 void Preferences::setDlSpeedLimited(bool value) {
@@ -111,7 +111,7 @@ void Preferences::setDlSpeedLimited(bool value) {
 }
 
 quint32 Preferences::upSpeed() const {
-    return value(upSpeedValue, 500).toUInt();
+    return value(upSpeedValue, 200).toUInt();
 }
 
 void Preferences::setUpSpeed(quint32 value){
@@ -120,7 +120,7 @@ void Preferences::setUpSpeed(quint32 value){
 }
 
 quint32 Preferences::dlSpeed() const {
-    return value(dlSpeedValue, 500).toUInt();
+    return value(dlSpeedValue, 200).toUInt();
 }
 
 void Preferences::setDlSpeed(quint32 value) {

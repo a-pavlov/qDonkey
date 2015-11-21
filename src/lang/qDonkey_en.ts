@@ -126,72 +126,77 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../material/qml/Preferences.qml" line="56"/>
+        <location filename="../../material/qml/Preferences.qml" line="41"/>
+        <source>Sorry, in free version maximum download speed is 200 Kb/s</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../material/qml/Preferences.qml" line="63"/>
         <source>Change preferences here</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../material/qml/Preferences.qml" line="76"/>
+        <location filename="../../material/qml/Preferences.qml" line="83"/>
         <source>English</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../material/qml/Preferences.qml" line="77"/>
+        <location filename="../../material/qml/Preferences.qml" line="84"/>
         <source>Russian</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../material/qml/Preferences.qml" line="98"/>
+        <location filename="../../material/qml/Preferences.qml" line="105"/>
         <source>Enter your nickname</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../material/qml/Preferences.qml" line="116"/>
+        <location filename="../../material/qml/Preferences.qml" line="123"/>
         <source>Listen port</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../material/qml/Preferences.qml" line="143"/>
+        <location filename="../../material/qml/Preferences.qml" line="150"/>
         <source>Down</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../material/qml/Preferences.qml" line="155"/>
+        <location filename="../../material/qml/Preferences.qml" line="162"/>
         <source>Dowload limit Kb/s</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../material/qml/Preferences.qml" line="165"/>
+        <location filename="../../material/qml/Preferences.qml" line="172"/>
         <source>Up</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../material/qml/Preferences.qml" line="177"/>
+        <location filename="../../material/qml/Preferences.qml" line="184"/>
         <source>Upload limit Kb/s</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../material/qml/Preferences.qml" line="196"/>
+        <location filename="../../material/qml/Preferences.qml" line="203"/>
         <source>Incoming directory</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../material/qml/Preferences.qml" line="214"/>
+        <location filename="../../material/qml/Preferences.qml" line="221"/>
         <source>Show old transfers</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../material/qml/Preferences.qml" line="231"/>
+        <location filename="../../material/qml/Preferences.qml" line="238"/>
         <source>Ask before exit program</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../material/qml/Preferences.qml" line="253"/>
+        <location filename="../../material/qml/Preferences.qml" line="260"/>
         <source>Cancel</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../material/qml/Preferences.qml" line="274"/>
+        <location filename="../../material/qml/Preferences.qml" line="281"/>
         <source>Apply</source>
         <translation type="unfinished"></translation>
     </message>
@@ -405,22 +410,27 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../material/qml/SearchResult.qml" line="38"/>
+        <location filename="../../material/qml/SearchResult.qml" line="33"/>
+        <source>Sorry, in free version download file size limited in 80 Mb</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../material/qml/SearchResult.qml" line="45"/>
         <source>Click for download</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../material/qml/SearchResult.qml" line="76"/>
+        <location filename="../../material/qml/SearchResult.qml" line="83"/>
         <source>Search related</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../material/qml/SearchResult.qml" line="76"/>
+        <location filename="../../material/qml/SearchResult.qml" line="83"/>
         <source>Download</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../material/qml/SearchResult.qml" line="76"/>
+        <location filename="../../material/qml/SearchResult.qml" line="83"/>
         <source>Preview</source>
         <translation type="unfinished"></translation>
     </message>

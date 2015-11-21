@@ -41,7 +41,7 @@ DISTFILES += \
     android/build.gradle \
     android/AndroidManifest.xml~
 
-OTHER_FILES +=  android/src/org/dkfsoft/qDonkey/NotificationClient.java \
+OTHER_FILES +=  android/src/org/dkfsoft/qDonkey/FreeDonkey.java \
                 android/AndroidManifest.xml
 
 

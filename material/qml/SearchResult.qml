@@ -26,6 +26,13 @@ Page {
         negativeButton.visible: false
     }
 
+    Dialog {
+        id: limitedSize
+        hasActions: true
+        negativeButton.visible: false
+        text: qsTr("Sorry, in free version download file size limited in 80 Mb")
+    }
+
     ColumnLayout {
         spacing: 0
         anchors.fill: parent
@@ -81,18 +88,27 @@ Page {
                         session.searchRelatedFiles(hash)
                         break
                     case 1:
-                        if (session.addTransfer(hash, name, filesize_num, sources_num, false)) {
-                            alertTransferAddSucc.show()
+                        if (filesize_num > 1024*1024*80) {
+                            limitedSize.show()
                         } else {
-                            alertTransferAddFail.show()
+                            if (session.addTransfer(hash, name, filesize_num, sources_num, false)) {
+                                alertTransferAddSucc.show()
+                            } else {
+                                alertTransferAddFail.show()
+                            }
                         }
 
                         break
                     case 2:
-                        if (session.addTransfer(hash, name, filesize_num, sources_num, true)) {
-                            alertTransferAddSucc.show()
+                        if (filesize_num > 1024*1024*80) {
+                            limitedSize.show()
                         } else {
-                            alertTransferAddFail.show()
+
+                            if (session.addTransfer(hash, name, filesize_num, sources_num, true)) {
+                                alertTransferAddSucc.show()
+                            } else {
+                                alertTransferAddFail.show()
+                            }
                         }
                         break
                     default:

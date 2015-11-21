@@ -434,7 +434,9 @@ void QED2KSession::configureSession() {
     const unsigned short old_listenPort = m_session->settings().listen_port;
     const unsigned short new_listenPort = pref.listenPort();
     const int up_limit = pref.upSpeedLimited()?pref.upSpeed():-1;
-    const int dl_limit = pref.dlSpeedLimited()?pref.dlSpeed():-1;
+    int dl_limit = pref.dlSpeedLimited()?pref.dlSpeed():-1;
+
+    if (dl_limit > 200) dl_limit = 200;
 
     // set common settings before for announce correct nick on server
     libed2k::session_settings s = m_session->settings();

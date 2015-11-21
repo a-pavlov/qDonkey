@@ -21,7 +21,7 @@ MainWindow::MainWindow(QObject* parent) : QObject(parent) {
     connect(pref.data(), SIGNAL(preferencesChanged()), this, SLOT(onPreferencesChanged()));
     smodel = new ServerModel(this);
 #ifdef IS74
-    smodel->add(QED2KServer("is74", "emule.is74.ru", 4661));
+    //smodel->add(QED2KServer("is74", "emule.is74.ru", 4661));
 #endif
 
     smodel->add(QED2KServer("TV Underground", "176.103.48.36", 4184));
