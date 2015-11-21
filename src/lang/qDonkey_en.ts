@@ -98,100 +98,143 @@
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="../../material/mainwindow.cpp" line="168"/>
+        <location filename="../../material/mainwindow.cpp" line="172"/>
         <source>%1 has started downloading</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../material/mainwindow.cpp" line="175"/>
+        <location filename="../../material/mainwindow.cpp" line="179"/>
         <source>%1 has finished downloading</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../material/mainwindow.cpp" line="180"/>
+        <location filename="../../material/mainwindow.cpp" line="184"/>
         <source>I/O error on %1: %2</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>PeerModel</name>
+    <message>
+        <location filename="../../material/peermodel.cpp" line="42"/>
+        <source>/s</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../material/peermodel.cpp" line="67"/>
+        <source>IP</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../material/peermodel.cpp" line="68"/>
+        <source>Client</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../material/peermodel.cpp" line="69"/>
+        <source>File name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../material/peermodel.cpp" line="70"/>
+        <source>Progress</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../material/peermodel.cpp" line="71"/>
+        <source>Speed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../material/peermodel.cpp" line="72"/>
+        <source>Bytes</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>Preferences</name>
     <message>
-        <location filename="../../material/qml/Preferences.qml" line="32"/>
+        <location filename="../../material/qml/Preferences.qml" line="33"/>
         <source>Ok</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../material/qml/Preferences.qml" line="34"/>
+        <location filename="../../material/qml/Preferences.qml" line="35"/>
         <source>New language will be available after restart</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../material/qml/Preferences.qml" line="56"/>
-        <source>Change preferences here</source>
+        <location filename="../../material/qml/Preferences.qml" line="9"/>
+        <source>Setup options and click apply</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../material/qml/Preferences.qml" line="76"/>
-        <source>English</source>
+        <location filename="../../material/qml/Preferences.qml" line="57"/>
+        <source>Change preferences here and click apply</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../material/qml/Preferences.qml" line="77"/>
+        <source>English</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../material/qml/Preferences.qml" line="78"/>
         <source>Russian</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../material/qml/Preferences.qml" line="98"/>
+        <location filename="../../material/qml/Preferences.qml" line="99"/>
         <source>Enter your nickname</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../material/qml/Preferences.qml" line="116"/>
+        <location filename="../../material/qml/Preferences.qml" line="117"/>
         <source>Listen port</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../material/qml/Preferences.qml" line="143"/>
+        <location filename="../../material/qml/Preferences.qml" line="144"/>
         <source>Down</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../material/qml/Preferences.qml" line="155"/>
+        <location filename="../../material/qml/Preferences.qml" line="156"/>
         <source>Dowload limit Kb/s</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../material/qml/Preferences.qml" line="165"/>
+        <location filename="../../material/qml/Preferences.qml" line="166"/>
         <source>Up</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../material/qml/Preferences.qml" line="177"/>
+        <location filename="../../material/qml/Preferences.qml" line="178"/>
         <source>Upload limit Kb/s</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../material/qml/Preferences.qml" line="196"/>
+        <location filename="../../material/qml/Preferences.qml" line="197"/>
         <source>Incoming directory</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../material/qml/Preferences.qml" line="214"/>
+        <location filename="../../material/qml/Preferences.qml" line="215"/>
         <source>Show old transfers</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../material/qml/Preferences.qml" line="231"/>
+        <location filename="../../material/qml/Preferences.qml" line="232"/>
         <source>Ask before exit program</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../material/qml/Preferences.qml" line="253"/>
+        <location filename="../../material/qml/Preferences.qml" line="254"/>
         <source>Cancel</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../material/qml/Preferences.qml" line="274"/>
+        <location filename="../../material/qml/Preferences.qml" line="275"/>
         <source>Apply</source>
         <translation type="unfinished"></translation>
     </message>
@@ -428,23 +471,28 @@
 <context>
     <name>TransferDetails</name>
     <message>
-        <location filename="../../material/qml/TransferDetails.qml" line="10"/>
+        <location filename="../../material/qml/TransferDetails.qml" line="9"/>
         <source>Back to transfers</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../material/qml/TransferDetails.qml" line="84"/>
+        <location filename="../../material/qml/TransferDetails.qml" line="92"/>
         <source>Size %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../material/qml/TransferDetails.qml" line="138"/>
+        <location filename="../../material/qml/TransferDetails.qml" line="146"/>
         <source>Seeds/Peers %1/%2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../material/qml/TransferDetails.qml" line="153"/>
+        <location filename="../../material/qml/TransferDetails.qml" line="161"/>
         <source>ETA %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../material/qml/TransferDetails.qml" line="195"/>
+        <source>Total: </source>
         <translation type="unfinished"></translation>
     </message>
 </context>

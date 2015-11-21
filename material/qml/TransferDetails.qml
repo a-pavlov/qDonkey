@@ -4,14 +4,22 @@ import Material 0.1
 import Material.ListItems 0.1 as ListItem
 import TransferModelItemEnum 1.0
 
-
 Page {
     id: searchResults
     title: qsTr("Back to transfers")
 
     ListView {
-        anchors.fill: parent
+        anchors {
+            top: parent.top
+            left: parent.left
+            right: parent.right
+        }
+        //anchors.fill: parent
+        //Layout.fillHeight: true
+        id: details
+
         model: transferDetails
+        height: parent.height/3
 
         delegate: ListItem.BaseListItem {
             fullHeight: true
@@ -166,7 +174,30 @@ Page {
 
                 }
             }
+        }
+    }
 
+    ListView {
+        id: peers
+        anchors {
+            top: details.bottom
+            left: parent.left
+            right: parent.right
+            bottom: parent.bottom
+        }
+
+        //Layout.fillWidth: true
+        //Layout.fillHeight: true
+        model: peerModel
+        delegate: ListItem.Subtitled {
+            text: ip
+            valueText: speed
+            subText: qsTr("Total: ") + total
+
+            action: Icon {
+                source: Qt.resolvedUrl("qrc:/images/chevron-double-down.svg")
+                //size: Units.dp(16)
+            }
         }
     }
 }

@@ -191,6 +191,7 @@ private:
     QScopedPointer<libed2k::session> m_session;
     QHash<QString, QED2KHandle> m_fast_resume_transfers;   // contains fast resume data were loading
     QTimer alertsTimer;
+    QTimer frdTimer;
     QSet<QED2KHandle> m_pending_medias;
 
     QStringList m_pendingFiles; // new files awaiting to calculate parameters and share
@@ -207,6 +208,7 @@ private:
     QUrl                    currentMF;
 private slots:
     void readAlerts();
+    void saveResume();
 public slots:
 	void configureSession();
     virtual QPair<QED2KHandle, ErrorCode> addLink(QString strLink, bool resumed = false);
