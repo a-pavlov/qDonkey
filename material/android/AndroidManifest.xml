@@ -1,8 +1,7 @@
 <?xml version="1.0"?>
-<manifest package="org.dkfsoft.qDonkey" xmlns:android="http://schemas.android.com/apk/res/android" android:versionName="0.1" android:versionCode="1" android:installLocation="auto">
+<manifest package="org.dkfsoft.qDonkey" xmlns:android="http://schemas.android.com/apk/res/android" android:versionName="0.2" android:versionCode="2" android:installLocation="auto">
     <application android:hardwareAccelerated="true" android:name="org.qtproject.qt5.android.bindings.QtApplication" android:label="qDonkey" android:icon="@drawable/icon">
-        <activity android:configChanges="orientation|uiMode|screenLayout|screenSize|smallestScreenSize|layoutDirection|locale|fontScale|keyboard|keyboardHidden|navigation"
-        android:name="org.dkfsoft.qDonkey.FreeDonkey" android:label="-- %%INSERT_APP_NAME%% --" android:screenOrientation="unspecified" android:launchMode="singleTop">
+        <activity android:configChanges="orientation|uiMode|screenLayout|screenSize|smallestScreenSize|layoutDirection|locale|fontScale|keyboard|keyboardHidden|navigation" android:name="org.dkfsoft.qDonkey.FreeDonkey" android:label="-- %%INSERT_APP_NAME%% --" android:screenOrientation="unspecified" android:launchMode="singleTop">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
@@ -41,7 +40,7 @@
             <!-- Background running -->
         </activity>
     </application>
-    <uses-sdk android:minSdkVersion="9" android:targetSdkVersion="14"/>
+    <uses-sdk android:minSdkVersion="9" android:targetSdkVersion="13"/>
     <supports-screens android:largeScreens="true" android:normalScreens="true" android:anyDensity="true" android:smallScreens="true"/>
 
     <!-- The following comment will be replaced upon deployment with default permissions based on the dependencies of the application.
