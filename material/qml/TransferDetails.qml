@@ -19,7 +19,7 @@ Page {
         id: details
 
         model: transferDetails
-        height: parent.height/3
+        height: contentHeight
 
         delegate: ListItem.BaseListItem {
             fullHeight: true
@@ -177,17 +177,24 @@ Page {
         }
     }
 
+    Item {
+        id: spacer
+        anchors {
+            top: details.bottom
+        }
+
+        height: Units.dp(16)
+    }
+
     ListView {
         id: peers
         anchors {
-            top: details.bottom
+            top: spacer.bottom
             left: parent.left
             right: parent.right
             bottom: parent.bottom
         }
 
-        //Layout.fillWidth: true
-        //Layout.fillHeight: true
         model: peerModel
         delegate: ListItem.Subtitled {
             text: ip
@@ -196,7 +203,6 @@ Page {
 
             action: Icon {
                 source: Qt.resolvedUrl("qrc:/images/chevron-double-down.svg")
-                //size: Units.dp(16)
             }
         }
     }
