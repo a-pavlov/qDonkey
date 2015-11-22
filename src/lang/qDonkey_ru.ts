@@ -654,7 +654,7 @@ Are you sure you want to quit qDonkey?</source>
         <translation>Осталось %1</translation>
     </message>
     <message>
-        <location filename="../../material/qml/TransferDetails.qml" line="195"/>
+        <location filename="../../material/qml/TransferDetails.qml" line="202"/>
         <source>Total: </source>
         <translation>Всего:</translation>
     </message>

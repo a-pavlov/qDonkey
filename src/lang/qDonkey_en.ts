@@ -491,7 +491,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../material/qml/TransferDetails.qml" line="195"/>
+        <location filename="../../material/qml/TransferDetails.qml" line="202"/>
         <source>Total: </source>
         <translation type="unfinished"></translation>
     </message>

@@ -84,7 +84,7 @@ ApplicationWindow {
 
     initialPage: TabbedPage {
         id: page
-        title: "qDonkey"
+        title: "AMule"
         actionBar.maxActionCount: 0
         focus: true
 

@@ -1,5 +1,5 @@
 TEMPLATE = app
-
+TARGET = AMule
 QT += qml quick widgets svg
 
 RESOURCES += qml.qrc ../src/lang.qrc \
