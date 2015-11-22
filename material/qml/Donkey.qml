@@ -5,7 +5,7 @@ import Material.ListItems 0.1 as ListItem
 
 ApplicationWindow {
     id: qDonkey
-    title: "qDonkey"
+    title: "AMule"
     width:  400
     height: 500
     visible: true
