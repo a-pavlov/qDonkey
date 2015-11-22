@@ -112,6 +112,7 @@ Page {
                         break
                     case 3:
                         transferDetails.setHash(hash)
+                        peerModel.populate(hash)
                         pageStack.push(Qt.resolvedUrl("TransferDetails.qml"))
                         break
                     case 4:

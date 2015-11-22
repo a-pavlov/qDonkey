@@ -298,6 +298,7 @@ bool writeResumeDataOne(std::ofstream& fs, const libed2k::save_resume_data_alert
 
 QED2KSession::QED2KSession() : m_upnp(0), m_natpmp(0) {   
     connect(&alertsTimer, SIGNAL(timeout()), this, SLOT(readAlerts()));
+    connect(&frdTimer, SIGNAL(timeout()), this, SLOT(saveResume()));
     m_speedMon.reset(new TransferSpeedMonitor(this));
     last_error_dt = QDateTime::currentDateTime().addSecs(-1);
 }
@@ -330,18 +331,21 @@ void QED2KSession::start()
 
     m_session.reset(new libed2k::session(finger, NULL, settings));
     m_session->set_alert_mask(libed2k::alert::all_categories);
-    m_session->set_alert_queue_size_limit(100000);
+    m_session->set_alert_queue_size_limit(1000);
 
     // start listening on special interface and port and start server connection
     configureSession();
     alertsTimer.setInterval(1000);
     alertsTimer.start();
 	m_speedMon->start();
+    frdTimer.setInterval(1000*60*2);
+    frdTimer.start();
 }
 
 void QED2KSession::stop()
 {
     alertsTimer.stop();
+    frdTimer.stop();
     m_session->pause();
     saveFastResumeData();
 }
@@ -932,29 +936,28 @@ void QED2KSession::readAlerts()
     }
 }
 
+void QED2KSession::saveResume() {
+    qDebug() << "temporary save resume data";
+    saveTempFastResumeData();
+}
+
 // Called periodically
 void QED2KSession::saveTempFastResumeData()
 {
-    std::vector<libed2k::transfer_handle> transfers =  m_session->get_transfers();
-
-    for (std::vector<libed2k::transfer_handle>::iterator th_itr = transfers.begin();
-         th_itr != transfers.end(); ++th_itr)
-    {
-        QED2KHandle h = QED2KHandle(*th_itr);
-
-        try
-        {
+    QLinkedList<QED2KHandle> transfers =  getActiveTransfers();
+    foreach(const QED2KHandle& h, transfers)  {
+        try {
             if (h.is_valid() &&
                     h.state() != QED2KHandle::checking_files &&
                     h.state() != QED2KHandle::queued_for_checking &&
-                    h.need_save_resume_data())
-            {
+                    h.need_save_resume_data()) {
                 qDebug("Saving fastresume data for %s", qPrintable(h.name()));
                 h.save_resume_data();
             }
         }
-        catch(std::exception&)
-        {}
+        catch(std::exception& e) {
+            qDebug() << "unable to save fast resume data: " << e.what();
+        }
     }
 }
 

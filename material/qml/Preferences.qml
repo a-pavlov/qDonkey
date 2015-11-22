@@ -6,6 +6,7 @@ import Material.ListItems 0.1 as ListItem
 import Material.Extras 0.1
 
 Page {
+    title: qsTr("Setup options and click apply")
 
     function btnOn() {
         btnApply.enabled=true
@@ -60,7 +61,7 @@ Page {
                 }
 
                 style: "body2"
-                text: qsTr("Change preferences here")
+                text: qsTr("Change preferences here and click apply")
             }
 
             ListItem.Standard {
