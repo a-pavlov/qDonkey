@@ -5,12 +5,11 @@ import Material.ListItems 0.1 as ListItem
 import TransferModelItemEnum 1.0
 
 Page {
-    id: searchResults
+    id: transferDet
     title: qsTr("Back to transfers")
 
-    Component.onDestruction: {
-        //adCtl.adMobBannerPosition = Qt.point(0, Units.gu(2) + Units.dp(2))
-        adCtl.showAdMobBanner()
+    Component.onDestruction: {        
+        adMob.adShow()
     }
 
     ListView {

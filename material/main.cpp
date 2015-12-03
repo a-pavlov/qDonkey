@@ -4,7 +4,7 @@
 #include "mainwindow.h"
 #include "qed2ksession.h"
 #include "preferences.h"
-#include <advertise/adctl/adctl.h>
+#include "adctl.h"
 #include <QtQml>
 
 #ifdef Q_OS_WIN
@@ -96,8 +96,7 @@ int main(int argc, char *argv[])
         app.setLayoutDirection(Qt::RightToLeft);
     }
     else app.setLayoutDirection(Qt::LeftToRight);
-
-    qmlRegisterType<AdCtl>("ru.forsk.adctl", 1, 0, "AdCtl");
+    qmlRegisterType<AdMobCtrl>("org.dkfsoft.admobctrl", 1, 0, "AdMobCtrl");
 
     Session::instance()->start();
     MainWindow mw;

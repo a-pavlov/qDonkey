@@ -6,6 +6,10 @@ QMAKE_LFLAGS_APP += -rdynamic
 INCLUDEPATH += $$(LIBED2K_ROOT)/include 
 INCLUDEPATH += $$(BOOST_ROOT)
 
+HEADERS += adctl.h
+
+SOURCES += adctl.cpp
+
 CONFIG(debug, debug|release) {
 LIBS += -L$$(LIBED2K_ROOT)/bin/debug
 } else {
@@ -30,12 +34,12 @@ DEFINES += BOOST_EXCEPTION_DISABLE
 
 #AdCtl: Google Analytics, AdMob, StartAD.mobi
 ANDROID_PACKAGE_SOURCE_DIR = $$PWD/android
-include(advertise/adctl/AdCtl.pri)
+
 OTHER_FILES +=  $$PWD/android/AndroidManifest.xml \
-                $$PWD/android/src/org/dkfsoft/qDonkey/FreeDonkey.java
+                $$PWD/android/src/org/dkfsoft/qDonkey/FreeDonkey.java \
+                $$PWD/android/project.properties \
+                $$PWD/android/res/values/strings.xml
 
 # INSTALL
 target.path = $$PREFIX/bin/
 INSTALLS += target
-
-

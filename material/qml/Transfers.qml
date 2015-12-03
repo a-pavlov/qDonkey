@@ -5,10 +5,6 @@ import Material.ListItems 0.1 as ListItem
 import TransferModelItemEnum 1.0
 
 Page {
-    Component.onCompleted: {
-    //    adCtl.adMobBannerPosition = Qt.point(content.mapToItem(null, 0, 0).x, content.mapToItem(null, 0, 0).y + Units.dp(2))
-        //adCtl.showAdMobBanner()
-    }
 
     ColumnLayout {
         id: content
@@ -119,9 +115,7 @@ Page {
                     case 3:
                         transferDetails.setHash(hash)
                         peerModel.populate(hash)
-                        //adCtl.hideAdMobBanner()
-                        //adCtl.adMobBannerPosition = Qt.point(0, Units.gu(1) + Units.dp(2))
-                        adCtl.hideAdMobBanner()
+                        adMob.adHide()
                         pageStack.push(Qt.resolvedUrl("TransferDetails.qml"))
                         break
                     case 4:

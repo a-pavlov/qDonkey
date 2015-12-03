@@ -1,7 +1,9 @@
-import QtQuick 2.2
+import QtQuick 2.0
+import QtQuick.Layouts 1.1
 import Material 0.1
 import Material.ListItems 0.1 as ListItem
 import ru.forsk.adctl 1.0
+import org.dkfsoft.admobctrl 1.0
 
 ApplicationWindow {
     id: qDonkey
@@ -16,51 +18,82 @@ ApplicationWindow {
         tabHighlightColor: "white"
     }
 
-    AdCtl {
-        id: adCtl
+    property string aLoaded: "false"
+    property int posY: 0
 
-        //manage enabled components
-        adMobBannerEnabled: true
-        adMobIinterstitialEnabled: true
-        startAdBannerEnabled: false
-        gAnalyticsEnabled: false
+    AdMobCtrl {
+        id: adMob
+    }
 
-        //set ids
-        adMobId: "ca-app-pub-1671474838801728/5245648299"
-        startAdId: "ca-app-pub-1671474838801728/3768915093"
-        gAnalyticsId: "YOUR_GANALYTICS_TRACKING_ID"
-
-        //Start positions for banners.
-        adMobBannerPosition: Qt.point(0,-500)
-        startAdBannerPosition: Qt.point(0,-500)
-        startAdBannerSize: Qt.size(250, 50)
-
-        //when StartAd.mobi baners is showed we can to reposition it
-        onStartAdBannerShowed: {
-            console.log("onStartAdBannerShowed");
-            startAdBannerPosition = Qt.point(0,
-                                     (appWindow.height - adCtl.startAdBannerHeight * 1.3))
-        }
-
-        //when AdMob baners is showed we can to reposition it
-        onAdMobBannerShowed: {
-            console.log("onAdMobBannerShowed");
-            adMobBannerPosition = Qt.point((appWindow.width - adCtl.adMobBannerWidth) * 0.5,
-                                     (appWindow.height - adCtl.adMobBannerHeight * 1.5 - 200))
-        }
-
-        //When all variables are setted, we can to initialize our code
-        Component.onCompleted: {
-            adCtl.init();
-            adCtl.signInGPGS();
+    Timer {
+        interval: 5000
+        running: true
+        repeat: true
+        onTriggered: {
+            aLoaded = adMob.adLoaded?"true":"false"
+            console.log("AdMob loaded " + aLoaded)
+            if (aLoaded) {
+                adMob.adSetPos(0, 0)
+                placeholder.height = adMob.adHeight
+                placeholder.visible = true
+                adMob.adShow()
+                stop()
+            }
         }
     }
 
-    Rectangle {
-        id: root
+    ColumnLayout {
 
-        anchors.fill: parent
-        anchors.bottomMargin: adCtl.startAdBannerHeight
-        Component.onCompleted: { adCtl.sendGaAppView("MainWindow"); }
+        Item {
+            id: placeholder
+            height: 0
+            visible: false
+        }
+
+        Label {
+            id: lStatus
+            Layout.fillWidth: true
+            text: "AdMob status:" + adMob.valid?" valid":"invalid"
+        }
+
+        Label {
+            text: "AdMob state: " + aLoaded
+        }
+
+        Label {
+            text: "Banner height: " + adMob.adHeight
+        }
+
+        Button {
+            text: "Hide"
+            onClicked: {
+                adMob.adHide()
+            }
+        }
+
+
+        Button {
+            text: "Show"
+            onClicked: {
+                adMob.adShow()
+            }
+        }
+
+        Button {
+            text: "Set pos"
+            onClicked: {
+                adMob.adSetPos(0, posY)
+                posY = posY + 10
+            }
+        }
+
+        Button {
+            text: "Intersititial show"
+            onClicked: {
+                adMob.interstitialShow()
+            }
+        }
     }
+
+
 }

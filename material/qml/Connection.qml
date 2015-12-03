@@ -6,10 +6,6 @@ import Material.ListItems 0.1 as ListItem
 Page {
     id: conn
 
-    Component.onCompleted: {
-        //adCtl.showAdMobBanner()
-    }
-
     ColumnLayout {
         id: connection
         spacing: 0

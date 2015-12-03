@@ -8,7 +8,7 @@ Page {
     title: qsTr("Back to search")
 
     Component.onDestruction: {
-        adCtl.showAdMobBanner()
+        adMob.adShow()
     }
 
     Dialog {

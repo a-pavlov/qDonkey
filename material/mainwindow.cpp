@@ -100,7 +100,7 @@ MainWindow::MainWindow(QObject* parent) : QObject(parent) {
 //#ifdef IS74
     engine->load(QUrl(QStringLiteral("qrc:/qml/Donkey.qml")));
 //#else
-//    engine->load(QUrl(QStringLiteral("qrc:/qml/main.qml")));
+    //engine->load(QUrl(QStringLiteral("qrc:/qml/main.qml")));
 //#endif
 
     Session::instance()->start();
