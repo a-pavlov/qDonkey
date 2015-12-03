@@ -26,10 +26,10 @@ Page {
             progress.visible = false
             if (resultsCount > 0) {
                 searchFPModel.sortData()
+                adCtl.hideAdMobBanner()
                 pageStack.push(Qt.resolvedUrl("SearchResult.qml"))
             } else
                 alertEmptyResult.show()
-
         }
     }
 

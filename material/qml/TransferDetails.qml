@@ -8,15 +8,19 @@ Page {
     id: searchResults
     title: qsTr("Back to transfers")
 
+    Component.onDestruction: {
+        //adCtl.adMobBannerPosition = Qt.point(0, Units.gu(2) + Units.dp(2))
+        adCtl.showAdMobBanner()
+    }
+
     ListView {
+        id: details
+
         anchors {
             top: parent.top
             left: parent.left
             right: parent.right
         }
-        //anchors.fill: parent
-        //Layout.fillHeight: true
-        id: details
 
         model: transferDetails
         height: contentHeight

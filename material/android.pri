@@ -1,6 +1,6 @@
 # COMPILATION SPECIFIC
 
-QT += androidextras
+QT += androidextras gui-private
 QMAKE_CXXFLAGS += -Wformat -Wformat-security -Werror=return-type -Wno-unused-parameter
 QMAKE_LFLAGS_APP += -rdynamic
 INCLUDEPATH += $$(LIBED2K_ROOT)/include 
@@ -28,21 +28,14 @@ DEFINES += "BUILDDATE='\"$$system(date -R)\"'"
 DEFINES += BOOST_EXCEPTION_DISABLE
 
 
+#AdCtl: Google Analytics, AdMob, StartAD.mobi
+ANDROID_PACKAGE_SOURCE_DIR = $$PWD/android
+include(advertise/adctl/AdCtl.pri)
+OTHER_FILES +=  $$PWD/android/AndroidManifest.xml \
+                $$PWD/android/src/org/dkfsoft/qDonkey/FreeDonkey.java
+
 # INSTALL
 target.path = $$PREFIX/bin/
 INSTALLS += target
 
 
-DISTFILES += \
-    android/AndroidManifest.xml \
-    android/AndroidManifest.xml.bak \
-    android/AndroidManifest.xml~ \
-    android/res/values/libs.xml \
-    android/build.gradle \
-    android/AndroidManifest.xml~
-
-OTHER_FILES +=  android/src/org/dkfsoft/qDonkey/FreeDonkey.java \
-                android/AndroidManifest.xml
-
-
-ANDROID_PACKAGE_SOURCE_DIR = $$PWD/android

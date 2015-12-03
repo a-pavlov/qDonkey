@@ -1,6 +1,7 @@
 import QtQuick 2.2
 import Material 0.1
 import Material.ListItems 0.1 as ListItem
+import ru.forsk.adctl 1.0
 
 ApplicationWindow {
     id: qDonkey
@@ -15,160 +16,51 @@ ApplicationWindow {
         tabHighlightColor: "white"
     }
 
-    property string conn: "Connection"
-    property string transfers: "Transfers"
-    property string search: "Search"
+    AdCtl {
+        id: adCtl
 
-    property var sections: [ conn, transfers, search ]
+        //manage enabled components
+        adMobBannerEnabled: true
+        adMobIinterstitialEnabled: true
+        startAdBannerEnabled: false
+        gAnalyticsEnabled: false
 
-    property var sectionTitles: [ "Connection", "Transfers", "Search" ]
+        //set ids
+        adMobId: "ca-app-pub-1671474838801728/5245648299"
+        startAdId: "ca-app-pub-1671474838801728/3768915093"
+        gAnalyticsId: "YOUR_GANALYTICS_TRACKING_ID"
 
-    property string selectedComponent: conn
+        //Start positions for banners.
+        adMobBannerPosition: Qt.point(0,-500)
+        startAdBannerPosition: Qt.point(0,-500)
+        startAdBannerSize: Qt.size(250, 50)
 
-    initialPage: TabbedPage {
-        id: page
-
-        title: "qDonkey"
-
-        actionBar.maxActionCount: navDrawer.enabled ? 1 : 3
-
-        actions: [
-            Action {
-                iconName: "action/settings"
-                name: "Settings"
-                hoverAnimation: true
-            },
-
-            Action {
-                iconName: "action/language"
-                name: "Language"
-                enabled: false
-            }
-        ]
-
-
-        backAction: navDrawer.action
-
-        NavigationDrawer {
-            id: navDrawer
-
-            enabled: page.width < Units.dp(500)
-
-            Flickable {
-                anchors.fill: parent
-                contentHeight: Math.max(content.implicitHeight, height)
-
-                Column {
-                    id: content
-                    anchors.fill: parent
-
-                    Repeater {
-                        model: sections
-
-                        delegate: Column {
-                            width: parent.width
-
-                            ListItem.Standard {
-                                text: sectionTitles[index]
-                                selected: modelData = qDonkey.selectedComponent
-                                onClicked: {
-                                    console.log(Qt.resolvedUrl("model data % selected").arg(modelData));
-                                    qDonkey.selectedComponent = modelData
-                                    navDrawer.close()
-                                }
-                            }
-/*
-                            Repeater {
-                                model: modelData
-                                delegate: ListItem.Standard {
-                                    text: modelData
-                                    selected: modelData == qDonkey.selectedComponent
-                                    onClicked: {
-                                        console.log(Qt.resolvedUrl("model data % selected").arg(modelData));
-                                        qDonkey.selectedComponent = modelData
-                                        navDrawer.close()
-                                    }
-                                }
-                            }*/
-                        }
-
-                    }
-                }
-
-            }
-
+        //when StartAd.mobi baners is showed we can to reposition it
+        onStartAdBannerShowed: {
+            console.log("onStartAdBannerShowed");
+            startAdBannerPosition = Qt.point(0,
+                                     (appWindow.height - adCtl.startAdBannerHeight * 1.3))
         }
 
-
-        Repeater {
-            model: !navDrawer.enabled ? sections : 0
-
-            delegate: Tab {
-                title: sectionTitles[index]
-
-                property string selectedComponent: modelData
-                property var section: modelData
-
-                sourceComponent: tabDelegate
-            }
+        //when AdMob baners is showed we can to reposition it
+        onAdMobBannerShowed: {
+            console.log("onAdMobBannerShowed");
+            adMobBannerPosition = Qt.point((appWindow.width - adCtl.adMobBannerWidth) * 0.5,
+                                     (appWindow.height - adCtl.adMobBannerHeight * 1.5 - 200))
         }
 
-        Loader {
-            anchors.fill: parent
-            sourceComponent: tabDelegate
-
-            property var section: []
-            visible: navDrawer.enabled
-            onLoaded: {
-                console.log(source)
-            }
+        //When all variables are setted, we can to initialize our code
+        Component.onCompleted: {
+            adCtl.init();
+            adCtl.signInGPGS();
         }
     }
 
-    Component {
-        id: tabDelegate
-        Item {
-            Flickable {
-                id: flickable
+    Rectangle {
+        id: root
 
-                anchors {
-                    left: parent.left
-                    right: parent.right
-                    top: parent.top
-                    bottom: parent.bottom
-                }
-
-                clip: true
-                contentHeight: Math.max(example.implicitHeight + 40, height)
-
-                Loader {
-                    id: example
-                    anchors.fill: parent
-                    asynchronous: true
-                    visible: status == Loader.Ready
-                    // selectedComponent will always be valid, as it defaults to the first component
-                    source: {
-                        if (navDrawer.enabled) {
-                            console.log(Qt.resolvedUrl("% clicked").arg(qDonkey.selectedComponent.replace(" ", "")))
-                            return Qt.resolvedUrl("%.qml").arg(qDonkey.selectedComponent.replace(" ", ""))
-                        } else {
-                            console.log(Qt.resolvedUrl("% clicked").arg(selectedComponent.replace(" ", "")))
-                            return Qt.resolvedUrl("%.qml").arg(selectedComponent.replace(" ", ""))
-                        }
-                    }
-                }
-
-                ProgressCircle {
-                    anchors.centerIn: parent
-                    visible: example.status == Loader.Loading
-                }
-            }
-            Scrollbar {
-                flickableItem: flickable
-            }
-
-        }
-
+        anchors.fill: parent
+        anchors.bottomMargin: adCtl.startAdBannerHeight
+        Component.onCompleted: { adCtl.sendGaAppView("MainWindow"); }
     }
-
 }

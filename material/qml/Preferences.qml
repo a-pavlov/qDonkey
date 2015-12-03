@@ -8,14 +8,14 @@ import Material.Extras 0.1
 Page {
     title: qsTr("Setup options and click apply")
 
-    function btnOn() {
-        btnApply.enabled=true
-        btnCancel.enabled=true
-    }
-
     Component.onCompleted: {
         btnApply.enabled=false
         btnCancel.enabled=false
+    }
+
+    function btnOn() {
+        btnApply.enabled=true
+        btnCancel.enabled=true
     }
 
     function getLangIndex(locale) {
@@ -284,16 +284,7 @@ Page {
                     enabled: false
                     onClicked: {
                         console.log("write settings")
-                        if (limitDownload.text > 200 || !checkDownload.checked) {
-                            limitedSpeed.show()
-                        }
-
-                        if (limitDownload.text > 200) {
-                            limitDownload.text = 200
-                        }
-
                         checkDownload.checked=true
-
                         pref.nick = nick.text
                         pref.listenPort = listenPort.text
                         pref.dlSpeedLimited = checkDownload.checked

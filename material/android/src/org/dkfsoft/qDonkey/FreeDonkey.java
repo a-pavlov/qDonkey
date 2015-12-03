@@ -33,11 +33,12 @@
 
 package org.dkfsoft.qDonkey;
 
+import ru.forsk.AdCtl.AdCtlActivity;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.content.Context;
 
-public class FreeDonkey extends org.qtproject.qt5.android.bindings.QtActivity
+public class FreeDonkey extends AdCtlActivity
 {
     private static NotificationManager m_notificationManager;
     private static Notification.Builder m_builder;

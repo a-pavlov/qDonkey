@@ -2,6 +2,7 @@ import QtQuick 2.0
 import QtQuick.Layouts 1.1
 import Material 0.1
 import Material.ListItems 0.1 as ListItem
+import ru.forsk.adctl 1.0
 
 ApplicationWindow {
     id: qDonkey
@@ -13,6 +14,72 @@ ApplicationWindow {
     property string lastErrorFilename: ""
     property string lastErrorMessage: ""
     property bool forceExit: false
+    property bool showBanner: false
+
+    AdCtl {
+        id: adCtl
+
+        //manage enabled components
+        adMobBannerEnabled: true
+        adMobIinterstitialEnabled: true
+        startAdBannerEnabled: false
+        gAnalyticsEnabled: false
+
+        //set ids
+        adMobId: "ca-app-pub-1671474838801728/5245648299"
+        startAdId: "ca-app-pub-1671474838801728/3768915093"
+        gAnalyticsId: ""
+
+        //Start positions for banners.
+        adMobBannerPosition: Qt.point(0,-500)
+        startAdBannerPosition: Qt.point(0,-500)
+        startAdBannerSize: Qt.size(250, 50)
+
+        //when StartAd.mobi baners is showed we can to reposition it
+        onStartAdBannerShowed: {
+            console.log("onStartAdBannerShowed");
+            startAdBannerPosition = Qt.point(0,
+                                     (qDonkey.height - adCtl.startAdBannerHeight * 1.3))
+        }
+
+        //when AdMob baners is showed we can to reposition it
+        onAdMobBannerShowed: {
+            console.log("onAdMobBannerShowed");
+            adCtl.adMobBannerPosition = Qt.point(0, Units.gu(2) + Units.dp(2))
+            console.log("Set offset for banner to " + Units.gu(2));
+        }
+
+        onAdMobBannerLoaded: {
+            console.log("onAdMobBannerLoaded")
+            //showBanner = true
+            //adCtl.showAdMobBanner()
+        }
+
+        //When all variables are setted, we can to initialize our code
+        Component.onCompleted: {
+            adCtl.init();
+        }
+    }
+
+    Timer {
+        interval: 120000
+        running: true
+        repeat: true
+        onTriggered: {
+            console.log("Show admob interstitial")
+            adCtl.showAdMobInterstitial()
+        }
+    }
+
+    Timer {
+        interval: 30000
+        running: true
+        repeat: false
+        onTriggered: {
+            showBanner = true
+            adCtl.showAdMobBanner()
+        }
+    }
 
     Dialog {
         id: quitAsk
@@ -89,6 +156,7 @@ ApplicationWindow {
         focus: true
 
         Repeater {
+            id: content
             model: sections
             delegate: Tab {
                 title: sectionTitles[index]
@@ -102,12 +170,25 @@ ApplicationWindow {
     Component {
         id: tabDelegate
         Item {
+
+            Item {
+                id: banner
+                height: showBanner?adCtl.adMobBannerHeight:Units.dp(0)
+                visible: showBanner
+                enabled: showBanner
+                anchors {
+                    top: parent.top
+                    left: parent.left
+                    margins: Units.dp(16)
+                }
+            }
+
             Flickable {
                 id: flickable
                 anchors {
                     left: parent.left
                     right: parent.right
-                    top: parent.top
+                    top: banner.bottom
                     bottom: parent.bottom
                 }
 
