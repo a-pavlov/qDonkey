@@ -20,13 +20,7 @@ MainWindow::MainWindow(QObject* parent) : QObject(parent) {
     connect(pref.data(), SIGNAL(inputDirChanged(QString)), this, SLOT(onIncomingDirChanged(QString)));
     connect(pref.data(), SIGNAL(preferencesChanged()), this, SLOT(onPreferencesChanged()));
     smodel = new ServerModel(this);
-#ifdef IS74
-    smodel->add(QED2KServer("is74", "emule.is74.ru", 4661));
-    //smodel->update("is74", "emule.is74.ru", 4661);
-#endif
-    foreach(const QED2KServer s, fromServersMet("./server.met")) {
-        smodel->add(s);
-    }
+    smodel->load();
     searchmodel = new SearchModel(this);
     searchFilterProxyModel = new SWSortFilterProxyModel(this);
     searchFilterProxyModel->setDynamicSortFilter(false);
@@ -85,6 +79,7 @@ MainWindow::MainWindow(QObject* parent) : QObject(parent) {
 }
 
 MainWindow::~MainWindow() {
+    smodel->save();
     Session::instance()->drop();
 }
 

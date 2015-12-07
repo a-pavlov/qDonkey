@@ -5,6 +5,15 @@ import Material.ListItems 0.1 as ListItem
 import TransferModelItemEnum 1.0
 
 Page {
+    actions: [
+    Action {
+            text: "Act1"
+        },
+        Action {
+            text: "Act2"
+        }
+    ]
+
     ColumnLayout {
         spacing: 0
         anchors.fill: parent
