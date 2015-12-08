@@ -20,6 +20,7 @@ const QString pathSysTrAvail= "System/SystrayAvailable";
 const QString pathShowAllransfers = "Common/ShowAllTransfers";
 const QString pathLocale    = "Common/Locale";
 const QString askOnExitValue = "Common/AskOnExit";
+const QString serversPresence = "Network/ServersPresent";
 
 void Preferences::flush() {
     sync();
@@ -135,6 +136,14 @@ bool Preferences::askOnExit() const {
 void Preferences::setAskOnExit(bool b) {
     setValue(askOnExitValue, b);
     emit askOnExitChanged(b);
+}
+
+bool Preferences::getServersPresence() const {
+    return value(serversPresence, false).toBool();
+}
+
+void Preferences::setServersPresence(bool b) {
+    setValue(serversPresence, b);
 }
 
 #ifdef Q_OS_WIN

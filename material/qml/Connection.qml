@@ -2,30 +2,76 @@ import QtQuick 2.5
 import QtQuick.Layouts 1.1
 import Material 0.1
 import Material.ListItems 0.1 as ListItem
+Page {
+    Dialog {
+        id: addDialog
+        title: qsTr("Add server")
+        positiveButtonEnabled: false
 
-ColumnLayout {
-    id: connection
-    spacing: 0
-    anchors.fill: parent
-    Label {
-        anchors {
-            left: parent.left
-            top: parent.top
-            margins: Units.dp(16)
+        ColumnLayout {
+            TextField {
+                id: name
+                Layout.fillWidth: true
+                placeholderText: qsTr("Alias")
+                onTextChanged: {
+                    addDialog.positiveButtonEnabled=name.text.length != 0 &&
+                            host.text.length != 0 && port.text.length != 0
+                }
+            }
+
+            RowLayout {
+                TextField {
+                    id: host
+                    Layout.fillWidth: true
+                    placeholderText: qsTr("Server host or IP")
+                    onTextChanged: {
+                        addDialog.positiveButtonEnabled=name.text.length != 0 &&
+                                host.text.length != 0 && port.text.length != 0
+                    }
+                }
+
+                TextField {
+                    id: port
+                    width: Units.dp(50)
+                    placeholderText: qsTr("Port")
+                    validator: IntValidator {}
+                    onTextChanged: {
+                        addDialog.positiveButtonEnabled=name.text.length != 0 &&
+                                host.text.length != 0 && port.text.length != 0
+                    }
+                }
+            }
         }
 
-        id: title
-        text: qsTr("Double click for connect")
-        style: "body2"
+        onAccepted: {
+            serverModel.create(name.text, host.text, port.text)
+        }
     }
 
-    ListView {
-        Layout.fillWidth: true
-        Layout.fillHeight: true
-        model: serverModel
+    ColumnLayout {
+        id: connection
+        spacing: 0
+        anchors.fill: parent
+        Label {
+            anchors {
+                left: parent.left
+                top: parent.top
+                margins: Units.dp(16)
+            }
 
-        delegate: ListItem.Subtitled {
+            id: title
+            text: qsTr("Double click for connect")
+            style: "body2"
+        }
+
+        ListView {
+            Layout.fillWidth: true
+            Layout.fillHeight: true
+            model: serverModel
+
+            delegate: ListItem.SimpleMenu {
                 id: itm
+                selectedIndex: -1
                 text: alias
                 subText: host + ":" + port
 
@@ -41,10 +87,24 @@ ColumnLayout {
                     if (status==2) return ""
                 }
 
-                MouseArea {
-                    anchors.fill: parent
-                    onDoubleClicked: {
+                model: [qsTr("Conn/Disconnect"), qsTr("Add"), qsTr("Delete")]
+
+                onSelectedIndexChanged: {
+                    switch(selectedIndex) {
+                    case 0:
                         serverModel.update(alias, host, port)
+                        break
+                    case 1:
+                        addDialog.show()
+                        break
+                    case 2:
+                        serverModel.remove(alias, host, port)
+                        break
+                    default:
+                        console.log("undefined index " + selectedIndex)
+                    }
+
+                    selectedIndex=-1
                 }
             }
         }
