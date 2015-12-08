@@ -110,6 +110,15 @@ void ServerModel::update(const QString& alias, const QString& host, int port) {
     }
 }
 
+void ServerModel::remove(const QString& alias, const QString& host, int port) {
+    QModelIndex index = getIndex(alias, host, port);
+    if (index.isValid()) {
+        beginRemoveRows(QModelIndex(), index.row(), index.row());
+        servers.removeAt(index.row());
+        endRemoveRows();
+    }
+}
+
 void ServerModel::on_serverConnectionInitialized(QString alias, QString host, int port, quint32 client_id, quint32 tcp_flags, quint32 aux_port) {
     Q_UNUSED(client_id);
     Q_UNUSED(tcp_flags);
