@@ -12,19 +12,54 @@
         <translation type="vanished">Двойной клик на сервере для соединения/отсоединения</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Connection.qml" line="18"/>
+        <location filename="../../material/qml/Connection.qml" line="8"/>
+        <source>Add server</source>
+        <translation>Добавить сервер</translation>
+    </message>
+    <message>
+        <location filename="../../material/qml/Connection.qml" line="16"/>
+        <source>Alias</source>
+        <translation>Алиас</translation>
+    </message>
+    <message>
+        <location filename="../../material/qml/Connection.qml" line="27"/>
+        <source>Server host or IP</source>
+        <translation>Хост или IP адрес</translation>
+    </message>
+    <message>
+        <location filename="../../material/qml/Connection.qml" line="37"/>
+        <source>Port</source>
+        <translation>Порт</translation>
+    </message>
+    <message>
+        <location filename="../../material/qml/Connection.qml" line="64"/>
         <source>Double click for connect</source>
         <translation>Двойной клик для соединения</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Connection.qml" line="39"/>
+        <location filename="../../material/qml/Connection.qml" line="86"/>
         <source>Connected</source>
         <translation>Соединен</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Connection.qml" line="40"/>
+        <location filename="../../material/qml/Connection.qml" line="87"/>
         <source>Connecting...</source>
         <translation>Соединяюсь...</translation>
+    </message>
+    <message>
+        <location filename="../../material/qml/Connection.qml" line="91"/>
+        <source>Conn/Disconnect</source>
+        <translation>Соединение/Стоп</translation>
+    </message>
+    <message>
+        <location filename="../../material/qml/Connection.qml" line="91"/>
+        <source>Add</source>
+        <translation>Добавить</translation>
+    </message>
+    <message>
+        <location filename="../../material/qml/Connection.qml" line="91"/>
+        <source>Delete</source>
+        <translation>Удалить</translation>
     </message>
 </context>
 <context>
@@ -213,19 +248,19 @@ Are you sure you want to quit qDonkey?</source>
         <translation type="vanished">Соединение с сервером разорвано</translation>
     </message>
     <message>
-        <location filename="../../material/mainwindow.cpp" line="172"/>
+        <location filename="../../material/mainwindow.cpp" line="156"/>
         <source>%1 has started downloading</source>
-        <translation type="unfinished"></translation>
+        <translation>Началась загрузка %1 </translation>
     </message>
     <message>
-        <location filename="../../material/mainwindow.cpp" line="179"/>
+        <location filename="../../material/mainwindow.cpp" line="163"/>
         <source>%1 has finished downloading</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 загружен</translation>
     </message>
     <message>
-        <location filename="../../material/mainwindow.cpp" line="184"/>
+        <location filename="../../material/mainwindow.cpp" line="168"/>
         <source>I/O error on %1: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Ошибка ввода вывода %1 на %2</translation>
     </message>
 </context>
 <context>
@@ -820,73 +855,73 @@ Are you sure you want to quit qDonkey?</source>
         <translation type="vanished">Двойной клик на иконке для открытия/паузы/возобновления</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Transfers.qml" line="21"/>
+        <location filename="../../material/qml/Transfers.qml" line="30"/>
         <source>Click for action menu</source>
         <translation>Нажмите для меню действий</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Transfers.qml" line="26"/>
+        <location filename="../../material/qml/Transfers.qml" line="35"/>
         <source>Unable to open file of this type</source>
-        <translation type="unfinished"></translation>
+        <translation>Не могу открыть файл</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Transfers.qml" line="44"/>
+        <location filename="../../material/qml/Transfers.qml" line="53"/>
         <source>Stalled dl</source>
         <translation>Ждет источники</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Transfers.qml" line="45"/>
+        <location filename="../../material/qml/Transfers.qml" line="54"/>
         <source>Stalled up</source>
         <translation>Бездействует</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Transfers.qml" line="46"/>
+        <location filename="../../material/qml/Transfers.qml" line="55"/>
         <source>Downloading...</source>
         <translation>Закачка...</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Transfers.qml" line="47"/>
+        <location filename="../../material/qml/Transfers.qml" line="56"/>
         <source>Seeding...</source>
         <translation>Сидирует...</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Transfers.qml" line="50"/>
+        <location filename="../../material/qml/Transfers.qml" line="59"/>
         <source>Paused</source>
         <translation>Пауза</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Transfers.qml" line="51"/>
+        <location filename="../../material/qml/Transfers.qml" line="60"/>
         <source>Checking...</source>
         <translation>Проверка...</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Transfers.qml" line="52"/>
-        <location filename="../../material/qml/Transfers.qml" line="53"/>
+        <location filename="../../material/qml/Transfers.qml" line="61"/>
+        <location filename="../../material/qml/Transfers.qml" line="62"/>
         <source>Invalid</source>
         <translation>Ошибка</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Transfers.qml" line="97"/>
+        <location filename="../../material/qml/Transfers.qml" line="106"/>
         <source>Pause</source>
         <translation>Пауза</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Transfers.qml" line="97"/>
+        <location filename="../../material/qml/Transfers.qml" line="106"/>
         <source>Resume</source>
         <translation>Возобновить</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Transfers.qml" line="97"/>
+        <location filename="../../material/qml/Transfers.qml" line="106"/>
         <source>Remove</source>
         <translation>Удалить</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Transfers.qml" line="97"/>
+        <location filename="../../material/qml/Transfers.qml" line="106"/>
         <source>Details</source>
         <translation>Детали</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Transfers.qml" line="97"/>
+        <location filename="../../material/qml/Transfers.qml" line="106"/>
         <source>Preview</source>
         <translation>Предпросмотр</translation>
     </message>
