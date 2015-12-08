@@ -6,7 +6,7 @@ import org.dkfsoft.admobctrl 1.0
 
 ApplicationWindow {
     id: qDonkey
-    title: "qDonkey"
+    title: "AMuleFree"
     width:  400
     height: 500
     visible: true
@@ -103,7 +103,8 @@ ApplicationWindow {
 
     Component.onCompleted: {
         if (pref.inputDir.length === 0) initDialog.show()
-        adMob.interstitialShow()
+        // Do not show interstitial at first time
+        //adMob.interstitialShow()
     }
 
     property string connections: "Connection"
@@ -118,7 +119,7 @@ ApplicationWindow {
 
     initialPage: TabbedPage {
         id: page
-        title: "qDonkey"
+        title: "AMuleFree"
         actionBar.maxActionCount: 0
         focus: true
 

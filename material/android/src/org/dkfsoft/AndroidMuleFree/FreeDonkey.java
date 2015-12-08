@@ -31,7 +31,7 @@
 **
 ****************************************************************************/
 
-package org.dkfsoft.qDonkey;
+package org.dkfsoft.AndroidMuleFree;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -60,7 +60,7 @@ public class FreeDonkey extends QtActivity
 
     private AdView mAdView;
     private InterstitialAd mInterstitialAd;
-    private boolean showInterstitial = true;
+    private boolean showInterstitial = false;
     private AtomicBoolean adLoaded = new AtomicBoolean(false);
 
     private int statusBarHeight() {
@@ -83,7 +83,7 @@ public class FreeDonkey extends QtActivity
             m_notificationManager = (NotificationManager)m_instance.getSystemService(Context.NOTIFICATION_SERVICE);
             m_builder = new Notification.Builder(m_instance);
             m_builder.setSmallIcon(R.drawable.icon);
-            m_builder.setContentTitle("qDonkey");
+            m_builder.setContentTitle("AMuleFree");
         }
 
         m_builder.setContentText(s);

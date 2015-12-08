@@ -36,7 +36,7 @@ DEFINES += BOOST_EXCEPTION_DISABLE
 ANDROID_PACKAGE_SOURCE_DIR = $$PWD/android
 
 OTHER_FILES +=  $$PWD/android/AndroidManifest.xml \
-                $$PWD/android/src/org/dkfsoft/qDonkey/FreeDonkey.java \
+                $$PWD/android/src/org/dkfsoft/AndroidMuleFree/FreeDonkey.java \
                 $$PWD/android/project.properties \
                 $$PWD/android/res/values/strings.xml
 
