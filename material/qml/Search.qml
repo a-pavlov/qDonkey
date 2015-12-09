@@ -6,6 +6,9 @@ import Material.ListItems 0.1 as ListItem
 import Material.Extras 0.1
 
 Page {
+
+    property int counter: 2
+
     Dialog {
         id: alertEmptyResult
         width: Units.dp(300)
@@ -26,10 +29,12 @@ Page {
             progress.visible = false
             if (resultsCount > 0) {
                 searchFPModel.sortData()
+                adMob.adHide()
+                if (counter % 5 == 0) adMob.interstitialShow()
+                counter = counter + 1
                 pageStack.push(Qt.resolvedUrl("SearchResult.qml"))
             } else
                 alertEmptyResult.show()
-
         }
     }
 

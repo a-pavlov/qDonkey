@@ -1,0 +1,6 @@
+[submodule "material/android/advertisement/adctl"]
+	path = material/android/advertisement/adctl
+	url = https://github.com/kafeg/adctl.git
+[submodule "material/advertise/adctl"]
+	path = material/advertise/adctl
+	url = https://github.com/kafeg/adctl.git

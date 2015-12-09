@@ -4,6 +4,8 @@
 #include "mainwindow.h"
 #include "qed2ksession.h"
 #include "preferences.h"
+#include "adctl.h"
+#include <QtQml>
 
 #ifdef Q_OS_WIN
 void customMessageHandler(QtMsgType type, const QMessageLogContext &context, const QString &msg)
@@ -94,6 +96,7 @@ int main(int argc, char *argv[])
         app.setLayoutDirection(Qt::RightToLeft);
     }
     else app.setLayoutDirection(Qt::LeftToRight);
+    qmlRegisterType<AdMobCtrl>("org.dkfsoft.admobctrl", 1, 0, "AdMobCtrl");
 
     Session::instance()->start();
     MainWindow mw;

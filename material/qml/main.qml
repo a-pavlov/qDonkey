@@ -1,6 +1,9 @@
-import QtQuick 2.2
+import QtQuick 2.0
+import QtQuick.Layouts 1.1
 import Material 0.1
 import Material.ListItems 0.1 as ListItem
+import ru.forsk.adctl 1.0
+import org.dkfsoft.admobctrl 1.0
 
 ApplicationWindow {
     id: qDonkey
@@ -15,160 +18,82 @@ ApplicationWindow {
         tabHighlightColor: "white"
     }
 
-    property string conn: "Connection"
-    property string transfers: "Transfers"
-    property string search: "Search"
+    property string aLoaded: "false"
+    property int posY: 0
 
-    property var sections: [ conn, transfers, search ]
+    AdMobCtrl {
+        id: adMob
+    }
 
-    property var sectionTitles: [ "Connection", "Transfers", "Search" ]
-
-    property string selectedComponent: conn
-
-    initialPage: TabbedPage {
-        id: page
-
-        title: "qDonkey"
-
-        actionBar.maxActionCount: navDrawer.enabled ? 1 : 3
-
-        actions: [
-            Action {
-                iconName: "action/settings"
-                name: "Settings"
-                hoverAnimation: true
-            },
-
-            Action {
-                iconName: "action/language"
-                name: "Language"
-                enabled: false
-            }
-        ]
-
-
-        backAction: navDrawer.action
-
-        NavigationDrawer {
-            id: navDrawer
-
-            enabled: page.width < Units.dp(500)
-
-            Flickable {
-                anchors.fill: parent
-                contentHeight: Math.max(content.implicitHeight, height)
-
-                Column {
-                    id: content
-                    anchors.fill: parent
-
-                    Repeater {
-                        model: sections
-
-                        delegate: Column {
-                            width: parent.width
-
-                            ListItem.Standard {
-                                text: sectionTitles[index]
-                                selected: modelData = qDonkey.selectedComponent
-                                onClicked: {
-                                    console.log(Qt.resolvedUrl("model data % selected").arg(modelData));
-                                    qDonkey.selectedComponent = modelData
-                                    navDrawer.close()
-                                }
-                            }
-/*
-                            Repeater {
-                                model: modelData
-                                delegate: ListItem.Standard {
-                                    text: modelData
-                                    selected: modelData == qDonkey.selectedComponent
-                                    onClicked: {
-                                        console.log(Qt.resolvedUrl("model data % selected").arg(modelData));
-                                        qDonkey.selectedComponent = modelData
-                                        navDrawer.close()
-                                    }
-                                }
-                            }*/
-                        }
-
-                    }
-                }
-
-            }
-
-        }
-
-
-        Repeater {
-            model: !navDrawer.enabled ? sections : 0
-
-            delegate: Tab {
-                title: sectionTitles[index]
-
-                property string selectedComponent: modelData
-                property var section: modelData
-
-                sourceComponent: tabDelegate
-            }
-        }
-
-        Loader {
-            anchors.fill: parent
-            sourceComponent: tabDelegate
-
-            property var section: []
-            visible: navDrawer.enabled
-            onLoaded: {
-                console.log(source)
+    Timer {
+        interval: 5000
+        running: true
+        repeat: true
+        onTriggered: {
+            aLoaded = adMob.adLoaded?"true":"false"
+            console.log("AdMob loaded " + aLoaded)
+            if (aLoaded) {
+                adMob.adSetPos(0, 0)
+                placeholder.height = adMob.adHeight
+                placeholder.visible = true
+                adMob.adShow()
+                stop()
             }
         }
     }
 
-    Component {
-        id: tabDelegate
+    ColumnLayout {
+
         Item {
-            Flickable {
-                id: flickable
-
-                anchors {
-                    left: parent.left
-                    right: parent.right
-                    top: parent.top
-                    bottom: parent.bottom
-                }
-
-                clip: true
-                contentHeight: Math.max(example.implicitHeight + 40, height)
-
-                Loader {
-                    id: example
-                    anchors.fill: parent
-                    asynchronous: true
-                    visible: status == Loader.Ready
-                    // selectedComponent will always be valid, as it defaults to the first component
-                    source: {
-                        if (navDrawer.enabled) {
-                            console.log(Qt.resolvedUrl("% clicked").arg(qDonkey.selectedComponent.replace(" ", "")))
-                            return Qt.resolvedUrl("%.qml").arg(qDonkey.selectedComponent.replace(" ", ""))
-                        } else {
-                            console.log(Qt.resolvedUrl("% clicked").arg(selectedComponent.replace(" ", "")))
-                            return Qt.resolvedUrl("%.qml").arg(selectedComponent.replace(" ", ""))
-                        }
-                    }
-                }
-
-                ProgressCircle {
-                    anchors.centerIn: parent
-                    visible: example.status == Loader.Loading
-                }
-            }
-            Scrollbar {
-                flickableItem: flickable
-            }
-
+            id: placeholder
+            height: 0
+            visible: false
         }
 
+        Label {
+            id: lStatus
+            Layout.fillWidth: true
+            text: "AdMob status:" + adMob.valid?" valid":"invalid"
+        }
+
+        Label {
+            text: "AdMob state: " + aLoaded
+        }
+
+        Label {
+            text: "Banner height: " + adMob.adHeight
+        }
+
+        Button {
+            text: "Hide"
+            onClicked: {
+                adMob.adHide()
+            }
+        }
+
+
+        Button {
+            text: "Show"
+            onClicked: {
+                adMob.adShow()
+            }
+        }
+
+        Button {
+            text: "Set pos"
+            onClicked: {
+                adMob.adSetPos(0, posY)
+                posY = posY + 10
+            }
+        }
+
+        Button {
+            text: "Intersititial show"
+            onClicked: {
+                adMob.interstitialShow()
+            }
+        }
     }
+
 
 }

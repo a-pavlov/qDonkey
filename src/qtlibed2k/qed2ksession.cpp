@@ -440,8 +440,6 @@ void QED2KSession::configureSession() {
     const int up_limit = pref.upSpeedLimited()?pref.upSpeed():-1;
     int dl_limit = pref.dlSpeedLimited()?pref.dlSpeed():-1;
 
-    if (dl_limit > 200) dl_limit = 200;
-
     // set common settings before for announce correct nick on server
     libed2k::session_settings s = m_session->settings();
     s.client_name = pref.nick().toUtf8().constData();

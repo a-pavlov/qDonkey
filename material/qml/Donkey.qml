@@ -2,10 +2,11 @@ import QtQuick 2.0
 import QtQuick.Layouts 1.1
 import Material 0.1
 import Material.ListItems 0.1 as ListItem
+import org.dkfsoft.admobctrl 1.0
 
 ApplicationWindow {
     id: qDonkey
-    title: "qDonkey"
+    title: "AMuleFree"
     width:  400
     height: 500
     visible: true
@@ -13,6 +14,38 @@ ApplicationWindow {
     property string lastErrorFilename: ""
     property string lastErrorMessage: ""
     property bool forceExit: false
+    property bool adLoaded: false
+
+    AdMobCtrl {
+        id: adMob
+    }
+
+    Timer {
+        interval: 5000
+        running: true
+        repeat: true
+        onTriggered: {
+
+            if (adMob.adLoaded) {
+                adLoaded = adMob.adLoaded
+                adMob.adSetPos(0, Units.gu(2))
+                adMob.adShow()
+                stop()
+            }
+        }
+    }
+
+
+    /*Timer {
+        interval: 120000
+        running: true
+        repeat: true
+        onTriggered: {
+            console.log("Show admob interstitial")
+            adCtl.showAdMobInterstitial()
+        }
+    }*/
+
 
     Dialog {
         id: quitAsk
@@ -70,6 +103,8 @@ ApplicationWindow {
 
     Component.onCompleted: {
         if (pref.inputDir.length === 0) initDialog.show()
+        // Do not show interstitial at first time
+        //adMob.interstitialShow()
     }
 
     property string connections: "Connection"
@@ -84,11 +119,12 @@ ApplicationWindow {
 
     initialPage: TabbedPage {
         id: page
-        title: "qDonkey"
+        title: "AMuleFree"
         actionBar.maxActionCount: 0
         focus: true
 
         Repeater {
+            id: content
             model: sections
             delegate: Tab {
                 title: sectionTitles[index]
@@ -102,12 +138,25 @@ ApplicationWindow {
     Component {
         id: tabDelegate
         Item {
+
+            Item {
+                id: banner
+                height: adLoaded?adMob.adHeight:Units.dp(0)
+                visible: adLoaded
+
+                anchors {
+                    top: parent.top
+                    left: parent.left
+                    margins: Units.dp(16)
+                }
+            }
+
             Flickable {
                 id: flickable
                 anchors {
                     left: parent.left
                     right: parent.right
-                    top: parent.top
+                    top: banner.bottom
                     bottom: parent.bottom
                 }
 

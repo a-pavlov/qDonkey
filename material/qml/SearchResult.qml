@@ -7,6 +7,9 @@ Page {
     id: searchResults
     title: qsTr("Back to search")
 
+    Component.onDestruction: {
+        adMob.adShow()
+    }
 
     Dialog {
         id: alertTransferAddSucc
@@ -34,8 +37,10 @@ Page {
     }
 
     ColumnLayout {
+        id: content
         spacing: 0
         anchors.fill: parent
+
         Label {
             anchors {
                 top: parent.top
@@ -100,15 +105,10 @@ Page {
 
                         break
                     case 2:
-                        if (filesize_num > 1024*1024*80) {
-                            limitedSize.show()
+                        if (session.addTransfer(hash, name, filesize_num, sources_num, true)) {
+                            alertTransferAddSucc.show()
                         } else {
-
-                            if (session.addTransfer(hash, name, filesize_num, sources_num, true)) {
-                                alertTransferAddSucc.show()
-                            } else {
-                                alertTransferAddFail.show()
-                            }
+                            alertTransferAddFail.show()
                         }
                         break
                     default:

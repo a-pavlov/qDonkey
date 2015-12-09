@@ -16,6 +16,7 @@ class QED2KHandle;
 class NotificationClient;
 class QKeyEvent;
 class QTimer;
+//class AdCtl;
 
 
 class MainWindow:  public QObject {
@@ -33,6 +34,7 @@ private:
     NotificationClient*     notificationClient;
     QTimer*                 playTimer;
     PeerModel*              pmodel;
+    //AdCtl*                  adctl;
 
     void restoreLastServerConnection();
 public:

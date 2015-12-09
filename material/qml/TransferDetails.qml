@@ -5,18 +5,21 @@ import Material.ListItems 0.1 as ListItem
 import TransferModelItemEnum 1.0
 
 Page {
-    id: searchResults
+    id: transferDet
     title: qsTr("Back to transfers")
 
+    Component.onDestruction: {        
+        adMob.adShow()
+    }
+
     ListView {
+        id: details
+
         anchors {
             top: parent.top
             left: parent.left
             right: parent.right
         }
-        //anchors.fill: parent
-        //Layout.fillHeight: true
-        id: details
 
         model: transferDetails
         height: contentHeight

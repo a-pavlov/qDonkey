@@ -15,6 +15,7 @@
 #include <QQmlContext>
 #include <QKeyEvent>
 #include <QTimer>
+//#include "adctl.h"
 
 MainWindow::MainWindow(QObject* parent) : QObject(parent) {
     pref.reset(new Preferences);
@@ -78,6 +79,14 @@ MainWindow::MainWindow(QObject* parent) : QObject(parent) {
     connect(Session::instance(), SIGNAL(fileIOError(QString, QString)), SLOT(fileError(QString, QString)));
     engine = new QQmlApplicationEngine(this);
     TransferModelItemEnum::qmlRegister();
+    /*adctl = new AdCtl(this);
+    adctl->setAdMobId("ca-app-pub-1671474838801728/5245648299");
+    adctl->setStartAdId("ca-app-pub-1671474838801728/3768915093");
+    adctl->setAdMobBannerEnabled(true);
+    adctl->setAdMobIinterstitialEnabled(true);
+    adctl->setStartAdBannerEnabled(true);
+    adctl->init();
+    */
     engine->rootContext()->setContextProperty("serverModel", smodel);
     engine->rootContext()->setContextProperty("searchModel", searchmodel);
     engine->rootContext()->setContextProperty("searchFPModel", searchFilterProxyModel);
@@ -87,11 +96,12 @@ MainWindow::MainWindow(QObject* parent) : QObject(parent) {
     engine->rootContext()->setContextProperty("session", Session::instance());
     engine->rootContext()->setContextProperty("pref", pref.data());
     engine->rootContext()->setContextProperty("peerModel", pmodel);
-#ifdef IS74
+    //engine->rootContext()->setContextProperty("adctl", adctl);
+//#ifdef IS74
     engine->load(QUrl(QStringLiteral("qrc:/qml/Donkey.qml")));
-#else
-    engine->load(QUrl(QStringLiteral("qrc:/qml/main.qml")));
-#endif
+//#else
+    //engine->load(QUrl(QStringLiteral("qrc:/qml/main.qml")));
+//#endif
 
     Session::instance()->start();
     Session::instance()->loadDirectory(pref.data()->inputDir());

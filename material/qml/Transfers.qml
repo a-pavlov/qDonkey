@@ -5,7 +5,9 @@ import Material.ListItems 0.1 as ListItem
 import TransferModelItemEnum 1.0
 
 Page {
+
     ColumnLayout {
+        id: content
         spacing: 0
         anchors.fill: parent
 
@@ -113,6 +115,7 @@ Page {
                     case 3:
                         transferDetails.setHash(hash)
                         peerModel.populate(hash)
+                        adMob.adHide()
                         pageStack.push(Qt.resolvedUrl("TransferDetails.qml"))
                         break
                     case 4:
