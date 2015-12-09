@@ -5,7 +5,6 @@ import Material.ListItems 0.1 as ListItem
 import TransferModelItemEnum 1.0
 
 Page {
-
     ColumnLayout {
         id: content
         spacing: 0

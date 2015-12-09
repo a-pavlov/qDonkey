@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<manifest package="org.dkfsoft.AndroidMuleFree" xmlns:android="http://schemas.android.com/apk/res/android" android:versionName="0.1" android:versionCode="1" android:installLocation="auto">
+<manifest package="org.dkfsoft.AndroidMuleFree" xmlns:android="http://schemas.android.com/apk/res/android" android:versionName="0.2" android:versionCode="2" android:installLocation="auto">
     <application android:hardwareAccelerated="true" android:name="org.qtproject.qt5.android.bindings.QtApplication" android:label="AndroidMuleFree" android:icon="@drawable/icon">
         <!--This meta-data tag is required to use Google Play Services.-->
         <meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version"/>

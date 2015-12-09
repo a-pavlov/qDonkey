@@ -33,6 +33,9 @@ public:
     QModelIndex getIndex(const QString& alias, const QString& host, int port) const;
 
     Q_INVOKABLE void update(const QString& alias, const QString& host, int port);
+    Q_INVOKABLE void remove(const QString& alias, const QString& host, int port);
+    void save() const;    // save servers list to disk
+    void load();    // load servers list from disk
 public slots:
     void on_serverConnectionInitialized(QString alias, QString host, int port, quint32 client_id, quint32 tcp_flags, quint32 aux_port);
     void on_serverConnectionClosed(QString alias, QString host, int port, QString strError);

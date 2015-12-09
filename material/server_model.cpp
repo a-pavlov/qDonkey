@@ -1,6 +1,27 @@
 #include "server_model.h"
 #include "qed2ksession.h"
+#include "preferences.h"
 #include <QDebug>
+
+void save_server(const QED2KServer& server, Preferences& pref) {
+    pref.setValue("Alias", server.alias);
+    pref.setValue("Host", server.host);
+    pref.setValue("Port", server.port);
+    pref.setValue("IP", server.serverIp);
+    pref.setValue("Name", server.name);
+    pref.setValue("Descr", server.description);
+}
+
+QED2KServer load_server(Preferences& pref) {
+    QED2KServer server;
+    server.alias = pref.value("Alias", "").toString();
+    server.host = pref.value("Host", "").toString();
+    server.port = pref.value("Port", 0).toInt();
+    server.serverIp = pref.value("IP", "").toString();
+    server.name = pref.value("Name", "").toString();
+    server.description = pref.value("Descr", "").toString();
+    return server;
+}
 
 ServerModel::ServerModel(QObject* parent) : QAbstractListModel(parent) {
 
@@ -89,6 +110,15 @@ void ServerModel::update(const QString& alias, const QString& host, int port) {
     }
 }
 
+void ServerModel::remove(const QString& alias, const QString& host, int port) {
+    QModelIndex index = getIndex(alias, host, port);
+    if (index.isValid()) {
+        beginRemoveRows(QModelIndex(), index.row(), index.row());
+        servers.removeAt(index.row());
+        endRemoveRows();
+    }
+}
+
 void ServerModel::on_serverConnectionInitialized(QString alias, QString host, int port, quint32 client_id, quint32 tcp_flags, quint32 aux_port) {
     Q_UNUSED(client_id);
     Q_UNUSED(tcp_flags);
@@ -109,5 +139,48 @@ void ServerModel::on_serverConnectionClosed(QString alias, QString host, int por
         servers[index.row()].status = QED2KServer::ServerDisconnected;
         emit dataChanged(index, index);
     }
+}
+
+void ServerModel::load() {
+    Preferences pref;
+    if (pref.getServersPresence()) {
+        int size = pref.beginReadArray("Servers");
+        for(int i = 0; i < size; ++i) {
+            pref.setArrayIndex(i);
+            servers << load_server(pref);
+        }
+
+        pref.endArray();
+    } else {
+        //add(QED2KServer("is74", "emule.is74.ru", 4661));
+        add(QED2KServer("TV Underground", "176.103.48.36", 4184));
+        add(QED2KServer("eMule Security No1", "91.200.42.46" ,1176));
+        add(QED2KServer("eMule Security No2", "91.200.42.47", 3883));
+        add(QED2KServer("eMule Security No3", "91.200.42.119", 9939));
+        add(QED2KServer("eMule Security No4", "77.120.115.66", 5041));
+        add(QED2KServer("eMule oVPN.to Anonymous ed2k-Server", "213.163.71.135", 4242));
+        add(QED2KServer("emule lover QQ Qun 212431292", "27.152.28.252", 4242));
+        add(QED2KServer("PEERATES.NET", "195.154.83.5" ,7111));
+        add(QED2KServer("PeerBooter", "212.83.184.152", 7111));
+        add(QED2KServer("!! www.Sharing-Devils.org No.1 ...", "195.154.109.229" ,4232));
+
+        foreach(const QED2KServer s, fromServersMet("./server.met")) {
+            add(s);
+        }
+    }
+}
+
+void ServerModel::save() const {
+    Preferences pref;
+    pref.setServersPresence(true);
+    pref.beginWriteArray("Servers", servers.size());
+    int index = 0;
+    foreach(const QED2KServer& s, servers) {
+        pref.setArrayIndex(index++);
+        save_server(s, pref);
+    }
+
+    pref.endArray();
+
 }
 
