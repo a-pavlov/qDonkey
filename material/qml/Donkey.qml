@@ -15,6 +15,7 @@ ApplicationWindow {
     property string lastErrorMessage: ""
     property bool forceExit: false
     property bool adLoaded: false
+    property string link_filename: ""
 
     AdMobCtrl {
         id: adMob
@@ -94,6 +95,10 @@ ApplicationWindow {
         id: initDialog
     }
 
+    AddLinkDialog {
+        id: linkAdded
+    }
+
     theme {
         primaryColor: Palette.colors["blue"]["500"]
         primaryDarkColor: Palette.colors["blue"]["700"]
@@ -102,9 +107,16 @@ ApplicationWindow {
     }
 
     Component.onCompleted: {
+        link_filename = adMob.link
         if (pref.inputDir.length === 0) initDialog.show()
         // Do not show interstitial at first time
         //adMob.interstitialShow()
+        console.log("Link is " + adMob.link)
+        if (adMob.link.length != 0 && pref.inputDir.length !== 0) {
+            if (session.addLinkQml(adMob.link, true)) {
+                linkAdded.show()
+            }
+        }
     }
 
     property string connections: "Connection"

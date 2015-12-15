@@ -9,6 +9,11 @@ Dialog {
     anchors.centerIn: parent
     width: Units.dp(350)
     height: init_column.implicitHeight + Units.dp(32)
+
+    AddLinkDialog {
+        id: linkAdded
+    }
+
     ColumnLayout {
         id: init_column
 
@@ -91,6 +96,12 @@ Dialog {
                     console.log("input dir" + inputDirEdit.text)
                     pref.inputDir = inputDirEdit.text
                     initDialog.close()
+
+                    if (adMob.link.length != 0) {
+                        if (session.addLinkQml(adMob.link, true)) {
+                            linkAdded.show()
+                        }
+                    }
                 }
             }
         }

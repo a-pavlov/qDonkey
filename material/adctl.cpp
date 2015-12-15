@@ -9,6 +9,7 @@
 #include <android/api-level.h>
 #include <QAndroidJniObject>
 #include <qpa/qplatformnativeinterface.h>
+#include <QtAndroidExtras/QAndroidJniObject>
 
 #endif
 
@@ -65,4 +66,13 @@ int AdMobCtrl::readAdHeight() const {
 
 void AdMobCtrl::interstitialShow() {
     if (m_Activity)m_Activity->callMethod<void>("interstitialShow");
+}
+
+QString AdMobCtrl::getLink() {
+    if (m_Activity){
+        QAndroidJniObject res = m_Activity->callObjectMethod<jstring>("getLink");
+        return res.toString();
+    }
+
+    return QString();
 }

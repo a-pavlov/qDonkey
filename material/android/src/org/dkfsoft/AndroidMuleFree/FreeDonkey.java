@@ -33,6 +33,7 @@
 
 package org.dkfsoft.AndroidMuleFree;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import org.qtproject.qt5.android.bindings.QtActivity;
@@ -62,6 +63,7 @@ public class FreeDonkey extends QtActivity
     private InterstitialAd mInterstitialAd;
     private boolean showInterstitial = false;
     private AtomicBoolean adLoaded = new AtomicBoolean(false);
+    private String link = "";
 
     private int statusBarHeight() {
         int result = 0;
@@ -155,7 +157,19 @@ public class FreeDonkey extends QtActivity
             }
 
         });
+
+        Intent intent = getIntent();
+        String action = intent.getAction();
+        if (intent.ACTION_VIEW.equals(action)) {
+            link = intent.getDataString();
+            Log.d("Java link", link);
+        }
     }
+
+    public String getLink() {
+        return link;
+    }
+
 
     @Override
     public void onPause() {
