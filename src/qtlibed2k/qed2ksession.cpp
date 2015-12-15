@@ -467,17 +467,20 @@ QPair<QED2KHandle, ErrorCode> QED2KSession::addLink(QString strLink, bool resume
     if (ece.defined())
     {
         qDebug("Link is correct, add transfer");
-        QString filepath = QDir(pref.inputDir()).filePath(
-            QString::fromUtf8(ece.m_filename.c_str(), ece.m_filename.size()));
-        libed2k::add_transfer_params atp;
-        atp.file_hash = ece.m_filehash;
-        atp.file_path = filepath.toUtf8().constData();
-        atp.file_size = ece.m_filesize;
-        atp.duplicate_is_error = true;
+
+        // TODO - fix preferences
+        QString filepath = QDir(Preferences().inputDir()).filePath(QString::fromUtf8(ece.m_filename.c_str(), ece.m_filename.size()));
+        libed2k::add_transfer_params params;
+        params.file_hash = ece.m_filehash;
+        params.file_path = filepath.toUtf8().constData();
+        params.file_size = ece.m_filesize;
+        params.seed_mode = false;
+        params.num_complete_sources = 0;
+        params.duplicate_is_error = true;
 
         try
         {
-            h = addTransfer(atp);
+            h = addTransfer(params);
             if (!resumed) h.pause();
         }
         catch(libed2k::libed2k_exception e)
@@ -489,6 +492,11 @@ QPair<QED2KHandle, ErrorCode> QED2KSession::addLink(QString strLink, bool resume
         ec = "Incorrect link";
 
     return qMakePair(h, ec);
+}
+
+bool QED2KSession::loadLink(const QString& link, bool resumed) {
+    QPair<QED2KHandle, ErrorCode> res = addLink(link, resumed);
+    return res.first.is_valid();
 }
 
 void QED2KSession::addTransferFromFile(const QString& filename, bool resumed /* = false*/)

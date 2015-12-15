@@ -2,6 +2,7 @@ import QtQuick 2.0
 import QtQuick.Layouts 1.1
 import Material 0.1
 import Material.ListItems 0.1 as ListItem
+import org.dkfsoft.Activity 1.0
 
 ApplicationWindow {
     id: qDonkey
@@ -13,6 +14,10 @@ ApplicationWindow {
     property string lastErrorFilename: ""
     property string lastErrorMessage: ""
     property bool forceExit: false
+
+    Activity {
+        id: act
+    }
 
     Dialog {
         id: quitAsk
@@ -61,6 +66,10 @@ ApplicationWindow {
         id: initDialog
     }
 
+    AddLinkDialog {
+        id: addLink
+    }
+
     theme {
         primaryColor: Palette.colors["blue"]["500"]
         primaryDarkColor: Palette.colors["blue"]["700"]
@@ -70,6 +79,10 @@ ApplicationWindow {
 
     Component.onCompleted: {
         if (pref.inputDir.length === 0) initDialog.show()
+        else if (act.link.length != 0) {
+            if (session.loadLink(act.link, true)) addLink.show()
+        }
+
     }
 
     property string connections: "Connection"

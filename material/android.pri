@@ -1,6 +1,6 @@
 # COMPILATION SPECIFIC
 
-QT += androidextras
+QT += androidextras gui-private
 QMAKE_CXXFLAGS += -Wformat -Wformat-security -Werror=return-type -Wno-unused-parameter
 QMAKE_LFLAGS_APP += -rdynamic
 INCLUDEPATH += $$(LIBED2K_ROOT)/include 
@@ -26,6 +26,10 @@ CONFIG(debug, debug|release) {
 
 DEFINES += "BUILDDATE='\"$$system(date -R)\"'"
 DEFINES += BOOST_EXCEPTION_DISABLE
+
+
+HEADERS += activity.h
+SOURCES += activity.cpp
 
 
 # INSTALL

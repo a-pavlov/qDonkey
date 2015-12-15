@@ -37,5 +37,6 @@
         <file>images/access-point-network.svg</file>
         <file>images/account.svg</file>
         <file>images/speedometer.svg</file>
+        <file>qml/AddLinkDialog.qml</file>
     </qresource>
 </RCC>

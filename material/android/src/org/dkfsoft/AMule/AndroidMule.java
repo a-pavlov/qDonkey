@@ -33,6 +33,8 @@
 
 package org.dkfsoft.AMule;
 
+import android.content.Intent;
+import android.os.Bundle;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.content.Context;
@@ -42,11 +44,23 @@ public class AndroidMule extends org.qtproject.qt5.android.bindings.QtActivity
     private static NotificationManager m_notificationManager;
     private static Notification.Builder m_builder;
     private static AndroidMule m_instance;
+    private String link = "";
 
     public AndroidMule()
     {
         m_instance = this;
     }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        Intent intent = getIntent();
+        String action = intent.getAction();
+        if (intent.ACTION_VIEW.equals(action)) {
+            link = intent.getDataString();
+        }
+    }
+
 
     public static void notify(String s)
     {
@@ -60,4 +74,9 @@ public class AndroidMule extends org.qtproject.qt5.android.bindings.QtActivity
         m_builder.setContentText(s);
         m_notificationManager.notify(1, m_builder.build());
     }
+
+    public String getLink() {
+        return link;
+    }
+
 }

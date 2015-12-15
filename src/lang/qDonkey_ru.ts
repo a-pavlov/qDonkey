@@ -65,52 +65,52 @@
 <context>
     <name>Donkey</name>
     <message>
-        <location filename="../../material/qml/Donkey.qml" line="19"/>
+        <location filename="../../material/qml/Donkey.qml" line="24"/>
         <source>Do you really want to quit?</source>
         <translation>Вы уверены что хотите выйти?</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Donkey.qml" line="20"/>
+        <location filename="../../material/qml/Donkey.qml" line="25"/>
         <source>Yes</source>
         <translation>Да</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Donkey.qml" line="21"/>
+        <location filename="../../material/qml/Donkey.qml" line="26"/>
         <source>No</source>
         <translation>Нет</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Donkey.qml" line="37"/>
+        <location filename="../../material/qml/Donkey.qml" line="42"/>
         <source>Ok</source>
         <translation>Готово</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Donkey.qml" line="39"/>
+        <location filename="../../material/qml/Donkey.qml" line="44"/>
         <source>I/O error</source>
         <translation>Ошибка ввода-вывода</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Donkey.qml" line="40"/>
+        <location filename="../../material/qml/Donkey.qml" line="45"/>
         <source>Filename: %1 message %2</source>
         <translation>Файл %1 ошибка %2</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Donkey.qml" line="81"/>
+        <location filename="../../material/qml/Donkey.qml" line="94"/>
         <source>Conn</source>
         <translation>Серверы</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Donkey.qml" line="81"/>
+        <location filename="../../material/qml/Donkey.qml" line="94"/>
         <source>Transfers</source>
         <translation>Загрузки</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Donkey.qml" line="81"/>
+        <location filename="../../material/qml/Donkey.qml" line="94"/>
         <source>Search</source>
         <translation>Поиск</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Donkey.qml" line="81"/>
+        <location filename="../../material/qml/Donkey.qml" line="94"/>
         <source>Pref</source>
         <translation>Опции</translation>
     </message>
@@ -118,22 +118,22 @@
 <context>
     <name>InitDialog</name>
     <message>
-        <location filename="../../material/qml/InitDialog.qml" line="31"/>
+        <location filename="../../material/qml/InitDialog.qml" line="36"/>
         <source>Setup incoming directory</source>
         <translation>Укажите директорию загрузок</translation>
     </message>
     <message>
-        <location filename="../../material/qml/InitDialog.qml" line="51"/>
+        <location filename="../../material/qml/InitDialog.qml" line="56"/>
         <source>Incoming directory</source>
         <translation>Директория загрузок</translation>
     </message>
     <message>
-        <location filename="../../material/qml/InitDialog.qml" line="76"/>
+        <location filename="../../material/qml/InitDialog.qml" line="81"/>
         <source>Cancel</source>
         <translation>Отмена</translation>
     </message>
     <message>
-        <location filename="../../material/qml/InitDialog.qml" line="87"/>
+        <location filename="../../material/qml/InitDialog.qml" line="92"/>
         <source>Ok</source>
         <translation>Готово</translation>
     </message>

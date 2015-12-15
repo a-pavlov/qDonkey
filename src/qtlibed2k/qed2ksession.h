@@ -212,6 +212,7 @@ private slots:
 public slots:
 	void configureSession();
     virtual QPair<QED2KHandle, ErrorCode> addLink(QString strLink, bool resumed = false);
+    Q_INVOKABLE bool loadLink(const QString& link, bool resumed);
     virtual void addTransferFromFile(const QString& filename, bool resumed = false);
     virtual QED2KHandle addTransfer(const libed2k::add_transfer_params&);
     Q_INVOKABLE bool addTransfer(const QString& hash, const QString& filename, qlonglong size, int sources, bool preview);

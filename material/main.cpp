@@ -1,9 +1,11 @@
 #include <QApplication>
 #include <QLocale>
 #include <QTranslator>
+#include <QtQml>
 #include "mainwindow.h"
 #include "qed2ksession.h"
 #include "preferences.h"
+#include "activity.h"
 
 #ifdef Q_OS_WIN
 void customMessageHandler(QtMsgType type, const QMessageLogContext &context, const QString &msg)
@@ -44,6 +46,8 @@ int main(int argc, char *argv[])
 #ifdef Q_OS_WIN
     //qInstallMessageHandler(customMessageHandler);
 #endif
+
+    qmlRegisterType<Activity>("org.dkfsoft.Activity", 1, 0, "Activity");
 
     Preferences pref;
     // Load translation
