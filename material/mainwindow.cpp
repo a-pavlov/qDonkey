@@ -18,6 +18,8 @@
 
 MainWindow::MainWindow(QObject* parent) : QObject(parent) {
     pref.reset(new Preferences);
+    Session::instance()->start();
+    Session::instance()->loadDirectory(pref.data()->inputDir());
     connect(pref.data(), SIGNAL(inputDirChanged(QString)), this, SLOT(onIncomingDirChanged(QString)));
     connect(pref.data(), SIGNAL(preferencesChanged()), this, SLOT(onPreferencesChanged()));
     smodel = new ServerModel(this);
@@ -76,8 +78,7 @@ MainWindow::MainWindow(QObject* parent) : QObject(parent) {
     engine->load(QUrl(QStringLiteral("qrc:/qml/main.qml")));
 #endif
 
-    Session::instance()->start();
-    Session::instance()->loadDirectory(pref.data()->inputDir());
+
     restoreLastServerConnection();
 
     playTimer = new QTimer(this);

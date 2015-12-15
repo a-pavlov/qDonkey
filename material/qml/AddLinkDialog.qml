@@ -10,5 +10,5 @@ Dialog {
     hasActions: true
     positiveButtonText: qsTr("Ok")
     negativeButton.visible: false
-    text: qsTr("Download %1").args(act.link)
+    text: qsTr("Download %1").arg(act.link)
 }

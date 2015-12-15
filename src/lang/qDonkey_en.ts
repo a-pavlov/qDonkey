@@ -2,6 +2,19 @@
 <!DOCTYPE TS>
 <TS version="2.1" language="en_US">
 <context>
+    <name>AddLinkDialog</name>
+    <message>
+        <location filename="../../material/qml/AddLinkDialog.qml" line="11"/>
+        <source>Ok</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../material/qml/AddLinkDialog.qml" line="13"/>
+        <source>Download %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>Connection</name>
     <message>
         <location filename="../../material/qml/Connection.qml" line="8"/>
