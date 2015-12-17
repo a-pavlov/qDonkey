@@ -234,6 +234,23 @@ Page {
                 }
             }
 
+            ListItem.Standard {
+                action: Item {}
+                content: RowLayout {
+                    Switch {
+                        id: upnpEnabled
+                        checked: pref.upnpEnabled
+                        enabled: true
+                        darkBackground: false
+                        onCheckedChanged: btnOn()
+                    }
+
+                    Label {
+                        text: qsTr("Use UPnP/NatPmP to forward port on router")
+                    }
+                }
+            }
+
             Item {
                 Layout.fillWidth: true
                 Layout.preferredHeight: Units.dp(8)
@@ -265,6 +282,7 @@ Page {
                         showPreviusTransfers.checked=pref.showAllTransfers
                         language.selectedIndex=getLangIndex(pref.locale)
                         askOnExit.checked=pref.askOnExit
+                        upnpEnabled.checked=pref.upnpEnabled
                         btnCancel.enabled=false
                         btnApply.enabled=false
                     }
@@ -287,6 +305,7 @@ Page {
                         pref.showAllTransfers=showPreviusTransfers.checked
                         pref.locale=langModel.get(language.selectedIndex).key
                         pref.askOnExit=askOnExit.checked
+                        pref.upnpEnabled=upnpEnabled.checked
                         pref.flush()
                         btnCancel.enabled=false
                         btnApply.enabled=false
