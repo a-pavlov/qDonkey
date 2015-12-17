@@ -295,7 +295,7 @@ bool writeResumeDataOne(std::ofstream& fs, const libed2k::save_resume_data_alert
     return false;
 }
 
-QED2KSession::QED2KSession() : m_upnp(0), m_natpmp(0) {
+QED2KSession::QED2KSession() {
     Preferences pref;
     m_sp.name = "is";
     m_sp.host = pref.serverHost().toUtf8().constData();
@@ -1051,23 +1051,16 @@ void QED2KSession::loadFastResumeData(const QString& path) {
     }
 }
 
-void QED2KSession::enableUPnP(bool b)
-{
-    Preferences pref;
+void QED2KSession::enableUPnP(bool b) {
     if (b) {
-        if (!m_upnp) {
-            qDebug("Enabling UPnP / NAT-PMP");
-            m_upnp = delegate()->start_upnp();
-            m_natpmp = delegate()->start_natpmp();
-        }
-    } else {
-        if (m_upnp) {
-            qDebug("Disabling UPnP / NAT-PMP");
-            delegate()->stop_upnp();
-            delegate()->stop_natpmp();
-            m_upnp = 0;
-            m_natpmp = 0;
-        }
+        qDebug("Enabling UPnP / NAT-PMP");
+        delegate()->start_upnp();
+        delegate()->start_natpmp();
+    }
+    else {
+        qDebug("Disabling UPnP / NAT-PMP");
+        delegate()->stop_upnp();
+        delegate()->stop_natpmp();
     }
 }
 

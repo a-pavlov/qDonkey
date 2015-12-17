@@ -190,9 +190,6 @@ private:
     QHash<QString, QDateTime> m_addTimes;   // creation dates for transfers
     QHash<QString, libed2k::transfer_resume_data> m_fastTransfers;  // transfers information from metadata directory
     QSet<QString>   m_currentSessionTransfers;  // transfers were added to session not as seed
-    // Port forwarding
-    libed2k::upnp* m_upnp;
-    libed2k::natpmp* m_natpmp;
     libed2k::server_connection_parameters m_sp;
     QString m_currentPath;
     QScopedPointer<TransferSpeedMonitor>    m_speedMon;
