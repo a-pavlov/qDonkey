@@ -36,6 +36,8 @@ QHash<int, QByteArray> ServerModel::roleNames() const {
     roles[FilesCountRole] = "filescount";
     roles[DescriptionRole] = "description";
     roles[StatusRole]   = "status";
+    roles[ClientId] = "cid";
+    roles[IsLowId] = "lowid";
     return roles;
 }
 
@@ -56,6 +58,8 @@ QVariant ServerModel::data(const QModelIndex& index, int role) const {
     case FilesCountRole: return s.filesCount;
     case DescriptionRole: return s.description;
     case StatusRole: return s.status;
+    case ClientId: return s.clientId;
+    case IsLowId: return s.isLowId();
     default:
         break;
     }
@@ -116,6 +120,14 @@ void ServerModel::remove(const QString& alias, const QString& host, int port) {
         beginRemoveRows(QModelIndex(), index.row(), index.row());
         servers.removeAt(index.row());
         endRemoveRows();
+    }
+}
+
+void ServerModel::setClientId(const QString& alias, const QString& host, int port, quint32 client_id) {
+    QModelIndex index = getIndex(alias, host, port);
+    if (index.isValid()) {
+        servers[index.row()].clientId = client_id;
+        emit dataChanged(index, index);
     }
 }
 

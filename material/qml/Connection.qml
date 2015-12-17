@@ -7,6 +7,7 @@ Page {
         id: addDialog
         title: qsTr("Add server")
         positiveButtonEnabled: false
+        width: Units.dp(350)
 
         ColumnLayout {
             TextField {
@@ -82,7 +83,12 @@ Page {
                 }
 
                 valueText: {
-                    if (status==0) return qsTr("Connected")
+                    if (status==0) {
+                        if (cid == 0) return qsTr("Connected")
+                        else {
+                            return cid + ":" + (lowid?"LowId":"HiId");
+                        }
+                    }
                     if (status==1) return qsTr("Connecting...")
                     if (status==2) return ""
                 }

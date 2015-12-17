@@ -105,22 +105,24 @@ void MainWindow::onPreferencesChanged() {
     if (!misc::prepareInputDirectory(pref.inputDir())) qDebug() << "preparation input dir failed";
 }
 
-void MainWindow::onServerConnectionInitialized(QString alias, QString host,int port,quint32,quint32,quint32) {
+void MainWindow::onServerConnectionInitialized(QString alias, QString host,int port,quint32 client_id, quint32,quint32) {
     Preferences pref;
     pref.beginGroup("LastConnectedServer");
     pref.setValue("Alias", alias);
     pref.setValue("Host", host);
     pref.setValue("Port", port);
     pref.endGroup();
+    smodel->setClientId(alias, host, port, client_id);
 }
 
-void MainWindow::onServerConnectionClosed(QString,QString,int,QString) {
+void MainWindow::onServerConnectionClosed(QString alias, QString host, int port,QString) {
     Preferences pref;
     pref.beginGroup("LastConnectedServer");
     pref.remove("Alias");
     pref.remove("Host");
     pref.remove("Port");
     pref.endGroup();
+    smodel->setClientId(alias, host, port, 0);
 }
 
 void MainWindow::onShowAllTransfersChanged(bool showAll) {

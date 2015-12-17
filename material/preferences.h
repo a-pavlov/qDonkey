@@ -56,6 +56,7 @@ class Preferences : public QIniSettings {
     Q_PROPERTY(quint32 dlSpeed READ dlSpeed WRITE setDlSpeed NOTIFY dlSpeedChanged)
     Q_PROPERTY(bool askOnExit READ askOnExit WRITE setAskOnExit NOTIFY askOnExitChanged)
     Q_PROPERTY(bool hasServers READ getServersPresence WRITE setServersPresence)
+    Q_PROPERTY(bool upnpEnabled READ getUpnp WRITE setUpnp)
 
 public:
   Preferences() : QIniSettings(COMPANY_NAME,  PRODUCT_NAME){
@@ -107,6 +108,9 @@ public:
 
     bool getServersPresence() const;
     void setServersPresence(bool);
+
+    bool getUpnp() const;
+    void setUpnp(bool);
 
 #ifdef Q_OS_WIN
     static bool isFileAssocSet(const QString& file);

@@ -1,6 +1,11 @@
 #include "qed2kserver.h"
+
+#ifndef Q_MOC_RUN
+#include <libed2k/util.hpp>
 #include <fstream>
 #include <QDebug>
+#endif
+
 
 QED2KServer::QED2KServer() : port(-1), clientId(0), filesCount(0), usersCount(0), maxUsers(0), lowidUsers(0), status(ServerDisconnected) {
 }
@@ -53,4 +58,8 @@ QList<QED2KServer> fromServersMet(const QString& filename) {
     }
 
     return res;
+}
+
+bool QED2KServer::isLowId() const {
+    return libed2k::isLowId(clientId);
 }
