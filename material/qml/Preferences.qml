@@ -246,7 +246,7 @@ Page {
                     }
 
                     Label {
-                        text: qsTr("Use UPnP/NatPmP to forward port on router")
+                        text: qsTr("UPnP/NatPmP to forward port on router")
                     }
                 }
             }

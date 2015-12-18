@@ -99,7 +99,7 @@ int main(int argc, char *argv[])
     }
     else app.setLayoutDirection(Qt::LeftToRight);
 
-    Session::instance()->start();
+    //Session::instance()->start();
     MainWindow mw;
     return app.exec();
 
