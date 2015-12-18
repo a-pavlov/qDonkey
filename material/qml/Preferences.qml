@@ -123,6 +123,24 @@ Page {
             }
 
             ListItem.Standard {
+                action: Item {}
+                content: RowLayout {
+                    Switch {
+                        id: upnpEnabled
+                        checked: pref.upnpEnabled
+                        enabled: true
+                        darkBackground: false
+                        onCheckedChanged: btnOn()
+                    }
+
+                    Label {
+                        text: qsTr("UPnP port on router")
+                        wrapMode: Text.WordWrap
+                    }
+                }
+            }
+
+            ListItem.Standard {
                 height: grid.height + Units.dp(8)
                 implicitHeight: grid.implicitHeight + Units.dp(8)
 
@@ -230,23 +248,6 @@ Page {
 
                     Label {
                         text: qsTr("Ask before exit program")
-                    }
-                }
-            }
-
-            ListItem.Standard {
-                action: Item {}
-                content: RowLayout {
-                    Switch {
-                        id: upnpEnabled
-                        checked: pref.upnpEnabled
-                        enabled: true
-                        darkBackground: false
-                        onCheckedChanged: btnOn()
-                    }
-
-                    Label {
-                        text: qsTr("Use UPnP/NatPmP to forward port on router")
                     }
                 }
             }

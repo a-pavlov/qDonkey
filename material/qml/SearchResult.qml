@@ -7,25 +7,6 @@ Page {
     id: searchResults
     title: qsTr("Back to search")
 
-
-    Dialog {
-        id: alertTransferAddSucc
-        width: Units.dp(300)
-        text: qsTr("Transfer was added to download list")
-        hasActions: true
-        positiveButtonText: qsTr("Ok")
-        negativeButton.visible: false
-    }
-
-    Dialog {
-        id: alertTransferAddFail
-        width: Units.dp(300)
-        text: qsTr("Unable to add transfer")
-        hasActions: true
-        positiveButtonText: qsTr("Ok")
-        negativeButton.visible: false
-    }
-
     ColumnLayout {
         spacing: 0
         anchors.fill: parent
@@ -82,17 +63,17 @@ Page {
                         break
                     case 1:
                         if (session.addTransfer(hash, name, filesize_num, sources_num, false)) {
-                            alertTransferAddSucc.show()
+                            snackbar.open(qsTr("File %1 added to downloads").arg(name))
                         } else {
-                            alertTransferAddFail.show()
+                            snackbar.open(qsTr("Error occured on adding %1").arg(name))
                         }
 
                         break
                     case 2:
                         if (session.addTransfer(hash, name, filesize_num, sources_num, true)) {
-                            alertTransferAddSucc.show()
+                            snackbar.open(qsTr("File %1 added to downloads").arg(name))
                         } else {
-                            alertTransferAddFail.show()
+                            snackbar.open(qsTr("Error occured on adding %1").arg(name))
                         }
                         break
                     default:
@@ -102,6 +83,10 @@ Page {
                     selectedIndex=-1
                 }
             }
+        }
+
+        Snackbar {
+            id: snackbar
         }
     }
 }
