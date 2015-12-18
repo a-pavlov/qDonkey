@@ -6,15 +6,6 @@ import Material.ListItems 0.1 as ListItem
 import Material.Extras 0.1
 
 Page {
-    Dialog {
-        id: alertEmptyResult
-        width: Units.dp(300)
-        text: qsTr("Sorry, your last search returned empty result")
-        hasActions: true
-        positiveButtonText: qsTr("Ok")
-        negativeButton.visible: false
-    }
-
     Connections {
         target: session
         onSearchFinished: {
@@ -28,8 +19,7 @@ Page {
                 searchFPModel.sortData()
                 pageStack.push(Qt.resolvedUrl("SearchResult.qml"))
             } else
-                alertEmptyResult.show()
-
+                snack.open(qsTr("Sorry, your last search returned empty result"))
         }
     }
 
@@ -253,6 +243,9 @@ Page {
                 }
             }
 
+            Snackbar {
+                id: snack
+            }
         }
     }
 
