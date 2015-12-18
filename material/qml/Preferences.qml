@@ -130,6 +130,24 @@ Page {
             }
 
             ListItem.Standard {
+                action: Item {}
+                content: RowLayout {
+                    Switch {
+                        id: upnpEnabled
+                        checked: pref.upnpEnabled
+                        enabled: true
+                        darkBackground: false
+                        onCheckedChanged: btnOn()
+                    }
+
+                    Label {
+                        text: qsTr("UPnP port on router")
+                        wrapMode: Text.WordWrap
+                    }
+                }
+            }
+
+            ListItem.Standard {
                 height: grid.height + Units.dp(8)
                 implicitHeight: grid.implicitHeight + Units.dp(8)
 
@@ -272,6 +290,7 @@ Page {
                         showPreviusTransfers.checked=pref.showAllTransfers
                         language.selectedIndex=getLangIndex(pref.locale)
                         askOnExit.checked=pref.askOnExit
+                        upnpEnabled.checked=pref.upnpEnabled
                         btnCancel.enabled=false
                         btnApply.enabled=false
                     }
@@ -295,6 +314,7 @@ Page {
                         pref.showAllTransfers=showPreviusTransfers.checked
                         pref.locale=langModel.get(language.selectedIndex).key
                         pref.askOnExit=askOnExit.checked
+                        pref.upnpEnabled=upnpEnabled.checked
                         pref.flush()
                         btnCancel.enabled=false
                         btnApply.enabled=false

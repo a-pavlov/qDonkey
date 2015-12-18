@@ -296,7 +296,7 @@ bool writeResumeDataOne(std::ofstream& fs, const libed2k::save_resume_data_alert
     return false;
 }
 
-QED2KSession::QED2KSession() : m_upnp(0), m_natpmp(0) {   
+QED2KSession::QED2KSession() {
     connect(&alertsTimer, SIGNAL(timeout()), this, SLOT(readAlerts()));
     connect(&frdTimer, SIGNAL(timeout()), this, SLOT(saveResume()));
     m_speedMon.reset(new TransferSpeedMonitor(this));
@@ -450,7 +450,7 @@ void QED2KSession::configureSession() {
     m_session->set_settings(s);
 
     if (new_listenPort != old_listenPort) m_session->listen_on(new_listenPort);    
-    enableUPnP(false);
+    enableUPnP(pref.getUpnp());
 }
 
 
@@ -703,7 +703,8 @@ void QED2KSession::readAlerts()
             dynamic_cast<libed2k::server_connection_initialized_alert*>(a.get()))
         {
             emit serverConnectionInitialized(misc::toQStringU(p->name), misc::toQString(p->host), p->port, p->client_id, p->tcp_flags, p->aux_port);
-            qDebug() << "server initialized: " << QString::fromStdString(p->name) << " " << QString::fromStdString(p->host) << " " << p->port;
+            qDebug() << "server initialized: " << QString::fromStdString(p->name) << " " << QString::fromStdString(p->host) << " " << p->port << " cid "
+                     << p->client_id;
         }
         else if (libed2k::server_status_alert* p = dynamic_cast<libed2k::server_status_alert*>(a.get()))
         {
@@ -1127,21 +1128,15 @@ void QED2KSession::loadFastResumeData(const QString& path) {
 
 void QED2KSession::enableUPnP(bool b)
 {
-    Preferences pref;
     if (b) {
-        if (!m_upnp) {
-            qDebug("Enabling UPnP / NAT-PMP");
-            m_upnp = delegate()->start_upnp();
-            m_natpmp = delegate()->start_natpmp();
-        }
-    } else {
-        if (m_upnp) {
-            qDebug("Disabling UPnP / NAT-PMP");
-            delegate()->stop_upnp();
-            delegate()->stop_natpmp();
-            m_upnp = 0;
-            m_natpmp = 0;
-        }
+        qDebug("Enabling UPnP / NAT-PMP");
+        delegate()->start_upnp();
+        delegate()->start_natpmp();
+    }
+    else {
+        qDebug("Disabling UPnP / NAT-PMP");
+        delegate()->stop_upnp();
+        delegate()->stop_natpmp();
     }
 }
 

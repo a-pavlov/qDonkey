@@ -29,27 +29,27 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../material/qml/Connection.qml" line="83"/>
+        <location filename="../../material/qml/Connection.qml" line="84"/>
         <source>Connected</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../material/qml/Connection.qml" line="84"/>
+        <location filename="../../material/qml/Connection.qml" line="89"/>
         <source>Connecting...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../material/qml/Connection.qml" line="94"/>
+        <location filename="../../material/qml/Connection.qml" line="99"/>
         <source>Conn/Disconnect</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../material/qml/Connection.qml" line="94"/>
+        <location filename="../../material/qml/Connection.qml" line="99"/>
         <source>Add</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../material/qml/Connection.qml" line="94"/>
+        <location filename="../../material/qml/Connection.qml" line="99"/>
         <source>Delete</source>
         <translation type="unfinished"></translation>
     </message>
@@ -133,17 +133,17 @@
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="../../material/mainwindow.cpp" line="167"/>
+        <location filename="../../material/mainwindow.cpp" line="169"/>
         <source>%1 has started downloading</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../material/mainwindow.cpp" line="174"/>
+        <location filename="../../material/mainwindow.cpp" line="176"/>
         <source>%1 has finished downloading</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../material/mainwindow.cpp" line="179"/>
+        <location filename="../../material/mainwindow.cpp" line="181"/>
         <source>I/O error on %1: %2</source>
         <translation type="unfinished"></translation>
     </message>
@@ -234,47 +234,52 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../material/qml/Preferences.qml" line="151"/>
+        <location filename="../../material/qml/Preferences.qml" line="144"/>
+        <source>UPnP port on router</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../material/qml/Preferences.qml" line="169"/>
         <source>Down</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../material/qml/Preferences.qml" line="163"/>
+        <location filename="../../material/qml/Preferences.qml" line="181"/>
         <source>Dowload limit Kb/s</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../material/qml/Preferences.qml" line="173"/>
+        <location filename="../../material/qml/Preferences.qml" line="191"/>
         <source>Up</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../material/qml/Preferences.qml" line="185"/>
+        <location filename="../../material/qml/Preferences.qml" line="203"/>
         <source>Upload limit Kb/s</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../material/qml/Preferences.qml" line="204"/>
+        <location filename="../../material/qml/Preferences.qml" line="222"/>
         <source>Incoming directory</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../material/qml/Preferences.qml" line="222"/>
+        <location filename="../../material/qml/Preferences.qml" line="240"/>
         <source>Show old transfers</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../material/qml/Preferences.qml" line="239"/>
+        <location filename="../../material/qml/Preferences.qml" line="257"/>
         <source>Ask before exit program</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../material/qml/Preferences.qml" line="261"/>
+        <location filename="../../material/qml/Preferences.qml" line="279"/>
         <source>Cancel</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../material/qml/Preferences.qml" line="282"/>
+        <location filename="../../material/qml/Preferences.qml" line="301"/>
         <source>Apply</source>
         <translation type="unfinished"></translation>
     </message>
@@ -330,128 +335,127 @@
 <context>
     <name>Search</name>
     <message>
-        <location filename="../../material/qml/Search.qml" line="15"/>
+        <location filename="../../material/qml/Search.qml" line="26"/>
         <source>Sorry, your last search returned empty result</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../material/qml/Search.qml" line="17"/>
-        <location filename="../../material/qml/Search.qml" line="51"/>
+        <location filename="../../material/qml/Search.qml" line="40"/>
         <source>Ok</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../material/qml/Search.qml" line="49"/>
+        <location filename="../../material/qml/Search.qml" line="38"/>
         <source>You are not connected to any ED2K server. Please, connect first</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../material/qml/Search.qml" line="73"/>
+        <location filename="../../material/qml/Search.qml" line="62"/>
         <source>Enter phrase and press start</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../material/qml/Search.qml" line="85"/>
+        <location filename="../../material/qml/Search.qml" line="74"/>
         <source>Search phrase</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../material/qml/Search.qml" line="97"/>
+        <location filename="../../material/qml/Search.qml" line="86"/>
         <source>Any</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../material/qml/Search.qml" line="98"/>
+        <location filename="../../material/qml/Search.qml" line="87"/>
         <source>Archive</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../material/qml/Search.qml" line="99"/>
+        <location filename="../../material/qml/Search.qml" line="88"/>
         <source>Audio</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../material/qml/Search.qml" line="100"/>
+        <location filename="../../material/qml/Search.qml" line="89"/>
         <source>CD Image</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../material/qml/Search.qml" line="101"/>
+        <location filename="../../material/qml/Search.qml" line="90"/>
         <source>Picture</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../material/qml/Search.qml" line="102"/>
+        <location filename="../../material/qml/Search.qml" line="91"/>
         <source>Program</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../material/qml/Search.qml" line="103"/>
+        <location filename="../../material/qml/Search.qml" line="92"/>
         <source>Video</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../material/qml/Search.qml" line="104"/>
+        <location filename="../../material/qml/Search.qml" line="93"/>
         <source>Document</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../material/qml/Search.qml" line="105"/>
+        <location filename="../../material/qml/Search.qml" line="94"/>
         <source>Emule collection</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../material/qml/Search.qml" line="117"/>
+        <location filename="../../material/qml/Search.qml" line="106"/>
         <source>Min size, Mb</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../material/qml/Search.qml" line="123"/>
+        <location filename="../../material/qml/Search.qml" line="112"/>
         <source>Max size, Mb</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../material/qml/Search.qml" line="136"/>
+        <location filename="../../material/qml/Search.qml" line="125"/>
         <source>Availibility</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../material/qml/Search.qml" line="142"/>
+        <location filename="../../material/qml/Search.qml" line="131"/>
         <source>Full sources</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../material/qml/Search.qml" line="154"/>
+        <location filename="../../material/qml/Search.qml" line="143"/>
         <source>Media length</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../material/qml/Search.qml" line="160"/>
+        <location filename="../../material/qml/Search.qml" line="149"/>
         <source>Media bitrate</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../material/qml/Search.qml" line="169"/>
+        <location filename="../../material/qml/Search.qml" line="158"/>
         <source>Extension</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../material/qml/Search.qml" line="176"/>
+        <location filename="../../material/qml/Search.qml" line="165"/>
         <source>Codec</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../material/qml/Search.qml" line="205"/>
+        <location filename="../../material/qml/Search.qml" line="198"/>
         <source>Start</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../material/qml/Search.qml" line="231"/>
+        <location filename="../../material/qml/Search.qml" line="224"/>
         <source>More</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../material/qml/Search.qml" line="247"/>
+        <location filename="../../material/qml/Search.qml" line="240"/>
         <source>Cancel</source>
         <translation type="unfinished"></translation>
     </message>
@@ -472,44 +476,35 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../material/qml/SearchResult.qml" line="17"/>
-        <source>Transfer was added to download list</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../material/qml/SearchResult.qml" line="19"/>
-        <location filename="../../material/qml/SearchResult.qml" line="28"/>
-        <source>Ok</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../material/qml/SearchResult.qml" line="26"/>
-        <source>Unable to add transfer</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../material/qml/SearchResult.qml" line="36"/>
-        <source>Sorry, in free version download file size limited in 80 Mb</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../material/qml/SearchResult.qml" line="50"/>
+        <location filename="../../material/qml/SearchResult.qml" line="25"/>
         <source>Click for download</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../material/qml/SearchResult.qml" line="88"/>
+        <location filename="../../material/qml/SearchResult.qml" line="63"/>
         <source>Search related</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../material/qml/SearchResult.qml" line="88"/>
+        <location filename="../../material/qml/SearchResult.qml" line="63"/>
         <source>Download</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../material/qml/SearchResult.qml" line="88"/>
+        <location filename="../../material/qml/SearchResult.qml" line="63"/>
         <source>Preview</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../material/qml/SearchResult.qml" line="72"/>
+        <location filename="../../material/qml/SearchResult.qml" line="79"/>
+        <source>File %1 added to downloads</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../material/qml/SearchResult.qml" line="74"/>
+        <location filename="../../material/qml/SearchResult.qml" line="81"/>
+        <source>Error occured on adding %1</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

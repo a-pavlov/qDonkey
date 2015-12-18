@@ -146,6 +146,14 @@ void Preferences::setServersPresence(bool b) {
     setValue(serversPresence, b);
 }
 
+bool Preferences::getUpnp() const {
+    return value(pathUPnp, false).toBool();
+}
+
+void Preferences::setUpnp(bool flag) {
+    setValue(pathUPnp, flag);
+}
+
 #ifdef Q_OS_WIN
 
 //static

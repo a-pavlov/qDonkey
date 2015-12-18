@@ -11,31 +11,6 @@ Page {
         adMob.adShow()
     }
 
-    Dialog {
-        id: alertTransferAddSucc
-        width: Units.dp(300)
-        text: qsTr("Transfer was added to download list")
-        hasActions: true
-        positiveButtonText: qsTr("Ok")
-        negativeButton.visible: false
-    }
-
-    Dialog {
-        id: alertTransferAddFail
-        width: Units.dp(300)
-        text: qsTr("Unable to add transfer")
-        hasActions: true
-        positiveButtonText: qsTr("Ok")
-        negativeButton.visible: false
-    }
-
-    Dialog {
-        id: limitedSize
-        hasActions: true
-        negativeButton.visible: false
-        text: qsTr("Sorry, in free version download file size limited in 80 Mb")
-    }
-
     ColumnLayout {
         id: content
         spacing: 0
@@ -93,22 +68,17 @@ Page {
                         session.searchRelatedFiles(hash)
                         break
                     case 1:
-                        if (filesize_num > 1024*1024*80) {
-                            limitedSize.show()
+                        if (session.addTransfer(hash, name, filesize_num, sources_num, false)) {
+                            snackbar.open(qsTr("File %1 added to downloads").arg(name))
                         } else {
-                            if (session.addTransfer(hash, name, filesize_num, sources_num, false)) {
-                                alertTransferAddSucc.show()
-                            } else {
-                                alertTransferAddFail.show()
-                            }
+                            snackbar.open(qsTr("Error occured on adding %1").arg(name))
                         }
-
                         break
                     case 2:
                         if (session.addTransfer(hash, name, filesize_num, sources_num, true)) {
-                            alertTransferAddSucc.show()
+                            snackbar.open(qsTr("File %1 added to downloads").arg(name))
                         } else {
-                            alertTransferAddFail.show()
+                            snackbar.open(qsTr("Error occured on adding %1").arg(name))
                         }
                         break
                     default:
@@ -118,6 +88,10 @@ Page {
                     selectedIndex=-1
                 }
             }
+        }
+
+        Snackbar {
+            id: snackbar
         }
     }
 }

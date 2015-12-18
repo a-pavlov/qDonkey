@@ -20,6 +20,8 @@ public:
         FilesCountRole,
         DescriptionRole,
         StatusRole,
+        ClientId,
+        IsLowId,
         SizeRole
     };
 
@@ -34,6 +36,7 @@ public:
 
     Q_INVOKABLE void update(const QString& alias, const QString& host, int port);
     Q_INVOKABLE void remove(const QString& alias, const QString& host, int port);
+    void setClientId(const QString& alias, const QString& host, int port, quint32 client_id);
     void save() const;    // save servers list to disk
     void load();    // load servers list from disk
 public slots:

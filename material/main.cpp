@@ -98,7 +98,6 @@ int main(int argc, char *argv[])
     else app.setLayoutDirection(Qt::LeftToRight);
     qmlRegisterType<AdMobCtrl>("org.dkfsoft.admobctrl", 1, 0, "AdMobCtrl");
 
-    Session::instance()->start();
     MainWindow mw;
     return app.exec();
 
