@@ -164,7 +164,7 @@ void ServerModel::load() {
 
         pref.endArray();
     } else {
-        add(QED2KServer("is74", "emule.is74.ru", 4661));
+        //add(QED2KServer("is74", "emule.is74.ru", 4661));
         add(QED2KServer("TV Underground", "176.103.48.36", 4184));
         add(QED2KServer("eMule Security No1", "91.200.42.46" ,1176));
         add(QED2KServer("eMule Security No2", "91.200.42.47", 3883));

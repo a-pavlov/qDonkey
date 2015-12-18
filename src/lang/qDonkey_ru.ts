@@ -50,27 +50,27 @@
         <translation>Двойной клик для соединения</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Connection.qml" line="86"/>
+        <location filename="../../material/qml/Connection.qml" line="87"/>
         <source>Connected</source>
         <translation>Соединен</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Connection.qml" line="87"/>
+        <location filename="../../material/qml/Connection.qml" line="92"/>
         <source>Connecting...</source>
         <translation>Соединяюсь...</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Connection.qml" line="91"/>
+        <location filename="../../material/qml/Connection.qml" line="96"/>
         <source>Conn/Disconnect</source>
         <translation>Соединение/Стоп</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Connection.qml" line="91"/>
+        <location filename="../../material/qml/Connection.qml" line="96"/>
         <source>Add</source>
         <translation>Добавить</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Connection.qml" line="91"/>
+        <location filename="../../material/qml/Connection.qml" line="96"/>
         <source>Delete</source>
         <translation>Удалить</translation>
     </message>
@@ -261,17 +261,17 @@ Are you sure you want to quit qDonkey?</source>
         <translation type="vanished">Соединение с сервером разорвано</translation>
     </message>
     <message>
-        <location filename="../../material/mainwindow.cpp" line="156"/>
+        <location filename="../../material/mainwindow.cpp" line="159"/>
         <source>%1 has started downloading</source>
         <translation>Началась загрузка %1 </translation>
     </message>
     <message>
-        <location filename="../../material/mainwindow.cpp" line="163"/>
+        <location filename="../../material/mainwindow.cpp" line="166"/>
         <source>%1 has finished downloading</source>
         <translation>%1 загружен</translation>
     </message>
     <message>
-        <location filename="../../material/mainwindow.cpp" line="168"/>
+        <location filename="../../material/mainwindow.cpp" line="171"/>
         <source>I/O error on %1: %2</source>
         <translation>Ошибка ввода вывода %1 на %2</translation>
     </message>
@@ -365,47 +365,52 @@ Are you sure you want to quit qDonkey?</source>
         <translation>Входящий порт</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Preferences.qml" line="144"/>
+        <location filename="../../material/qml/Preferences.qml" line="137"/>
+        <source>UPnP port on router</source>
+        <translation>UPnP порт на роутере</translation>
+    </message>
+    <message>
+        <location filename="../../material/qml/Preferences.qml" line="162"/>
         <source>Down</source>
         <translation>Загр</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Preferences.qml" line="156"/>
+        <location filename="../../material/qml/Preferences.qml" line="174"/>
         <source>Dowload limit Kb/s</source>
         <translation>Скорость загрузки Кб.с</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Preferences.qml" line="166"/>
+        <location filename="../../material/qml/Preferences.qml" line="184"/>
         <source>Up</source>
         <translation>Отд</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Preferences.qml" line="178"/>
+        <location filename="../../material/qml/Preferences.qml" line="196"/>
         <source>Upload limit Kb/s</source>
         <translation>Скорость отдачи Кб/c</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Preferences.qml" line="197"/>
+        <location filename="../../material/qml/Preferences.qml" line="215"/>
         <source>Incoming directory</source>
         <translation>Директория загрузок</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Preferences.qml" line="215"/>
+        <location filename="../../material/qml/Preferences.qml" line="233"/>
         <source>Show old transfers</source>
         <translation>Показывать старые загрузки</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Preferences.qml" line="232"/>
+        <location filename="../../material/qml/Preferences.qml" line="250"/>
         <source>Ask before exit program</source>
         <translation>Спрашивать перед выходом</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Preferences.qml" line="254"/>
+        <location filename="../../material/qml/Preferences.qml" line="272"/>
         <source>Cancel</source>
         <translation>Отмена</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Preferences.qml" line="275"/>
+        <location filename="../../material/qml/Preferences.qml" line="294"/>
         <source>Apply</source>
         <translation>Применить</translation>
     </message>
@@ -461,18 +466,17 @@ Are you sure you want to quit qDonkey?</source>
 <context>
     <name>Search</name>
     <message>
-        <location filename="../../material/qml/Search.qml" line="12"/>
+        <location filename="../../material/qml/Search.qml" line="22"/>
         <source>Sorry, your last search returned empty result</source>
         <translation>Результат поиска пуст</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Search.qml" line="14"/>
-        <location filename="../../material/qml/Search.qml" line="46"/>
+        <location filename="../../material/qml/Search.qml" line="36"/>
         <source>Ok</source>
         <translation>Готово</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Search.qml" line="44"/>
+        <location filename="../../material/qml/Search.qml" line="34"/>
         <source>You are not connected to any ED2K server. Please, connect first</source>
         <translation>Вы не соединены ни с одним сервером</translation>
     </message>
@@ -481,112 +485,112 @@ Are you sure you want to quit qDonkey?</source>
         <translation type="vanished">Поиск в ослосети</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Search.qml" line="68"/>
+        <location filename="../../material/qml/Search.qml" line="58"/>
         <source>Enter phrase and press start</source>
         <translation>Введите поисковую фразу и нажмите старт</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Search.qml" line="80"/>
+        <location filename="../../material/qml/Search.qml" line="70"/>
         <source>Search phrase</source>
         <translation>Поисковая фраза</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Search.qml" line="92"/>
+        <location filename="../../material/qml/Search.qml" line="82"/>
         <source>Any</source>
         <translation>Любой</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Search.qml" line="93"/>
+        <location filename="../../material/qml/Search.qml" line="83"/>
         <source>Archive</source>
         <translation>Архив</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Search.qml" line="94"/>
+        <location filename="../../material/qml/Search.qml" line="84"/>
         <source>Audio</source>
         <translation>Аудио</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Search.qml" line="95"/>
+        <location filename="../../material/qml/Search.qml" line="85"/>
         <source>CD Image</source>
         <translation>CD имидж</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Search.qml" line="96"/>
+        <location filename="../../material/qml/Search.qml" line="86"/>
         <source>Picture</source>
         <translation>Картинка</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Search.qml" line="97"/>
+        <location filename="../../material/qml/Search.qml" line="87"/>
         <source>Program</source>
         <translation>Программа</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Search.qml" line="98"/>
+        <location filename="../../material/qml/Search.qml" line="88"/>
         <source>Video</source>
         <translation>Видео</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Search.qml" line="99"/>
+        <location filename="../../material/qml/Search.qml" line="89"/>
         <source>Document</source>
         <translation>Документ</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Search.qml" line="100"/>
+        <location filename="../../material/qml/Search.qml" line="90"/>
         <source>Emule collection</source>
         <translation>Emule коллекция</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Search.qml" line="112"/>
+        <location filename="../../material/qml/Search.qml" line="102"/>
         <source>Min size, Mb</source>
         <translation>Мин разм. Мб</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Search.qml" line="118"/>
+        <location filename="../../material/qml/Search.qml" line="108"/>
         <source>Max size, Mb</source>
         <translation>Макс разм Мб</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Search.qml" line="131"/>
+        <location filename="../../material/qml/Search.qml" line="121"/>
         <source>Availibility</source>
         <translation>Доступность</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Search.qml" line="137"/>
+        <location filename="../../material/qml/Search.qml" line="127"/>
         <source>Full sources</source>
         <translation>Полные источники</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Search.qml" line="149"/>
+        <location filename="../../material/qml/Search.qml" line="139"/>
         <source>Media length</source>
         <translation>Длительность</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Search.qml" line="155"/>
+        <location filename="../../material/qml/Search.qml" line="145"/>
         <source>Media bitrate</source>
         <translation>Битрейт</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Search.qml" line="164"/>
+        <location filename="../../material/qml/Search.qml" line="154"/>
         <source>Extension</source>
         <translation>Расширение</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Search.qml" line="171"/>
+        <location filename="../../material/qml/Search.qml" line="161"/>
         <source>Codec</source>
         <translation>Кодек</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Search.qml" line="200"/>
+        <location filename="../../material/qml/Search.qml" line="190"/>
         <source>Start</source>
         <translation>Старт</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Search.qml" line="226"/>
+        <location filename="../../material/qml/Search.qml" line="216"/>
         <source>More</source>
         <translation>Еще</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Search.qml" line="242"/>
+        <location filename="../../material/qml/Search.qml" line="232"/>
         <source>Cancel</source>
         <translation>Отмена</translation>
     </message>
@@ -639,23 +643,19 @@ Are you sure you want to quit qDonkey?</source>
         <translation>Назад к поиску</translation>
     </message>
     <message>
-        <location filename="../../material/qml/SearchResult.qml" line="14"/>
         <source>Transfer was added to download list</source>
-        <translation>Загрузка  добавлена в список</translation>
+        <translation type="vanished">Загрузка  добавлена в список</translation>
     </message>
     <message>
-        <location filename="../../material/qml/SearchResult.qml" line="16"/>
-        <location filename="../../material/qml/SearchResult.qml" line="25"/>
         <source>Ok</source>
-        <translation>Готово</translation>
+        <translation type="vanished">Готово</translation>
     </message>
     <message>
-        <location filename="../../material/qml/SearchResult.qml" line="23"/>
         <source>Unable to add transfer</source>
-        <translation>Ошибка при добавлении загрузки</translation>
+        <translation type="vanished">Ошибка при добавлении загрузки</translation>
     </message>
     <message>
-        <location filename="../../material/qml/SearchResult.qml" line="38"/>
+        <location filename="../../material/qml/SearchResult.qml" line="19"/>
         <source>Click for download</source>
         <translation>Нажмите для загрузки</translation>
     </message>
@@ -664,19 +664,31 @@ Are you sure you want to quit qDonkey?</source>
         <translation type="vanished">Двойной клик на иконке для загрузки</translation>
     </message>
     <message>
-        <location filename="../../material/qml/SearchResult.qml" line="76"/>
+        <location filename="../../material/qml/SearchResult.qml" line="57"/>
         <source>Search related</source>
         <translation>Искать связанные</translation>
     </message>
     <message>
-        <location filename="../../material/qml/SearchResult.qml" line="76"/>
+        <location filename="../../material/qml/SearchResult.qml" line="57"/>
         <source>Download</source>
         <translation>Скачать</translation>
     </message>
     <message>
-        <location filename="../../material/qml/SearchResult.qml" line="76"/>
+        <location filename="../../material/qml/SearchResult.qml" line="57"/>
         <source>Preview</source>
         <translation>Просмотр</translation>
+    </message>
+    <message>
+        <location filename="../../material/qml/SearchResult.qml" line="66"/>
+        <location filename="../../material/qml/SearchResult.qml" line="74"/>
+        <source>File %1 added to downloads</source>
+        <translation>Файл %1 добавлен в загрузки</translation>
+    </message>
+    <message>
+        <location filename="../../material/qml/SearchResult.qml" line="68"/>
+        <location filename="../../material/qml/SearchResult.qml" line="76"/>
+        <source>Error occured on adding %1</source>
+        <translation>Ошибка при добавлении файла %1 в загрузки</translation>
     </message>
 </context>
 <context>
