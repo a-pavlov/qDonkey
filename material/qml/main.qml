@@ -9,6 +9,17 @@ ApplicationWindow {
     width:  400
     visible: true
 
+
+    // compatibility with qDonkey.qml
+    function toLocalFile(url) {
+        var lp = url.replace(/^(file:\/{3})/,"")
+        return lp
+    }
+
+    function toURL(filepath) {
+        return "file:///" + filepath
+    }
+
     theme {
         primaryColor: Palette.colors["blue"]["500"]
         primaryDarkColor: Palette.colors["blue"]["700"]
@@ -33,14 +44,18 @@ ApplicationWindow {
         selectFolder: true
         onAccepted: {
             console.log("You chose: " + fileDialog.folder)
-            Qt.quit()
+            pref.folder=fileDialog.folder
         }
         onRejected: {
             console.log("Canceled")
-            Qt.quit()
         }
         Component.onCompleted: visible = false
     }
+
+    InitDialog {
+        id: initDialog
+    }
+
 
     initialPage: Page {
         id: page
@@ -52,7 +67,6 @@ ApplicationWindow {
             }
 
             Button {
-                id: fd
                 text: "Start file dialog"
                 onClicked: {
                     console.log("Button cliked")
@@ -60,6 +74,8 @@ ApplicationWindow {
                 }
             }
         }
+
+        Component.onCompleted: initDialog.show()
     }
 
 }
