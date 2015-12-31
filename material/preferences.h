@@ -57,7 +57,6 @@ class Preferences : public QIniSettings {
     Q_PROPERTY(bool askOnExit READ askOnExit WRITE setAskOnExit NOTIFY askOnExitChanged)
     Q_PROPERTY(bool hasServers READ getServersPresence WRITE setServersPresence)
     Q_PROPERTY(bool upnpEnabled READ getUpnp WRITE setUpnp)
-
 public:
   Preferences() : QIniSettings(COMPANY_NAME,  PRODUCT_NAME){
   }
