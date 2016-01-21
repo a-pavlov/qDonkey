@@ -83,6 +83,7 @@ Page {
                         id: langModel
                         ListElement { key: "en"; value: qsTr("English");  }
                         ListElement { key: "ru"; value: qsTr("Russian");  }
+                        ListElement { key: "it"; value: qsTr("Italian");  }
                     }
 
                     onItemSelected: {
