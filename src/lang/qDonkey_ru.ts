@@ -580,17 +580,17 @@ Are you sure you want to quit qDonkey?</source>
         <translation>Кодек</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Search.qml" line="190"/>
+        <location filename="../../material/qml/Search.qml" line="194"/>
         <source>Start</source>
         <translation>Старт</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Search.qml" line="216"/>
+        <location filename="../../material/qml/Search.qml" line="220"/>
         <source>More</source>
         <translation>Еще</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Search.qml" line="232"/>
+        <location filename="../../material/qml/Search.qml" line="236"/>
         <source>Cancel</source>
         <translation>Отмена</translation>
     </message>

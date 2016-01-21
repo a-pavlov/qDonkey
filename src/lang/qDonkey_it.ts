@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="en_US">
+<TS version="2.1" language="it_IT">
 <context>
     <name>AddLinkDialog</name>
     <message>
         <location filename="../../material/qml/AddLinkDialog.qml" line="11"/>
         <source>Ok</source>
-        <translation type="unfinished"></translation>
+        <translation>Ok</translation>
     </message>
     <message>
         <location filename="../../material/qml/AddLinkDialog.qml" line="13"/>
         <source>Download %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Scaricare %1</translation>
     </message>
 </context>
 <context>
@@ -19,52 +19,52 @@
     <message>
         <location filename="../../material/qml/Connection.qml" line="8"/>
         <source>Add server</source>
-        <translation type="unfinished"></translation>
+        <translation>Aggiungi server</translation>
     </message>
     <message>
         <location filename="../../material/qml/Connection.qml" line="16"/>
         <source>Alias</source>
-        <translation type="unfinished"></translation>
+        <translation>Alias</translation>
     </message>
     <message>
         <location filename="../../material/qml/Connection.qml" line="27"/>
         <source>Server host or IP</source>
-        <translation type="unfinished"></translation>
+        <translation>Server o IP</translation>
     </message>
     <message>
         <location filename="../../material/qml/Connection.qml" line="37"/>
         <source>Port</source>
-        <translation type="unfinished"></translation>
+        <translation>Porta</translation>
     </message>
     <message>
         <location filename="../../material/qml/Connection.qml" line="64"/>
         <source>Double click for connect</source>
-        <translation type="unfinished"></translation>
+        <translation>Fai doppio click per connettere</translation>
     </message>
     <message>
         <location filename="../../material/qml/Connection.qml" line="87"/>
         <source>Connected</source>
-        <translation type="unfinished"></translation>
+        <translation>Connesso</translation>
     </message>
     <message>
         <location filename="../../material/qml/Connection.qml" line="92"/>
         <source>Connecting...</source>
-        <translation type="unfinished"></translation>
+        <translation>Connessione in corso...</translation>
     </message>
     <message>
         <location filename="../../material/qml/Connection.qml" line="96"/>
         <source>Conn/Disconnect</source>
-        <translation type="unfinished"></translation>
+        <translation>Connetti/disconnetti</translation>
     </message>
     <message>
         <location filename="../../material/qml/Connection.qml" line="96"/>
         <source>Add</source>
-        <translation type="unfinished"></translation>
+        <translation>Aggiungi</translation>
     </message>
     <message>
         <location filename="../../material/qml/Connection.qml" line="96"/>
         <source>Delete</source>
-        <translation type="unfinished"></translation>
+        <translation>Rimuovi</translation>
     </message>
 </context>
 <context>
@@ -72,52 +72,52 @@
     <message>
         <location filename="../../material/qml/Donkey.qml" line="24"/>
         <source>Do you really want to quit?</source>
-        <translation type="unfinished"></translation>
+        <translation>Sei sicuro di voler chiudere?</translation>
     </message>
     <message>
         <location filename="../../material/qml/Donkey.qml" line="25"/>
         <source>Yes</source>
-        <translation type="unfinished"></translation>
+        <translation>Sì</translation>
     </message>
     <message>
         <location filename="../../material/qml/Donkey.qml" line="26"/>
         <source>No</source>
-        <translation type="unfinished"></translation>
+        <translation>No</translation>
     </message>
     <message>
         <location filename="../../material/qml/Donkey.qml" line="42"/>
         <source>Ok</source>
-        <translation type="unfinished"></translation>
+        <translation>Ok</translation>
     </message>
     <message>
         <location filename="../../material/qml/Donkey.qml" line="44"/>
         <source>I/O error</source>
-        <translation type="unfinished"></translation>
+        <translation>Errore di I/O</translation>
     </message>
     <message>
         <location filename="../../material/qml/Donkey.qml" line="45"/>
         <source>Filename: %1 message %2</source>
-        <translation type="unfinished"></translation>
+        <translation>File: %1 messaggio %2</translation>
     </message>
     <message>
         <location filename="../../material/qml/Donkey.qml" line="94"/>
         <source>Conn</source>
-        <translation type="unfinished"></translation>
+        <translation>Conn</translation>
     </message>
     <message>
         <location filename="../../material/qml/Donkey.qml" line="94"/>
         <source>Transfers</source>
-        <translation type="unfinished"></translation>
+        <translation>Trasferim</translation>
     </message>
     <message>
         <location filename="../../material/qml/Donkey.qml" line="94"/>
         <source>Search</source>
-        <translation type="unfinished"></translation>
+        <translation>Cerca</translation>
     </message>
     <message>
         <location filename="../../material/qml/Donkey.qml" line="94"/>
         <source>Pref</source>
-        <translation type="unfinished"></translation>
+        <translation>Pref</translation>
     </message>
 </context>
 <context>
@@ -125,22 +125,22 @@
     <message>
         <location filename="../../material/qml/InitDialog.qml" line="36"/>
         <source>Setup incoming directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Seleziona la cartella per i file scaricati</translation>
     </message>
     <message>
         <location filename="../../material/qml/InitDialog.qml" line="56"/>
         <source>Incoming directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Cartella per i file scaricati</translation>
     </message>
     <message>
         <location filename="../../material/qml/InitDialog.qml" line="81"/>
         <source>Cancel</source>
-        <translation type="unfinished"></translation>
+        <translation>Annulla</translation>
     </message>
     <message>
         <location filename="../../material/qml/InitDialog.qml" line="92"/>
         <source>Ok</source>
-        <translation type="unfinished"></translation>
+        <translation>Ok</translation>
     </message>
 </context>
 <context>
@@ -148,17 +148,17 @@
     <message>
         <location filename="../../material/mainwindow.cpp" line="159"/>
         <source>%1 has started downloading</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 sta scaricando</translation>
     </message>
     <message>
         <location filename="../../material/mainwindow.cpp" line="166"/>
         <source>%1 has finished downloading</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 Scaricamento completato</translation>
     </message>
     <message>
         <location filename="../../material/mainwindow.cpp" line="171"/>
         <source>I/O error on %1: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Errore I/O %1: %2</translation>
     </message>
 </context>
 <context>
@@ -166,130 +166,134 @@
     <message>
         <location filename="../../material/peermodel.cpp" line="42"/>
         <source>/s</source>
-        <translation type="unfinished"></translation>
+        <translation>/s</translation>
     </message>
     <message>
         <location filename="../../material/peermodel.cpp" line="67"/>
         <source>IP</source>
-        <translation type="unfinished"></translation>
+        <translation>IP</translation>
     </message>
     <message>
         <location filename="../../material/peermodel.cpp" line="68"/>
         <source>Client</source>
-        <translation type="unfinished"></translation>
+        <translation>Client</translation>
     </message>
     <message>
         <location filename="../../material/peermodel.cpp" line="69"/>
         <source>File name</source>
-        <translation type="unfinished"></translation>
+        <translation>Nome del file</translation>
     </message>
     <message>
         <location filename="../../material/peermodel.cpp" line="70"/>
         <source>Progress</source>
-        <translation type="unfinished"></translation>
+        <translation>Progresso</translation>
     </message>
     <message>
         <location filename="../../material/peermodel.cpp" line="71"/>
         <source>Speed</source>
-        <translation type="unfinished"></translation>
+        <translation>Velocità</translation>
     </message>
     <message>
         <location filename="../../material/peermodel.cpp" line="72"/>
         <source>Bytes</source>
-        <translation type="unfinished"></translation>
+        <translation>Byte</translation>
     </message>
 </context>
 <context>
     <name>Preferences</name>
     <message>
+        <location filename="../../material/qml/Preferences.qml" line="9"/>
+        <source>Setup options and click apply</source>
+        <translation>Seleziona le opzioni e clicca Applica</translation>
+    </message>
+    <message>
         <location filename="../../material/qml/Preferences.qml" line="33"/>
         <source>Ok</source>
-        <translation type="unfinished"></translation>
+        <translation>Ok</translation>
     </message>
     <message>
         <location filename="../../material/qml/Preferences.qml" line="35"/>
         <source>New language will be available after restart</source>
-        <translation type="unfinished"></translation>
+        <translation>Il nuovo linguaggio sarà disponibile dopo il riavvio</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Preferences.qml" line="9"/>
-        <source>Setup options and click apply</source>
-        <translation type="unfinished"></translation>
+        <source>Sorry, in free version maximum download speed is 200 Kb/s</source>
+        <translation type="vanished">Spiacente, nella versione free la velocità massima di scaricamento è 200 Kb/s</translation>
     </message>
     <message>
         <location filename="../../material/qml/Preferences.qml" line="57"/>
         <source>Change preferences here and click apply</source>
-        <translation type="unfinished"></translation>
+        <translation>Cambia le preferenze qui e clicca Applica</translation>
     </message>
     <message>
         <location filename="../../material/qml/Preferences.qml" line="77"/>
         <source>English</source>
-        <translation type="unfinished"></translation>
+        <translation>Inglese</translation>
     </message>
     <message>
         <location filename="../../material/qml/Preferences.qml" line="78"/>
         <source>Russian</source>
-        <translation type="unfinished"></translation>
+        <translation>Russo</translation>
     </message>
     <message>
         <location filename="../../material/qml/Preferences.qml" line="99"/>
         <source>Enter your nickname</source>
-        <translation type="unfinished"></translation>
+        <translation>Inserisci il tuo nickname</translation>
     </message>
     <message>
         <location filename="../../material/qml/Preferences.qml" line="117"/>
         <source>Listen port</source>
-        <translation type="unfinished"></translation>
+        <translation>Porta di entrata</translation>
     </message>
     <message>
         <location filename="../../material/qml/Preferences.qml" line="137"/>
         <source>UPnP port on router</source>
-        <translation type="unfinished"></translation>
+        <translation>Usa UPnP</translation>
     </message>
     <message>
         <location filename="../../material/qml/Preferences.qml" line="162"/>
         <source>Down</source>
-        <translation type="unfinished"></translation>
+        <translation>Giù</translation>
     </message>
     <message>
         <location filename="../../material/qml/Preferences.qml" line="174"/>
         <source>Dowload limit Kb/s</source>
-        <translation type="unfinished"></translation>
+        <translation>Limite scaricamento Kb/s</translation>
     </message>
     <message>
         <location filename="../../material/qml/Preferences.qml" line="184"/>
         <source>Up</source>
-        <translation type="unfinished"></translation>
+        <translation>Su</translation>
     </message>
     <message>
         <location filename="../../material/qml/Preferences.qml" line="196"/>
         <source>Upload limit Kb/s</source>
-        <translation type="unfinished"></translation>
+        <translation>Limite upload Kb/s</translation>
     </message>
     <message>
         <location filename="../../material/qml/Preferences.qml" line="215"/>
         <source>Incoming directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Cartella per i file scaricati</translation>
     </message>
     <message>
         <location filename="../../material/qml/Preferences.qml" line="233"/>
         <source>Show old transfers</source>
-        <translation type="unfinished"></translation>
+        <translation>Mostra i trasferimenti vecchi</translation>
     </message>
     <message>
         <location filename="../../material/qml/Preferences.qml" line="250"/>
         <source>Ask before exit program</source>
-        <translation type="unfinished"></translation>
+        <translation>Chiedi conferma per la chiusura</translation>
     </message>
     <message>
         <location filename="../../material/qml/Preferences.qml" line="272"/>
         <source>Cancel</source>
-        <translation type="unfinished"></translation>
+        <translation>Annulla</translation>
     </message>
     <message>
         <location filename="../../material/qml/Preferences.qml" line="294"/>
         <source>Apply</source>
-        <translation type="unfinished"></translation>
+        <translation>Applica</translation>
     </message>
 </context>
 <context>
@@ -297,47 +301,47 @@
     <message>
         <location filename="../qtlibed2k/qed2ksession.cpp" line="34"/>
         <source>Any</source>
-        <translation type="unfinished"></translation>
+        <translation>Qualsiasi</translation>
     </message>
     <message>
         <location filename="../qtlibed2k/qed2ksession.cpp" line="35"/>
         <source>Audio</source>
-        <translation type="unfinished"></translation>
+        <translation>Audio</translation>
     </message>
     <message>
         <location filename="../qtlibed2k/qed2ksession.cpp" line="36"/>
         <source>Video</source>
-        <translation type="unfinished"></translation>
+        <translation>Video</translation>
     </message>
     <message>
         <location filename="../qtlibed2k/qed2ksession.cpp" line="37"/>
         <source>Picture</source>
-        <translation type="unfinished"></translation>
+        <translation>Immagine/Foto</translation>
     </message>
     <message>
         <location filename="../qtlibed2k/qed2ksession.cpp" line="38"/>
         <source>Program</source>
-        <translation type="unfinished"></translation>
+        <translation>Programma</translation>
     </message>
     <message>
         <location filename="../qtlibed2k/qed2ksession.cpp" line="39"/>
         <source>Document</source>
-        <translation type="unfinished"></translation>
+        <translation>Documento</translation>
     </message>
     <message>
         <location filename="../qtlibed2k/qed2ksession.cpp" line="40"/>
         <source>Archive</source>
-        <translation type="unfinished"></translation>
+        <translation>Archivio</translation>
     </message>
     <message>
         <location filename="../qtlibed2k/qed2ksession.cpp" line="41"/>
         <source>CD image</source>
-        <translation type="unfinished"></translation>
+        <translation>Immagine CD</translation>
     </message>
     <message>
         <location filename="../qtlibed2k/qed2ksession.cpp" line="42"/>
         <source>Emule collection</source>
-        <translation type="unfinished"></translation>
+        <translation>File collezione</translation>
     </message>
 </context>
 <context>
@@ -345,127 +349,127 @@
     <message>
         <location filename="../../material/qml/Search.qml" line="22"/>
         <source>Sorry, your last search returned empty result</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../material/qml/Search.qml" line="36"/>
-        <source>Ok</source>
-        <translation type="unfinished"></translation>
+        <translation>Spiacente, la tua ultima ricerca non ha trovato nulla</translation>
     </message>
     <message>
         <location filename="../../material/qml/Search.qml" line="34"/>
         <source>You are not connected to any ED2K server. Please, connect first</source>
-        <translation type="unfinished"></translation>
+        <translation>Non sei connesso ad alcun server. Devi connetterti, prima di effettuare ricerche!</translation>
+    </message>
+    <message>
+        <location filename="../../material/qml/Search.qml" line="36"/>
+        <source>Ok</source>
+        <translation>Ok</translation>
     </message>
     <message>
         <location filename="../../material/qml/Search.qml" line="58"/>
         <source>Enter phrase and press start</source>
-        <translation type="unfinished"></translation>
+        <translation>Inserisci una parola o una frase, poi premi Cerca</translation>
     </message>
     <message>
         <location filename="../../material/qml/Search.qml" line="70"/>
         <source>Search phrase</source>
-        <translation type="unfinished"></translation>
+        <translation>Cerca frase</translation>
     </message>
     <message>
         <location filename="../../material/qml/Search.qml" line="82"/>
         <source>Any</source>
-        <translation type="unfinished"></translation>
+        <translation>Qualsiasi</translation>
     </message>
     <message>
         <location filename="../../material/qml/Search.qml" line="83"/>
         <source>Archive</source>
-        <translation type="unfinished"></translation>
+        <translation>Archivio</translation>
     </message>
     <message>
         <location filename="../../material/qml/Search.qml" line="84"/>
         <source>Audio</source>
-        <translation type="unfinished"></translation>
+        <translation>Audio</translation>
     </message>
     <message>
         <location filename="../../material/qml/Search.qml" line="85"/>
         <source>CD Image</source>
-        <translation type="unfinished"></translation>
+        <translation>Immagine CD</translation>
     </message>
     <message>
         <location filename="../../material/qml/Search.qml" line="86"/>
         <source>Picture</source>
-        <translation type="unfinished"></translation>
+        <translation>Immagine/Foto</translation>
     </message>
     <message>
         <location filename="../../material/qml/Search.qml" line="87"/>
         <source>Program</source>
-        <translation type="unfinished"></translation>
+        <translation>Programma</translation>
     </message>
     <message>
         <location filename="../../material/qml/Search.qml" line="88"/>
         <source>Video</source>
-        <translation type="unfinished"></translation>
+        <translation>Video</translation>
     </message>
     <message>
         <location filename="../../material/qml/Search.qml" line="89"/>
         <source>Document</source>
-        <translation type="unfinished"></translation>
+        <translation>Documento</translation>
     </message>
     <message>
         <location filename="../../material/qml/Search.qml" line="90"/>
         <source>Emule collection</source>
-        <translation type="unfinished"></translation>
+        <translation>File collezione</translation>
     </message>
     <message>
         <location filename="../../material/qml/Search.qml" line="102"/>
         <source>Min size, Mb</source>
-        <translation type="unfinished"></translation>
+        <translation>Dimensione minima, Mb</translation>
     </message>
     <message>
         <location filename="../../material/qml/Search.qml" line="108"/>
         <source>Max size, Mb</source>
-        <translation type="unfinished"></translation>
+        <translation>Dimensione massima, Mb</translation>
     </message>
     <message>
         <location filename="../../material/qml/Search.qml" line="121"/>
         <source>Availibility</source>
-        <translation type="unfinished"></translation>
+        <translation>Disponibilità</translation>
     </message>
     <message>
         <location filename="../../material/qml/Search.qml" line="127"/>
         <source>Full sources</source>
-        <translation type="unfinished"></translation>
+        <translation>Fonti totali</translation>
     </message>
     <message>
         <location filename="../../material/qml/Search.qml" line="139"/>
         <source>Media length</source>
-        <translation type="unfinished"></translation>
+        <translation>Durata</translation>
     </message>
     <message>
         <location filename="../../material/qml/Search.qml" line="145"/>
         <source>Media bitrate</source>
-        <translation type="unfinished"></translation>
+        <translation>Qualità bitrate</translation>
     </message>
     <message>
         <location filename="../../material/qml/Search.qml" line="154"/>
         <source>Extension</source>
-        <translation type="unfinished"></translation>
+        <translation>Estensione</translation>
     </message>
     <message>
         <location filename="../../material/qml/Search.qml" line="161"/>
         <source>Codec</source>
-        <translation type="unfinished"></translation>
+        <translation>Codec</translation>
     </message>
     <message>
         <location filename="../../material/qml/Search.qml" line="194"/>
         <source>Start</source>
-        <translation type="unfinished"></translation>
+        <translation>Cerca</translation>
     </message>
     <message>
         <location filename="../../material/qml/Search.qml" line="220"/>
         <source>More</source>
-        <translation type="unfinished"></translation>
+        <translation>Più</translation>
     </message>
     <message>
         <location filename="../../material/qml/Search.qml" line="236"/>
         <source>Cancel</source>
-        <translation type="unfinished"></translation>
+        <translation>Annulla</translation>
     </message>
 </context>
 <context>
@@ -473,7 +477,7 @@
     <message>
         <location filename="../../material/search_model.cpp" line="58"/>
         <source> kBit/s</source>
-        <translation type="unfinished"></translation>
+        <translation> kBit/s</translation>
     </message>
 </context>
 <context>
@@ -481,39 +485,39 @@
     <message>
         <location filename="../../material/qml/SearchResult.qml" line="8"/>
         <source>Back to search</source>
-        <translation type="unfinished"></translation>
+        <translation>Torna a cercare</translation>
     </message>
     <message>
         <location filename="../../material/qml/SearchResult.qml" line="19"/>
         <source>Click for download</source>
-        <translation type="unfinished"></translation>
+        <translation>Clicca per scaricare</translation>
     </message>
     <message>
         <location filename="../../material/qml/SearchResult.qml" line="57"/>
         <source>Search related</source>
-        <translation type="unfinished"></translation>
+        <translation>Trova correlati</translation>
     </message>
     <message>
         <location filename="../../material/qml/SearchResult.qml" line="57"/>
         <source>Download</source>
-        <translation type="unfinished"></translation>
+        <translation>Scarica</translation>
     </message>
     <message>
         <location filename="../../material/qml/SearchResult.qml" line="57"/>
         <source>Preview</source>
-        <translation type="unfinished"></translation>
+        <translation>Anteprima</translation>
     </message>
     <message>
         <location filename="../../material/qml/SearchResult.qml" line="66"/>
         <location filename="../../material/qml/SearchResult.qml" line="74"/>
         <source>File %1 added to downloads</source>
-        <translation type="unfinished"></translation>
+        <translation>File %1 aggiunto agli scaricamenti</translation>
     </message>
     <message>
         <location filename="../../material/qml/SearchResult.qml" line="68"/>
         <location filename="../../material/qml/SearchResult.qml" line="76"/>
         <source>Error occured on adding %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Errore durante l&apos;aggiunta di %1</translation>
     </message>
 </context>
 <context>
@@ -521,27 +525,27 @@
     <message>
         <location filename="../../material/qml/TransferDetails.qml" line="9"/>
         <source>Back to transfers</source>
-        <translation type="unfinished"></translation>
+        <translation>Torna ai trasferimenti</translation>
     </message>
     <message>
         <location filename="../../material/qml/TransferDetails.qml" line="92"/>
         <source>Size %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Dimensione %1</translation>
     </message>
     <message>
         <location filename="../../material/qml/TransferDetails.qml" line="146"/>
         <source>Seeds/Peers %1/%2</source>
-        <translation type="unfinished"></translation>
+        <translation>Fonti complete/incomplete %1/%2</translation>
     </message>
     <message>
         <location filename="../../material/qml/TransferDetails.qml" line="161"/>
         <source>ETA %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Tempo residuo stimato %1</translation>
     </message>
     <message>
         <location filename="../../material/qml/TransferDetails.qml" line="202"/>
         <source>Total: </source>
-        <translation type="unfinished"></translation>
+        <translation>Totale: </translation>
     </message>
 </context>
 <context>
@@ -550,97 +554,97 @@
         <location filename="../../material/transfer_model.cpp" line="62"/>
         <source>Name</source>
         <comment>i.e: Transfer name</comment>
-        <translation type="unfinished"></translation>
+        <translation>Nome</translation>
     </message>
     <message>
         <location filename="../../material/transfer_model.cpp" line="63"/>
         <source>Size</source>
         <comment>i.e: Transfer size</comment>
-        <translation type="unfinished"></translation>
+        <translation>Dimensione</translation>
     </message>
     <message>
         <location filename="../../material/transfer_model.cpp" line="64"/>
         <source>Type</source>
         <comment>i.e. file type</comment>
-        <translation type="unfinished"></translation>
+        <translation>Tipo</translation>
     </message>
     <message>
         <location filename="../../material/transfer_model.cpp" line="65"/>
         <source>Done</source>
         <comment>% Done</comment>
-        <translation type="unfinished"></translation>
+        <translation>Completato</translation>
     </message>
     <message>
         <location filename="../../material/transfer_model.cpp" line="66"/>
         <source>Status</source>
         <comment>Transfer status (e.g. downloading, seeding, paused)</comment>
-        <translation type="unfinished"></translation>
+        <translation>Stato</translation>
     </message>
     <message>
         <location filename="../../material/transfer_model.cpp" line="67"/>
         <source>Seeds</source>
         <comment>i.e. full sources (often untranslated)</comment>
-        <translation type="unfinished"></translation>
+        <translation>Fonti complete</translation>
     </message>
     <message>
         <location filename="../../material/transfer_model.cpp" line="68"/>
         <source>Peers</source>
         <comment>i.e. partial sources (often untranslated)</comment>
-        <translation type="unfinished"></translation>
+        <translation>Fonti incomplete</translation>
     </message>
     <message>
         <location filename="../../material/transfer_model.cpp" line="69"/>
         <source>Down Speed</source>
         <comment>i.e: Download speed</comment>
-        <translation type="unfinished"></translation>
+        <translation>Velocità di scaricamento</translation>
     </message>
     <message>
         <location filename="../../material/transfer_model.cpp" line="70"/>
         <source>Up Speed</source>
         <comment>i.e: Upload speed</comment>
-        <translation type="unfinished"></translation>
+        <translation>Velocità di caricamento</translation>
     </message>
     <message>
         <location filename="../../material/transfer_model.cpp" line="71"/>
         <source>Hash</source>
         <comment>i.e transfer hash</comment>
-        <translation type="unfinished"></translation>
+        <translation>Hash</translation>
     </message>
     <message>
         <location filename="../../material/transfer_model.cpp" line="72"/>
         <source>ETA</source>
         <comment>i.e: Estimated Time of Arrival / Time left</comment>
-        <translation type="unfinished"></translation>
+        <translation>Tempo residuo stimato</translation>
     </message>
     <message>
         <location filename="../../material/transfer_model.cpp" line="73"/>
         <source>Ratio</source>
         <comment>Share ratio</comment>
-        <translation type="unfinished"></translation>
+        <translation>Ratio</translation>
     </message>
     <message>
         <location filename="../../material/transfer_model.cpp" line="74"/>
         <source>Added On</source>
         <comment>Transfer was added to transfer list on 01/01/2010 08:00</comment>
-        <translation type="unfinished"></translation>
+        <translation>Aggiunto:</translation>
     </message>
     <message>
         <location filename="../../material/transfer_model.cpp" line="75"/>
         <source>Amount downloaded</source>
         <comment>Amount of data downloaded (e.g. in MB)</comment>
-        <translation type="unfinished"></translation>
+        <translation>Quantità scaricata</translation>
     </message>
     <message>
         <location filename="../../material/transfer_model.cpp" line="76"/>
         <source>Amount left</source>
         <comment>Amount of data left to download (e.g. in MB)</comment>
-        <translation type="unfinished"></translation>
+        <translation>Quantità rimanente</translation>
     </message>
     <message>
         <location filename="../../material/transfer_model.cpp" line="77"/>
         <source>Time Active</source>
         <comment>Time (duration) the Transfer is active (not paused)</comment>
-        <translation type="unfinished"></translation>
+        <translation>Tempo Attivo</translation>
     </message>
 </context>
 <context>
@@ -649,7 +653,7 @@
         <location filename="../../material/transfermodel_item.cpp" line="55"/>
         <location filename="../../material/transfermodel_item.cpp" line="56"/>
         <source>/s</source>
-        <translation type="unfinished"></translation>
+        <translation>/s</translation>
     </message>
 </context>
 <context>
@@ -657,73 +661,73 @@
     <message>
         <location filename="../../material/qml/Transfers.qml" line="30"/>
         <source>Click for action menu</source>
-        <translation type="unfinished"></translation>
+        <translation>Clicca per il menu</translation>
     </message>
     <message>
         <location filename="../../material/qml/Transfers.qml" line="35"/>
         <source>Unable to open file of this type</source>
-        <translation type="unfinished"></translation>
+        <translation>Impossibilitato ad aprire file di questo tipo</translation>
     </message>
     <message>
         <location filename="../../material/qml/Transfers.qml" line="53"/>
         <source>Stalled dl</source>
-        <translation type="unfinished"></translation>
+        <translation>In stallo</translation>
     </message>
     <message>
         <location filename="../../material/qml/Transfers.qml" line="54"/>
         <source>Stalled up</source>
-        <translation type="unfinished"></translation>
+        <translation>In stallo</translation>
     </message>
     <message>
         <location filename="../../material/qml/Transfers.qml" line="55"/>
         <source>Downloading...</source>
-        <translation type="unfinished"></translation>
+        <translation>In corso...</translation>
     </message>
     <message>
         <location filename="../../material/qml/Transfers.qml" line="56"/>
         <source>Seeding...</source>
-        <translation type="unfinished"></translation>
+        <translation>In corso...</translation>
     </message>
     <message>
         <location filename="../../material/qml/Transfers.qml" line="59"/>
         <source>Paused</source>
-        <translation type="unfinished"></translation>
+        <translation>In pausa</translation>
     </message>
     <message>
         <location filename="../../material/qml/Transfers.qml" line="60"/>
         <source>Checking...</source>
-        <translation type="unfinished"></translation>
+        <translation>Controllo in corso...</translation>
     </message>
     <message>
         <location filename="../../material/qml/Transfers.qml" line="61"/>
         <location filename="../../material/qml/Transfers.qml" line="62"/>
         <source>Invalid</source>
-        <translation type="unfinished"></translation>
+        <translation>Non valido</translation>
     </message>
     <message>
         <location filename="../../material/qml/Transfers.qml" line="106"/>
         <source>Pause</source>
-        <translation type="unfinished"></translation>
+        <translation>Pausa</translation>
     </message>
     <message>
         <location filename="../../material/qml/Transfers.qml" line="106"/>
         <source>Resume</source>
-        <translation type="unfinished"></translation>
+        <translation>Riprendi</translation>
     </message>
     <message>
         <location filename="../../material/qml/Transfers.qml" line="106"/>
         <source>Remove</source>
-        <translation type="unfinished"></translation>
+        <translation>Rimuovi</translation>
     </message>
     <message>
         <location filename="../../material/qml/Transfers.qml" line="106"/>
         <source>Details</source>
-        <translation type="unfinished"></translation>
+        <translation>Dettagli</translation>
     </message>
     <message>
         <location filename="../../material/qml/Transfers.qml" line="106"/>
         <source>Preview</source>
-        <translation type="unfinished"></translation>
+        <translation>Anteprima</translation>
     </message>
 </context>
 <context>
@@ -732,85 +736,85 @@
         <location filename="../misc.cpp" line="96"/>
         <source>B</source>
         <comment>bytes</comment>
-        <translation type="unfinished"></translation>
+        <translation>B</translation>
     </message>
     <message>
         <location filename="../misc.cpp" line="97"/>
         <source>KB</source>
         <comment>kilobytes (1000 bytes)</comment>
-        <translation type="unfinished"></translation>
+        <translation>KB</translation>
     </message>
     <message>
         <location filename="../misc.cpp" line="98"/>
         <source>MB</source>
         <comment>megabytes (1000 kilobytes)</comment>
-        <translation type="unfinished"></translation>
+        <translation>MB</translation>
     </message>
     <message>
         <location filename="../misc.cpp" line="99"/>
         <source>GB</source>
         <comment>gigabytes (1000 megabytes)</comment>
-        <translation type="unfinished"></translation>
+        <translation>GB</translation>
     </message>
     <message>
         <location filename="../misc.cpp" line="100"/>
         <source>TB</source>
         <comment>terabytes (1000 gigabytes)</comment>
-        <translation type="unfinished"></translation>
+        <translation>TB</translation>
     </message>
     <message>
         <location filename="../misc.cpp" line="192"/>
         <location filename="../misc.cpp" line="223"/>
         <location filename="../misc.cpp" line="236"/>
         <source>Downloads</source>
-        <translation type="unfinished"></translation>
+        <translation>Scaricamenti</translation>
     </message>
     <message>
         <location filename="../misc.cpp" line="390"/>
         <source>qDonkey will shutdown the computer now because all downloads are complete.</source>
-        <translation type="unfinished"></translation>
+        <translation>Tutti gli scaricamenti sono stati completati! Spengo.</translation>
     </message>
     <message>
         <location filename="../misc.cpp" line="575"/>
         <location filename="../misc.cpp" line="621"/>
         <source>Unknown</source>
         <comment>Unknown (size)</comment>
-        <translation type="unfinished"></translation>
+        <translation>Sconosciuta</translation>
     </message>
     <message>
         <location filename="../misc.cpp" line="631"/>
         <source>/s</source>
         <comment>per second</comment>
-        <translation type="unfinished"></translation>
+        <translation>/s</translation>
     </message>
     <message>
         <location filename="../misc.cpp" line="681"/>
         <source>&lt; 1m</source>
         <comment>&lt; 1 minute</comment>
-        <translation type="unfinished"></translation>
+        <translation>&lt; 1m</translation>
     </message>
     <message>
         <location filename="../misc.cpp" line="685"/>
         <source>%1m</source>
         <comment>e.g: 10minutes</comment>
-        <translation type="unfinished"></translation>
+        <translation>%1m</translation>
     </message>
     <message>
         <location filename="../misc.cpp" line="690"/>
         <source>%1h %2m</source>
         <comment>e.g: 3hours 5minutes</comment>
-        <translation type="unfinished"></translation>
+        <translation>%1o %2m</translation>
     </message>
     <message>
         <location filename="../misc.cpp" line="695"/>
         <source>%1d %2h</source>
         <comment>e.g: 2days 10hours</comment>
-        <translation type="unfinished"></translation>
+        <translation>%1g %2o</translation>
     </message>
     <message>
         <location filename="../misc.h" line="83"/>
         <source>%1.%2.%3</source>
-        <translation type="unfinished"></translation>
+        <translation>%1.%2.%3</translation>
     </message>
 </context>
 </TS>

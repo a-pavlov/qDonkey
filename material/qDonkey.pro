@@ -73,7 +73,8 @@ lupdate_only {
 
 LANG_PATH = ../src/lang
 TRANSLATIONS =  $$LANG_PATH/qDonkey_en.ts \
-                $$LANG_PATH/qDonkey_ru.ts
+                $$LANG_PATH/qDonkey_ru.ts \
+                $$LANG_PATH/qDonkey_it.ts
 DESTDIR = .
 
 # Additional import path used to resolve QML modules in Qt Creators code model
