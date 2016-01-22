@@ -304,7 +304,6 @@ Page {
                     enabled: false
                     onClicked: {
                         console.log("write settings")
-                        checkDownload.checked=true
                         pref.nick = nick.text
                         pref.listenPort = listenPort.text
                         pref.dlSpeedLimited = checkDownload.checked
