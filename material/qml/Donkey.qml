@@ -14,15 +14,6 @@ ApplicationWindow {
     property string lastErrorMessage: ""
     property bool forceExit: false
 
-    function toLocalFile(url) {
-        var lp = url.replace(/^(file:\/{3})/,"")
-        return lp
-    }
-
-    function toURL(filepath) {
-        return "file:///" + filepath
-    }
-
     Dialog {
         id: quitAsk
         text: qsTr("Do you really want to quit?");
