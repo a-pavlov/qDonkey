@@ -27,7 +27,7 @@ Page {
             }
 
             style:  "body2"
-            text: qsTr("Click for action menu")
+            text: qsTr("Select for actions menu")
         }
 
         Dialog {
