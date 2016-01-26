@@ -4,10 +4,8 @@ import QtQuick.Controls 1.4
 import Material 0.1
 import Material.ListItems 0.1 as ListItem
 import Material.Extras 0.1
-import QtQuick.Dialogs 1.2 as FD
 
 Page {
-    property string inputDirectory: pref.inputDir
     title: qsTr("Setup options and click apply")
 
     function btnOn() {
@@ -35,24 +33,6 @@ Page {
         positiveButtonText: qsTr("Ok")
         negativeButton.visible: false
         text: qsTr("New language will be available after restart")
-    }
-
-    FD.FileDialog {
-        id: fd
-        title: qsTr("Please choose a folder")
-        folder: toURL(inputDirectory)
-        selectFolder: true
-        onAccepted: {
-            var path = decodeURIComponent(toLocalFile(folder.toString()))
-            console.log("You chose: " + path)
-            inputDirectory=path
-        }
-
-        onRejected: {
-            console.log("Canceled")
-        }
-
-        Component.onCompleted: visible = false
     }
 
     Flickable {
@@ -233,17 +213,8 @@ Page {
                     width: parent.width
                     floatingLabel: true
                     placeholderText: qsTr("Incoming directory")
-                    text: inputDirectory
+                    text: pref.inputDir
                     onTextChanged: btnOn()
-                }
-
-                secondaryItem: Button {
-                    text: "..."
-                    onClicked: {
-                        fd.folder="file:///"+inputDirectory
-                        fd.open()
-                    }
-
                 }
             }
 
