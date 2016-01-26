@@ -16,7 +16,7 @@ Page {
                 left: parent.left
             }
 
-            text: qsTr("Click for download")
+            text: qsTr("Select item for download")
             style: "body2"
         }
 
