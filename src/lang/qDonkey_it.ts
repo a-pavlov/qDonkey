@@ -37,9 +37,13 @@
         <translation>Porta</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Connection.qml" line="64"/>
         <source>Double click for connect</source>
-        <translation>Fai doppio click per connettere</translation>
+        <translation type="vanished">Seleziona il nome del server per connettere</translation>
+    </message>
+    <message>
+        <location filename="../../material/qml/Connection.qml" line="64"/>
+        <source>Select server for connect</source>
+        <translation>Seleziona il nome del server per connettere</translation>
     </message>
     <message>
         <location filename="../../material/qml/Connection.qml" line="87"/>
@@ -204,7 +208,7 @@
     <message>
         <location filename="../../material/qml/Preferences.qml" line="9"/>
         <source>Setup options and click apply</source>
-        <translation>Seleziona le opzioni e clicca Applica</translation>
+        <translation>Imposta le opzioni, poi seleziona Applica</translation>
     </message>
     <message>
         <location filename="../../material/qml/Preferences.qml" line="33"/>
@@ -223,7 +227,7 @@
     <message>
         <location filename="../../material/qml/Preferences.qml" line="57"/>
         <source>Change preferences here and click apply</source>
-        <translation>Cambia le preferenze qui e clicca Applica</translation>
+        <translation>Cambia le preferenze, poi seleziona Applica</translation>
     </message>
     <message>
         <location filename="../../material/qml/Preferences.qml" line="77"/>
@@ -233,65 +237,70 @@
     <message>
         <location filename="../../material/qml/Preferences.qml" line="78"/>
         <source>Russian</source>
-        <translation>Russo</translation>
+        <translation>Русский</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Preferences.qml" line="99"/>
+        <location filename="../../material/qml/Preferences.qml" line="79"/>
+        <source>Italian</source>
+        <translation>Italiano</translation>
+    </message>
+    <message>
+        <location filename="../../material/qml/Preferences.qml" line="100"/>
         <source>Enter your nickname</source>
         <translation>Inserisci il tuo nickname</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Preferences.qml" line="117"/>
+        <location filename="../../material/qml/Preferences.qml" line="118"/>
         <source>Listen port</source>
         <translation>Porta di entrata</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Preferences.qml" line="137"/>
+        <location filename="../../material/qml/Preferences.qml" line="138"/>
         <source>UPnP port on router</source>
         <translation>Usa UPnP</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Preferences.qml" line="162"/>
+        <location filename="../../material/qml/Preferences.qml" line="163"/>
         <source>Down</source>
         <translation>Giù</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Preferences.qml" line="174"/>
+        <location filename="../../material/qml/Preferences.qml" line="175"/>
         <source>Dowload limit Kb/s</source>
         <translation>Limite scaricamento Kb/s</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Preferences.qml" line="184"/>
+        <location filename="../../material/qml/Preferences.qml" line="185"/>
         <source>Up</source>
         <translation>Su</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Preferences.qml" line="196"/>
+        <location filename="../../material/qml/Preferences.qml" line="197"/>
         <source>Upload limit Kb/s</source>
-        <translation>Limite upload Kb/s</translation>
+        <translation>Limite caricamento Kb/s</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Preferences.qml" line="215"/>
+        <location filename="../../material/qml/Preferences.qml" line="216"/>
         <source>Incoming directory</source>
         <translation>Cartella per i file scaricati</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Preferences.qml" line="233"/>
+        <location filename="../../material/qml/Preferences.qml" line="234"/>
         <source>Show old transfers</source>
         <translation>Mostra i trasferimenti vecchi</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Preferences.qml" line="250"/>
+        <location filename="../../material/qml/Preferences.qml" line="251"/>
         <source>Ask before exit program</source>
         <translation>Chiedi conferma per la chiusura</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Preferences.qml" line="272"/>
+        <location filename="../../material/qml/Preferences.qml" line="273"/>
         <source>Cancel</source>
         <translation>Annulla</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Preferences.qml" line="294"/>
+        <location filename="../../material/qml/Preferences.qml" line="295"/>
         <source>Apply</source>
         <translation>Applica</translation>
     </message>
@@ -354,7 +363,7 @@
     <message>
         <location filename="../../material/qml/Search.qml" line="34"/>
         <source>You are not connected to any ED2K server. Please, connect first</source>
-        <translation>Non sei connesso ad alcun server. Devi connetterti, prima di effettuare ricerche!</translation>
+        <translation>Non sei connesso ad alcun server! Devi connetterti, prima di effettuare ricerche.</translation>
     </message>
     <message>
         <location filename="../../material/qml/Search.qml" line="36"/>
@@ -369,7 +378,7 @@
     <message>
         <location filename="../../material/qml/Search.qml" line="70"/>
         <source>Search phrase</source>
-        <translation>Cerca frase</translation>
+        <translation>Cerca una parola o una frase</translation>
     </message>
     <message>
         <location filename="../../material/qml/Search.qml" line="82"/>
@@ -485,12 +494,16 @@
     <message>
         <location filename="../../material/qml/SearchResult.qml" line="8"/>
         <source>Back to search</source>
-        <translation>Torna a cercare</translation>
+        <translation>Torna a Cerca</translation>
+    </message>
+    <message>
+        <source>Click for download</source>
+        <translation type="vanished">Seleziona per scaricare</translation>
     </message>
     <message>
         <location filename="../../material/qml/SearchResult.qml" line="19"/>
-        <source>Click for download</source>
-        <translation>Clicca per scaricare</translation>
+        <source>Select item for download</source>
+        <translation>Seleziona per scaricare</translation>
     </message>
     <message>
         <location filename="../../material/qml/SearchResult.qml" line="57"/>
@@ -525,7 +538,7 @@
     <message>
         <location filename="../../material/qml/TransferDetails.qml" line="9"/>
         <source>Back to transfers</source>
-        <translation>Torna ai trasferimenti</translation>
+        <translation>Torna a Trasferimenti</translation>
     </message>
     <message>
         <location filename="../../material/qml/TransferDetails.qml" line="92"/>
@@ -659,9 +672,13 @@
 <context>
     <name>Transfers</name>
     <message>
-        <location filename="../../material/qml/Transfers.qml" line="30"/>
         <source>Click for action menu</source>
-        <translation>Clicca per il menu</translation>
+        <translation type="vanished">Seleziona un trasferimento per il menu</translation>
+    </message>
+    <message>
+        <location filename="../../material/qml/Transfers.qml" line="30"/>
+        <source>Select for actions menu</source>
+        <translation>Seleziona un trasferimento per il menu</translation>
     </message>
     <message>
         <location filename="../../material/qml/Transfers.qml" line="35"/>
@@ -671,22 +688,22 @@
     <message>
         <location filename="../../material/qml/Transfers.qml" line="53"/>
         <source>Stalled dl</source>
-        <translation>In stallo</translation>
+        <translation>Scaricamento in stallo</translation>
     </message>
     <message>
         <location filename="../../material/qml/Transfers.qml" line="54"/>
         <source>Stalled up</source>
-        <translation>In stallo</translation>
+        <translation>Caricamento in stallo</translation>
     </message>
     <message>
         <location filename="../../material/qml/Transfers.qml" line="55"/>
         <source>Downloading...</source>
-        <translation>In corso...</translation>
+        <translation>Sto scaricando...</translation>
     </message>
     <message>
         <location filename="../../material/qml/Transfers.qml" line="56"/>
         <source>Seeding...</source>
-        <translation>In corso...</translation>
+        <translation>Sto caricando...</translation>
     </message>
     <message>
         <location filename="../../material/qml/Transfers.qml" line="59"/>

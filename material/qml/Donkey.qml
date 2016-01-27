@@ -6,7 +6,7 @@ import org.dkfsoft.Activity 1.0
 
 ApplicationWindow {
     id: qDonkey
-    title: "AMule"
+    title: "Mule for Android"
     width:  400
     height: 500
     visible: true
@@ -97,7 +97,7 @@ ApplicationWindow {
 
     initialPage: TabbedPage {
         id: page
-        title: "AMule"
+        title: "Mule for Android"
         actionBar.maxActionCount: 0
         focus: true
 
