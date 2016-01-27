@@ -68,7 +68,7 @@ public class AndroidMule extends org.qtproject.qt5.android.bindings.QtActivity
             m_notificationManager = (NotificationManager)m_instance.getSystemService(Context.NOTIFICATION_SERVICE);
             m_builder = new Notification.Builder(m_instance);
             m_builder.setSmallIcon(R.drawable.icon);
-            m_builder.setContentTitle("AMule");
+            m_builder.setContentTitle("Mule for Android");
         }
 
         m_builder.setContentText(s);
