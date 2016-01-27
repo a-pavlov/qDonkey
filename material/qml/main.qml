@@ -2,7 +2,6 @@ import QtQuick 2.0
 import QtQuick.Layouts 1.1
 import Material 0.1
 import Material.ListItems 0.1 as ListItem
-import ru.forsk.adctl 1.0
 import org.dkfsoft.admobctrl 1.0
 
 ApplicationWindow {

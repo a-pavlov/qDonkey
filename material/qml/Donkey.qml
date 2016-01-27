@@ -6,7 +6,7 @@ import org.dkfsoft.admobctrl 1.0
 
 ApplicationWindow {
     id: qDonkey
-    title: "AMuleFree"
+    title: "Mule for Android"
     width:  400
     height: 500
     visible: true
@@ -131,7 +131,7 @@ ApplicationWindow {
 
     initialPage: TabbedPage {
         id: page
-        title: "AMuleFree"
+        title: "Mule for Android"
         actionBar.maxActionCount: 0
         focus: true
 
@@ -200,6 +200,6 @@ ApplicationWindow {
 
     function switchBtns() {
         console.log("swith btns: " + inputDirEdit.text)
-        btnInputOk.enabled=inputDirEdit.text.length != 0
+        btnInputOk.enabled=inputDirEdit.text.length !== 0
     }
 }

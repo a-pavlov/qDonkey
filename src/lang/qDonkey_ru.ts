@@ -39,9 +39,8 @@
         <translation>Порт</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Connection.qml" line="67"/>
         <source>Double click for connect</source>
-        <translation>Двойной клик для соединения</translation>
+        <translation type="vanished">Двойной клик для соединения</translation>
     </message>
     <message>
         <location filename="../../material/qml/Connection.qml" line="99"/>
@@ -62,6 +61,11 @@
         <location filename="../../material/qml/Connection.qml" line="84"/>
         <source>Connected</source>
         <translation>Соединен</translation>
+    </message>
+    <message>
+        <location filename="../../material/qml/Connection.qml" line="67"/>
+        <source>Select server for connect</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../material/qml/Connection.qml" line="89"/>
@@ -354,62 +358,67 @@ Are you sure you want to quit qDonkey?</source>
         <translation>Русский</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Preferences.qml" line="106"/>
+        <location filename="../../material/qml/Preferences.qml" line="86"/>
+        <source>Italian</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../material/qml/Preferences.qml" line="107"/>
         <source>Enter your nickname</source>
         <translation>Введите ааш ник</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Preferences.qml" line="124"/>
+        <location filename="../../material/qml/Preferences.qml" line="125"/>
         <source>Listen port</source>
         <translation>Входящий порт</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Preferences.qml" line="144"/>
+        <location filename="../../material/qml/Preferences.qml" line="145"/>
         <source>UPnP port on router</source>
         <translation>UPnP проброс порта на роутер</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Preferences.qml" line="169"/>
+        <location filename="../../material/qml/Preferences.qml" line="170"/>
         <source>Down</source>
         <translation>Загр</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Preferences.qml" line="181"/>
+        <location filename="../../material/qml/Preferences.qml" line="182"/>
         <source>Dowload limit Kb/s</source>
         <translation>Скорость загрузки Кб.с</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Preferences.qml" line="191"/>
+        <location filename="../../material/qml/Preferences.qml" line="192"/>
         <source>Up</source>
         <translation>Отд</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Preferences.qml" line="203"/>
+        <location filename="../../material/qml/Preferences.qml" line="204"/>
         <source>Upload limit Kb/s</source>
         <translation>Скорость отдачи Кб/c</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Preferences.qml" line="222"/>
+        <location filename="../../material/qml/Preferences.qml" line="223"/>
         <source>Incoming directory</source>
         <translation>Директория загрузок</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Preferences.qml" line="240"/>
+        <location filename="../../material/qml/Preferences.qml" line="241"/>
         <source>Show old transfers</source>
         <translation>Показывать старые загрузки</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Preferences.qml" line="257"/>
+        <location filename="../../material/qml/Preferences.qml" line="258"/>
         <source>Ask before exit program</source>
         <translation>Спрашивать перед выходом</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Preferences.qml" line="279"/>
+        <location filename="../../material/qml/Preferences.qml" line="280"/>
         <source>Cancel</source>
         <translation>Отмена</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Preferences.qml" line="301"/>
+        <location filename="../../material/qml/Preferences.qml" line="302"/>
         <source>Apply</source>
         <translation>Применить</translation>
     </message>
@@ -658,13 +667,17 @@ Are you sure you want to quit qDonkey?</source>
         <translation type="vanished">В бесплатной версии максимальный размер загружаемого файла 80 Мб</translation>
     </message>
     <message>
-        <location filename="../../material/qml/SearchResult.qml" line="25"/>
         <source>Click for download</source>
-        <translation>Нажмите для загрузки</translation>
+        <translation type="vanished">Нажмите для загрузки</translation>
     </message>
     <message>
         <source>Double click on icon for download</source>
         <translation type="vanished">Двойной клик на иконке для загрузки</translation>
+    </message>
+    <message>
+        <location filename="../../material/qml/SearchResult.qml" line="25"/>
+        <source>Select item for download</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../material/qml/SearchResult.qml" line="63"/>
@@ -883,9 +896,13 @@ Are you sure you want to quit qDonkey?</source>
         <translation type="vanished">Двойной клик на иконке для открытия/паузы/возобновления</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Transfers.qml" line="22"/>
         <source>Click for action menu</source>
-        <translation>Нажмите для меню действий</translation>
+        <translation type="vanished">Нажмите для меню действий</translation>
+    </message>
+    <message>
+        <location filename="../../material/qml/Transfers.qml" line="22"/>
+        <source>Select for actions menu</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../material/qml/Transfers.qml" line="27"/>

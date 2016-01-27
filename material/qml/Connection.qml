@@ -64,7 +64,7 @@ Page {
             }
 
             id: title
-            text: qsTr("Double click for connect")
+            text: qsTr("Select server for connect")
             style: "body2"
         }
 

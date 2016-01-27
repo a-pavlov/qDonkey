@@ -25,7 +25,7 @@
     </message>
     <message>
         <location filename="../../material/qml/Connection.qml" line="67"/>
-        <source>Double click for connect</source>
+        <source>Select server for connect</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -224,62 +224,67 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../material/qml/Preferences.qml" line="106"/>
+        <location filename="../../material/qml/Preferences.qml" line="86"/>
+        <source>Italian</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../material/qml/Preferences.qml" line="107"/>
         <source>Enter your nickname</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../material/qml/Preferences.qml" line="124"/>
+        <location filename="../../material/qml/Preferences.qml" line="125"/>
         <source>Listen port</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../material/qml/Preferences.qml" line="144"/>
+        <location filename="../../material/qml/Preferences.qml" line="145"/>
         <source>UPnP port on router</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../material/qml/Preferences.qml" line="169"/>
+        <location filename="../../material/qml/Preferences.qml" line="170"/>
         <source>Down</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../material/qml/Preferences.qml" line="181"/>
+        <location filename="../../material/qml/Preferences.qml" line="182"/>
         <source>Dowload limit Kb/s</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../material/qml/Preferences.qml" line="191"/>
+        <location filename="../../material/qml/Preferences.qml" line="192"/>
         <source>Up</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../material/qml/Preferences.qml" line="203"/>
+        <location filename="../../material/qml/Preferences.qml" line="204"/>
         <source>Upload limit Kb/s</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../material/qml/Preferences.qml" line="222"/>
+        <location filename="../../material/qml/Preferences.qml" line="223"/>
         <source>Incoming directory</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../material/qml/Preferences.qml" line="240"/>
+        <location filename="../../material/qml/Preferences.qml" line="241"/>
         <source>Show old transfers</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../material/qml/Preferences.qml" line="257"/>
+        <location filename="../../material/qml/Preferences.qml" line="258"/>
         <source>Ask before exit program</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../material/qml/Preferences.qml" line="279"/>
+        <location filename="../../material/qml/Preferences.qml" line="280"/>
         <source>Cancel</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../material/qml/Preferences.qml" line="301"/>
+        <location filename="../../material/qml/Preferences.qml" line="302"/>
         <source>Apply</source>
         <translation type="unfinished"></translation>
     </message>
@@ -477,7 +482,7 @@
     </message>
     <message>
         <location filename="../../material/qml/SearchResult.qml" line="25"/>
-        <source>Click for download</source>
+        <source>Select item for download</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -648,7 +653,7 @@
     <name>Transfers</name>
     <message>
         <location filename="../../material/qml/Transfers.qml" line="22"/>
-        <source>Click for action menu</source>
+        <source>Select for actions menu</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
