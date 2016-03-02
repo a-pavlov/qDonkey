@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- interstitial banner id -->
-    <string name="ad_unit_id">ca-app-pub-1671474838801728/3768915093</string>
+    <string name="ad_unit_id">ca-app-pub-1671474838801728/6440703092</string>
     <!-- This is an ad unit ID for a test ad. Replace with your own banner ad unit id. -->
-    <string name="banner_ad_unit_id">ca-app-pub-1671474838801728/5245648299</string>
+    <string name="banner_ad_unit_id">ca-app-pub-1671474838801728/4963969895</string>
 </resources>
