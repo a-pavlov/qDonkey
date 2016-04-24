@@ -2,10 +2,10 @@
 
 #Adapt the lib names/versions accordingly
 CONFIG(debug, debug|release) {
-  LIBS += libboost_system-vc120-mt-gd-1_59.lib \
+  LIBS += libboost_system-vc140-mt-gd-1_60.lib \
           ed2k.lib
 } else {
-  LIBS += libboost_system-vc120-mt-1_59.lib \
+  LIBS += libboost_system-vc140-mt-1_60.lib \
           ed2k.lib 
 }
 
