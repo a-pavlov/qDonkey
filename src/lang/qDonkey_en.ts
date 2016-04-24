@@ -87,23 +87,41 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../material/qml/Donkey.qml" line="128"/>
+        <location filename="../../material/qml/Donkey.qml" line="138"/>
         <source>Conn</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../material/qml/Donkey.qml" line="128"/>
+        <location filename="../../material/qml/Donkey.qml" line="138"/>
         <source>Transfers</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../material/qml/Donkey.qml" line="128"/>
+        <location filename="../../material/qml/Donkey.qml" line="138"/>
         <source>Search</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../material/qml/Donkey.qml" line="128"/>
+        <location filename="../../material/qml/Donkey.qml" line="138"/>
         <source>Pref</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>HelpDialog</name>
+    <message>
+        <location filename="../../material/qml/HelpDialog.qml" line="9"/>
+        <source>This application for eDonkey2000 networks. This app is developed by one person. More information about KAD support,development and future plans at https://github.com/a-pavlov/qdonkey/wiki. You can help the development by give a good rating to the app in Google Play or clicking on an ad unit</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../material/qml/HelpDialog.qml" line="11"/>
+        <source>More</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../material/qml/HelpDialog.qml" line="12"/>
+        <source>Ok</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

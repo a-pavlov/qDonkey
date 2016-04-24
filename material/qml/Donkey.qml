@@ -95,8 +95,13 @@ ApplicationWindow {
         id: initDialog
     }
 
+
     AddLinkDialog {
         id: linkAdded
+    }
+
+    HelpDialog {
+        id: helpDialog
     }
 
     theme {
@@ -109,6 +114,11 @@ ApplicationWindow {
     Component.onCompleted: {
         link_filename = adMob.link
         if (pref.inputDir.length === 0) initDialog.show()
+        else if (pref.needHelp) {
+            helpDialog.show()
+            pref.needHelp = false
+        }
+
         // Do not show interstitial at first time
         //adMob.interstitialShow()
         console.log("Link is " + adMob.link)
@@ -131,9 +141,18 @@ ApplicationWindow {
 
     initialPage: TabbedPage {
         id: page
+
         title: "Mule for Android"
-        actionBar.maxActionCount: 0
+        actionBar.maxActionCount: 1
         focus: true
+
+        actions: [
+            Action {
+                iconName: "action/help"
+                name: "Help"
+                onTriggered: helpDialog.show()
+            }
+        ]
 
         Repeater {
             id: content

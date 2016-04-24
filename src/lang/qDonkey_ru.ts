@@ -65,7 +65,7 @@
     <message>
         <location filename="../../material/qml/Connection.qml" line="67"/>
         <source>Select server for connect</source>
-        <translation type="unfinished"></translation>
+        <translation>Выберите сервер для соединения</translation>
     </message>
     <message>
         <location filename="../../material/qml/Connection.qml" line="89"/>
@@ -106,24 +106,46 @@
         <translation>Файл %1 ошибка %2</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Donkey.qml" line="128"/>
+        <location filename="../../material/qml/Donkey.qml" line="138"/>
         <source>Conn</source>
         <translation>Серверы</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Donkey.qml" line="128"/>
+        <location filename="../../material/qml/Donkey.qml" line="138"/>
         <source>Transfers</source>
         <translation>Загрузки</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Donkey.qml" line="128"/>
+        <location filename="../../material/qml/Donkey.qml" line="138"/>
         <source>Search</source>
         <translation>Поиск</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Donkey.qml" line="128"/>
+        <location filename="../../material/qml/Donkey.qml" line="138"/>
         <source>Pref</source>
         <translation>Опции</translation>
+    </message>
+</context>
+<context>
+    <name>HelpDialog</name>
+    <message>
+        <location filename="../../material/qml/HelpDialog.qml" line="9"/>
+        <source>This application for eDonkey2000 networks. This app is developed by one person. More information about KAD support,development and future plans at https://github.com/a-pavlov/qdonkey/wiki. You can help the development by give a good rating to the app in Google Play or clicking on an ad unit</source>
+        <translation>Это приложение для работы в сетях eDonkey2000. Разработкой занимается один человек. Больше информации о разработке можно увидеть по ссылке https://github.com/a-pavlov/qdonkey/wiki или нажав кнопку &quot;Еще&quot;. Вы можете помочь проекту поставив ему хорошую оценку в Google Play или кликнув на рекламный блок</translation>
+    </message>
+    <message>
+        <location filename="../../material/qml/HelpDialog.qml" line="11"/>
+        <source>More</source>
+        <translation>Еще</translation>
+    </message>
+    <message>
+        <location filename="../../material/qml/HelpDialog.qml" line="12"/>
+        <source>Ok</source>
+        <translation>Ok</translation>
+    </message>
+    <message>
+        <source>Exit</source>
+        <translation type="vanished">Выход</translation>
     </message>
 </context>
 <context>
@@ -677,7 +699,7 @@ Are you sure you want to quit qDonkey?</source>
     <message>
         <location filename="../../material/qml/SearchResult.qml" line="25"/>
         <source>Select item for download</source>
-        <translation type="unfinished"></translation>
+        <translation>Выберите элемент для скачивания</translation>
     </message>
     <message>
         <location filename="../../material/qml/SearchResult.qml" line="63"/>
@@ -902,7 +924,7 @@ Are you sure you want to quit qDonkey?</source>
     <message>
         <location filename="../../material/qml/Transfers.qml" line="22"/>
         <source>Select for actions menu</source>
-        <translation type="unfinished"></translation>
+        <translation>Выберите для меню действий</translation>
     </message>
     <message>
         <location filename="../../material/qml/Transfers.qml" line="27"/>
