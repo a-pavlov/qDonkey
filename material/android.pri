@@ -4,7 +4,7 @@ QT += androidextras gui-private
 QMAKE_CXXFLAGS += -Wformat -Wformat-security -Werror=return-type -Wno-unused-parameter
 QMAKE_LFLAGS_APP += -rdynamic
 INCLUDEPATH += $$(LIBED2K_ROOT)/include 
-INCLUDEPATH += $$(BOOST_ROOT)
+INCLUDEPATH += $$(BOOST_ROOT) $$(BOOST_INCLUDEDIR)
 
 CONFIG(debug, debug|release) {
 LIBS += -L$$(LIBED2K_ROOT)/bin/debug
