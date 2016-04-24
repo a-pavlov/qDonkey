@@ -79,7 +79,7 @@ Dialog {
 
             Button {
                 text: qsTr("Cancel")
-                textColor: Theme.primaryColor
+                textColor: Theme.accentColor
                 onClicked: {
                     console.log("cancel clicked")
                     pref.inputDir = ""
@@ -90,7 +90,7 @@ Dialog {
             Button {
                 id: btnInputOk
                 text: qsTr("Ok")
-                textColor: Theme.primaryColor
+                textColor: Theme.accentColor
                 enabled: true
                 onClicked: {
                     console.log("input dir" + inputDirEdit.text)

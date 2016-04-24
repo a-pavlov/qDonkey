@@ -6,7 +6,7 @@
     <message>
         <location filename="../../material/qml/AddLinkDialog.qml" line="11"/>
         <source>Ok</source>
-        <translation>Готово</translation>
+        <translation>Ok</translation>
     </message>
     <message>
         <location filename="../../material/qml/AddLinkDialog.qml" line="13"/>
@@ -112,24 +112,46 @@
         <translation>Файл %1 ошибка %2</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Donkey.qml" line="94"/>
+        <location filename="../../material/qml/Donkey.qml" line="103"/>
         <source>Conn</source>
         <translation>Серверы</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Donkey.qml" line="94"/>
+        <location filename="../../material/qml/Donkey.qml" line="103"/>
         <source>Transfers</source>
         <translation>Загрузки</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Donkey.qml" line="94"/>
+        <location filename="../../material/qml/Donkey.qml" line="103"/>
         <source>Search</source>
         <translation>Поиск</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Donkey.qml" line="94"/>
+        <location filename="../../material/qml/Donkey.qml" line="103"/>
         <source>Pref</source>
         <translation>Опции</translation>
+    </message>
+</context>
+<context>
+    <name>HelpDialog</name>
+    <message>
+        <source>This application for eDonkey2000 networks. This app is developed by one person. More information about KAD support,development and future plans at https://github.com/a-pavlov/qdonkey/wiki. You can help the development by give a good rating to the app in Google Play</source>
+        <translation type="vanished">Это приложение для сетей eDonkey2000. Разрабатывается одним человеком. Больше информации по ссылке https://github.com/a-pavlov/qdonkey/wiki или кнопке &quot;Еще&quot;. Вы можете помочь проекту поставив хорошую оценку в Google Play. Cпасибо за покупку</translation>
+    </message>
+    <message>
+        <location filename="../../material/qml/HelpDialog.qml" line="9"/>
+        <source>This application for eDonkey2000 networks. This app is developed by one person. More information about KAD support,development and future plns at https://github.com/a-pavlov/qdonkey/wiki. You can help the development by give a good rating to the app in Google Play. Tthank you for your purchase</source>
+        <translation>Это приложение для сетей eDonkey2000. Разрабатывается одним человеком. Больше информации по ссылке https://github.com/a-pavlov/qdonkey/wiki или кнопке &quot;Еще&quot;. Вы можете помочь проекту поставив хорошую оценку в Google Play. Cпасибо за покупку</translation>
+    </message>
+    <message>
+        <location filename="../../material/qml/HelpDialog.qml" line="11"/>
+        <source>More</source>
+        <translation>Еще</translation>
+    </message>
+    <message>
+        <location filename="../../material/qml/HelpDialog.qml" line="12"/>
+        <source>Ok</source>
+        <translation>Ок</translation>
     </message>
 </context>
 <context>

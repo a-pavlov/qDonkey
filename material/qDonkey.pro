@@ -63,6 +63,7 @@ lupdate_only {
     SOURCES += qml/Connection.qml \
     qml/Donkey.qml \
     qml/InitDialog.qml \
+    qml/HelpDialog.qml \
     qml/Preferences.qml \
     qml/Search.qml \
     qml/SearchResult.qml \

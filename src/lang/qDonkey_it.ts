@@ -104,24 +104,42 @@
         <translation>File: %1 messaggio %2</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Donkey.qml" line="94"/>
+        <location filename="../../material/qml/Donkey.qml" line="103"/>
         <source>Conn</source>
         <translation>Conn</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Donkey.qml" line="94"/>
+        <location filename="../../material/qml/Donkey.qml" line="103"/>
         <source>Transfers</source>
         <translation>Trasferim</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Donkey.qml" line="94"/>
+        <location filename="../../material/qml/Donkey.qml" line="103"/>
         <source>Search</source>
         <translation>Cerca</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Donkey.qml" line="94"/>
+        <location filename="../../material/qml/Donkey.qml" line="103"/>
         <source>Pref</source>
         <translation>Pref</translation>
+    </message>
+</context>
+<context>
+    <name>HelpDialog</name>
+    <message>
+        <location filename="../../material/qml/HelpDialog.qml" line="9"/>
+        <source>This application for eDonkey2000 networks. This app is developed by one person. More information about KAD support,development and future plns at https://github.com/a-pavlov/qdonkey/wiki. You can help the development by give a good rating to the app in Google Play. Tthank you for your purchase</source>
+        <translation>Questa applicazione per eDonkey2000 reti. Questa applicazione è sviluppata da una sola persona. Più informazioni su KAD sostegno,lo sviluppo e il futuro plns a https://github.com/a-pavlov/qdonkey/wiki. Si può aiutare lo sviluppo da dare una buona valutazione per l&apos;app in Google Play. Tthank per il vostro acquisto</translation>
+    </message>
+    <message>
+        <location filename="../../material/qml/HelpDialog.qml" line="11"/>
+        <source>More</source>
+        <translation>Più</translation>
+    </message>
+    <message>
+        <location filename="../../material/qml/HelpDialog.qml" line="12"/>
+        <source>Ok</source>
+        <translation>Ok</translation>
     </message>
 </context>
 <context>

@@ -66,8 +66,13 @@ ApplicationWindow {
         id: initDialog
     }
 
+
     AddLinkDialog {
         id: addLink
+    }
+
+    HelpDialog {
+        id: helpDialog
     }
 
     theme {
@@ -82,7 +87,6 @@ ApplicationWindow {
         else if (act.link.length != 0) {
             if (session.loadLink(act.link, true)) addLink.show()
         }
-
     }
 
     property string connections: "Connection"
@@ -98,8 +102,16 @@ ApplicationWindow {
     initialPage: TabbedPage {
         id: page
         title: "Mule for Android"
-        actionBar.maxActionCount: 0
+        actionBar.maxActionCount: 1
         focus: true
+
+        actions: [
+            Action {
+                iconName: "action/help"
+                name: "Help"
+                onTriggered: helpDialog.show()
+            }
+        ]
 
         Repeater {
             model: sections
