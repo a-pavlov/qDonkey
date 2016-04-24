@@ -1,6 +1,6 @@
 import QtQuick 2.0
 import QtQuick.Layouts 1.1
-import Material 0.1
+import Material 0.2
 import Material.ListItems 0.1 as ListItem
 
 Dialog {
@@ -74,7 +74,7 @@ Dialog {
 
             Button {
                 text: qsTr("Cancel")
-                textColor: Theme.primaryColor
+                textColor: Theme.accentColor
                 onClicked: {
                     console.log("cancel clicked")
                     pref.inputDir = ""
@@ -85,7 +85,7 @@ Dialog {
             Button {
                 id: btnInputOk
                 text: qsTr("Ok")
-                textColor: Theme.primaryColor
+                textColor: Theme.accentColor
                 enabled: true
                 onClicked: {
                     console.log("input dir" + inputDirEdit.text)

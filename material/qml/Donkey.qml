@@ -1,6 +1,6 @@
 import QtQuick 2.0
 import QtQuick.Layouts 1.1
-import Material 0.1
+import Material 0.2
 import Material.ListItems 0.1 as ListItem
 
 ApplicationWindow {
@@ -60,6 +60,10 @@ ApplicationWindow {
         id: initDialog
     }
 
+    HelpDialog {
+        id: helpDialog
+    }
+
     theme {
         primaryColor: Palette.colors["blue"]["500"]
         primaryDarkColor: Palette.colors["blue"]["700"]
@@ -69,6 +73,10 @@ ApplicationWindow {
 
     Component.onCompleted: {
         if (pref.inputDir.length === 0) initDialog.show()
+        else if (pref.needHelp) {
+            helpDialog.show()
+            pref.needHelp = false
+        }
     }
 
     property string connections: "Connection"
@@ -84,8 +92,16 @@ ApplicationWindow {
     initialPage: TabbedPage {
         id: page
         title: "qDonkey"
-        actionBar.maxActionCount: 0
+        actionBar.maxActionCount: 1
         focus: true
+
+        actions: [
+            Action {
+                iconName: "action/help"
+                name: "Help"
+                onTriggered: helpDialog.show()
+            }
+        ]
 
         Repeater {
             model: sections

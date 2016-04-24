@@ -20,6 +20,7 @@ const QString pathSysTrAvail= "System/SystrayAvailable";
 const QString pathShowAllransfers = "Common/ShowAllTransfers";
 const QString pathLocale    = "Common/Locale";
 const QString askOnExitValue = "Common/AskOnExit";
+const QString needHelp       = "Common/NeedHelp";
 const QString serversPresence = "Network/ServersPresent";
 
 void Preferences::flush() {
@@ -152,6 +153,16 @@ bool Preferences::getUpnp() const {
 
 void Preferences::setUpnp(bool flag) {
     setValue(pathUPnp, flag);
+    emit upnpEnabledChanged(flag);
+}
+
+bool Preferences::getHelp() const {
+    return value(needHelp, true).toBool();
+}
+
+void Preferences::setHelp(bool h) {
+    setValue(needHelp, h);
+    emit helpChanged(h);
 }
 
 #ifdef Q_OS_WIN

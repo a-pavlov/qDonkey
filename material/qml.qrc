@@ -10,5 +10,6 @@
         <file>qml/Preferences.qml</file>
         <file>qml/TransferDetails.qml</file>
         <file>qml/Player.qml</file>
+        <file>qml/HelpDialog.qml</file>
     </qresource>
 </RCC>
