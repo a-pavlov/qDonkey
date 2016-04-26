@@ -1,6 +1,7 @@
 # Adapt EMT_ROOT on windows
 INCLUDEPATH += $$(BOOST_ROOT)
 LIBS += -L$$(BOOST_ROOT)/stage/lib
+LIBS += -L$$(BOOST_LIBRARYDIR)
 INCLUDEPATH += $$(LIBED2K_ROOT)/include
 
 CONFIG(debug, debug|release) {

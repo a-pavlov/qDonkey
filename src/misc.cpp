@@ -944,7 +944,7 @@ QString misc::userHash()
     QString res;
     qsrand(QTime(0,0,0).secsTo(QTime::currentTime()));
 
-    for (int i = 0; i < libed2k::md4_hash::hash_size*2; ++i)
+    for (int i = 0; i < libed2k::md4_hash::size*2; ++i)
     {
         QString part;
         part.setNum(qrand() % 16, 16);
