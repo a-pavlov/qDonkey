@@ -1,13 +1,13 @@
 # Adapt EMT_ROOT on windows
 INCLUDEPATH += $$(BOOST_ROOT)
-LIBS += -L$$(BOOST_ROOT)/stage/lib
+LIBS += -L$$(BOOST_ROOT)/x64/lib
 LIBS += -L$$(BOOST_LIBRARYDIR)
 INCLUDEPATH += $$(LIBED2K_ROOT)/include
 
 CONFIG(debug, debug|release) {
-LIBS += -L$$(LIBED2K_ROOT)/Debug/
+LIBS += -L$$(LIBED2K_ROOT)/bin/Debug/
 } else {
-LIBS += -L$$(LIBED2K_ROOT)/Release/
+LIBS += -L$$(LIBED2K_ROOT)/bin/Release/
 }
 
 DEFINES += "\"BUILDDATE=\\\"$$system(date /t && time /t)\\\"\""
@@ -30,6 +30,7 @@ DEFINES += _UNICODE
 DEFINES += _WIN32
 DEFINES += BOOST_ASIO_SEPARATE_COMPILATION
 DEFINES += LIBED2K_USE_BOOST_DATE_TIME
+DEFINES += BOOST_ASIO_DISABLE_HANDLER_HOOKS
 
 win7 {
   DEFINES += _WIN32_WINNT=0x0601

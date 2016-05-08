@@ -553,6 +553,10 @@ libed2k::session* QED2KSession::delegate() const { return m_session.data(); }
 
 const libed2k::ip_filter& QED2KSession::session_filter() const { return delegate()->get_ip_filter(); }
 
+libed2k::kad_state QED2KSession::getKademliaState() const {
+    return delegate()->dht_estate();
+}
+
 void QED2KSession::searchFiles(const QString& strQuery,
         quint64 nMinSize,
         quint64 nMaxSize,
