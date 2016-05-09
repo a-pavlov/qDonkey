@@ -179,6 +179,11 @@ public:
 
     const libed2k::ip_filter& session_filter() const;
     libed2k::kad_state getKademliaState() const;
+    void startKad();
+    void stopKad();
+    bool isKadStarted() const;
+    void addNodesToKad(const QStringList&);
+    void bootstrapKad(const QString& host, int port);
 private:
     QScopedPointer<libed2k::session> m_session;
     QHash<QString, QED2KHandle> m_fast_resume_transfers;   // contains fast resume data were loading

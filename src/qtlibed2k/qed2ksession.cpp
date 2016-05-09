@@ -557,6 +557,56 @@ libed2k::kad_state QED2KSession::getKademliaState() const {
     return delegate()->dht_estate();
 }
 
+void QED2KSession::startKad() {
+
+    delegate()->start_dht();
+}
+
+void QED2KSession::stopKad() {
+    delegate()->stop_dht();
+}
+
+bool QED2KSession::isKadStarted() const {
+    return delegate()->is_dht_running();
+}
+
+void QED2KSession::addNodesToKad(const QStringList& files) {
+    foreach(QString filepath, files) {
+        std::ifstream fstream(filepath.toUtf8().constData(), std::ios_base::binary | std::ios_base::in);
+        libed2k::kad_nodes_dat knd;
+        if (fstream) {
+            libed2k::archive::ed2k_iarchive ifa(fstream);
+            using libed2k::kad_entry;
+            try {
+                ifa >> knd;
+                for (size_t i = 0; i != knd.bootstrap_container.m_collection.size(); ++i) {
+                    //qDebug() << ("bootstrap " << knd.bootstrap_container.m_collection[i].kid.toString()
+                    //    << " ip:" << libed2k::int2ipstr(knd.bootstrap_container.m_collection[i].address.address)
+                    //    << " udp:" << knd.bootstrap_container.m_collection[i].address.udp_port
+                    //    << " tcp:" << knd.bootstrap_container.m_collection[i].address.tcp_port);
+                    delegate()->add_dht_node(std::make_pair(libed2k::int2ipstr(knd.bootstrap_container.m_collection[i].address.address),
+                        knd.bootstrap_container.m_collection[i].address.udp_port), knd.bootstrap_container.m_collection[i].kid.toString());
+                }
+
+                for (std::list<kad_entry>::const_iterator itr = knd.contacts_container.begin(); itr != knd.contacts_container.end(); ++itr) {
+                    //DBG("nodes " << itr->kid.toString()
+                    //    << " ip:" << libed2k::int2ipstr(itr->address.address)
+                    //    << " udp:" << itr->address.udp_port
+                    //    << " tcp:" << itr->address.tcp_port);
+                    delegate()->add_dht_node(std::make_pair(libed2k::int2ipstr(itr->address.address), itr->address.udp_port), itr->kid.toString());
+                }
+            }
+            catch(const libed2k::libed2k_exception& e) {
+                qDebug() << "parse error for " << filepath << " " << e.what();
+            }
+        }
+    }
+}
+
+void QED2KSession::bootstrapKad(const QString& host, int port) {
+    delegate()->add_dht_router(std::make_pair(host.toUtf8().constData(), port));
+}
+
 void QED2KSession::searchFiles(const QString& strQuery,
         quint64 nMinSize,
         quint64 nMaxSize,
