@@ -10,10 +10,6 @@
 #include "transfermodel_item.h"
 #include "qtlibed2k/qed2ksession.h"
 
-#ifdef Q_OS_WIN
-  #include <QPlastiqueStyle>
-#endif
-
 TransferListDelegate::TransferListDelegate(QObject *parent) : QItemDelegate(parent) {}
 
 TransferListDelegate::~TransferListDelegate() {}
@@ -118,13 +114,7 @@ void TransferListDelegate::paint(QPainter * painter, const QStyleOptionViewItem 
             newopt.minimum = 0;
             newopt.state |= QStyle::State_Enabled;
             newopt.textVisible = true;
-    #ifndef Q_OS_WIN
             QApplication::style()->drawControl(QStyle::CE_ProgressBar, &newopt, painter);
-    #else
-            // XXX: To avoid having the progress text on the right of the bar
-            QPlastiqueStyle st;
-            st.drawControl(QStyle::CE_ProgressBar, &newopt, painter, 0);
-    #endif
             break;
         }
     default:

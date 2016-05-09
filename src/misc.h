@@ -32,7 +32,7 @@
 #define MISC_H
 
 #ifndef Q_MOC_RUN
-#include <libed2k/md4_hash.hpp>
+#include <libed2k/hasher.hpp>
 #include <libed2k/error_code.hpp>
 #include <libed2k/file.hpp>
 #endif

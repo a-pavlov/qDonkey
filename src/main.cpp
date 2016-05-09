@@ -104,10 +104,11 @@ void sigabrtHandler(int)
 
 #ifdef Q_OS_WIN
 
-void customMessageHandler(QtMsgType type, const char *msg)
+void customMessageHandler(QtMsgType type, const QMessageLogContext &context, const QString &msg)
 {
+    Q_UNUSED(context);
     QString txt;
-
+    QByteArray localMsg = msg.toLocal8Bit();
     switch (type)
     {
         case QtDebugMsg:
@@ -143,7 +144,7 @@ int main(int argc, char *argv[])
     SessionApplication app("qDonkey-" + uid, argc, argv);
 
 #ifdef Q_OS_WIN
-    qInstallMsgHandler(customMessageHandler);
+    qInstallMessageHandler(customMessageHandler);
 #endif
 
 #if defined(Q_OS_MAC)

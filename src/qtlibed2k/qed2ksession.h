@@ -181,12 +181,20 @@ public:
     libed2k::session* delegate() const;
 
     const libed2k::ip_filter& session_filter() const;
+
     Q_INVOKABLE void pauseTransfer(const QString& hash);
     Q_INVOKABLE void resumeTransfer(const QString& hash);
     Q_PROPERTY(QString currentMediaFile READ currentMediaFile WRITE setCurrentMediaFile NOTIFY currentMediaFileChanged)
 
     QString currentMediaFile() const;
     void setCurrentMediaFile(const QString&);
+
+    libed2k::kad_state getKademliaState() const;
+    void startKad();
+    void stopKad();
+    bool isKadStarted() const;
+    void addNodesToKad(const QStringList&);
+    void bootstrapKad(const QString& host, int port);
 private:
     QScopedPointer<libed2k::session> m_session;
     QHash<QString, QED2KHandle> m_fast_resume_transfers;   // contains fast resume data were loading
@@ -199,6 +207,7 @@ private:
     QHash<QString, QDateTime> m_addTimes;   // creation dates for transfers
     QHash<QString, libed2k::transfer_resume_data> m_fastTransfers;  // transfers information from metadata directory
     QSet<QString>   m_currentSessionTransfers;  // transfers were added to session not as seed
+    libed2k::server_connection_parameters m_sp;
     QString m_currentPath;
     QScopedPointer<TransferSpeedMonitor>    m_speedMon;
     QDateTime               last_error_dt;

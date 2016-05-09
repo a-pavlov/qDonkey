@@ -8,13 +8,13 @@ BOOST_LIBRARYDIR_ = $$(BOOST_LIBRARYDIR)
   LIBS += -L$$(BOOST_LIBRARYDIR)
 #}
 
-LIBS += -L$$(BOOST_ROOT)/stage/lib
+LIBS += -L$$(BOOST_ROOT)/x64/lib
 INCLUDEPATH += $$(LIBED2K_ROOT)/include
 
 CONFIG(debug, debug|release) {
-LIBS += -L$$(LIBED2K_ROOT)/Debug/
+LIBS += -L$$(LIBED2K_ROOT)/bin/Debug/
 } else {
-LIBS += -L$$(LIBED2K_ROOT)/Release/
+LIBS += -L$$(LIBED2K_ROOT)/bin/Release/
 }
 
 DEFINES += "\"BUILDDATE=\\\"$$system(date /t && time /t)\\\"\""
