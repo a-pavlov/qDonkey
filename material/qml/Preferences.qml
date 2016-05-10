@@ -60,6 +60,29 @@ Page {
             ListItem.Standard {
                 action: Icon {
                     anchors.centerIn: parent
+                    name: "social/people_outline"
+                }
+
+                content: RowLayout {
+                    Label {
+                        text: qsTr("Kademlia prefs")
+                    }
+
+                    Button {
+                        id: btnKad
+                        text: qsTr(">>>")
+                        textColor: Theme.primaryColor
+                        enabled: true
+                        onClicked: {
+                            pageStack.push(Qt.resolvedUrl("Kademlia.qml"))
+                        }
+                    }
+                }
+            }
+
+            ListItem.Standard {
+                action: Icon {
+                    anchors.centerIn: parent
                     name: "action/language"
                 }
 
