@@ -6,16 +6,9 @@ import Material.ListItems 0.1 as ListItem
 import Material.Extras 0.1
 
 Page {
-    title: qsTr("Setup options and click apply")
-
-    function btnOn() {
-        btnApply.enabled=true
-        btnCancel.enabled=true
-    }
+    title: qsTr("Configure application")
 
     Component.onCompleted: {
-        btnApply.enabled=false
-        btnCancel.enabled=false
     }
 
     function getLangIndex(locale) {
@@ -103,7 +96,7 @@ Page {
 
                     onItemSelected: {
                         langRestart.show()
-                        btnOn()
+                        pref.locale=langModel.get(index).key
                     }
                 }
             }
@@ -121,7 +114,7 @@ Page {
                     floatingLabel: true
                     placeholderText: qsTr("Enter your nickname")
                     text: pref.nick
-                    onTextChanged: btnOn()
+                    onTextChanged: pref.nick = text
                 }
             }
 
@@ -141,7 +134,7 @@ Page {
                     text: pref.listenPort
                     validator: IntValidator {}
                     maximumLength: 5
-                    onTextChanged: btnOn()
+                    onTextChanged: pref.listenPort=text
                 }
             }
 
@@ -153,7 +146,7 @@ Page {
                         checked: pref.upnpEnabled
                         enabled: true
                         darkBackground: false
-                        onCheckedChanged: btnOn()
+                        onCheckedChanged: pref.upnpEnabled=checked
                     }
 
                     Label {
@@ -185,7 +178,7 @@ Page {
                         text: qsTr("Down")
                         onCheckedChanged: {
                             limitDownload.enabled=checked
-                            btnOn()
+                            pref.dlSpeedLimit=checked
                         }
                     }
 
@@ -197,7 +190,7 @@ Page {
                         placeholderText: qsTr("Dowload limit Kb/s")
                         text: pref.dlSpeed
                         validator: IntValidator {}
-                        onTextChanged: btnOn()
+                        onTextChanged: pref.dlSpeed=text
                     }
 
                     CheckBox {
@@ -207,7 +200,7 @@ Page {
                         text: qsTr("Up")
                          onCheckedChanged: {
                             limitUpload.enabled=checked
-                             btnOn()
+                            pref.dlSpeedLimited=checked
                         }
                     }
 
@@ -219,7 +212,7 @@ Page {
                         placeholderText: qsTr("Upload limit Kb/s")
                         text: pref.upSpeed
                         validator: IntValidator {}
-                        onTextChanged: btnOn()
+                        onTextChanged: pref.upSpeed=text
                     }
                 }
             }
@@ -237,7 +230,7 @@ Page {
                     floatingLabel: true
                     placeholderText: qsTr("Incoming directory")
                     text: pref.inputDir
-                    onTextChanged: btnOn()
+                    onTextChanged: pref.inputDir=text
                 }
             }
 
@@ -249,7 +242,7 @@ Page {
                         checked: pref.showAllTransfers
                         enabled: true
                         darkBackground: false
-                        onCheckedChanged: btnOn()
+                        onCheckedChanged: pref.showAllTransfers=checked
                     }
 
                     Label {
@@ -266,7 +259,7 @@ Page {
                         checked: pref.askOnExit
                         enabled: true
                         darkBackground: false
-                        onCheckedChanged: btnOn()
+                        onCheckedChanged: pref.askOnExit=checked
                     }
 
                     Label {
@@ -278,63 +271,6 @@ Page {
             Item {
                 Layout.fillWidth: true
                 Layout.preferredHeight: Units.dp(8)
-            }
-
-            RowLayout {
-                id: buttonsRow
-                Layout.alignment: Qt.AlignRight
-                spacing: Units.dp(8)
-
-                Item {
-                    Layout.fillWidth: true
-                    Layout.preferredHeight: Units.dp(8)
-                }
-
-                Button {
-                    id: btnCancel
-                    text: qsTr("Cancel")
-                    textColor: Theme.primaryColor
-                    enabled: false
-                    onClicked: {
-                        nick.text = pref.nick
-                        listenPort.text= pref.listenPort
-                        checkDownload.checked=pref.dlSpeedLimited
-                        limitDownload.text=pref.dlSpeed
-                        checkUpload.checked=pref.upSpeedLimited
-                        limitUpload.text=pref.upSpeed
-                        inputDir.text=pref.inputDir
-                        showPreviusTransfers.checked=pref.showAllTransfers
-                        language.selectedIndex=getLangIndex(pref.locale)
-                        askOnExit.checked=pref.askOnExit
-                        upnpEnabled.checked=pref.upnpEnabled
-                        btnCancel.enabled=false
-                        btnApply.enabled=false
-                    }
-                }
-
-                Button {
-                    id: btnApply
-                    text: qsTr("Apply")
-                    textColor: Theme.primaryColor
-                    enabled: false
-                    onClicked: {
-                        console.log("write settings")
-                        pref.nick = nick.text
-                        pref.listenPort = listenPort.text
-                        pref.dlSpeedLimited = checkDownload.checked
-                        pref.dlSpeed = limitDownload.text
-                        pref.upSpeedLimited = checkUpload.checked
-                        pref.upSpeed = limitUpload.text
-                        pref.inputDir=inputDir.text
-                        pref.showAllTransfers=showPreviusTransfers.checked
-                        pref.locale=langModel.get(language.selectedIndex).key
-                        pref.askOnExit=askOnExit.checked
-                        pref.upnpEnabled=upnpEnabled.checked
-                        pref.flush()
-                        btnCancel.enabled=false
-                        btnApply.enabled=false
-                    }
-                }
             }
         }
     }

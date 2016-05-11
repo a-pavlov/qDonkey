@@ -88,7 +88,6 @@ ApplicationWindow {
     property var sectionTitles: [ qsTr("Conn"), qsTr("Transfers"), qsTr("Search"), qsTr("Pref") ]
     property string selectedComponent: connections
 
-
     initialPage: TabbedPage {
         id: page
         title: "qDonkey"
@@ -111,6 +110,10 @@ ApplicationWindow {
                 property string section: modelData
                 sourceComponent: tabDelegate
             }
+        }
+
+        onSelectedTabChanged: {
+            // check preferences sync and apply
         }
     }
 
