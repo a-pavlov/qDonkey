@@ -15,6 +15,7 @@ class PeerModel;
 class QED2KHandle;
 class QKeyEvent;
 class QTimer;
+class KadNodes;
 
 class MainWindow:  public QObject {
     Q_OBJECT
@@ -27,6 +28,7 @@ private:
     TransferModel*          transferModel;
     TransferDetailsModel*   transferDetails;
     TransferSortFilterModel* transferProxy;
+    KadNodes*               knodes;
     QScopedPointer<Preferences>          pref;
     QTimer*                 playTimer;
     PeerModel*              pmodel;

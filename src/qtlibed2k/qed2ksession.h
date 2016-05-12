@@ -25,6 +25,7 @@
 #include <libed2k/session.hpp>
 #include <libed2k/session_status.hpp>
 #include <libed2k/server_connection.hpp>
+#include <libed2k/kademlia/kad_packet_struct.hpp>
 #endif
 
 #include "qed2kserver.h"
@@ -129,6 +130,18 @@ typedef QHash<QString, PersistentDataItem> PersistentData;
 
 QString fromHash(const libed2k::md4_hash&);
 
+struct KadNode {
+    QString host;
+    quint16 port;
+    QString kid;
+    int distance;
+    bool operator<(const KadNode& kn) const {
+        return distance < kn.distance;
+    }
+
+    KadNode(const libed2k::kad_id& own, const libed2k::kad_state_entry& ke);
+};
+
 class QED2KSession : public QObject {
     Q_OBJECT
     Q_DISABLE_COPY(QED2KSession)
@@ -195,6 +208,7 @@ public:
     bool isKadStarted() const;
     void addNodesToKad(const QStringList&);
     void bootstrapKad(const QString& host, int port);
+    QList<KadNode> kadState();
 private:
     QScopedPointer<libed2k::session> m_session;
     QHash<QString, QED2KHandle> m_fast_resume_transfers;   // contains fast resume data were loading

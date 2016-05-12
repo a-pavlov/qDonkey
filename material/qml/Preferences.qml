@@ -28,6 +28,14 @@ Page {
         text: qsTr("New language will be available after restart")
     }
 
+    Dialog {
+        id: kadHelp
+        hasActions: true
+        positiveButtonText: qsTr("Ok")
+        negativeButton.visible: false
+        text: qsTr("To start use KAD in first time you can 1:specify bootstrap node(ip and port) or 2:downdload nodes.dat file and application will load it on start KAD")
+    }
+
     Flickable {
         id: flick
         anchors.fill: parent
@@ -48,29 +56,6 @@ Page {
 
                 style: "body2"
                 text: qsTr("Change preferences here and click apply")
-            }
-
-            ListItem.Standard {
-                action: Icon {
-                    anchors.centerIn: parent
-                    name: "social/people_outline"
-                }
-
-                content: RowLayout {
-                    Label {
-                        text: qsTr("Kademlia prefs")
-                    }
-
-                    Button {
-                        id: btnKad
-                        text: qsTr(">>>")
-                        textColor: Theme.primaryColor
-                        enabled: true
-                        onClicked: {
-                            pageStack.push(Qt.resolvedUrl("Kademlia.qml"))
-                        }
-                    }
-                }
             }
 
             ListItem.Standard {
@@ -157,6 +142,75 @@ Page {
             }
 
             ListItem.Standard {
+                action: Icon {
+                    anchors.centerIn: parent
+                    name: "social/people_outline"
+                }
+
+                content: RowLayout {
+                    Switch {
+                        id: kadEnabled
+                        checked: false
+                        enabled: true
+                        darkBackground: false
+                        onCheckedChanged: {
+                            // check previous status is null and no nodes.dat file in locations
+                            // emit warn message
+                        }
+                    }
+
+                    Label {
+                        text: qsTr("KAD enabled")
+                        wrapMode: Text.WordWrap
+                    }
+
+                    ActionButton {
+                        iconName: "action/help_outline"
+                        isMiniSize: true
+                        backgroundColor: "white"
+                        onClicked: {
+                            kadHelp.show()
+                        }
+                    }
+
+                    ActionButton {
+                        iconName: "action/info_outline"
+                        isMiniSize: true
+                        backgroundColor: "white"
+                        onClicked: {
+                            pageStack.push(Qt.resolvedUrl("Kademlia.qml"))
+                        }
+                    }
+                }
+            }
+
+            ListItem.Standard {
+                action: Icon {
+                    anchors.centerIn: parent
+                    name: "communication/call"
+                }
+
+                content: RowLayout {
+                    TextField {
+                        id: bootstrapHost
+                        Layout.fillWidth: true
+                        placeholderText: qsTr("Bootstrap IP")
+                        onTextChanged: {
+                        }
+                    }
+
+                    TextField {
+                        id: bootstrapPort
+                        width: Units.dp(50)
+                        placeholderText: qsTr("Port")
+                        validator: IntValidator {}
+                        onTextChanged: {
+                        }
+                    }
+                }
+            }
+
+            ListItem.Standard {
                 height: grid.height + Units.dp(8)
                 implicitHeight: grid.implicitHeight + Units.dp(8)
 
@@ -200,7 +254,7 @@ Page {
                         text: qsTr("Up")
                          onCheckedChanged: {
                             limitUpload.enabled=checked
-                            pref.dlSpeedLimited=checked
+                            pref.upSpeedLimited=checked
                         }
                     }
 

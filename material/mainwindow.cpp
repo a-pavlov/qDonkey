@@ -10,6 +10,7 @@
 #include "../src/search/search_widget_fp_model.h"
 #include "qed2kserver.h"
 #include "qed2ksession.h"
+#include "kadnodes.h"
 #include <QQmlApplicationEngine>
 #include <QQmlContext>
 #include <QKeyEvent>
@@ -40,6 +41,8 @@ MainWindow::MainWindow(QObject* parent) : QObject(parent) {
 
     pmodel = new PeerModel(this);
 
+    knodes = new KadNodes(this);
+
     connect(Session::instance(), SIGNAL(serverConnectionInitialized(QString,QString, int, quint32,quint32,quint32)),
             smodel, SLOT(on_serverConnectionInitialized(QString,QString,int,quint32,quint32,quint32)));
     connect(Session::instance(), SIGNAL(serverConnectionClosed(QString,QString,int,QString)), smodel,
@@ -63,6 +66,7 @@ MainWindow::MainWindow(QObject* parent) : QObject(parent) {
     engine->rootContext()->setContextProperty("session", Session::instance());
     engine->rootContext()->setContextProperty("pref", pref.data());
     engine->rootContext()->setContextProperty("peerModel", pmodel);
+    engine->rootContext()->setContextProperty("kadModel", knodes);
 #ifdef IS74
     engine->load(QUrl(QStringLiteral("qrc:/qml/Donkey.qml")));
 #else

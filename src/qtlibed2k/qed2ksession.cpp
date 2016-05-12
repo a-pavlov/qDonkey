@@ -14,6 +14,7 @@
 #include <libed2k/upnp.hpp>
 #include <libed2k/natpmp.hpp>
 #include <libed2k/file.hpp>
+#include <libed2k/kademlia/node_id.hpp>
 #endif
 
 #include <QMessageBox>
@@ -67,6 +68,13 @@ static libed2k::md4_hash QStringToMD4(const QString& s)
 QString md4toQString(const libed2k::md4_hash& hash)
 {
     return QString::fromStdString(hash.toString());
+}
+
+KadNode::KadNode(const libed2k::kad_id& own, const libed2k::kad_state_entry& ke) {
+    host = QString::fromStdString(libed2k::int2ipstr(ke.point.m_nIP));
+    port=ke.point.m_nPort;
+    kid = QString::fromStdString(ke.pid.toString());
+    distance = libed2k::dht::distance_exp(own, ke.pid);
 }
 
 QED2KSearchResultEntry::QED2KSearchResultEntry() :
@@ -621,6 +629,18 @@ void QED2KSession::addNodesToKad(const QStringList& files) {
 
 void QED2KSession::bootstrapKad(const QString& host, int port) {
     delegate()->add_dht_router(std::make_pair(host.toUtf8().constData(), port));
+}
+
+QList<KadNode> QED2KSession::kadState() {
+    libed2k::kad_state ks = delegate()->dht_estate();
+    QList<KadNode> res;
+    for(std::deque<libed2k::kad_state_entry>::iterator ke = ks.entries.m_collection.begin();
+        ke != ks.entries.m_collection.end(); ++ke) {
+        res.push_back(KadNode(ks.self_id, *ke));
+    }
+
+    qSort(res);
+    return res;
 }
 
 void QED2KSession::searchFiles(const QString& strQuery,
