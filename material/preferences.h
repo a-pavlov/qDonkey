@@ -58,6 +58,7 @@ class Preferences : public QIniSettings {
     Q_PROPERTY(bool hasServers READ getServersPresence WRITE setServersPresence)
     Q_PROPERTY(bool upnpEnabled READ getUpnp WRITE setUpnp NOTIFY upnpEnabledChanged)
     Q_PROPERTY(bool needHelp READ getHelp WRITE setHelp NOTIFY helpChanged)
+    Q_PROPERTY(bool kad READ getKad WRITE setKad NOTIFY kadChanged)
 
 public:
   Preferences() : QIniSettings(COMPANY_NAME,  PRODUCT_NAME){
@@ -123,6 +124,9 @@ public:
     static bool isLinkAssocSet(const QString& link);
     static void setLinkAssoc(const QString& link, bool set);
 #endif
+
+    bool getKad() const;
+    void setKad(bool);
 signals:
      void inputDirChanged(QString);
      void localeChanged(QString);
@@ -138,6 +142,7 @@ signals:
      void askOnExitChanged(bool);
      void upnpEnabledChanged(bool);
      void helpChanged(bool);
+     void kadChanged(bool);
 };
 
 #endif // PREFERENCES_H

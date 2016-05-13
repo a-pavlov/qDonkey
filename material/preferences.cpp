@@ -22,6 +22,7 @@ const QString pathLocale    = "Common/Locale";
 const QString askOnExitValue = "Common/AskOnExit";
 const QString needHelp       = "Common/NeedHelp";
 const QString serversPresence = "Network/ServersPresent";
+const QString kadEnabled = "Network/KAD";
 
 void Preferences::flush() {
     sync();
@@ -163,6 +164,15 @@ bool Preferences::getHelp() const {
 void Preferences::setHelp(bool h) {
     setValue(needHelp, h);
     emit helpChanged(h);
+}
+
+bool Preferences::getKad() const {
+    return value(kadEnabled, false).toBool();
+}
+
+void Preferences::setKad(bool flag) {
+    setValue(kadEnabled, flag);
+    emit kadChanged(flag);
 }
 
 #ifdef Q_OS_WIN

@@ -67,7 +67,8 @@ lupdate_only {
     qml/Search.qml \
     qml/SearchResult.qml \
     qml/TransferDetails.qml \
-    qml/Transfers.qml
+    qml/Transfers.qml \
+    qml/Kademlia.qml
 }
 
 LANG_PATH = ../src/lang

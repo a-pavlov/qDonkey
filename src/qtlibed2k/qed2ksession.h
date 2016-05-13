@@ -203,12 +203,20 @@ public:
     void setCurrentMediaFile(const QString&);
 
     libed2k::kad_state getKademliaState() const;
-    void startKad();
-    void stopKad();
+    Q_INVOKABLE void startKad();
+    Q_INVOKABLE void stopKad();
     bool isKadStarted() const;
     void addNodesToKad(const QStringList&);
     void bootstrapKad(const QString& host, int port);
     QList<KadNode> kadState();
+    Q_INVOKABLE bool hasInitialNodesFile();
+
+    /**
+     * @brief saveKadState
+     * @return true if dht state contains some nodes
+     */
+    bool saveKadState();
+    libed2k::entry loadKadState();
 private:
     QScopedPointer<libed2k::session> m_session;
     QHash<QString, QED2KHandle> m_fast_resume_transfers;   // contains fast resume data were loading

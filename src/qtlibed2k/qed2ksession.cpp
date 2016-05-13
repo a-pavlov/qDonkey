@@ -356,6 +356,7 @@ void QED2KSession::stop()
     frdTimer.stop();
     m_session->pause();
     saveFastResumeData();
+    stopKad();
 }
 
 bool QED2KSession::started() const { return !m_session.isNull(); }
@@ -582,11 +583,11 @@ libed2k::kad_state QED2KSession::getKademliaState() const {
 }
 
 void QED2KSession::startKad() {
-
-    delegate()->start_dht();
+    delegate()->start_dht(loadKadState());
 }
 
 void QED2KSession::stopKad() {
+    saveKadState();
     delegate()->stop_dht();
 }
 
@@ -641,6 +642,51 @@ QList<KadNode> QED2KSession::kadState() {
 
     qSort(res);
     return res;
+}
+
+bool QED2KSession::hasInitialNodesFile() {
+    return !QStandardPaths::locate(QStandardPaths::DownloadLocation, "nodes.dat").isEmpty();
+}
+
+bool QED2KSession::saveKadState() {
+    QDir metaDir(misc::metadataLocation());
+    const QString filepath = metaDir.absoluteFilePath("dht.dat");
+    std::ofstream fs(filepath.toUtf8().constData(), std::ios_base::binary);
+    bool res = false;
+    if (fs) {
+        libed2k::entry e = delegate()->dht_state();
+        res = (e.type() == libed2k::entry::dictionary_t && e.find_key("nodes") != NULL);
+        if (res) {
+            std::noskipws(fs);
+            std::vector<char> out;
+            libed2k::bencode(std::back_inserter(out), e);
+            std::copy(out.begin(), out.end(), std::ostreambuf_iterator<char>(fs));
+        }
+    }
+    else {
+        qDebug() << "unable to open file for save dht state " << filepath;
+    }
+
+    return res;
+}
+
+libed2k::entry QED2KSession::loadKadState() {
+    QDir metaDir(misc::metadataLocation());
+    const QString filepath = metaDir.absoluteFilePath("dht.dat");
+
+    libed2k::entry e;
+    std::ifstream fs(filepath.toUtf8().constData(), std::ios_base::binary);
+    if (fs) {
+        std::noskipws(fs);
+        std::string content((std::istreambuf_iterator<char>(fs)),
+            (std::istreambuf_iterator<char>()));
+        e = libed2k::bdecode(content.c_str(), content.c_str() + content.size());
+    }
+    else {
+        qDebug() << "dht state file not exists " << filepath;
+    }
+
+    return e;
 }
 
 void QED2KSession::searchFiles(const QString& strQuery,

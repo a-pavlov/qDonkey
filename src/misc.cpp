@@ -568,6 +568,14 @@ QString misc::cacheLocation() {
   return location;
 }
 
+QString misc::metadataLocation() {
+    QString location =  QStandardPaths::writableLocation(QStandardPaths::AppDataLocation);
+    QDir locationDir(location);
+    if (!locationDir.exists())
+      locationDir.mkpath(locationDir.absolutePath());
+    return location;
+}
+
 // return best userfriendly storage unit (B, KB, MB, GB, TB)
 // value must be given in bytes
 QString misc::friendlyUnit(qreal val, SizeType type) {

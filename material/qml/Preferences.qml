@@ -33,7 +33,15 @@ Page {
         hasActions: true
         positiveButtonText: qsTr("Ok")
         negativeButton.visible: false
-        text: qsTr("To start use KAD in first time you can 1:specify bootstrap node(ip and port) or 2:downdload nodes.dat file and application will load it on start KAD")
+        text: qsTr("To start use KAD in first time you need one of two things or both:\n1. specify bootstrap node(ip and port).\n2. downdload nodes.dat file to your download dir from any internet source, application will load it on start KAD")
+    }
+
+    Dialog {
+        id: kadWarn
+        hasActions: true
+        positiveButtonText: qsTr("Ok")
+        negativeButton.visible: false
+        text: qsTr("Use can't use KAD without at least one bootstrap node or nodes.dat file.\nSpecify bootstrap ip and port or download nodes.dat to your download directory")
     }
 
     Flickable {
@@ -152,10 +160,25 @@ Page {
                         id: kadEnabled
                         checked: false
                         enabled: true
-                        darkBackground: false
+                        darkBackground: false 
                         onCheckedChanged: {
-                            // check previous status is null and no nodes.dat file in locations
-                            // emit warn message
+                            if (checked) {
+                                if (session.hasInitialNodesFile() || (bootstrapHost.text.length !=0 && bootstrapPort.text.length != 0))
+                                {
+                                    console.log("ok, ready to enabled kad");
+                                    pref.kad = true;
+                                }
+                                else
+                                {
+                                    kadWarn.show()
+                                    checked=false
+                                }
+                            }
+                            else {
+                                console.log("stop dht here");
+                                session.stopKad();
+                                pref.kad = false;
+                            }
                         }
                     }
 
