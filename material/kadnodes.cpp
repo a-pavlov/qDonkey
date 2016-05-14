@@ -1,4 +1,5 @@
 #include "kadnodes.h"
+#include "qtlibed2k/qed2ksession.h"
 
 KadNodes::KadNodes(QObject *parent/* = 0*/) : QAbstractListModel(parent) {
 }
@@ -8,6 +9,10 @@ void KadNodes::setData(const QList<KadNode>& n) {
     beginResetModel();
     nodes = n;
     endResetModel();
+}
+
+void KadNodes::resetData() {
+    setData(Session::instance()->kadState());
 }
 
 QHash<int, QByteArray> KadNodes::roleNames() const {

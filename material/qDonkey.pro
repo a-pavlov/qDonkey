@@ -1,6 +1,6 @@
 TEMPLATE = app
 
-QT += qml quick widgets svg multimedia
+QT += qml quick widgets svg multimedia network
 
 RESOURCES += qml.qrc ../src/lang.qrc \
     images.qrc
@@ -25,6 +25,10 @@ unix:!android {
 
 android {
   include(android.pri)
+}
+
+CONFIG(debug, debug|release) {
+    DEFINES += LIBED2K_DHT_VERBOSE_LOGGING
 }
 
 include(../src/qtlibed2k/qtlibed2k.pri)

@@ -73,7 +73,7 @@ MainWindow::MainWindow(QObject* parent) : QObject(parent) {
     engine->load(QUrl(QStringLiteral("qrc:/qml/main.qml")));
 #endif
 
-    Session::instance()->start();
+    //Session::instance()->start();
     Session::instance()->loadDirectory(pref.data()->inputDir());
     restoreLastServerConnection();
 

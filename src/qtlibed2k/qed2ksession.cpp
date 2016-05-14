@@ -457,9 +457,10 @@ void QED2KSession::configureSession() {
     s.download_rate_limit = dl_limit <= 0 ? -1 : dl_limit*1024;
     s.upload_rate_limit = up_limit <= 0 ? -1 : up_limit*1024;
     m_session->set_settings(s);
-
+    qDebug() << "new listen " << new_listenPort << " old listen " << old_listenPort;
     if (new_listenPort != old_listenPort) m_session->listen_on(new_listenPort);    
     enableUPnP(pref.getUpnp());
+    if (pref.getKad()) startKad();
 }
 
 
@@ -583,7 +584,22 @@ libed2k::kad_state QED2KSession::getKademliaState() const {
 }
 
 void QED2KSession::startKad() {
-    delegate()->start_dht(loadKadState());
+    Preferences pref;
+
+    libed2k::entry e = loadKadState();
+    bool havePrevState = (e.type() == libed2k::entry::dictionary_t && e.find_key("nodes") != NULL);
+
+    // bootstrap from startup node
+    if (!pref.bootstrapIP().isEmpty() && pref.bootstrapPort() != 0) {
+        bootstrapKad(pref.bootstrapIP(), pref.bootstrapPort());
+    }
+
+    delegate()->start_dht(e);
+
+    if (!havePrevState) {
+        qDebug() << "previous state not found, try to import nodes";
+        addNodesToKad(QStandardPaths::locateAll(QStandardPaths::DownloadLocation, "nodes.dat"));
+    }
 }
 
 void QED2KSession::stopKad() {
@@ -597,6 +613,7 @@ bool QED2KSession::isKadStarted() const {
 
 void QED2KSession::addNodesToKad(const QStringList& files) {
     foreach(QString filepath, files) {
+        qDebug() << "import data from " << filepath;
         std::ifstream fstream(filepath.toUtf8().constData(), std::ios_base::binary | std::ios_base::in);
         libed2k::kad_nodes_dat knd;
         if (fstream) {
@@ -649,22 +666,25 @@ bool QED2KSession::hasInitialNodesFile() {
 }
 
 bool QED2KSession::saveKadState() {
-    QDir metaDir(misc::metadataLocation());
-    const QString filepath = metaDir.absoluteFilePath("dht.dat");
-    std::ofstream fs(filepath.toUtf8().constData(), std::ios_base::binary);
-    bool res = false;
-    if (fs) {
-        libed2k::entry e = delegate()->dht_state();
-        res = (e.type() == libed2k::entry::dictionary_t && e.find_key("nodes") != NULL);
-        if (res) {
+    libed2k::entry e = delegate()->dht_state();
+    bool res = (e.type() == libed2k::entry::dictionary_t && e.find_key("nodes") != NULL);
+    if (!res) {
+        qDebug() << "state is empty, do nothing";
+    }
+    else {
+        QDir metaDir(misc::metadataLocation());
+        const QString filepath = metaDir.absoluteFilePath("dht.dat");
+        std::ofstream fs(filepath.toUtf8().constData(), std::ios_base::binary);
+        if (fs) {
             std::noskipws(fs);
             std::vector<char> out;
             libed2k::bencode(std::back_inserter(out), e);
             std::copy(out.begin(), out.end(), std::ostreambuf_iterator<char>(fs));
         }
-    }
-    else {
-        qDebug() << "unable to open file for save dht state " << filepath;
+        else {
+            qDebug() << "unable to open file for save dht state " << filepath;
+            res = false;
+        }
     }
 
     return res;
@@ -687,6 +707,13 @@ libed2k::entry QED2KSession::loadKadState() {
     }
 
     return e;
+}
+
+bool QED2KSession::hasPrevKadState() const {
+    QDir metaDir(misc::metadataLocation());
+    QString filepath = metaDir.absoluteFilePath("dht.dat");
+    QFileInfo fi(filepath);
+    return fi.exists();
 }
 
 void QED2KSession::searchFiles(const QString& strQuery,

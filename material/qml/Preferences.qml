@@ -158,15 +158,16 @@ Page {
                 content: RowLayout {
                     Switch {
                         id: kadEnabled
-                        checked: false
+                        checked: pref.kad
                         enabled: true
                         darkBackground: false 
                         onCheckedChanged: {
                             if (checked) {
-                                if (session.hasInitialNodesFile() || (bootstrapHost.text.length !=0 && bootstrapPort.text.length != 0))
+                                if (session.hasPrevKadState() || session.hasInitialNodesFile() || (bootstrapHost.text.length !=0 && bootstrapPort.text.length != 0))
                                 {
                                     console.log("ok, ready to enabled kad");
                                     pref.kad = true;
+                                    session.startKad()
                                 }
                                 else
                                 {
@@ -216,18 +217,22 @@ Page {
                 content: RowLayout {
                     TextField {
                         id: bootstrapHost
+                        text: pref.bootstrapIP
                         Layout.fillWidth: true
                         placeholderText: qsTr("Bootstrap IP")
                         onTextChanged: {
+                            pref.bootstrapIP = text
                         }
                     }
 
                     TextField {
                         id: bootstrapPort
+                        text: pref.bootstrapPort
                         width: Units.dp(50)
                         placeholderText: qsTr("Port")
                         validator: IntValidator {}
                         onTextChanged: {
+                            pref.bootstrapPort = text
                         }
                     }
                 }

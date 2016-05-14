@@ -23,6 +23,8 @@ const QString askOnExitValue = "Common/AskOnExit";
 const QString needHelp       = "Common/NeedHelp";
 const QString serversPresence = "Network/ServersPresent";
 const QString kadEnabled = "Network/KAD";
+const QString bsIP = "Network/BootstrapIP";
+const QString bsPort = "Network/BootstrapPort";
 
 void Preferences::flush() {
     sync();
@@ -173,6 +175,24 @@ bool Preferences::getKad() const {
 void Preferences::setKad(bool flag) {
     setValue(kadEnabled, flag);
     emit kadChanged(flag);
+}
+
+QString Preferences::bootstrapIP() const {
+    return value(bsIP, QString()).toString();
+}
+
+void Preferences::setBootstrapIP(const QString& ip) {
+    setValue(bsIP, ip);
+    emit bootstrapIPChanged(ip);
+}
+
+quint16 Preferences::bootstrapPort() const {
+    return value(bsPort, 0).toUInt();
+}
+
+void Preferences::setBootstrapPort(quint16 port) {
+    setValue(bsPort, port);
+    emit bootstrapPortChanged(port);
 }
 
 #ifdef Q_OS_WIN

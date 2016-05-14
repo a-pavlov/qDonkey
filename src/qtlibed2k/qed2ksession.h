@@ -208,7 +208,7 @@ public:
     bool isKadStarted() const;
     void addNodesToKad(const QStringList&);
     void bootstrapKad(const QString& host, int port);
-    QList<KadNode> kadState();
+    Q_INVOKABLE QList<KadNode> kadState();
     Q_INVOKABLE bool hasInitialNodesFile();
 
     /**
@@ -217,6 +217,8 @@ public:
      */
     bool saveKadState();
     libed2k::entry loadKadState();
+    Q_INVOKABLE bool hasPrevKadState() const;
+
 private:
     QScopedPointer<libed2k::session> m_session;
     QHash<QString, QED2KHandle> m_fast_resume_transfers;   // contains fast resume data were loading

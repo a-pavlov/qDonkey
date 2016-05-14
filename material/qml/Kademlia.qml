@@ -7,6 +7,11 @@ Page {
     id: kad
     title: qsTr("Back to Pref")
 
+    Component.onCompleted: {
+        console.log("load dht state");
+        kadModel.resetData();
+    }
+
     ColumnLayout {
         spacing: 0
         anchors.fill: parent

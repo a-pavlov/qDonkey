@@ -5,6 +5,9 @@
 #include "qed2ksession.h"
 #include "preferences.h"
 
+#include "libed2k/log.hpp"
+#include <locale.h>
+
 #ifdef Q_OS_WIN
 void customMessageHandler(QtMsgType type, const QMessageLogContext &context, const QString &msg)
 {
@@ -40,6 +43,8 @@ void customMessageHandler(QtMsgType type, const QMessageLogContext &context, con
 
 int main(int argc, char *argv[])
 {
+    setlocale( LC_ALL, "en-US" );
+    LOGGER_INIT(LOG_ALL)
     QApplication app(argc, argv);
 #ifdef Q_OS_WIN
     //qInstallMessageHandler(customMessageHandler);
