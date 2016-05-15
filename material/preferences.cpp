@@ -186,11 +186,11 @@ void Preferences::setBootstrapIP(const QString& ip) {
     emit bootstrapIPChanged(ip);
 }
 
-quint16 Preferences::bootstrapPort() const {
-    return value(bsPort, 0).toUInt();
+QString Preferences::bootstrapPort() const {
+    return value(bsPort, "").toUInt();
 }
 
-void Preferences::setBootstrapPort(quint16 port) {
+void Preferences::setBootstrapPort(QString port) {
     setValue(bsPort, port);
     emit bootstrapPortChanged(port);
 }

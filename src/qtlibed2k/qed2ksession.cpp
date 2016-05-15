@@ -590,15 +590,17 @@ void QED2KSession::startKad() {
     bool havePrevState = (e.type() == libed2k::entry::dictionary_t && e.find_key("nodes") != NULL);
 
     // bootstrap from startup node
-    if (!pref.bootstrapIP().isEmpty() && pref.bootstrapPort() != 0) {
-        bootstrapKad(pref.bootstrapIP(), pref.bootstrapPort());
+    if (!pref.bootstrapIP().isEmpty() && !pref.bootstrapPort().isEmpty()) {
+        bootstrapKad(pref.bootstrapIP(), pref.bootstrapPort().toInt());
     }
 
     delegate()->start_dht(e);
 
     if (!havePrevState) {
-        qDebug() << "previous state not found, try to import nodes";
+        qDebug() << "dht previous state not found, try to import nodes";
         addNodesToKad(QStandardPaths::locateAll(QStandardPaths::DownloadLocation, "nodes.dat"));
+    } else {
+        qDebug() << "dht started from previous state";
     }
 }
 

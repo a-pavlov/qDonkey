@@ -60,7 +60,7 @@ class Preferences : public QIniSettings {
     Q_PROPERTY(bool needHelp READ getHelp WRITE setHelp NOTIFY helpChanged)
     Q_PROPERTY(bool kad READ getKad WRITE setKad NOTIFY kadChanged)
     Q_PROPERTY(QString bootstrapIP READ bootstrapIP WRITE setBootstrapIP NOTIFY bootstrapIPChanged)
-    Q_PROPERTY(quint16 bootstrapPort READ bootstrapPort WRITE setBootstrapPort NOTIFY bootstrapPortChanged)
+    Q_PROPERTY(QString bootstrapPort READ bootstrapPort WRITE setBootstrapPort NOTIFY bootstrapPortChanged)
 
 public:
   Preferences() : QIniSettings(COMPANY_NAME,  PRODUCT_NAME){
@@ -122,8 +122,8 @@ public:
     QString bootstrapIP() const;
     void setBootstrapIP(const QString&);
 
-    quint16 bootstrapPort() const;
-    void setBootstrapPort(quint16);
+    QString bootstrapPort() const;
+    void setBootstrapPort(QString);
 
 #ifdef Q_OS_WIN
     static bool isFileAssocSet(const QString& file);
@@ -152,7 +152,7 @@ signals:
      void helpChanged(bool);
      void kadChanged(bool);
      void bootstrapIPChanged(QString);
-     void bootstrapPortChanged(quint16);
+     void bootstrapPortChanged(QString);
 };
 
 #endif // PREFERENCES_H

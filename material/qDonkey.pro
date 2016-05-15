@@ -5,7 +5,7 @@ QT += qml quick widgets svg multimedia network
 RESOURCES += qml.qrc ../src/lang.qrc \
     images.qrc
 
-DEFINES += IS74
+#DEFINES += IS74
 QTPLUGN += qsvg
 
 # Windows specific configuration
