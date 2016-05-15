@@ -24,6 +24,7 @@
 #include <QUrl>
 
 #include "qed2ksession.h"
+#include "file_downloader.h"
 #include "misc.h"
 
 FileType toFileType(const QString& filename) {
@@ -309,6 +310,7 @@ QED2KSession::QED2KSession() {
     connect(&frdTimer, SIGNAL(timeout()), this, SLOT(saveResume()));
     m_speedMon.reset(new TransferSpeedMonitor(this));
     last_error_dt = QDateTime::currentDateTime().addSecs(-1);
+    m_fd = NULL;
 }
 
 void QED2KSession::start()
@@ -718,6 +720,15 @@ bool QED2KSession::hasPrevKadState() const {
     return fi.exists();
 }
 
+bool QED2KSession::downloadEmuleKad() {
+    if (m_fd) return false;
+    QDir d(QStandardPaths::writableLocation(QStandardPaths::DownloadLocation));
+    m_fd = new FileDownloader(QUrl("http://server-met.emulefuture.de/download.php?file=nodes.dat"),
+                              d.absoluteFilePath("nodes.dat"));
+    connect(m_fd, SIGNAL(completed(int,int)), this, SLOT(downloadEMuleKadCompleted(int,int)));
+    m_fd->start();
+}
+
 void QED2KSession::searchFiles(const QString& strQuery,
         quint64 nMinSize,
         quint64 nMaxSize,
@@ -1067,6 +1078,13 @@ void QED2KSession::readAlerts()
 void QED2KSession::saveResume() {
     qDebug() << "temporary save resume data";
     saveTempFastResumeData();
+}
+
+void QED2KSession::downloadEMuleKadCompleted(int rc, int system) {
+    qDebug() << "download kad completed in session";
+    m_fd->deleteLater();
+    m_fd = NULL;
+    emit downloadKadCompleted(rc, system);
 }
 
 // Called periodically

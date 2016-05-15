@@ -142,6 +142,8 @@ struct KadNode {
     KadNode(const libed2k::kad_id& own, const libed2k::kad_state_entry& ke);
 };
 
+class FileDownloader;
+
 class QED2KSession : public QObject {
     Q_OBJECT
     Q_DISABLE_COPY(QED2KSession)
@@ -218,7 +220,7 @@ public:
     bool saveKadState();
     libed2k::entry loadKadState();
     Q_INVOKABLE bool hasPrevKadState() const;
-
+    Q_INVOKABLE bool downloadEmuleKad();
 private:
     QScopedPointer<libed2k::session> m_session;
     QHash<QString, QED2KHandle> m_fast_resume_transfers;   // contains fast resume data were loading
@@ -236,9 +238,11 @@ private:
     QScopedPointer<TransferSpeedMonitor>    m_speedMon;
     QDateTime               last_error_dt;
     QUrl                    currentMF;
+    FileDownloader*         m_fd;
 private slots:
     void readAlerts();
     void saveResume();
+    void downloadEMuleKadCompleted(int rc, int system);
 public slots:
 	void configureSession();
     virtual QPair<QED2KHandle, ErrorCode> addLink(QString strLink, bool resumed = false);
@@ -372,6 +376,7 @@ signals:
     void resetInputDirectory(const QString& path);
 
     void currentMediaFileChanged(QString);
+    void downloadKadCompleted(int rc, int system);
 };
 
 typedef QED2KSession Session;

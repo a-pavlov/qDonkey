@@ -11,6 +11,18 @@ Page {
     Component.onCompleted: {
     }
 
+    Connections {
+        target: session
+        onDownloadKadCompleted: {
+            console.log("emule kad download completed");
+            if (rc != 0) {
+                snackbar.open(qsTr("Error on download nodes.dat: %1 at %2").arg(rc).arg(system))
+            } else {
+                snackbar.open(qsTr("nodes.dat succesfully downloaded"))
+            }
+        }
+    }
+
     function getLangIndex(locale) {
         var i;
         for(i = 0; i < langModel.count; ++i) {
@@ -33,7 +45,10 @@ Page {
         hasActions: true
         positiveButtonText: qsTr("Ok")
         negativeButton.visible: false
-        text: qsTr("To start use KAD in first time you need one of two things or both:\n1. specify bootstrap node(ip and port).\n2. downdload nodes.dat file to your download dir from any internet source, application will load it on start KAD")
+        text: qsTr("To start use KAD in first time you need one of two things or both:
+1. specify bootstrap node(ip and port).
+2. downdload nodes.dat file to your Download location from any internet source(on click download).
+Application will load it on start KAD")
     }
 
     Dialog {
@@ -42,6 +57,15 @@ Page {
         positiveButtonText: qsTr("Ok")
         negativeButton.visible: false
         text: qsTr("Use can't use KAD without at least one bootstrap node or nodes.dat file.\nSpecify bootstrap ip and port or download nodes.dat to your download directory")
+    }
+
+    Dialog {
+        id: kadDownload
+        hasActions: true
+        text: qsTr("Download nodes.dat to your download location? Previous nodes.dat will be erased")
+        onAccepted: {
+            session.downloadEmuleKad();
+        }
     }
 
     Flickable {
@@ -205,6 +229,13 @@ Page {
                             pageStack.push(Qt.resolvedUrl("Kademlia.qml"))
                         }
                     }
+
+                    ActionButton {
+                        iconName: "file/file_download"
+                        isMiniSize: true
+                        backgroundColor: "white"
+                        onClicked: kadDownload.show()
+                    }
                 }
             }
 
@@ -354,6 +385,10 @@ Page {
                 Layout.fillWidth: true
                 Layout.preferredHeight: Units.dp(8)
             }
+        }
+
+        Snackbar {
+            id: snackbar
         }
     }
 

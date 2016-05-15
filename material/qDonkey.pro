@@ -5,7 +5,7 @@ QT += qml quick widgets svg multimedia network
 RESOURCES += qml.qrc ../src/lang.qrc \
     images.qrc
 
-#DEFINES += IS74
+DEFINES += IS74
 QTPLUGN += qsvg
 
 # Windows specific configuration
@@ -47,7 +47,8 @@ HEADERS +=  ../src/misc.h \
             transferdetailsmodel.h \
             transfersortfiltermodel.h \
             peermodel.h \
-    kadnodes.h
+            kadnodes.h \
+            file_downloader.h
 
 SOURCES +=  ../src/misc.cpp \
             search_widget_fp_model.cpp \
@@ -61,7 +62,8 @@ SOURCES +=  ../src/misc.cpp \
             transferdetailsmodel.cpp \
             transfersortfiltermodel.cpp \
             peermodel.cpp \
-    kadnodes.cpp
+            kadnodes.cpp \
+            file_downloader.cpp
 
 lupdate_only {
     SOURCES += qml/Connection.qml \
