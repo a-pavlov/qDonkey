@@ -98,28 +98,14 @@ void MainWindow::keyReleaseEvent(QKeyEvent* event) {
 }
 
 void MainWindow::onInitAccepted() {
-    Preferences pref;
-    if (misc::prepareInputDirectory(pref.inputDir())) Session::instance()->loadDirectory(pref.inputDir());
-    else qDebug() << "prepare input directory failed";
+    qDebug() << "init directory accepted";
+    //Preferences pref;
+    //if (!Session::instance()->loadDirectory(pref.inputDir())) qDebug() << "prepare input directory failed";
 }
 
 void MainWindow::onInitRejected() {
     qDebug() << "init rejected, exit ";
     qApp->quit();
-}
-
-void MainWindow::onIncomingDirChanged(QString dir) {
-    qDebug() << "user set incoming dir to: " << dir;
-    if (dir.isEmpty()) qApp->quit();
-    if (misc::prepareInputDirectory(dir)) Session::instance()->loadDirectory(dir);
-    else qDebug() << "prepare input directory failed";
-}
-
-void MainWindow::onPreferencesChanged() {
-    qDebug() << "preferences changed";
-    Preferences pref;
-    Session::instance()->configureSession();
-    if (!misc::prepareInputDirectory(pref.inputDir())) qDebug() << "preparation input dir failed";
 }
 
 void MainWindow::onServerConnectionInitialized(QString alias, QString host,int port,quint32 client_id, quint32,quint32) {

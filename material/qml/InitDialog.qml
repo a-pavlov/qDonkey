@@ -91,8 +91,12 @@ Dialog {
                 onClicked: {
                     console.log("input dir" + inputDirEdit.text)
                     pref.inputDir = inputDirEdit.text
-                    accepted()
-                    initDialog.close()
+                    if (session.loadDirectory(pref.inputDir)) {
+                        accepted()
+                        initDialog.close()
+                    } else {
+                        titleLabel.text = qsTr("Setup directory incorrect, try again");
+                    }
                 }
             }
         }
