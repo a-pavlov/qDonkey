@@ -83,6 +83,7 @@ Dialog {
                 onClicked: {
                     console.log("cancel clicked")
                     pref.inputDir = ""
+                    rejected()
                     initDialog.close()
                 }
             }
@@ -95,9 +96,15 @@ Dialog {
                 onClicked: {
                     console.log("input dir" + inputDirEdit.text)
                     pref.inputDir = inputDirEdit.text
-                    initDialog.close()
-                    if (act.link.length != 0 && session.loadLink(act.link, true)) {
-                        addLink.show()
+
+                    if (session.loadDirectory(pref.inputDir)) {
+                        accepted()
+                        initDialog.close()
+                        //if (act.link.length != 0 && session.loadLink(act.link, true)) {
+                        //    addLink.show()
+                        //}
+                    } else {
+                        titleLabel.text = qsTr("Setup directory incorrect, try again");
                     }
                 }
             }

@@ -58,6 +58,9 @@ class Preferences : public QIniSettings {
     Q_PROPERTY(bool hasServers READ getServersPresence WRITE setServersPresence)
     Q_PROPERTY(bool upnpEnabled READ getUpnp WRITE setUpnp NOTIFY upnpEnabledChanged)
     Q_PROPERTY(bool needHelp READ getHelp WRITE setHelp NOTIFY helpChanged)
+    Q_PROPERTY(bool kad READ getKad WRITE setKad NOTIFY kadChanged)
+    Q_PROPERTY(QString bootstrapIP READ bootstrapIP WRITE setBootstrapIP NOTIFY bootstrapIPChanged)
+    Q_PROPERTY(QString bootstrapPort READ bootstrapPort WRITE setBootstrapPort NOTIFY bootstrapPortChanged)
 
 public:
   Preferences() : QIniSettings(COMPANY_NAME,  PRODUCT_NAME){
@@ -116,6 +119,12 @@ public:
     bool getHelp() const;
     void setHelp(bool);
 
+    QString bootstrapIP() const;
+    void setBootstrapIP(const QString&);
+
+    QString bootstrapPort() const;
+    void setBootstrapPort(QString);
+
 #ifdef Q_OS_WIN
     static bool isFileAssocSet(const QString& file);
     static void setFileAssoc(const QString& file, bool set);
@@ -123,6 +132,9 @@ public:
     static bool isLinkAssocSet(const QString& link);
     static void setLinkAssoc(const QString& link, bool set);
 #endif
+
+    bool getKad() const;
+    void setKad(bool);
 signals:
      void inputDirChanged(QString);
      void localeChanged(QString);
@@ -138,6 +150,9 @@ signals:
      void askOnExitChanged(bool);
      void upnpEnabledChanged(bool);
      void helpChanged(bool);
+     void kadChanged(bool);
+     void bootstrapIPChanged(QString);
+     void bootstrapPortChanged(QString);
 };
 
 #endif // PREFERENCES_H

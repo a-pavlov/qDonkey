@@ -32,7 +32,7 @@
 #define MISC_H
 
 #ifndef Q_MOC_RUN
-#include <libed2k/md4_hash.hpp>
+#include <libed2k/hasher.hpp>
 #include <libed2k/error_code.hpp>
 #include <libed2k/file.hpp>
 #endif
@@ -157,6 +157,7 @@ public:
   static QString ED2KCollectionLocation();
   static QString XCatalogCacheLocation();
   static QString cacheLocation();
+  static QString metadataLocation();
   //static long long freeDiskSpaceOnPath(QString path);
   // return best userfriendly storage unit (B, KiB, MiB, GiB, TiB)
   // use Binary prefix standards from IEC 60027-2

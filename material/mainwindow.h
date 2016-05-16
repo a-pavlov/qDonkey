@@ -16,6 +16,7 @@ class QED2KHandle;
 class NotificationClient;
 class QKeyEvent;
 class QTimer;
+class KadNodes;
 
 
 class MainWindow:  public QObject {
@@ -29,6 +30,7 @@ private:
     TransferModel*          transferModel;
     TransferDetailsModel*   transferDetails;
     TransferSortFilterModel* transferProxy;
+    KadNodes*               knodes;
     QScopedPointer<Preferences>          pref;
     NotificationClient*     notificationClient;
     QTimer*                 playTimer;
@@ -41,8 +43,8 @@ public:
 protected:
     void keyReleaseEvent(QKeyEvent* event);
 private slots:
-    void onIncomingDirChanged(QString);
-    void onPreferencesChanged();
+    void onInitAccepted();
+    void onInitRejected();
     void onServerConnectionInitialized(QString,QString,int,quint32,quint32,quint32);
     void onServerConnectionClosed(QString,QString,int,QString);
     void onShowAllTransfersChanged(bool);

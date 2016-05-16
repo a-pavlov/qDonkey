@@ -10,5 +10,7 @@
         <file>qml/Preferences.qml</file>
         <file>qml/TransferDetails.qml</file>
         <file>qml/HelpDialog.qml</file>
+        <file>qml/Kademlia.qml</file>
+        <file>qml/AddLinkDialog.qml</file>
     </qresource>
 </RCC>
