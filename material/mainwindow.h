@@ -40,6 +40,8 @@ public:
 protected:
     void keyReleaseEvent(QKeyEvent* event);
 private slots:
+    void onInitAccepted();
+    void onInitRejected();
     void onIncomingDirChanged(QString);
     void onPreferencesChanged();
     void onServerConnectionInitialized(QString,QString,int,quint32,quint32,quint32);

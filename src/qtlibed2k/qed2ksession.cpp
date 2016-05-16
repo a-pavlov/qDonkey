@@ -311,6 +311,7 @@ QED2KSession::QED2KSession() {
     m_speedMon.reset(new TransferSpeedMonitor(this));
     last_error_dt = QDateTime::currentDateTime().addSecs(-1);
     m_fd = NULL;
+    m_PropPending = false;
 }
 
 void QED2KSession::start()
@@ -727,6 +728,16 @@ bool QED2KSession::downloadEmuleKad() {
                               d.absoluteFilePath("nodes.dat"));
     connect(m_fd, SIGNAL(completed(int,int)), this, SLOT(downloadEMuleKadCompleted(int,int)));
     m_fd->start();
+}
+
+void QED2KSession::syncProperties() {
+    if (m_PropPending) {
+        qDebug() << "session in properties pending state, sync";
+        Preferences pref;
+        configureSession();
+        loadDirectory(pref.inputDir());
+        m_PropPending = false;
+    }
 }
 
 void QED2KSession::searchFiles(const QString& strQuery,
@@ -1385,9 +1396,16 @@ qreal QED2KSession::getRealRatio(const QString &hash) const
     return ratio;
 }
 
-void QED2KSession::loadDirectory(const QString& path) {
+bool QED2KSession::loadDirectory(const QString& path) {
     qDebug() << Q_FUNC_INFO << path;
-    if (QDir(m_currentPath) == QDir(path)) return;
+    if (path.isEmpty()) return false;
+    if (QDir(m_currentPath) == QDir(path)) return false;
+
+    if (!misc::prepareInputDirectory(path)) {
+        qDebug() << "unable to prepare new input directory " << path;
+        return false;
+    }
+
     emit resetInputDirectory(path);
 
     QLinkedList<QED2KHandle> transfers = Session::instance()->getTransfers();
@@ -1441,6 +1459,8 @@ void QED2KSession::loadDirectory(const QString& path) {
             m_pendingFiles << filepath;
         }
     }
+
+    return true;
 }
 
 QDateTime QED2KSession::hasBeenAdded(const QString& hash) const {

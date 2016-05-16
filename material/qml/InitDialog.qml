@@ -78,6 +78,7 @@ Dialog {
                 onClicked: {
                     console.log("cancel clicked")
                     pref.inputDir = ""
+                    rejected()
                     initDialog.close()
                 }
             }
@@ -90,6 +91,7 @@ Dialog {
                 onClicked: {
                     console.log("input dir" + inputDirEdit.text)
                     pref.inputDir = inputDirEdit.text
+                    accepted()
                     initDialog.close()
                 }
             }

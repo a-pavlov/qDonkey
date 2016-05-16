@@ -131,7 +131,10 @@ Application will load it on start KAD")
                     floatingLabel: true
                     placeholderText: qsTr("Enter your nickname")
                     text: pref.nick
-                    onTextChanged: pref.nick = text
+                    onTextChanged: {
+                        session.toPP()
+                        pref.nick = text
+                    }
                 }
             }
 
@@ -151,7 +154,10 @@ Application will load it on start KAD")
                     text: pref.listenPort
                     validator: IntValidator {}
                     maximumLength: 5
-                    onTextChanged: pref.listenPort=text
+                    onTextChanged: {
+                        session.toPP()
+                        pref.listenPort=text
+                    }
                 }
             }
 
@@ -163,7 +169,10 @@ Application will load it on start KAD")
                         checked: pref.upnpEnabled
                         enabled: true
                         darkBackground: false
-                        onCheckedChanged: pref.upnpEnabled=checked
+                        onCheckedChanged: {
+                            session.toPP()
+                            pref.upnpEnabled=checked
+                        }
                     }
 
                     Label {
@@ -192,6 +201,7 @@ Application will load it on start KAD")
                                     console.log("ok, ready to enabled kad");
                                     pref.kad = true;
                                     session.startKad()
+                                    // no session Properties Pending state since start kad immediately
                                 }
                                 else
                                 {
@@ -292,6 +302,7 @@ Application will load it on start KAD")
                         onCheckedChanged: {
                             limitDownload.enabled=checked
                             pref.dlSpeedLimit=checked
+                            session.toPP()
                         }
                     }
 
@@ -303,7 +314,10 @@ Application will load it on start KAD")
                         placeholderText: qsTr("Dowload limit Kb/s")
                         text: pref.dlSpeed
                         validator: IntValidator {}
-                        onTextChanged: pref.dlSpeed=text
+                        onTextChanged: {
+                            pref.dlSpeed=text
+                            session.toPP()
+                        }
                     }
 
                     CheckBox {
@@ -314,6 +328,7 @@ Application will load it on start KAD")
                          onCheckedChanged: {
                             limitUpload.enabled=checked
                             pref.upSpeedLimited=checked
+                            session.toPP()
                         }
                     }
 
@@ -325,7 +340,10 @@ Application will load it on start KAD")
                         placeholderText: qsTr("Upload limit Kb/s")
                         text: pref.upSpeed
                         validator: IntValidator {}
-                        onTextChanged: pref.upSpeed=text
+                        onTextChanged: {
+                            pref.upSpeed=text
+                            session.toPP()
+                        }
                     }
                 }
             }
@@ -343,7 +361,10 @@ Application will load it on start KAD")
                     floatingLabel: true
                     placeholderText: qsTr("Incoming directory")
                     text: pref.inputDir
-                    onTextChanged: pref.inputDir=text
+                    onTextChanged: {
+                        pref.inputDir=text
+                        session.toPP()
+                    }
                 }
             }
 

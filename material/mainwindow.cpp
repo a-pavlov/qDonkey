@@ -18,8 +18,6 @@
 
 MainWindow::MainWindow(QObject* parent) : QObject(parent) {
     pref.reset(new Preferences);
-    connect(pref.data(), SIGNAL(inputDirChanged(QString)), this, SLOT(onIncomingDirChanged(QString)));
-    connect(pref.data(), SIGNAL(preferencesChanged()), this, SLOT(onPreferencesChanged()));
     smodel = new ServerModel(this);
     smodel->load();
     searchmodel = new SearchModel(this);
@@ -73,6 +71,10 @@ MainWindow::MainWindow(QObject* parent) : QObject(parent) {
     engine->load(QUrl(QStringLiteral("qrc:/qml/main.qml")));
 #endif
 
+    Q_ASSERT(engine->rootObjects().size() == 1);
+    connect(engine->rootObjects()[0], SIGNAL(init_dir_accepted()), this, SLOT(onInitAccepted()));
+    connect(engine->rootObjects()[0], SIGNAL(init_dir_rejected()), this, SLOT(onInitRejected()));
+
     //Session::instance()->start();
     Session::instance()->loadDirectory(pref.data()->inputDir());
     restoreLastServerConnection();
@@ -93,6 +95,17 @@ void MainWindow::keyReleaseEvent(QKeyEvent* event) {
     }
 
     event->setAccepted(true);
+}
+
+void MainWindow::onInitAccepted() {
+    Preferences pref;
+    if (misc::prepareInputDirectory(pref.inputDir())) Session::instance()->loadDirectory(pref.inputDir());
+    else qDebug() << "prepare input directory failed";
+}
+
+void MainWindow::onInitRejected() {
+    qDebug() << "init rejected, exit ";
+    qApp->quit();
 }
 
 void MainWindow::onIncomingDirChanged(QString dir) {

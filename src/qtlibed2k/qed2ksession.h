@@ -188,7 +188,7 @@ public:
     Q_INVOKABLE void deferPlayMediaFile(const QString& hash);
     bool playMedia(QED2KHandle h);
     void playLink(const QString& strLink);
-    void loadDirectory(const QString& path);
+    Q_INVOKABLE bool loadDirectory(const QString& path);
     QDateTime hasBeenAdded(const QString& hash) const;
     qlonglong getETA(const QString& hash) const;
     QString status(const QString& hash) const;
@@ -221,6 +221,10 @@ public:
     libed2k::entry loadKadState();
     Q_INVOKABLE bool hasPrevKadState() const;
     Q_INVOKABLE bool downloadEmuleKad();
+
+    Q_INVOKABLE void toPP() { m_PropPending = true; }
+    bool isPropPending() const { return m_PropPending; }
+    Q_INVOKABLE void syncProperties();
 private:
     QScopedPointer<libed2k::session> m_session;
     QHash<QString, QED2KHandle> m_fast_resume_transfers;   // contains fast resume data were loading
@@ -239,6 +243,7 @@ private:
     QDateTime               last_error_dt;
     QUrl                    currentMF;
     FileDownloader*         m_fd;
+    bool                    m_PropPending;
 private slots:
     void readAlerts();
     void saveResume();
