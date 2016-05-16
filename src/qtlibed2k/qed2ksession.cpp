@@ -4,7 +4,7 @@
 #ifndef Q_MOC_RUN
 #include <libed2k/bencode.hpp>
 #include <libed2k/file.hpp>
-#include <libed2k/md4_hash.hpp>
+#include <libed2k/hasher.hpp>
 #include <libed2k/search.hpp>
 #include <libed2k/error_code.hpp>
 #include <libed2k/transfer_handle.hpp>
@@ -14,6 +14,7 @@
 #include <libed2k/upnp.hpp>
 #include <libed2k/natpmp.hpp>
 #include <libed2k/file.hpp>
+#include <libed2k/kademlia/node_id.hpp>
 #endif
 
 #include <QMessageBox>
@@ -23,6 +24,7 @@
 #include <QUrl>
 
 #include "qed2ksession.h"
+#include "file_downloader.h"
 #include "misc.h"
 
 FileType toFileType(const QString& filename) {
@@ -60,13 +62,20 @@ void QED2KSession::drop() {
 /* Converts a QString hash into a  libed2k md4_hash */
 static libed2k::md4_hash QStringToMD4(const QString& s)
 {
-    Q_ASSERT(s.length() == libed2k::md4_hash::hash_size*2);
+    Q_ASSERT(s.length() == libed2k::md4_hash::size*2);
     return libed2k::md4_hash::fromString(s.toStdString());
 }
 
 QString md4toQString(const libed2k::md4_hash& hash)
 {
     return QString::fromStdString(hash.toString());
+}
+
+KadNode::KadNode(const libed2k::kad_id& own, const libed2k::kad_state_entry& ke) {
+    host = QString::fromStdString(libed2k::int2ipstr(ke.point.m_nIP));
+    port=ke.point.m_nPort;
+    kid = QString::fromStdString(ke.pid.toString());
+    distance = libed2k::dht::distance_exp(own, ke.pid);
 }
 
 QED2KSearchResultEntry::QED2KSearchResultEntry() :
@@ -135,7 +144,7 @@ QED2KSearchResultEntry QED2KSearchResultEntry::fromSharedFileEntry(const libed2k
 
     try
     {
-        for (size_t n = 0; n < sf.m_list.count(); n++)
+        for (size_t n = 0; n < sf.m_list.size(); n++)
         {
             boost::shared_ptr<libed2k::base_tag> ptag = sf.m_list[n];
 
@@ -210,7 +219,7 @@ QED2KSearchResultEntry QED2KSearchResultEntry::fromSharedFileEntry(const libed2k
 
 bool QED2KSearchResultEntry::isCorrect() const
 {
-    return (m_hFile.size() == libed2k::MD4_HASH_SIZE*2 && !m_strFilename.isEmpty());
+    return (m_hFile.size() == libed2k::md4_hash::size*2 && !m_strFilename.isEmpty());
 }
 
 QED2KPeerOptions::QED2KPeerOptions(const libed2k::misc_options& mo, const libed2k::misc_options2& mo2)
@@ -301,6 +310,8 @@ QED2KSession::QED2KSession() {
     connect(&frdTimer, SIGNAL(timeout()), this, SLOT(saveResume()));
     m_speedMon.reset(new TransferSpeedMonitor(this));
     last_error_dt = QDateTime::currentDateTime().addSecs(-1);
+    m_fd = NULL;
+    m_PropPending = false;
 }
 
 void QED2KSession::start()
@@ -348,6 +359,7 @@ void QED2KSession::stop()
     frdTimer.stop();
     m_session->pause();
     saveFastResumeData();
+    stopKad();
 }
 
 bool QED2KSession::started() const { return !m_session.isNull(); }
@@ -448,9 +460,10 @@ void QED2KSession::configureSession() {
     s.download_rate_limit = dl_limit <= 0 ? -1 : dl_limit*1024;
     s.upload_rate_limit = up_limit <= 0 ? -1 : up_limit*1024;
     m_session->set_settings(s);
-
+    qDebug() << "new listen " << new_listenPort << " old listen " << old_listenPort;
     if (new_listenPort != old_listenPort) m_session->listen_on(new_listenPort);    
     enableUPnP(pref.getUpnp());
+    if (pref.getKad()) startKad();
 }
 
 
@@ -568,6 +581,165 @@ QString QED2KSession::postTransfer(const libed2k::add_transfer_params& atp)
 libed2k::session* QED2KSession::delegate() const { return m_session.data(); }
 
 const libed2k::ip_filter& QED2KSession::session_filter() const { return delegate()->get_ip_filter(); }
+
+libed2k::kad_state QED2KSession::getKademliaState() const {
+    return delegate()->dht_estate();
+}
+
+void QED2KSession::startKad() {
+    Preferences pref;
+
+    libed2k::entry e = loadKadState();
+    bool havePrevState = (e.type() == libed2k::entry::dictionary_t && e.find_key("nodes") != NULL);
+
+    // bootstrap from startup node
+    if (!pref.bootstrapIP().isEmpty() && !pref.bootstrapPort().isEmpty()) {
+        bootstrapKad(pref.bootstrapIP(), pref.bootstrapPort().toInt());
+    }
+
+    delegate()->start_dht(e);
+
+    if (!havePrevState) {
+        qDebug() << "dht previous state not found, try to import nodes";
+        addNodesToKad(QStandardPaths::locateAll(QStandardPaths::DownloadLocation, "nodes.dat"));
+    } else {
+        qDebug() << "dht started from previous state";
+    }
+}
+
+void QED2KSession::stopKad() {
+    saveKadState();
+    delegate()->stop_dht();
+}
+
+bool QED2KSession::isKadStarted() const {
+    return delegate()->is_dht_running();
+}
+
+void QED2KSession::addNodesToKad(const QStringList& files) {
+    foreach(QString filepath, files) {
+        qDebug() << "import data from " << filepath;
+        std::ifstream fstream(filepath.toUtf8().constData(), std::ios_base::binary | std::ios_base::in);
+        libed2k::kad_nodes_dat knd;
+        if (fstream) {
+            libed2k::archive::ed2k_iarchive ifa(fstream);
+            using libed2k::kad_entry;
+            try {
+                ifa >> knd;
+                for (size_t i = 0; i != knd.bootstrap_container.m_collection.size(); ++i) {
+                    //qDebug() << ("bootstrap " << knd.bootstrap_container.m_collection[i].kid.toString()
+                    //    << " ip:" << libed2k::int2ipstr(knd.bootstrap_container.m_collection[i].address.address)
+                    //    << " udp:" << knd.bootstrap_container.m_collection[i].address.udp_port
+                    //    << " tcp:" << knd.bootstrap_container.m_collection[i].address.tcp_port);
+                    delegate()->add_dht_node(std::make_pair(libed2k::int2ipstr(knd.bootstrap_container.m_collection[i].address.address),
+                        knd.bootstrap_container.m_collection[i].address.udp_port), knd.bootstrap_container.m_collection[i].kid.toString());
+                }
+
+                for (std::list<kad_entry>::const_iterator itr = knd.contacts_container.begin(); itr != knd.contacts_container.end(); ++itr) {
+                    //DBG("nodes " << itr->kid.toString()
+                    //    << " ip:" << libed2k::int2ipstr(itr->address.address)
+                    //    << " udp:" << itr->address.udp_port
+                    //    << " tcp:" << itr->address.tcp_port);
+                    delegate()->add_dht_node(std::make_pair(libed2k::int2ipstr(itr->address.address), itr->address.udp_port), itr->kid.toString());
+                }
+            }
+            catch(const libed2k::libed2k_exception& e) {
+                qDebug() << "parse error for " << filepath << " " << e.what();
+            }
+        }
+    }
+}
+
+void QED2KSession::bootstrapKad(const QString& host, int port) {
+    delegate()->add_dht_router(std::make_pair(host.toUtf8().constData(), port));
+}
+
+QList<KadNode> QED2KSession::kadState() {
+    libed2k::kad_state ks = delegate()->dht_estate();
+    QList<KadNode> res;
+    for(std::deque<libed2k::kad_state_entry>::iterator ke = ks.entries.m_collection.begin();
+        ke != ks.entries.m_collection.end(); ++ke) {
+        res.push_back(KadNode(ks.self_id, *ke));
+    }
+
+    qSort(res);
+    return res;
+}
+
+bool QED2KSession::hasInitialNodesFile() {
+    return !QStandardPaths::locate(QStandardPaths::DownloadLocation, "nodes.dat").isEmpty();
+}
+
+bool QED2KSession::saveKadState() {
+    libed2k::entry e = delegate()->dht_state();
+    bool res = (e.type() == libed2k::entry::dictionary_t && e.find_key("nodes") != NULL);
+    if (!res) {
+        qDebug() << "state is empty, do nothing";
+    }
+    else {
+        QDir metaDir(misc::metadataLocation());
+        const QString filepath = metaDir.absoluteFilePath("dht.dat");
+        std::ofstream fs(filepath.toUtf8().constData(), std::ios_base::binary);
+        if (fs) {
+            std::noskipws(fs);
+            std::vector<char> out;
+            libed2k::bencode(std::back_inserter(out), e);
+            std::copy(out.begin(), out.end(), std::ostreambuf_iterator<char>(fs));
+        }
+        else {
+            qDebug() << "unable to open file for save dht state " << filepath;
+            res = false;
+        }
+    }
+
+    return res;
+}
+
+libed2k::entry QED2KSession::loadKadState() {
+    QDir metaDir(misc::metadataLocation());
+    const QString filepath = metaDir.absoluteFilePath("dht.dat");
+
+    libed2k::entry e;
+    std::ifstream fs(filepath.toUtf8().constData(), std::ios_base::binary);
+    if (fs) {
+        std::noskipws(fs);
+        std::string content((std::istreambuf_iterator<char>(fs)),
+            (std::istreambuf_iterator<char>()));
+        e = libed2k::bdecode(content.c_str(), content.c_str() + content.size());
+    }
+    else {
+        qDebug() << "dht state file not exists " << filepath;
+    }
+
+    return e;
+}
+
+bool QED2KSession::hasPrevKadState() const {
+    QDir metaDir(misc::metadataLocation());
+    QString filepath = metaDir.absoluteFilePath("dht.dat");
+    QFileInfo fi(filepath);
+    return fi.exists();
+}
+
+bool QED2KSession::downloadEmuleKad() {
+    if (m_fd) return false;
+    QDir d(QStandardPaths::writableLocation(QStandardPaths::DownloadLocation));
+    m_fd = new FileDownloader(QUrl("http://server-met.emulefuture.de/download.php?file=nodes.dat"),
+                              d.absoluteFilePath("nodes.dat"));
+    connect(m_fd, SIGNAL(completed(int,int)), this, SLOT(downloadEMuleKadCompleted(int,int)));
+    m_fd->start();
+    return true;
+}
+
+void QED2KSession::syncProperties() {
+    if (m_PropPending) {
+        qDebug() << "session in properties pending state, sync";
+        Preferences pref;
+        configureSession();
+        loadDirectory(pref.inputDir());
+        m_PropPending = false;
+    }
+}
 
 void QED2KSession::searchFiles(const QString& strQuery,
         quint64 nMinSize,
@@ -905,7 +1077,7 @@ void QED2KSession::readAlerts()
                 atp.file_size = trd.m_filesize;
                 atp.file_hash = trd.m_hash;
 
-                if (trd.m_fast_resume_data.count() > 0) {
+                if (trd.m_fast_resume_data.size() > 0) {
                     atp.resume_data = const_cast<std::vector<char>* >(
                         &trd.m_fast_resume_data.getTagByNameId(libed2k::FT_FAST_RESUME_DATA)->asBlob());
                 }
@@ -938,6 +1110,13 @@ void QED2KSession::readAlerts()
 void QED2KSession::saveResume() {
     qDebug() << "temporary save resume data";
     saveTempFastResumeData();
+}
+
+void QED2KSession::downloadEMuleKadCompleted(int rc, int system) {
+    qDebug() << "download kad completed in session";
+    m_fd->deleteLater();
+    m_fd = NULL;
+    emit downloadKadCompleted(rc, system);
 }
 
 // Called periodically
@@ -1069,7 +1248,7 @@ void QED2KSession::loadFastResumeData(const QString& path) {
                 item.m_params->file_size = trd.m_filesize;
                 item.m_params->file_hash = trd.m_hash;
 
-                if (trd.m_fast_resume_data.count() > 0)
+                if (trd.m_fast_resume_data.size() > 0)
                 {
                     item.m_params->resume_data = const_cast<std::vector<char>* >(
                         &trd.m_fast_resume_data.getTagByNameId(libed2k::FT_FAST_RESUME_DATA)->asBlob());
@@ -1238,9 +1417,16 @@ qreal QED2KSession::getRealRatio(const QString &hash) const
     return ratio;
 }
 
-void QED2KSession::loadDirectory(const QString& path) {
+bool QED2KSession::loadDirectory(const QString& path) {
     qDebug() << Q_FUNC_INFO << path;
-    if (QDir(m_currentPath) == QDir(path)) return;
+    if (path.isEmpty()) return false;
+    if (QDir(m_currentPath) == QDir(path)) return false;
+
+    if (!misc::prepareInputDirectory(path)) {
+        qDebug() << "unable to prepare new input directory " << path;
+        return false;
+    }
+
     emit resetInputDirectory(path);
 
     QLinkedList<QED2KHandle> transfers = Session::instance()->getTransfers();
@@ -1294,6 +1480,8 @@ void QED2KSession::loadDirectory(const QString& path) {
             m_pendingFiles << filepath;
         }
     }
+
+    return true;
 }
 
 QDateTime QED2KSession::hasBeenAdded(const QString& hash) const {

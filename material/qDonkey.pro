@@ -1,6 +1,6 @@
 TEMPLATE = app
 
-QT += qml quick widgets svg
+QT += qml quick widgets svg network
 
 RESOURCES += qml.qrc ../src/lang.qrc \
     images.qrc
@@ -27,6 +27,10 @@ android {
   include(android.pri)
 }
 
+CONFIG(debug, debug|release) {
+    DEFINES += LIBED2K_DHT_VERBOSE_LOGGING
+}
+
 include(../src/qtlibed2k/qtlibed2k.pri)
 
 INCLUDEPATH += $$PWD/../src
@@ -43,7 +47,9 @@ HEADERS +=  ../src/misc.h \
             transferdetailsmodel.h \
             transfersortfiltermodel.h \
             notificationclient.h \
-            peermodel.h
+            peermodel.h \
+            kadnodes.h \
+            file_downloader.h
 
 SOURCES +=  ../src/misc.cpp \
             search_widget_fp_model.cpp \
@@ -57,7 +63,9 @@ SOURCES +=  ../src/misc.cpp \
             transferdetailsmodel.cpp \
             transfersortfiltermodel.cpp \
             notificationclient.cpp \
-            peermodel.cpp
+            peermodel.cpp \
+            kadnodes.cpp \
+            file_downloader.cpp
 
 lupdate_only {
     SOURCES += qml/Connection.qml \
@@ -67,7 +75,8 @@ lupdate_only {
     qml/Search.qml \
     qml/SearchResult.qml \
     qml/TransferDetails.qml \
-    qml/Transfers.qml
+    qml/Transfers.qml \
+    qml/Kademlia.qml
 }
 
 LANG_PATH = ../src/lang

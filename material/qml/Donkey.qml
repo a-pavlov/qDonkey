@@ -10,6 +10,9 @@ ApplicationWindow {
     height: 500
     visible: true
 
+    signal init_dir_accepted()
+    signal init_dir_rejected()
+
     property string lastErrorFilename: ""
     property string lastErrorMessage: ""
     property bool forceExit: false
@@ -73,11 +76,24 @@ ApplicationWindow {
     }
 
     Component.onCompleted: {
+        initDialog.accepted.connect(init_accepted)
+        initDialog.rejected.connect(init_rejected);
+
         if (pref.inputDir.length === 0) initDialog.show()
         else if (pref.needHelp) {
             helpDialog.show()
             pref.needHelp = false
         }
+    }
+
+    function init_accepted() {
+        console.log("init a")
+        init_dir_accepted()
+    }
+
+    function init_rejected() {
+        console.log("init r")
+        init_dir_rejected()
     }
 
     property string connections: "Connection"
@@ -88,7 +104,6 @@ ApplicationWindow {
     property var sections: [ connections, transfers, search, preferences ]
     property var sectionTitles: [ qsTr("Conn"), qsTr("Transfers"), qsTr("Search"), qsTr("Pref") ]
     property string selectedComponent: connections
-
 
     initialPage: TabbedPage {
         id: page
@@ -112,6 +127,10 @@ ApplicationWindow {
                 property string section: modelData
                 sourceComponent: tabDelegate
             }
+        }
+
+        onSelectedTabChanged: {
+            session.syncProperties()
         }
     }
 

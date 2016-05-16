@@ -84,9 +84,7 @@ const int UNLEN = 256;
 #endif
 #endif // DISABLE_GUI
 
-#ifdef Q_OS_WIN
-#include <QDesktopServices>
-#endif
+#include <QStandardPaths>
 
 #include <fstream>
 
@@ -568,6 +566,14 @@ QString misc::cacheLocation() {
   return location;
 }
 
+QString misc::metadataLocation() {
+    QString location =  QStandardPaths::writableLocation(QStandardPaths::AppDataLocation);
+    QDir locationDir(location);
+    if (!locationDir.exists())
+      locationDir.mkpath(locationDir.absolutePath());
+    return location;
+}
+
 // return best userfriendly storage unit (B, KB, MB, GB, TB)
 // value must be given in bytes
 QString misc::friendlyUnit(qreal val, SizeType type) {
@@ -944,7 +950,7 @@ QString misc::userHash()
     QString res;
     qsrand(QTime(0,0,0).secsTo(QTime::currentTime()));
 
-    for (int i = 0; i < libed2k::md4_hash::hash_size*2; ++i)
+    for (int i = 0; i < libed2k::md4_hash::size*2; ++i)
     {
         QString part;
         part.setNum(qrand() % 16, 16);
