@@ -199,7 +199,7 @@ Page {
         delegate: ListItem.Subtitled {
             text: ip
             valueText: speed
-            subText: qsTr("Total: ") + total
+            subText: "[" + source + "] " + qsTr("Total: ") + total
 
             action: Icon {
                 source: Qt.resolvedUrl("qrc:/images/chevron-double-down.svg")

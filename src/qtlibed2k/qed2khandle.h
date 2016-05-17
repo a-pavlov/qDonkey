@@ -15,6 +15,13 @@ typedef libed2k::transfer_status TransferStatus;
 typedef libed2k::bitfield TransferBitfield;
 
 struct PeerInfo {
+    enum PeerSourceType {
+        PST_SERVER,
+        PST_KAD,
+        PST_INCOMING,
+        PST_UNKNOWN
+    };
+
     QString m_hash;
     QString m_address;
     QString m_client;
@@ -25,6 +32,7 @@ struct PeerInfo {
     quint64 m_total_up;
     float   m_progress;
     bool    m_hack;
+    PeerSourceType m_source;
 
     PeerInfo();
 
