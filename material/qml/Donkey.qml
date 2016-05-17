@@ -68,6 +68,42 @@ ApplicationWindow {
         id: helpDialog
     }
 
+    Dialog {
+        id: helpConn
+        hasActions: false
+        text: qsTr("Choose server for connection and click for action menu.
+Connection to server need for search by keywords and search for sources on download stage.
+If you have router and got LowID try to activate UPnP in preferences and reconnect to server.
+LowID means your port is not accessible from outside.")
+    }
+
+    Dialog {
+        id: helpSearch
+        hasActions: false
+        text: qsTr("Enter search phrase into text field. Additionaly you can specify minimal sources count, size and so on.
+To start search press Start button. If search returns results you will be forwarded to search result page.
+To search more results click More button. Search in KAD will be available soon.
+Choose search result and click Download or Preview")
+    }
+
+    Dialog {
+        id: helpTransfers
+        hasActions: false
+        text: qsTr("This page shows your current active transfers include all previous files from incoming directory.
+By default it is your Download directory.
+Click on transfer and choose action in menu. You can start view file before download completed using Previw option.")
+    }
+
+    Dialog {
+        id: helpPref
+        hasActions: false
+        text: qsTr("Setup program options here. Language changes will applied after restart application.
+Incoming directory and port applies after you leave pref page.
+Be careful about changing listen port and incoming directory.
+All content of incoming directory will be shared.
+KAD help you can see on help button near KAD switch.")
+    }
+
     theme {
         primaryColor: Palette.colors["blue"]["500"]
         primaryDarkColor: Palette.colors["blue"]["700"]
@@ -114,8 +150,23 @@ ApplicationWindow {
         actions: [
             Action {
                 iconName: "action/help"
-                name: "Help"
-                onTriggered: helpDialog.show()
+                name: "Help"                
+                onTriggered: {
+                    switch(page.selectedTab) {
+                    case 0:
+                        helpConn.show()
+                        break;
+                    case 1:
+                        helpTransfers.show()
+                        break;
+                    case 2:
+                        helpSearch.show()
+                        break;
+                    case 3:
+                        helpPref.show()
+                        break;
+                    }
+                }
             }
         ]
 

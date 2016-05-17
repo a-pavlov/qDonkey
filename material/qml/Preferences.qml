@@ -47,8 +47,8 @@ Page {
         negativeButton.visible: false
         text: qsTr("To start use KAD in first time you need one of two things or both:
 1. specify bootstrap node(ip and port).
-2. downdload nodes.dat file to your Download location from any internet source(on click download).
-Application will load it on start KAD")
+2. downdload nodes.dat file to your Download location from any internet source or click download button.
+Application will load nodes.dat on start KAD again. Status of Kademlia you can see on click info button.")
     }
 
     Dialog {
@@ -56,7 +56,8 @@ Application will load it on start KAD")
         hasActions: true
         positiveButtonText: qsTr("Ok")
         negativeButton.visible: false
-        text: qsTr("Use can't use KAD without at least one bootstrap node or nodes.dat file.\nSpecify bootstrap ip and port or download nodes.dat to your download directory")
+        text: qsTr("You can't start use KAD without at least one bootstrap node or nodes.dat file in Download location.
+Click help button for more information")
     }
 
     Dialog {
