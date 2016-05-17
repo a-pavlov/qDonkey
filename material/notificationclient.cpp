@@ -33,8 +33,6 @@
 
 #include "notificationclient.h"
 
-#include <QtAndroidExtras/QAndroidJniObject>
-
 NotificationClient::NotificationClient(QObject *parent)
     : QObject(parent)
 {
@@ -50,10 +48,15 @@ void NotificationClient::setNotification(const QString &notification)
     emit notificationChanged();
 }
 
+
 QString NotificationClient::notification() const
 {
     return m_notification;
 }
+
+#ifdef Q_OS_ANDROID
+
+#include <QtAndroidExtras/QAndroidJniObject>
 
 void NotificationClient::updateAndroidNotification()
 {
@@ -63,3 +66,11 @@ void NotificationClient::updateAndroidNotification()
                                        "(Ljava/lang/String;)V",
                                        javaNotification.object<jstring>());
 }
+
+#else
+
+void NotificationClient::updateAndroidNotification()
+{
+}
+
+#endif
