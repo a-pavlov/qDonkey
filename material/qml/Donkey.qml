@@ -71,10 +71,10 @@ ApplicationWindow {
     Dialog {
         id: helpConn
         hasActions: false
-        text: qsTr("Choose server for connection and click for action menu.
-Connection to server need for search by keywords and search for sources on download stage.
-If you have router and got LowID try to activate UPnP in preferences and reconnect to server.
-LowID means your port is not accessible from outside.")
+        text: qsTr("Choose server for connection and click for menu.
+Connection to server need for search keywords and search sources on download stage.
+If you have router and got LowID try to forward listen port in preferences(reconnect after).
+LowID means your port is not accessible from outside - it is significantly reduce download speed.")
     }
 
     Dialog {
@@ -82,7 +82,7 @@ LowID means your port is not accessible from outside.")
         hasActions: false
         text: qsTr("Enter search phrase into text field. Additionaly you can specify minimal sources count, size and so on.
 To start search press Start button. If search returns results you will be forwarded to search result page.
-To search more results click More button. Search in KAD will be available soon.
+To search more results click More button. Search in KAD will be available in next releases.
 Choose search result and click Download or Preview")
     }
 
@@ -91,17 +91,17 @@ Choose search result and click Download or Preview")
         hasActions: false
         text: qsTr("This page shows your current active transfers include all previous files from incoming directory.
 By default it is your Download directory.
-Click on transfer and choose action in menu. You can start view file before download completed using Previw option.")
+Click on transfer for menu. You can start view file before download completed using Previw option.")
     }
 
     Dialog {
         id: helpPref
         hasActions: false
         text: qsTr("Setup program options here. Language changes will applied after restart application.
-Incoming directory and port applies after you leave pref page.
+Incoming directory and port applies after you leave preferences page.
 Be careful about changing listen port and incoming directory.
 All content of incoming directory will be shared.
-KAD help you can see on help button near KAD switch.")
+Help about KAD you can see on help button near KAD switch.")
     }
 
     theme {
