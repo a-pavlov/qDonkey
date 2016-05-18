@@ -200,7 +200,7 @@ Page {
 
         model: peerModel
         delegate: ListItem.Subtitled {
-            text: ip
+            text: ip + " [" + source + "]"
             valueText: speed
             subText: qsTr("Total: ") + total
 

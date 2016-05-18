@@ -242,7 +242,7 @@ Page {
                     enabled: false
                     onClicked: {
                         session.cancelSearch()
-                         btnMore.enabled = false
+                        btnMore.enabled = false
                         btnStart.enabled = true
                         btnCancel.enabled = false
                         progress.enabled = false

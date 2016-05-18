@@ -25,6 +25,7 @@ QHash<int, QByteArray> PeerModel::roleNames() const {
     roles[PM_PROGRESS]  = "progress";
     roles[PM_SPEED]     = "speed";
     roles[PM_TOTAL]     = "total";
+    roles[PM_SOURCE]    = "source";
     return roles;
 }
 
@@ -41,6 +42,13 @@ QVariant PeerModel::data(const QModelIndex& index, int role) const {
         case PM_PROGRESS:  return QString::number(at(index).m_progress*100, 'f', 1)+"%";
         case PM_SPEED: return misc::friendlyUnit(speed(index))+tr("/s");
         case PM_TOTAL:     return misc::friendlyUnit(total(index));
+        case PM_SOURCE: {
+            if (at(index).m_source == PeerInfo::PST_SERVER) return tr("Server");
+            if (at(index).m_source == PeerInfo::PST_KAD) return tr("KAD");
+            if (at(index).m_source == PeerInfo::PST_INCOMING) return tr("Incoming");
+            if (at(index).m_source == PeerInfo::PST_UNKNOWN) return tr("Unknown");
+            break;
+        }
         default:
         break;
     }
@@ -70,6 +78,7 @@ QVariant PeerModel::headerData(int section, Qt::Orientation orientation, int rol
             case PM_PROGRESS:  return tr("Progress");
             case PM_SPEED:     return tr("Speed");
             case PM_TOTAL:     return tr("Bytes");
+            case PM_SOURCE:    return tr("Source");
             default:
                 Q_ASSERT(false);
                 break;

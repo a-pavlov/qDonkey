@@ -15,7 +15,7 @@ public:
         SortRole = Qt::UserRole + 1
     };
 
-    enum Columns { PM_IP, PM_CLIENT, PM_FILE, PM_PROGRESS, PM_SPEED, PM_TOTAL, COL_COUNT };
+    enum Columns { PM_IP, PM_CLIENT, PM_FILE, PM_PROGRESS, PM_SPEED, PM_TOTAL, PM_SOURCE, COL_COUNT };
 
     explicit PeerModel(QObject *parent = 0);
     int rowCount(const QModelIndex& parent = QModelIndex()) const;

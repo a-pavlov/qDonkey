@@ -11,6 +11,9 @@ ApplicationWindow {
     height: 500
     visible: true
 
+    signal init_dir_accepted()
+    signal init_dir_rejected()
+
     property string lastErrorFilename: ""
     property string lastErrorMessage: ""
     property bool forceExit: false
@@ -104,6 +107,42 @@ ApplicationWindow {
         id: helpDialog
     }
 
+    Dialog {
+        id: helpConn
+        hasActions: false
+        text: qsTr("Choose server for connection and click for menu.
+Connection to server need for search keywords and search sources on download stage.
+If you have router and got LowID try to forward listen port in preferences(reconnect after).
+LowID means your port is not accessible from outside - it is significantly reduce download speed.")
+    }
+
+    Dialog {
+        id: helpSearch
+        hasActions: false
+        text: qsTr("Enter search phrase into text field. Additionaly you can specify minimal sources count, size and so on.
+To start search press Start button. If search returns results you will be forwarded to search result page.
+To search more results click More button. Search in KAD will be available in next releases.
+Choose search result and click Download or Preview")
+    }
+
+    Dialog {
+        id: helpTransfers
+        hasActions: false
+        text: qsTr("This page shows your current active transfers include all previous files from incoming directory.
+By default it is your Download directory.
+Click on transfer for menu. You can start view file before download completed using Previw option.")
+    }
+
+    Dialog {
+        id: helpPref
+        hasActions: false
+        text: qsTr("Setup program options here. Language changes will applied after restart application.
+Incoming directory and port applies after you leave preferences page.
+Be careful about changing listen port and incoming directory.
+All content of incoming directory will be shared.
+Help about KAD you can see on help button near KAD switch.")
+    }
+
     theme {
         primaryColor: Palette.colors["blue"]["500"]
         primaryDarkColor: Palette.colors["blue"]["700"]
@@ -113,6 +152,9 @@ ApplicationWindow {
 
     Component.onCompleted: {
         link_filename = adMob.link
+        initDialog.accepted.connect(init_accepted)
+        initDialog.rejected.connect(init_rejected);
+
         if (pref.inputDir.length === 0) initDialog.show()
         else if (pref.needHelp) {
             helpDialog.show()
@@ -129,6 +171,16 @@ ApplicationWindow {
         }
     }
 
+    function init_accepted() {
+        console.log("init a")
+        init_dir_accepted()
+    }
+
+    function init_rejected() {
+        console.log("init r")
+        init_dir_rejected()
+    }
+
     property string connections: "Connection"
     property string transfers: "Transfers"
     property string search: "Search"
@@ -137,7 +189,6 @@ ApplicationWindow {
     property var sections: [ connections, transfers, search, preferences ]
     property var sectionTitles: [ qsTr("Conn"), qsTr("Transfers"), qsTr("Search"), qsTr("Pref") ]
     property string selectedComponent: connections
-
 
     initialPage: TabbedPage {
         id: page
@@ -149,8 +200,23 @@ ApplicationWindow {
         actions: [
             Action {
                 iconName: "action/help"
-                name: "Help"
-                onTriggered: helpDialog.show()
+                name: "Help"                
+                onTriggered: {
+                    switch(page.selectedTab) {
+                    case 0:
+                        helpConn.show()
+                        break;
+                    case 1:
+                        helpTransfers.show()
+                        break;
+                    case 2:
+                        helpSearch.show()
+                        break;
+                    case 3:
+                        helpPref.show()
+                        break;
+                    }
+                }
             }
         ]
 
@@ -163,6 +229,10 @@ ApplicationWindow {
                 property string section: modelData
                 sourceComponent: tabDelegate
             }
+        }
+
+        onSelectedTabChanged: {
+            session.syncProperties()
         }
     }
 

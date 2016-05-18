@@ -25,6 +25,7 @@
 #include <libed2k/session.hpp>
 #include <libed2k/session_status.hpp>
 #include <libed2k/server_connection.hpp>
+#include <libed2k/kademlia/kad_packet_struct.hpp>
 #endif
 
 #include "qed2kserver.h"
@@ -129,6 +130,20 @@ typedef QHash<QString, PersistentDataItem> PersistentData;
 
 QString fromHash(const libed2k::md4_hash&);
 
+struct KadNode {
+    QString host;
+    quint16 port;
+    QString kid;
+    int distance;
+    bool operator<(const KadNode& kn) const {
+        return distance < kn.distance;
+    }
+
+    KadNode(const libed2k::kad_id& own, const libed2k::kad_state_entry& ke);
+};
+
+class FileDownloader;
+
 class QED2KSession : public QObject {
     Q_OBJECT
     Q_DISABLE_COPY(QED2KSession)
@@ -173,7 +188,7 @@ public:
     Q_INVOKABLE void deferPlayMediaFile(const QString& hash);
     bool playMedia(QED2KHandle h);
     void playLink(const QString& strLink);
-    void loadDirectory(const QString& path);
+    Q_INVOKABLE bool loadDirectory(const QString& path);
     QDateTime hasBeenAdded(const QString& hash) const;
     qlonglong getETA(const QString& hash) const;
     QString status(const QString& hash) const;
@@ -181,12 +196,35 @@ public:
     libed2k::session* delegate() const;
 
     const libed2k::ip_filter& session_filter() const;
+
     Q_INVOKABLE void pauseTransfer(const QString& hash);
     Q_INVOKABLE void resumeTransfer(const QString& hash);
     Q_PROPERTY(QString currentMediaFile READ currentMediaFile WRITE setCurrentMediaFile NOTIFY currentMediaFileChanged)
 
     QString currentMediaFile() const;
     void setCurrentMediaFile(const QString&);
+
+    libed2k::kad_state getKademliaState() const;
+    Q_INVOKABLE void startKad();
+    Q_INVOKABLE void stopKad();
+    bool isKadStarted() const;
+    void addNodesToKad(const QStringList&);
+    void bootstrapKad(const QString& host, int port);
+    Q_INVOKABLE QList<KadNode> kadState();
+    Q_INVOKABLE bool hasInitialNodesFile();
+
+    /**
+     * @brief saveKadState
+     * @return true if dht state contains some nodes
+     */
+    bool saveKadState();
+    libed2k::entry loadKadState();
+    Q_INVOKABLE bool hasPrevKadState() const;
+    Q_INVOKABLE bool downloadEmuleKad();
+
+    Q_INVOKABLE void toPP() { m_PropPending = true; }
+    bool isPropPending() const { return m_PropPending; }
+    Q_INVOKABLE void syncProperties();
 private:
     QScopedPointer<libed2k::session> m_session;
     QHash<QString, QED2KHandle> m_fast_resume_transfers;   // contains fast resume data were loading
@@ -199,13 +237,17 @@ private:
     QHash<QString, QDateTime> m_addTimes;   // creation dates for transfers
     QHash<QString, libed2k::transfer_resume_data> m_fastTransfers;  // transfers information from metadata directory
     QSet<QString>   m_currentSessionTransfers;  // transfers were added to session not as seed
+    libed2k::server_connection_parameters m_sp;
     QString m_currentPath;
     QScopedPointer<TransferSpeedMonitor>    m_speedMon;
     QDateTime               last_error_dt;
     QUrl                    currentMF;
+    FileDownloader*         m_fd;
+    bool                    m_PropPending;
 private slots:
     void readAlerts();
     void saveResume();
+    void downloadEMuleKadCompleted(int rc, int system);
 public slots:
 	void configureSession();
     virtual QPair<QED2KHandle, ErrorCode> addLink(QString strLink, bool resumed = false);
@@ -340,6 +382,7 @@ signals:
     void resetInputDirectory(const QString& path);
 
     void currentMediaFileChanged(QString);
+    void downloadKadCompleted(int rc, int system);
 };
 
 typedef QED2KSession Session;

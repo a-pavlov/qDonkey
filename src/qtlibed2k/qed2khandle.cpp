@@ -118,6 +118,22 @@ QList<PeerInfo> QED2KHandle::get_peer_info() const {
         info.m_total_up     = peer->total_upload;
         info.m_speed_up     = peer->payload_up_speed;
         info.m_progress     = peer->progress;
+        switch(peer->source)
+        {
+            case libed2k::peer_info::tracker:
+                info.m_source = PeerInfo::PST_SERVER;
+                break;
+            case libed2k::peer_info::dht:
+                info.m_source = PeerInfo::PST_KAD;
+                break;
+            case libed2k::peer_info::incoming:
+                info.m_source = PeerInfo::PST_INCOMING;
+                break;
+            default:
+                info.m_source = PeerInfo::PST_UNKNOWN;
+                break;
+        }
+
         res.push_back(info);
     }
 

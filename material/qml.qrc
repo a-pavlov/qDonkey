@@ -11,5 +11,6 @@
         <file>qml/TransferDetails.qml</file>
         <file>qml/AddLinkDialog.qml</file>
         <file>qml/HelpDialog.qml</file>
+        <file>qml/Kademlia.qml</file>
     </qresource>
 </RCC>
