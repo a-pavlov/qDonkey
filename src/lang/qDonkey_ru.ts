@@ -76,52 +76,84 @@
 <context>
     <name>Donkey</name>
     <message>
-        <location filename="../../material/qml/Donkey.qml" line="53"/>
+        <location filename="../../material/qml/Donkey.qml" line="56"/>
         <source>Do you really want to quit?</source>
         <translation>Вы уверены что хотите выйти?</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Donkey.qml" line="54"/>
+        <location filename="../../material/qml/Donkey.qml" line="57"/>
         <source>Yes</source>
         <translation>Да</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Donkey.qml" line="55"/>
+        <location filename="../../material/qml/Donkey.qml" line="58"/>
         <source>No</source>
         <translation>Нет</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Donkey.qml" line="71"/>
+        <location filename="../../material/qml/Donkey.qml" line="74"/>
         <source>Ok</source>
         <translation>Готово</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Donkey.qml" line="73"/>
+        <location filename="../../material/qml/Donkey.qml" line="76"/>
         <source>I/O error</source>
         <translation>Ошибка ввода-вывода</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Donkey.qml" line="74"/>
+        <location filename="../../material/qml/Donkey.qml" line="77"/>
         <source>Filename: %1 message %2</source>
         <translation>Файл %1 ошибка %2</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Donkey.qml" line="138"/>
+        <location filename="../../material/qml/Donkey.qml" line="113"/>
+        <source>Choose server for connection and click for menu.
+Connection to server need for search keywords and search sources on download stage.
+If you have router and got LowID try to forward listen port in preferences(reconnect after).
+LowID means your port is not accessible from outside - it is significantly reduce download speed.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../material/qml/Donkey.qml" line="122"/>
+        <source>Enter search phrase into text field. Additionaly you can specify minimal sources count, size and so on.
+To start search press Start button. If search returns results you will be forwarded to search result page.
+To search more results click More button. Search in KAD will be available in next releases.
+Choose search result and click Download or Preview</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../material/qml/Donkey.qml" line="131"/>
+        <source>This page shows your current active transfers include all previous files from incoming directory.
+By default it is your Download directory.
+Click on transfer for menu. You can start view file before download completed using Previw option.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../material/qml/Donkey.qml" line="139"/>
+        <source>Setup program options here. Language changes will applied after restart application.
+Incoming directory and port applies after you leave preferences page.
+Be careful about changing listen port and incoming directory.
+All content of incoming directory will be shared.
+Help about KAD you can see on help button near KAD switch.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../material/qml/Donkey.qml" line="190"/>
         <source>Conn</source>
         <translation>Серверы</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Donkey.qml" line="138"/>
+        <location filename="../../material/qml/Donkey.qml" line="190"/>
         <source>Transfers</source>
         <translation>Загрузки</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Donkey.qml" line="138"/>
+        <location filename="../../material/qml/Donkey.qml" line="190"/>
         <source>Search</source>
         <translation>Поиск</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Donkey.qml" line="138"/>
+        <location filename="../../material/qml/Donkey.qml" line="190"/>
         <source>Pref</source>
         <translation>Опции</translation>
     </message>
@@ -129,17 +161,23 @@
 <context>
     <name>HelpDialog</name>
     <message>
-        <location filename="../../material/qml/HelpDialog.qml" line="9"/>
         <source>This application for eDonkey2000 networks. This app is developed by one person. More information about KAD support,development and future plans at https://github.com/a-pavlov/qdonkey/wiki. You can help the development by give a good rating to the app in Google Play or clicking on an ad unit</source>
-        <translation>Это приложение для работы в сетях eDonkey2000. Разработкой занимается один человек. Больше информации о разработке можно увидеть по ссылке https://github.com/a-pavlov/qdonkey/wiki или нажав кнопку &quot;Еще&quot;. Вы можете помочь проекту поставив ему хорошую оценку в Google Play или кликнув на рекламный блок</translation>
+        <translation type="vanished">Это приложение для работы в сетях eDonkey2000. Разработкой занимается один человек. Больше информации о разработке можно увидеть по ссылке https://github.com/a-pavlov/qdonkey/wiki или нажав кнопку &quot;Еще&quot;. Вы можете помочь проекту поставив ему хорошую оценку в Google Play или кликнув на рекламный блок</translation>
     </message>
     <message>
-        <location filename="../../material/qml/HelpDialog.qml" line="11"/>
+        <location filename="../../material/qml/HelpDialog.qml" line="9"/>
+        <source>This application for eDonkey2000 networks.
+More information about KAD support,development and future plans at https://github.com/a-pavlov/qdonkey/wiki.
+You can help the development by give a good rating to the app in Google Play or clicking on an ad unit</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../material/qml/HelpDialog.qml" line="13"/>
         <source>More</source>
         <translation>Еще</translation>
     </message>
     <message>
-        <location filename="../../material/qml/HelpDialog.qml" line="12"/>
+        <location filename="../../material/qml/HelpDialog.qml" line="14"/>
         <source>Ok</source>
         <translation>Ok</translation>
     </message>
@@ -166,9 +204,27 @@
         <translation>Отмена</translation>
     </message>
     <message>
-        <location filename="../../material/qml/InitDialog.qml" line="92"/>
+        <location filename="../../material/qml/InitDialog.qml" line="93"/>
         <source>Ok</source>
         <translation>Готово</translation>
+    </message>
+    <message>
+        <location filename="../../material/qml/InitDialog.qml" line="109"/>
+        <source>Setup directory incorrect, try again</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>Kademlia</name>
+    <message>
+        <location filename="../../material/qml/Kademlia.qml" line="8"/>
+        <source>Back to Pref</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../material/qml/Kademlia.qml" line="24"/>
+        <source>Kademlia routing table</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -281,17 +337,17 @@ Are you sure you want to quit qDonkey?</source>
         <translation type="vanished">Соединение с сервером разорвано</translation>
     </message>
     <message>
-        <location filename="../../material/mainwindow.cpp" line="169"/>
+        <location filename="../../material/mainwindow.cpp" line="177"/>
         <source>%1 has started downloading</source>
         <translation>%1началась загрузка</translation>
     </message>
     <message>
-        <location filename="../../material/mainwindow.cpp" line="176"/>
+        <location filename="../../material/mainwindow.cpp" line="184"/>
         <source>%1 has finished downloading</source>
         <translation>%1 загрузка завершена</translation>
     </message>
     <message>
-        <location filename="../../material/mainwindow.cpp" line="181"/>
+        <location filename="../../material/mainwindow.cpp" line="189"/>
         <source>I/O error on %1: %2</source>
         <translation>Ошибка ввода вывода %1 сообщение %2</translation>
     </message>
@@ -299,45 +355,70 @@ Are you sure you want to quit qDonkey?</source>
 <context>
     <name>PeerModel</name>
     <message>
-        <location filename="../../material/peermodel.cpp" line="42"/>
+        <location filename="../../material/peermodel.cpp" line="43"/>
         <source>/s</source>
         <translation>/сек</translation>
     </message>
     <message>
-        <location filename="../../material/peermodel.cpp" line="67"/>
+        <location filename="../../material/peermodel.cpp" line="46"/>
+        <source>Server</source>
+        <translation type="unfinished">Сервер</translation>
+    </message>
+    <message>
+        <location filename="../../material/peermodel.cpp" line="47"/>
+        <source>KAD</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../material/peermodel.cpp" line="48"/>
+        <source>Incoming</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../material/peermodel.cpp" line="49"/>
+        <source>Unknown</source>
+        <translation type="unfinished">Неизвестно</translation>
+    </message>
+    <message>
+        <location filename="../../material/peermodel.cpp" line="75"/>
         <source>IP</source>
         <translation>IP</translation>
     </message>
     <message>
-        <location filename="../../material/peermodel.cpp" line="68"/>
+        <location filename="../../material/peermodel.cpp" line="76"/>
         <source>Client</source>
         <translation>Клиент</translation>
     </message>
     <message>
-        <location filename="../../material/peermodel.cpp" line="69"/>
+        <location filename="../../material/peermodel.cpp" line="77"/>
         <source>File name</source>
         <translation>Имя файла</translation>
     </message>
     <message>
-        <location filename="../../material/peermodel.cpp" line="70"/>
+        <location filename="../../material/peermodel.cpp" line="78"/>
         <source>Progress</source>
         <translation>Прогресс</translation>
     </message>
     <message>
-        <location filename="../../material/peermodel.cpp" line="71"/>
+        <location filename="../../material/peermodel.cpp" line="79"/>
         <source>Speed</source>
         <translation>Скорость</translation>
     </message>
     <message>
-        <location filename="../../material/peermodel.cpp" line="72"/>
+        <location filename="../../material/peermodel.cpp" line="80"/>
         <source>Bytes</source>
         <translation>Байт</translation>
+    </message>
+    <message>
+        <location filename="../../material/peermodel.cpp" line="81"/>
+        <source>Source</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>Preferences</name>
     <message>
-        <location filename="../../material/qml/Preferences.qml" line="35"/>
+        <location filename="../../material/qml/Preferences.qml" line="43"/>
         <source>New language will be available after restart</source>
         <translation>Изменения языка вступят в силу после перезапуска программы</translation>
     </message>
@@ -346,149 +427,200 @@ Are you sure you want to quit qDonkey?</source>
         <translation type="vanished">Опции</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Preferences.qml" line="33"/>
+        <location filename="../../material/qml/Preferences.qml" line="41"/>
+        <location filename="../../material/qml/Preferences.qml" line="49"/>
+        <location filename="../../material/qml/Preferences.qml" line="60"/>
         <source>Ok</source>
         <translation>Готово</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Preferences.qml" line="42"/>
         <source>Sorry, in free version maximum download speed is 200 Kb/s</source>
-        <translation>В бесплатной версии максимальная скорость закачки 200 Кб/с</translation>
+        <translation type="vanished">В бесплатной версии максимальная скорость закачки 200 Кб/с</translation>
     </message>
     <message>
         <source>Change preferences here</source>
         <translation type="vanished">Настройка программы</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Preferences.qml" line="9"/>
         <source>Setup options and click apply</source>
-        <translation>Настройте и нажмите применить</translation>
+        <translation type="vanished">Настройте и нажмите применить</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Preferences.qml" line="64"/>
+        <location filename="../../material/qml/Preferences.qml" line="94"/>
         <source>Change preferences here and click apply</source>
         <translation>Изменяйте настройки и нажмите применить</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Preferences.qml" line="84"/>
+        <location filename="../../material/qml/Preferences.qml" line="114"/>
         <source>English</source>
         <translation>English</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Preferences.qml" line="85"/>
+        <location filename="../../material/qml/Preferences.qml" line="115"/>
         <source>Russian</source>
         <translation>Русский</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Preferences.qml" line="86"/>
+        <location filename="../../material/qml/Preferences.qml" line="116"/>
         <source>Italian</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../material/qml/Preferences.qml" line="107"/>
+        <location filename="../../material/qml/Preferences.qml" line="137"/>
         <source>Enter your nickname</source>
         <translation>Введите ааш ник</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Preferences.qml" line="125"/>
+        <location filename="../../material/qml/Preferences.qml" line="158"/>
         <source>Listen port</source>
         <translation>Входящий порт</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Preferences.qml" line="145"/>
         <source>UPnP port on router</source>
-        <translation>UPnP проброс порта на роутер</translation>
+        <translation type="vanished">UPnP проброс порта на роутер</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Preferences.qml" line="170"/>
+        <location filename="../../material/qml/Preferences.qml" line="9"/>
+        <source>Configure application</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../material/qml/Preferences.qml" line="17"/>
+        <source>Error on download nodes.dat: %1 at %2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../material/qml/Preferences.qml" line="19"/>
+        <source>nodes.dat succesfully downloaded</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../material/qml/Preferences.qml" line="51"/>
+        <source>To start use KAD in first time you need one of two things or both:
+1. specify bootstrap node(ip and port).
+2. downdload nodes.dat file to your Download location from any internet source or click download button.
+Application will load nodes.dat on start KAD again. Status of Kademlia you can see on click info button.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../material/qml/Preferences.qml" line="62"/>
+        <source>You can&apos;t start use KAD without at least one bootstrap node or nodes.dat file in Download location.
+Click help button for more information</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../material/qml/Preferences.qml" line="69"/>
+        <source>Download nodes.dat to your download location? Previous nodes.dat will be erased</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../material/qml/Preferences.qml" line="184"/>
+        <source>Forward port on router</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../material/qml/Preferences.qml" line="226"/>
+        <source>KAD enabled</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../material/qml/Preferences.qml" line="268"/>
+        <source>Bootstrap IP</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../material/qml/Preferences.qml" line="278"/>
+        <source>Port</source>
+        <translation type="unfinished">Порт</translation>
+    </message>
+    <message>
+        <location filename="../../material/qml/Preferences.qml" line="306"/>
         <source>Down</source>
         <translation>Загр</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Preferences.qml" line="182"/>
+        <location filename="../../material/qml/Preferences.qml" line="319"/>
         <source>Dowload limit Kb/s</source>
         <translation>Скорость загрузки Кб.с</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Preferences.qml" line="192"/>
+        <location filename="../../material/qml/Preferences.qml" line="332"/>
         <source>Up</source>
         <translation>Отд</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Preferences.qml" line="204"/>
+        <location filename="../../material/qml/Preferences.qml" line="345"/>
         <source>Upload limit Kb/s</source>
         <translation>Скорость отдачи Кб/c</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Preferences.qml" line="223"/>
+        <location filename="../../material/qml/Preferences.qml" line="367"/>
         <source>Incoming directory</source>
         <translation>Директория загрузок</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Preferences.qml" line="241"/>
+        <location filename="../../material/qml/Preferences.qml" line="388"/>
         <source>Show old transfers</source>
         <translation>Показывать старые загрузки</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Preferences.qml" line="258"/>
+        <location filename="../../material/qml/Preferences.qml" line="405"/>
         <source>Ask before exit program</source>
         <translation>Спрашивать перед выходом</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Preferences.qml" line="280"/>
         <source>Cancel</source>
-        <translation>Отмена</translation>
+        <translation type="vanished">Отмена</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Preferences.qml" line="302"/>
         <source>Apply</source>
-        <translation>Применить</translation>
+        <translation type="vanished">Применить</translation>
     </message>
 </context>
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../qtlibed2k/qed2ksession.cpp" line="34"/>
+        <location filename="../qtlibed2k/qed2ksession.cpp" line="36"/>
         <source>Any</source>
         <translation>Любой</translation>
     </message>
     <message>
-        <location filename="../qtlibed2k/qed2ksession.cpp" line="35"/>
+        <location filename="../qtlibed2k/qed2ksession.cpp" line="37"/>
         <source>Audio</source>
         <translation>Аудио</translation>
     </message>
     <message>
-        <location filename="../qtlibed2k/qed2ksession.cpp" line="36"/>
+        <location filename="../qtlibed2k/qed2ksession.cpp" line="38"/>
         <source>Video</source>
         <translation>Видео</translation>
     </message>
     <message>
-        <location filename="../qtlibed2k/qed2ksession.cpp" line="37"/>
+        <location filename="../qtlibed2k/qed2ksession.cpp" line="39"/>
         <source>Picture</source>
         <translation>Картинка</translation>
     </message>
     <message>
-        <location filename="../qtlibed2k/qed2ksession.cpp" line="38"/>
+        <location filename="../qtlibed2k/qed2ksession.cpp" line="40"/>
         <source>Program</source>
         <translation>Программа</translation>
     </message>
     <message>
-        <location filename="../qtlibed2k/qed2ksession.cpp" line="39"/>
+        <location filename="../qtlibed2k/qed2ksession.cpp" line="41"/>
         <source>Document</source>
         <translation>Документ</translation>
     </message>
     <message>
-        <location filename="../qtlibed2k/qed2ksession.cpp" line="40"/>
+        <location filename="../qtlibed2k/qed2ksession.cpp" line="42"/>
         <source>Archive</source>
         <translation>Архив</translation>
     </message>
     <message>
-        <location filename="../qtlibed2k/qed2ksession.cpp" line="41"/>
+        <location filename="../qtlibed2k/qed2ksession.cpp" line="43"/>
         <source>CD image</source>
         <translation>CD имидж</translation>
     </message>
     <message>
-        <location filename="../qtlibed2k/qed2ksession.cpp" line="42"/>
+        <location filename="../qtlibed2k/qed2ksession.cpp" line="44"/>
         <source>Emule collection</source>
         <translation>Emule коллекция</translation>
     </message>
@@ -1104,80 +1236,80 @@ Are you sure you want to quit qDonkey?</source>
 <context>
     <name>misc</name>
     <message>
-        <location filename="../misc.cpp" line="96"/>
+        <location filename="../misc.cpp" line="94"/>
         <source>B</source>
         <comment>bytes</comment>
         <translation>Байт</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="97"/>
+        <location filename="../misc.cpp" line="95"/>
         <source>KB</source>
         <comment>kilobytes (1000 bytes)</comment>
         <translation>Кб</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="98"/>
+        <location filename="../misc.cpp" line="96"/>
         <source>MB</source>
         <comment>megabytes (1000 kilobytes)</comment>
         <translation>Мб</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="99"/>
+        <location filename="../misc.cpp" line="97"/>
         <source>GB</source>
         <comment>gigabytes (1000 megabytes)</comment>
         <translation>Гб</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="100"/>
+        <location filename="../misc.cpp" line="98"/>
         <source>TB</source>
         <comment>terabytes (1000 gigabytes)</comment>
         <translation>Тб</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="192"/>
-        <location filename="../misc.cpp" line="223"/>
-        <location filename="../misc.cpp" line="236"/>
+        <location filename="../misc.cpp" line="190"/>
+        <location filename="../misc.cpp" line="221"/>
+        <location filename="../misc.cpp" line="234"/>
         <source>Downloads</source>
         <translation>Загрузки</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="390"/>
+        <location filename="../misc.cpp" line="388"/>
         <source>qDonkey will shutdown the computer now because all downloads are complete.</source>
         <translation>куОсел выключает комрьютер потому что все загрузки завершены</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="575"/>
-        <location filename="../misc.cpp" line="621"/>
+        <location filename="../misc.cpp" line="581"/>
+        <location filename="../misc.cpp" line="627"/>
         <source>Unknown</source>
         <comment>Unknown (size)</comment>
         <translation>Неизвестно</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="631"/>
+        <location filename="../misc.cpp" line="637"/>
         <source>/s</source>
         <comment>per second</comment>
         <translation>/сек</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="681"/>
+        <location filename="../misc.cpp" line="687"/>
         <source>&lt; 1m</source>
         <comment>&lt; 1 minute</comment>
         <translation>&lt; 1 минуты</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="685"/>
+        <location filename="../misc.cpp" line="691"/>
         <source>%1m</source>
         <comment>e.g: 10minutes</comment>
         <translation>%1 минут</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="690"/>
+        <location filename="../misc.cpp" line="696"/>
         <source>%1h %2m</source>
         <comment>e.g: 3hours 5minutes</comment>
         <translation>%1часов %2минут</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="695"/>
+        <location filename="../misc.cpp" line="701"/>
         <source>%1d %2h</source>
         <comment>e.g: 2days 10hours</comment>
         <translation>%1дней %2часов</translation>
