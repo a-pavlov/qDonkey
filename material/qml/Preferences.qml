@@ -178,7 +178,7 @@ Click help button for more information")
                     }
 
                     Label {
-                        text: qsTr("UPnP port on router")
+                        text: qsTr("Forward port on router")
                         wrapMode: Text.WordWrap
                     }
                 }

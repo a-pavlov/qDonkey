@@ -45,10 +45,10 @@ HEADERS +=  ../src/misc.h \
             transfermodel_item.h \
             preferences.h \
             transferdetailsmodel.h \
-            transfersortfiltermodel.h \
-            notificationclient.h \
+            transfersortfiltermodel.h \            
             peermodel.h \
             kadnodes.h \
+            notificationclient.h \
             file_downloader.h
 
 SOURCES +=  ../src/misc.cpp \
@@ -62,10 +62,11 @@ SOURCES +=  ../src/misc.cpp \
             preferences.cpp \
             transferdetailsmodel.cpp \
             transfersortfiltermodel.cpp \
-            notificationclient.cpp \
             peermodel.cpp \
             kadnodes.cpp \
+            notificationclient.cpp \
             file_downloader.cpp
+
 
 lupdate_only {
     SOURCES += qml/Connection.qml \
