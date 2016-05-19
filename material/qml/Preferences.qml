@@ -47,7 +47,7 @@ Page {
         negativeButton.visible: false
         text: qsTr("To start use KAD in first time you need one of two things or both:
 1. specify bootstrap node(ip and port).
-2. downdload nodes.dat file to your Download location from any internet source or click download button.
+2. downdload nodes.dat file to your Download location from any source or click KAD download button.
 Application will load nodes.dat on start KAD again. Status of Kademlia you can see on click info button.")
     }
 
@@ -57,13 +57,13 @@ Application will load nodes.dat on start KAD again. Status of Kademlia you can s
         positiveButtonText: qsTr("Ok")
         negativeButton.visible: false
         text: qsTr("You can't start use KAD without at least one bootstrap node or nodes.dat file in Download location.
-Click help button for more information")
+Click help button for more information.")
     }
 
     Dialog {
         id: kadDownload
         hasActions: true
-        text: qsTr("Download nodes.dat to your download location? Previous nodes.dat will be erased")
+        text: qsTr("Download nodes.dat to your download location? Previous nodes.dat will be erased.")
         onAccepted: {
             session.downloadEmuleKad();
         }
@@ -88,7 +88,7 @@ Click help button for more information")
                 }
 
                 style: "body2"
-                text: qsTr("Change preferences here and click apply")
+                text: qsTr("Change preferences here")
             }
 
             ListItem.Standard {
