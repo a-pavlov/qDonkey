@@ -106,26 +106,26 @@
         <source>Choose server for connection, click for menu. Connection to server need for search keywords and search sources for downloading.
 If you have router and got LowID try to forward listen port in Pref(reconnect to server after it).
 LowID means your port is not accessible from outside - it is significantly reduce download speed.</source>
-        <translation type="unfinished"></translation>
+        <translation>Selezionare il server per la connessione. La connessione serve per una ricerca per parole chiave e la ricerca di fonti. Se hai un LowID provare ad attraversare la porta sul router. LowID significa che la porta di ingresso non è accessibile dall&apos;esterno - questo riduce di molto la velocità di download e il numero di fonti.</translation>
     </message>
     <message>
         <location filename="../../material/qml/Donkey.qml" line="121"/>
         <source>Enter search phrase into text field. You can specify parameters like sources count, size and so on.
 To start search press Start button. If search returns results you will be forwarded to search result page.
 More buttton is enabled when more results are available for search. Search in KAD will be available in next releases.</source>
-        <translation type="unfinished"></translation>
+        <translation>Digitare la frase di ricerca. È possibile specificare le impostazioni di dimensione del file, il numero di fonti e così via Per il lancio di ricerca, fare clic su start. Se la ricerca ha restituito i risultati si verrà reindirizzati alla pagina dei risultati. Premere di nuovo per trovare più.</translation>
     </message>
     <message>
         <location filename="../../material/qml/Donkey.qml" line="129"/>
         <source>Shows your current active transfers. All files in incoming directory are transfers. By default incoming directory is your Download directory.</source>
-        <translation type="unfinished"></translation>
+        <translation>Mostra correnti di upload e di download. Tutti i file in entrata directory vengono distribuite. Per impostazione predefinita, in entrata, indice questo è un indice di download.</translation>
     </message>
     <message>
         <location filename="../../material/qml/Donkey.qml" line="135"/>
         <source>Setup program options here. Language changes will applied after restart application.
 Incoming directory and port applies after you leave preferences page. Be careful about changing listen port and incoming directory.
 Help about KAD you can see on help button near KAD switch.</source>
-        <translation type="unfinished"></translation>
+        <translation>Modificare la lingua del programma entreranno in vigore dopo il riavvio. Le modifiche di ingresso directory e porta, dopo il cambio di pagina. Fate attenzione con il cambiamento porta di ingresso e directory. Aiuto su come usare la KAD vedi il pulsante di aiuto KAD.</translation>
     </message>
     <message>
         <location filename="../../material/qml/Donkey.qml" line="184"/>
@@ -159,7 +159,7 @@ Help about KAD you can see on help button near KAD switch.</source>
         <source>This application for eDonkey2000 networks.
 More information about KAD support,development and future plans at https://github.com/a-pavlov/qdonkey/wiki.
 You can help the development by give a good rating to the app in Google Play or clicking on an ad unit</source>
-        <translation type="unfinished"></translation>
+        <translation>L&apos;applicazione per reti eDonkey 2000. Ulteriori informazioni sul sito https://github.com/a-pavlov/qdonkey/wiki. Si può aiutare lo sviluppo di lasciare un buon voto o clicca su un&apos;unità pubblicitaria</translation>
     </message>
     <message>
         <location filename="../../material/qml/HelpDialog.qml" line="13"/>
@@ -201,7 +201,7 @@ You can help the development by give a good rating to the app in Google Play or 
     <message>
         <location filename="../../material/qml/InitDialog.qml" line="109"/>
         <source>Setup directory incorrect, try again</source>
-        <translation type="unfinished"></translation>
+        <translation>Una non corretta indice, ancora una volta</translation>
     </message>
 </context>
 <context>
@@ -209,12 +209,12 @@ You can help the development by give a good rating to the app in Google Play or 
     <message>
         <location filename="../../material/qml/Kademlia.qml" line="8"/>
         <source>Back to Pref</source>
-        <translation type="unfinished"></translation>
+        <translation>Fa alle opzioni</translation>
     </message>
     <message>
         <location filename="../../material/qml/Kademlia.qml" line="24"/>
         <source>Kademlia routing table</source>
-        <translation type="unfinished"></translation>
+        <translation>KAD tabella</translation>
     </message>
 </context>
 <context>
@@ -245,22 +245,22 @@ You can help the development by give a good rating to the app in Google Play or 
     <message>
         <location filename="../../material/peermodel.cpp" line="46"/>
         <source>Server</source>
-        <translation type="unfinished"></translation>
+        <translation>Al server</translation>
     </message>
     <message>
         <location filename="../../material/peermodel.cpp" line="47"/>
         <source>KAD</source>
-        <translation type="unfinished"></translation>
+        <translation>KAD</translation>
     </message>
     <message>
         <location filename="../../material/peermodel.cpp" line="48"/>
         <source>Incoming</source>
-        <translation type="unfinished"></translation>
+        <translation>In arrivo</translation>
     </message>
     <message>
         <location filename="../../material/peermodel.cpp" line="49"/>
         <source>Unknown</source>
-        <translation type="unfinished">Sconosciuta</translation>
+        <translation>Incerto</translation>
     </message>
     <message>
         <location filename="../../material/peermodel.cpp" line="75"/>
@@ -295,7 +295,7 @@ You can help the development by give a good rating to the app in Google Play or 
     <message>
         <location filename="../../material/peermodel.cpp" line="81"/>
         <source>Source</source>
-        <translation type="unfinished"></translation>
+        <translation>Fonte</translation>
     </message>
 </context>
 <context>
@@ -356,17 +356,17 @@ You can help the development by give a good rating to the app in Google Play or 
     <message>
         <location filename="../../material/qml/Preferences.qml" line="9"/>
         <source>Configure application</source>
-        <translation type="unfinished"></translation>
+        <translation>Configurare il programma</translation>
     </message>
     <message>
         <location filename="../../material/qml/Preferences.qml" line="17"/>
         <source>Error on download nodes.dat: %1 at %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Errore durante il caricamento nodes.dat %1 %2</translation>
     </message>
     <message>
         <location filename="../../material/qml/Preferences.qml" line="19"/>
         <source>nodes.dat succesfully downloaded</source>
-        <translation type="unfinished"></translation>
+        <translation>nodes.dat è stato caricato con successo</translation>
     </message>
     <message>
         <location filename="../../material/qml/Preferences.qml" line="51"/>
@@ -374,43 +374,47 @@ You can help the development by give a good rating to the app in Google Play or 
 1. specify bootstrap node(ip and port).
 2. downdload nodes.dat file to your Download location from any source or click KAD download button.
 Application will load nodes.dat on start KAD again. Status of Kademlia you can see on click info button.</source>
-        <translation type="unfinished"></translation>
+        <translation>Per iniziare a utilizzare il KAD serve l&apos;opzione 1 o 2 o entrambi:
+1. Bootstrap host, l&apos;indirizzo e la porta connesso alla rete KAD host
+2. Il file nodes.dat in una directory standard di download. L&apos;applicazione scaricherà automaticamente.
+Fare clic sul pulsante per scaricare automaticamente il download nodes.dat e riprovare l&apos;accensione.
+Lo stato KAD è possibile visualizzare facendo clic sul pulsante informazioni.</translation>
     </message>
     <message>
         <location filename="../../material/qml/Preferences.qml" line="62"/>
         <source>You can&apos;t start use KAD without at least one bootstrap node or nodes.dat file in Download location.
 Click help button for more information.</source>
-        <translation type="unfinished"></translation>
+        <translation>Per iniziare a utilizzare la KAD bisogno di un host collegato alla rete KAD o il file nodes.dat nella cartella di download. Fare clic su guida per maggiori informazioni.</translation>
     </message>
     <message>
         <location filename="../../material/qml/Preferences.qml" line="69"/>
         <source>Download nodes.dat to your download location? Previous nodes.dat will be erased.</source>
-        <translation type="unfinished"></translation>
+        <translation>Scarica il nodes.dat nella cartella dei download? Il file precedente verrà sovrascritto.</translation>
     </message>
     <message>
         <location filename="../../material/qml/Preferences.qml" line="94"/>
         <source>Change preferences here</source>
-        <translation type="unfinished"></translation>
+        <translation>Configurare il programma</translation>
     </message>
     <message>
         <location filename="../../material/qml/Preferences.qml" line="184"/>
         <source>Forward port on router</source>
-        <translation type="unfinished"></translation>
+        <translation>Aprire la porta sul router</translation>
     </message>
     <message>
         <location filename="../../material/qml/Preferences.qml" line="226"/>
         <source>KAD enabled</source>
-        <translation type="unfinished"></translation>
+        <translation>KAD</translation>
     </message>
     <message>
         <location filename="../../material/qml/Preferences.qml" line="268"/>
         <source>Bootstrap IP</source>
-        <translation type="unfinished"></translation>
+        <translation>Bootstrap IP</translation>
     </message>
     <message>
         <location filename="../../material/qml/Preferences.qml" line="278"/>
         <source>Port</source>
-        <translation type="unfinished">Porta</translation>
+        <translation>Porta</translation>
     </message>
     <message>
         <location filename="../../material/qml/Preferences.qml" line="306"/>

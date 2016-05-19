@@ -110,26 +110,26 @@
         <source>Choose server for connection, click for menu. Connection to server need for search keywords and search sources for downloading.
 If you have router and got LowID try to forward listen port in Pref(reconnect to server after it).
 LowID means your port is not accessible from outside - it is significantly reduce download speed.</source>
-        <translation type="unfinished"></translation>
+        <translation>Выберите сервер для соединения. Соединение нужно для поиска по ключевым словам и поиска источников. Если у вас LowID попробуйте пробросить порт на роутере. LowID означает что входящий порт недоступен извне - это значительно снижает скорость закачки и количество источников.</translation>
     </message>
     <message>
         <location filename="../../material/qml/Donkey.qml" line="121"/>
         <source>Enter search phrase into text field. You can specify parameters like sources count, size and so on.
 To start search press Start button. If search returns results you will be forwarded to search result page.
 More buttton is enabled when more results are available for search. Search in KAD will be available in next releases.</source>
-        <translation type="unfinished"></translation>
+        <translation>Введите поисковую фразу. Вы можете дополнительно указать параметры - размер файла, количество источников и т.д. Для старта поиска нажмите старт. Если поиск возвратил результаты вы будете перенаправлены на страницу результатов. Нажмите еще чтобы найти больше.</translation>
     </message>
     <message>
         <location filename="../../material/qml/Donkey.qml" line="129"/>
         <source>Shows your current active transfers. All files in incoming directory are transfers. By default incoming directory is your Download directory.</source>
-        <translation type="unfinished"></translation>
+        <translation>Показывает текущие раздачи и закачки. Все файлы в входящей директории раздаются. По умолчанию входящая директория это стандартная директория загрузки.</translation>
     </message>
     <message>
         <location filename="../../material/qml/Donkey.qml" line="135"/>
         <source>Setup program options here. Language changes will applied after restart application.
 Incoming directory and port applies after you leave preferences page. Be careful about changing listen port and incoming directory.
 Help about KAD you can see on help button near KAD switch.</source>
-        <translation type="unfinished"></translation>
+        <translation>Изменения языка программы вступают в силу после перезагрузки. Изменения входной директории и порта после смены страницы. Будьте осторожны с изменением порта и входной директории. Помощь по использованию KAD смотрите по кнопке помощь KAD.</translation>
     </message>
     <message>
         <location filename="../../material/qml/Donkey.qml" line="184"/>
@@ -163,7 +163,7 @@ Help about KAD you can see on help button near KAD switch.</source>
         <source>This application for eDonkey2000 networks.
 More information about KAD support,development and future plans at https://github.com/a-pavlov/qdonkey/wiki.
 You can help the development by give a good rating to the app in Google Play or clicking on an ad unit</source>
-        <translation type="unfinished"></translation>
+        <translation>Приложение для сетей eDonkey 2000. Больше информации по ссылке  https://github.com/a-pavlov/qdonkey/wiki. Вы можете помочь разработке оставив хорошую оценку или кликнув на рекламный блок</translation>
     </message>
     <message>
         <location filename="../../material/qml/HelpDialog.qml" line="13"/>
@@ -205,7 +205,7 @@ You can help the development by give a good rating to the app in Google Play or 
     <message>
         <location filename="../../material/qml/InitDialog.qml" line="109"/>
         <source>Setup directory incorrect, try again</source>
-        <translation type="unfinished"></translation>
+        <translation>Не правильная директория, еще раз</translation>
     </message>
 </context>
 <context>
@@ -213,12 +213,12 @@ You can help the development by give a good rating to the app in Google Play or 
     <message>
         <location filename="../../material/qml/Kademlia.qml" line="8"/>
         <source>Back to Pref</source>
-        <translation type="unfinished"></translation>
+        <translation>Назад к опциям</translation>
     </message>
     <message>
         <location filename="../../material/qml/Kademlia.qml" line="24"/>
         <source>Kademlia routing table</source>
-        <translation type="unfinished"></translation>
+        <translation>Таблица KAD</translation>
     </message>
 </context>
 <context>
@@ -356,22 +356,22 @@ Are you sure you want to quit qDonkey?</source>
     <message>
         <location filename="../../material/peermodel.cpp" line="46"/>
         <source>Server</source>
-        <translation type="unfinished">Сервер</translation>
+        <translation>Сервер</translation>
     </message>
     <message>
         <location filename="../../material/peermodel.cpp" line="47"/>
         <source>KAD</source>
-        <translation type="unfinished"></translation>
+        <translation>KAD</translation>
     </message>
     <message>
         <location filename="../../material/peermodel.cpp" line="48"/>
         <source>Incoming</source>
-        <translation type="unfinished"></translation>
+        <translation>Входящий</translation>
     </message>
     <message>
         <location filename="../../material/peermodel.cpp" line="49"/>
         <source>Unknown</source>
-        <translation type="unfinished">Неизвестно</translation>
+        <translation>Неизвестно</translation>
     </message>
     <message>
         <location filename="../../material/peermodel.cpp" line="75"/>
@@ -406,7 +406,7 @@ Are you sure you want to quit qDonkey?</source>
     <message>
         <location filename="../../material/peermodel.cpp" line="81"/>
         <source>Source</source>
-        <translation type="unfinished"></translation>
+        <translation>Источник</translation>
     </message>
 </context>
 <context>
@@ -457,7 +457,7 @@ Are you sure you want to quit qDonkey?</source>
     <message>
         <location filename="../../material/qml/Preferences.qml" line="116"/>
         <source>Italian</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../material/qml/Preferences.qml" line="137"/>
@@ -476,17 +476,17 @@ Are you sure you want to quit qDonkey?</source>
     <message>
         <location filename="../../material/qml/Preferences.qml" line="9"/>
         <source>Configure application</source>
-        <translation type="unfinished"></translation>
+        <translation>Настройка программы</translation>
     </message>
     <message>
         <location filename="../../material/qml/Preferences.qml" line="17"/>
         <source>Error on download nodes.dat: %1 at %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Ошибка при закачке nodes.dat %1 на %2</translation>
     </message>
     <message>
         <location filename="../../material/qml/Preferences.qml" line="19"/>
         <source>nodes.dat succesfully downloaded</source>
-        <translation type="unfinished"></translation>
+        <translation>nodes.dat успешно загружен</translation>
     </message>
     <message>
         <location filename="../../material/qml/Preferences.qml" line="51"/>
@@ -494,38 +494,42 @@ Are you sure you want to quit qDonkey?</source>
 1. specify bootstrap node(ip and port).
 2. downdload nodes.dat file to your Download location from any source or click KAD download button.
 Application will load nodes.dat on start KAD again. Status of Kademlia you can see on click info button.</source>
-        <translation type="unfinished"></translation>
+        <translation>Чтобы начать использовать KAD нужен пункт 1 или 2 или оба:
+1. Bootstrap хост - адрес и порт подключенного к сети KAD хоста
+2. Файл nodes.dat в стандартной директории загрузок. Приложение автоматически загрузит его.
+Нажмите кнопку скачать для автоматического скачивания nodes.dat и повторите попытку включения.
+Статус KAD можно посмотреть нажав кнопку информации.</translation>
     </message>
     <message>
         <location filename="../../material/qml/Preferences.qml" line="62"/>
         <source>You can&apos;t start use KAD without at least one bootstrap node or nodes.dat file in Download location.
 Click help button for more information.</source>
-        <translation type="unfinished"></translation>
+        <translation>Для начала использования KAD нужен хост подключенный к сети KAD или файл nodes.dat в директории загрузок. Нажмите помощь для подробной информации.</translation>
     </message>
     <message>
         <location filename="../../material/qml/Preferences.qml" line="69"/>
         <source>Download nodes.dat to your download location? Previous nodes.dat will be erased.</source>
-        <translation type="unfinished"></translation>
+        <translation>Скачать nodes.dat в директорию загрузок? Предыдущий файл будет перезаписан.</translation>
     </message>
     <message>
         <location filename="../../material/qml/Preferences.qml" line="184"/>
         <source>Forward port on router</source>
-        <translation type="unfinished"></translation>
+        <translation>Открыть порт на роутере</translation>
     </message>
     <message>
         <location filename="../../material/qml/Preferences.qml" line="226"/>
         <source>KAD enabled</source>
-        <translation type="unfinished"></translation>
+        <translation>KAD</translation>
     </message>
     <message>
         <location filename="../../material/qml/Preferences.qml" line="268"/>
         <source>Bootstrap IP</source>
-        <translation type="unfinished"></translation>
+        <translation>Bootstrap хост</translation>
     </message>
     <message>
         <location filename="../../material/qml/Preferences.qml" line="278"/>
         <source>Port</source>
-        <translation type="unfinished">Порт</translation>
+        <translation>Порт</translation>
     </message>
     <message>
         <location filename="../../material/qml/Preferences.qml" line="306"/>
