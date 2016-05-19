@@ -200,9 +200,9 @@ Page {
 
         model: peerModel
         delegate: ListItem.Subtitled {
-            text: ip + " [" + source + "]"
+            text: ip
             valueText: speed
-            subText: qsTr("Total: ") + total
+            subText: qsTr("Total: ") + total + " [" + source + "]"
 
             action: Icon {
                 source: Qt.resolvedUrl("qrc:/images/chevron-double-down.svg")
