@@ -107,53 +107,47 @@
     </message>
     <message>
         <location filename="../../material/qml/Donkey.qml" line="113"/>
-        <source>Choose server for connection and click for menu.
-Connection to server need for search keywords and search sources on download stage.
-If you have router and got LowID try to forward listen port in preferences(reconnect after).
+        <source>Choose server for connection, click for menu. Connection to server need for search keywords and search sources for downloading.
+If you have router and got LowID try to forward listen port in Pref(reconnect to server after it).
 LowID means your port is not accessible from outside - it is significantly reduce download speed.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../material/qml/Donkey.qml" line="122"/>
-        <source>Enter search phrase into text field. Additionaly you can specify minimal sources count, size and so on.
+        <location filename="../../material/qml/Donkey.qml" line="121"/>
+        <source>Enter search phrase into text field. You can specify parameters like sources count, size and so on.
 To start search press Start button. If search returns results you will be forwarded to search result page.
-To search more results click More button. Search in KAD will be available in next releases.
-Choose search result and click Download or Preview</source>
+More buttton is enabled when more results are available for search. Search in KAD will be available in next releases.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../material/qml/Donkey.qml" line="131"/>
-        <source>This page shows your current active transfers include all previous files from incoming directory.
-By default it is your Download directory.
-Click on transfer for menu. You can start view file before download completed using Previw option.</source>
+        <location filename="../../material/qml/Donkey.qml" line="129"/>
+        <source>Shows your current active transfers. All files in incoming directory are transfers. By default incoming directory is your Download directory.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../material/qml/Donkey.qml" line="139"/>
+        <location filename="../../material/qml/Donkey.qml" line="135"/>
         <source>Setup program options here. Language changes will applied after restart application.
-Incoming directory and port applies after you leave preferences page.
-Be careful about changing listen port and incoming directory.
-All content of incoming directory will be shared.
+Incoming directory and port applies after you leave preferences page. Be careful about changing listen port and incoming directory.
 Help about KAD you can see on help button near KAD switch.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../material/qml/Donkey.qml" line="190"/>
+        <location filename="../../material/qml/Donkey.qml" line="184"/>
         <source>Conn</source>
         <translation>Серверы</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Donkey.qml" line="190"/>
+        <location filename="../../material/qml/Donkey.qml" line="184"/>
         <source>Transfers</source>
         <translation>Загрузки</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Donkey.qml" line="190"/>
+        <location filename="../../material/qml/Donkey.qml" line="184"/>
         <source>Search</source>
         <translation>Поиск</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Donkey.qml" line="190"/>
+        <location filename="../../material/qml/Donkey.qml" line="184"/>
         <source>Pref</source>
         <translation>Опции</translation>
     </message>
@@ -438,17 +432,17 @@ Are you sure you want to quit qDonkey?</source>
         <translation type="vanished">В бесплатной версии максимальная скорость закачки 200 Кб/с</translation>
     </message>
     <message>
+        <location filename="../../material/qml/Preferences.qml" line="94"/>
         <source>Change preferences here</source>
-        <translation type="vanished">Настройка программы</translation>
+        <translation>Настройка программы</translation>
     </message>
     <message>
         <source>Setup options and click apply</source>
         <translation type="vanished">Настройте и нажмите применить</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Preferences.qml" line="94"/>
         <source>Change preferences here and click apply</source>
-        <translation>Изменяйте настройки и нажмите применить</translation>
+        <translation type="vanished">Изменяйте настройки и нажмите применить</translation>
     </message>
     <message>
         <location filename="../../material/qml/Preferences.qml" line="114"/>
@@ -498,19 +492,19 @@ Are you sure you want to quit qDonkey?</source>
         <location filename="../../material/qml/Preferences.qml" line="51"/>
         <source>To start use KAD in first time you need one of two things or both:
 1. specify bootstrap node(ip and port).
-2. downdload nodes.dat file to your Download location from any internet source or click download button.
+2. downdload nodes.dat file to your Download location from any source or click KAD download button.
 Application will load nodes.dat on start KAD again. Status of Kademlia you can see on click info button.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../material/qml/Preferences.qml" line="62"/>
         <source>You can&apos;t start use KAD without at least one bootstrap node or nodes.dat file in Download location.
-Click help button for more information</source>
+Click help button for more information.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../material/qml/Preferences.qml" line="69"/>
-        <source>Download nodes.dat to your download location? Previous nodes.dat will be erased</source>
+        <source>Download nodes.dat to your download location? Previous nodes.dat will be erased.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
