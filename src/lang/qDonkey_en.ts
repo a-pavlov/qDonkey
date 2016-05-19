@@ -2,199 +2,429 @@
 <!DOCTYPE TS>
 <TS version="2.1" language="en_US">
 <context>
-    <name>MainWindow</name>
+    <name>AddLinkDialog</name>
     <message>
-        <location filename="../mainwindow.ui" line="46"/>
-        <source>toolBar_2</source>
+        <location filename="../../material/qml/AddLinkDialog.qml" line="11"/>
+        <source>Ok</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="71"/>
-        <source>&amp;Add torrent file...</source>
+        <location filename="../../material/qml/AddLinkDialog.qml" line="13"/>
+        <source>Download %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>Connection</name>
+    <message>
+        <location filename="../../material/qml/Connection.qml" line="8"/>
+        <source>Add server</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="76"/>
-        <location filename="../mainwindow.ui" line="79"/>
-        <source>Exit</source>
+        <location filename="../../material/qml/Connection.qml" line="16"/>
+        <source>Alias</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="88"/>
-        <source>&amp;Options...</source>
+        <location filename="../../material/qml/Connection.qml" line="27"/>
+        <source>Server host or IP</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="100"/>
-        <location filename="../mainwindow.ui" line="103"/>
-        <location filename="../mainwindow.cpp" line="714"/>
-        <source>Connect</source>
+        <location filename="../../material/qml/Connection.qml" line="37"/>
+        <source>Port</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="112"/>
-        <location filename="../mainwindow.ui" line="115"/>
-        <source>Transfers</source>
+        <location filename="../../material/qml/Connection.qml" line="64"/>
+        <source>Select server for connect</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="124"/>
-        <location filename="../mainwindow.ui" line="127"/>
-        <source>Search</source>
+        <location filename="../../material/qml/Connection.qml" line="87"/>
+        <source>Connected</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="102"/>
-        <location filename="../mainwindow.cpp" line="592"/>
-        <source>qDonkey %1</source>
+        <location filename="../../material/qml/Connection.qml" line="92"/>
+        <source>Connecting...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="271"/>
-        <source>Download starting</source>
+        <location filename="../../material/qml/Connection.qml" line="96"/>
+        <source>Conn/Disconnect</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="271"/>
-        <source>%1 has started downloading.</source>
-        <comment>e.g: xxx.avi has started downloading.</comment>
+        <location filename="../../material/qml/Connection.qml" line="96"/>
+        <source>Add</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="276"/>
-        <source>Download completion</source>
+        <location filename="../../material/qml/Connection.qml" line="96"/>
+        <source>Delete</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>Donkey</name>
+    <message>
+        <location filename="../../material/qml/Donkey.qml" line="27"/>
+        <source>Do you really want to quit?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="276"/>
-        <source>%1 has finished downloading.</source>
-        <comment>e.g: xxx.avi has finished downloading.</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.cpp" line="285"/>
-        <source>I/O Error</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.cpp" line="285"/>
-        <source>An I/O error occured for %1.
-Reason: %2</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.cpp" line="295"/>
-        <source>Alt+1</source>
-        <comment>shortcut to switch to first tab</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.cpp" line="367"/>
-        <source>Exiting qDonkey</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.cpp" line="368"/>
-        <source>Some files are currently transferring.
-Are you sure you want to quit qDonkey?</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.cpp" line="371"/>
-        <source>No</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.cpp" line="372"/>
+        <location filename="../../material/qml/Donkey.qml" line="28"/>
         <source>Yes</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="373"/>
-        <source>Always</source>
+        <location filename="../../material/qml/Donkey.qml" line="29"/>
+        <source>No</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="568"/>
-        <source>qDonkey</source>
+        <location filename="../../material/qml/Donkey.qml" line="45"/>
+        <source>Ok</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="572"/>
-        <location filename="../mainwindow.cpp" line="582"/>
-        <source>DL speed: %1 KiB/s</source>
-        <comment>e.g: Download speed: 10 KiB/s</comment>
+        <location filename="../../material/qml/Donkey.qml" line="47"/>
+        <source>I/O error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="577"/>
-        <location filename="../mainwindow.cpp" line="584"/>
-        <source>UP speed: %1 KiB/s</source>
-        <comment>e.g: Upload speed: 10 KiB/s</comment>
+        <location filename="../../material/qml/Donkey.qml" line="48"/>
+        <source>Filename: %1 message %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="590"/>
-        <source>[D: %1/s, U: %2/s] qDonkey %3</source>
-        <comment>D = Download; U = Upload; %3 is qDonkey version</comment>
+        <location filename="../../material/qml/Donkey.qml" line="84"/>
+        <source>Choose server for connection and click for menu.
+Connection to server need for search keywords and search sources on download stage.
+If you have router and got LowID try to forward listen port in preferences(reconnect after).
+LowID means your port is not accessible from outside - it is significantly reduce download speed.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="686"/>
+        <location filename="../../material/qml/Donkey.qml" line="93"/>
+        <source>Enter search phrase into text field. Additionaly you can specify minimal sources count, size and so on.
+To start search press Start button. If search returns results you will be forwarded to search result page.
+To search more results click More button. Search in KAD will be available in next releases.
+Choose search result and click Download or Preview</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../material/qml/Donkey.qml" line="102"/>
+        <source>This page shows your current active transfers include all previous files from incoming directory.
+By default it is your Download directory.
+Click on transfer for menu. You can start view file before download completed using Previw option.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../material/qml/Donkey.qml" line="110"/>
+        <source>Setup program options here. Language changes will applied after restart application.
+Incoming directory and port applies after you leave preferences page.
+Be careful about changing listen port and incoming directory.
+All content of incoming directory will be shared.
+Help about KAD you can see on help button near KAD switch.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../material/qml/Donkey.qml" line="150"/>
+        <source>Conn</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../material/qml/Donkey.qml" line="150"/>
+        <source>Transfers</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../material/qml/Donkey.qml" line="150"/>
+        <source>Search</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../material/qml/Donkey.qml" line="150"/>
+        <source>Pref</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>HelpDialog</name>
+    <message>
+        <location filename="../../material/qml/HelpDialog.qml" line="9"/>
+        <source>This application for eDonkey2000 networks.
+More information about KAD support,development and future plans at https://github.com/a-pavlov/qdonkey/wiki.
+You can help the development by give a good rating to the app in Google Play or clicking on an ad unit</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../material/qml/HelpDialog.qml" line="13"/>
+        <source>More</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../material/qml/HelpDialog.qml" line="14"/>
+        <source>Ok</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>InitDialog</name>
+    <message>
+        <location filename="../../material/qml/InitDialog.qml" line="36"/>
+        <source>Setup incoming directory</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../material/qml/InitDialog.qml" line="56"/>
+        <source>Incoming directory</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../material/qml/InitDialog.qml" line="81"/>
         <source>Cancel</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="701"/>
-        <source>Disconnect</source>
+        <location filename="../../material/qml/InitDialog.qml" line="93"/>
+        <source>Ok</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="718"/>
-        <source>Server message</source>
+        <location filename="../../material/qml/InitDialog.qml" line="107"/>
+        <source>Setup directory incorrect, try again</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>Kademlia</name>
+    <message>
+        <location filename="../../material/qml/Kademlia.qml" line="8"/>
+        <source>Back to Pref</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="718"/>
-        <source>Server connection closed</source>
+        <location filename="../../material/qml/Kademlia.qml" line="24"/>
+        <source>Kademlia routing table</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>MainWindow</name>
+    <message>
+        <location filename="../../material/mainwindow.cpp" line="163"/>
+        <source>%1 has started downloading</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../material/mainwindow.cpp" line="170"/>
+        <source>%1 has finished downloading</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../material/mainwindow.cpp" line="175"/>
+        <source>I/O error on %1: %2</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>PeerModel</name>
     <message>
-        <location filename="../transfers/peermodel.cpp" line="35"/>
+        <location filename="../../material/peermodel.cpp" line="43"/>
         <source>/s</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transfers/peermodel.cpp" line="100"/>
+        <location filename="../../material/peermodel.cpp" line="46"/>
+        <source>Server</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../material/peermodel.cpp" line="47"/>
+        <source>KAD</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../material/peermodel.cpp" line="48"/>
+        <source>Incoming</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../material/peermodel.cpp" line="49"/>
+        <source>Unknown</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../material/peermodel.cpp" line="75"/>
         <source>IP</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transfers/peermodel.cpp" line="101"/>
+        <location filename="../../material/peermodel.cpp" line="76"/>
         <source>Client</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transfers/peermodel.cpp" line="102"/>
+        <location filename="../../material/peermodel.cpp" line="77"/>
         <source>File name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transfers/peermodel.cpp" line="103"/>
+        <location filename="../../material/peermodel.cpp" line="78"/>
         <source>Progress</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transfers/peermodel.cpp" line="104"/>
+        <location filename="../../material/peermodel.cpp" line="79"/>
         <source>Speed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transfers/peermodel.cpp" line="105"/>
+        <location filename="../../material/peermodel.cpp" line="80"/>
         <source>Bytes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../material/peermodel.cpp" line="81"/>
+        <source>Source</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>Preferences</name>
+    <message>
+        <location filename="../../material/qml/Preferences.qml" line="38"/>
+        <location filename="../../material/qml/Preferences.qml" line="46"/>
+        <location filename="../../material/qml/Preferences.qml" line="57"/>
+        <source>Ok</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../material/qml/Preferences.qml" line="40"/>
+        <source>New language will be available after restart</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../material/qml/Preferences.qml" line="91"/>
+        <source>Change preferences here and click apply</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../material/qml/Preferences.qml" line="111"/>
+        <source>English</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../material/qml/Preferences.qml" line="112"/>
+        <source>Russian</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../material/qml/Preferences.qml" line="113"/>
+        <source>Italian</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../material/qml/Preferences.qml" line="134"/>
+        <source>Enter your nickname</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../material/qml/Preferences.qml" line="155"/>
+        <source>Listen port</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../material/qml/Preferences.qml" line="9"/>
+        <source>Configure application</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../material/qml/Preferences.qml" line="19"/>
+        <source>Error on download nodes.dat: %1 at %2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../material/qml/Preferences.qml" line="21"/>
+        <source>nodes.dat succesfully downloaded</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../material/qml/Preferences.qml" line="48"/>
+        <source>To start use KAD in first time you need one of two things or both:
+1. specify bootstrap node(ip and port).
+2. downdload nodes.dat file to your Download location from any internet source or click download button.
+Application will load nodes.dat on start KAD again. Status of Kademlia you can see on click info button.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../material/qml/Preferences.qml" line="59"/>
+        <source>You can&apos;t start use KAD without at least one bootstrap node or nodes.dat file in Download location.
+Click help button for more information</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../material/qml/Preferences.qml" line="66"/>
+        <source>Download nodes.dat to your download location? Previous nodes.dat will be erased</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../material/qml/Preferences.qml" line="181"/>
+        <source>Forward port on router</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../material/qml/Preferences.qml" line="223"/>
+        <source>KAD</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../material/qml/Preferences.qml" line="265"/>
+        <source>Bootstrap IP</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../material/qml/Preferences.qml" line="275"/>
+        <source>Port</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../material/qml/Preferences.qml" line="303"/>
+        <source>Down</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../material/qml/Preferences.qml" line="316"/>
+        <source>Dowload limit Kb/s</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../material/qml/Preferences.qml" line="329"/>
+        <source>Up</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../material/qml/Preferences.qml" line="342"/>
+        <source>Upload limit Kb/s</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../material/qml/Preferences.qml" line="364"/>
+        <source>Incoming directory</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../material/qml/Preferences.qml" line="385"/>
+        <source>Show old transfers</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../material/qml/Preferences.qml" line="402"/>
+        <source>Ask before exit program</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -245,327 +475,390 @@ Are you sure you want to quit qDonkey?</source>
         <source>Emule collection</source>
         <translation type="unfinished"></translation>
     </message>
+</context>
+<context>
+    <name>Search</name>
     <message>
-        <location filename="../main.cpp" line="226"/>
-        <source>Usage:</source>
+        <location filename="../../material/qml/Search.qml" line="22"/>
+        <source>Sorry, your last search returned empty result</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="227"/>
-        <source>displays program version</source>
+        <location filename="../../material/qml/Search.qml" line="36"/>
+        <source>Ok</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="228"/>
-        <source>displays this help message</source>
+        <location filename="../../material/qml/Search.qml" line="34"/>
+        <source>You are not connected to any ED2K server. Please, connect first</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="229"/>
-        <source>downloads the files passed by the user via ed2k link or .emulecollection (optional)</source>
+        <location filename="../../material/qml/Search.qml" line="58"/>
+        <source>Enter phrase and press start</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../material/qml/Search.qml" line="70"/>
+        <source>Search phrase</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../material/qml/Search.qml" line="82"/>
+        <source>Any</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../material/qml/Search.qml" line="83"/>
+        <source>Archive</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../material/qml/Search.qml" line="84"/>
+        <source>Audio</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../material/qml/Search.qml" line="85"/>
+        <source>CD Image</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../material/qml/Search.qml" line="86"/>
+        <source>Picture</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../material/qml/Search.qml" line="87"/>
+        <source>Program</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../material/qml/Search.qml" line="88"/>
+        <source>Video</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../material/qml/Search.qml" line="89"/>
+        <source>Document</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../material/qml/Search.qml" line="90"/>
+        <source>Emule collection</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../material/qml/Search.qml" line="102"/>
+        <source>Min size, Mb</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../material/qml/Search.qml" line="108"/>
+        <source>Max size, Mb</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../material/qml/Search.qml" line="121"/>
+        <source>Availibility</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../material/qml/Search.qml" line="127"/>
+        <source>Full sources</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../material/qml/Search.qml" line="139"/>
+        <source>Media length</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../material/qml/Search.qml" line="145"/>
+        <source>Media bitrate</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../material/qml/Search.qml" line="154"/>
+        <source>Extension</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../material/qml/Search.qml" line="161"/>
+        <source>Codec</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../material/qml/Search.qml" line="194"/>
+        <source>Start</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../material/qml/Search.qml" line="220"/>
+        <source>More</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../material/qml/Search.qml" line="236"/>
+        <source>Cancel</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>SearchModel</name>
     <message>
-        <location filename="../search/search_model.cpp" line="71"/>
+        <location filename="../../material/search_model.cpp" line="58"/>
         <source> kBit/s</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../search/search_model.cpp" line="147"/>
-        <source>Filename</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../search/search_model.cpp" line="148"/>
-        <source>Size</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../search/search_model.cpp" line="149"/>
-        <source>Sources</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../search/search_model.cpp" line="150"/>
-        <source>Type</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../search/search_model.cpp" line="151"/>
-        <source>ID</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../search/search_model.cpp" line="152"/>
-        <source>Bitrate</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../search/search_model.cpp" line="153"/>
-        <source>Duration</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../search/search_model.cpp" line="154"/>
-        <source>Codec</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
-    <name>TransferListDelegate</name>
+    <name>SearchResult</name>
     <message>
-        <location filename="../transfers/transferlist_delegate.cpp" line="47"/>
-        <source>Downloading</source>
+        <location filename="../../material/qml/SearchResult.qml" line="8"/>
+        <source>Back to search</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transfers/transferlist_delegate.cpp" line="51"/>
-        <source>Paused</source>
+        <location filename="../../material/qml/SearchResult.qml" line="19"/>
+        <source>Select item for download</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transfers/transferlist_delegate.cpp" line="54"/>
-        <source>Seeding</source>
-        <comment>Transfert is complete and in upload-only mode</comment>
+        <location filename="../../material/qml/SearchResult.qml" line="57"/>
+        <source>Search related</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transfers/transferlist_delegate.cpp" line="57"/>
-        <source>Completed</source>
-        <comment>Transfer is completed and upload speed is zero</comment>
+        <location filename="../../material/qml/SearchResult.qml" line="57"/>
+        <source>Download</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transfers/transferlist_delegate.cpp" line="60"/>
-        <source>Stalled</source>
-        <comment>Torrent is waiting for download to begin</comment>
+        <location filename="../../material/qml/SearchResult.qml" line="57"/>
+        <source>Preview</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transfers/transferlist_delegate.cpp" line="74"/>
-        <source>/s</source>
-        <comment>/second (.i.e per second)</comment>
+        <location filename="../../material/qml/SearchResult.qml" line="66"/>
+        <location filename="../../material/qml/SearchResult.qml" line="74"/>
+        <source>File %1 added to downloads</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transfers/transferlist_delegate.cpp" line="82"/>
-        <source>Seeded for %1</source>
-        <comment>e.g. Seeded for 3m10s</comment>
+        <location filename="../../material/qml/SearchResult.qml" line="68"/>
+        <location filename="../../material/qml/SearchResult.qml" line="76"/>
+        <source>Error occured on adding %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>TransferDetails</name>
+    <message>
+        <location filename="../../material/qml/TransferDetails.qml" line="9"/>
+        <source>Back to transfers</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../material/qml/TransferDetails.qml" line="92"/>
+        <source>Size %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../material/qml/TransferDetails.qml" line="146"/>
+        <source>Seeds/Peers %1/%2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../material/qml/TransferDetails.qml" line="161"/>
+        <source>ETA %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../material/qml/TransferDetails.qml" line="202"/>
+        <source>Total: </source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>TransferModel</name>
     <message>
-        <location filename="../transfers/transfer_model.cpp" line="40"/>
+        <location filename="../../material/transfer_model.cpp" line="62"/>
         <source>Name</source>
         <comment>i.e: Transfer name</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transfers/transfer_model.cpp" line="41"/>
+        <location filename="../../material/transfer_model.cpp" line="63"/>
         <source>Size</source>
         <comment>i.e: Transfer size</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transfers/transfer_model.cpp" line="42"/>
+        <location filename="../../material/transfer_model.cpp" line="64"/>
         <source>Type</source>
         <comment>i.e. file type</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transfers/transfer_model.cpp" line="43"/>
+        <location filename="../../material/transfer_model.cpp" line="65"/>
         <source>Done</source>
         <comment>% Done</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transfers/transfer_model.cpp" line="44"/>
+        <location filename="../../material/transfer_model.cpp" line="66"/>
         <source>Status</source>
         <comment>Transfer status (e.g. downloading, seeding, paused)</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transfers/transfer_model.cpp" line="45"/>
+        <location filename="../../material/transfer_model.cpp" line="67"/>
         <source>Seeds</source>
         <comment>i.e. full sources (often untranslated)</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transfers/transfer_model.cpp" line="46"/>
+        <location filename="../../material/transfer_model.cpp" line="68"/>
         <source>Peers</source>
         <comment>i.e. partial sources (often untranslated)</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transfers/transfer_model.cpp" line="47"/>
+        <location filename="../../material/transfer_model.cpp" line="69"/>
         <source>Down Speed</source>
         <comment>i.e: Download speed</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transfers/transfer_model.cpp" line="48"/>
+        <location filename="../../material/transfer_model.cpp" line="70"/>
         <source>Up Speed</source>
         <comment>i.e: Upload speed</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transfers/transfer_model.cpp" line="49"/>
+        <location filename="../../material/transfer_model.cpp" line="71"/>
         <source>Hash</source>
         <comment>i.e transfer hash</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transfers/transfer_model.cpp" line="50"/>
+        <location filename="../../material/transfer_model.cpp" line="72"/>
         <source>ETA</source>
         <comment>i.e: Estimated Time of Arrival / Time left</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transfers/transfer_model.cpp" line="51"/>
+        <location filename="../../material/transfer_model.cpp" line="73"/>
         <source>Ratio</source>
         <comment>Share ratio</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transfers/transfer_model.cpp" line="52"/>
+        <location filename="../../material/transfer_model.cpp" line="74"/>
         <source>Added On</source>
         <comment>Transfer was added to transfer list on 01/01/2010 08:00</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transfers/transfer_model.cpp" line="53"/>
+        <location filename="../../material/transfer_model.cpp" line="75"/>
         <source>Amount downloaded</source>
         <comment>Amount of data downloaded (e.g. in MB)</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transfers/transfer_model.cpp" line="54"/>
+        <location filename="../../material/transfer_model.cpp" line="76"/>
         <source>Amount left</source>
         <comment>Amount of data left to download (e.g. in MB)</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transfers/transfer_model.cpp" line="55"/>
+        <location filename="../../material/transfer_model.cpp" line="77"/>
         <source>Time Active</source>
         <comment>Time (duration) the Transfer is active (not paused)</comment>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
-    <name>collection_save_dlg</name>
+    <name>TransferModelItem</name>
     <message>
-        <location filename="../collection_save_dlg.ui" line="32"/>
-        <source>collection_save_dlg</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../collection_save_dlg.ui" line="56"/>
-        <location filename="../collection_save_dlg.cpp" line="82"/>
-        <source>Collection list</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../collection_save_dlg.ui" line="70"/>
-        <source>Directory name</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../collection_save_dlg.ui" line="77"/>
-        <source>Directory path</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../collection_save_dlg.ui" line="109"/>
-        <source>...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../collection_save_dlg.ui" line="167"/>
-        <source>Download</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../collection_save_dlg.ui" line="174"/>
-        <source>Cancel</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../collection_save_dlg.cpp" line="62"/>
-        <source>File name</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../collection_save_dlg.cpp" line="62"/>
-        <source>File size</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../collection_save_dlg.cpp" line="62"/>
-        <source>Hash</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../collection_save_dlg.cpp" line="119"/>
-        <source>Open Directory</source>
+        <location filename="../../material/transfermodel_item.cpp" line="55"/>
+        <location filename="../../material/transfermodel_item.cpp" line="56"/>
+        <source>/s</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
-    <name>ed2k_link_maker</name>
+    <name>Transfers</name>
     <message>
-        <location filename="../ed2k_link_maker.ui" line="17"/>
-        <location filename="../ed2k_link_maker.ui" line="29"/>
-        <source>ED2K link</source>
+        <location filename="../../material/qml/Transfers.qml" line="30"/>
+        <source>Select for actions menu</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ed2k_link_maker.ui" line="69"/>
-        <source>Add file size</source>
+        <location filename="../../material/qml/Transfers.qml" line="35"/>
+        <source>Unable to open file of this type</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ed2k_link_maker.ui" line="82"/>
-        <source>Make forum link</source>
+        <location filename="../../material/qml/Transfers.qml" line="53"/>
+        <source>Stalled dl</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ed2k_link_maker.ui" line="98"/>
-        <source>Close</source>
+        <location filename="../../material/qml/Transfers.qml" line="54"/>
+        <source>Stalled up</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ed2k_link_maker.ui" line="114"/>
-        <source>Copy</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>inputdir_dialog</name>
-    <message>
-        <location filename="../inputdir_dialog.ui" line="20"/>
-        <location filename="../inputdir_dialog.cpp" line="22"/>
-        <location filename="../inputdir_dialog.cpp" line="24"/>
-        <source>Choose input directory</source>
+        <location filename="../../material/qml/Transfers.qml" line="55"/>
+        <source>Downloading...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../inputdir_dialog.ui" line="31"/>
-        <source>...</source>
+        <location filename="../../material/qml/Transfers.qml" line="56"/>
+        <source>Seeding...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../inputdir_dialog.ui" line="77"/>
-        <source>TextLabel</source>
+        <location filename="../../material/qml/Transfers.qml" line="59"/>
+        <source>Paused</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../inputdir_dialog.cpp" line="36"/>
-        <source>Unable to prepare input directory, check it exists and writeable</source>
+        <location filename="../../material/qml/Transfers.qml" line="60"/>
+        <source>Checking...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../material/qml/Transfers.qml" line="61"/>
+        <location filename="../../material/qml/Transfers.qml" line="62"/>
+        <source>Invalid</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../material/qml/Transfers.qml" line="106"/>
+        <source>Pause</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../material/qml/Transfers.qml" line="106"/>
+        <source>Resume</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../material/qml/Transfers.qml" line="106"/>
+        <source>Remove</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../material/qml/Transfers.qml" line="106"/>
+        <source>Details</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../material/qml/Transfers.qml" line="106"/>
+        <source>Preview</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -653,541 +946,6 @@ Are you sure you want to quit qDonkey?</source>
     <message>
         <location filename="../misc.h" line="83"/>
         <source>%1.%2.%3</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>preferences_widget</name>
-    <message>
-        <location filename="../preferences/preferences_widget.ui" line="14"/>
-        <source>Form</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../preferences/preferences_widget.ui" line="20"/>
-        <source>Behaviour</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../preferences/preferences_widget.ui" line="26"/>
-        <source>Confirm on exit</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../preferences/preferences_widget.ui" line="33"/>
-        <source>Display speed in windows title</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../preferences/preferences_widget.ui" line="40"/>
-        <source>Add transfers from collections and links on pause</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../preferences/preferences_widget.ui" line="49"/>
-        <source>Language</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../preferences/preferences_widget.ui" line="77"/>
-        <source>Network settings</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../preferences/preferences_widget.ui" line="83"/>
-        <source>Server</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../preferences/preferences_widget.ui" line="89"/>
-        <source>Host:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../preferences/preferences_widget.ui" line="103"/>
-        <location filename="../preferences/preferences_widget.ui" line="309"/>
-        <source>Port</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../preferences/preferences_widget.ui" line="136"/>
-        <source>Connection</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../preferences/preferences_widget.ui" line="144"/>
-        <source>Port used for incoming connections:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../preferences/preferences_widget.ui" line="173"/>
-        <source>Use UPnP / NAT-PMP port forwarding from my router</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../preferences/preferences_widget.ui" line="185"/>
-        <source>User name</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../preferences/preferences_widget.ui" line="213"/>
-        <source>File associations</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../preferences/preferences_widget.ui" line="219"/>
-        <source>Use qDonkey for emule collections</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../preferences/preferences_widget.ui" line="226"/>
-        <source>Use qDonkey for ed2k links</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../preferences/preferences_widget.ui" line="236"/>
-        <source>Save files to location</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../preferences/preferences_widget.ui" line="287"/>
-        <source>Kademlia</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../preferences/preferences_widget.ui" line="295"/>
-        <source>Bootstrap host:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../preferences/preferences_widget.ui" line="343"/>
-        <source>Use KAD</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../preferences/preferences_widget.ui" line="373"/>
-        <source>Accept</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../preferences/preferences_widget.ui" line="383"/>
-        <source>Cancel</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../preferences/preferences_widget.cpp" line="152"/>
-        <source>Input directory configuration</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../preferences/preferences_widget.cpp" line="152"/>
-        <source>Unable to write metadata into directiry, check it exists and writeable</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../preferences/preferences_widget.cpp" line="203"/>
-        <location filename="../preferences/preferences_widget.cpp" line="205"/>
-        <source>Choose input directory</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>search_widget</name>
-    <message>
-        <location filename="../search/search_widget.ui" line="14"/>
-        <source>search_widget</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../search/search_widget.ui" line="54"/>
-        <source>Name</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../search/search_widget.ui" line="109"/>
-        <source>Display own files</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../search/search_widget.ui" line="134"/>
-        <source>Filter &apos;+++&apos;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../search/search_widget.ui" line="161"/>
-        <source>Type</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../search/search_widget.ui" line="208"/>
-        <source>Clear history</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../search/search_widget.ui" line="245"/>
-        <source>Start</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../search/search_widget.ui" line="276"/>
-        <source>More</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../search/search_widget.ui" line="304"/>
-        <source>Cancel</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../search/search_widget.ui" line="377"/>
-        <source>Search results</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../search/search_widget.ui" line="463"/>
-        <location filename="../search/search_widget.ui" line="559"/>
-        <source>Download</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../search/search_widget.ui" line="504"/>
-        <location filename="../search/search_widget.ui" line="568"/>
-        <source>Preview</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../search/search_widget.ui" line="546"/>
-        <location filename="../search/search_widget.ui" line="577"/>
-        <location filename="../search/search_widget.ui" line="580"/>
-        <source>Close all</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../search/search_widget.ui" line="589"/>
-        <source>Search related</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../search/search_widget.ui" line="598"/>
-        <source>ED2K link</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../search/search_widget.ui" line="607"/>
-        <source>Download pause</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../search/search_widget.ui" line="615"/>
-        <source>Default</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../search/search_widget.ui" line="623"/>
-        <source>Kb</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../search/search_widget.ui" line="631"/>
-        <source>Mb</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../search/search_widget.cpp" line="74"/>
-        <source>Size</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../search/search_widget.cpp" line="87"/>
-        <source>Any</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../search/search_widget.cpp" line="88"/>
-        <source>Archive</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../search/search_widget.cpp" line="89"/>
-        <source>Audio</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../search/search_widget.cpp" line="90"/>
-        <source>CD Image</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../search/search_widget.cpp" line="91"/>
-        <source>Picture</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../search/search_widget.cpp" line="92"/>
-        <source>Program</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../search/search_widget.cpp" line="93"/>
-        <source>Video</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../search/search_widget.cpp" line="94"/>
-        <source>Document</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../search/search_widget.cpp" line="95"/>
-        <source>Emule Collection</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../search/search_widget.cpp" line="99"/>
-        <source>Press Ctrl-Delete for history cleanup</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../search/search_widget.cpp" line="104"/>
-        <source>Min. size [MiB]</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../search/search_widget.cpp" line="106"/>
-        <source>Max. size [MiB]</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../search/search_widget.cpp" line="108"/>
-        <source>Availability</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../search/search_widget.cpp" line="110"/>
-        <source>Full sources</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../search/search_widget.cpp" line="112"/>
-        <source>Extension</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../search/search_widget.cpp" line="114"/>
-        <source>Codec</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../search/search_widget.cpp" line="116"/>
-        <source>Min bitrait [kBit/sec]</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../search/search_widget.cpp" line="118"/>
-        <source>Min duration [h:m:s]</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../search/search_widget.cpp" line="165"/>
-        <source>Files</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../search/search_widget.cpp" line="399"/>
-        <location filename="../search/search_widget.cpp" line="494"/>
-        <source>Files: </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../search/search_widget.cpp" line="571"/>
-        <source>Server connection closed</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../search/search_widget.cpp" line="572"/>
-        <source>You can&apos;t search in ED2K network on closed server connection, set connection or check torrent combobox</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../search/search_widget.cpp" line="638"/>
-        <source>Search request parsing error</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../search/search_widget.cpp" line="639"/>
-        <source>Syntax error in &apos;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../search/search_widget.cpp" line="641"/>
-        <source>&apos; parameter</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../search/search_widget.cpp" line="753"/>
-        <source>Column visibility</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>status_bar</name>
-    <message>
-        <location filename="../statusbar/status_bar.ui" line="14"/>
-        <source>status_bar</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../statusbar/status_bar.cpp" line="38"/>
-        <location filename="../statusbar/status_bar.cpp" line="39"/>
-        <source>eD2K:Connected</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../statusbar/status_bar.cpp" line="44"/>
-        <location filename="../statusbar/status_bar.cpp" line="45"/>
-        <source>eD2K:Disconnected</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../statusbar/status_bar.cpp" line="55"/>
-        <source>Upload:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../statusbar/status_bar.cpp" line="55"/>
-        <location filename="../statusbar/status_bar.cpp" line="56"/>
-        <source>s</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../statusbar/status_bar.cpp" line="56"/>
-        <source>Download:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../statusbar/status_bar.cpp" line="69"/>
-        <source>Clients: </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../statusbar/status_bar.cpp" line="69"/>
-        <source>|Files: </source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>transfers_widget</name>
-    <message>
-        <location filename="../transfers/transfers_widget.ui" line="14"/>
-        <source>Form</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../transfers/transfers_widget.ui" line="107"/>
-        <source>Start</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../transfers/transfers_widget.ui" line="110"/>
-        <source>Resume transfer</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../transfers/transfers_widget.ui" line="113"/>
-        <location filename="../transfers/transfers_widget.ui" line="128"/>
-        <source>Ctrl+P</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../transfers/transfers_widget.ui" line="122"/>
-        <source>Pause</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../transfers/transfers_widget.ui" line="125"/>
-        <source>Pause transfer</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../transfers/transfers_widget.ui" line="137"/>
-        <source>Remove transfer and file</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../transfers/transfers_widget.ui" line="140"/>
-        <source>Del</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../transfers/transfers_widget.ui" line="149"/>
-        <source>ED2K link</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../transfers/transfers_widget.ui" line="157"/>
-        <source>Series download</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../transfers/transfers_widget.ui" line="165"/>
-        <source>First and last pieces first</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../transfers/transfers_widget.ui" line="174"/>
-        <source>Open destination folder</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../transfers/transfers_widget.ui" line="183"/>
-        <source>Rename</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../transfers/transfers_widget.ui" line="192"/>
-        <source>Preview</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../transfers/transfers_widget.ui" line="204"/>
-        <source>Show transfers from previous sessions</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../transfers/transfers_widget.ui" line="213"/>
-        <source>Load ED2K link</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../transfers/transfers_widget.ui" line="216"/>
-        <source>Ctrl+L</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../transfers/transfers_widget.cpp" line="315"/>
-        <source>Column visibility</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../transfers/transfers_widget.cpp" line="351"/>
-        <location filename="../transfers/transfers_widget.cpp" line="356"/>
-        <location filename="../transfers/transfers_widget.cpp" line="363"/>
-        <source>Add ED2K link</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../transfers/transfers_widget.cpp" line="351"/>
-        <source>ED2K link:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../transfers/transfers_widget.cpp" line="356"/>
-        <source>Link too long</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../transfers/transfers_widget.cpp" line="363"/>
-        <source>Incorrect link</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

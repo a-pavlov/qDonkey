@@ -4,12 +4,14 @@
 <context>
     <name>AddLinkDialog</name>
     <message>
+        <location filename="../../material/qml/AddLinkDialog.qml" line="11"/>
         <source>Ok</source>
-        <translation type="vanished">Ok</translation>
+        <translation>Ok</translation>
     </message>
     <message>
+        <location filename="../../material/qml/AddLinkDialog.qml" line="13"/>
         <source>Download %1</source>
-        <translation type="vanished">Добавлена ссылка %1</translation>
+        <translation>Добавлена ссылка %1</translation>
     </message>
 </context>
 <context>
@@ -23,91 +25,143 @@
         <translation type="vanished">Двойной клик на сервере для соединения/отсоединения</translation>
     </message>
     <message>
+        <location filename="../../material/qml/Connection.qml" line="8"/>
         <source>Add server</source>
-        <translation type="vanished">Добавить сервер</translation>
+        <translation>Добавить сервер</translation>
     </message>
     <message>
+        <location filename="../../material/qml/Connection.qml" line="16"/>
         <source>Alias</source>
-        <translation type="vanished">Алиас</translation>
+        <translation>Алиас</translation>
     </message>
     <message>
+        <location filename="../../material/qml/Connection.qml" line="27"/>
         <source>Server host or IP</source>
-        <translation type="vanished">Хост или IP адрес</translation>
+        <translation>Хост или IP адрес</translation>
     </message>
     <message>
+        <location filename="../../material/qml/Connection.qml" line="37"/>
         <source>Port</source>
-        <translation type="vanished">Порт</translation>
+        <translation>Порт</translation>
     </message>
     <message>
         <source>Double click for connect</source>
         <translation type="vanished">Двойной клик для соединения</translation>
     </message>
     <message>
+        <location filename="../../material/qml/Connection.qml" line="64"/>
         <source>Select server for connect</source>
-        <translation type="vanished">Выберите сервер</translation>
+        <translation>Выберите сервер</translation>
     </message>
     <message>
+        <location filename="../../material/qml/Connection.qml" line="87"/>
         <source>Connected</source>
-        <translation type="vanished">Соединен</translation>
+        <translation>Соединен</translation>
     </message>
     <message>
+        <location filename="../../material/qml/Connection.qml" line="92"/>
         <source>Connecting...</source>
-        <translation type="vanished">Соединяюсь...</translation>
+        <translation>Соединяюсь...</translation>
     </message>
     <message>
+        <location filename="../../material/qml/Connection.qml" line="96"/>
         <source>Conn/Disconnect</source>
-        <translation type="vanished">Соединение/Стоп</translation>
+        <translation>Соединение/Стоп</translation>
     </message>
     <message>
+        <location filename="../../material/qml/Connection.qml" line="96"/>
         <source>Add</source>
-        <translation type="vanished">Добавить</translation>
+        <translation>Добавить</translation>
     </message>
     <message>
+        <location filename="../../material/qml/Connection.qml" line="96"/>
         <source>Delete</source>
-        <translation type="vanished">Удалить</translation>
+        <translation>Удалить</translation>
     </message>
 </context>
 <context>
     <name>Donkey</name>
     <message>
+        <location filename="../../material/qml/Donkey.qml" line="27"/>
         <source>Do you really want to quit?</source>
-        <translation type="vanished">Вы уверены что хотите выйти?</translation>
+        <translation>Вы уверены что хотите выйти?</translation>
     </message>
     <message>
+        <location filename="../../material/qml/Donkey.qml" line="28"/>
         <source>Yes</source>
-        <translation type="vanished">Да</translation>
+        <translation>Да</translation>
     </message>
     <message>
+        <location filename="../../material/qml/Donkey.qml" line="29"/>
         <source>No</source>
-        <translation type="vanished">Нет</translation>
+        <translation>Нет</translation>
     </message>
     <message>
+        <location filename="../../material/qml/Donkey.qml" line="45"/>
         <source>Ok</source>
-        <translation type="vanished">Готово</translation>
+        <translation>Готово</translation>
     </message>
     <message>
+        <location filename="../../material/qml/Donkey.qml" line="47"/>
         <source>I/O error</source>
-        <translation type="vanished">Ошибка ввода-вывода</translation>
+        <translation>Ошибка ввода-вывода</translation>
     </message>
     <message>
+        <location filename="../../material/qml/Donkey.qml" line="48"/>
         <source>Filename: %1 message %2</source>
-        <translation type="vanished">Файл %1 ошибка %2</translation>
+        <translation>Файл %1 ошибка %2</translation>
     </message>
     <message>
+        <location filename="../../material/qml/Donkey.qml" line="84"/>
+        <source>Choose server for connection and click for menu.
+Connection to server need for search keywords and search sources on download stage.
+If you have router and got LowID try to forward listen port in preferences(reconnect after).
+LowID means your port is not accessible from outside - it is significantly reduce download speed.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../material/qml/Donkey.qml" line="93"/>
+        <source>Enter search phrase into text field. Additionaly you can specify minimal sources count, size and so on.
+To start search press Start button. If search returns results you will be forwarded to search result page.
+To search more results click More button. Search in KAD will be available in next releases.
+Choose search result and click Download or Preview</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../material/qml/Donkey.qml" line="102"/>
+        <source>This page shows your current active transfers include all previous files from incoming directory.
+By default it is your Download directory.
+Click on transfer for menu. You can start view file before download completed using Previw option.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../material/qml/Donkey.qml" line="110"/>
+        <source>Setup program options here. Language changes will applied after restart application.
+Incoming directory and port applies after you leave preferences page.
+Be careful about changing listen port and incoming directory.
+All content of incoming directory will be shared.
+Help about KAD you can see on help button near KAD switch.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../material/qml/Donkey.qml" line="150"/>
         <source>Conn</source>
-        <translation type="vanished">Серверы</translation>
+        <translation>Серверы</translation>
     </message>
     <message>
+        <location filename="../../material/qml/Donkey.qml" line="150"/>
         <source>Transfers</source>
-        <translation type="vanished">Загрузки</translation>
+        <translation>Загрузки</translation>
     </message>
     <message>
+        <location filename="../../material/qml/Donkey.qml" line="150"/>
         <source>Search</source>
-        <translation type="vanished">Поиск</translation>
+        <translation>Поиск</translation>
     </message>
     <message>
+        <location filename="../../material/qml/Donkey.qml" line="150"/>
         <source>Pref</source>
-        <translation type="vanished">Опции</translation>
+        <translation>Опции</translation>
     </message>
 </context>
 <context>
@@ -121,263 +175,269 @@
         <translation type="vanished">Это приложение для сетей eDonkey2000. Разрабатывается одним человеком. Больше информации по ссылке https://github.com/a-pavlov/qdonkey/wiki или кнопке &quot;Еще&quot;. Вы можете помочь проекту поставив хорошую оценку в Google Play. Cпасибо за покупку</translation>
     </message>
     <message>
-        <source>More</source>
-        <translation type="vanished">Еще</translation>
+        <location filename="../../material/qml/HelpDialog.qml" line="9"/>
+        <source>This application for eDonkey2000 networks.
+More information about KAD support,development and future plans at https://github.com/a-pavlov/qdonkey/wiki.
+You can help the development by give a good rating to the app in Google Play or clicking on an ad unit</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../../material/qml/HelpDialog.qml" line="13"/>
+        <source>More</source>
+        <translation>Еще</translation>
+    </message>
+    <message>
+        <location filename="../../material/qml/HelpDialog.qml" line="14"/>
         <source>Ok</source>
-        <translation type="vanished">Ок</translation>
+        <translation>Ок</translation>
     </message>
 </context>
 <context>
     <name>InitDialog</name>
     <message>
+        <location filename="../../material/qml/InitDialog.qml" line="36"/>
         <source>Setup incoming directory</source>
-        <translation type="vanished">Укажите директорию загрузок</translation>
+        <translation>Укажите директорию загрузок</translation>
     </message>
     <message>
+        <location filename="../../material/qml/InitDialog.qml" line="56"/>
         <source>Incoming directory</source>
-        <translation type="vanished">Директория загрузок</translation>
+        <translation>Директория загрузок</translation>
+    </message>
+    <message>
+        <location filename="../../material/qml/InitDialog.qml" line="81"/>
+        <source>Cancel</source>
+        <translation>Отмена</translation>
+    </message>
+    <message>
+        <location filename="../../material/qml/InitDialog.qml" line="93"/>
+        <source>Ok</source>
+        <translation>Готово</translation>
+    </message>
+    <message>
+        <location filename="../../material/qml/InitDialog.qml" line="107"/>
+        <source>Setup directory incorrect, try again</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>Kademlia</name>
+    <message>
+        <location filename="../../material/qml/Kademlia.qml" line="8"/>
+        <source>Back to Pref</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../material/qml/Kademlia.qml" line="24"/>
+        <source>Kademlia routing table</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>MainWindow</name>
+    <message>
+        <source>Exit</source>
+        <translation type="vanished">Выход</translation>
+    </message>
+    <message>
+        <source>&amp;Options...</source>
+        <translation type="vanished">&amp;Опции...</translation>
+    </message>
+    <message>
+        <source>Connect</source>
+        <translation type="vanished">Соединение</translation>
+    </message>
+    <message>
+        <source>Transfers</source>
+        <translation type="vanished">Трансферы</translation>
+    </message>
+    <message>
+        <source>Search</source>
+        <translation type="vanished">Поиск</translation>
+    </message>
+    <message>
+        <source>qDonkey %1</source>
+        <translation type="vanished">куОсел %1</translation>
+    </message>
+    <message>
+        <source>Download starting</source>
+        <translation type="vanished">Загрузка началась</translation>
+    </message>
+    <message>
+        <source>%1 has started downloading.</source>
+        <comment>e.g: xxx.avi has started downloading.</comment>
+        <translation type="vanished">%1 загружается.</translation>
+    </message>
+    <message>
+        <source>Download completion</source>
+        <translation type="vanished">Загрузка завершена</translation>
+    </message>
+    <message>
+        <source>%1 has finished downloading.</source>
+        <comment>e.g: xxx.avi has finished downloading.</comment>
+        <translation type="vanished">%1 загружен.</translation>
+    </message>
+    <message>
+        <source>I/O Error</source>
+        <translation type="vanished">Ошибка ввода вывода</translation>
+    </message>
+    <message>
+        <source>An I/O error occured for %1.
+Reason: %2</source>
+        <translation type="vanished">Ошибка ввода вывода при загрузке %1 причина %2 </translation>
+    </message>
+    <message>
+        <source>Exiting qDonkey</source>
+        <translation type="vanished">Выход из Осла</translation>
+    </message>
+    <message>
+        <source>Some files are currently transferring.
+Are you sure you want to quit qDonkey?</source>
+        <translation type="vanished">Есть активные передачи, выйти из Осла?</translation>
+    </message>
+    <message>
+        <source>No</source>
+        <translation type="vanished">Нет</translation>
+    </message>
+    <message>
+        <source>Yes</source>
+        <translation type="vanished">Да</translation>
+    </message>
+    <message>
+        <source>Always</source>
+        <translation type="vanished">Всегда</translation>
+    </message>
+    <message>
+        <source>qDonkey</source>
+        <translation type="vanished">куОсел</translation>
+    </message>
+    <message>
+        <source>DL speed: %1 KiB/s</source>
+        <comment>e.g: Download speed: 10 KiB/s</comment>
+        <translation type="vanished">Скорость загрузки %1 Кб/сек</translation>
+    </message>
+    <message>
+        <source>UP speed: %1 KiB/s</source>
+        <comment>e.g: Upload speed: 10 KiB/s</comment>
+        <translation type="vanished">Скорость отдачи %1 Кб/сек</translation>
+    </message>
+    <message>
+        <source>[D: %1/s, U: %2/s] qDonkey %3</source>
+        <comment>D = Download; U = Upload; %3 is qDonkey version</comment>
+        <translation type="vanished">[Загрузка %1 Отдача %2] куОсел %3</translation>
     </message>
     <message>
         <source>Cancel</source>
         <translation type="vanished">Отмена</translation>
     </message>
     <message>
-        <source>Ok</source>
-        <translation type="vanished">Готово</translation>
-    </message>
-</context>
-<context>
-    <name>MainWindow</name>
-    <message>
-        <location filename="../mainwindow.ui" line="46"/>
-        <source>toolBar_2</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="71"/>
-        <source>&amp;Add torrent file...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="76"/>
-        <location filename="../mainwindow.ui" line="79"/>
-        <source>Exit</source>
-        <translation>Выход</translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="88"/>
-        <source>&amp;Options...</source>
-        <translation>&amp;Опции...</translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="100"/>
-        <location filename="../mainwindow.ui" line="103"/>
-        <location filename="../mainwindow.cpp" line="714"/>
-        <source>Connect</source>
-        <translation>Соединение</translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="112"/>
-        <location filename="../mainwindow.ui" line="115"/>
-        <source>Transfers</source>
-        <translation>Трансферы</translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="124"/>
-        <location filename="../mainwindow.ui" line="127"/>
-        <source>Search</source>
-        <translation>Поиск</translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.cpp" line="102"/>
-        <location filename="../mainwindow.cpp" line="592"/>
-        <source>qDonkey %1</source>
-        <translation>куОсел %1</translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.cpp" line="271"/>
-        <source>Download starting</source>
-        <translation>Загрузка началась</translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.cpp" line="271"/>
-        <source>%1 has started downloading.</source>
-        <comment>e.g: xxx.avi has started downloading.</comment>
-        <translation>%1 загружается.</translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.cpp" line="276"/>
-        <source>Download completion</source>
-        <translation>Загрузка завершена</translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.cpp" line="276"/>
-        <source>%1 has finished downloading.</source>
-        <comment>e.g: xxx.avi has finished downloading.</comment>
-        <translation>%1 загружен.</translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.cpp" line="285"/>
-        <source>I/O Error</source>
-        <translation>Ошибка ввода вывода</translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.cpp" line="285"/>
-        <source>An I/O error occured for %1.
-Reason: %2</source>
-        <translation>Ошибка ввода вывода при загрузке %1 причина %2 </translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.cpp" line="295"/>
-        <source>Alt+1</source>
-        <comment>shortcut to switch to first tab</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.cpp" line="367"/>
-        <source>Exiting qDonkey</source>
-        <translation>Выход из Осла</translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.cpp" line="368"/>
-        <source>Some files are currently transferring.
-Are you sure you want to quit qDonkey?</source>
-        <translation>Есть активные передачи, выйти из Осла?</translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.cpp" line="371"/>
-        <source>No</source>
-        <translation>Нет</translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.cpp" line="372"/>
-        <source>Yes</source>
-        <translation>Да</translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.cpp" line="373"/>
-        <source>Always</source>
-        <translation>Всегда</translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.cpp" line="568"/>
-        <source>qDonkey</source>
-        <translation>куОсел</translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.cpp" line="572"/>
-        <location filename="../mainwindow.cpp" line="582"/>
-        <source>DL speed: %1 KiB/s</source>
-        <comment>e.g: Download speed: 10 KiB/s</comment>
-        <translation>Скорость загрузки %1 Кб/сек</translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.cpp" line="577"/>
-        <location filename="../mainwindow.cpp" line="584"/>
-        <source>UP speed: %1 KiB/s</source>
-        <comment>e.g: Upload speed: 10 KiB/s</comment>
-        <translation>Скорость отдачи %1 Кб/сек</translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.cpp" line="590"/>
-        <source>[D: %1/s, U: %2/s] qDonkey %3</source>
-        <comment>D = Download; U = Upload; %3 is qDonkey version</comment>
-        <translation>[Загрузка %1 Отдача %2] куОсел %3</translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.cpp" line="686"/>
-        <source>Cancel</source>
-        <translation>Отмена</translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.cpp" line="701"/>
         <source>Disconnect</source>
-        <translation>Отсоединиться</translation>
+        <translation type="vanished">Отсоединиться</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="718"/>
         <source>Server message</source>
-        <translation>Сервер</translation>
+        <translation type="vanished">Сервер</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="718"/>
         <source>Server connection closed</source>
-        <translation>Соединение с сервером разорвано</translation>
+        <translation type="vanished">Соединение с сервером разорвано</translation>
     </message>
     <message>
+        <location filename="../../material/mainwindow.cpp" line="163"/>
         <source>%1 has started downloading</source>
-        <translation type="vanished">Началась загрузка %1 </translation>
+        <translation>Началась загрузка %1 </translation>
     </message>
     <message>
+        <location filename="../../material/mainwindow.cpp" line="170"/>
         <source>%1 has finished downloading</source>
-        <translation type="vanished">%1 загружен</translation>
+        <translation>%1 загружен</translation>
     </message>
     <message>
+        <location filename="../../material/mainwindow.cpp" line="175"/>
         <source>I/O error on %1: %2</source>
-        <translation type="vanished">Ошибка ввода вывода %1 на %2</translation>
+        <translation>Ошибка ввода вывода %1 на %2</translation>
     </message>
 </context>
 <context>
     <name>PeerModel</name>
     <message>
-        <location filename="../transfers/peermodel.cpp" line="35"/>
+        <location filename="../../material/peermodel.cpp" line="43"/>
         <source>/s</source>
         <translation>/сек</translation>
     </message>
     <message>
+        <location filename="../../material/peermodel.cpp" line="46"/>
         <source>Server</source>
-        <translation type="obsolete">Сервер</translation>
+        <translation type="unfinished">Сервер</translation>
     </message>
     <message>
+        <location filename="../../material/peermodel.cpp" line="47"/>
+        <source>KAD</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../material/peermodel.cpp" line="48"/>
+        <source>Incoming</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../material/peermodel.cpp" line="49"/>
         <source>Unknown</source>
-        <translation type="obsolete">Неизвестно</translation>
+        <translation type="unfinished">Неизвестно</translation>
     </message>
     <message>
-        <location filename="../transfers/peermodel.cpp" line="100"/>
+        <location filename="../../material/peermodel.cpp" line="75"/>
         <source>IP</source>
         <translation>IP</translation>
     </message>
     <message>
-        <location filename="../transfers/peermodel.cpp" line="101"/>
+        <location filename="../../material/peermodel.cpp" line="76"/>
         <source>Client</source>
         <translation>Клиент</translation>
     </message>
     <message>
-        <location filename="../transfers/peermodel.cpp" line="102"/>
+        <location filename="../../material/peermodel.cpp" line="77"/>
         <source>File name</source>
         <translation>Имя файла</translation>
     </message>
     <message>
-        <location filename="../transfers/peermodel.cpp" line="103"/>
+        <location filename="../../material/peermodel.cpp" line="78"/>
         <source>Progress</source>
         <translation>Прогресс</translation>
     </message>
     <message>
-        <location filename="../transfers/peermodel.cpp" line="104"/>
+        <location filename="../../material/peermodel.cpp" line="79"/>
         <source>Speed</source>
         <translation>Скорость</translation>
     </message>
     <message>
-        <location filename="../transfers/peermodel.cpp" line="105"/>
+        <location filename="../../material/peermodel.cpp" line="80"/>
         <source>Bytes</source>
         <translation>Байт</translation>
+    </message>
+    <message>
+        <location filename="../../material/peermodel.cpp" line="81"/>
+        <source>Source</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>Preferences</name>
     <message>
+        <location filename="../../material/qml/Preferences.qml" line="40"/>
         <source>New language will be available after restart</source>
-        <translation type="vanished">Изменения языка вступят в силу после перезапуска программы</translation>
+        <translation>Изменения языка вступят в силу после перезапуска программы</translation>
     </message>
     <message>
         <source>Preferences</source>
         <translation type="vanished">Опции</translation>
     </message>
     <message>
+        <location filename="../../material/qml/Preferences.qml" line="38"/>
+        <location filename="../../material/qml/Preferences.qml" line="46"/>
+        <location filename="../../material/qml/Preferences.qml" line="57"/>
         <source>Ok</source>
-        <translation type="vanished">Готово</translation>
+        <translation>Готово</translation>
     </message>
     <message>
         <source>Change preferences here</source>
@@ -388,64 +448,127 @@ Are you sure you want to quit qDonkey?</source>
         <translation type="vanished">Настройте и нажмите применить</translation>
     </message>
     <message>
+        <location filename="../../material/qml/Preferences.qml" line="91"/>
         <source>Change preferences here and click apply</source>
-        <translation type="vanished">Нажмите применить для сохранения</translation>
+        <translation>Нажмите применить для сохранения</translation>
     </message>
     <message>
+        <location filename="../../material/qml/Preferences.qml" line="111"/>
         <source>English</source>
-        <translation type="vanished">English</translation>
+        <translation>English</translation>
     </message>
     <message>
+        <location filename="../../material/qml/Preferences.qml" line="112"/>
         <source>Russian</source>
-        <translation type="vanished">Русский</translation>
+        <translation>Русский</translation>
     </message>
     <message>
+        <location filename="../../material/qml/Preferences.qml" line="113"/>
         <source>Italian</source>
-        <translation type="vanished">Italian</translation>
+        <translation>Italian</translation>
     </message>
     <message>
+        <location filename="../../material/qml/Preferences.qml" line="134"/>
         <source>Enter your nickname</source>
-        <translation type="vanished">Введите ааш ник</translation>
+        <translation>Введите ааш ник</translation>
     </message>
     <message>
+        <location filename="../../material/qml/Preferences.qml" line="155"/>
         <source>Listen port</source>
-        <translation type="vanished">Входящий порт</translation>
+        <translation>Входящий порт</translation>
     </message>
     <message>
         <source>UPnP port on router</source>
         <translation type="vanished">UPnP порт на роутере</translation>
     </message>
     <message>
+        <location filename="../../material/qml/Preferences.qml" line="9"/>
+        <source>Configure application</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../material/qml/Preferences.qml" line="19"/>
+        <source>Error on download nodes.dat: %1 at %2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../material/qml/Preferences.qml" line="21"/>
+        <source>nodes.dat succesfully downloaded</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../material/qml/Preferences.qml" line="48"/>
+        <source>To start use KAD in first time you need one of two things or both:
+1. specify bootstrap node(ip and port).
+2. downdload nodes.dat file to your Download location from any internet source or click download button.
+Application will load nodes.dat on start KAD again. Status of Kademlia you can see on click info button.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../material/qml/Preferences.qml" line="59"/>
+        <source>You can&apos;t start use KAD without at least one bootstrap node or nodes.dat file in Download location.
+Click help button for more information</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../material/qml/Preferences.qml" line="66"/>
+        <source>Download nodes.dat to your download location? Previous nodes.dat will be erased</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../material/qml/Preferences.qml" line="181"/>
+        <source>Forward port on router</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../material/qml/Preferences.qml" line="223"/>
+        <source>KAD</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../material/qml/Preferences.qml" line="265"/>
+        <source>Bootstrap IP</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../material/qml/Preferences.qml" line="275"/>
         <source>Port</source>
-        <translation type="obsolete">Порт</translation>
+        <translation type="unfinished">Порт</translation>
     </message>
     <message>
+        <location filename="../../material/qml/Preferences.qml" line="303"/>
         <source>Down</source>
-        <translation type="vanished">Загр</translation>
+        <translation>Загр</translation>
     </message>
     <message>
+        <location filename="../../material/qml/Preferences.qml" line="316"/>
         <source>Dowload limit Kb/s</source>
-        <translation type="vanished">Скорость загрузки Кб.с</translation>
+        <translation>Скорость загрузки Кб.с</translation>
     </message>
     <message>
+        <location filename="../../material/qml/Preferences.qml" line="329"/>
         <source>Up</source>
-        <translation type="vanished">Отд</translation>
+        <translation>Отд</translation>
     </message>
     <message>
+        <location filename="../../material/qml/Preferences.qml" line="342"/>
         <source>Upload limit Kb/s</source>
-        <translation type="vanished">Скорость отдачи Кб/c</translation>
+        <translation>Скорость отдачи Кб/c</translation>
     </message>
     <message>
+        <location filename="../../material/qml/Preferences.qml" line="364"/>
         <source>Incoming directory</source>
-        <translation type="vanished">Директория загрузок</translation>
+        <translation>Директория загрузок</translation>
     </message>
     <message>
+        <location filename="../../material/qml/Preferences.qml" line="385"/>
         <source>Show old transfers</source>
-        <translation type="vanished">Показывать старые загрузки</translation>
+        <translation>Показывать старые загрузки</translation>
     </message>
     <message>
+        <location filename="../../material/qml/Preferences.qml" line="402"/>
         <source>Ask before exit program</source>
-        <translation type="vanished">Спрашивать перед выходом</translation>
+        <translation>Спрашивать перед выходом</translation>
     </message>
     <message>
         <source>Cancel</source>
@@ -503,187 +626,185 @@ Are you sure you want to quit qDonkey?</source>
         <source>Emule collection</source>
         <translation>Emule коллекция</translation>
     </message>
-    <message>
-        <location filename="../main.cpp" line="226"/>
-        <source>Usage:</source>
-        <translation type="unfinished">Использование:</translation>
-    </message>
-    <message>
-        <location filename="../main.cpp" line="227"/>
-        <source>displays program version</source>
-        <translation type="unfinished">показать версию программы</translation>
-    </message>
-    <message>
-        <location filename="../main.cpp" line="228"/>
-        <source>displays this help message</source>
-        <translation type="unfinished">показать помощь</translation>
-    </message>
-    <message>
-        <location filename="../main.cpp" line="229"/>
-        <source>downloads the files passed by the user via ed2k link or .emulecollection (optional)</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>Search</name>
     <message>
+        <location filename="../../material/qml/Search.qml" line="22"/>
         <source>Sorry, your last search returned empty result</source>
-        <translation type="vanished">Результат поиска пуст</translation>
+        <translation>Результат поиска пуст</translation>
     </message>
     <message>
+        <location filename="../../material/qml/Search.qml" line="36"/>
         <source>Ok</source>
-        <translation type="vanished">Готово</translation>
+        <translation>Готово</translation>
     </message>
     <message>
+        <location filename="../../material/qml/Search.qml" line="34"/>
         <source>You are not connected to any ED2K server. Please, connect first</source>
-        <translation type="vanished">Вы не соединены ни с одним сервером</translation>
+        <translation>Вы не соединены ни с одним сервером</translation>
     </message>
     <message>
         <source>Seach in ed2k network</source>
         <translation type="vanished">Поиск в ослосети</translation>
     </message>
     <message>
+        <location filename="../../material/qml/Search.qml" line="58"/>
         <source>Enter phrase and press start</source>
-        <translation type="vanished">Введите поисковую фразу и нажмите старт</translation>
+        <translation>Введите поисковую фразу и нажмите старт</translation>
     </message>
     <message>
+        <location filename="../../material/qml/Search.qml" line="70"/>
         <source>Search phrase</source>
-        <translation type="vanished">Поисковая фраза</translation>
+        <translation>Поисковая фраза</translation>
     </message>
     <message>
+        <location filename="../../material/qml/Search.qml" line="82"/>
         <source>Any</source>
-        <translation type="vanished">Любой</translation>
+        <translation>Любой</translation>
     </message>
     <message>
+        <location filename="../../material/qml/Search.qml" line="83"/>
         <source>Archive</source>
-        <translation type="vanished">Архив</translation>
+        <translation>Архив</translation>
     </message>
     <message>
+        <location filename="../../material/qml/Search.qml" line="84"/>
         <source>Audio</source>
-        <translation type="vanished">Аудио</translation>
+        <translation>Аудио</translation>
     </message>
     <message>
+        <location filename="../../material/qml/Search.qml" line="85"/>
         <source>CD Image</source>
-        <translation type="vanished">CD имидж</translation>
+        <translation>CD имидж</translation>
     </message>
     <message>
+        <location filename="../../material/qml/Search.qml" line="86"/>
         <source>Picture</source>
-        <translation type="vanished">Картинка</translation>
+        <translation>Картинка</translation>
     </message>
     <message>
+        <location filename="../../material/qml/Search.qml" line="87"/>
         <source>Program</source>
-        <translation type="vanished">Программа</translation>
+        <translation>Программа</translation>
     </message>
     <message>
+        <location filename="../../material/qml/Search.qml" line="88"/>
         <source>Video</source>
-        <translation type="vanished">Видео</translation>
+        <translation>Видео</translation>
     </message>
     <message>
+        <location filename="../../material/qml/Search.qml" line="89"/>
         <source>Document</source>
-        <translation type="vanished">Документ</translation>
+        <translation>Документ</translation>
     </message>
     <message>
+        <location filename="../../material/qml/Search.qml" line="90"/>
         <source>Emule collection</source>
-        <translation type="vanished">Emule коллекция</translation>
+        <translation>Emule коллекция</translation>
     </message>
     <message>
+        <location filename="../../material/qml/Search.qml" line="102"/>
         <source>Min size, Mb</source>
-        <translation type="vanished">Мин разм. Мб</translation>
+        <translation>Мин разм. Мб</translation>
     </message>
     <message>
+        <location filename="../../material/qml/Search.qml" line="108"/>
         <source>Max size, Mb</source>
-        <translation type="vanished">Макс разм Мб</translation>
+        <translation>Макс разм Мб</translation>
     </message>
     <message>
+        <location filename="../../material/qml/Search.qml" line="121"/>
         <source>Availibility</source>
-        <translation type="vanished">Доступность</translation>
+        <translation>Доступность</translation>
     </message>
     <message>
+        <location filename="../../material/qml/Search.qml" line="127"/>
         <source>Full sources</source>
-        <translation type="vanished">Полные источники</translation>
+        <translation>Полные источники</translation>
     </message>
     <message>
+        <location filename="../../material/qml/Search.qml" line="139"/>
         <source>Media length</source>
-        <translation type="vanished">Длительность</translation>
+        <translation>Длительность</translation>
     </message>
     <message>
+        <location filename="../../material/qml/Search.qml" line="145"/>
         <source>Media bitrate</source>
-        <translation type="vanished">Битрейт</translation>
+        <translation>Битрейт</translation>
     </message>
     <message>
+        <location filename="../../material/qml/Search.qml" line="154"/>
         <source>Extension</source>
-        <translation type="vanished">Расширение</translation>
+        <translation>Расширение</translation>
     </message>
     <message>
+        <location filename="../../material/qml/Search.qml" line="161"/>
         <source>Codec</source>
-        <translation type="vanished">Кодек</translation>
+        <translation>Кодек</translation>
     </message>
     <message>
+        <location filename="../../material/qml/Search.qml" line="194"/>
         <source>Start</source>
-        <translation type="vanished">Старт</translation>
+        <translation>Старт</translation>
     </message>
     <message>
+        <location filename="../../material/qml/Search.qml" line="220"/>
         <source>More</source>
-        <translation type="vanished">Еще</translation>
+        <translation>Еще</translation>
     </message>
     <message>
+        <location filename="../../material/qml/Search.qml" line="236"/>
         <source>Cancel</source>
-        <translation type="vanished">Отмена</translation>
+        <translation>Отмена</translation>
     </message>
 </context>
 <context>
     <name>SearchModel</name>
     <message>
-        <location filename="../search/search_model.cpp" line="71"/>
+        <location filename="../../material/search_model.cpp" line="58"/>
         <source> kBit/s</source>
         <translation>Кб/сек</translation>
     </message>
     <message>
-        <location filename="../search/search_model.cpp" line="147"/>
         <source>Filename</source>
-        <translation>Имя файла</translation>
+        <translation type="vanished">Имя файла</translation>
     </message>
     <message>
-        <location filename="../search/search_model.cpp" line="148"/>
         <source>Size</source>
-        <translation>Размер</translation>
+        <translation type="vanished">Размер</translation>
     </message>
     <message>
-        <location filename="../search/search_model.cpp" line="149"/>
         <source>Sources</source>
-        <translation>Источники</translation>
+        <translation type="vanished">Источники</translation>
     </message>
     <message>
-        <location filename="../search/search_model.cpp" line="150"/>
         <source>Type</source>
-        <translation>Тип</translation>
+        <translation type="vanished">Тип</translation>
     </message>
     <message>
-        <location filename="../search/search_model.cpp" line="151"/>
         <source>ID</source>
-        <translation>Хеш</translation>
+        <translation type="vanished">Хеш</translation>
     </message>
     <message>
-        <location filename="../search/search_model.cpp" line="152"/>
         <source>Bitrate</source>
-        <translation>Битрейт</translation>
+        <translation type="vanished">Битрейт</translation>
     </message>
     <message>
-        <location filename="../search/search_model.cpp" line="153"/>
         <source>Duration</source>
-        <translation>Длительность</translation>
+        <translation type="vanished">Длительность</translation>
     </message>
     <message>
-        <location filename="../search/search_model.cpp" line="154"/>
         <source>Codec</source>
-        <translation>Кодек</translation>
+        <translation type="vanished">Кодек</translation>
     </message>
 </context>
 <context>
     <name>SearchResult</name>
     <message>
+        <location filename="../../material/qml/SearchResult.qml" line="8"/>
         <source>Back to search</source>
-        <translation type="vanished">Назад к поиску</translation>
+        <translation>Назад к поиску</translation>
     </message>
     <message>
         <source>Transfer was added to download list</source>
@@ -706,76 +827,85 @@ Are you sure you want to quit qDonkey?</source>
         <translation type="vanished">Двойной клик на иконке для загрузки</translation>
     </message>
     <message>
+        <location filename="../../material/qml/SearchResult.qml" line="19"/>
         <source>Select item for download</source>
-        <translation type="vanished">Выберите результат для загрузки</translation>
+        <translation>Выберите результат для загрузки</translation>
     </message>
     <message>
+        <location filename="../../material/qml/SearchResult.qml" line="57"/>
         <source>Search related</source>
-        <translation type="vanished">Искать связанные</translation>
+        <translation>Искать связанные</translation>
     </message>
     <message>
+        <location filename="../../material/qml/SearchResult.qml" line="57"/>
         <source>Download</source>
-        <translation type="vanished">Скачать</translation>
+        <translation>Скачать</translation>
     </message>
     <message>
+        <location filename="../../material/qml/SearchResult.qml" line="57"/>
         <source>Preview</source>
-        <translation type="vanished">Просмотр</translation>
+        <translation>Просмотр</translation>
     </message>
     <message>
+        <location filename="../../material/qml/SearchResult.qml" line="66"/>
+        <location filename="../../material/qml/SearchResult.qml" line="74"/>
         <source>File %1 added to downloads</source>
-        <translation type="vanished">Файл %1 добавлен в загрузки</translation>
+        <translation>Файл %1 добавлен в загрузки</translation>
     </message>
     <message>
+        <location filename="../../material/qml/SearchResult.qml" line="68"/>
+        <location filename="../../material/qml/SearchResult.qml" line="76"/>
         <source>Error occured on adding %1</source>
-        <translation type="vanished">Ошибка при добавлении файла %1 в загрузки</translation>
+        <translation>Ошибка при добавлении файла %1 в загрузки</translation>
     </message>
 </context>
 <context>
     <name>TransferDetails</name>
     <message>
+        <location filename="../../material/qml/TransferDetails.qml" line="9"/>
         <source>Back to transfers</source>
-        <translation type="vanished">Назад к загрузкам</translation>
+        <translation>Назад к загрузкам</translation>
     </message>
     <message>
+        <location filename="../../material/qml/TransferDetails.qml" line="92"/>
         <source>Size %1</source>
-        <translation type="vanished">Размер %1</translation>
+        <translation>Размер %1</translation>
     </message>
     <message>
+        <location filename="../../material/qml/TransferDetails.qml" line="146"/>
         <source>Seeds/Peers %1/%2</source>
-        <translation type="vanished">Сиды/Пиры %1/%2</translation>
+        <translation>Сиды/Пиры %1/%2</translation>
     </message>
     <message>
+        <location filename="../../material/qml/TransferDetails.qml" line="161"/>
         <source>ETA %1</source>
-        <translation type="vanished">Осталось %1</translation>
+        <translation>Осталось %1</translation>
     </message>
     <message>
+        <location filename="../../material/qml/TransferDetails.qml" line="202"/>
         <source>Total: </source>
-        <translation type="vanished">Всего:</translation>
+        <translation>Всего:</translation>
     </message>
 </context>
 <context>
     <name>TransferListDelegate</name>
     <message>
-        <location filename="../transfers/transferlist_delegate.cpp" line="47"/>
         <source>Downloading</source>
-        <translation>Загружается</translation>
+        <translation type="vanished">Загружается</translation>
     </message>
     <message>
-        <location filename="../transfers/transferlist_delegate.cpp" line="51"/>
         <source>Paused</source>
-        <translation>Пауза</translation>
+        <translation type="vanished">Пауза</translation>
     </message>
     <message>
-        <location filename="../transfers/transferlist_delegate.cpp" line="54"/>
         <source>Seeding</source>
         <comment>Transfert is complete and in upload-only mode</comment>
-        <translation>Сидирует</translation>
+        <translation type="vanished">Сидирует</translation>
     </message>
     <message>
-        <location filename="../transfers/transferlist_delegate.cpp" line="60"/>
         <source>Stalled</source>
         <comment>Torrent is waiting for download to begin</comment>
-        <translation>Тупик</translation>
+        <translation type="vanished">Тупик</translation>
     </message>
     <message>
         <source>Seeding</source>
@@ -783,10 +913,9 @@ Are you sure you want to quit qDonkey?</source>
         <translation type="obsolete">Сидирует</translation>
     </message>
     <message>
-        <location filename="../transfers/transferlist_delegate.cpp" line="57"/>
         <source>Completed</source>
         <comment>Transfer is completed and upload speed is zero</comment>
-        <translation>Завершено</translation>
+        <translation type="vanished">Завершено</translation>
     </message>
     <message>
         <source>Stalled</source>
@@ -794,112 +923,110 @@ Are you sure you want to quit qDonkey?</source>
         <translation type="obsolete">Тупик</translation>
     </message>
     <message>
-        <location filename="../transfers/transferlist_delegate.cpp" line="74"/>
         <source>/s</source>
         <comment>/second (.i.e per second)</comment>
-        <translation>/сек</translation>
+        <translation type="vanished">/сек</translation>
     </message>
     <message>
-        <location filename="../transfers/transferlist_delegate.cpp" line="82"/>
         <source>Seeded for %1</source>
         <comment>e.g. Seeded for 3m10s</comment>
-        <translation>Сидирует %1</translation>
+        <translation type="vanished">Сидирует %1</translation>
     </message>
 </context>
 <context>
     <name>TransferModel</name>
     <message>
-        <location filename="../transfers/transfer_model.cpp" line="40"/>
+        <location filename="../../material/transfer_model.cpp" line="62"/>
         <source>Name</source>
         <comment>i.e: Transfer name</comment>
         <translation>Имя</translation>
     </message>
     <message>
-        <location filename="../transfers/transfer_model.cpp" line="41"/>
+        <location filename="../../material/transfer_model.cpp" line="63"/>
         <source>Size</source>
         <comment>i.e: Transfer size</comment>
         <translation>Размер</translation>
     </message>
     <message>
-        <location filename="../transfers/transfer_model.cpp" line="42"/>
+        <location filename="../../material/transfer_model.cpp" line="64"/>
         <source>Type</source>
         <comment>i.e. file type</comment>
         <translation>Тип</translation>
     </message>
     <message>
-        <location filename="../transfers/transfer_model.cpp" line="43"/>
+        <location filename="../../material/transfer_model.cpp" line="65"/>
         <source>Done</source>
         <comment>% Done</comment>
         <translation>Готово</translation>
     </message>
     <message>
-        <location filename="../transfers/transfer_model.cpp" line="44"/>
+        <location filename="../../material/transfer_model.cpp" line="66"/>
         <source>Status</source>
         <comment>Transfer status (e.g. downloading, seeding, paused)</comment>
         <translation>Статус</translation>
     </message>
     <message>
-        <location filename="../transfers/transfer_model.cpp" line="45"/>
+        <location filename="../../material/transfer_model.cpp" line="67"/>
         <source>Seeds</source>
         <comment>i.e. full sources (often untranslated)</comment>
         <translation>Сидеры</translation>
     </message>
     <message>
-        <location filename="../transfers/transfer_model.cpp" line="46"/>
+        <location filename="../../material/transfer_model.cpp" line="68"/>
         <source>Peers</source>
         <comment>i.e. partial sources (often untranslated)</comment>
         <translation>Пиры</translation>
     </message>
     <message>
-        <location filename="../transfers/transfer_model.cpp" line="47"/>
+        <location filename="../../material/transfer_model.cpp" line="69"/>
         <source>Down Speed</source>
         <comment>i.e: Download speed</comment>
         <translation>Скорость загрузки</translation>
     </message>
     <message>
-        <location filename="../transfers/transfer_model.cpp" line="48"/>
+        <location filename="../../material/transfer_model.cpp" line="70"/>
         <source>Up Speed</source>
         <comment>i.e: Upload speed</comment>
         <translation>Скорость отдачи</translation>
     </message>
     <message>
-        <location filename="../transfers/transfer_model.cpp" line="49"/>
+        <location filename="../../material/transfer_model.cpp" line="71"/>
         <source>Hash</source>
         <comment>i.e transfer hash</comment>
         <translation>Хеш</translation>
     </message>
     <message>
-        <location filename="../transfers/transfer_model.cpp" line="50"/>
+        <location filename="../../material/transfer_model.cpp" line="72"/>
         <source>ETA</source>
         <comment>i.e: Estimated Time of Arrival / Time left</comment>
         <translation>ЕТА</translation>
     </message>
     <message>
-        <location filename="../transfers/transfer_model.cpp" line="51"/>
+        <location filename="../../material/transfer_model.cpp" line="73"/>
         <source>Ratio</source>
         <comment>Share ratio</comment>
         <translation>Принято/отдано</translation>
     </message>
     <message>
-        <location filename="../transfers/transfer_model.cpp" line="52"/>
+        <location filename="../../material/transfer_model.cpp" line="74"/>
         <source>Added On</source>
         <comment>Transfer was added to transfer list on 01/01/2010 08:00</comment>
         <translation>Дата добавления</translation>
     </message>
     <message>
-        <location filename="../transfers/transfer_model.cpp" line="53"/>
+        <location filename="../../material/transfer_model.cpp" line="75"/>
         <source>Amount downloaded</source>
         <comment>Amount of data downloaded (e.g. in MB)</comment>
         <translation>Всего скачано</translation>
     </message>
     <message>
-        <location filename="../transfers/transfer_model.cpp" line="54"/>
+        <location filename="../../material/transfer_model.cpp" line="76"/>
         <source>Amount left</source>
         <comment>Amount of data left to download (e.g. in MB)</comment>
         <translation>Осталось</translation>
     </message>
     <message>
-        <location filename="../transfers/transfer_model.cpp" line="55"/>
+        <location filename="../../material/transfer_model.cpp" line="77"/>
         <source>Time Active</source>
         <comment>Time (duration) the Transfer is active (not paused)</comment>
         <translation>Время активности</translation>
@@ -908,8 +1035,10 @@ Are you sure you want to quit qDonkey?</source>
 <context>
     <name>TransferModelItem</name>
     <message>
+        <location filename="../../material/transfermodel_item.cpp" line="55"/>
+        <location filename="../../material/transfermodel_item.cpp" line="56"/>
         <source>/s</source>
-        <translation type="vanished">/сек</translation>
+        <translation>/сек</translation>
     </message>
 </context>
 <context>
@@ -923,60 +1052,75 @@ Are you sure you want to quit qDonkey?</source>
         <translation type="vanished">Нажмите для меню действий</translation>
     </message>
     <message>
+        <location filename="../../material/qml/Transfers.qml" line="30"/>
         <source>Select for actions menu</source>
-        <translation type="vanished">Выберите передачу</translation>
+        <translation>Выберите передачу</translation>
     </message>
     <message>
+        <location filename="../../material/qml/Transfers.qml" line="35"/>
         <source>Unable to open file of this type</source>
-        <translation type="vanished">Не могу открыть файл</translation>
+        <translation>Не могу открыть файл</translation>
     </message>
     <message>
+        <location filename="../../material/qml/Transfers.qml" line="53"/>
         <source>Stalled dl</source>
-        <translation type="vanished">Ждет источники</translation>
+        <translation>Ждет источники</translation>
     </message>
     <message>
+        <location filename="../../material/qml/Transfers.qml" line="54"/>
         <source>Stalled up</source>
-        <translation type="vanished">Бездействует</translation>
+        <translation>Бездействует</translation>
     </message>
     <message>
+        <location filename="../../material/qml/Transfers.qml" line="55"/>
         <source>Downloading...</source>
-        <translation type="vanished">Закачка...</translation>
+        <translation>Закачка...</translation>
     </message>
     <message>
+        <location filename="../../material/qml/Transfers.qml" line="56"/>
         <source>Seeding...</source>
-        <translation type="vanished">Сидирует...</translation>
+        <translation>Сидирует...</translation>
     </message>
     <message>
+        <location filename="../../material/qml/Transfers.qml" line="59"/>
         <source>Paused</source>
-        <translation type="vanished">Пауза</translation>
+        <translation>Пауза</translation>
     </message>
     <message>
+        <location filename="../../material/qml/Transfers.qml" line="60"/>
         <source>Checking...</source>
-        <translation type="vanished">Проверка...</translation>
+        <translation>Проверка...</translation>
     </message>
     <message>
+        <location filename="../../material/qml/Transfers.qml" line="61"/>
+        <location filename="../../material/qml/Transfers.qml" line="62"/>
         <source>Invalid</source>
-        <translation type="vanished">Ошибка</translation>
+        <translation>Ошибка</translation>
     </message>
     <message>
+        <location filename="../../material/qml/Transfers.qml" line="106"/>
         <source>Pause</source>
-        <translation type="vanished">Пауза</translation>
+        <translation>Пауза</translation>
     </message>
     <message>
+        <location filename="../../material/qml/Transfers.qml" line="106"/>
         <source>Resume</source>
-        <translation type="vanished">Возобновить</translation>
+        <translation>Возобновить</translation>
     </message>
     <message>
+        <location filename="../../material/qml/Transfers.qml" line="106"/>
         <source>Remove</source>
-        <translation type="vanished">Удалить</translation>
+        <translation>Удалить</translation>
     </message>
     <message>
+        <location filename="../../material/qml/Transfers.qml" line="106"/>
         <source>Details</source>
-        <translation type="vanished">Детали</translation>
+        <translation>Детали</translation>
     </message>
     <message>
+        <location filename="../../material/qml/Transfers.qml" line="106"/>
         <source>Preview</source>
-        <translation type="vanished">Предпросмотр</translation>
+        <translation>Предпросмотр</translation>
     </message>
     <message>
         <source>Open</source>
@@ -1005,114 +1149,86 @@ Are you sure you want to quit qDonkey?</source>
 <context>
     <name>collection_save_dlg</name>
     <message>
-        <location filename="../collection_save_dlg.ui" line="32"/>
-        <source>collection_save_dlg</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../collection_save_dlg.ui" line="56"/>
-        <location filename="../collection_save_dlg.cpp" line="82"/>
         <source>Collection list</source>
-        <translation>Список коллекции</translation>
+        <translation type="vanished">Список коллекции</translation>
     </message>
     <message>
-        <location filename="../collection_save_dlg.ui" line="70"/>
         <source>Directory name</source>
-        <translation>Имя директории</translation>
+        <translation type="vanished">Имя директории</translation>
     </message>
     <message>
-        <location filename="../collection_save_dlg.ui" line="77"/>
         <source>Directory path</source>
-        <translation>Путь</translation>
+        <translation type="vanished">Путь</translation>
     </message>
     <message>
-        <location filename="../collection_save_dlg.ui" line="109"/>
         <source>...</source>
-        <translation>...</translation>
+        <translation type="vanished">...</translation>
     </message>
     <message>
-        <location filename="../collection_save_dlg.ui" line="167"/>
         <source>Download</source>
-        <translation>Закачать</translation>
+        <translation type="vanished">Закачать</translation>
     </message>
     <message>
-        <location filename="../collection_save_dlg.ui" line="174"/>
         <source>Cancel</source>
-        <translation>Отмена</translation>
+        <translation type="vanished">Отмена</translation>
     </message>
     <message>
-        <location filename="../collection_save_dlg.cpp" line="62"/>
         <source>File name</source>
-        <translation>Имя файла</translation>
+        <translation type="vanished">Имя файла</translation>
     </message>
     <message>
-        <location filename="../collection_save_dlg.cpp" line="62"/>
         <source>File size</source>
-        <translation>Размер файла</translation>
+        <translation type="vanished">Размер файла</translation>
     </message>
     <message>
-        <location filename="../collection_save_dlg.cpp" line="62"/>
         <source>Hash</source>
-        <translation>Хеш</translation>
+        <translation type="vanished">Хеш</translation>
     </message>
     <message>
-        <location filename="../collection_save_dlg.cpp" line="119"/>
         <source>Open Directory</source>
-        <translation>Открыть директорию</translation>
+        <translation type="vanished">Открыть директорию</translation>
     </message>
 </context>
 <context>
     <name>ed2k_link_maker</name>
     <message>
-        <location filename="../ed2k_link_maker.ui" line="17"/>
-        <location filename="../ed2k_link_maker.ui" line="29"/>
         <source>ED2K link</source>
-        <translation>ED2K ссылка</translation>
+        <translation type="vanished">ED2K ссылка</translation>
     </message>
     <message>
-        <location filename="../ed2k_link_maker.ui" line="69"/>
         <source>Add file size</source>
-        <translation>Добавить размер файла</translation>
+        <translation type="vanished">Добавить размер файла</translation>
     </message>
     <message>
-        <location filename="../ed2k_link_maker.ui" line="82"/>
         <source>Make forum link</source>
-        <translation>Ссылка для форума</translation>
+        <translation type="vanished">Ссылка для форума</translation>
     </message>
     <message>
-        <location filename="../ed2k_link_maker.ui" line="98"/>
         <source>Close</source>
-        <translation>Закрыть</translation>
+        <translation type="vanished">Закрыть</translation>
     </message>
     <message>
-        <location filename="../ed2k_link_maker.ui" line="114"/>
         <source>Copy</source>
-        <translation>Копировать</translation>
+        <translation type="vanished">Копировать</translation>
     </message>
 </context>
 <context>
     <name>inputdir_dialog</name>
     <message>
-        <location filename="../inputdir_dialog.ui" line="20"/>
-        <location filename="../inputdir_dialog.cpp" line="22"/>
-        <location filename="../inputdir_dialog.cpp" line="24"/>
         <source>Choose input directory</source>
-        <translation>Выберите директорию для закачек и раздачи</translation>
+        <translation type="vanished">Выберите директорию для закачек и раздачи</translation>
     </message>
     <message>
-        <location filename="../inputdir_dialog.ui" line="31"/>
         <source>...</source>
-        <translation>...</translation>
+        <translation type="vanished">...</translation>
     </message>
     <message>
-        <location filename="../inputdir_dialog.ui" line="77"/>
         <source>TextLabel</source>
-        <translation>Ошибка</translation>
+        <translation type="vanished">Ошибка</translation>
     </message>
     <message>
-        <location filename="../inputdir_dialog.cpp" line="36"/>
         <source>Unable to prepare input directory, check it exists and writeable</source>
-        <translation>Не могу подготовить директорию закачек</translation>
+        <translation type="vanished">Не могу подготовить директорию закачек</translation>
     </message>
 </context>
 <context>
@@ -1210,540 +1326,385 @@ Are you sure you want to quit qDonkey?</source>
 <context>
     <name>preferences_widget</name>
     <message>
-        <location filename="../preferences/preferences_widget.ui" line="14"/>
         <source>Form</source>
-        <translation>Форма</translation>
+        <translation type="vanished">Форма</translation>
     </message>
     <message>
-        <location filename="../preferences/preferences_widget.ui" line="20"/>
         <source>Behaviour</source>
-        <translation>Поведение</translation>
+        <translation type="vanished">Поведение</translation>
     </message>
     <message>
-        <location filename="../preferences/preferences_widget.ui" line="26"/>
         <source>Confirm on exit</source>
-        <translation>Подтверждать при выходе</translation>
+        <translation type="vanished">Подтверждать при выходе</translation>
     </message>
     <message>
-        <location filename="../preferences/preferences_widget.ui" line="33"/>
         <source>Display speed in windows title</source>
-        <translation>Показывать скорость в заголовке окна</translation>
+        <translation type="vanished">Показывать скорость в заголовке окна</translation>
     </message>
     <message>
-        <location filename="../preferences/preferences_widget.ui" line="40"/>
-        <source>Add transfers from collections and links on pause</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../preferences/preferences_widget.ui" line="49"/>
         <source>Language</source>
-        <translation>Язык</translation>
+        <translation type="vanished">Язык</translation>
     </message>
     <message>
-        <location filename="../preferences/preferences_widget.ui" line="77"/>
         <source>Network settings</source>
-        <translation>Настройки сети</translation>
+        <translation type="vanished">Настройки сети</translation>
     </message>
     <message>
-        <location filename="../preferences/preferences_widget.ui" line="83"/>
         <source>Server</source>
-        <translation>Сервер</translation>
+        <translation type="vanished">Сервер</translation>
     </message>
     <message>
-        <location filename="../preferences/preferences_widget.ui" line="89"/>
         <source>Host:</source>
-        <translation>Хост:</translation>
+        <translation type="vanished">Хост:</translation>
     </message>
     <message>
-        <location filename="../preferences/preferences_widget.ui" line="103"/>
-        <location filename="../preferences/preferences_widget.ui" line="309"/>
         <source>Port</source>
-        <translation>Порт</translation>
+        <translation type="vanished">Порт</translation>
     </message>
     <message>
-        <location filename="../preferences/preferences_widget.ui" line="136"/>
         <source>Connection</source>
-        <translation>Соединение</translation>
+        <translation type="vanished">Соединение</translation>
     </message>
     <message>
-        <location filename="../preferences/preferences_widget.ui" line="144"/>
         <source>Port used for incoming connections:</source>
-        <translation>Порт для входящие соединений:</translation>
+        <translation type="vanished">Порт для входящие соединений:</translation>
     </message>
     <message>
-        <location filename="../preferences/preferences_widget.ui" line="173"/>
         <source>Use UPnP / NAT-PMP port forwarding from my router</source>
-        <translation>Использовать UPnP/NAT-PMP на роутере для проброса порта входящих соединений</translation>
+        <translation type="vanished">Использовать UPnP/NAT-PMP на роутере для проброса порта входящих соединений</translation>
     </message>
     <message>
-        <location filename="../preferences/preferences_widget.ui" line="185"/>
         <source>User name</source>
-        <translation>Имя пользователя</translation>
+        <translation type="vanished">Имя пользователя</translation>
     </message>
     <message>
-        <location filename="../preferences/preferences_widget.ui" line="213"/>
-        <source>File associations</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../preferences/preferences_widget.ui" line="219"/>
-        <source>Use qDonkey for emule collections</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../preferences/preferences_widget.ui" line="226"/>
-        <source>Use qDonkey for ed2k links</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../preferences/preferences_widget.ui" line="236"/>
         <source>Save files to location</source>
-        <translation>Сохранять файлы в директорию</translation>
+        <translation type="vanished">Сохранять файлы в директорию</translation>
     </message>
     <message>
-        <location filename="../preferences/preferences_widget.ui" line="287"/>
-        <source>Kademlia</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../preferences/preferences_widget.ui" line="295"/>
-        <source>Bootstrap host:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../preferences/preferences_widget.ui" line="343"/>
-        <source>Use KAD</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../preferences/preferences_widget.ui" line="373"/>
         <source>Accept</source>
-        <translation>Применить</translation>
+        <translation type="vanished">Применить</translation>
     </message>
     <message>
-        <location filename="../preferences/preferences_widget.ui" line="383"/>
         <source>Cancel</source>
-        <translation>Отмена</translation>
+        <translation type="vanished">Отмена</translation>
     </message>
     <message>
-        <location filename="../preferences/preferences_widget.cpp" line="152"/>
         <source>Input directory configuration</source>
-        <translation>Настройка каталога закачек</translation>
+        <translation type="vanished">Настройка каталога закачек</translation>
     </message>
     <message>
-        <location filename="../preferences/preferences_widget.cpp" line="152"/>
         <source>Unable to write metadata into directiry, check it exists and writeable</source>
-        <translation>Не могу записать метаданные в директорию, проверьте наличие и права</translation>
+        <translation type="vanished">Не могу записать метаданные в директорию, проверьте наличие и права</translation>
     </message>
     <message>
-        <location filename="../preferences/preferences_widget.cpp" line="203"/>
-        <location filename="../preferences/preferences_widget.cpp" line="205"/>
         <source>Choose input directory</source>
-        <translation>Выбери дерикторию закачек</translation>
+        <translation type="vanished">Выбери дерикторию закачек</translation>
     </message>
 </context>
 <context>
     <name>search_widget</name>
     <message>
-        <location filename="../search/search_widget.ui" line="14"/>
-        <source>search_widget</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../search/search_widget.ui" line="54"/>
         <source>Name</source>
-        <translation>Имя</translation>
+        <translation type="vanished">Имя</translation>
     </message>
     <message>
-        <location filename="../search/search_widget.ui" line="109"/>
         <source>Display own files</source>
-        <translation>Показывать собственные файлы</translation>
+        <translation type="vanished">Показывать собственные файлы</translation>
     </message>
     <message>
-        <location filename="../search/search_widget.ui" line="134"/>
         <source>Filter &apos;+++&apos;</source>
-        <translation>Фильтр +++</translation>
+        <translation type="vanished">Фильтр +++</translation>
     </message>
     <message>
-        <location filename="../search/search_widget.ui" line="161"/>
         <source>Type</source>
-        <translation>Тип</translation>
+        <translation type="vanished">Тип</translation>
     </message>
     <message>
-        <location filename="../search/search_widget.ui" line="208"/>
         <source>Clear history</source>
-        <translation>Очистить историю</translation>
+        <translation type="vanished">Очистить историю</translation>
     </message>
     <message>
-        <location filename="../search/search_widget.ui" line="245"/>
         <source>Start</source>
-        <translation>Старт</translation>
+        <translation type="vanished">Старт</translation>
     </message>
     <message>
-        <location filename="../search/search_widget.ui" line="276"/>
         <source>More</source>
-        <translation>Еще</translation>
+        <translation type="vanished">Еще</translation>
     </message>
     <message>
-        <location filename="../search/search_widget.ui" line="304"/>
         <source>Cancel</source>
-        <translation>Отмена</translation>
+        <translation type="vanished">Отмена</translation>
     </message>
     <message>
-        <location filename="../search/search_widget.ui" line="377"/>
         <source>Search results</source>
-        <translation>Результаты поиска</translation>
+        <translation type="vanished">Результаты поиска</translation>
     </message>
     <message>
-        <location filename="../search/search_widget.ui" line="463"/>
-        <location filename="../search/search_widget.ui" line="559"/>
         <source>Download</source>
-        <translation>Загрузить</translation>
+        <translation type="vanished">Загрузить</translation>
     </message>
     <message>
-        <location filename="../search/search_widget.ui" line="504"/>
-        <location filename="../search/search_widget.ui" line="568"/>
         <source>Preview</source>
-        <translation>Просмотр</translation>
+        <translation type="vanished">Просмотр</translation>
     </message>
     <message>
-        <location filename="../search/search_widget.ui" line="546"/>
-        <location filename="../search/search_widget.ui" line="577"/>
-        <location filename="../search/search_widget.ui" line="580"/>
         <source>Close all</source>
-        <translation>Закрыть все</translation>
+        <translation type="vanished">Закрыть все</translation>
     </message>
     <message>
-        <location filename="../search/search_widget.ui" line="589"/>
         <source>Search related</source>
-        <translation>Искать связанные</translation>
+        <translation type="vanished">Искать связанные</translation>
     </message>
     <message>
-        <location filename="../search/search_widget.ui" line="598"/>
         <source>ED2K link</source>
-        <translation>ED2K ссылка</translation>
+        <translation type="vanished">ED2K ссылка</translation>
     </message>
     <message>
-        <location filename="../search/search_widget.ui" line="607"/>
         <source>Download pause</source>
-        <translation>Загружать на паузе</translation>
+        <translation type="vanished">Загружать на паузе</translation>
     </message>
     <message>
-        <location filename="../search/search_widget.ui" line="615"/>
         <source>Default</source>
-        <translation>По умолчанию</translation>
+        <translation type="vanished">По умолчанию</translation>
     </message>
     <message>
-        <location filename="../search/search_widget.ui" line="623"/>
         <source>Kb</source>
-        <translation>Кб</translation>
+        <translation type="vanished">Кб</translation>
     </message>
     <message>
-        <location filename="../search/search_widget.ui" line="631"/>
         <source>Mb</source>
-        <translation>Мб</translation>
+        <translation type="vanished">Мб</translation>
     </message>
     <message>
-        <location filename="../search/search_widget.cpp" line="74"/>
         <source>Size</source>
-        <translation>Размер</translation>
+        <translation type="vanished">Размер</translation>
     </message>
     <message>
-        <location filename="../search/search_widget.cpp" line="87"/>
         <source>Any</source>
-        <translation>Любой</translation>
+        <translation type="vanished">Любой</translation>
     </message>
     <message>
-        <location filename="../search/search_widget.cpp" line="88"/>
         <source>Archive</source>
-        <translation>Архив</translation>
+        <translation type="vanished">Архив</translation>
     </message>
     <message>
-        <location filename="../search/search_widget.cpp" line="89"/>
         <source>Audio</source>
-        <translation>Аудио</translation>
+        <translation type="vanished">Аудио</translation>
     </message>
     <message>
-        <location filename="../search/search_widget.cpp" line="90"/>
         <source>CD Image</source>
-        <translation>CD имидж</translation>
+        <translation type="vanished">CD имидж</translation>
     </message>
     <message>
-        <location filename="../search/search_widget.cpp" line="91"/>
         <source>Picture</source>
-        <translation>Картинка</translation>
+        <translation type="vanished">Картинка</translation>
     </message>
     <message>
-        <location filename="../search/search_widget.cpp" line="92"/>
         <source>Program</source>
-        <translation>Программа</translation>
+        <translation type="vanished">Программа</translation>
     </message>
     <message>
-        <location filename="../search/search_widget.cpp" line="93"/>
         <source>Video</source>
-        <translation>Видео</translation>
+        <translation type="vanished">Видео</translation>
     </message>
     <message>
-        <location filename="../search/search_widget.cpp" line="94"/>
         <source>Document</source>
-        <translation>Документ</translation>
+        <translation type="vanished">Документ</translation>
     </message>
     <message>
-        <location filename="../search/search_widget.cpp" line="95"/>
         <source>Emule Collection</source>
-        <translation>Emule коллекция</translation>
+        <translation type="vanished">Emule коллекция</translation>
     </message>
     <message>
-        <location filename="../search/search_widget.cpp" line="99"/>
         <source>Press Ctrl-Delete for history cleanup</source>
-        <translation>Нажмите Ctrl-Enter для очистки истории поиска</translation>
+        <translation type="vanished">Нажмите Ctrl-Enter для очистки истории поиска</translation>
     </message>
     <message>
-        <location filename="../search/search_widget.cpp" line="104"/>
         <source>Min. size [MiB]</source>
-        <translation>Мин. размер [Мб]</translation>
+        <translation type="vanished">Мин. размер [Мб]</translation>
     </message>
     <message>
-        <location filename="../search/search_widget.cpp" line="106"/>
         <source>Max. size [MiB]</source>
-        <translation>Макс. размер [Мб]</translation>
+        <translation type="vanished">Макс. размер [Мб]</translation>
     </message>
     <message>
-        <location filename="../search/search_widget.cpp" line="108"/>
         <source>Availability</source>
-        <translation>Доступность</translation>
+        <translation type="vanished">Доступность</translation>
     </message>
     <message>
-        <location filename="../search/search_widget.cpp" line="110"/>
         <source>Full sources</source>
-        <translation>Полные источники</translation>
+        <translation type="vanished">Полные источники</translation>
     </message>
     <message>
-        <location filename="../search/search_widget.cpp" line="112"/>
         <source>Extension</source>
-        <translation>Расширение</translation>
+        <translation type="vanished">Расширение</translation>
     </message>
     <message>
-        <location filename="../search/search_widget.cpp" line="114"/>
         <source>Codec</source>
-        <translation>Кодек</translation>
+        <translation type="vanished">Кодек</translation>
     </message>
     <message>
-        <location filename="../search/search_widget.cpp" line="116"/>
         <source>Min bitrait [kBit/sec]</source>
-        <translation>Мин. битрейт [Кб/сек]</translation>
+        <translation type="vanished">Мин. битрейт [Кб/сек]</translation>
     </message>
     <message>
-        <location filename="../search/search_widget.cpp" line="118"/>
         <source>Min duration [h:m:s]</source>
-        <translation>Мин. длительность [ч:м:с]</translation>
+        <translation type="vanished">Мин. длительность [ч:м:с]</translation>
     </message>
     <message>
-        <location filename="../search/search_widget.cpp" line="165"/>
         <source>Files</source>
-        <translation>Файлы</translation>
+        <translation type="vanished">Файлы</translation>
     </message>
     <message>
-        <location filename="../search/search_widget.cpp" line="399"/>
-        <location filename="../search/search_widget.cpp" line="494"/>
         <source>Files: </source>
-        <translation>Файлы:</translation>
+        <translation type="vanished">Файлы:</translation>
     </message>
     <message>
-        <location filename="../search/search_widget.cpp" line="571"/>
         <source>Server connection closed</source>
-        <translation>Соединение с сервером разорвано</translation>
+        <translation type="vanished">Соединение с сервером разорвано</translation>
     </message>
     <message>
-        <location filename="../search/search_widget.cpp" line="572"/>
         <source>You can&apos;t search in ED2K network on closed server connection, set connection or check torrent combobox</source>
-        <translation>Вы не можете искать в ED2K сети без соединение с сервером</translation>
+        <translation type="vanished">Вы не можете искать в ED2K сети без соединение с сервером</translation>
     </message>
     <message>
-        <location filename="../search/search_widget.cpp" line="638"/>
         <source>Search request parsing error</source>
-        <translation>Ошибка разбора поискового запроса</translation>
+        <translation type="vanished">Ошибка разбора поискового запроса</translation>
     </message>
     <message>
-        <location filename="../search/search_widget.cpp" line="639"/>
         <source>Syntax error in &apos;</source>
-        <translation>Ошибка синтаксиса на &apos;</translation>
+        <translation type="vanished">Ошибка синтаксиса на &apos;</translation>
     </message>
     <message>
-        <location filename="../search/search_widget.cpp" line="641"/>
         <source>&apos; parameter</source>
-        <translation>&apos; параметр</translation>
+        <translation type="vanished">&apos; параметр</translation>
     </message>
     <message>
-        <location filename="../search/search_widget.cpp" line="753"/>
         <source>Column visibility</source>
-        <translation>Видимость колонок</translation>
+        <translation type="vanished">Видимость колонок</translation>
     </message>
 </context>
 <context>
     <name>status_bar</name>
     <message>
-        <location filename="../statusbar/status_bar.cpp" line="38"/>
-        <location filename="../statusbar/status_bar.cpp" line="39"/>
         <source>eD2K:Connected</source>
-        <translation>eD2K:Соединен</translation>
+        <translation type="vanished">eD2K:Соединен</translation>
     </message>
     <message>
-        <location filename="../statusbar/status_bar.cpp" line="44"/>
-        <location filename="../statusbar/status_bar.cpp" line="45"/>
         <source>eD2K:Disconnected</source>
-        <translation>eD2K:Отсоединен</translation>
+        <translation type="vanished">eD2K:Отсоединен</translation>
     </message>
     <message>
-        <location filename="../statusbar/status_bar.cpp" line="55"/>
         <source>Upload:</source>
-        <translation>Отдача:</translation>
+        <translation type="vanished">Отдача:</translation>
     </message>
     <message>
-        <location filename="../statusbar/status_bar.cpp" line="55"/>
-        <location filename="../statusbar/status_bar.cpp" line="56"/>
         <source>s</source>
-        <translation>сек</translation>
+        <translation type="vanished">сек</translation>
     </message>
     <message>
-        <location filename="../statusbar/status_bar.cpp" line="56"/>
         <source>Download:</source>
-        <translation>Закачка:</translation>
+        <translation type="vanished">Закачка:</translation>
     </message>
     <message>
-        <location filename="../statusbar/status_bar.cpp" line="69"/>
         <source>Clients: </source>
-        <translation>Клиенты:</translation>
+        <translation type="vanished">Клиенты:</translation>
     </message>
     <message>
-        <location filename="../statusbar/status_bar.cpp" line="69"/>
         <source>|Files: </source>
-        <translation>Файлы:</translation>
-    </message>
-    <message>
-        <location filename="../statusbar/status_bar.ui" line="14"/>
-        <source>status_bar</source>
-        <translation type="unfinished"></translation>
+        <translation type="vanished">Файлы:</translation>
     </message>
 </context>
 <context>
     <name>transfers_widget</name>
     <message>
-        <location filename="../transfers/transfers_widget.ui" line="14"/>
-        <source>Form</source>
-        <translation type="unfinished">Форма</translation>
-    </message>
-    <message>
-        <location filename="../transfers/transfers_widget.ui" line="107"/>
         <source>Start</source>
-        <translation>Старт</translation>
+        <translation type="vanished">Старт</translation>
     </message>
     <message>
-        <location filename="../transfers/transfers_widget.ui" line="110"/>
         <source>Resume transfer</source>
-        <translation>Возобновить трансфер</translation>
+        <translation type="vanished">Возобновить трансфер</translation>
     </message>
     <message>
-        <location filename="../transfers/transfers_widget.ui" line="113"/>
-        <location filename="../transfers/transfers_widget.ui" line="128"/>
         <source>Ctrl+P</source>
-        <translation>Ctrl-P</translation>
+        <translation type="vanished">Ctrl-P</translation>
     </message>
     <message>
-        <location filename="../transfers/transfers_widget.ui" line="122"/>
         <source>Pause</source>
-        <translation>Пауза</translation>
+        <translation type="vanished">Пауза</translation>
     </message>
     <message>
-        <location filename="../transfers/transfers_widget.ui" line="125"/>
         <source>Pause transfer</source>
-        <translation>Приостановить трансфер</translation>
+        <translation type="vanished">Приостановить трансфер</translation>
     </message>
     <message>
-        <location filename="../transfers/transfers_widget.ui" line="137"/>
         <source>Remove transfer and file</source>
-        <translation>Удалить трансфер и файл на диске</translation>
+        <translation type="vanished">Удалить трансфер и файл на диске</translation>
     </message>
     <message>
-        <location filename="../transfers/transfers_widget.ui" line="140"/>
         <source>Del</source>
-        <translation>Удалить</translation>
+        <translation type="vanished">Удалить</translation>
     </message>
     <message>
-        <location filename="../transfers/transfers_widget.ui" line="149"/>
         <source>ED2K link</source>
-        <translation>ED2K ссылка</translation>
+        <translation type="vanished">ED2K ссылка</translation>
     </message>
     <message>
-        <location filename="../transfers/transfers_widget.ui" line="157"/>
         <source>Series download</source>
-        <translation>Последовательная закачка</translation>
+        <translation type="vanished">Последовательная закачка</translation>
     </message>
     <message>
-        <location filename="../transfers/transfers_widget.ui" line="165"/>
         <source>First and last pieces first</source>
-        <translation>Первый и последний куски вперед</translation>
+        <translation type="vanished">Первый и последний куски вперед</translation>
     </message>
     <message>
-        <location filename="../transfers/transfers_widget.ui" line="174"/>
         <source>Open destination folder</source>
-        <translation>Открыть папку назначения</translation>
+        <translation type="vanished">Открыть папку назначения</translation>
     </message>
     <message>
-        <location filename="../transfers/transfers_widget.ui" line="183"/>
         <source>Rename</source>
-        <translation>Переименовать</translation>
+        <translation type="vanished">Переименовать</translation>
     </message>
     <message>
-        <location filename="../transfers/transfers_widget.ui" line="192"/>
         <source>Preview</source>
-        <translation>Предпросмотр</translation>
+        <translation type="vanished">Предпросмотр</translation>
     </message>
     <message>
-        <location filename="../transfers/transfers_widget.ui" line="204"/>
         <source>Show transfers from previous sessions</source>
-        <translation>Показывать трансферы из предыдущих сессий</translation>
+        <translation type="vanished">Показывать трансферы из предыдущих сессий</translation>
     </message>
     <message>
-        <location filename="../transfers/transfers_widget.ui" line="213"/>
         <source>Load ED2K link</source>
-        <translation>Загрузить ed2k ссылку</translation>
+        <translation type="vanished">Загрузить ed2k ссылку</translation>
     </message>
     <message>
-        <location filename="../transfers/transfers_widget.ui" line="216"/>
         <source>Ctrl+L</source>
-        <translation>Ctrl-L</translation>
+        <translation type="vanished">Ctrl-L</translation>
     </message>
     <message>
-        <location filename="../transfers/transfers_widget.cpp" line="315"/>
         <source>Column visibility</source>
-        <translation>Видимость колонок</translation>
+        <translation type="vanished">Видимость колонок</translation>
     </message>
     <message>
         <source>Add link...</source>
         <translation type="obsolete">До</translation>
     </message>
     <message>
-        <location filename="../transfers/transfers_widget.cpp" line="351"/>
         <source>ED2K link:</source>
-        <translation>ED2K ссылка</translation>
+        <translation type="vanished">ED2K ссылка</translation>
     </message>
     <message>
-        <location filename="../transfers/transfers_widget.cpp" line="351"/>
-        <location filename="../transfers/transfers_widget.cpp" line="356"/>
-        <location filename="../transfers/transfers_widget.cpp" line="363"/>
         <source>Add ED2K link</source>
-        <translation>Добавление ED2K ссылки</translation>
+        <translation type="vanished">Добавление ED2K ссылки</translation>
     </message>
     <message>
-        <location filename="../transfers/transfers_widget.cpp" line="356"/>
         <source>Link too long</source>
-        <translation>Ссылка слишком длинная</translation>
+        <translation type="vanished">Ссылка слишком длинная</translation>
     </message>
     <message>
-        <location filename="../transfers/transfers_widget.cpp" line="363"/>
         <source>Incorrect link</source>
-        <translation>Неправильная ссылка</translation>
+        <translation type="vanished">Неправильная ссылка</translation>
     </message>
 </context>
 </TS>
