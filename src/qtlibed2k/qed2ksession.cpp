@@ -1052,6 +1052,14 @@ void QED2KSession::readAlerts()
             //addConsoleMessage(tr("UPnP/NAT-PMP: Port mapping successful, message: %1")
             //                  .arg(misc::toQString(p->message())), "blue");
         }
+        else if (libed2k::dht_started* p = dynamic_cast<libed2k::dht_started*>(a.get()))
+        {
+            emit kadStartedChanged(true);
+        }
+        else if (libed2k::dht_stopped* p = dynamic_cast<libed2k::dht_stopped*>(a.get()))
+        {
+            emit kadStartedChanged(false);
+        }
 
         a = m_session->pop_alert();
     }

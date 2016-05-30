@@ -225,6 +225,7 @@ public:
     Q_INVOKABLE void toPP() { m_PropPending = true; }
     bool isPropPending() const { return m_PropPending; }
     Q_INVOKABLE void syncProperties();
+    Q_PROPERTY(bool kadStarted READ isKadStarted NOTIFY kadStartedChanged)
 private:
     QScopedPointer<libed2k::session> m_session;
     QHash<QString, QED2KHandle> m_fast_resume_transfers;   // contains fast resume data were loading
@@ -382,6 +383,7 @@ signals:
 
     void currentMediaFileChanged(QString);
     void downloadKadCompleted(int rc, int system);
+    void kadStartedChanged(bool);
 };
 
 typedef QED2KSession Session;

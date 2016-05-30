@@ -162,6 +162,25 @@ Page {
                 }
             }
 
+            ListItem.Standard {
+                content: RowLayout {
+                    Switch {
+                        id: kadSearch
+                        checked: false
+                        enabled: session.kadStarted
+                        darkBackground: false
+                        onCheckedChanged: {
+
+                        }
+                    }
+
+                    Label {
+                        text: qsTr("KAD search")
+                        wrapMode: Text.WordWrap
+                    }
+                }
+            }
+
             RowLayout {
                 id: buttonsRow
                 Layout.alignment: Qt.AlignRight

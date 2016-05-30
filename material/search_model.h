@@ -46,9 +46,8 @@ public:
 
     Q_INVOKABLE void clean();
     void appendData(const QList<QED2KSearchResultEntry>&);
-    Q_PROPERTY(bool IsEmpty READ IsEmpty WRITE setIsEmpty NOTIFY IsEmptyChanged)
+    Q_PROPERTY(bool IsEmpty READ IsEmpty NOTIFY IsEmptyChanged)
     bool IsEmpty() const;
-    void setIsEmpty(bool);
 private:
     misc::SizeType m_st;
     QList<QED2KSearchResultEntry> search_results;
