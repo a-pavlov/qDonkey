@@ -185,6 +185,7 @@ void SearchModel::clean() {
     beginResetModel();
     search_results.clear();
     endResetModel();
+    setIsEmpty(search_results.isEmpty());
 }
 
 
@@ -194,6 +195,18 @@ void SearchModel::appendData(const QList<QED2KSearchResultEntry>& entries) {
     search_results.append(entries);
     qDebug() << "results count " << search_results.size();
     endInsertRows();
+    setIsEmpty(search_results.isEmpty());
+}
+
+bool SearchModel::IsEmpty() const
+{
+    return search_results.isEmpty();
+}
+
+void SearchModel::setIsEmpty(bool flag)
+{
+    Q_UNUSED(flag);
+    emit IsEmptyChanged(flag);
 }
 
 const QED2KSearchResultEntry& SearchModel::at(const QModelIndex& indx) const {

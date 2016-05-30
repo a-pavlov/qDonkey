@@ -185,6 +185,15 @@ Page {
                 }
 
                 Button {
+                    id: btnPrev
+                    Layout.fillWidth: false
+                    textColor: Theme.primaryColor
+                    text: qsTr("Prev")
+                    enabled: !searchModel.IsEmpty
+                    onClicked : pageStack.push(Qt.resolvedUrl("SearchResult.qml"))
+                }
+
+                Button {
                     id: btnStart
                     Layout.fillWidth: false
                     text: qsTr("Start")

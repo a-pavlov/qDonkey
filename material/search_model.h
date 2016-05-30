@@ -46,12 +46,16 @@ public:
 
     Q_INVOKABLE void clean();
     void appendData(const QList<QED2KSearchResultEntry>&);
+    Q_PROPERTY(bool IsEmpty READ IsEmpty WRITE setIsEmpty NOTIFY IsEmptyChanged)
+    bool IsEmpty() const;
+    void setIsEmpty(bool);
 private:
     misc::SizeType m_st;
     QList<QED2KSearchResultEntry> search_results;
-    bool m_moreResults;
+    bool m_moreResults;    
 signals:
     void countChanged(int);
+    void IsEmptyChanged(bool);
 public slots:
     void on_searchResult(const libed2k::net_identifier& np, const QString& hash,
                       const QList<QED2KSearchResultEntry>& vRes, bool bMoreResult);
