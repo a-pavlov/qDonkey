@@ -37,6 +37,14 @@ Page {
         negativeButton.visible: false
     }
 
+    Dialog {
+        id: kadWrongKeyword
+        text: qsTr("KAD can't search words with length less than three symbols")
+        hasActions: true
+        positiveButtonText: qsTr("Ok")
+        negativeButton.visible: false
+    }
+
     Flickable {
         id: flick
         anchors.fill: parent
@@ -224,10 +232,19 @@ Page {
                         } else {
 
                             searchModel.clean()
-                            session.searchFiles(sText.text, sMin.text*1024*1024, sMax.text*1024*1024,
+                            if (kadSearch.checked) {
+                                if (!session.searchFilesKad(sText.text)) {
+                                    kadWrongKeyword.show()
+                                    return
+                                }
+                            }
+                            else {
+                                session.searchFiles(sText.text, sMin.text*1024*1024, sMax.text*1024*1024,
                                             sAvailibility.text, sFullSrc.text,
                                             sTypeModel.get(sType.selectedIndex).value, sExt.text, sCodec.text,
-                                            sMediaLength.text, sMediaBitrate.text, kadSearch.checked)
+                                            sMediaLength.text, sMediaBitrate.text)
+                            }
+
                             console.log("Start search for: " + sText.text);
                             progress.enabled = true
                             progress.visible = true

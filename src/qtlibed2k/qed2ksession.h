@@ -240,6 +240,7 @@ private:
     QHash<QString, QED2KHandle> m_fast_resume_transfers;   // contains fast resume data were loading
     QTimer alertsTimer;
     QTimer frdTimer;
+    QTimer kadSearchTimer;
     QSet<QED2KHandle> m_pending_medias;
 
     QStringList m_pendingFiles; // new files awaiting to calculate parameters and share
@@ -255,9 +256,11 @@ private:
     FileDownloader*         m_fd;
     bool                    m_PropPending;
     QString                 m_hashLastSearch;
+    QList<QED2KSearchResultEntry> kadSearchEntries;
 private slots:
     void readAlerts();
     void saveResume();
+    void kadSearchResult();
     void downloadEMuleKadCompleted(int rc, int system);
 public slots:
 	void configureSession();
@@ -281,6 +284,8 @@ public slots:
 	                quint32 nMediaLength,
                     quint32 nMediaBitrate,
                     bool useKad);
+
+    Q_INVOKABLE bool searchFilesKad(const QString& strQuery);
 
 	/**
 	  * set found file hash here
