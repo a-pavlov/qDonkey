@@ -20,6 +20,7 @@ public:
         DC_MEDIA_LENGTH,
         DC_MEDIA_CODEC,
         DC_PREVIEWABLE,
+        DC_ORIGIN,
         DC_END
     };
 
@@ -33,6 +34,7 @@ public:
 
     void setSizeType(misc::SizeType);
 
+    quint16 origin(const QModelIndex&) const;
     QString filename(const QModelIndex&) const;
     quint64 size(const QModelIndex&) const;
     QString hash(const QModelIndex&) const;

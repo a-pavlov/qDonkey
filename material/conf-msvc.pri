@@ -1,8 +1,8 @@
 CONFIG(debug, debug|release) {
-  LIBS += libboost_system-vc140-mt-gd-1_60.lib \
+  LIBS += libboost_system-vc140-mt-gd-1_59.lib \
           ed2k.lib
 } else {
-  LIBS += libboost_system-vc140-mt-1_60.lib \
+  LIBS += libboost_system-vc140-mt-1_59.lib \
           ed2k.lib 
 }
 

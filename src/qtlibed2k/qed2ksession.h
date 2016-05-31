@@ -77,7 +77,13 @@ enum FileType {
 FileType toFileType(const QString& filename);
 QString toString(FileType type);
 
+enum SearchSource {
+    SS_SERVER = 0,
+    SS_KAD
+};
+
 struct QED2KSearchResultEntry {
+    quint16                 m_ss;
     quint64                 m_nFilesize;
     quint64                 m_nSources;
     quint64                 m_nCompleteSources;
@@ -86,12 +92,15 @@ struct QED2KSearchResultEntry {
 	QString	                m_hFile;
 	QString                 m_strFilename;
 	QString	                m_strMediaCodec;
+    QString                 m_strType;
+    QString                 m_strMediaAlbum;
     FileType                m_type;
-    libed2k::net_identifier m_network_point; 
+    libed2k::net_identifier m_network_point;
 	bool isCorrect() const;
 	QED2KSearchResultEntry();
     static QED2KSearchResultEntry load(const Preferences& pref);
 	static QED2KSearchResultEntry fromSharedFileEntry(const libed2k::shared_file_entry& sf);
+    static QED2KSearchResultEntry fromKadEntry(const libed2k::kad_info_entry&);
     void save(Preferences& pref) const;
     FileType getType();
 };
@@ -245,6 +254,7 @@ private:
     QUrl                    currentMF;
     FileDownloader*         m_fd;
     bool                    m_PropPending;
+    QString                 m_hashLastSearch;
 private slots:
     void readAlerts();
     void saveResume();
@@ -269,7 +279,8 @@ public slots:
 	                QString strFileExt,
 	                QString strMediaCodec,
 	                quint32 nMediaLength,
-	                quint32 nMediaBitrate);
+                    quint32 nMediaBitrate,
+                    bool useKad);
 
 	/**
 	  * set found file hash here

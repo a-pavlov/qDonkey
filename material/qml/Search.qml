@@ -219,7 +219,7 @@ Page {
                     textColor: Theme.primaryColor
                     enabled: false
                     onClicked: {
-                        if (!session.isServerConnected()) {
+                        if (!session.isServerConnected() && !kadSearch.checked) {
                             alertNoConnection.show()
                         } else {
 
@@ -227,7 +227,7 @@ Page {
                             session.searchFiles(sText.text, sMin.text*1024*1024, sMax.text*1024*1024,
                                             sAvailibility.text, sFullSrc.text,
                                             sTypeModel.get(sType.selectedIndex).value, sExt.text, sCodec.text,
-                                            sMediaLength.text, sMediaBitrate.text)
+                                            sMediaLength.text, sMediaBitrate.text, kadSearch.checked)
                             console.log("Start search for: " + sText.text);
                             progress.enabled = true
                             progress.visible = true
