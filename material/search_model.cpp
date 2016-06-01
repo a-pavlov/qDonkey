@@ -18,6 +18,7 @@ QHash<int, QByteArray> SearchModel::roleNames() const {
     roles[DC_MEDIA_LENGTH] = "media_length";
     roles[DC_MEDIA_CODEC] = "media_codec";
     roles[DC_PREVIEWABLE] = "previewable";
+    roles[DC_ORIGIN] = "origin";
     return roles;
 }
 
@@ -32,6 +33,7 @@ QVariant SearchModel::data(const QModelIndex& index, int role) const {
     if (!index.isValid()) return result;
 
     switch(role) {
+        case DC_ORIGIN:      return origin(index);
         case DC_NAME:        return filename(index);
         case DC_FILESIZE:    return misc::friendlyUnit(size(index), m_st);
         case DC_FILESIZE_NUM:return size(index);
@@ -185,6 +187,7 @@ void SearchModel::clean() {
     beginResetModel();
     search_results.clear();
     endResetModel();
+    emit IsEmptyChanged(search_results.isEmpty());
 }
 
 
@@ -194,6 +197,12 @@ void SearchModel::appendData(const QList<QED2KSearchResultEntry>& entries) {
     search_results.append(entries);
     qDebug() << "results count " << search_results.size();
     endInsertRows();
+    emit IsEmptyChanged(search_results.isEmpty());
+}
+
+bool SearchModel::IsEmpty() const
+{
+    return search_results.isEmpty();
 }
 
 const QED2KSearchResultEntry& SearchModel::at(const QModelIndex& indx) const {
@@ -210,6 +219,10 @@ QED2KSearchResultEntry& SearchModel::at(const QModelIndex& indx)
 void SearchModel::setSizeType(misc::SizeType st) {
     m_st = st;
     dataChanged(index(0, DC_FILESIZE), index(rowCount(), DC_FILESIZE));
+}
+
+quint16 SearchModel::origin(const QModelIndex& indx) const {
+    return at(indx).m_ss;
 }
 
 QString SearchModel::filename(const QModelIndex& indx) const {

@@ -96,6 +96,7 @@ QED2KSearchResultEntry QED2KSearchResultEntry::load(const Preferences& pref) {
 #else
     res.m_nFilesize = pref.value("Filesize", 0).toULongLong();
 #endif
+    res.m_ss        = pref.value("Origin", 0).toInt();
     res.m_nSources  = pref.value("Sources", 0).toULongLong();
     res.m_nCompleteSources  = pref.value("CompleteSources", 0).toULongLong();
     res.m_nMediaBitrate     = pref.value("MediaBitrate", 0).toULongLong();
@@ -105,6 +106,9 @@ QED2KSearchResultEntry QED2KSearchResultEntry::load(const Preferences& pref) {
     res.m_strMediaCodec     = pref.value("MediaCodec", QString()).toString();
     res.m_network_point.m_nIP = pref.value("IP", 0).toUInt();
     res.m_network_point.m_nPort = pref.value("Port", 0).toUInt();
+    res.m_strType = pref.value("Type", "").toString();
+    res.m_strMediaAlbum = pref.value("MediaAlbum", "").toString();
+
     return res;
 }
 
@@ -114,6 +118,7 @@ void QED2KSearchResultEntry::save(Preferences& pref) const {
 #else
     pref.setValue("Filesize",       m_nFilesize);
 #endif
+    pref.setValue("Origin",         static_cast<int>(m_ss));
     pref.setValue("Sources",        m_nSources);
     pref.setValue("CompleteSources",m_nCompleteSources);
     pref.setValue("MediaBitrate",   m_nMediaBitrate);
@@ -123,6 +128,8 @@ void QED2KSearchResultEntry::save(Preferences& pref) const {
     pref.setValue("MediaCodec",     m_strMediaCodec);
     pref.setValue("IP",             m_network_point.m_nIP);
     pref.setValue("Port",           m_network_point.m_nPort);
+    pref.setValue("Type",           m_strType);
+    pref.setValue("MediaAlbum",     m_strMediaAlbum);
 }
 
 FileType QED2KSearchResultEntry::getType() {
@@ -141,6 +148,7 @@ QED2KSearchResultEntry QED2KSearchResultEntry::fromSharedFileEntry(const libed2k
 
     sre.m_hFile = md4toQString(sf.m_hFile);
     sre.m_network_point = sf.m_network_point;
+    sre.m_ss = SS_SERVER;
 
     try
     {
@@ -208,6 +216,65 @@ QED2KSearchResultEntry QED2KSearchResultEntry::fromSharedFileEntry(const libed2k
         // for users
         // m_nMediaLength  - low part of real size
         // m_nMediaBitrate - high part of real size
+    }
+    catch(libed2k::libed2k_exception& e)
+    {
+        qDebug("%s", e.what());
+    }
+
+    return (sre);
+}
+
+QED2KSearchResultEntry QED2KSearchResultEntry::fromKadEntry(const libed2k::kad_info_entry & ke)
+{
+    QED2KSearchResultEntry sre;
+
+    sre.m_ss = SS_KAD;
+    sre.m_hFile = md4toQString(ke.hash);
+    //sre.m_network_point = sf.m_network_point;
+
+    try
+    {
+        for (size_t n = 0; n < ke.tags.size(); ++n)
+        {
+            boost::shared_ptr<libed2k::base_tag> ptag = ke.tags[n];
+
+            switch(ptag->getNameId())
+            {
+            case libed2k::FT_FILENAME:
+                sre.m_strFilename = QString::fromUtf8(ptag->asString().c_str(), ptag->asString().size());
+                break;
+            case libed2k::FT_FILESIZE:
+                sre.m_nFilesize += ptag->asInt();
+                break;
+            case libed2k::FT_FILESIZE_HI:
+                sre.m_nFilesize += (ptag->asInt() << 32);
+                break;
+            case libed2k::FT_SOURCES:
+                sre.m_nSources = ptag->asInt();
+                break;
+            case libed2k::FT_COMPLETE_SOURCES:
+                sre.m_nCompleteSources = ptag->asInt();
+                break;
+            case libed2k::FT_MEDIA_BITRATE:
+                sre.m_nMediaBitrate = ptag->asInt();
+                break;
+            case libed2k::FT_MEDIA_CODEC:
+                sre.m_strMediaCodec = QString::fromUtf8(ptag->asString().c_str(), ptag->asString().size());
+                break;
+            case libed2k::FT_MEDIA_LENGTH:
+                sre.m_nMediaLength = ptag->asInt();
+                break;
+            case libed2k::FT_MEDIA_ALBUM:
+                sre.m_strMediaAlbum = QString::fromUtf8(ptag->asString().c_str(), ptag->asString().size());
+                break;
+            case libed2k::FT_FILETYPE:
+                sre.m_strType = QString::fromUtf8(ptag->asString().c_str(), ptag->asString().size());
+                break;
+            default:
+                break;
+            }
+        }
     }
     catch(libed2k::libed2k_exception& e)
     {
@@ -308,6 +375,7 @@ bool writeResumeDataOne(std::ofstream& fs, const libed2k::save_resume_data_alert
 QED2KSession::QED2KSession() {
     connect(&alertsTimer, SIGNAL(timeout()), this, SLOT(readAlerts()));
     connect(&frdTimer, SIGNAL(timeout()), this, SLOT(saveResume()));
+    connect(&kadSearchTimer, SIGNAL(timeout()), this, SLOT(kadSearchResult()));
     m_speedMon.reset(new TransferSpeedMonitor(this));
     last_error_dt = QDateTime::currentDateTime().addSecs(-1);
     m_fd = NULL;
@@ -758,10 +826,11 @@ void QED2KSession::searchFiles(const QString& strQuery,
         QString strFileExt,
         QString strMediaCodec,
         quint32 nMediaLength,
-        quint32 nMediaBitrate)
+        quint32 nMediaBitrate,
+        bool useKad)
 {
     try
-    {
+    {        
         libed2k::search_request sr = libed2k::generateSearchRequest(nMinSize, nMaxSize, nSources, nCompleteSources,
             strFileType.toUtf8().constData(),
             strFileExt.toUtf8().constData(),
@@ -779,6 +848,21 @@ void QED2KSession::searchFiles(const QString& strQuery,
         msgBox.setIcon(QMessageBox::Critical);
         msgBox.exec();
     }
+}
+
+bool QED2KSession::searchFilesKad(const QString& strQuery) {
+    m_hashLastSearch.clear();
+    QStringList keywords = strQuery.split(" ", QString::SkipEmptyParts);
+    if (!keywords.isEmpty() && keywords.at(0).length() >= 3) {
+        libed2k::md4_hash sh = libed2k::hasher::from_string(keywords.at(0).toUtf8().constData());
+        m_hashLastSearch = QString::fromStdString(sh.toString());
+        m_session->find_keyword(std::string(keywords.at(0).toUtf8().constData()));
+        qDebug() << "in KAD search for " << keywords.at(0) << " started hash " << m_hashLastSearch;
+        return true;
+    }
+
+    qDebug() << "keywords empty or too short";
+    return false;
 }
 
 void QED2KSession::pauseTransfer(const QString& hash) {
@@ -805,6 +889,7 @@ void QED2KSession::searchMoreResults()
 void QED2KSession::cancelSearch()
 {
     m_session->post_cancel_search();
+    m_hashLastSearch.clear();   // cancel KAD search
 }
 
 bool QED2KSession::openTransfer(QString hash) {
@@ -919,6 +1004,25 @@ void QED2KSession::readAlerts()
             {
                 emit searchResult(p->m_np, md4toQString(p->m_hash), vRes, bMoreResult);
                 emit searchFinished(vRes.size(), bMoreResult);
+            }
+        }
+        else if (libed2k::dht_keyword_search_result_alert* p = dynamic_cast<libed2k::dht_keyword_search_result_alert*>(a.get()))
+        {
+            if (p->m_hash.toString() == m_hashLastSearch.toStdString())
+            {
+                qDebug() << "got search result for " << m_hashLastSearch << " size " << p->m_entries.size();
+                for(size_t n = 0; n != p->m_entries.size(); ++n)
+                {
+                    QED2KSearchResultEntry sre = QED2KSearchResultEntry::fromKadEntry(p->m_entries[n]);
+                    if (sre.isCorrect()) kadSearchEntries.push_back(sre);
+                }
+
+                kadSearchTimer.setInterval(2000);
+                kadSearchTimer.start();
+            }
+            else
+            {
+                qDebug() << "search result " << QString::fromStdString(p->m_hash.toString()) << " not match last search request " << m_hashLastSearch;
             }
         }
         else if (libed2k::listen_failed_alert* p = dynamic_cast<libed2k::listen_failed_alert*>(a.get()))
@@ -1060,6 +1164,24 @@ void QED2KSession::readAlerts()
             //addConsoleMessage(tr("UPnP/NAT-PMP: Port mapping successful, message: %1")
             //                  .arg(misc::toQString(p->message())), "blue");
         }
+        else if (libed2k::dht_started* p = dynamic_cast<libed2k::dht_started*>(a.get()))
+        {
+            emit kadStartedChanged(true);
+        }
+        else if (libed2k::dht_stopped* p = dynamic_cast<libed2k::dht_stopped*>(a.get()))
+        {
+            emit kadStartedChanged(false);
+        }
+        else if (libed2k::dht_traverse_finished* p = dynamic_cast<libed2k::dht_traverse_finished*>(a.get()))
+        {
+            qDebug() << "traverse finished";
+            if (md4toQString(p->hash) == m_hashLastSearch)
+            {
+                qDebug() << "finished kad search";
+                kadSearchTimer.setInterval(10000);
+                kadSearchTimer.start();
+            }
+        }
 
         a = m_session->pop_alert();
     }
@@ -1120,11 +1242,26 @@ void QED2KSession::saveResume() {
     saveTempFastResumeData();
 }
 
+void QED2KSession::kadSearchResult() {
+    qDebug() << "aggregated kad search result ready";
+    emit searchResult(libed2k::net_identifier(), m_hashLastSearch, kadSearchEntries, false);
+    emit searchFinished(kadSearchEntries.size(), false);
+    // stop search
+    m_hashLastSearch.clear();
+    kadSearchEntries.clear();
+    kadSearchTimer.stop();
+}
+
 void QED2KSession::downloadEMuleKadCompleted(int rc, int system) {
     qDebug() << "download kad completed in session";
     m_fd->deleteLater();
     m_fd = NULL;
     emit downloadKadCompleted(rc, system);
+    if (isKadStarted())
+    {
+        qDebug() << "KAD is started, add new nodes";
+        addNodesToKad(QStandardPaths::locateAll(QStandardPaths::DownloadLocation, "nodes.dat"));
+    }
 }
 
 // Called periodically
