@@ -35,7 +35,15 @@ Page {
     Dialog {
         id: alertNoConnection
         width: Units.dp(300)
-        text: qsTr("You are not connected to any ED2K server. Please, connect first")
+        text: qsTr("You are not connected to any ED2K server. Please, connect first or use KAD")
+        hasActions: true
+        positiveButtonText: qsTr("Ok")
+        negativeButton.visible: false
+    }
+
+    Dialog {
+        id: kadWrongKeyword
+        text: qsTr("KAD can't search words with length less than three symbols")
         hasActions: true
         positiveButtonText: qsTr("Ok")
         negativeButton.visible: false
@@ -166,6 +174,25 @@ Page {
                 }
             }
 
+            ListItem.Standard {
+                content: RowLayout {
+                    Switch {
+                        id: kadSearch
+                        checked: false
+                        enabled: session.kadStarted
+                        darkBackground: false
+                        onCheckedChanged: {
+
+                        }
+                    }
+
+                    Label {
+                        text: qsTr("KAD only search")
+                        wrapMode: Text.WordWrap
+                    }
+                }
+            }
+
             Snackbar {
                 id: snack
             }
@@ -193,21 +220,39 @@ Page {
                 }
 
                 Button {
+                    id: btnPrev
+                    Layout.fillWidth: false
+                    textColor: Theme.primaryColor
+                    text: qsTr("Results")
+                    enabled: !searchModel.IsEmpty
+                    onClicked : pageStack.push(Qt.resolvedUrl("SearchResult.qml"))
+                }
+
+                Button {
                     id: btnStart
                     Layout.fillWidth: false
                     text: qsTr("Start")
                     textColor: Theme.primaryColor
                     enabled: false
                     onClicked: {
-                        if (!session.isServerConnected()) {
+                        if (!session.isServerConnected() && !kadSearch.checked) {
                             alertNoConnection.show()
                         } else {
 
                             searchModel.clean()
-                            session.searchFiles(sText.text, sMin.text*1024*1024, sMax.text*1024*1024,
+                            if (kadSearch.checked) {
+                                if (!session.searchFilesKad(sText.text)) {
+                                    kadWrongKeyword.show()
+                                    return
+                                }
+                            }
+                            else {
+                                session.searchFiles(sText.text, sMin.text*1024*1024, sMax.text*1024*1024,
                                             sAvailibility.text, sFullSrc.text,
                                             sTypeModel.get(sType.selectedIndex).value, sExt.text, sCodec.text,
                                             sMediaLength.text, sMediaBitrate.text)
+                            }
+
                             console.log("Start search for: " + sText.text);
                             progress.enabled = true
                             progress.visible = true

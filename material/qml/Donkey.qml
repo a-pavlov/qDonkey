@@ -120,7 +120,9 @@ LowID means your port is not accessible from outside - it is significantly reduc
         hasActions: false
         text: qsTr("Enter search phrase into text field. You can specify parameters like sources count, size and so on.
 To start search press Start button. If search returns results you will be forwarded to search result page.
-More buttton is enabled when more results are available for search. Search in KAD will be available in next releases.")
+Press Results button to see previous search results.
+More buttton is enabled when more results are available for search.
+To search in KAD use switch KAD only search.")
     }
 
     Dialog {

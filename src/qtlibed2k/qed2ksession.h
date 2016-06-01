@@ -77,7 +77,13 @@ enum FileType {
 FileType toFileType(const QString& filename);
 QString toString(FileType type);
 
+enum SearchSource {
+    SS_SERVER = 0,
+    SS_KAD
+};
+
 struct QED2KSearchResultEntry {
+    quint16                 m_ss;
     quint64                 m_nFilesize;
     quint64                 m_nSources;
     quint64                 m_nCompleteSources;
@@ -86,12 +92,15 @@ struct QED2KSearchResultEntry {
 	QString	                m_hFile;
 	QString                 m_strFilename;
 	QString	                m_strMediaCodec;
+    QString                 m_strType;
+    QString                 m_strMediaAlbum;
     FileType                m_type;
-    libed2k::net_identifier m_network_point; 
+    libed2k::net_identifier m_network_point;
 	bool isCorrect() const;
 	QED2KSearchResultEntry();
     static QED2KSearchResultEntry load(const Preferences& pref);
 	static QED2KSearchResultEntry fromSharedFileEntry(const libed2k::shared_file_entry& sf);
+    static QED2KSearchResultEntry fromKadEntry(const libed2k::kad_info_entry&);
     void save(Preferences& pref) const;
     FileType getType();
 };
@@ -225,11 +234,13 @@ public:
     Q_INVOKABLE void toPP() { m_PropPending = true; }
     bool isPropPending() const { return m_PropPending; }
     Q_INVOKABLE void syncProperties();
+    Q_PROPERTY(bool kadStarted READ isKadStarted NOTIFY kadStartedChanged)
 private:
     QScopedPointer<libed2k::session> m_session;
     QHash<QString, QED2KHandle> m_fast_resume_transfers;   // contains fast resume data were loading
     QTimer alertsTimer;
     QTimer frdTimer;
+    QTimer kadSearchTimer;
     QSet<QED2KHandle> m_pending_medias;
 
     QStringList m_pendingFiles; // new files awaiting to calculate parameters and share
@@ -244,9 +255,12 @@ private:
     QUrl                    currentMF;
     FileDownloader*         m_fd;
     bool                    m_PropPending;
+    QString                 m_hashLastSearch;
+    QList<QED2KSearchResultEntry> kadSearchEntries;
 private slots:
     void readAlerts();
     void saveResume();
+    void kadSearchResult();
     void downloadEMuleKadCompleted(int rc, int system);
 public slots:
 	void configureSession();
@@ -269,7 +283,10 @@ public slots:
 	                QString strFileExt,
 	                QString strMediaCodec,
 	                quint32 nMediaLength,
-	                quint32 nMediaBitrate);
+                    quint32 nMediaBitrate,
+                    bool useKad);
+
+    Q_INVOKABLE bool searchFilesKad(const QString& strQuery);
 
 	/**
 	  * set found file hash here
@@ -383,6 +400,7 @@ signals:
 
     void currentMediaFileChanged(QString);
     void downloadKadCompleted(int rc, int system);
+    void kadStartedChanged(bool);
 };
 
 typedef QED2KSession Session;
