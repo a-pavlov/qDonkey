@@ -31,7 +31,7 @@ Page {
     Dialog {
         id: alertNoConnection
         width: Units.dp(300)
-        text: qsTr("You are not connected to any ED2K server. Please, connect first")
+        text: qsTr("You are not connected to any ED2K server. Please, connect first or use KAD")
         hasActions: true
         positiveButtonText: qsTr("Ok")
         negativeButton.visible: false
@@ -183,7 +183,7 @@ Page {
                     }
 
                     Label {
-                        text: qsTr("KAD search")
+                        text: qsTr("KAD only search")
                         wrapMode: Text.WordWrap
                     }
                 }
@@ -215,7 +215,7 @@ Page {
                     id: btnPrev
                     Layout.fillWidth: false
                     textColor: Theme.primaryColor
-                    text: qsTr("Prev")
+                    text: qsTr("Results")
                     enabled: !searchModel.IsEmpty
                     onClicked : pageStack.push(Qt.resolvedUrl("SearchResult.qml"))
                 }
