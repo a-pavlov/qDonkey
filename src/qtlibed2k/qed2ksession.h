@@ -282,8 +282,7 @@ public slots:
 	                QString strFileExt,
 	                QString strMediaCodec,
 	                quint32 nMediaLength,
-                    quint32 nMediaBitrate,
-                    bool useKad);
+                    quint32 nMediaBitrate);
 
     Q_INVOKABLE bool searchFilesKad(const QString& strQuery);
 

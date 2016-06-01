@@ -818,8 +818,7 @@ void QED2KSession::searchFiles(const QString& strQuery,
         QString strFileExt,
         QString strMediaCodec,
         quint32 nMediaLength,
-        quint32 nMediaBitrate,
-        bool useKad)
+        quint32 nMediaBitrate)
 {
     try
     {        
