@@ -114,38 +114,46 @@ LowID means your port is not accessible from outside - it is significantly reduc
         <location filename="../../material/qml/Donkey.qml" line="92"/>
         <source>Enter search phrase into text field. You can specify parameters like sources count, size and so on.
 To start search press Start button. If search returns results you will be forwarded to search result page.
-More buttton is enabled when more results are available for search. Search in KAD will be available in next releases.</source>
-        <translation>Digitare la frase di ricerca. È possibile specificare le impostazioni di dimensione del file, il numero di fonti e così via Per il lancio di ricerca, fare clic su start. Se la ricerca ha restituito i risultati si verrà reindirizzati alla pagina dei risultati. Premere di nuovo per trovare più.</translation>
+Press Results button to see previous search results.
+More buttton is enabled when more results are available for search.
+To search in KAD use switch KAD only search.</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../material/qml/Donkey.qml" line="100"/>
+        <source>Enter search phrase into text field. You can specify parameters like sources count, size and so on.
+To start search press Start button. If search returns results you will be forwarded to search result page.
+More buttton is enabled when more results are available for search. Search in KAD will be available in next releases.</source>
+        <translation type="vanished">Digitare la frase di ricerca. È possibile specificare le impostazioni di dimensione del file, il numero di fonti e così via Per il lancio di ricerca, fare clic su start. Se la ricerca ha restituito i risultati si verrà reindirizzati alla pagina dei risultati. Premere di nuovo per trovare più.</translation>
+    </message>
+    <message>
+        <location filename="../../material/qml/Donkey.qml" line="102"/>
         <source>Shows your current active transfers. All files in incoming directory are transfers. By default incoming directory is your Download directory.</source>
         <translation>Mostra correnti di upload e di download. Tutti i file in entrata directory vengono distribuite. Per impostazione predefinita, in entrata, indice questo è un indice di download.</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Donkey.qml" line="106"/>
+        <location filename="../../material/qml/Donkey.qml" line="108"/>
         <source>Setup program options here. Language changes will applied after restart application.
 Incoming directory and port applies after you leave preferences page. Be careful about changing listen port and incoming directory.
 Help about KAD you can see on help button near KAD switch.</source>
         <translation>Modificare la lingua del programma entreranno in vigore dopo il riavvio. Le modifiche di ingresso directory e porta, dopo il cambio di pagina. Fate attenzione con il cambiamento porta di ingresso e directory. Aiuto su come usare la KAD vedi il pulsante di aiuto KAD.</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Donkey.qml" line="144"/>
+        <location filename="../../material/qml/Donkey.qml" line="146"/>
         <source>Conn</source>
         <translation>Conn</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Donkey.qml" line="144"/>
+        <location filename="../../material/qml/Donkey.qml" line="146"/>
         <source>Transfers</source>
         <translation>Trasferim</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Donkey.qml" line="144"/>
+        <location filename="../../material/qml/Donkey.qml" line="146"/>
         <source>Search</source>
         <translation>Cerca</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Donkey.qml" line="144"/>
+        <location filename="../../material/qml/Donkey.qml" line="146"/>
         <source>Pref</source>
         <translation>Pref</translation>
     </message>
@@ -515,122 +523,142 @@ Fare clic su guida per ulteriori informazioni.</translation>
         <translation>Spiacente, la tua ultima ricerca non ha trovato nulla</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Search.qml" line="34"/>
         <source>You are not connected to any ED2K server. Please, connect first</source>
-        <translation>Non sei connesso ad alcun server! Devi connetterti, prima di effettuare ricerche.</translation>
+        <translation type="vanished">Non sei connesso ad alcun server! Devi connetterti, prima di effettuare ricerche.</translation>
+    </message>
+    <message>
+        <location filename="../../material/qml/Search.qml" line="34"/>
+        <source>You are not connected to any ED2K server. Please, connect first or use KAD</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../material/qml/Search.qml" line="36"/>
+        <location filename="../../material/qml/Search.qml" line="44"/>
         <source>Ok</source>
         <translation>Ok</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Search.qml" line="58"/>
+        <location filename="../../material/qml/Search.qml" line="42"/>
+        <source>KAD can&apos;t search words with length less than three symbols</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../material/qml/Search.qml" line="66"/>
         <source>Enter phrase and press start</source>
         <translation>Inserisci una parola o una frase, poi premi Cerca</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Search.qml" line="70"/>
+        <location filename="../../material/qml/Search.qml" line="78"/>
         <source>Search phrase</source>
         <translation>Cerca una parola o una frase</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Search.qml" line="82"/>
+        <location filename="../../material/qml/Search.qml" line="90"/>
         <source>Any</source>
         <translation>Qualsiasi</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Search.qml" line="83"/>
+        <location filename="../../material/qml/Search.qml" line="91"/>
         <source>Archive</source>
         <translation>Archivio</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Search.qml" line="84"/>
+        <location filename="../../material/qml/Search.qml" line="92"/>
         <source>Audio</source>
         <translation>Audio</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Search.qml" line="85"/>
+        <location filename="../../material/qml/Search.qml" line="93"/>
         <source>CD Image</source>
         <translation>Immagine CD</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Search.qml" line="86"/>
+        <location filename="../../material/qml/Search.qml" line="94"/>
         <source>Picture</source>
         <translation>Immagine/Foto</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Search.qml" line="87"/>
+        <location filename="../../material/qml/Search.qml" line="95"/>
         <source>Program</source>
         <translation>Programma</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Search.qml" line="88"/>
+        <location filename="../../material/qml/Search.qml" line="96"/>
         <source>Video</source>
         <translation>Video</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Search.qml" line="89"/>
+        <location filename="../../material/qml/Search.qml" line="97"/>
         <source>Document</source>
         <translation>Documento</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Search.qml" line="90"/>
+        <location filename="../../material/qml/Search.qml" line="98"/>
         <source>Emule collection</source>
         <translation>File collezione</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Search.qml" line="102"/>
+        <location filename="../../material/qml/Search.qml" line="110"/>
         <source>Min size, Mb</source>
         <translation>Dimensione minima, Mb</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Search.qml" line="108"/>
+        <location filename="../../material/qml/Search.qml" line="116"/>
         <source>Max size, Mb</source>
         <translation>Dimensione massima, Mb</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Search.qml" line="121"/>
+        <location filename="../../material/qml/Search.qml" line="129"/>
         <source>Availibility</source>
         <translation>Disponibilità</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Search.qml" line="127"/>
+        <location filename="../../material/qml/Search.qml" line="135"/>
         <source>Full sources</source>
         <translation>Fonti totali</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Search.qml" line="139"/>
+        <location filename="../../material/qml/Search.qml" line="147"/>
         <source>Media length</source>
         <translation>Durata</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Search.qml" line="145"/>
+        <location filename="../../material/qml/Search.qml" line="153"/>
         <source>Media bitrate</source>
         <translation>Qualità bitrate</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Search.qml" line="154"/>
+        <location filename="../../material/qml/Search.qml" line="162"/>
         <source>Extension</source>
         <translation>Estensione</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Search.qml" line="161"/>
+        <location filename="../../material/qml/Search.qml" line="169"/>
         <source>Codec</source>
         <translation>Codec</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Search.qml" line="194"/>
+        <location filename="../../material/qml/Search.qml" line="186"/>
+        <source>KAD only search</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../material/qml/Search.qml" line="222"/>
+        <source>Results</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../material/qml/Search.qml" line="230"/>
         <source>Start</source>
         <translation>Cerca</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Search.qml" line="220"/>
+        <location filename="../../material/qml/Search.qml" line="265"/>
         <source>More</source>
         <translation>Più</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Search.qml" line="236"/>
+        <location filename="../../material/qml/Search.qml" line="281"/>
         <source>Cancel</source>
         <translation>Annulla</translation>
     </message>
@@ -638,7 +666,7 @@ Fare clic su guida per ulteriori informazioni.</translation>
 <context>
     <name>SearchModel</name>
     <message>
-        <location filename="../../material/search_model.cpp" line="58"/>
+        <location filename="../../material/search_model.cpp" line="60"/>
         <source> kBit/s</source>
         <translation> kBit/s</translation>
     </message>
