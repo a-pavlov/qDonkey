@@ -117,7 +117,11 @@ To start search press Start button. If search returns results you will be forwar
 Press Results button to see previous search results.
 More buttton is enabled when more results are available for search.
 To search in KAD use switch KAD only search.</source>
-        <translation type="unfinished"></translation>
+        <translation>Inserisci il frase di ricerca nel campo di testo. È possibile specificare i parametri come fonti di conte, dimensione e così via.
+Per avviare la ricerca premere il pulsante Start. Se la ricerca restituisce i risultati si verrà rimandati alla pagina di risultati di ricerca.
+Premere il pulsante per visualizzare i risultati della ricerca precedente.
+Più buttton è attivata quando i risultati sono disponibili per la ricerca.
+La ricerca in KAD usa solo KAD di ricerca.</translation>
     </message>
     <message>
         <source>Enter search phrase into text field. You can specify parameters like sources count, size and so on.
@@ -529,7 +533,7 @@ Fare clic su guida per ulteriori informazioni.</translation>
     <message>
         <location filename="../../material/qml/Search.qml" line="34"/>
         <source>You are not connected to any ED2K server. Please, connect first or use KAD</source>
-        <translation type="unfinished"></translation>
+        <translation>Non si è connessi a qualsiasi ED2K server. Per favore, collegare prima o KAD</translation>
     </message>
     <message>
         <location filename="../../material/qml/Search.qml" line="36"/>
@@ -540,7 +544,7 @@ Fare clic su guida per ulteriori informazioni.</translation>
     <message>
         <location filename="../../material/qml/Search.qml" line="42"/>
         <source>KAD can&apos;t search words with length less than three symbols</source>
-        <translation type="unfinished"></translation>
+        <translation>KAD non parole di ricerca con lunghezza inferiore a tre simboli</translation>
     </message>
     <message>
         <location filename="../../material/qml/Search.qml" line="66"/>
@@ -640,12 +644,12 @@ Fare clic su guida per ulteriori informazioni.</translation>
     <message>
         <location filename="../../material/qml/Search.qml" line="186"/>
         <source>KAD only search</source>
-        <translation type="unfinished"></translation>
+        <translation>KAD solo di ricerca</translation>
     </message>
     <message>
         <location filename="../../material/qml/Search.qml" line="222"/>
         <source>Results</source>
-        <translation type="unfinished"></translation>
+        <translation>Results</translation>
     </message>
     <message>
         <location filename="../../material/qml/Search.qml" line="230"/>
