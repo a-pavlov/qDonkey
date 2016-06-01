@@ -64,6 +64,8 @@ Click help button for more information.")
         id: kadDownload
         hasActions: true
         text: qsTr("Download nodes.dat to your download location? Previous nodes.dat will be erased.")
+        positiveButtonText: qsTr("Ok")
+        negativeButtonText: qsTr("Cancel")
         onAccepted: {
             session.downloadEmuleKad();
         }
