@@ -119,7 +119,11 @@ To start search press Start button. If search returns results you will be forwar
 Press Results button to see previous search results.
 More buttton is enabled when more results are available for search.
 To search in KAD use switch KAD only search.</source>
-        <translation type="unfinished"></translation>
+        <translation>Введите поисковую фразу.
+Дополнительно можно указать размер файла, количество источников и т.д.
+Для старта поиска нажмите старт.
+Если поиск возвратил результаты вы будете перенаправлены на страницу результатов или нажав Резульаты.
+Нажмите Еще чтобы найти больше.</translation>
     </message>
     <message>
         <source>Enter search phrase into text field. You can specify parameters like sources count, size and so on.
@@ -641,7 +645,7 @@ Click help button for more information.</source>
     <message>
         <location filename="../../material/qml/Search.qml" line="38"/>
         <source>You are not connected to any ED2K server. Please, connect first or use KAD</source>
-        <translation type="unfinished"></translation>
+        <translation>Вы не соединены ни с одим сервером. Соединитесь или используйте поиска по KAD</translation>
     </message>
     <message>
         <location filename="../../material/qml/Search.qml" line="40"/>
@@ -660,7 +664,7 @@ Click help button for more information.</source>
     <message>
         <location filename="../../material/qml/Search.qml" line="46"/>
         <source>KAD can&apos;t search words with length less than three symbols</source>
-        <translation type="unfinished"></translation>
+        <translation>Для поиска по KAD длина слова не может быть меньше 2-х символов</translation>
     </message>
     <message>
         <location filename="../../material/qml/Search.qml" line="70"/>
@@ -760,12 +764,12 @@ Click help button for more information.</source>
     <message>
         <location filename="../../material/qml/Search.qml" line="190"/>
         <source>KAD only search</source>
-        <translation type="unfinished"></translation>
+        <translation>Искать только в KAD</translation>
     </message>
     <message>
         <location filename="../../material/qml/Search.qml" line="226"/>
         <source>Results</source>
-        <translation type="unfinished"></translation>
+        <translation>Результаты</translation>
     </message>
     <message>
         <location filename="../../material/qml/Search.qml" line="234"/>
