@@ -296,6 +296,7 @@ You can help the development by give a good rating to the app in Google Play or 
         <location filename="../../material/qml/Preferences.qml" line="38"/>
         <location filename="../../material/qml/Preferences.qml" line="46"/>
         <location filename="../../material/qml/Preferences.qml" line="57"/>
+        <location filename="../../material/qml/Preferences.qml" line="67"/>
         <source>Ok</source>
         <translation type="unfinished"></translation>
     </message>
@@ -305,27 +306,27 @@ You can help the development by give a good rating to the app in Google Play or 
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../material/qml/Preferences.qml" line="111"/>
+        <location filename="../../material/qml/Preferences.qml" line="113"/>
         <source>English</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../material/qml/Preferences.qml" line="112"/>
+        <location filename="../../material/qml/Preferences.qml" line="114"/>
         <source>Russian</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../material/qml/Preferences.qml" line="113"/>
+        <location filename="../../material/qml/Preferences.qml" line="115"/>
         <source>Italian</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../material/qml/Preferences.qml" line="134"/>
+        <location filename="../../material/qml/Preferences.qml" line="136"/>
         <source>Enter your nickname</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../material/qml/Preferences.qml" line="155"/>
+        <location filename="../../material/qml/Preferences.qml" line="157"/>
         <source>Listen port</source>
         <translation type="unfinished"></translation>
     </message>
@@ -364,62 +365,67 @@ Click help button for more information.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../material/qml/Preferences.qml" line="91"/>
+        <location filename="../../material/qml/Preferences.qml" line="68"/>
+        <source>Cancel</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../material/qml/Preferences.qml" line="93"/>
         <source>Change preferences here</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../material/qml/Preferences.qml" line="181"/>
+        <location filename="../../material/qml/Preferences.qml" line="183"/>
         <source>Forward port on router</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../material/qml/Preferences.qml" line="223"/>
+        <location filename="../../material/qml/Preferences.qml" line="225"/>
         <source>KAD</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../material/qml/Preferences.qml" line="265"/>
+        <location filename="../../material/qml/Preferences.qml" line="267"/>
         <source>Bootstrap IP</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../material/qml/Preferences.qml" line="275"/>
+        <location filename="../../material/qml/Preferences.qml" line="277"/>
         <source>Port</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../material/qml/Preferences.qml" line="303"/>
+        <location filename="../../material/qml/Preferences.qml" line="305"/>
         <source>Down</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../material/qml/Preferences.qml" line="316"/>
+        <location filename="../../material/qml/Preferences.qml" line="318"/>
         <source>Dowload limit Kb/s</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../material/qml/Preferences.qml" line="329"/>
+        <location filename="../../material/qml/Preferences.qml" line="331"/>
         <source>Up</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../material/qml/Preferences.qml" line="342"/>
+        <location filename="../../material/qml/Preferences.qml" line="344"/>
         <source>Upload limit Kb/s</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../material/qml/Preferences.qml" line="364"/>
+        <location filename="../../material/qml/Preferences.qml" line="366"/>
         <source>Incoming directory</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../material/qml/Preferences.qml" line="385"/>
+        <location filename="../../material/qml/Preferences.qml" line="387"/>
         <source>Show old transfers</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../material/qml/Preferences.qml" line="402"/>
+        <location filename="../../material/qml/Preferences.qml" line="404"/>
         <source>Ask before exit program</source>
         <translation type="unfinished"></translation>
     </message>
@@ -593,26 +599,6 @@ Click help button for more information.</source>
     <message>
         <location filename="../../material/qml/Search.qml" line="186"/>
         <source>KAD only search</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../material/qml/Search.qml" line="222"/>
-        <source>Results</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../material/qml/Search.qml" line="230"/>
-        <source>Start</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../material/qml/Search.qml" line="265"/>
-        <source>More</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../material/qml/Search.qml" line="281"/>
-        <source>Cancel</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
