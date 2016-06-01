@@ -1249,6 +1249,11 @@ void QED2KSession::downloadEMuleKadCompleted(int rc, int system) {
     m_fd->deleteLater();
     m_fd = NULL;
     emit downloadKadCompleted(rc, system);
+    if (isKadStarted())
+    {
+        qDebug() << "KAD is started, add new nodes";
+        addNodesToKad(QStandardPaths::locateAll(QStandardPaths::DownloadLocation, "nodes.dat"));
+    }
 }
 
 // Called periodically
