@@ -116,38 +116,46 @@ LowID means your port is not accessible from outside - it is significantly reduc
         <location filename="../../material/qml/Donkey.qml" line="121"/>
         <source>Enter search phrase into text field. You can specify parameters like sources count, size and so on.
 To start search press Start button. If search returns results you will be forwarded to search result page.
-More buttton is enabled when more results are available for search. Search in KAD will be available in next releases.</source>
-        <translation>Введите поисковую фразу. Вы можете дополнительно указать параметры - размер файла, количество источников и т.д. Для старта поиска нажмите старт. Если поиск возвратил результаты вы будете перенаправлены на страницу результатов. Нажмите еще чтобы найти больше.</translation>
+Press Results button to see previous search results.
+More buttton is enabled when more results are available for search.
+To search in KAD use switch KAD only search.</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../material/qml/Donkey.qml" line="129"/>
+        <source>Enter search phrase into text field. You can specify parameters like sources count, size and so on.
+To start search press Start button. If search returns results you will be forwarded to search result page.
+More buttton is enabled when more results are available for search. Search in KAD will be available in next releases.</source>
+        <translation type="vanished">Введите поисковую фразу. Вы можете дополнительно указать параметры - размер файла, количество источников и т.д. Для старта поиска нажмите старт. Если поиск возвратил результаты вы будете перенаправлены на страницу результатов. Нажмите еще чтобы найти больше.</translation>
+    </message>
+    <message>
+        <location filename="../../material/qml/Donkey.qml" line="131"/>
         <source>Shows your current active transfers. All files in incoming directory are transfers. By default incoming directory is your Download directory.</source>
         <translation>Показывает текущие раздачи и закачки. Все файлы в входящей директории раздаются. По умолчанию входящая директория это стандартная директория загрузки.</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Donkey.qml" line="135"/>
+        <location filename="../../material/qml/Donkey.qml" line="137"/>
         <source>Setup program options here. Language changes will applied after restart application.
 Incoming directory and port applies after you leave preferences page. Be careful about changing listen port and incoming directory.
 Help about KAD you can see on help button near KAD switch.</source>
         <translation>Изменения языка программы вступают в силу после перезагрузки. Изменения входной директории и порта после смены страницы. Будьте осторожны с изменением порта и входной директории. Помощь по использованию KAD смотрите по кнопке помощь KAD.</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Donkey.qml" line="184"/>
+        <location filename="../../material/qml/Donkey.qml" line="186"/>
         <source>Conn</source>
         <translation>Серверы</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Donkey.qml" line="184"/>
+        <location filename="../../material/qml/Donkey.qml" line="186"/>
         <source>Transfers</source>
         <translation>Загрузки</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Donkey.qml" line="184"/>
+        <location filename="../../material/qml/Donkey.qml" line="186"/>
         <source>Search</source>
         <translation>Поиск</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Donkey.qml" line="184"/>
+        <location filename="../../material/qml/Donkey.qml" line="186"/>
         <source>Pref</source>
         <translation>Опции</translation>
     </message>
@@ -631,126 +639,146 @@ Click help button for more information.</source>
         <translation>Результат поиска пуст</translation>
     </message>
     <message>
+        <location filename="../../material/qml/Search.qml" line="38"/>
+        <source>You are not connected to any ED2K server. Please, connect first or use KAD</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../../material/qml/Search.qml" line="40"/>
+        <location filename="../../material/qml/Search.qml" line="48"/>
         <source>Ok</source>
         <translation>Готово</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Search.qml" line="38"/>
         <source>You are not connected to any ED2K server. Please, connect first</source>
-        <translation>Вы не соединены ни с одним сервером</translation>
+        <translation type="vanished">Вы не соединены ни с одним сервером</translation>
     </message>
     <message>
         <source>Seach in ed2k network</source>
         <translation type="vanished">Поиск в ослосети</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Search.qml" line="62"/>
+        <location filename="../../material/qml/Search.qml" line="46"/>
+        <source>KAD can&apos;t search words with length less than three symbols</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../material/qml/Search.qml" line="70"/>
         <source>Enter phrase and press start</source>
         <translation>Введите поисковую фразу и нажмите старт</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Search.qml" line="74"/>
+        <location filename="../../material/qml/Search.qml" line="82"/>
         <source>Search phrase</source>
         <translation>Поисковая фраза</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Search.qml" line="86"/>
+        <location filename="../../material/qml/Search.qml" line="94"/>
         <source>Any</source>
         <translation>Любой</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Search.qml" line="87"/>
+        <location filename="../../material/qml/Search.qml" line="95"/>
         <source>Archive</source>
         <translation>Архив</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Search.qml" line="88"/>
+        <location filename="../../material/qml/Search.qml" line="96"/>
         <source>Audio</source>
         <translation>Аудио</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Search.qml" line="89"/>
+        <location filename="../../material/qml/Search.qml" line="97"/>
         <source>CD Image</source>
         <translation>CD имидж</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Search.qml" line="90"/>
+        <location filename="../../material/qml/Search.qml" line="98"/>
         <source>Picture</source>
         <translation>Картинка</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Search.qml" line="91"/>
+        <location filename="../../material/qml/Search.qml" line="99"/>
         <source>Program</source>
         <translation>Программа</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Search.qml" line="92"/>
+        <location filename="../../material/qml/Search.qml" line="100"/>
         <source>Video</source>
         <translation>Видео</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Search.qml" line="93"/>
+        <location filename="../../material/qml/Search.qml" line="101"/>
         <source>Document</source>
         <translation>Документ</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Search.qml" line="94"/>
+        <location filename="../../material/qml/Search.qml" line="102"/>
         <source>Emule collection</source>
         <translation>Emule коллекция</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Search.qml" line="106"/>
+        <location filename="../../material/qml/Search.qml" line="114"/>
         <source>Min size, Mb</source>
         <translation>Мин разм. Мб</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Search.qml" line="112"/>
+        <location filename="../../material/qml/Search.qml" line="120"/>
         <source>Max size, Mb</source>
         <translation>Макс разм Мб</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Search.qml" line="125"/>
+        <location filename="../../material/qml/Search.qml" line="133"/>
         <source>Availibility</source>
         <translation>Доступность</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Search.qml" line="131"/>
+        <location filename="../../material/qml/Search.qml" line="139"/>
         <source>Full sources</source>
         <translation>Полные источники</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Search.qml" line="143"/>
+        <location filename="../../material/qml/Search.qml" line="151"/>
         <source>Media length</source>
         <translation>Длительность</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Search.qml" line="149"/>
+        <location filename="../../material/qml/Search.qml" line="157"/>
         <source>Media bitrate</source>
         <translation>Битрейт</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Search.qml" line="158"/>
+        <location filename="../../material/qml/Search.qml" line="166"/>
         <source>Extension</source>
         <translation>Расширение</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Search.qml" line="165"/>
+        <location filename="../../material/qml/Search.qml" line="173"/>
         <source>Codec</source>
         <translation>Кодек</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Search.qml" line="198"/>
+        <location filename="../../material/qml/Search.qml" line="190"/>
+        <source>KAD only search</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../material/qml/Search.qml" line="226"/>
+        <source>Results</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../material/qml/Search.qml" line="234"/>
         <source>Start</source>
         <translation>Старт</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Search.qml" line="224"/>
+        <location filename="../../material/qml/Search.qml" line="269"/>
         <source>More</source>
         <translation>Еще</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Search.qml" line="240"/>
+        <location filename="../../material/qml/Search.qml" line="285"/>
         <source>Cancel</source>
         <translation>Отмена</translation>
     </message>
@@ -758,7 +786,7 @@ Click help button for more information.</source>
 <context>
     <name>SearchModel</name>
     <message>
-        <location filename="../../material/search_model.cpp" line="58"/>
+        <location filename="../../material/search_model.cpp" line="60"/>
         <source> kBit/s</source>
         <translation>Кб/сек</translation>
     </message>
