@@ -125,11 +125,10 @@ To start search press Start button. If search returns results you will be forwar
 Press Results button to see previous search results.
 More buttton is enabled when more results are available for search.
 To search in KAD use switch KAD only search.</source>
-        <translation>Введите поисковую фразу. 
-Дополнительно можно указать  размер файла, количество источников и т.д.
- Для старта поиска нажмите старт.
- Если поиск возвратил результаты вы будете перенаправлены на страницу результатов или нажав Резульаты.
- Нажмите Еще чтобы найти больше. </translation>
+        <translation>Введите поисковую фразу.
+Дополнительно можно указать размер файла, количество источников и т.д.
+Если поиск возвратил результаты вы будете направлены на страницу результатов. Результаты можно посмотреть нажав на кнопку просмотра результатов.
+Для поиска в KAD установите искать только в KAD</translation>
     </message>
     <message>
         <source>Enter search phrase into text field. You can specify parameters like sources count, size and so on.
@@ -442,6 +441,7 @@ Are you sure you want to quit qDonkey?</source>
         <location filename="../../material/qml/Preferences.qml" line="38"/>
         <location filename="../../material/qml/Preferences.qml" line="46"/>
         <location filename="../../material/qml/Preferences.qml" line="57"/>
+        <location filename="../../material/qml/Preferences.qml" line="67"/>
         <source>Ok</source>
         <translation>Готово</translation>
     </message>
@@ -470,7 +470,7 @@ Click help button for more information.</source>
         <translation>Скачать nodes.dat в директорию загрузок? Предыдущий файл будет перезаписан.</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Preferences.qml" line="91"/>
+        <location filename="../../material/qml/Preferences.qml" line="93"/>
         <source>Change preferences here</source>
         <translation>Настройка программы</translation>
     </message>
@@ -483,27 +483,27 @@ Click help button for more information.</source>
         <translation type="vanished">Нажмите применить для сохранения</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Preferences.qml" line="111"/>
+        <location filename="../../material/qml/Preferences.qml" line="113"/>
         <source>English</source>
         <translation>English</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Preferences.qml" line="112"/>
+        <location filename="../../material/qml/Preferences.qml" line="114"/>
         <source>Russian</source>
         <translation>Русский</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Preferences.qml" line="113"/>
+        <location filename="../../material/qml/Preferences.qml" line="115"/>
         <source>Italian</source>
         <translation>Italian</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Preferences.qml" line="134"/>
+        <location filename="../../material/qml/Preferences.qml" line="136"/>
         <source>Enter your nickname</source>
         <translation>Введите ааш ник</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Preferences.qml" line="155"/>
+        <location filename="../../material/qml/Preferences.qml" line="157"/>
         <source>Listen port</source>
         <translation>Входящий порт</translation>
     </message>
@@ -527,63 +527,64 @@ Click help button for more information.</source>
         <translation>nodes.dat успешно загружен</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Preferences.qml" line="181"/>
+        <location filename="../../material/qml/Preferences.qml" line="183"/>
         <source>Forward port on router</source>
         <translation>Открыть порт на роутере</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Preferences.qml" line="223"/>
+        <location filename="../../material/qml/Preferences.qml" line="225"/>
         <source>KAD</source>
         <translation>KAD</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Preferences.qml" line="265"/>
+        <location filename="../../material/qml/Preferences.qml" line="267"/>
         <source>Bootstrap IP</source>
         <translation>Bootstrap хост</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Preferences.qml" line="275"/>
+        <location filename="../../material/qml/Preferences.qml" line="277"/>
         <source>Port</source>
         <translation>Порт</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Preferences.qml" line="303"/>
+        <location filename="../../material/qml/Preferences.qml" line="305"/>
         <source>Down</source>
         <translation>Загр</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Preferences.qml" line="316"/>
+        <location filename="../../material/qml/Preferences.qml" line="318"/>
         <source>Dowload limit Kb/s</source>
         <translation>Скорость загрузки Кб.с</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Preferences.qml" line="329"/>
+        <location filename="../../material/qml/Preferences.qml" line="331"/>
         <source>Up</source>
         <translation>Отд</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Preferences.qml" line="342"/>
+        <location filename="../../material/qml/Preferences.qml" line="344"/>
         <source>Upload limit Kb/s</source>
         <translation>Скорость отдачи Кб/c</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Preferences.qml" line="364"/>
+        <location filename="../../material/qml/Preferences.qml" line="366"/>
         <source>Incoming directory</source>
         <translation>Директория загрузок</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Preferences.qml" line="385"/>
+        <location filename="../../material/qml/Preferences.qml" line="387"/>
         <source>Show old transfers</source>
         <translation>Показывать старые загрузки</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Preferences.qml" line="402"/>
+        <location filename="../../material/qml/Preferences.qml" line="404"/>
         <source>Ask before exit program</source>
         <translation>Спрашивать перед выходом</translation>
     </message>
     <message>
+        <location filename="../../material/qml/Preferences.qml" line="68"/>
         <source>Cancel</source>
-        <translation type="vanished">Отмена</translation>
+        <translation>Отмена</translation>
     </message>
     <message>
         <source>Apply</source>
@@ -770,24 +771,16 @@ Click help button for more information.</source>
         <translation>Искать только в KAD</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Search.qml" line="222"/>
-        <source>Results</source>
-        <translation>Результат</translation>
-    </message>
-    <message>
-        <location filename="../../material/qml/Search.qml" line="230"/>
         <source>Start</source>
-        <translation>Старт</translation>
+        <translation type="vanished">Старт</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Search.qml" line="265"/>
         <source>More</source>
-        <translation>Еще</translation>
+        <translation type="vanished">Еще</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Search.qml" line="281"/>
         <source>Cancel</source>
-        <translation>Отмена</translation>
+        <translation type="vanished">Отмена</translation>
     </message>
 </context>
 <context>

@@ -117,11 +117,11 @@ To start search press Start button. If search returns results you will be forwar
 Press Results button to see previous search results.
 More buttton is enabled when more results are available for search.
 To search in KAD use switch KAD only search.</source>
-        <translation>Inserisci il frase di ricerca nel campo di testo. È possibile specificare i parametri come fonti di conte, dimensione e così via.
-Per avviare la ricerca premere il pulsante Start. Se la ricerca restituisce i risultati si verrà rimandati alla pagina di risultati di ricerca.
-Premere il pulsante per visualizzare i risultati della ricerca precedente.
-Più buttton è attivata quando i risultati sono disponibili per la ricerca.
-La ricerca in KAD usa solo KAD di ricerca.</translation>
+        <translation>
+Digitare la frase di ricerca.
+Inoltre, è possibile specificare la dimensione del file, il numero di fonti e così via
+Se la ricerca ha restituito i risultati si verrà indirizzati alla pagina dei risultati. Si possono vedere i risultati facendo clic sul pulsante per visualizzare i risultati.
+Per la ricerca in KAD, installa cercare solo in KAD</translation>
     </message>
     <message>
         <source>Enter search phrase into text field. You can specify parameters like sources count, size and so on.
@@ -318,6 +318,7 @@ You can help the development by give a good rating to the app in Google Play or 
         <location filename="../../material/qml/Preferences.qml" line="38"/>
         <location filename="../../material/qml/Preferences.qml" line="46"/>
         <location filename="../../material/qml/Preferences.qml" line="57"/>
+        <location filename="../../material/qml/Preferences.qml" line="67"/>
         <source>Ok</source>
         <translation>Ok</translation>
     </message>
@@ -335,27 +336,27 @@ You can help the development by give a good rating to the app in Google Play or 
         <translation type="vanished">Cambia le preferenze, poi seleziona Applica</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Preferences.qml" line="111"/>
+        <location filename="../../material/qml/Preferences.qml" line="113"/>
         <source>English</source>
         <translation>Inglese</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Preferences.qml" line="112"/>
+        <location filename="../../material/qml/Preferences.qml" line="114"/>
         <source>Russian</source>
         <translation>Русский</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Preferences.qml" line="113"/>
+        <location filename="../../material/qml/Preferences.qml" line="115"/>
         <source>Italian</source>
         <translation>Italiano</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Preferences.qml" line="134"/>
+        <location filename="../../material/qml/Preferences.qml" line="136"/>
         <source>Enter your nickname</source>
         <translation>Inserisci il tuo nickname</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Preferences.qml" line="155"/>
+        <location filename="../../material/qml/Preferences.qml" line="157"/>
         <source>Listen port</source>
         <translation>Porta di entrata</translation>
     </message>
@@ -403,68 +404,69 @@ Fare clic su guida per ulteriori informazioni.</translation>
         <translation>Scarica il nodes.dat nella cartella dei download? Il file precedente verrà sovrascritto.</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Preferences.qml" line="91"/>
+        <location filename="../../material/qml/Preferences.qml" line="93"/>
         <source>Change preferences here</source>
         <translation>Configurare il programma</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Preferences.qml" line="181"/>
+        <location filename="../../material/qml/Preferences.qml" line="183"/>
         <source>Forward port on router</source>
         <translation>Aprire la porta sul router</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Preferences.qml" line="223"/>
+        <location filename="../../material/qml/Preferences.qml" line="225"/>
         <source>KAD</source>
         <translation>KAD</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Preferences.qml" line="265"/>
+        <location filename="../../material/qml/Preferences.qml" line="267"/>
         <source>Bootstrap IP</source>
         <translation>Bootstrap IP</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Preferences.qml" line="275"/>
+        <location filename="../../material/qml/Preferences.qml" line="277"/>
         <source>Port</source>
         <translation>Porta</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Preferences.qml" line="303"/>
+        <location filename="../../material/qml/Preferences.qml" line="305"/>
         <source>Down</source>
         <translation>Giù</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Preferences.qml" line="316"/>
+        <location filename="../../material/qml/Preferences.qml" line="318"/>
         <source>Dowload limit Kb/s</source>
         <translation>Limite scaricamento Kb/s</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Preferences.qml" line="329"/>
+        <location filename="../../material/qml/Preferences.qml" line="331"/>
         <source>Up</source>
         <translation>Su</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Preferences.qml" line="342"/>
+        <location filename="../../material/qml/Preferences.qml" line="344"/>
         <source>Upload limit Kb/s</source>
         <translation>Limite caricamento Kb/s</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Preferences.qml" line="364"/>
+        <location filename="../../material/qml/Preferences.qml" line="366"/>
         <source>Incoming directory</source>
         <translation>Cartella per i file scaricati</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Preferences.qml" line="385"/>
+        <location filename="../../material/qml/Preferences.qml" line="387"/>
         <source>Show old transfers</source>
         <translation>Mostra i trasferimenti vecchi</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Preferences.qml" line="402"/>
+        <location filename="../../material/qml/Preferences.qml" line="404"/>
         <source>Ask before exit program</source>
         <translation>Chiedi conferma per la chiusura</translation>
     </message>
     <message>
+        <location filename="../../material/qml/Preferences.qml" line="68"/>
         <source>Cancel</source>
-        <translation type="vanished">Annulla</translation>
+        <translation>Annulla</translation>
     </message>
     <message>
         <source>Apply</source>
@@ -647,24 +649,16 @@ Fare clic su guida per ulteriori informazioni.</translation>
         <translation>KAD solo di ricerca</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Search.qml" line="222"/>
-        <source>Results</source>
-        <translation>Results</translation>
-    </message>
-    <message>
-        <location filename="../../material/qml/Search.qml" line="230"/>
         <source>Start</source>
-        <translation>Cerca</translation>
+        <translation type="vanished">Cerca</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Search.qml" line="265"/>
         <source>More</source>
-        <translation>Più</translation>
+        <translation type="vanished">Più</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Search.qml" line="281"/>
         <source>Cancel</source>
-        <translation>Annulla</translation>
+        <translation type="vanished">Annulla</translation>
     </message>
 </context>
 <context>
