@@ -201,9 +201,6 @@ Page {
                 id: buttonsRow
                 Layout.alignment: Qt.AlignRight
 
-
-                spacing: Units.dp(8)
-
                 Item {
                     Layout.fillWidth: true
                     Layout.preferredHeight: Units.dp(8)
@@ -219,20 +216,20 @@ Page {
                     visible: false
                 }
 
-                Button {
+                ActionButton {
                     id: btnPrev
-                    Layout.fillWidth: false
-                    textColor: Theme.primaryColor
-                    text: qsTr("Results")
+                    iconName: "awesome/th_list"
+                    isMiniSize: true
+                    backgroundColor: "white"
                     enabled: !searchModel.IsEmpty
-                    onClicked : pageStack.push(Qt.resolvedUrl("SearchResult.qml"))
+                    onClicked: pageStack.push(Qt.resolvedUrl("SearchResult.qml"))
                 }
 
-                Button {
+                ActionButton {
                     id: btnStart
-                    Layout.fillWidth: false
-                    text: qsTr("Start")
-                    textColor: Theme.primaryColor
+                    iconName: "awesome/search"
+                    isMiniSize: true
+                    backgroundColor: "white"
                     enabled: false
                     onClicked: {
                         if (!session.isServerConnected() && !kadSearch.checked) {
@@ -263,13 +260,13 @@ Page {
                     }
                 }
 
-                Button {
+                ActionButton {
                     id: btnMore
-                    Layout.fillWidth: false
-                    text: qsTr("More")
-                    textColor: Theme.primaryColor;
+                    iconName: "awesome/search_plus"
+                    isMiniSize: true
+                    backgroundColor: "white"
                     enabled: false
-                    onClicked: {
+                    onClicked:  {
                         btnStart.enabled = false
                         btnMore.enabled = false
                         btnCancel.enabled = true
@@ -279,11 +276,11 @@ Page {
                     }
                 }
 
-                Button {
+                ActionButton {
                     id: btnCancel
-                    Layout.fillWidth: false
-                    text: qsTr("Cancel")
-                    textColor: Theme.primaryColor
+                    iconName: "awesome/stop_circle_o"
+                    isMiniSize: true
+                    backgroundColor: "white"
                     enabled: false
                     onClicked: {
                         session.cancelSearch()
