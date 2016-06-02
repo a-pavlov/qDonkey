@@ -197,8 +197,6 @@ Page {
                 id: buttonsRow
                 Layout.alignment: Qt.AlignRight
 
-                spacing: Units.dp(8)
-
                 Item {
                     Layout.fillWidth: true
                     Layout.preferredHeight: Units.dp(8)

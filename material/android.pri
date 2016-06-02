@@ -26,6 +26,7 @@ CONFIG(debug, debug|release) {
 
 DEFINES += "BUILDDATE='\"$$system(date -R)\"'"
 DEFINES += BOOST_EXCEPTION_DISABLE
+#DEFINES += LIBED2K_DHT_VERBOSE_LOGGING
 
 
 HEADERS += activity.h
