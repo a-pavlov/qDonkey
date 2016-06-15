@@ -82,7 +82,7 @@ QVariant TransferModelItem::data(int column, int role) const {
     //if (!m_torrent.is_valid()) return QVariant();
     switch(column) {
         case TM_NAME:       return m_handle.filename();
-        case TM_SIZE:       return m_handle.filesize();
+        case TM_SIZE:       return (quint64)m_handle.filesize();
         case TM_TYPE:       return toString(m_ft);
         case TM_PROGRESS:   return (!m_handle.is_valid())?1.:m_handle.progress();
         case TM_STATUS:     return state();

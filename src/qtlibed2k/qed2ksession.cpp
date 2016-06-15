@@ -4,7 +4,7 @@
 #ifndef Q_MOC_RUN
 #include <libed2k/bencode.hpp>
 #include <libed2k/file.hpp>
-#include <libed2k/md4_hash.hpp>
+#include <libed2k/hasher.hpp>
 #include <libed2k/search.hpp>
 #include <libed2k/error_code.hpp>
 #include <libed2k/transfer_handle.hpp>
@@ -59,7 +59,7 @@ void QED2KSession::drop() {
 /* Converts a QString hash into a  libed2k md4_hash */
 static libed2k::md4_hash QStringToMD4(const QString& s)
 {
-    Q_ASSERT(s.length() == libed2k::md4_hash::hash_size*2);
+    Q_ASSERT(s.length() == libed2k::md4_hash::size*2);
     return libed2k::md4_hash::fromString(s.toStdString());
 }
 
@@ -134,7 +134,7 @@ QED2KSearchResultEntry QED2KSearchResultEntry::fromSharedFileEntry(const libed2k
 
     try
     {
-        for (size_t n = 0; n < sf.m_list.count(); n++)
+        for (size_t n = 0; n < sf.m_list.size(); n++)
         {
             boost::shared_ptr<libed2k::base_tag> ptag = sf.m_list[n];
 
@@ -209,7 +209,7 @@ QED2KSearchResultEntry QED2KSearchResultEntry::fromSharedFileEntry(const libed2k
 
 bool QED2KSearchResultEntry::isCorrect() const
 {
-    return (m_hFile.size() == libed2k::MD4_HASH_SIZE*2 && !m_strFilename.isEmpty());
+    return (m_hFile.size() == libed2k::md4_hash::size*2 && !m_strFilename.isEmpty());
 }
 
 QED2KPeerOptions::QED2KPeerOptions(const libed2k::misc_options& mo, const libed2k::misc_options2& mo2)
@@ -843,7 +843,7 @@ void QED2KSession::readAlerts()
                 atp.file_size = trd.m_filesize;
                 atp.file_hash = trd.m_hash;
 
-                if (trd.m_fast_resume_data.count() > 0) {
+                if (trd.m_fast_resume_data.size() > 0) {
                     atp.resume_data = const_cast<std::vector<char>* >(
                         &trd.m_fast_resume_data.getTagByNameId(libed2k::FT_FAST_RESUME_DATA)->asBlob());
                 }
@@ -1008,7 +1008,7 @@ void QED2KSession::loadFastResumeData(const QString& path) {
                 item.m_params->file_size = trd.m_filesize;
                 item.m_params->file_hash = trd.m_hash;
 
-                if (trd.m_fast_resume_data.count() > 0)
+                if (trd.m_fast_resume_data.size() > 0)
                 {
                     item.m_params->resume_data = const_cast<std::vector<char>* >(
                         &trd.m_fast_resume_data.getTagByNameId(libed2k::FT_FAST_RESUME_DATA)->asBlob());
