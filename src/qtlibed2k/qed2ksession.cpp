@@ -934,7 +934,7 @@ libed2k::peer_connection_handle QED2KSession::findPeer(const libed2k::net_identi
 
 bool typeFilter(const QString& strType, QED2KSearchResultEntry entry)
 {
-    return (strType.isEmpty() || (libed2k::GetFileTypeByName(entry.m_strFilename.toStdString()) != strType.toStdString()));
+    return (strType.isEmpty() || (libed2k::GetFileTypeByName(entry.m_strFilename.toStdString()) == strType.toStdString()));
 }
 
 void QED2KSession::readAlerts()
