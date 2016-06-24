@@ -849,14 +849,16 @@ void QED2KSession::searchFiles(const QString& strQuery,
     }
 }
 
-bool QED2KSession::searchFilesKad(const QString& strQuery) {
-    m_hashLastSearch.clear();
+bool QED2KSession::searchFilesKad(const QString& strQuery, const QString& strFileType) {
+    lastSearchDetails.clear();
     QStringList keywords = strQuery.split(" ", QString::SkipEmptyParts);
     if (!keywords.isEmpty() && keywords.at(0).length() >= 3) {
         libed2k::md4_hash sh = libed2k::hasher::from_string(keywords.at(0).toUtf8().constData());
-        m_hashLastSearch = QString::fromStdString(sh.toString());
+        lastSearchDetails.keyword = keywords.at(0);
+        lastSearchDetails.hash = QString::fromStdString(sh.toString());
+        lastSearchDetails.type = strFileType;
         m_session->find_keyword(std::string(keywords.at(0).toUtf8().constData()));
-        qDebug() << "in KAD search for " << keywords.at(0) << " started hash " << m_hashLastSearch;
+        qDebug() << "in KAD search for " << keywords.at(0) << " started hash " << lastSearchDetails.hash << " type " << lastSearchDetails.type;
         return true;
     }
 
@@ -888,7 +890,7 @@ void QED2KSession::searchMoreResults()
 void QED2KSession::cancelSearch()
 {
     m_session->post_cancel_search();
-    m_hashLastSearch.clear();   // cancel KAD search
+    lastSearchDetails.clear();   // cancel KAD search
 }
 
 bool QED2KSession::openTransfer(QString hash) {
@@ -936,6 +938,11 @@ libed2k::peer_connection_handle QED2KSession::findPeer(const libed2k::net_identi
     libed2k::peer_connection_handle pch = m_session->find_peer_connection(np);
 
     return pch;
+}
+
+bool typeFilter(const QString& strType, QED2KSearchResultEntry entry)
+{
+    return (strType.isEmpty() || (libed2k::GetFileTypeByName(entry.m_strFilename.toStdString()) == strType.toStdString()));
 }
 
 void QED2KSession::readAlerts()
@@ -1007,13 +1014,13 @@ void QED2KSession::readAlerts()
         }
         else if (libed2k::dht_keyword_search_result_alert* p = dynamic_cast<libed2k::dht_keyword_search_result_alert*>(a.get()))
         {
-            if (p->m_hash.toString() == m_hashLastSearch.toStdString())
+            if (p->m_hash.toString() == lastSearchDetails.hash.toStdString())
             {
-                qDebug() << "got search result for " << m_hashLastSearch << " size " << p->m_entries.size();
+                qDebug() << "got search result for " << lastSearchDetails.hash << " size " << p->m_entries.size();
                 for(size_t n = 0; n != p->m_entries.size(); ++n)
                 {
-                    QED2KSearchResultEntry sre = QED2KSearchResultEntry::fromKadEntry(p->m_entries[n]);
-                    if (sre.isCorrect()) kadSearchEntries.push_back(sre);
+                    QED2KSearchResultEntry sre = QED2KSearchResultEntry::fromKadEntry(p->m_entries[n]);                    
+                    if (sre.isCorrect() && typeFilter(lastSearchDetails.type, sre) && sre.m_strFilename.contains(lastSearchDetails.keyword.trimmed(), Qt::CaseInsensitive)) kadSearchEntries.push_back(sre);
                 }
 
                 kadSearchTimer.setInterval(2000);
@@ -1021,7 +1028,7 @@ void QED2KSession::readAlerts()
             }
             else
             {
-                qDebug() << "search result " << QString::fromStdString(p->m_hash.toString()) << " not match last search request " << m_hashLastSearch;
+                qDebug() << "search result " << QString::fromStdString(p->m_hash.toString()) << " not match last search request " << lastSearchDetails.hash;
             }
         }
         else if (libed2k::listen_failed_alert* p = dynamic_cast<libed2k::listen_failed_alert*>(a.get()))
@@ -1174,7 +1181,7 @@ void QED2KSession::readAlerts()
         else if (libed2k::dht_traverse_finished* p = dynamic_cast<libed2k::dht_traverse_finished*>(a.get()))
         {
             qDebug() << "traverse finished";
-            if (md4toQString(p->hash) == m_hashLastSearch)
+            if (md4toQString(p->hash) == lastSearchDetails.hash)
             {
                 qDebug() << "finished kad search";
                 kadSearchTimer.setInterval(10000);
@@ -1243,10 +1250,10 @@ void QED2KSession::saveResume() {
 
 void QED2KSession::kadSearchResult() {
     qDebug() << "aggregated kad search result ready";
-    emit searchResult(libed2k::net_identifier(), m_hashLastSearch, kadSearchEntries, false);
+    emit searchResult(libed2k::net_identifier(), lastSearchDetails.hash, kadSearchEntries, false);
     emit searchFinished(kadSearchEntries.size(), false);
     // stop search
-    m_hashLastSearch.clear();
+    lastSearchDetails.clear();
     kadSearchEntries.clear();
     kadSearchTimer.stop();
 }

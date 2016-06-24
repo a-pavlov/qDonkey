@@ -91,6 +91,8 @@ MainWindow::MainWindow(QObject* parent) : QObject(parent) {
     playTimer = new QTimer(this);
     connect(playTimer, SIGNAL(timeout()), this, SLOT(onPlayTimeout()));
     playTimer->start(2500);
+
+    connect(QApplication::instance(), SIGNAL(applicationStateChanged(Qt::ApplicationState)), this, SLOT(onApplicationStateChanged(Qt::ApplicationState)));
 }
 
 MainWindow::~MainWindow() {
@@ -178,4 +180,18 @@ void MainWindow::fileError(QString filename, QString msg) {
 
 void MainWindow::onPlayTimeout() {
     Session::instance()->playPendingMedia();
+}
+
+void MainWindow::onApplicationStateChanged(Qt::ApplicationState state) {
+    switch(state){
+    case Qt::ApplicationSuspended:
+        qDebug() << "application suspended";
+        break;
+    case Qt::ApplicationActive:
+        qDebug() << "application active";
+        break;
+    default:
+        qDebug() << "state changed " << state;
+        break;
+    }
 }
