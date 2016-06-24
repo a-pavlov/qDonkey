@@ -112,7 +112,7 @@ Click help button for more information.")
                         id: langModel
                         ListElement { key: "en"; value: qsTr("English");  }
                         ListElement { key: "ru"; value: qsTr("Russian");  }
-                        ListElement { key: "es"; value: qsTr("Spanish")}
+                        ListElement { key: "it"; value: qsTr("Italian")}
                     }
 
                     onItemSelected: {
