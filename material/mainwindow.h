@@ -52,6 +52,7 @@ private slots:
     void finishedTransfer(const QED2KHandle&);
     void fileError(QString, QString);
     void onPlayTimeout();
+    void onApplicationStateChanged(Qt::ApplicationState);
 };
 
 
