@@ -212,17 +212,17 @@ You can help the development by give a good rating to the app in Google Play or 
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="../../material/mainwindow.cpp" line="163"/>
+        <location filename="../../material/mainwindow.cpp" line="165"/>
         <source>%1 has started downloading</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../material/mainwindow.cpp" line="170"/>
+        <location filename="../../material/mainwindow.cpp" line="172"/>
         <source>%1 has finished downloading</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../material/mainwindow.cpp" line="175"/>
+        <location filename="../../material/mainwindow.cpp" line="177"/>
         <source>I/O error on %1: %2</source>
         <translation type="unfinished"></translation>
     </message>

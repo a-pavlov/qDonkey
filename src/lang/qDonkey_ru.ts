@@ -348,17 +348,17 @@ Are you sure you want to quit qDonkey?</source>
         <translation type="vanished">Соединение с сервером разорвано</translation>
     </message>
     <message>
-        <location filename="../../material/mainwindow.cpp" line="163"/>
+        <location filename="../../material/mainwindow.cpp" line="165"/>
         <source>%1 has started downloading</source>
         <translation>Началась загрузка %1 </translation>
     </message>
     <message>
-        <location filename="../../material/mainwindow.cpp" line="170"/>
+        <location filename="../../material/mainwindow.cpp" line="172"/>
         <source>%1 has finished downloading</source>
         <translation>%1 загружен</translation>
     </message>
     <message>
-        <location filename="../../material/mainwindow.cpp" line="175"/>
+        <location filename="../../material/mainwindow.cpp" line="177"/>
         <source>I/O error on %1: %2</source>
         <translation>Ошибка ввода вывода %1 на %2</translation>
     </message>
@@ -500,7 +500,7 @@ Click help button for more information.</source>
     <message>
         <location filename="../../material/qml/Preferences.qml" line="136"/>
         <source>Enter your nickname</source>
-        <translation>Введите ааш ник</translation>
+        <translation>Введите ник</translation>
     </message>
     <message>
         <location filename="../../material/qml/Preferences.qml" line="157"/>
