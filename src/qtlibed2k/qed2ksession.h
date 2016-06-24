@@ -151,6 +151,18 @@ struct KadNode {
     KadNode(const libed2k::kad_id& own, const libed2k::kad_state_entry& ke);
 };
 
+struct SearchRequestDetails {
+    QString hash;
+    QString keyword;
+    QString type;
+
+    void clear() {
+        hash.clear();
+        keyword.clear();
+        type.clear();
+    }
+};
+
 class FileDownloader;
 
 class QED2KSession : public QObject {
@@ -255,7 +267,7 @@ private:
     QUrl                    currentMF;
     FileDownloader*         m_fd;
     bool                    m_PropPending;
-    QString                 m_hashLastSearch;
+    SearchRequestDetails    lastSearchDetails;
     QList<QED2KSearchResultEntry> kadSearchEntries;
 private slots:
     void readAlerts();
@@ -284,7 +296,7 @@ public slots:
 	                quint32 nMediaLength,
                     quint32 nMediaBitrate);
 
-    Q_INVOKABLE bool searchFilesKad(const QString& strQuery);
+    Q_INVOKABLE bool searchFilesKad(const QString& strQuery, const QString& strFileType);
 
 	/**
 	  * set found file hash here

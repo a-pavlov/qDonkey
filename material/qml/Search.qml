@@ -232,7 +232,7 @@ Page {
 
                             searchModel.clean()
                             if (kadSearch.checked) {
-                                if (!session.searchFilesKad(sText.text)) {
+                                if (!session.searchFilesKad(sText.text, sTypeModel.get(sType.selectedIndex).value)) {
                                     kadWrongKeyword.show()
                                     return
                                 }
