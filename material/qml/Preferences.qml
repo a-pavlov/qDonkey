@@ -305,7 +305,7 @@ Click help button for more information.")
                         text: qsTr("Down")
                         onCheckedChanged: {
                             limitDownload.enabled=checked
-                            pref.dlSpeedLimit=checked
+                            pref.dlSpeedLimited=checked
                             session.toPP()
                         }
                     }
