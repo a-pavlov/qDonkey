@@ -232,17 +232,17 @@ You can help the development by give a good rating to the app in Google Play or 
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="../../material/mainwindow.cpp" line="177"/>
+        <location filename="../../material/mainwindow.cpp" line="179"/>
         <source>%1 has started downloading</source>
         <translation>%1 sta scaricando</translation>
     </message>
     <message>
-        <location filename="../../material/mainwindow.cpp" line="184"/>
+        <location filename="../../material/mainwindow.cpp" line="186"/>
         <source>%1 has finished downloading</source>
         <translation>%1 Scaricamento completato</translation>
     </message>
     <message>
-        <location filename="../../material/mainwindow.cpp" line="189"/>
+        <location filename="../../material/mainwindow.cpp" line="191"/>
         <source>I/O error on %1: %2</source>
         <translation>Errore I/O %1: %2</translation>
     </message>
@@ -320,6 +320,7 @@ You can help the development by give a good rating to the app in Google Play or 
         <location filename="../../material/qml/Preferences.qml" line="41"/>
         <location filename="../../material/qml/Preferences.qml" line="49"/>
         <location filename="../../material/qml/Preferences.qml" line="60"/>
+        <location filename="../../material/qml/Preferences.qml" line="70"/>
         <source>Ok</source>
         <translation>Ok</translation>
     </message>
@@ -337,27 +338,27 @@ You can help the development by give a good rating to the app in Google Play or 
         <translation type="vanished">Cambia le preferenze, poi seleziona Applica</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Preferences.qml" line="114"/>
+        <location filename="../../material/qml/Preferences.qml" line="116"/>
         <source>English</source>
         <translation>Inglese</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Preferences.qml" line="115"/>
+        <location filename="../../material/qml/Preferences.qml" line="117"/>
         <source>Russian</source>
         <translation>Русский</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Preferences.qml" line="116"/>
+        <location filename="../../material/qml/Preferences.qml" line="118"/>
         <source>Italian</source>
         <translation>Italiano</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Preferences.qml" line="137"/>
+        <location filename="../../material/qml/Preferences.qml" line="139"/>
         <source>Enter your nickname</source>
         <translation>Inserisci il tuo nickname</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Preferences.qml" line="158"/>
+        <location filename="../../material/qml/Preferences.qml" line="160"/>
         <source>Listen port</source>
         <translation>Porta di entrata</translation>
     </message>
@@ -404,68 +405,69 @@ Click help button for more information.</source>
         <translation>Scarica il nodes.dat nella cartella dei download? Il file precedente verrà sovrascritto.</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Preferences.qml" line="94"/>
+        <location filename="../../material/qml/Preferences.qml" line="96"/>
         <source>Change preferences here</source>
         <translation>Configurare il programma</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Preferences.qml" line="184"/>
+        <location filename="../../material/qml/Preferences.qml" line="186"/>
         <source>Forward port on router</source>
         <translation>Aprire la porta sul router</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Preferences.qml" line="226"/>
+        <location filename="../../material/qml/Preferences.qml" line="228"/>
         <source>KAD enabled</source>
         <translation>KAD</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Preferences.qml" line="268"/>
+        <location filename="../../material/qml/Preferences.qml" line="270"/>
         <source>Bootstrap IP</source>
         <translation>Bootstrap IP</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Preferences.qml" line="278"/>
+        <location filename="../../material/qml/Preferences.qml" line="280"/>
         <source>Port</source>
         <translation>Porta</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Preferences.qml" line="306"/>
+        <location filename="../../material/qml/Preferences.qml" line="308"/>
         <source>Down</source>
         <translation>Giù</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Preferences.qml" line="319"/>
+        <location filename="../../material/qml/Preferences.qml" line="321"/>
         <source>Dowload limit Kb/s</source>
         <translation>Limite scaricamento Kb/s</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Preferences.qml" line="332"/>
+        <location filename="../../material/qml/Preferences.qml" line="334"/>
         <source>Up</source>
         <translation>Su</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Preferences.qml" line="345"/>
+        <location filename="../../material/qml/Preferences.qml" line="347"/>
         <source>Upload limit Kb/s</source>
         <translation>Limite caricamento Kb/s</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Preferences.qml" line="367"/>
+        <location filename="../../material/qml/Preferences.qml" line="369"/>
         <source>Incoming directory</source>
         <translation>Cartella per i file scaricati</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Preferences.qml" line="388"/>
+        <location filename="../../material/qml/Preferences.qml" line="390"/>
         <source>Show old transfers</source>
         <translation>Mostra i trasferimenti vecchi</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Preferences.qml" line="405"/>
+        <location filename="../../material/qml/Preferences.qml" line="407"/>
         <source>Ask before exit program</source>
         <translation>Chiedi conferma per la chiusura</translation>
     </message>
     <message>
+        <location filename="../../material/qml/Preferences.qml" line="71"/>
         <source>Cancel</source>
-        <translation type="vanished">Annulla</translation>
+        <translation>Annulla</translation>
     </message>
     <message>
         <source>Apply</source>
@@ -648,24 +650,20 @@ Click help button for more information.</source>
         <translation>KAD solo di ricerca</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Search.qml" line="226"/>
         <source>Results</source>
-        <translation>Results</translation>
+        <translation type="vanished">Results</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Search.qml" line="234"/>
         <source>Start</source>
-        <translation>Cerca</translation>
+        <translation type="vanished">Cerca</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Search.qml" line="269"/>
         <source>More</source>
-        <translation>Più</translation>
+        <translation type="vanished">Più</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Search.qml" line="285"/>
         <source>Cancel</source>
-        <translation>Annulla</translation>
+        <translation type="vanished">Annulla</translation>
     </message>
 </context>
 <context>
