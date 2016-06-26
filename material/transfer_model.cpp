@@ -243,3 +243,22 @@ void TransferModel::handleTransferAboutToBeRemoved(const QED2KHandle &h, bool) {
   if (row >= 0)
       emit transferAboutToBeRemoved(m_transfers.at(row));
 }
+
+void TransferModel::activateRefresh(bool flag) {
+    if (flag)
+    {
+        m_refreshTimer.start();
+    }
+    else
+    {
+        m_refreshTimer.stop();
+        if (!m_transfers.empty())
+        {
+            beginRemoveRows(QModelIndex(), 0, m_transfers.size() - 1);
+            qDeleteAll(m_transfers);
+            m_transfers.clear();
+            endRemoveRows();
+        }
+
+    }
+}

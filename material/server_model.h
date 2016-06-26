@@ -39,6 +39,7 @@ public:
     void setClientId(const QString& alias, const QString& host, int port, quint32 client_id);
     void save() const;    // save servers list to disk
     void load();    // load servers list from disk
+    void clean();
 public slots:
     void on_serverConnectionInitialized(QString alias, QString host, int port, quint32 client_id, quint32 tcp_flags, quint32 aux_port);
     void on_serverConnectionClosed(QString alias, QString host, int port, QString strError);

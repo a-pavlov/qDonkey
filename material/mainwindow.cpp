@@ -18,6 +18,7 @@
 #include <QTimer>
 
 MainWindow::MainWindow(QObject* parent) : QObject(parent) {
+    suspended = false;
     pref.reset(new Preferences);
     smodel = new ServerModel(this);
     notificationClient = new NotificationClient(this);
@@ -82,6 +83,7 @@ MainWindow::MainWindow(QObject* parent) : QObject(parent) {
     Q_ASSERT(engine->rootObjects().size() == 1);
     connect(engine->rootObjects()[0], SIGNAL(init_dir_accepted()), this, SLOT(onInitAccepted()));
     connect(engine->rootObjects()[0], SIGNAL(init_dir_rejected()), this, SLOT(onInitRejected()));
+    connect(engine->rootObjects()[0], SIGNAL(switch_session()), this, SLOT(onSwitchSession()));
 
     //Session::instance()->start();
     Session::instance()->loadDirectory(pref.data()->inputDir());
@@ -182,15 +184,64 @@ void MainWindow::onPlayTimeout() {
 }
 
 void MainWindow::onApplicationStateChanged(Qt::ApplicationState state) {
+    qDebug() << Q_FUNC_INFO << " " << state;
+    Preferences pref;
     switch(state){
     case Qt::ApplicationSuspended:
-        qDebug() << "application suspended";
+        qDebug() << "stop session";
+        transferModel->activateRefresh(false);
+        playTimer->stop();
+        smodel->save();
+        smodel->clean();
+        Session::instance()->stop();
+        suspended = true;
         break;
     case Qt::ApplicationActive:
-        qDebug() << "application active";
-        break;
-    default:
-        qDebug() << "state changed " << state;
+    {
+        if (suspended) {
+            qDebug() << "application previously suspended, activate";
+            Session::instance()->start();
+            //qSleep(2000);
+            if (pref.getKad()) Session::instance()->startKad();
+            Session::instance()->loadDirectory(pref.inputDir());
+            smodel->load();
+            restoreLastServerConnection();
+            suspended = false;
+            transferModel->activateRefresh(true);
+            playTimer->start();
+        }
         break;
     }
+    case Qt::ApplicationInactive:
+    default:
+        break;
+    }
+}
+
+void MainWindow::onSwitchSession()
+{
+    /*
+    Preferences pref;
+    if (suspended) {
+        qDebug() << "application previously suspended, activate";
+        Session::instance()->start();
+        //qSleep(2000);
+        if (pref.getKad()) Session::instance()->startKad();
+        Session::instance()->loadDirectory(pref.inputDir());
+        smodel->load();
+        restoreLastServerConnection();
+        suspended = false;
+        transferModel->activateRefresh(true);
+        playTimer->start();
+    }
+    else {
+        qDebug() << "stop session";
+        transferModel->activateRefresh(false);
+        playTimer->stop();
+        smodel->save();
+        smodel->clean();
+        Session::instance()->stop();
+        suspended = true;
+    }
+    */
 }
