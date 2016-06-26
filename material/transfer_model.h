@@ -26,6 +26,7 @@ public:
     QString transferHash(int row) const;
     void setRefreshInterval(int refreshInterval);
     Qt::ItemFlags flags(const QModelIndex &index) const;
+    void activateRefresh(bool);
 signals:
     void transferAdded(TransferModelItem *transferItem);
     void transferAboutToBeRemoved(TransferModelItem *transferItem);

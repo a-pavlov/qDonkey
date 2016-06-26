@@ -159,7 +159,7 @@ void ServerModel::load() {
         int size = pref.beginReadArray("Servers");
         for(int i = 0; i < size; ++i) {
             pref.setArrayIndex(i);
-            servers << load_server(pref);
+            add(load_server(pref));
         }
 
         pref.endArray();
@@ -180,6 +180,8 @@ void ServerModel::load() {
             add(s);
         }
     }
+
+    qDebug() << "servers count " << servers.size();
 }
 
 void ServerModel::save() const {
@@ -194,5 +196,13 @@ void ServerModel::save() const {
 
     pref.endArray();
 
+}
+
+void ServerModel::clean() {
+    if (!servers.empty()) {
+        beginRemoveRows(QModelIndex(), 0, servers.size() - 1);
+        servers.clear();
+        endRemoveRows();
+    }
 }
 

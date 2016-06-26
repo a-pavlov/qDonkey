@@ -375,8 +375,7 @@ bool writeResumeDataOne(std::ofstream& fs, const libed2k::save_resume_data_alert
 QED2KSession::QED2KSession() {
     connect(&alertsTimer, SIGNAL(timeout()), this, SLOT(readAlerts()));
     connect(&frdTimer, SIGNAL(timeout()), this, SLOT(saveResume()));
-    connect(&kadSearchTimer, SIGNAL(timeout()), this, SLOT(kadSearchResult()));
-    m_speedMon.reset(new TransferSpeedMonitor(this));
+    connect(&kadSearchTimer, SIGNAL(timeout()), this, SLOT(kadSearchResult()));    
     last_error_dt = QDateTime::currentDateTime().addSecs(-1);
     m_fd = NULL;
     m_PropPending = false;
@@ -416,6 +415,7 @@ void QED2KSession::start()
     configureSession();
     alertsTimer.setInterval(1000);
     alertsTimer.start();
+    m_speedMon.reset(new TransferSpeedMonitor(this));
 	m_speedMon->start();
     frdTimer.setInterval(1000*60*2);
     frdTimer.start();
@@ -423,11 +423,15 @@ void QED2KSession::start()
 
 void QED2KSession::stop()
 {
+    qDebug() << Q_FUNC_INFO;
+    m_speedMon.reset();
     alertsTimer.stop();
     frdTimer.stop();
-    m_session->pause();
-    saveFastResumeData();
     stopKad();
+    saveFastResumeData();
+    m_session.reset();
+    m_currentPath.clear();
+    qDebug() << "stopped";
 }
 
 bool QED2KSession::started() const { return !m_session.isNull(); }
@@ -1628,6 +1632,7 @@ bool QED2KSession::loadDirectory(const QString& path) {
         QString filepath = dirIt.next();
         QFileInfo info = dirIt.fileInfo();
         if (!m_fastTransfers.contains(info.fileName())) {
+            qDebug() << "pending file " << info.fileName();
             m_pendingFiles << filepath;
         }
     }
