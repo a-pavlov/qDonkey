@@ -158,7 +158,6 @@ Help about KAD you can see on help button near KAD switch.")
                 iconName: "action/help"
                 name: "Help"
                 onTriggered: {
-                    switch_session()
                     switch(page.selectedTab) {
                     case 0:
                         helpConn.show()
@@ -174,8 +173,6 @@ Help about KAD you can see on help button near KAD switch.")
                         break;
                     }
                 }
-
-
             }
         ]
 

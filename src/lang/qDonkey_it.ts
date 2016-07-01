@@ -74,44 +74,44 @@
 <context>
     <name>Donkey</name>
     <message>
-        <location filename="../../material/qml/Donkey.qml" line="27"/>
+        <location filename="../../material/qml/Donkey.qml" line="28"/>
         <source>Do you really want to quit?</source>
         <translation>Sei sicuro di voler chiudere?</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Donkey.qml" line="28"/>
+        <location filename="../../material/qml/Donkey.qml" line="29"/>
         <source>Yes</source>
         <translation>Sì</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Donkey.qml" line="29"/>
+        <location filename="../../material/qml/Donkey.qml" line="30"/>
         <source>No</source>
         <translation>No</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Donkey.qml" line="45"/>
+        <location filename="../../material/qml/Donkey.qml" line="46"/>
         <source>Ok</source>
         <translation>Ok</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Donkey.qml" line="47"/>
+        <location filename="../../material/qml/Donkey.qml" line="48"/>
         <source>I/O error</source>
         <translation>Errore di I/O</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Donkey.qml" line="48"/>
+        <location filename="../../material/qml/Donkey.qml" line="49"/>
         <source>Filename: %1 message %2</source>
         <translation>File: %1 messaggio %2</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Donkey.qml" line="84"/>
+        <location filename="../../material/qml/Donkey.qml" line="85"/>
         <source>Choose server for connection, click for menu. Connection to server need for search keywords and search sources for downloading.
 If you have router and got LowID try to forward listen port in Pref(reconnect to server after it).
 LowID means your port is not accessible from outside - it is significantly reduce download speed.</source>
         <translation>Selezionare il server per la connessione. La connessione serve per una ricerca per parole chiave e la ricerca di fonti. Se hai un LowID provare ad attraversare la porta sul router. LowID significa che la porta di ingresso non è accessibile dall&apos;esterno - questo riduce di molto la velocità di download e il numero di fonti.</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Donkey.qml" line="92"/>
+        <location filename="../../material/qml/Donkey.qml" line="93"/>
         <source>Enter search phrase into text field. You can specify parameters like sources count, size and so on.
 To start search press Start button. If search returns results you will be forwarded to search result page.
 Press Results button to see previous search results.
@@ -130,34 +130,34 @@ More buttton is enabled when more results are available for search. Search in KA
         <translation type="vanished">Digitare la frase di ricerca. È possibile specificare le impostazioni di dimensione del file, il numero di fonti e così via Per il lancio di ricerca, fare clic su start. Se la ricerca ha restituito i risultati si verrà reindirizzati alla pagina dei risultati. Premere di nuovo per trovare più.</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Donkey.qml" line="102"/>
+        <location filename="../../material/qml/Donkey.qml" line="103"/>
         <source>Shows your current active transfers. All files in incoming directory are transfers. By default incoming directory is your Download directory.</source>
         <translation>Mostra correnti di upload e di download. Tutti i file in entrata directory vengono distribuite. Per impostazione predefinita, in entrata, indice questo è un indice di download.</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Donkey.qml" line="108"/>
+        <location filename="../../material/qml/Donkey.qml" line="109"/>
         <source>Setup program options here. Language changes will applied after restart application.
 Incoming directory and port applies after you leave preferences page. Be careful about changing listen port and incoming directory.
 Help about KAD you can see on help button near KAD switch.</source>
         <translation>Modificare la lingua del programma entreranno in vigore dopo il riavvio. Le modifiche di ingresso directory e porta, dopo il cambio di pagina. Fate attenzione con il cambiamento porta di ingresso e directory. Aiuto su come usare la KAD vedi il pulsante di aiuto KAD.</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Donkey.qml" line="146"/>
+        <location filename="../../material/qml/Donkey.qml" line="147"/>
         <source>Conn</source>
         <translation>Conn</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Donkey.qml" line="146"/>
+        <location filename="../../material/qml/Donkey.qml" line="147"/>
         <source>Transfers</source>
         <translation>Trasferim</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Donkey.qml" line="146"/>
+        <location filename="../../material/qml/Donkey.qml" line="147"/>
         <source>Search</source>
         <translation>Cerca</translation>
     </message>
     <message>
-        <location filename="../../material/qml/Donkey.qml" line="146"/>
+        <location filename="../../material/qml/Donkey.qml" line="147"/>
         <source>Pref</source>
         <translation>Pref</translation>
     </message>
@@ -230,17 +230,17 @@ You can help the development by give a good rating to the app in Google Play or 
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="../../material/mainwindow.cpp" line="165"/>
+        <location filename="../../material/mainwindow.cpp" line="168"/>
         <source>%1 has started downloading</source>
         <translation>%1 sta scaricando</translation>
     </message>
     <message>
-        <location filename="../../material/mainwindow.cpp" line="172"/>
+        <location filename="../../material/mainwindow.cpp" line="175"/>
         <source>%1 has finished downloading</source>
         <translation>%1 Scaricamento completato</translation>
     </message>
     <message>
-        <location filename="../../material/mainwindow.cpp" line="177"/>
+        <location filename="../../material/mainwindow.cpp" line="180"/>
         <source>I/O error on %1: %2</source>
         <translation>Errore I/O %1: %2</translation>
     </message>

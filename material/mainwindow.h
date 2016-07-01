@@ -54,7 +54,6 @@ private slots:
     void fileError(QString, QString);
     void onPlayTimeout();
     void onApplicationStateChanged(Qt::ApplicationState);
-    void onSwitchSession();
 };
 
 

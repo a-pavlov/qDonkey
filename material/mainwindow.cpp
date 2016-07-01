@@ -94,6 +94,7 @@ MainWindow::MainWindow(QObject* parent) : QObject(parent) {
     connect(playTimer, SIGNAL(timeout()), this, SLOT(onPlayTimeout()));
     playTimer->start(2500);
 
+    // suspend session on application inactive and resume in other case
     connect(QApplication::instance(), SIGNAL(applicationStateChanged(Qt::ApplicationState)), this, SLOT(onApplicationStateChanged(Qt::ApplicationState)));
 }
 
@@ -202,7 +203,6 @@ void MainWindow::onApplicationStateChanged(Qt::ApplicationState state) {
         if (suspended) {
             qDebug() << "application previously suspended, activate";
             Session::instance()->start();
-            //qSleep(2000);
             if (pref.getKad()) Session::instance()->startKad();
             Session::instance()->loadDirectory(pref.inputDir());
             smodel->load();
@@ -217,32 +217,4 @@ void MainWindow::onApplicationStateChanged(Qt::ApplicationState state) {
     default:
         break;
     }
-}
-
-void MainWindow::onSwitchSession()
-{
-    /*
-    Preferences pref;
-    if (suspended) {
-        qDebug() << "application previously suspended, activate";
-        Session::instance()->start();
-        //qSleep(2000);
-        if (pref.getKad()) Session::instance()->startKad();
-        Session::instance()->loadDirectory(pref.inputDir());
-        smodel->load();
-        restoreLastServerConnection();
-        suspended = false;
-        transferModel->activateRefresh(true);
-        playTimer->start();
-    }
-    else {
-        qDebug() << "stop session";
-        transferModel->activateRefresh(false);
-        playTimer->stop();
-        smodel->save();
-        smodel->clean();
-        Session::instance()->stop();
-        suspended = true;
-    }
-    */
 }

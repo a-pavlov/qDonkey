@@ -70,44 +70,44 @@
 <context>
     <name>Donkey</name>
     <message>
-        <location filename="../../material/qml/Donkey.qml" line="27"/>
+        <location filename="../../material/qml/Donkey.qml" line="28"/>
         <source>Do you really want to quit?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../material/qml/Donkey.qml" line="28"/>
+        <location filename="../../material/qml/Donkey.qml" line="29"/>
         <source>Yes</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../material/qml/Donkey.qml" line="29"/>
+        <location filename="../../material/qml/Donkey.qml" line="30"/>
         <source>No</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../material/qml/Donkey.qml" line="45"/>
+        <location filename="../../material/qml/Donkey.qml" line="46"/>
         <source>Ok</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../material/qml/Donkey.qml" line="47"/>
+        <location filename="../../material/qml/Donkey.qml" line="48"/>
         <source>I/O error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../material/qml/Donkey.qml" line="48"/>
+        <location filename="../../material/qml/Donkey.qml" line="49"/>
         <source>Filename: %1 message %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../material/qml/Donkey.qml" line="84"/>
+        <location filename="../../material/qml/Donkey.qml" line="85"/>
         <source>Choose server for connection, click for menu. Connection to server need for search keywords and search sources for downloading.
 If you have router and got LowID try to forward listen port in Pref(reconnect to server after it).
 LowID means your port is not accessible from outside - it is significantly reduce download speed.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../material/qml/Donkey.qml" line="92"/>
+        <location filename="../../material/qml/Donkey.qml" line="93"/>
         <source>Enter search phrase into text field. You can specify parameters like sources count, size and so on.
 To start search press Start button. If search returns results you will be forwarded to search result page.
 Press Results button to see previous search results.
@@ -116,34 +116,34 @@ To search in KAD use switch KAD only search.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../material/qml/Donkey.qml" line="102"/>
+        <location filename="../../material/qml/Donkey.qml" line="103"/>
         <source>Shows your current active transfers. All files in incoming directory are transfers. By default incoming directory is your Download directory.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../material/qml/Donkey.qml" line="108"/>
+        <location filename="../../material/qml/Donkey.qml" line="109"/>
         <source>Setup program options here. Language changes will applied after restart application.
 Incoming directory and port applies after you leave preferences page. Be careful about changing listen port and incoming directory.
 Help about KAD you can see on help button near KAD switch.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../material/qml/Donkey.qml" line="146"/>
+        <location filename="../../material/qml/Donkey.qml" line="147"/>
         <source>Conn</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../material/qml/Donkey.qml" line="146"/>
+        <location filename="../../material/qml/Donkey.qml" line="147"/>
         <source>Transfers</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../material/qml/Donkey.qml" line="146"/>
+        <location filename="../../material/qml/Donkey.qml" line="147"/>
         <source>Search</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../material/qml/Donkey.qml" line="146"/>
+        <location filename="../../material/qml/Donkey.qml" line="147"/>
         <source>Pref</source>
         <translation type="unfinished"></translation>
     </message>
@@ -212,17 +212,17 @@ You can help the development by give a good rating to the app in Google Play or 
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="../../material/mainwindow.cpp" line="165"/>
+        <location filename="../../material/mainwindow.cpp" line="168"/>
         <source>%1 has started downloading</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../material/mainwindow.cpp" line="172"/>
+        <location filename="../../material/mainwindow.cpp" line="175"/>
         <source>%1 has finished downloading</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../material/mainwindow.cpp" line="177"/>
+        <location filename="../../material/mainwindow.cpp" line="180"/>
         <source>I/O error on %1: %2</source>
         <translation type="unfinished"></translation>
     </message>
