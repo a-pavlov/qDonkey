@@ -13,6 +13,7 @@ ApplicationWindow {
 
     signal init_dir_accepted()
     signal init_dir_rejected()
+    signal switch_session()
 
     property string lastErrorFilename: ""
     property string lastErrorMessage: ""
@@ -196,7 +197,7 @@ Help about KAD you can see on help button near KAD switch.")
         actions: [
             Action {
                 iconName: "action/help"
-                name: "Help"                
+                name: "Help"
                 onTriggered: {
                     switch(page.selectedTab) {
                     case 0:

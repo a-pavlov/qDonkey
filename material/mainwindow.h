@@ -36,12 +36,12 @@ private:
     NotificationClient*     notificationClient;
     QTimer*                 playTimer;
     PeerModel*              pmodel;
-    //AdCtl*                  adctl;
+    bool                    suspended;
 
     void restoreLastServerConnection();
 public:
     explicit MainWindow(QObject* parent = 0);
-    ~MainWindow();
+    ~MainWindow();    
 protected:
     void keyReleaseEvent(QKeyEvent* event);
 private slots:
