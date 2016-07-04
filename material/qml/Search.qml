@@ -19,11 +19,12 @@ Page {
             progress.visible = false
             if (resultsCount > 0) {
                 searchFPModel.sortData()
-                adMob.adHide()
-                if (counter % 5 == 0) adMob.interstitialShow()
-                counter = counter + 1
                 pageStack.push(Qt.resolvedUrl("SearchResult.qml"))
             } else snack.open(qsTr("Sorry, your last search returned empty result"))
+
+            adMob.adHide()
+            if (counter % 3 == 0) adMob.interstitialShow()
+            counter = counter + 1
         }
     }
 
@@ -222,7 +223,11 @@ Page {
                     isMiniSize: true
                     backgroundColor: "white"
                     enabled: !searchModel.IsEmpty
-                    onClicked: pageStack.push(Qt.resolvedUrl("SearchResult.qml"))
+                    onClicked: {
+                        adMob.adHide()
+                        if (counter % 3 == 0) adMob.interstitialShow()
+                        pageStack.push(Qt.resolvedUrl("SearchResult.qml"))
+                    }
                 }
 
                 ActionButton {
@@ -290,6 +295,11 @@ Page {
                         progress.enabled = false
                         progress.visible = false
                     }
+                }
+
+                Item {
+                    Layout.fillWidth: false
+                    Layout.preferredHeight: Units.dp(16)
                 }
             }
         }
