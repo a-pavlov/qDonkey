@@ -61,6 +61,7 @@ class Preferences : public QIniSettings {
     Q_PROPERTY(bool kad READ getKad WRITE setKad NOTIFY kadChanged)
     Q_PROPERTY(QString bootstrapIP READ bootstrapIP WRITE setBootstrapIP NOTIFY bootstrapIPChanged)
     Q_PROPERTY(QString bootstrapPort READ bootstrapPort WRITE setBootstrapPort NOTIFY bootstrapPortChanged)
+    Q_PROPERTY(bool stopOnBackground READ getStopOnBackground WRITE setStopOnBackground NOTIFY stopOnBackgroundChanged)
 
 public:
   Preferences() : QIniSettings(COMPANY_NAME,  PRODUCT_NAME){
@@ -135,6 +136,9 @@ public:
 
     bool getKad() const;
     void setKad(bool);
+
+    bool getStopOnBackground() const;
+    void setStopOnBackground(bool);
 signals:
      void inputDirChanged(QString);
      void localeChanged(QString);
@@ -153,6 +157,7 @@ signals:
      void kadChanged(bool);
      void bootstrapIPChanged(QString);
      void bootstrapPortChanged(QString);
+     void stopOnBackgroundChanged(bool);
 };
 
 #endif // PREFERENCES_H

@@ -25,6 +25,7 @@ const QString serversPresence = "Network/ServersPresent";
 const QString kadEnabled = "Network/KAD";
 const QString bsIP = "Network/BootstrapIP";
 const QString bsPort = "Network/BootstrapPort";
+const QString pathStopOnBgr = "Common/StopOnBackground";
 
 void Preferences::flush() {
     sync();
@@ -193,6 +194,15 @@ QString Preferences::bootstrapPort() const {
 void Preferences::setBootstrapPort(QString port) {
     setValue(bsPort, port);
     emit bootstrapPortChanged(port);
+}
+
+bool Preferences::getStopOnBackground() const {
+    return value(pathStopOnBgr, false).toBool();
+}
+
+void Preferences::setStopOnBackground(bool flag) {
+    setValue(pathStopOnBgr, flag);
+    emit stopOnBackgroundChanged(flag);
 }
 
 #ifdef Q_OS_WIN
