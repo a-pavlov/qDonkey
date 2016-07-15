@@ -406,6 +406,23 @@ Click help button for more information.")
                 }
             }
 
+            ListItem.Standard {
+                action: Item {}
+                content: RowLayout {
+                    Switch {
+                        id: stopOnBgr
+                        checked: pref.stopOnBackground
+                        enabled: true
+                        darkBackground: false
+                        onCheckedChanged: pref.stopOnBackground=checked
+                    }
+
+                    Label {
+                        text: qsTr("Stop download in background")
+                    }
+                }
+            }
+
             Item {
                 Layout.fillWidth: true
                 Layout.preferredHeight: Units.dp(8)
