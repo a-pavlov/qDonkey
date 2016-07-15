@@ -188,33 +188,41 @@ void MainWindow::onPlayTimeout() {
 void MainWindow::onApplicationStateChanged(Qt::ApplicationState state) {
     qDebug() << Q_FUNC_INFO << " " << state;
     Preferences pref;
-    switch(state){
-    case Qt::ApplicationSuspended:
-        qDebug() << "stop session";
-        transferModel->activateRefresh(false);
-        playTimer->stop();
-        smodel->save();
-        smodel->clean();
-        Session::instance()->stop();
-        suspended = true;
-        break;
-    case Qt::ApplicationActive:
+    if (pref.getStopOnBackground())
     {
-        if (suspended) {
-            qDebug() << "application previously suspended, activate";
-            Session::instance()->start();
-            if (pref.getKad()) Session::instance()->startKad();
-            Session::instance()->loadDirectory(pref.inputDir());
-            smodel->load();
-            restoreLastServerConnection();
-            suspended = false;
-            transferModel->activateRefresh(true);
-            playTimer->start();
+        switch(state){
+        case Qt::ApplicationSuspended:
+            qDebug() << "stop session";
+            transferModel->activateRefresh(false);
+            playTimer->stop();
+            smodel->save();
+            smodel->clean();
+            Session::instance()->stop();
+            suspended = true;
+            break;
+        case Qt::ApplicationActive:
+        {
+            if (suspended) {
+                qDebug() << "application previously suspended, activate";
+                Session::instance()->start();
+                if (pref.getKad()) Session::instance()->startKad();
+                Session::instance()->loadDirectory(pref.inputDir());
+                smodel->load();
+                restoreLastServerConnection();
+                suspended = false;
+                transferModel->activateRefresh(true);
+                playTimer->start();
+            }
+            break;
         }
-        break;
+        case Qt::ApplicationInactive:
+        default:
+            break;
+        }
     }
-    case Qt::ApplicationInactive:
-    default:
-        break;
+    else
+    {
+        qDebug() << "save fast resume data instead of stop session";
+        Session::instance()->saveFastResumeData();
     }
 }
