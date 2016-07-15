@@ -416,6 +416,11 @@ Click help button for more information.</source>
         <source>Ask before exit program</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <location filename="../../material/qml/Preferences.qml" line="424"/>
+        <source>Stop download in background</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>QObject</name>

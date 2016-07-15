@@ -580,6 +580,11 @@ Click help button for more information.</source>
         <translation>Спрашивать перед выходом</translation>
     </message>
     <message>
+        <location filename="../../material/qml/Preferences.qml" line="424"/>
+        <source>Stop download in background</source>
+        <translation>Не качать в фоне</translation>
+    </message>
+    <message>
         <location filename="../../material/qml/Preferences.qml" line="71"/>
         <source>Cancel</source>
         <translation>Отмена</translation>
