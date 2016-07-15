@@ -464,6 +464,11 @@ Fare clic su guida per ulteriori informazioni.</translation>
         <translation>Chiedi conferma per la chiusura</translation>
     </message>
     <message>
+        <location filename="../../material/qml/Preferences.qml" line="421"/>
+        <source>Stop download in background</source>
+        <translation>Interrompere il download in background</translation>
+    </message>
+    <message>
         <location filename="../../material/qml/Preferences.qml" line="68"/>
         <source>Cancel</source>
         <translation>Annulla</translation>
