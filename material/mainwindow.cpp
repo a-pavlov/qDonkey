@@ -222,7 +222,10 @@ void MainWindow::onApplicationStateChanged(Qt::ApplicationState state) {
     }
     else
     {
-        qDebug() << "save fast resume data instead of stop session";
-        Session::instance()->saveFastResumeData();
+        if (state == Qt::ApplicationSuspended)
+        {
+            qDebug() << "save fast resume data instead of stop session";
+            Session::instance()->saveTempFastResumeData();
+        }
     }
 }
