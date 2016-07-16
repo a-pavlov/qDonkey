@@ -237,6 +237,6 @@ void MainWindow::onApplicationStateChanged(Qt::ApplicationState state) {
     else
     {
         qDebug() << "save fast result data instead of stop session";
-        Session::instance()->saveFastResumeData();
+        Session::instance()->saveTempFastResumeData();
     }
 }
