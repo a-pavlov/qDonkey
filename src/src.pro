@@ -108,7 +108,8 @@ SOURCES += mainwindow.cpp \
          iconprovider.cpp
 
 TRANSLATIONS =  $$LANG_PATH/qDonkey_en.ts \
-		$$LANG_PATH/qDonkey_ru.ts
+		$$LANG_PATH/qDonkey_ru.ts \
+		$$LANG_PATH/qDonkey_it.ts
 
 FORMS += mainwindow.ui ed2k_link_maker.ui collection_save_dlg.ui \
     inputdir_dialog.ui
