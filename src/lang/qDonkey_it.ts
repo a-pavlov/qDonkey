@@ -6,7 +6,7 @@
     <message>
         <location filename="../mainwindow.ui" line="46"/>
         <source>toolBar_2</source>
-        <translation type="unfinished"></translation>
+        <translation>toolBar_2</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="71"/>
@@ -58,7 +58,7 @@
         <location filename="../mainwindow.cpp" line="270"/>
         <source>%1 has started downloading.</source>
         <comment>e.g: xxx.avi has started downloading.</comment>
-        <translation type="unfinished"></translation>
+        <translation>%1 ha iniziato il download.</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="275"/>
@@ -98,7 +98,8 @@ Causa: %2</translation>
         <location filename="../mainwindow.cpp" line="367"/>
         <source>Some files are currently transferring.
 Are you sure you want to quit qDonkey?</source>
-        <translation type="unfinished"></translation>
+        <translation>Dei file stanno venendo trasmessi o ricevuti.
+Uscire da qDonkey?</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="370"/>
@@ -125,20 +126,20 @@ Are you sure you want to quit qDonkey?</source>
         <location filename="../mainwindow.cpp" line="580"/>
         <source>DL speed: %1 KiB/s</source>
         <comment>e.g: Download speed: 10 KiB/s</comment>
-        <translation type="unfinished">Velocità download: %1 KiB/s</translation>
+        <translation>Velocità download: %1 KiB/s</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="575"/>
         <location filename="../mainwindow.cpp" line="582"/>
         <source>UP speed: %1 KiB/s</source>
         <comment>e.g: Upload speed: 10 KiB/s</comment>
-        <translation type="unfinished">Velocità invio: %1 KiB/s</translation>
+        <translation>Velocità upload: %1 KiB/s</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="588"/>
         <source>[D: %1/s, U: %2/s] qDonkey %3</source>
         <comment>D = Download; U = Upload; %3 is qDonkey version</comment>
-        <translation type="unfinished">[D: %1/s, U: %2/s] qDonkey %3</translation>
+        <translation>[D: %1/s, U: %2/s] qDonkey %3</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="684"/>
@@ -204,7 +205,7 @@ Are you sure you want to quit qDonkey?</source>
     <message>
         <location filename="../qtlibed2k/qed2ksession.cpp" line="30"/>
         <source>Any</source>
-        <translation type="unfinished">Qualsiasi</translation>
+        <translation>Qualsiasi</translation>
     </message>
     <message>
         <location filename="../qtlibed2k/qed2ksession.cpp" line="31"/>
@@ -311,7 +312,7 @@ Are you sure you want to quit qDonkey?</source>
         <location filename="../transfers/transferlist_delegate.cpp" line="58"/>
         <source>Seeding</source>
         <comment>Transfert is complete and in upload-only mode</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Seeding</translation>
     </message>
     <message>
         <location filename="../transfers/transferlist_delegate.cpp" line="61"/>
@@ -323,7 +324,7 @@ Are you sure you want to quit qDonkey?</source>
         <location filename="../transfers/transferlist_delegate.cpp" line="64"/>
         <source>Stalled</source>
         <comment>Torrent is waiting for download to begin</comment>
-        <translation type="unfinished"></translation>
+        <translation>In attesa</translation>
     </message>
     <message>
         <location filename="../transfers/transferlist_delegate.cpp" line="78"/>
@@ -374,13 +375,13 @@ Are you sure you want to quit qDonkey?</source>
         <location filename="../transfers/transfer_model.cpp" line="45"/>
         <source>Seeds</source>
         <comment>i.e. full sources (often untranslated)</comment>
-        <translation type="unfinished"></translation>
+        <translation>Seed</translation>
     </message>
     <message>
         <location filename="../transfers/transfer_model.cpp" line="46"/>
         <source>Peers</source>
         <comment>i.e. partial sources (often untranslated)</comment>
-        <translation type="unfinished"></translation>
+        <translation>Peer</translation>
     </message>
     <message>
         <location filename="../transfers/transfer_model.cpp" line="47"/>
@@ -404,7 +405,7 @@ Are you sure you want to quit qDonkey?</source>
         <location filename="../transfers/transfer_model.cpp" line="50"/>
         <source>ETA</source>
         <comment>i.e: Estimated Time of Arrival / Time left</comment>
-        <translation type="unfinished"></translation>
+        <translation>ETA</translation>
     </message>
     <message>
         <location filename="../transfers/transfer_model.cpp" line="51"/>
@@ -422,13 +423,13 @@ Are you sure you want to quit qDonkey?</source>
         <location filename="../transfers/transfer_model.cpp" line="53"/>
         <source>Amount downloaded</source>
         <comment>Amount of data downloaded (e.g. in MB)</comment>
-        <translation type="unfinished"></translation>
+        <translation>Dati già scaricati</translation>
     </message>
     <message>
         <location filename="../transfers/transfer_model.cpp" line="54"/>
         <source>Amount left</source>
         <comment>Amount of data left to download (e.g. in MB)</comment>
-        <translation type="unfinished"></translation>
+        <translation>Dati da scaricare</translation>
     </message>
     <message>
         <location filename="../transfers/transfer_model.cpp" line="55"/>
@@ -442,22 +443,22 @@ Are you sure you want to quit qDonkey?</source>
     <message>
         <location filename="../main.cpp" line="73"/>
         <source>Usage:</source>
-        <translation>Scopo:</translation>
+        <translation>Risultato:</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="74"/>
         <source>displays program version</source>
-        <translation>mostra versione del programma</translation>
+        <translation>mostra la versione del programma</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="75"/>
         <source>displays this help message</source>
-        <translation type="unfinished"></translation>
+        <translation>visualizza questo messaggio d&apos;aiuto</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="76"/>
         <source>ed2k links: downloads the files passed by the user (optional)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">link eD2k: inizia il download dei file passati come argomento dall&apos;utente specificato (opzionale)</translation>
     </message>
 </context>
 <context>
@@ -615,7 +616,7 @@ Are you sure you want to quit qDonkey?</source>
     <message>
         <location filename="../misc.cpp" line="390"/>
         <source>qDonkey will shutdown the computer now because all downloads are complete.</source>
-        <translation type="unfinished"></translation>
+        <translation>qDonkey arresterà il sistema in seguito al corretto scaricamento di tutti i file in coda.</translation>
     </message>
     <message>
         <location filename="../misc.cpp" line="575"/>
@@ -665,12 +666,12 @@ Are you sure you want to quit qDonkey?</source>
     <message>
         <location filename="../preferences/preferences_widget.ui" line="14"/>
         <source>Form</source>
-        <translation type="unfinished"></translation>
+        <translation>Form</translation>
     </message>
     <message>
         <location filename="../preferences/preferences_widget.ui" line="20"/>
         <source>Behaviour</source>
-        <translation type="unfinished"></translation>
+        <translation>Comportamento programma</translation>
     </message>
     <message>
         <location filename="../preferences/preferences_widget.ui" line="26"/>
@@ -680,7 +681,7 @@ Are you sure you want to quit qDonkey?</source>
     <message>
         <location filename="../preferences/preferences_widget.ui" line="33"/>
         <source>Display speed in windows title</source>
-        <translation type="unfinished"></translation>
+        <translation>Mostra velocità nella barra del titolo</translation>
     </message>
     <message>
         <location filename="../preferences/preferences_widget.ui" line="42"/>
@@ -764,7 +765,7 @@ Are you sure you want to quit qDonkey?</source>
     <message>
         <location filename="../search/search_widget.ui" line="14"/>
         <source>search_widget</source>
-        <translation type="unfinished"></translation>
+        <translation>search_widget</translation>
     </message>
     <message>
         <location filename="../search/search_widget.ui" line="54"/>
@@ -774,17 +775,17 @@ Are you sure you want to quit qDonkey?</source>
     <message>
         <location filename="../search/search_widget.ui" line="109"/>
         <source>Display own files</source>
-        <translation type="unfinished"></translation>
+        <translation>Mostra anche file propri</translation>
     </message>
     <message>
         <location filename="../search/search_widget.ui" line="134"/>
         <source>Filter &apos;+++&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../search/search_widget.ui" line="161"/>
         <source>Type</source>
-        <translation type="unfinished">Tipo</translation>
+        <translation>Tipo</translation>
     </message>
     <message>
         <location filename="../search/search_widget.ui" line="208"/>
@@ -794,7 +795,7 @@ Are you sure you want to quit qDonkey?</source>
     <message>
         <location filename="../search/search_widget.ui" line="245"/>
         <source>Start</source>
-        <translation type="unfinished"></translation>
+        <translation>Avvia</translation>
     </message>
     <message>
         <location filename="../search/search_widget.ui" line="276"/>
@@ -815,7 +816,7 @@ Are you sure you want to quit qDonkey?</source>
         <location filename="../search/search_widget.ui" line="463"/>
         <location filename="../search/search_widget.ui" line="559"/>
         <source>Download</source>
-        <translation type="unfinished"></translation>
+        <translation>Download</translation>
     </message>
     <message>
         <location filename="../search/search_widget.ui" line="504"/>
@@ -828,7 +829,7 @@ Are you sure you want to quit qDonkey?</source>
         <location filename="../search/search_widget.ui" line="577"/>
         <location filename="../search/search_widget.ui" line="580"/>
         <source>Close all</source>
-        <translation type="unfinished"></translation>
+        <translation>Chiudi tutti</translation>
     </message>
     <message>
         <location filename="../search/search_widget.ui" line="589"/>
@@ -913,7 +914,7 @@ Are you sure you want to quit qDonkey?</source>
     <message>
         <location filename="../search/search_widget.cpp" line="97"/>
         <source>Press Ctrl-Delete for history cleanup</source>
-        <translation type="unfinished"></translation>
+        <translation>Premere CTRL+Canc per cancellare la cronologia ricerche</translation>
     </message>
     <message>
         <location filename="../search/search_widget.cpp" line="102"/>
@@ -948,12 +949,12 @@ Are you sure you want to quit qDonkey?</source>
     <message>
         <location filename="../search/search_widget.cpp" line="114"/>
         <source>Min bitrait [kBit/sec]</source>
-        <translation type="unfinished"></translation>
+        <translation>Bitrate min [kBit/sec]</translation>
     </message>
     <message>
         <location filename="../search/search_widget.cpp" line="116"/>
         <source>Min duration [h:m:s]</source>
-        <translation type="unfinished"></translation>
+        <translation>Durata min [h:m:s]</translation>
     </message>
     <message>
         <location filename="../search/search_widget.cpp" line="163"/>
@@ -969,7 +970,7 @@ Are you sure you want to quit qDonkey?</source>
     <message>
         <location filename="../search/search_widget.cpp" line="569"/>
         <source>Server connection closed</source>
-        <translation type="unfinished"></translation>
+        <translation>Connessione con il server chiusa</translation>
     </message>
     <message>
         <location filename="../search/search_widget.cpp" line="570"/>
@@ -984,7 +985,7 @@ Are you sure you want to quit qDonkey?</source>
     <message>
         <location filename="../search/search_widget.cpp" line="637"/>
         <source>Syntax error in &apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>Errore di sintassi in &apos;</translation>
     </message>
     <message>
         <location filename="../search/search_widget.cpp" line="639"/>
@@ -1019,7 +1020,7 @@ Are you sure you want to quit qDonkey?</source>
     <message>
         <location filename="../statusbar/status_bar.cpp" line="55"/>
         <source>Upload:</source>
-        <translation type="unfinished"></translation>
+        <translation>Upload:</translation>
     </message>
     <message>
         <location filename="../statusbar/status_bar.cpp" line="55"/>
@@ -1030,7 +1031,7 @@ Are you sure you want to quit qDonkey?</source>
     <message>
         <location filename="../statusbar/status_bar.cpp" line="56"/>
         <source>Download:</source>
-        <translation type="unfinished">Download:</translation>
+        <translation>Download:</translation>
     </message>
     <message>
         <location filename="../statusbar/status_bar.cpp" line="69"/>
@@ -1053,7 +1054,7 @@ Are you sure you want to quit qDonkey?</source>
     <message>
         <location filename="../transfers/transfers_widget.ui" line="107"/>
         <source>Start</source>
-        <translation type="unfinished"></translation>
+        <translation>Inizia</translation>
     </message>
     <message>
         <location filename="../transfers/transfers_widget.ui" line="110"/>
@@ -1069,12 +1070,12 @@ Are you sure you want to quit qDonkey?</source>
     <message>
         <location filename="../transfers/transfers_widget.ui" line="122"/>
         <source>Pause</source>
-        <translation type="unfinished">Pausa</translation>
+        <translation>Pausa</translation>
     </message>
     <message>
         <location filename="../transfers/transfers_widget.ui" line="125"/>
         <source>Pause transfer</source>
-        <translation type="unfinished"></translation>
+        <translation>Mette in pausa il trasferimento</translation>
     </message>
     <message>
         <location filename="../transfers/transfers_widget.ui" line="137"/>
@@ -1104,7 +1105,7 @@ Are you sure you want to quit qDonkey?</source>
     <message>
         <location filename="../transfers/transfers_widget.ui" line="174"/>
         <source>Open destination folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Apri cartella destinazione</translation>
     </message>
     <message>
         <location filename="../transfers/transfers_widget.ui" line="183"/>
